@@ -46,10 +46,10 @@ class SettingsThemeFragment extends StatelessWidget {
             ),
           ),
           PrefSwitch(
-            title: Text(L10n.of(context).material_you),
+            title: Text(L10n.of(context).material3),
             pref: optionThemeMaterial3,
             subtitle: Text(
-              L10n.of(context).use_material_you,
+              L10n.of(context).use_material3,
             ),
           ),
         ]),

@@ -923,18 +923,18 @@ class L10n {
   /// `Material You?`
   String get material_you {
     return Intl.message(
-      'Material You?',
-      name: 'material_you',
+      'Material 3?',
+      name: 'material3',
       desc: '',
       args: [],
     );
   }
 
   /// `Use material you theming`
-  String get use_material_you {
+  String get use_material3 {
     return Intl.message(
-      'Use material you theming',
-      name: 'use_material_you',
+      'Use Material 3 design language',
+      name: 'use_material3',
       desc: '',
       args: [],
     );
