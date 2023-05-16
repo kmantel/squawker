@@ -32,6 +32,7 @@ jobs:
 
       - name: Build APKs
         run: |
+          flutter clean
           flutter config --no-analytics
           flutter pub get
           flutter pub run flutter_oss_licenses:generate.dart
