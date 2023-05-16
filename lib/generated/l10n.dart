@@ -921,7 +921,7 @@ class L10n {
   }
 
   /// `Material You?`
-  String get material_you {
+  String get material3 {
     return Intl.message(
       'Material 3?',
       name: 'material3',
