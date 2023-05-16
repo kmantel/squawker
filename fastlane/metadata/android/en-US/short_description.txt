@@ -1,1 +1,1 @@
-A free, open-source Twitter client.
+A better way to browse Twitter

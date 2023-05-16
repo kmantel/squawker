@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:fritter/client.dart';
-import 'package:fritter/tweet/tweet.dart';
-import 'package:fritter/utils/iterables.dart';
+import '../client.dart';
+import '../tweet/tweet.dart';
+import '../utils/iterables.dart';
 
 class TweetConversation extends StatefulWidget {
   final String id;
@@ -40,9 +40,7 @@ class _TweetConversationState extends State<TweetConversation> {
 
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 4),
-      decoration: const BoxDecoration(
-        border: Border(left: BorderSide(color: Colors.white, width: 4))
-      ),
+      decoration: const BoxDecoration(border: Border(left: BorderSide(color: Colors.white, width: 4))),
       child: Column(
         children: [
           ...tiles,

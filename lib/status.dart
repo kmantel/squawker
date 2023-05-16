@@ -1,11 +1,10 @@
-import 'package:fritter/catcher/errors.dart';
 import 'package:flutter/material.dart';
-import 'package:fritter/client.dart';
-import 'package:fritter/constants.dart';
-import 'package:fritter/generated/l10n.dart';
-import 'package:fritter/profile/profile.dart';
-import 'package:fritter/tweet/conversation.dart';
-import 'package:fritter/ui/errors.dart';
+import '../client.dart';
+import '../constants.dart';
+import '../generated/l10n.dart';
+import '../profile/profile.dart';
+import '../tweet/conversation.dart';
+import '../ui/errors.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:pref/pref.dart';
 import 'package:provider/provider.dart';
@@ -95,7 +94,6 @@ class _StatusScreenState extends State<_StatusScreen> {
         }
       }
     } catch (e, stackTrace) {
-      Catcher.reportException(e, stackTrace);
       if (mounted) {
         _pagingController.error = [e, stackTrace];
       }

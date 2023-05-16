@@ -7,4 +7,4 @@
 * Podporuje přímé otevírání twitter.com odkazů
 * Podporuje RTL obsah
 
-Fritter používá Sentry pro volitelné hlášení chyb, které není ve výchozím nastavení zapnuto.
+Quacker používá Sentry pro volitelné hlášení chyb, které není ve výchozím nastavení zapnuto.

@@ -1,19 +1,18 @@
 import 'dart:async';
 
-import 'package:fritter/catcher/errors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fritter/catcher/exceptions.dart';
-import 'package:fritter/client.dart';
-import 'package:fritter/database/entities.dart';
-import 'package:fritter/database/repository.dart';
-import 'package:fritter/group/group_model.dart';
-import 'package:fritter/import_data_model.dart';
-import 'package:fritter/subscriptions/users_model.dart';
-import 'package:fritter/ui/errors.dart';
-import 'package:fritter/utils/urls.dart';
+
+import '../client.dart';
+import '../database/entities.dart';
+import '../database/repository.dart';
+import '../group/group_model.dart';
+import '../import_data_model.dart';
+import '../subscriptions/users_model.dart';
+import '../ui/errors.dart';
+import '../utils/urls.dart';
 import 'package:provider/provider.dart';
-import 'package:fritter/generated/l10n.dart';
+import '../generated/l10n.dart';
 
 class SubscriptionImportScreen extends StatefulWidget {
   const SubscriptionImportScreen({Key? key}) : super(key: key);
@@ -61,13 +60,12 @@ class _SubscriptionImportScreenState extends State<SubscriptionImportScreen> {
         await importModel.importData({
           tableSubscription: [
             ...response.users.map((e) => UserSubscription(
-              id: e.idStr!,
-              name: e.name!,
-              profileImageUrlHttps: e.profileImageUrlHttps,
-              screenName: e.screenName!,
-              verified: e.verified ?? false,
-              createdAt: createdAt
-            ))
+                id: e.idStr!,
+                name: e.name!,
+                profileImageUrlHttps: e.profileImageUrlHttps,
+                screenName: e.screenName!,
+                verified: e.verified ?? false,
+                createdAt: createdAt))
           ]
         });
 
@@ -155,12 +153,6 @@ class _SubscriptionImportScreenState extends State<SubscriptionImportScreen> {
                   builder: (context, snapshot) {
                     var error = snapshot.error;
                     if (error != null) {
-                      if (error is HttpException && error.statusCode == 401) {
-                        return createEmojiError(TwitterError(uri: error.uri, code: 22, message: L10n.current.only_public_subscriptions_can_be_imported));
-                      }
-
-                      Catcher.reportException(error, snapshot.stackTrace);
-
                       return FullPageErrorWidget(
                         error: snapshot.error,
                         stackTrace: snapshot.stackTrace,

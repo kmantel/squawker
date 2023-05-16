@@ -1,25 +1,25 @@
 import 'dart:convert';
 
 import 'package:async_button_builder/async_button_builder.dart';
-import 'package:fritter/catcher/errors.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_triple/flutter_triple.dart';
-import 'package:fritter/catcher/exceptions.dart';
-import 'package:fritter/client.dart';
-import 'package:fritter/constants.dart';
-import 'package:fritter/database/entities.dart';
-import 'package:fritter/generated/l10n.dart';
-import 'package:fritter/home/home_screen.dart';
-import 'package:fritter/profile/profile.dart';
-import 'package:fritter/saved/saved_tweet_model.dart';
-import 'package:fritter/tweet/tweet.dart';
-import 'package:fritter/ui/errors.dart';
+
+import '../client.dart';
+import '../constants.dart';
+import '../database/entities.dart';
+import '../generated/l10n.dart';
+import '../home/home_screen.dart';
+import '../profile/profile.dart';
+import '../saved/saved_tweet_model.dart';
+import '../tweet/tweet.dart';
+import '../ui/errors.dart';
 import 'package:pref/pref.dart';
 import 'package:provider/provider.dart';
 
 class SavedScreen extends StatefulWidget {
   final ScrollController scrollController;
-  
+
   const SavedScreen({Key? key, required this.scrollController}) : super(key: key);
 
   @override
@@ -59,7 +59,8 @@ class _SavedScreenState extends State<SavedScreen> with AutomaticKeepAliveClient
       },
       body: MultiProvider(
         providers: [
-          ChangeNotifierProvider<TweetContextState>(create: (_) => TweetContextState(prefs.get(optionTweetsHideSensitive))),
+          ChangeNotifierProvider<TweetContextState>(
+              create: (_) => TweetContextState(prefs.get(optionTweetsHideSensitive))),
         ],
         child: ScopedBuilder<SavedTweetModel, Object, List<SavedTweet>>.transition(
           store: model,
@@ -129,17 +130,6 @@ class SavedTweetTooLarge extends StatelessWidget {
               title: Text(L10n.current.oops_something_went_wrong),
               subtitle: Text(L10n.current.saved_tweet_too_large),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 64),
-              child: AsyncButtonBuilder(
-                successDuration: const Duration(days: 1),
-                builder: (context, child, callback, buttonState) {
-                  return TextButton(onPressed: callback, child: child);
-                },
-                onPressed: () async => Catcher.reportSyntheticException(SavedTweetTooLargeException(id)),
-                child: Text(L10n.current.report),
-              ),
-            )
           ],
         ),
       ),
@@ -147,8 +137,7 @@ class SavedTweetTooLarge extends StatelessWidget {
   }
 }
 
-
-class SavedTweetTooLargeException with SyntheticException implements Exception {
+class SavedTweetTooLargeException implements Exception {
   final String id;
 
   SavedTweetTooLargeException(this.id);

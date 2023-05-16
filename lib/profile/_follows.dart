@@ -1,12 +1,11 @@
-import 'package:fritter/catcher/errors.dart';
 import 'package:flutter/material.dart';
-import 'package:fritter/catcher/errors.dart';
-import 'package:fritter/client.dart';
-import 'package:fritter/database/entities.dart';
-import 'package:fritter/ui/errors.dart';
-import 'package:fritter/user.dart';
+
+import '../client.dart';
+import '../database/entities.dart';
+import '../ui/errors.dart';
+import '../user.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:fritter/generated/l10n.dart';
+import '../generated/l10n.dart';
 
 class ProfileFollows extends StatefulWidget {
   final UserWithExtra user;
@@ -63,7 +62,6 @@ class _ProfileFollowsState extends State<ProfileFollows> with AutomaticKeepAlive
         _pagingController.appendPage(result.users, result.cursorBottom);
       }
     } catch (e, stackTrace) {
-      Catcher.reportException(e, stackTrace);
       if (mounted) {
         _pagingController.error = [e, stackTrace];
       }

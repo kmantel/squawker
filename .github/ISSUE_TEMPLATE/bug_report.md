@@ -1,13 +1,13 @@
 ---
 name: Bug report
-about: Create a bug report to help Fritter improve
+about: Create a bug report to help Quacker improve
 title: "[BUG]"
 labels: bug
 assignees: ''
 
 ---
 
-> Please search for similar issues first, and also make sure you've tried the [latest version](https://github.com/jonjomckay/fritter/releases) of Fritter first, as the F-Droid version is sometimes out of date!
+> Please search for similar issues first, and also make sure you've tried the [latest version](https://github.com/TheHCJ/Quacker/releases) of Fritter first, as the IzzyOnDroid version is sometimes out of date!
 
 **Describe the bug**
 A clear description of what the bug is.
@@ -22,6 +22,9 @@ Steps to reproduce the behavior:
 If applicable, add screenshots to help explain your problem.
 
 **Device**
-Your device model, OS version, device locale/language and Fritter version. Please supply the actual
-version of Fritter being used, and **do not** just write "latest version" or similar, as this
+Your device model, OS version, device locale/language and Quacker version. Please supply the actual
+version of Quacker being used, and **do not** just write "latest version" or similar, as this
 changes constantly.
+
+**Does this bug affect fritter?**
+Yes/No/Don't Know

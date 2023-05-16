@@ -1,13 +1,12 @@
 import 'dart:io';
 
-import 'package:fritter/catcher/errors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_file_dialog/flutter_file_dialog.dart';
-import 'package:fritter/catcher/exceptions.dart';
-import 'package:fritter/constants.dart';
-import 'package:fritter/generated/l10n.dart';
-import 'package:fritter/ui/errors.dart';
-import 'package:fritter/utils/legacy.dart';
+
+import '../constants.dart';
+import '../generated/l10n.dart';
+import '../ui/errors.dart';
+import '../utils/legacy.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as p;
 import 'package:permission_handler/permission_handler.dart';
@@ -78,13 +77,12 @@ Future<void> downloadUriToPickedFile(BuildContext context, Uri uri, String fileN
       await File(savedFile).writeAsBytes(response);
       onSuccess();
     }
-  } catch (e, s) {
-    Catcher.reportException(UnableToSaveMedia(uri, e), s);
+  } catch (e) {
     showSnackBar(context, icon: '🙊', message: e.toString());
   }
 }
 
-class UnableToSaveMedia implements SyntheticException {
+class UnableToSaveMedia {
   final Uri uri;
   final Object e;
 
@@ -102,13 +100,11 @@ Future downloadFile(BuildContext context, Uri uri) async {
     return response.bodyBytes;
   }
 
-  Catcher.reportSyntheticException(UnableToSaveMedia(uri, response.body));
-
   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
     content: Text(
       L10n.of(context).unable_to_save_the_media_twitter_returned_a_status_of_response_statusCode(response.statusCode),
     ),
   ));
-  
+
   return null;
 }

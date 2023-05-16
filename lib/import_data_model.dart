@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:fritter/database/entities.dart';
-import 'package:fritter/database/repository.dart';
+import '../database/entities.dart';
+import '../database/repository.dart';
 import 'package:logging/logging.dart';
 import 'package:sqflite/sqflite.dart';
-
 
 class ImportDataModel extends ChangeNotifier {
   static final log = Logger('HomeModel');

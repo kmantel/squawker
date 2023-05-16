@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter_triple/flutter_triple.dart';
-import 'package:fritter/database/entities.dart';
-import 'package:fritter/database/repository.dart';
+import '../database/entities.dart';
+import '../database/repository.dart';
 import 'package:logging/logging.dart';
 
 class SavedTweetModel extends StreamStore<Object, List<SavedTweet>> {

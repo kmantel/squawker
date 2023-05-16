@@ -3,115 +3,43 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:device_info_plus/device_info_plus.dart';
-import 'package:fritter/catcher/errors.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_triple/flutter_triple.dart';
 import 'package:flutter_windowmanager/flutter_windowmanager.dart';
-import 'package:fritter/catcher/exceptions.dart';
-import 'package:fritter/constants.dart';
-import 'package:fritter/database/repository.dart';
-import 'package:fritter/generated/l10n.dart';
-import 'package:fritter/group/group_model.dart';
-import 'package:fritter/group/group_screen.dart';
-import 'package:fritter/home/home_model.dart';
-import 'package:fritter/home/home_screen.dart';
-import 'package:fritter/import_data_model.dart';
-import 'package:fritter/profile/profile.dart';
-import 'package:fritter/saved/saved_tweet_model.dart';
-import 'package:fritter/search/search.dart';
-import 'package:fritter/search/search_model.dart';
-import 'package:fritter/settings/_general.dart';
-import 'package:fritter/settings/settings.dart';
-import 'package:fritter/settings/settings_export_screen.dart';
-import 'package:fritter/status.dart';
-import 'package:fritter/subscriptions/_import.dart';
-import 'package:fritter/subscriptions/users_model.dart';
-import 'package:fritter/trends/trends_model.dart';
-import 'package:fritter/tweet/_video.dart';
-import 'package:fritter/ui/errors.dart';
-import 'package:fritter/utils/urls.dart';
-import 'package:http/http.dart' as http;
+
+import '../constants.dart';
+import '../database/repository.dart';
+import '../generated/l10n.dart';
+import '../group/group_model.dart';
+import '../group/group_screen.dart';
+import '../home/home_model.dart';
+import '../home/home_screen.dart';
+import '../import_data_model.dart';
+import '../profile/profile.dart';
+import '../saved/saved_tweet_model.dart';
+import '../search/search.dart';
+import '../search/search_model.dart';
+import '../settings/settings.dart';
+import '../settings/settings_export_screen.dart';
+import '../status.dart';
+import '../subscriptions/_import.dart';
+import '../subscriptions/users_model.dart';
+import '../trends/trends_model.dart';
+import '../tweet/_video.dart';
+import '../ui/errors.dart';
+import '../utils/urls.dart';
 import 'package:logging/logging.dart';
-import 'package:package_info/package_info.dart';
 import 'package:pref/pref.dart';
 import 'package:provider/provider.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:uni_links2/uni_links.dart';
-
-Future checkForUpdates() async {
-  Logger.root.info('Checking for updates');
-
-  try {
-    var response = await http.get(Uri.https('fritter.cc', '/api/data.json'));
-    if (response.statusCode == 200) {
-      var package = await PackageInfo.fromPlatform();
-      var result = jsonDecode(response.body);
-      var prefs = await SharedPreferences.getInstance();
-
-      var flavor = getFlavor();
-
-      var release = result['versions'][flavor]['stable'];
-      var latest = release['versionCode'] as int;
-
-      Logger.root.info('The latest version is $latest, and we are on ${package.buildNumber}');
-
-      if (int.parse(package.buildNumber) > latest) {
-        var ignoredKey = 'updates.ignore.$latest';
-
-        // If the user wants to ignore this version, do so
-        var ignored = prefs.getBool(ignoredKey) ?? false;
-        if (ignored) {
-          log('Ignoring update to $latest');
-          return;
-        }
-
-        var details = NotificationDetails(
-            android: AndroidNotificationDetails('updates', 'Updates',
-                channelDescription: 'When a new app update is available',
-                importance: Importance.max,
-                priority: Priority.high,
-                showWhen: false,
-                actions: [AndroidNotificationAction(ignoredKey, 'Ignore this version')]));
-
-        if (flavor == 'github') {
-          await FlutterLocalNotificationsPlugin().show(
-              0, 'An update for Fritter is available! 🚀', 'Tap to download ${release['version']}', details,
-              payload: release['apk']);
-        } else {
-          await FlutterLocalNotificationsPlugin().show(0, 'An update for Fritter is available! 🚀',
-              'Update to ${release['version']} through your F-Droid client', details,
-              payload: 'https://f-droid.org/packages/com.jonjomckay.fritter/');
-        }
-      }
-    } else {
-      Catcher.reportSyntheticException(UnableToCheckForUpdatesException(response.body));
-    }
-  } catch (e, stackTrace) {
-    Logger.root.severe('Unable to check for updates');
-    Catcher.reportException(e, stackTrace);
-  }
-}
-
-class UnableToCheckForUpdatesException implements SyntheticException {
-  final String body;
-
-  UnableToCheckForUpdatesException(this.body);
-
-  @override
-  String toString() {
-    return 'Unable to check for updates: {body: $body}';
-  }
-}
 
 setTimeagoLocales() {
   timeago.setLocaleMessages('ar', timeago.ArMessages());
@@ -186,14 +114,15 @@ Future<void> main() async {
     optionMediaSize: 'medium',
     optionMediaDefaultMute: true,
     optionNonConfirmationBiasMode: false,
-    optionShouldCheckForUpdates: true,
+    optionShouldCheckForUpdates: false,
     optionSubscriptionGroupsOrderByAscending: true,
     optionSubscriptionGroupsOrderByField: 'name',
     optionSubscriptionOrderByAscending: true,
     optionSubscriptionOrderByField: 'name',
     optionThemeMode: 'system',
     optionThemeTrueBlack: false,
-    optionThemeColorScheme: 'aquaBlue',
+    optionThemeMaterial3: true,
+    optionThemeColorScheme: 'mango',
     optionTweetsHideSensitive: false,
     optionUserTrendsLocations: jsonEncode({
       'active': {'name': 'Worldwide', 'woeid': 1},
@@ -202,116 +131,62 @@ Future<void> main() async {
       ]
     }),
   });
+  if (Platform.isAndroid) {
+    FlutterLocalNotificationsPlugin notifications = FlutterLocalNotificationsPlugin();
 
-  TripleObserver.addListener((triple) {
-    if (triple.error != null) {
-      Catcher.reportException(triple.error);
-    }
-  });
-
-  try {
-    await SentryFlutter.init((options) async {
-      // The native SDK tries to contact Sentry on startup, which we can't do as Sentry is opt-in, so check first
-      options.autoInitializeNativeSdk = prefService.get(optionErrorsSentryEnabled) ?? false;
-      options.attachStacktrace = true;
-      options.dsn = 'https://d29f676b4a1d4a21bbad5896841d89bf@o856922.ingest.sentry.io/5820282';
-      options.sendDefaultPii = false;
-      options.enableAppLifecycleBreadcrumbs = true;
-      options.enableAutoNativeBreadcrumbs = true;
-
-      options.beforeSend = (event, {hint}) {
-        var enabled = prefService.get(optionErrorsSentryEnabled);
-        if (enabled == null || enabled == false) {
-          return null;
-        }
-
-        // We don't want to report SocketExceptions as there's so many of them, and they're not super useful
-        if (event.throwable is SocketException) {
-          return null;
-        }
-
-        return event;
-      };
-    }, appRunner: () async {
-      var deviceInfo = DeviceInfoPlugin();
-
-      Sentry.configureScope((scope) async {
-        scope.setTag('flavor', getFlavor());
-
-        if (Platform.isAndroid) {
-          var androidDeviceInfo = await deviceInfo.androidInfo;
-          scope.setTag('versionSdk', androidDeviceInfo.version.sdkInt.toString());
-        }
-      });
-
-      if (Platform.isAndroid) {
-        FlutterLocalNotificationsPlugin notifications = FlutterLocalNotificationsPlugin();
-
-        const InitializationSettings settings =
+    const InitializationSettings settings =
         InitializationSettings(android: AndroidInitializationSettings('@drawable/ic_notification'));
 
-        await notifications
-            .initialize(settings, onDidReceiveBackgroundNotificationResponse: handleNotificationCallback,
-            onDidReceiveNotificationResponse: (response) async {
-              var payload = response.payload;
-              if (payload != null && payload.startsWith('https://')) {
-                await openUri(payload);
-              }
-            });
-
-        var flavor = getFlavor();
-        var shouldCheckForUpdates = prefService.get(optionShouldCheckForUpdates);
-        if (flavor != 'play' && shouldCheckForUpdates) {
-          // Don't check for updates for the Play Store build or if user disabled it.
-          checkForUpdates();
-        }
+    await notifications.initialize(settings, onDidReceiveBackgroundNotificationResponse: handleNotificationCallback,
+        onDidReceiveNotificationResponse: (response) async {
+      var payload = response.payload;
+      if (payload != null && payload.startsWith('https://')) {
+        await openUri(payload);
       }
-
-      // Run the migrations early, so models work. We also do this later on so we can display errors to the user
-      try {
-        await Repository().migrate();
-      } catch (_) {
-        // Ignore, as we'll catch it later instead
-      }
-
-      var importDataModel = ImportDataModel();
-
-      var groupsModel = GroupsModel(prefService);
-      await groupsModel.reloadGroups();
-
-      var homeModel = HomeModel(prefService, groupsModel);
-      await homeModel.loadPages();
-
-      var subscriptionsModel = SubscriptionsModel(prefService, groupsModel);
-      await subscriptionsModel.reloadSubscriptions();
-
-      var trendLocationModel = UserTrendLocationModel(prefService);
-
-      runApp(PrefService(
-          service: prefService,
-          child: MultiProvider(
-            providers: [
-              Provider(create: (context) => groupsModel),
-              Provider(create: (context) => homeModel),
-              ChangeNotifierProvider(create: (context) => importDataModel),
-              Provider(create: (context) => subscriptionsModel),
-              Provider(create: (context) => SavedTweetModel()),
-              Provider(create: (context) => SearchUsersModel()),
-              Provider(create: (context) => trendLocationModel),
-              Provider(create: (context) => TrendLocationsModel()),
-              Provider(create: (context) => TrendsModel(trendLocationModel)),
-              ChangeNotifierProvider(create: (_) => VideoContextState(prefService.get(optionMediaDefaultMute))),
-            ],
-            child: DevicePreview(
-              enabled: !kReleaseMode,
-              builder: (context) => const FritterApp(),
-            ),
-          )));
     });
-  } catch (e, stackTrace) {
-    Catcher.reportException(e, stackTrace);
-    log('Unable to start Fritter', error: e, stackTrace: stackTrace);
   }
+
+  // Run the migrations early, so models work. We also do this later on so we can display errors to the user
+  try {
+    await Repository().migrate();
+  } catch (_) {
+    // Ignore, as we'll catch it later instead
+  }
+
+  var importDataModel = ImportDataModel();
+
+  var groupsModel = GroupsModel(prefService);
+  await groupsModel.reloadGroups();
+
+  var homeModel = HomeModel(prefService, groupsModel);
+  await homeModel.loadPages();
+
+  var subscriptionsModel = SubscriptionsModel(prefService, groupsModel);
+  await subscriptionsModel.reloadSubscriptions();
+
+  var trendLocationModel = UserTrendLocationModel(prefService);
+
+  runApp(PrefService(
+      service: prefService,
+      child: MultiProvider(
+        providers: [
+          Provider(create: (context) => groupsModel),
+          Provider(create: (context) => homeModel),
+          ChangeNotifierProvider(create: (context) => importDataModel),
+          Provider(create: (context) => subscriptionsModel),
+          Provider(create: (context) => SavedTweetModel()),
+          Provider(create: (context) => SearchTweetsModel()),
+          Provider(create: (context) => SearchUsersModel()),
+          Provider(create: (context) => trendLocationModel),
+          Provider(create: (context) => TrendLocationsModel()),
+          Provider(create: (context) => TrendsModel(trendLocationModel)),
+          ChangeNotifierProvider(create: (_) => VideoContextState(prefService.get(optionMediaDefaultMute))),
+        ],
+        child: DevicePreview(
+          enabled: !kReleaseMode,
+          builder: (context) => const FritterApp(),
+        ),
+      )));
 }
 
 class FritterApp extends StatefulWidget {
@@ -326,7 +201,8 @@ class _FritterAppState extends State<FritterApp> {
 
   String _themeMode = 'system';
   bool _trueBlack = false;
-  FlexScheme _colorScheme = FlexScheme.aquaBlue;
+  bool _material3 = true;
+  FlexScheme _colorScheme = FlexScheme.mango;
   Locale? _locale;
 
   @override
@@ -366,13 +242,15 @@ class _FritterAppState extends State<FritterApp> {
       setLocale(prefService.get<String>(optionLocale));
       _themeMode = prefService.get(optionThemeMode);
       _trueBlack = prefService.get(optionThemeTrueBlack);
+      _material3 = prefService.get(optionThemeMaterial3);
       setColorScheme(prefService.get(optionThemeColorScheme));
       setDisableScreenshots(prefService.get(optionDisableScreenshots));
     });
 
-    prefService.addKeyListener(optionShouldCheckForUpdates, () {
-      setState(() {});
-    });
+    // TODO: Automatic updates
+    //prefService.addKeyListener(optionShouldCheckForUpdates, () {
+    //setState(() {});
+    //});
 
     prefService.addKeyListener(optionLocale, () {
       setState(() {
@@ -384,6 +262,13 @@ class _FritterAppState extends State<FritterApp> {
     prefService.addKeyListener(optionThemeTrueBlack, () {
       setState(() {
         _trueBlack = prefService.get(optionThemeTrueBlack);
+      });
+    });
+
+    // Whenever the "use material 3" preference is toggled, apply the toggle
+    prefService.addKeyListener(optionThemeMaterial3, () {
+      setState(() {
+        _material3 = prefService.get(optionThemeMaterial3);
       });
     });
 
@@ -470,8 +355,7 @@ class _FritterAppState extends State<FritterApp> {
       ],
       supportedLocales: L10n.delegate.supportedLocales,
       locale: _locale ?? DevicePreview.locale(context),
-      navigatorObservers: [SentryNavigatorObserver()],
-      title: 'Fritter',
+      title: 'Quacker',
       theme: FlexThemeData.light(
         scheme: _colorScheme,
         surfaceMode: FlexSurfaceMode.highScaffoldLowSurface,
@@ -483,7 +367,7 @@ class _FritterAppState extends State<FritterApp> {
           blendOnColors: false,
         ),
         visualDensity: FlexColorScheme.comfortablePlatformDensity,
-        useMaterial3: false,
+        useMaterial3: _material3,
         appBarStyle: FlexAppBarStyle.primary,
       ),
       darkTheme: FlexThemeData.dark(
@@ -498,7 +382,7 @@ class _FritterAppState extends State<FritterApp> {
           blendOnColors: false,
         ),
         visualDensity: FlexColorScheme.comfortablePlatformDensity,
-        useMaterial3: false,
+        useMaterial3: _material3,
         appBarStyle: _trueBlack ? FlexAppBarStyle.surface : FlexAppBarStyle.primary,
       ),
       themeMode: themeMode,
@@ -517,10 +401,10 @@ class _FritterAppState extends State<FritterApp> {
       builder: (context, child) {
         // Replace the default red screen of death with a slightly friendlier one
         ErrorWidget.builder = (FlutterErrorDetails details) => FullPageErrorWidget(
-          error: details.exception,
-          stackTrace: details.stack,
-          prefix: L10n.of(context).something_broke_in_fritter,
-        );
+              error: details.exception,
+              stackTrace: details.stack,
+              prefix: L10n.of(context).something_broke_in_fritter,
+            );
 
         return DevicePreview.appBuilder(context, child ?? Container());
       },

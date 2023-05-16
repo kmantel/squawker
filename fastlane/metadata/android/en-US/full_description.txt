@@ -1,10 +1,5 @@
-* Device-local subscriptions and groups, NewPipe-style, including a feed view
-* Device-local saving of tweets, allowing offline reading
-* Viewing profiles
-* Viewing tweets and replies
-* Viewing pictures, videos and GIFs in tweets
-* Searching for tweets and users
-* Supports opening twitter.com links directly
-* Supports RTL content
-
-Fritter uses Sentry for opt-in error reporting, which is not enabled by default.
+* Supports feed viewing, including group feeds
+* Supports Material 3
+* Supports all new Quacker features
+* Made by the community for the community
+* Always open and always private

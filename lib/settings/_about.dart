@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fritter/generated/l10n.dart';
-import 'package:fritter/settings/_general.dart';
-import 'package:fritter/utils/urls.dart';
+import '../generated/l10n.dart';
+import '../settings/_general.dart';
+import '../utils/urls.dart';
 import 'package:pref/pref.dart';
 import 'package:simple_icons/simple_icons.dart';
 
@@ -14,9 +14,7 @@ class SettingsAboutFragment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(L10n.current.about)
-      ),
+      appBar: AppBar(title: Text(L10n.current.about)),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8),
         child: ListView(children: [
@@ -36,7 +34,7 @@ class SettingsAboutFragment extends StatelessWidget {
             leading: const Icon(Icons.favorite),
             title: Text(L10n.of(context).contribute),
             subtitle: Text(L10n.of(context).help_make_fritter_even_better),
-            onTap: () => openUri('https://github.com/jonjomckay/fritter'),
+            onTap: () => openUri('https://github.com/TheHCJ/Quacker'),
           ),
           PrefLabel(
             leading: const Icon(Icons.bug_report),
@@ -44,15 +42,8 @@ class SettingsAboutFragment extends StatelessWidget {
             subtitle: Text(
               L10n.of(context).let_the_developers_know_if_something_is_broken,
             ),
-            onTap: () => openUri('https://github.com/jonjomckay/fritter/issues'),
+            onTap: () => openUri('https://github.com/TheHCJ/Quacker/issues'),
           ),
-          if (getFlavor() != 'play')
-            PrefLabel(
-              leading: const Icon(Icons.attach_money),
-              title: Text(L10n.of(context).donate),
-              subtitle: Text(L10n.of(context).help_support_fritters_future),
-              onTap: () => showDonateDialog(context),
-            ),
           PrefLabel(
             leading: const Icon(Icons.copyright),
             title: Text(L10n.of(context).licenses),
@@ -79,81 +70,3 @@ class SettingsAboutFragment extends StatelessWidget {
     );
   }
 }
-
-void showDonateDialog(BuildContext context) {
-  showDialog(context: context, builder: (context) => const DonateDialog());
-}
-
-class DonateDialog extends StatelessWidget {
-  const DonateDialog({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SimpleDialog(
-      title: Text(L10n.of(context).donate),
-      children: [
-        SimpleDialogOption(
-          child: const ListTile(
-            leading: Icon(SimpleIcons.github),
-            title: Text('GitHub'),
-            subtitle: Text('One-time or recurring'),
-          ),
-          onPressed: () => openUri('https://github.com/sponsors/jonjomckay'),
-        ),
-        SimpleDialogOption(
-          child: const ListTile(
-            leading: Icon(SimpleIcons.liberapay),
-            title: Text('Liberapay'),
-            subtitle: Text('One-time or recurring'),
-          ),
-          onPressed: () => openUri('https://liberapay.com/jonjomckay'),
-        ),
-        SimpleDialogOption(
-          child: const ListTile(
-            leading: Icon(SimpleIcons.paypal),
-            title: Text('PayPal'),
-            subtitle: Text('One-time or recurring'),
-          ),
-          onPressed: () => openUri('https://paypal.me/jonjomckay'),
-        ),
-        SimpleDialogOption(
-          child: const ListTile(
-            leading: Icon(SimpleIcons.bitcoin),
-            title: Text('Bitcoin'),
-            subtitle: Text('One-time'),
-          ),
-          onPressed: () async {
-            await Clipboard.setData(const ClipboardData(text: '1DaXsBJVi41fgKkKcw2Ln8noygTbdD7Srg'));
-
-            Navigator.pop(context);
-
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(
-                  L10n.of(context).copied_address_to_clipboard,
-                ),
-              ),
-            );
-          },
-        ),
-        SimpleDialogOption(
-          child: const ListTile(
-            leading: Icon(Icons.credit_card),
-            title: Text('Credit/debit card'),
-            subtitle: Text('One time'),
-          ),
-          onPressed: () => openUri('https://fritter.cc/donate'),
-        ),
-        SimpleDialogOption(
-          child: const ListTile(
-            leading: Icon(Icons.more_horiz),
-            title: Text('Other'),
-            subtitle: Text('More ways to donate'),
-          ),
-          onPressed: () => openUri('https://fritter.cc/donate'),
-        ),
-      ],
-    );
-  }
-}
-

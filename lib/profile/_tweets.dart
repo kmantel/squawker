@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:fritter/catcher/errors.dart';
-import 'package:fritter/client.dart';
-import 'package:fritter/profile/profile.dart';
-import 'package:fritter/tweet/conversation.dart';
-import 'package:fritter/ui/errors.dart';
-import 'package:fritter/user.dart';
+
+import '../client.dart';
+import '../profile/profile.dart';
+import '../tweet/conversation.dart';
+import '../ui/errors.dart';
+import '../user.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:fritter/generated/l10n.dart';
+import '../generated/l10n.dart';
 import 'package:provider/provider.dart';
 
 class ProfileTweets extends StatefulWidget {
@@ -15,7 +15,8 @@ class ProfileTweets extends StatefulWidget {
   final bool includeReplies;
   final List<String> pinnedTweets;
 
-  const ProfileTweets({Key? key, required this.user, required this.type, required this.includeReplies, required this.pinnedTweets})
+  const ProfileTweets(
+      {Key? key, required this.user, required this.type, required this.includeReplies, required this.pinnedTweets})
       : super(key: key);
 
   @override
@@ -61,7 +62,6 @@ class _ProfileTweetsState extends State<ProfileTweets> with AutomaticKeepAliveCl
         _pagingController.appendPage(result.chains, result.cursorBottom);
       }
     } catch (e, stackTrace) {
-      Catcher.reportException(e, stackTrace);
       if (mounted) {
         _pagingController.error = [e, stackTrace];
       }

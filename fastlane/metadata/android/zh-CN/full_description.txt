@@ -7,4 +7,4 @@
 * 支持直接打开twitter.com的链接
 * 支持RTL内容
 
-Fritter使用Sentry进行选入错误报告，默认情况下不启用。
+Quacker使用Sentry进行选入错误报告，默认情况下不启用。

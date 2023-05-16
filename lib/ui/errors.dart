@@ -3,13 +3,13 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:async_button_builder/async_button_builder.dart';
-import 'package:fritter/catcher/errors.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fritter/catcher/exceptions.dart';
-import 'package:fritter/client.dart';
-import 'package:fritter/constants.dart';
-import 'package:fritter/generated/l10n.dart';
+
+import '../client.dart';
+import '../constants.dart';
+import '../generated/l10n.dart';
 
 void showSnackBar(BuildContext context, {required String icon, required String message, bool clearBefore = true}) {
   if (clearBefore) {
@@ -31,7 +31,7 @@ abstract class FritterErrorWidget extends StatelessWidget {
   const FritterErrorWidget({Key? key}) : super(key: key);
 }
 
-class UnknownTwitterErrorCode with SyntheticException implements Exception {
+class UnknownTwitterErrorCode implements Exception {
   final int code;
   final String message;
   final String uri;
@@ -74,7 +74,6 @@ EmojiErrorWidget createEmojiError(TwitterError error) {
       message = L10n.current.bad_guest_token;
       break;
     default:
-      Catcher.reportSyntheticException(UnknownTwitterErrorCode(error.code, error.message, error.uri));
       emoji = '💥';
       message = L10n.current.catastrophic_failure;
       break;
@@ -92,9 +91,15 @@ class EmojiErrorWidget extends FritterErrorWidget {
   final bool showBackButton;
 
   EmojiErrorWidget(
-      {Key? key, required this.emoji, required this.message, required this.errorMessage, this.onRetry, String? retryText, this.showBackButton = true})
+      {Key? key,
+      required this.emoji,
+      required this.message,
+      required this.errorMessage,
+      this.onRetry,
+      String? retryText,
+      this.showBackButton = true})
       : super(key: key) {
-      this.retryText = retryText ?? L10n.current.retry;
+    this.retryText = retryText ?? L10n.current.retry;
   }
 
   @override
@@ -138,8 +143,7 @@ class EmojiErrorWidget extends FritterErrorWidget {
                   },
                 ),
               ),
-            if (onRetry != null)
-              const SizedBox(width: 16),
+            if (onRetry != null) const SizedBox(width: 16),
             if (onRetry != null)
               Container(
                 margin: const EdgeInsets.only(top: 12),
@@ -209,14 +213,16 @@ class ScaffoldErrorWidget extends FritterErrorWidget {
   final Function? onRetry;
   final String? retryText;
 
-  const ScaffoldErrorWidget({Key? key, required this.error, required this.stackTrace, required this.prefix, this.onRetry, this.retryText})
+  const ScaffoldErrorWidget(
+      {Key? key, required this.error, required this.stackTrace, required this.prefix, this.onRetry, this.retryText})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: FullPageErrorWidget(error: error, prefix: prefix, stackTrace: stackTrace, onRetry: onRetry, retryText: retryText),
+      body: FullPageErrorWidget(
+          error: error, prefix: prefix, stackTrace: stackTrace, onRetry: onRetry, retryText: retryText),
     );
   }
 }
@@ -250,33 +256,7 @@ class FullPageErrorWidget extends FritterErrorWidget {
       return createEmojiError(error);
     }
 
-    var message = error;
-    if (message is HttpException) {
-      Map<String, dynamic> content;
-
-      var contentType = message.response.headers['content-type'];
-      if (contentType != null && contentType.contains('application/json')) {
-        content = jsonDecode(message.body);
-      } else {
-        content = {
-          'statusCode': message.statusCode,
-          'reasonPhrase': message.reasonPhrase,
-          'content': message.body,
-        };
-      }
-
-      var hasErrors = content.containsKey('errors');
-      if (hasErrors && content['errors'] != null) {
-        var errors = List.from(content['errors']);
-        if (errors.isNotEmpty) {
-          return createEmojiError(TwitterError(code: errors.first['code'], message: errors.first['message'], uri: message.uri));
-        }
-      }
-
-      message = JsonEncoder.withIndent(' ' * 2).convert(content);
-    }
-
-    if (message is TimeoutException) {
+    if (error is TimeoutException) {
       return EmojiErrorWidget(
         emoji: '⏱️',
         message: L10n.of(context).timed_out,
@@ -307,14 +287,7 @@ class FullPageErrorWidget extends FritterErrorWidget {
           Container(
             alignment: Alignment.center,
             margin: const EdgeInsets.only(top: 12),
-            child: Text('$message', textAlign: TextAlign.left, style: TextStyle(color: Theme.of(context).hintColor)),
-          ),
-          Container(
-            margin: const EdgeInsets.only(top: 12),
-            child: ElevatedButton(
-              child: Text(L10n.of(context).report),
-              onPressed: () => Catcher.reportException(ManuallyReportedException(error), stackTrace),
-            ),
+            child: Text('$error', textAlign: TextAlign.left, style: TextStyle(color: Theme.of(context).hintColor)),
           ),
           if (onRetry != null)
             Container(

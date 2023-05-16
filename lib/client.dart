@@ -1,17 +1,15 @@
 import 'dart:async';
 import 'dart:convert';
-
+// ignore: implementation_imports
 import 'package:dart_twitter_api/src/utils/date_utils.dart';
 import 'package:dart_twitter_api/twitter_api.dart';
 import 'package:faker/faker.dart';
 import 'package:ffcache/ffcache.dart';
-import 'package:fritter/catcher/errors.dart';
-import 'package:fritter/catcher/exceptions.dart';
-import 'package:fritter/generated/l10n.dart';
-import 'package:fritter/profile/profile_model.dart';
-import 'package:fritter/user.dart';
-import 'package:fritter/utils/cache.dart';
-import 'package:fritter/utils/iterables.dart';
+import '../generated/l10n.dart';
+import '../profile/profile_model.dart';
+import '../user.dart';
+import '../utils/cache.dart';
+import '../utils/iterables.dart';
 import 'package:http/http.dart' as http;
 import 'package:logging/logging.dart';
 import 'package:quiver/iterables.dart';
@@ -19,10 +17,7 @@ import 'package:quiver/iterables.dart';
 const Duration _defaultTimeout = Duration(seconds: 30);
 final String _bearerToken = String.fromCharCodes(
   base64Decode(
-    'QmVhcmVyIEFBQUFBQUFBQUFB' +
-        'QUFBQUFBQUFBQVBZWEJBQUFBQUFBQ0xYVU5EZWtNeHFhOGglMkY0MEs0bW9Va0dz' +
-        'b2MlM0RUWWZiREtiVDNqSlBDRVZuTVlxaWx' +
-        'CMjhOSGZPUHFrY2EzcWFBeEdmc3lLQ3Mwd1Jidw==',
+    'QmVhcmVyIEFBQUFBQUFBQUFBQUFBQUFBQUFBQVBZWEJBQUFBQUFBQ0xYVU5EZWtNeHFhOGglMkY0MEs0bW9Va0dzb2MlM0RUWWZiREtiVDNqSlBDRVZuTVlxaWxCMjhOSGZPUHFrY2EzcWFBeEdmc3lLQ3Mwd1Jidw==',
   ),
 );
 
@@ -42,7 +37,7 @@ class _FritterTwitterClient extends TwitterClient {
       if (response.statusCode >= 200 && response.statusCode < 300) {
         return response;
       } else {
-        return Future.error(HttpException(response));
+        return Future.error(response);
       }
     });
   }
@@ -119,7 +114,7 @@ class _FritterTwitterClient extends TwitterClient {
   }
 }
 
-class UnknownProfileResultType with SyntheticException implements Exception {
+class UnknownProfileResultType implements Exception {
   final String type;
   final String message;
   final String uri;
@@ -132,7 +127,7 @@ class UnknownProfileResultType with SyntheticException implements Exception {
   }
 }
 
-class UnknownProfileUnavailableReason with SyntheticException implements Exception {
+class UnknownProfileUnavailableReason implements Exception {
   final String reason;
   final String uri;
 
@@ -143,7 +138,6 @@ class UnknownProfileUnavailableReason with SyntheticException implements Excepti
     return 'Unknown profile unavailable reason: {reason: $reason, uri: $uri}';
   }
 }
-
 
 class Twitter {
   static final TwitterApi _twitterApi = TwitterApi(client: _FritterTwitterClient());
@@ -180,7 +174,8 @@ class Twitter {
     'pc': '1',
     'spelling_corrections': '1',
     'include_ext_edit_control': 'true',
-    'ext': 'mediaStats,highlightedLabel,hasNftAvatar,voiceInfo,enrichments,superFollowMetadata,unmentionInfo,editControl,collab_control,vibe,'
+    'ext':
+        'mediaStats,highlightedLabel,hasNftAvatar,voiceInfo,enrichments,superFollowMetadata,unmentionInfo,editControl,collab_control,vibe,'
   };
 
   static Map<String, bool> gqlFeatures = {
@@ -211,7 +206,12 @@ class Twitter {
 
   static Future<Profile> getProfileById(String id) async {
     var uri = Uri.https('twitter.com', '/i/api/graphql/Qs44y3K0SXxItjNi6mUFQA/UserByRestId', {
-      'variables': jsonEncode({'userId': id, 'withHighlightedLabel': true, 'withSafetyModeUserFields': true, 'withSuperFollowsUserFields': true}),
+      'variables': jsonEncode({
+        'userId': id,
+        'withHighlightedLabel': true,
+        'withSafetyModeUserFields': true,
+        'withSuperFollowsUserFields': true
+      }),
       'features': jsonEncode({
         'responsive_web_graphql_timeline_navigation_enabled': true,
         'responsive_web_twitter_blue_verified_badge_is_enabled': true,
@@ -224,7 +224,12 @@ class Twitter {
 
   static Future<Profile> getProfileByScreenName(String screenName) async {
     var uri = Uri.https('twitter.com', '/i/api/graphql/vG3rchZtwqiwlKgUYCrTRA/UserByScreenName', {
-      'variables': jsonEncode({'screen_name': screenName, 'withHighlightedLabel': true, 'withSafetyModeUserFields': true, 'withSuperFollowsUserFields': true}),
+      'variables': jsonEncode({
+        'screen_name': screenName,
+        'withHighlightedLabel': true,
+        'withSafetyModeUserFields': true,
+        'withSuperFollowsUserFields': true
+      }),
       'features': jsonEncode({'responsive_web_graphql_timeline_navigation_enabled': false})
     });
 
@@ -258,19 +263,19 @@ class Twitter {
           if (code == 'Suspended') {
             throw TwitterError(code: 63, message: result['reason'], uri: uri.toString());
           } else {
-            Catcher.reportSyntheticException(UnknownProfileUnavailableReason(code, uri.toString()));
             throw TwitterError(code: -1, message: result['reason'], uri: uri.toString());
           }
         case 'User':
           // This means everything's fine
           break;
         default:
-          Catcher.reportSyntheticException(UnknownProfileResultType(resultType, result['reason'], uri.toString()));
+          // an error happened
           break;
       }
     }
 
-    var user = UserWithExtra.fromJson({...result['legacy'], 'id_str': result['rest_id'], 'ext_is_blue_verified': result['is_blue_verified']});
+    var user = UserWithExtra.fromJson(
+        {...result['legacy'], 'id_str': result['rest_id'], 'ext_is_blue_verified': result['is_blue_verified']});
     var pins = List<String>.from(result['legacy']['pinned_tweet_ids_str']);
 
     return Profile(user, pins);
@@ -297,10 +302,8 @@ class Twitter {
       if (entryId.startsWith('tweet-')) {
         var result = entry['content']['itemContent']['tweet_results']['result'];
 
-        replies.add(TweetChain(
-            id: result['rest_id'],
-            tweets: [TweetWithCard.fromGraphqlJson(result)],
-            isPinned: false));
+        replies
+            .add(TweetChain(id: result['rest_id'], tweets: [TweetWithCard.fromGraphqlJson(result)], isPinned: false));
       }
 
       if (entryId.startsWith('cursor-bottom') || entryId.startsWith('cursor-showMore')) {
@@ -317,8 +320,6 @@ class Twitter {
             if (item['item']['itemContent']['tweet_results']?['result'] != null) {
               tweets.add(TweetWithCard.fromGraphqlJson(item['item']['itemContent']['tweet_results']['result']));
             }
-          } else {
-            Catcher.reportSyntheticException(UnknownTimelineItemType(itemType, entryId));
           }
         }
 
@@ -347,7 +348,8 @@ class Twitter {
       variables['cursor'] = cursor;
     }
 
-    var response = await _twitterApi.client.get(Uri.https('twitter.com', '/i/api/graphql/BbCrSoXIR7z93lLCVFlQ2Q/TweetDetail', {
+    var response =
+        await _twitterApi.client.get(Uri.https('twitter.com', '/i/api/graphql/BbCrSoXIR7z93lLCVFlQ2Q/TweetDetail', {
       'variables': jsonEncode(variables),
       'features': jsonEncode(gqlFeatures),
     }));
@@ -376,6 +378,34 @@ class Twitter {
     return TweetStatus(chains: chains, cursorBottom: cursorBottom, cursorTop: cursorTop);
   }
 
+  static Future<TweetStatus> searchTweets(String query, bool includeReplies, {int limit = 25, String? cursor}) async {
+    var variables = {
+      "rawQuery": query,
+      "count": limit.toString(),
+      "product": 'Latest',
+      "withDownvotePerspective": false,
+      "withReactionsMetadata": false,
+      "withReactionsPerspective": false
+    };
+
+    if (cursor != null) {
+      variables['cursor'] = cursor;
+    }
+
+    var uri = Uri.https('twitter.com', '/i/api/graphql/gkjsKepM6gl_HmFWoWKfgg/SearchTimeline',
+        {'variables': jsonEncode(variables), 'features': jsonEncode(gqlFeatures)});
+
+    var response = await _twitterApi.client.get(uri);
+    var result = json.decode(response.body);
+
+    var timeline = result?['data']?['search_by_raw_query']?['search_timeline'];
+    if (timeline == null) {
+      return TweetStatus(chains: [], cursorBottom: null, cursorTop: null);
+    }
+
+    return createUnconversationedChainsGraphql(timeline, 'tweet', [], true, includeReplies);
+  }
+
   static Future<List<UserWithExtra>> searchUsers(String query, {int limit = 25, String? maxId, String? cursor}) async {
     var queryParameters = {
       ...defaultParams,
@@ -391,7 +421,8 @@ class Twitter {
       queryParameters['cursor'] = cursor;
     }
 
-    var response = await _twitterApi.client.get(Uri.https('api.twitter.com', '/1.1/users/search.json', queryParameters));
+    var response =
+        await _twitterApi.client.get(Uri.https('api.twitter.com', '/1.1/users/search.json', queryParameters));
 
     List result = json.decode(response.body);
 
@@ -399,9 +430,7 @@ class Twitter {
       return [];
     }
 
-    return result
-        .map((e) => UserWithExtra.fromJson(e))
-        .toList();
+    return result.map((e) => UserWithExtra.fromJson(e)).toList();
   }
 
   static Future<List<TrendLocation>> getTrendLocations() async {
@@ -469,19 +498,80 @@ class Twitter {
       }
     } else {
       // Look for a "replaceEntry" with the cursor
-      var cursorReplaceEntry =
-        repEntries.firstWhere((e) => e.containsKey('replaceEntry') ? e['replaceEntry']['entryIdToReplace'].contains(type) : e['entry']['content']['cursorType'].contains(type), orElse: () => null);
+      var cursorReplaceEntry = repEntries.firstWhere(
+          (e) => e.containsKey('replaceEntry')
+              ? e['replaceEntry']['entryIdToReplace'].contains(type)
+              : e['entry']['content']['cursorType'].contains(type),
+          orElse: () => null);
 
       if (cursorReplaceEntry != null) {
-        cursor = cursorReplaceEntry.containsKey('replaceEntry') ? cursorReplaceEntry['replaceEntry']['entry']['content']['operation']['cursor']['value'] : cursorReplaceEntry['entry']['content']['value'];
+        cursor = cursorReplaceEntry.containsKey('replaceEntry')
+            ? cursorReplaceEntry['replaceEntry']['entry']['content']['operation']['cursor']['value']
+            : cursorReplaceEntry['entry']['content']['value'];
       }
     }
 
     return cursor;
   }
 
-  static TweetStatus createUnconversationedChains(
-      Map<String, dynamic> result, String tweetIndicator, List<String> pinnedTweets, bool mapToThreads, bool includeReplies) {
+  static TweetStatus createUnconversationedChainsGraphql(Map<String, dynamic> result, String tweetIndicator,
+      List<String> pinnedTweets, bool mapToThreads, bool includeReplies) {
+    var instructions = List.from(result['timeline']['instructions']);
+    if (instructions.isEmpty || !instructions.any((e) => e['type'] == 'TimelineAddEntries')) {
+      return TweetStatus(chains: [], cursorBottom: null, cursorTop: null);
+    }
+
+    var addEntries = List.from(instructions.firstWhere((e) => e['type'] == 'TimelineAddEntries')['entries']);
+    var repEntries = List.from(instructions.where((e) => e['type'] == 'TimelineReplaceEntry'));
+
+    String? cursorBottom = getCursor(addEntries, repEntries, 'cursor-bottom', 'Bottom');
+    String? cursorTop = getCursor(addEntries, repEntries, 'cursor-top', 'Top');
+
+    var tweets = _createTweetsGraphql(tweetIndicator, addEntries, includeReplies);
+
+    // First, get all the IDs of the tweets we need to display
+    var tweetEntries = addEntries
+        .where((e) => e['entryId'].contains(tweetIndicator))
+        .sorted((a, b) => b['sortIndex'].compareTo(a['sortIndex']))
+        .map((e) => e['content']['itemContent']['tweet_results']['result']['rest_id'])
+        .cast<String>()
+        .toList();
+
+    Map<String, List<TweetWithCard>> conversations =
+        tweets.values.where((e) => tweetEntries.contains(e.idStr)).groupBy((e) {
+      // TODO: I don't think a flag is the right way to handle this
+      if (mapToThreads) {
+        // Then group the tweets-to-display by their conversation ID
+        return e.conversationIdStr;
+      }
+
+      return e.idStr;
+    }).cast<String, List<TweetWithCard>>();
+
+    List<TweetChain> chains = [];
+
+    // Order all the conversations by newest first (assuming the ID is an incrementing key), and create a chain from them
+    for (var conversation in conversations.entries.sorted((a, b) => b.key.compareTo(a.key))) {
+      var chainTweets = conversation.value.sorted((a, b) => a.idStr!.compareTo(b.idStr!)).toList();
+
+      chains.add(TweetChain(id: conversation.key, tweets: chainTweets, isPinned: false));
+    }
+
+    // If we want to show pinned tweets, add them before the chains that we already have
+    if (pinnedTweets.isNotEmpty) {
+      for (var id in pinnedTweets) {
+        // It's possible for the pinned tweet to either not exist, or not be returned, so handle that
+        if (tweets.containsKey(id)) {
+          chains.insert(0, TweetChain(id: id, tweets: [tweets[id]!], isPinned: true));
+        }
+      }
+    }
+
+    return TweetStatus(chains: chains, cursorBottom: cursorBottom, cursorTop: cursorTop);
+  }
+
+  static TweetStatus createUnconversationedChains(Map<String, dynamic> result, String tweetIndicator,
+      List<String> pinnedTweets, bool mapToThreads, bool includeReplies) {
     var instructions = List.from(result['timeline']['instructions']);
     if (instructions.isEmpty || !instructions.any((e) => e.containsKey('addEntries'))) {
       return TweetStatus(chains: [], cursorBottom: null, cursorTop: null);
@@ -556,6 +646,40 @@ class Twitter {
     var result = json.decode(response.body);
 
     return List.from(result).map((e) => UserWithExtra.fromJson(e)).toList(growable: false);
+  }
+
+  static Map<String, TweetWithCard> _createTweetsGraphql(
+      String entryPrefix, List<dynamic> allTweets, bool includeReplies) {
+    bool includeTweet(dynamic t) {
+      // Exclude any items that aren't tweets
+      if (!t['entryId'].startsWith(entryPrefix)) {
+        return false;
+      }
+
+      if (includeReplies) {
+        return true;
+      }
+
+      // TODO
+      return t['in_reply_to_status_id'] == null || t['in_reply_to_user_id'] == null;
+    }
+
+    var filteredTweets = allTweets.where(includeTweet);
+
+    var globalTweets = Map.fromEntries(filteredTweets.map((e) {
+      return MapEntry(e['content']['itemContent']['tweet_results']['result']['rest_id'] as String,
+          e['content']['itemContent']['tweet_results']['result']['legacy']);
+    }));
+
+    var globalUsers = Map.fromEntries(filteredTweets.map((e) {
+      return MapEntry(
+          e['content']['itemContent']['tweet_results']['result']['core']['user_results']['result']['rest_id'] as String,
+          e['content']['itemContent']['tweet_results']['result']['core']['user_results']['result']['legacy']);
+    }));
+
+    var tweets = globalTweets.values.map((e) => TweetWithCard.fromCardJson(globalTweets, globalUsers, e)).toList();
+
+    return {for (var e in tweets) e.idStr!: e};
   }
 
   static Map<String, TweetWithCard> _createTweets(
@@ -663,10 +787,17 @@ class TweetWithCard extends Tweet {
   }
 
   factory TweetWithCard.fromGraphqlJson(Map<String, dynamic> result) {
-    var retweetedStatus = result['retweeted_status_result'] == null ? null : TweetWithCard.fromGraphqlJson(result['retweeted_status_result']['result']);
-    var quotedStatus = result['quoted_status_result'] == null ? null : TweetWithCard.fromGraphqlJson(result['quoted_status_result']['result']);
+    var retweetedStatus = result['retweeted_status_result'] == null
+        ? null
+        : TweetWithCard.fromGraphqlJson(result['retweeted_status_result']['result']);
+    var quotedStatus = result['quoted_status_result'] == null
+        ? null
+        : TweetWithCard.fromGraphqlJson(result['quoted_status_result']['result']);
     var resCore = result['core']?['user_results']?['result'];
-    var user = resCore?['legacy'] == null ? null : UserWithExtra.fromJson({...resCore['legacy'], 'id_str': resCore['rest_id'], 'ext_is_blue_verified': resCore['is_blue_verified']});
+    var user = resCore?['legacy'] == null
+        ? null
+        : UserWithExtra.fromJson(
+            {...resCore['legacy'], 'id_str': resCore['rest_id'], 'ext_is_blue_verified': resCore['is_blue_verified']});
 
     String? noteText;
     Entities? noteEntities;
@@ -697,7 +828,8 @@ class TweetWithCard extends Tweet {
     return TweetWithCard.fromData(e, null, null, user, retweetedStatus, quotedStatus);
   }
 
-  factory TweetWithCard.fromData(Map<String, dynamic> e, String? noteText, Entities? noteEntities, UserWithExtra? user, TweetWithCard? retweetedStatus, TweetWithCard? quotedStatus) {
+  factory TweetWithCard.fromData(Map<String, dynamic> e, String? noteText, Entities? noteEntities, UserWithExtra? user,
+      TweetWithCard? retweetedStatus, TweetWithCard? quotedStatus) {
     TweetWithCard tweet = TweetWithCard();
     tweet.card = e['card'];
     tweet.conversationIdStr = e['conversation_id_str'];
@@ -718,7 +850,7 @@ class TweetWithCard extends Tweet {
     tweet.quoteCount = e['quote_count'] as int?;
     tweet.quotedStatusIdStr = e['quoted_status_id_str'] as String?;
     tweet.quotedStatusPermalink =
-    e['quoted_status_permalink'] == null ? null : QuotedStatusPermalink.fromJson(e['quoted_status_permalink']);
+        e['quoted_status_permalink'] == null ? null : QuotedStatusPermalink.fromJson(e['quoted_status_permalink']);
     tweet.replyCount = e['reply_count'] as int?;
     tweet.retweetCount = e['retweet_count'] as int?;
     tweet.retweeted = e['retweeted'] as bool?;
@@ -764,12 +896,12 @@ class TweetWithCard extends Tweet {
     tweet.noteText = noteText;
     if (noteEntities != null) {
       tweet.entities = tweet.entities == null ? noteEntities : copyEntities(noteEntities, tweet.entities!);
-      tweet.extendedEntities = tweet.extendedEntities == null ? noteEntities : copyEntities(noteEntities, tweet.extendedEntities!);
+      tweet.extendedEntities =
+          tweet.extendedEntities == null ? noteEntities : copyEntities(noteEntities, tweet.extendedEntities!);
     }
 
     return tweet;
   }
-
 }
 
 class TweetChain {
@@ -780,19 +912,13 @@ class TweetChain {
   TweetChain({required this.id, required this.tweets, required this.isPinned});
 
   factory TweetChain.fromJson(Map<String, dynamic> e) {
-    var tweets = List.from(e['tweets'])
-        .map((e) => TweetWithCard.fromJson(e))
-        .toList();
+    var tweets = List.from(e['tweets']).map((e) => TweetWithCard.fromJson(e)).toList();
 
     return TweetChain(id: e['id'], tweets: tweets, isPinned: e['isPinned']);
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'tweets': tweets.map((e) => e.toJson()).toList(),
-      'isPinned': isPinned
-    };
+    return {'id': id, 'tweets': tweets.map((e) => e.toJson()).toList(), 'isPinned': isPinned};
   }
 }
 
@@ -827,7 +953,18 @@ class TwitterError {
   }
 }
 
-class UnknownTimelineItemType with SyntheticException implements Exception {
+class SearchHasNoTimelineException {
+  final String? query;
+
+  SearchHasNoTimelineException(this.query);
+
+  @override
+  String toString() {
+    return 'The search has no timeline {query: $query}';
+  }
+}
+
+class UnknownTimelineItemType implements Exception {
   final String type;
   final String entryId;
 

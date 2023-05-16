@@ -3,12 +3,12 @@ import 'package:dart_twitter_api/twitter_api.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_triple/flutter_triple.dart';
-import 'package:fritter/constants.dart';
-import 'package:fritter/database/entities.dart';
-import 'package:fritter/generated/l10n.dart';
-import 'package:fritter/group/group_model.dart';
-import 'package:fritter/profile/profile.dart';
-import 'package:fritter/subscriptions/users_model.dart';
+import '../constants.dart';
+import '../database/entities.dart';
+import '../generated/l10n.dart';
+import '../group/group_model.dart';
+import '../profile/profile.dart';
+import '../subscriptions/users_model.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:provider/provider.dart';
 
@@ -105,10 +105,10 @@ class _FollowButtonSelectGroupDialogState extends State<FollowButtonSelectGroupD
       cancelText: Text(L10n.of(context).cancel),
       searchIcon: Icon(Icons.search, color: color),
       closeSearchIcon: Icon(Icons.close, color: color),
-      itemsTextStyle: Theme.of(context).textTheme.bodyText1,
+      itemsTextStyle: Theme.of(context).textTheme.bodyLarge,
       selectedColor: Theme.of(context).colorScheme.secondary,
       unselectedColor: color,
-      selectedItemsTextStyle: Theme.of(context).textTheme.bodyText1,
+      selectedItemsTextStyle: Theme.of(context).textTheme.bodyLarge,
       items: groupModel.state.map((e) => MultiSelectItem(e.id, e.name)).toList(),
       initialValue: widget.groupsForUser,
       onConfirm: (List<String> memberships) async {
@@ -194,19 +194,13 @@ class UserWithExtra extends User {
       ..name = json['name'] as String?
       ..screenName = json['screen_name'] as String?
       ..location = json['location'] as String?
-      ..derived = json['derived'] == null
-          ? null
-          : Derived.fromJson(json['derived'] as Map<String, dynamic>)
+      ..derived = json['derived'] == null ? null : Derived.fromJson(json['derived'] as Map<String, dynamic>)
       ..url = json['url'] as String?
-      ..entities = json['entities'] == null
-          ? null
-          : UserEntities.fromJson(json['entities'] as Map<String, dynamic>)
+      ..entities = json['entities'] == null ? null : UserEntities.fromJson(json['entities'] as Map<String, dynamic>)
       ..description = json['description'] as String?
       ..protected = json['protected'] as bool?
       ..verified = json['ext_is_blue_verified'] ?? json['verified'] as bool?
-      ..status = json['status'] == null
-          ? null
-          : Tweet.fromJson(json['status'] as Map<String, dynamic>)
+      ..status = json['status'] == null ? null : Tweet.fromJson(json['status'] as Map<String, dynamic>)
       ..followersCount = json['followers_count'] as int?
       ..friendsCount = json['friends_count'] as int?
       ..listedCount = json['listed_count'] as int?
@@ -217,9 +211,7 @@ class UserWithExtra extends User {
       ..profileImageUrlHttps = json['profile_image_url_https'] as String?
       ..defaultProfile = json['default_profile'] as bool?
       ..defaultProfileImage = json['default_profile_image'] as bool?
-      ..withheldInCountries = (json['withheld_in_countries'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList()
+      ..withheldInCountries = (json['withheld_in_countries'] as List<dynamic>?)?.map((e) => e as String).toList()
       ..withheldScope = json['withheld_scope'] as String?;
 
     userWithExtra.possiblySensitive = json['possibly_sensitive'] as bool?;

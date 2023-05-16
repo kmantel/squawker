@@ -1,1 +1,0 @@
-* Fixed migrations not applying when a pre-release version had previously been installed

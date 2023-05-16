@@ -7,4 +7,4 @@
 * Unterstützt das direkte Öffnen von twitter.com-Links
 * Unterstützt RTL-Inhalte
 
-Fritter nutzt Sentry für Fehlerberichte (Zustimmung erforderlich, standardmäßig nicht aktiviert).
+Quacker nutzt Sentry für Fehlerberichte (Zustimmung erforderlich, standardmäßig nicht aktiviert).

@@ -1,6 +1,6 @@
 * Improved performance of the Subscriptions tab on the home screen
 * Improved memory usage by a large amount (#182)
-* Added support for opening www.twitter.com links in Fritter (#233)
+* Added support for opening www.twitter.com links in Quacker (#233)
 * Now displaying the media type when media is disabled (#236)
 * Importing subscriptions from Twitter is now a GA feature (#143)
 * Added support for setting a color and icon for groups

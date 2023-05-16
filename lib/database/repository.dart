@@ -1,16 +1,16 @@
 import 'dart:convert';
 
-import 'package:fritter/group/group_model.dart';
+import '../group/group_model.dart';
 import 'package:logging/logging.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite_migration_plan/migration/sql.dart';
 import 'package:sqflite_migration_plan/sqflite_migration_plan.dart';
 import 'package:uuid/uuid.dart';
 
-const String databaseName = 'fritter.db';
+const String databaseName = 'quacker.db';
 
-const String doNotUseTableFeedGroupChunk = 'feed_group_chunk';
-const String doNotUseTableFeedGroupCursor = 'feed_group_cursor';
+const String tableFeedGroupChunk = 'feed_group_chunk';
+const String tableFeedGroupCursor = 'feed_group_cursor';
 
 const String tableSavedTweet = 'saved_tweet';
 const String tableSearchSubscription = 'search_subscription';
@@ -168,16 +168,20 @@ class Repository {
       17: [
         // Add some tables to temporarily store feed chunks, used for caching and pagination
         SqlMigration(
-            'CREATE TABLE IF NOT EXISTS $doNotUseTableFeedGroupCursor (id INTEGER PRIMARY KEY, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)',
-            reverseSql: 'DROP TABLE $doNotUseTableFeedGroupCursor'),
+            'CREATE TABLE IF NOT EXISTS $tableFeedGroupCursor (id INTEGER PRIMARY KEY, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)',
+            reverseSql: 'DROP TABLE $tableFeedGroupCursor'),
         SqlMigration(
-            'CREATE TABLE IF NOT EXISTS $doNotUseTableFeedGroupChunk (cursor_id INTEGER NOT NULL, hash VARCHAR NOT NULL, cursor_top VARCHAR, cursor_bottom VARCHAR, response VARCHAR, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)',
-            reverseSql: 'DROP TABLE $doNotUseTableFeedGroupChunk'),
+            'CREATE TABLE IF NOT EXISTS $tableFeedGroupChunk (cursor_id INTEGER NOT NULL, hash VARCHAR NOT NULL, cursor_top VARCHAR, cursor_bottom VARCHAR, response VARCHAR, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)',
+            reverseSql: 'DROP TABLE $tableFeedGroupChunk'),
       ],
       18: [
         // Add support for saving searches
-        SqlMigration('CREATE TABLE IF NOT EXISTS $tableSearchSubscription (id VARCHAR PRIMARY KEY, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)', reverseSql: 'DROP TABLE $tableSearchSubscription'),
-        SqlMigration('CREATE TABLE IF NOT EXISTS $tableSearchSubscriptionGroupMember (group_id VARCHAR, search_id VARCHAR, CONSTRAINT pk_$tableSearchSubscription PRIMARY KEY (group_id, search_id))', reverseSql: 'DROP TABLE $tableSearchSubscriptionGroupMember'),
+        SqlMigration(
+            'CREATE TABLE IF NOT EXISTS $tableSearchSubscription (id VARCHAR PRIMARY KEY, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)',
+            reverseSql: 'DROP TABLE $tableSearchSubscription'),
+        SqlMigration(
+            'CREATE TABLE IF NOT EXISTS $tableSearchSubscriptionGroupMember (group_id VARCHAR, search_id VARCHAR, CONSTRAINT pk_$tableSearchSubscription PRIMARY KEY (group_id, search_id))',
+            reverseSql: 'DROP TABLE $tableSearchSubscriptionGroupMember'),
       ],
       19: [
         // Add a new column for saved tweet user IDs, and extract them from all existing records
@@ -200,7 +204,7 @@ class Repository {
 
             var userId = decodedTweet['user']?['id_str'] as String?;
             if (userId != null) {
-              batch.update(tableSavedTweet, { 'user_id': userId }, where: 'id = ?', whereArgs: [tweet['id']]);
+              batch.update(tableSavedTweet, {'user_id': userId}, where: 'id = ?', whereArgs: [tweet['id']]);
             }
           }
 
@@ -209,17 +213,22 @@ class Repository {
       ],
       20: [
         // Remove feed-related stuff
-        SqlMigration('DROP TABLE IF EXISTS $doNotUseTableFeedGroupChunk'),
-        SqlMigration('DROP TABLE IF EXISTS $doNotUseTableFeedGroupCursor'),
+        SqlMigration('DROP TABLE IF EXISTS $tableFeedGroupChunk'),
+        SqlMigration('DROP TABLE IF EXISTS $tableFeedGroupCursor'),
       ],
     });
     await openDatabase(
       databaseName,
-      version: 20,
+      version: 19,
       onUpgrade: myMigrationPlan,
       onCreate: myMigrationPlan,
       onDowngrade: myMigrationPlan,
     );
+
+    // Clean up any old feed chunks and cursors
+    var repository = await writable();
+    await repository.delete(tableFeedGroupChunk, where: "created_at <= date('now', '-30 day')");
+    await repository.delete(tableFeedGroupCursor, where: "created_at <= date('now', '-30 day')");
 
     log.info('Finished migrating database');
 

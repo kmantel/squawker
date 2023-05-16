@@ -7,4 +7,4 @@
 * Suporte a abertura de links do twitter.com diretamente
 * Suporte a conteúdo RTL
 
-Fritter usa o Sentry para relatórios de erro opt-in, que não está habilitado por padrão.
+Quacker usa o Sentry para relatórios de erro opt-in, que não está habilitado por padrão.

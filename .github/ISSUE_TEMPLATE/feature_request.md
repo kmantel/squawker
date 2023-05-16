@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Suggest an idea for Fritter
+about: Suggest an idea for Quacker
 title: "[REQ] "
 labels: enhancement
 assignees: ''

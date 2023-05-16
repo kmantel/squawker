@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:fritter/database/entities.dart';
-import 'package:fritter/generated/l10n.dart';
-import 'package:fritter/home/_saved.dart';
-import 'package:fritter/profile/profile.dart';
-import 'package:fritter/saved/saved_tweet_model.dart';
-import 'package:fritter/ui/errors.dart';
-import 'package:fritter/user.dart';
+import '../database/entities.dart';
+import '../generated/l10n.dart';
+import '../home/_saved.dart';
+import '../profile/profile.dart';
+import '../saved/saved_tweet_model.dart';
+import '../ui/errors.dart';
+import '../user.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 
