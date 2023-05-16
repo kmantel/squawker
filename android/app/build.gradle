@@ -78,6 +78,9 @@ android {
         release {
             signingConfig signingConfigs.release
 
+            minifyEnabled = true
+            shrinkResources = true
+
             applicationVariants.all { variant ->
                 variant.outputs.all { output ->
                     def abiName = output.getFilter(OutputFile.ABI)
