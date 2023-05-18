@@ -32,7 +32,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m5(snapshotData) => "Finished with ${snapshotData} users";
 
-  static String m6(name) => "Group: ${name}";
+  static String m6(name) => "${name}";
 
   static String m7(snapshotData) => "${snapshotData} users imported so far";
 

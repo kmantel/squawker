@@ -2414,20 +2414,20 @@ class L10n {
     );
   }
 
-  /// `Group: {name}`
+  /// `{name}`
   String group_name(Object name) {
     return Intl.message(
-      'Group: $name',
+      '$name',
       name: 'group_name',
       desc: '',
       args: [name],
     );
   }
 
-  /// `Are you sure you want to close Fritter?`
+  /// `Are you sure you want to close Quacker?`
   String get confirm_close_fritter {
     return Intl.message(
-      'Are you sure you want to close Fritter?',
+      'Are you sure you want to close Quacker?',
       name: 'confirm_close_fritter',
       desc: '',
       args: [],

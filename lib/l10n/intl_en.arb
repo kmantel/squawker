@@ -432,7 +432,7 @@
   "unable_to_load_home_pages": "Unable to load your home pages",
   "reset_home_pages": "Reset pages to default",
   "you_must_have_at_least_2_home_screen_pages": "You must have at least 2 home screen pages",
-  "group_name": "Group: {name}",
+  "group_name": "{name}",
   "confirm_close_fritter": "Are you sure you want to close Fritter?",
   "search_term": "Search term",
   "only_public_subscriptions_can_be_imported": "Subscriptions can only be imported from public profiles",
