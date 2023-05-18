@@ -77,8 +77,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "all": MessageLookupByLibrary.simpleMessage("Hepsi"),
         "all_the_great_software_used_by_fritter":
             MessageLookupByLibrary.simpleMessage("Fritter tarafından kullanılan tüm harika yazılımlar"),
-        "an_error_was_reported_to_sentry_thank_you":
-            MessageLookupByLibrary.simpleMessage("Hata Sentry\'e bildirildi. Teşekkürler!"),
+        "an_error_was_reported_to__thank_you":
+            MessageLookupByLibrary.simpleMessage("Hata \'e bildirildi. Teşekkürler!"),
         "an_update_for_fritter_is_available":
             MessageLookupByLibrary.simpleMessage("Fritter için bir güncelleme mevcut! 🚀"),
         "are_you_sure": MessageLookupByLibrary.simpleMessage("Emin misiniz?"),
@@ -128,7 +128,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "İndirilemiyor. Bu medya yalnızca Fritter\'ın henüz indiremediği bir akış olarak mevcut olabilir."),
         "download_path": MessageLookupByLibrary.simpleMessage("İndirme yolu"),
         "downloading_media": MessageLookupByLibrary.simpleMessage("Medya indiriliyor..."),
-        "enable_sentry": MessageLookupByLibrary.simpleMessage("Sentry etkinleştirilsin mi?"),
+        "enable_": MessageLookupByLibrary.simpleMessage(" etkinleştirilsin mi?"),
         "ended_timeago_format_endsAt_allowFromNow_true": m3,
         "ends_timeago_format_endsAt_allowFromNow_true": m4,
         "enter_your_twitter_username": MessageLookupByLibrary.simpleMessage("Twitter kullanıcı adınızı girin"),
@@ -369,8 +369,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "version": MessageLookupByLibrary.simpleMessage("Sürüm"),
         "when_a_new_app_update_is_available":
             MessageLookupByLibrary.simpleMessage("Yeni bir uygulama güncellemesi mevcut olduğunda"),
-        "whether_errors_should_be_reported_to_sentry":
-            MessageLookupByLibrary.simpleMessage("Hataların Sentry\'ye bildirilip bildirilmeyeceği"),
+        "whether_errors_should_be_reported_to_":
+            MessageLookupByLibrary.simpleMessage("Hataların \'ye bildirilip bildirilmeyeceği"),
         "whether_to_hide_tweets_marked_as_sensitive":
             MessageLookupByLibrary.simpleMessage("Hassas olarak işaretlenen tweetlerin gizlenip gizlenmeyeceği"),
         "which_tab_is_shown_when_the_app_opens":
@@ -390,7 +390,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Cihazınız KitKat\'tan (4.4) daha eski bir Android sürümü çalıştırıyor, bu nedenle dışa aktarma sadece şuraya kaydedilebilir:"),
         "your_profile_must_be_public_otherwise_the_import_will_not_work": MessageLookupByLibrary.simpleMessage(
             "Profiliniz herkese açık olmalıdır, aksi takdirde alma işlemi çalışmaz"),
-        "your_report_will_be_sent_to_fritter_sentry_project": MessageLookupByLibrary.simpleMessage(
-            "Raporunuz Fritter\'ın Sentry projesine gönderilecektir ve gizlilik detaylarını şu adreste bulabilirsiniz:")
+        "your_report_will_be_sent_to_fritter__project": MessageLookupByLibrary.simpleMessage(
+            "Raporunuz Fritter\'ın  projesine gönderilecektir ve gizlilik detaylarını şu adreste bulabilirsiniz:")
       };
 }

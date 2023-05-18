@@ -77,8 +77,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "all": MessageLookupByLibrary.simpleMessage("Semua"),
         "all_the_great_software_used_by_fritter":
             MessageLookupByLibrary.simpleMessage("Semua perangkat lunak hebat yang digunakan oleh Fritter"),
-        "an_error_was_reported_to_sentry_thank_you":
-            MessageLookupByLibrary.simpleMessage("Sebuah galat telah dilaporkan ke Sentry. Terima kasih!"),
+        "an_error_was_reported_to__thank_you":
+            MessageLookupByLibrary.simpleMessage("Sebuah galat telah dilaporkan ke . Terima kasih!"),
         "an_update_for_fritter_is_available":
             MessageLookupByLibrary.simpleMessage("Pembaruan untuk Fritter tersedia! 🚀"),
         "are_you_sure": MessageLookupByLibrary.simpleMessage("Apakah Anda yakin?"),
@@ -127,7 +127,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Tidak bisa mengunduh. Media ini hanya tersedia sebagai siaran, yang Fritter belum bisa mengunduhnya."),
         "download_path": MessageLookupByLibrary.simpleMessage("Jalur unduhan"),
         "downloading_media": MessageLookupByLibrary.simpleMessage("Mengunduh media..."),
-        "enable_sentry": MessageLookupByLibrary.simpleMessage("Aktifkan Sentry?"),
+        "enable_": MessageLookupByLibrary.simpleMessage("Aktifkan ?"),
         "ended_timeago_format_endsAt_allowFromNow_true": m3,
         "ends_timeago_format_endsAt_allowFromNow_true": m4,
         "enter_your_twitter_username": MessageLookupByLibrary.simpleMessage("Masukkan nama pengguna Twitter Anda"),
@@ -356,8 +356,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "version": MessageLookupByLibrary.simpleMessage("Versi"),
         "when_a_new_app_update_is_available":
             MessageLookupByLibrary.simpleMessage("Ketika pembaruan aplikasi baru tersedia"),
-        "whether_errors_should_be_reported_to_sentry":
-            MessageLookupByLibrary.simpleMessage("Apakah galat harus dilaporkan ke Sentry"),
+        "whether_errors_should_be_reported_to_":
+            MessageLookupByLibrary.simpleMessage("Apakah galat harus dilaporkan ke "),
         "whether_to_hide_tweets_marked_as_sensitive":
             MessageLookupByLibrary.simpleMessage("Untuk menyembunyikan cuitan yang ditandai sebagai sensitif"),
         "which_tab_is_shown_when_the_app_opens":
@@ -378,7 +378,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Perangkat Anda menjalankan versi Android yang lebih tua dari KitKat (4.4), jadi ekspor hanya bisa disimpan ke:"),
         "your_profile_must_be_public_otherwise_the_import_will_not_work":
             MessageLookupByLibrary.simpleMessage("Profil Anda harus publik, jika tidak impor tidak akan bekerja"),
-        "your_report_will_be_sent_to_fritter_sentry_project": MessageLookupByLibrary.simpleMessage(
-            "Laporan Anda akan dikirim ke proyek Sentry Fritter, dan detail privasi bisa ditemukan pada:")
+        "your_report_will_be_sent_to_fritter__project": MessageLookupByLibrary.simpleMessage(
+            "Laporan Anda akan dikirim ke proyek  Fritter, dan detail privasi bisa ditemukan pada:")
       };
 }

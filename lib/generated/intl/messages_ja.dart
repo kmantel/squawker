@@ -74,8 +74,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_to_group": MessageLookupByLibrary.simpleMessage("グループに追加"),
         "all": MessageLookupByLibrary.simpleMessage("すべて"),
         "all_the_great_software_used_by_fritter": MessageLookupByLibrary.simpleMessage("Fritterで使用する偉大なソフトウェア"),
-        "an_error_was_reported_to_sentry_thank_you":
-            MessageLookupByLibrary.simpleMessage("エラーがSentoryに送信されました。ありがとうございました！"),
+        "an_error_was_reported_to__thank_you": MessageLookupByLibrary.simpleMessage("エラーがSentoryに送信されました。ありがとうございました！"),
         "an_update_for_fritter_is_available": MessageLookupByLibrary.simpleMessage("Fritterの更新が利用可能です！🚀"),
         "are_you_sure": MessageLookupByLibrary.simpleMessage("確認"),
         "are_you_sure_you_want_to_delete_the_subscription_group_name_of_group": m0,
@@ -117,7 +116,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ダウンロードできません。このメディアはストリーム限定の可能性があり、今のFritterではダウンロードできません。"),
         "download_path": MessageLookupByLibrary.simpleMessage("ダウンロード先"),
         "downloading_media": MessageLookupByLibrary.simpleMessage("メディアをダウンロード中..."),
-        "enable_sentry": MessageLookupByLibrary.simpleMessage("Sentryを有効化？"),
+        "enable_": MessageLookupByLibrary.simpleMessage("を有効化？"),
         "ended_timeago_format_endsAt_allowFromNow_true": m3,
         "ends_timeago_format_endsAt_allowFromNow_true": m4,
         "enter_your_twitter_username": MessageLookupByLibrary.simpleMessage("Twitterユーザ名を入力"),
@@ -310,7 +309,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "username": MessageLookupByLibrary.simpleMessage("ユーザ名"),
         "version": MessageLookupByLibrary.simpleMessage("バージョン"),
         "when_a_new_app_update_is_available": MessageLookupByLibrary.simpleMessage("新しいアプリの更新が利用可能なとき"),
-        "whether_errors_should_be_reported_to_sentry": MessageLookupByLibrary.simpleMessage("エラーをSentryに送信する"),
+        "whether_errors_should_be_reported_to_": MessageLookupByLibrary.simpleMessage("エラーをに送信する"),
         "whether_to_hide_tweets_marked_as_sensitive": MessageLookupByLibrary.simpleMessage("センシティブとされたツイートを隠すかどうか"),
         "which_tab_is_shown_when_the_app_opens": MessageLookupByLibrary.simpleMessage("アプリの起動時に表示するタブ"),
         "would_you_like_to_enable_automatic_error_reporting": MessageLookupByLibrary.simpleMessage("自動エラー報告を有効にしますか？"),
@@ -323,7 +322,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("KitKat (4.4)以前のAndroidバージョンで動作しているため、エクスポートでは以下の場所のみに保存できます："),
         "your_profile_must_be_public_otherwise_the_import_will_not_work":
             MessageLookupByLibrary.simpleMessage("公開アカウントである必要があります"),
-        "your_report_will_be_sent_to_fritter_sentry_project":
-            MessageLookupByLibrary.simpleMessage("レポートはFritterのSentryプロジェクトに送信されます。プライバシーの詳細は以下の通りです：")
+        "your_report_will_be_sent_to_fritter__project":
+            MessageLookupByLibrary.simpleMessage("レポートはFritterのプロジェクトに送信されます。プライバシーの詳細は以下の通りです：")
       };
 }

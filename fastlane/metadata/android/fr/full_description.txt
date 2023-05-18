@@ -7,4 +7,4 @@
 * Prise en charge de l'ouverture directe des liens twitter.com
 * Prise en charge du contenu RTL
 
-Quacker utilise Sentry pour optimiser les repports d'erreurs, qui est désactivé par défaut.
+Quacker utilise  pour optimiser les repports d'erreurs, qui est désactivé par défaut.

@@ -77,8 +77,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "all": MessageLookupByLibrary.simpleMessage("Dena"),
         "all_the_great_software_used_by_fritter":
             MessageLookupByLibrary.simpleMessage("Fritter-ek erabiltzen duen software bikaina"),
-        "an_error_was_reported_to_sentry_thank_you":
-            MessageLookupByLibrary.simpleMessage("Akats baten berri eman zaio Sentry-ri. Eskerrik asko!"),
+        "an_error_was_reported_to__thank_you":
+            MessageLookupByLibrary.simpleMessage("Akats baten berri eman zaio -ri. Eskerrik asko!"),
         "an_update_for_fritter_is_available":
             MessageLookupByLibrary.simpleMessage("Fritter-en eguneraketa eskuragarri dago! 🚀"),
         "are_you_sure": MessageLookupByLibrary.simpleMessage("Ziur zaude?"),
@@ -127,7 +127,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Ezin da deskargatu. Baliteke multimedia hau korronte gisa soilik egotea, Fritter-ek oraindik deskargatu ezin duena."),
         "download_path": MessageLookupByLibrary.simpleMessage("Deskargatzeko bidea"),
         "downloading_media": MessageLookupByLibrary.simpleMessage("Multimedia deskargatzen..."),
-        "enable_sentry": MessageLookupByLibrary.simpleMessage("Sentry gaitu?"),
+        "enable_": MessageLookupByLibrary.simpleMessage(" gaitu?"),
         "ended_timeago_format_endsAt_allowFromNow_true": m3,
         "ends_timeago_format_endsAt_allowFromNow_true": m4,
         "enter_your_twitter_username": MessageLookupByLibrary.simpleMessage("Sartu zure Twitter erabiltzaile-izena"),
@@ -353,8 +353,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "version": MessageLookupByLibrary.simpleMessage("Bertsioa"),
         "when_a_new_app_update_is_available":
             MessageLookupByLibrary.simpleMessage("Aplikazioaren eguneratze berri bat eskuragarri dagoenean"),
-        "whether_errors_should_be_reported_to_sentry":
-            MessageLookupByLibrary.simpleMessage("Akatsak Sentryri bidali behar litzaizkioke"),
+        "whether_errors_should_be_reported_to_":
+            MessageLookupByLibrary.simpleMessage("Akatsak ri bidali behar litzaizkioke"),
         "whether_to_hide_tweets_marked_as_sensitive":
             MessageLookupByLibrary.simpleMessage("Sentikor gisa markatutako txioak ezkutatu"),
         "which_tab_is_shown_when_the_app_opens":
@@ -374,7 +374,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Zure gailua KitKat (4.4) baino zaharragoa den Android-en bertsio bat exekutatzen ari da; beraz, esportazioa hemen bakarrik gorde daiteke:"),
         "your_profile_must_be_public_otherwise_the_import_will_not_work": MessageLookupByLibrary.simpleMessage(
             "Zure profilak publikoa izan behar du, bestela inportazioak ez du funtzionatuko"),
-        "your_report_will_be_sent_to_fritter_sentry_project": MessageLookupByLibrary.simpleMessage(
-            "Zure txostena Fritter-en Sentry proiektura bidaliko da, eta pribatutasun xehetasunak helbide honetan aurki ditzakezu:")
+        "your_report_will_be_sent_to_fritter__project": MessageLookupByLibrary.simpleMessage(
+            "Zure txostena Fritter-en  proiektura bidaliko da, eta pribatutasun xehetasunak helbide honetan aurki ditzakezu:")
       };
 }

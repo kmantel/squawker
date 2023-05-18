@@ -7,4 +7,4 @@
 * Supporta l'apertura diretta dei link twitter.com
 * Supporta contenuti RTL
 
-Quacker usa Sentry per la segnalazione opt-in degli errori, che è disabilitata per impostazione predefinita.
+Quacker usa  per la segnalazione opt-in degli errori, che è disabilitata per impostazione predefinita.

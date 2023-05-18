@@ -168,11 +168,11 @@ class L10n {
     );
   }
 
-  /// `Your report will be sent to Fritter's Sentry project, and privacy details can be found at:`
-  String get your_report_will_be_sent_to_fritter_sentry_project {
+  /// `Your report will be sent to Fritter's  project, and privacy details can be found at:`
+  String get your_report_will_be_sent_to_fritter__project {
     return Intl.message(
-      'Your report will be sent to Fritter\'s Sentry project, and privacy details can be found at:',
-      name: 'your_report_will_be_sent_to_fritter_sentry_project',
+      'Your report will be sent to Fritter\'s  project, and privacy details can be found at:',
+      name: 'your_report_will_be_sent_to_fritter__project',
       desc: '',
       args: [],
     );
@@ -218,11 +218,11 @@ class L10n {
     );
   }
 
-  /// `An error was reported to Sentry. Thank you!`
-  String get an_error_was_reported_to_sentry_thank_you {
+  /// `An error was reported to . Thank you!`
+  String get an_error_was_reported_to__thank_you {
     return Intl.message(
-      'An error was reported to Sentry. Thank you!',
-      name: 'an_error_was_reported_to_sentry_thank_you',
+      'An error was reported to . Thank you!',
+      name: 'an_error_was_reported_to__thank_you',
       desc: '',
       args: [],
     );
@@ -1040,11 +1040,11 @@ class L10n {
     );
   }
 
-  /// `Enable Sentry?`
-  String get enable_sentry {
+  /// `Enable ?`
+  String get enable_ {
     return Intl.message(
-      'Enable Sentry?',
-      name: 'enable_sentry',
+      'Enable ?',
+      name: 'enable_',
       desc: '',
       args: [],
     );
@@ -1070,11 +1070,11 @@ class L10n {
     );
   }
 
-  /// `Whether errors should be reported to Sentry`
-  String get whether_errors_should_be_reported_to_sentry {
+  /// `Whether errors should be reported to `
+  String get whether_errors_should_be_reported_to_ {
     return Intl.message(
-      'Whether errors should be reported to Sentry',
-      name: 'whether_errors_should_be_reported_to_sentry',
+      'Whether errors should be reported to ',
+      name: 'whether_errors_should_be_reported_to_',
       desc: '',
       args: [],
     );

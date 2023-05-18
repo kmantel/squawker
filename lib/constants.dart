@@ -2,7 +2,7 @@ const optionWizardCompleted = 'option.wizard_completed';
 
 const optionDisableScreenshots = 'disable_screenshots';
 
-const optionErrorsSentryEnabled = 'errors.sentry_enabled';
+const optionErrorsEnabled = 'errors._enabled';
 
 const optionHelloLastBuild = 'hello.last_build';
 

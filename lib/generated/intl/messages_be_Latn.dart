@@ -29,8 +29,8 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "add_to_group": MessageLookupByLibrary.simpleMessage("Dadać u hrupu"),
-        "an_error_was_reported_to_sentry_thank_you":
-            MessageLookupByLibrary.simpleMessage("Pamyłka była pieradadziena ŭ Sentry. Dziakuj!"),
+        "an_error_was_reported_to__thank_you":
+            MessageLookupByLibrary.simpleMessage("Pamyłka była pieradadziena ŭ . Dziakuj!"),
         "cancel": MessageLookupByLibrary.simpleMessage("Skasavać"),
         "could_not_find_any_tweets_by_this_user":
             MessageLookupByLibrary.simpleMessage("Nie atrymałasia znajści ni adnaho tvitu hetaha karystalnika!"),
@@ -109,7 +109,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "your_device_is_running_a_version_of_android_older_than_kitKat_so_the_export_can_only_be_saved_to":
             MessageLookupByLibrary.simpleMessage(
                 "Vaša pryłada pracuje pad kiravańniem versyi Android, starejšyj za KitKat (4.4), tamu ekspart moža być zachavany tolki ŭ:"),
-        "your_report_will_be_sent_to_fritter_sentry_project": MessageLookupByLibrary.simpleMessage(
-            "Vaša spravazdača budzie dasłana ŭ Sentry Quacker, a infarmacyju pra kanfidencyjnaść možna znajści tut:")
+        "your_report_will_be_sent_to_fritter__project": MessageLookupByLibrary.simpleMessage(
+            "Vaša spravazdača budzie dasłana ŭ  Quacker, a infarmacyju pra kanfidencyjnaść možna znajści tut:")
       };
 }

@@ -51,8 +51,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "all": MessageLookupByLibrary.simpleMessage("Все"),
         "all_the_great_software_used_by_fritter":
             MessageLookupByLibrary.simpleMessage("Все чудове програмне забезпечення, яке використовує Fritter"),
-        "an_error_was_reported_to_sentry_thank_you":
-            MessageLookupByLibrary.simpleMessage("До Sentry надійшло повідомлення про помилку. Дякую!"),
+        "an_error_was_reported_to__thank_you":
+            MessageLookupByLibrary.simpleMessage("До  надійшло повідомлення про помилку. Дякую!"),
         "are_you_sure": MessageLookupByLibrary.simpleMessage("Ви впевнені?"),
         "are_you_sure_you_want_to_delete_the_subscription_group_name_of_group": m0,
         "cancel": MessageLookupByLibrary.simpleMessage("Скасувати"),
@@ -76,7 +76,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "disabled": MessageLookupByLibrary.simpleMessage("Вимкнено"),
         "don_not_send": MessageLookupByLibrary.simpleMessage("Не надсилати"),
         "donate": MessageLookupByLibrary.simpleMessage("Пожертвувати"),
-        "enable_sentry": MessageLookupByLibrary.simpleMessage("Увімкнути Sentry?"),
+        "enable_": MessageLookupByLibrary.simpleMessage("Увімкнути ?"),
         "enter_your_twitter_username": MessageLookupByLibrary.simpleMessage("Введіть своє ім\'я користувача у Twitter"),
         "export": MessageLookupByLibrary.simpleMessage("Експорт"),
         "export_settings": MessageLookupByLibrary.simpleMessage("Експортувати налаштування?"),
@@ -228,8 +228,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Використовуйте справжній чорний колір для темної теми"),
         "username": MessageLookupByLibrary.simpleMessage("Ім\'я користувача"),
         "version": MessageLookupByLibrary.simpleMessage("Версія"),
-        "whether_errors_should_be_reported_to_sentry":
-            MessageLookupByLibrary.simpleMessage("Чи потрібно повідомляти про помилки в Sentry"),
+        "whether_errors_should_be_reported_to_":
+            MessageLookupByLibrary.simpleMessage("Чи потрібно повідомляти про помилки в "),
         "which_tab_is_shown_when_the_app_opens":
             MessageLookupByLibrary.simpleMessage("Яка вкладка відображатиметься під час відкриття додатка"),
         "would_you_like_to_enable_automatic_error_reporting":
@@ -245,7 +245,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "На вашому пристрої встановлено версію Android, старішу за KitKat (4.4), тому експорт може бути збережено лише до:"),
         "your_profile_must_be_public_otherwise_the_import_will_not_work":
             MessageLookupByLibrary.simpleMessage("Ваш профіль має бути публічним, інакше імпорт не спрацює"),
-        "your_report_will_be_sent_to_fritter_sentry_project": MessageLookupByLibrary.simpleMessage(
-            "Ваш звіт буде надіслано до проекту Fritter\'s Sentry, а деталі конфіденційності можна знайти за посиланням:")
+        "your_report_will_be_sent_to_fritter__project": MessageLookupByLibrary.simpleMessage(
+            "Ваш звіт буде надіслано до проекту Fritter\'s , а деталі конфіденційності можна знайти за посиланням:")
       };
 }

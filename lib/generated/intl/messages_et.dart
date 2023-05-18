@@ -79,8 +79,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "all": MessageLookupByLibrary.simpleMessage("Kõik"),
         "all_the_great_software_used_by_fritter":
             MessageLookupByLibrary.simpleMessage("Kõik suurepärane tarkvara, mida Fritter kasutab"),
-        "an_error_was_reported_to_sentry_thank_you":
-            MessageLookupByLibrary.simpleMessage("Veateade on saadetud Sentry veahaldusrakendusse. Tänud!"),
+        "an_error_was_reported_to__thank_you":
+            MessageLookupByLibrary.simpleMessage("Veateade on saadetud  veahaldusrakendusse. Tänud!"),
         "an_update_for_fritter_is_available":
             MessageLookupByLibrary.simpleMessage("Fritter\'i tarkvarauuendus on saadaval! 🚀"),
         "are_you_sure": MessageLookupByLibrary.simpleMessage("Kas sa oled kindel?"),
@@ -130,7 +130,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Allalaadimine ei õnnestu. See meedia võib olla saadaval vaid voogedastusena ning Fritter veel ei oska teda alla laadida."),
         "download_path": MessageLookupByLibrary.simpleMessage("Allalaadimiste kaust"),
         "downloading_media": MessageLookupByLibrary.simpleMessage("Laadin alla meediat..."),
-        "enable_sentry": MessageLookupByLibrary.simpleMessage("Kas lubad kasutada Sentry\'t?"),
+        "enable_": MessageLookupByLibrary.simpleMessage("Kas lubad kasutada \'t?"),
         "ended_timeago_format_endsAt_allowFromNow_true": m3,
         "ends_timeago_format_endsAt_allowFromNow_true": m4,
         "enter_your_twitter_username": MessageLookupByLibrary.simpleMessage("Sisesta oma Twitteri kasutajanimi"),
@@ -369,8 +369,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "username": MessageLookupByLibrary.simpleMessage("Kasutajanimi"),
         "version": MessageLookupByLibrary.simpleMessage("Versioon"),
         "when_a_new_app_update_is_available": MessageLookupByLibrary.simpleMessage("Kui uuendus on saadaval"),
-        "whether_errors_should_be_reported_to_sentry":
-            MessageLookupByLibrary.simpleMessage("Vigadest teatamine Sentry veebirakenduse abil"),
+        "whether_errors_should_be_reported_to_":
+            MessageLookupByLibrary.simpleMessage("Vigadest teatamine  veebirakenduse abil"),
         "whether_to_hide_tweets_marked_as_sensitive":
             MessageLookupByLibrary.simpleMessage("Kas soovid peita säutse, kus võib olla ebasobilikku sisu"),
         "which_tab_is_shown_when_the_app_opens":
@@ -391,7 +391,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Sinu seadmes on vanem Androidi versioon kui KitKat (4.4) ja seega eksporditavaid andmeid on võimalik vaid salvestada siia:"),
         "your_profile_must_be_public_otherwise_the_import_will_not_work":
             MessageLookupByLibrary.simpleMessage("Sinu profiil peab olema avalik, muidu import ei toimi"),
-        "your_report_will_be_sent_to_fritter_sentry_project": MessageLookupByLibrary.simpleMessage(
-            "Veakirjeldus saadetakse Fritter\'i kontole Sentry veahaldusrakenduses. Sentry privaatusteabe leiad siit:")
+        "your_report_will_be_sent_to_fritter__project": MessageLookupByLibrary.simpleMessage(
+            "Veakirjeldus saadetakse Fritter\'i kontole  veahaldusrakenduses.  privaatusteabe leiad siit:")
       };
 }

@@ -671,13 +671,21 @@ class Twitter {
           e['content']['itemContent']['tweet_results']['result']['legacy']);
     }));
 
+    Map<String, bool> blueCheckUsers = {};
+
     var globalUsers = Map.fromEntries(filteredTweets.map((e) {
-      return MapEntry(
-          e['content']['itemContent']['tweet_results']['result']['core']['user_results']['result']['rest_id'] as String,
-          e['content']['itemContent']['tweet_results']['result']['core']['user_results']['result']['legacy']);
+      var elm = e['content']['itemContent']['tweet_results']['result']['core']['user_results']['result'];
+      blueCheckUsers[elm['rest_id'] as String] = elm['is_blue_verified'];
+      return MapEntry(elm['rest_id'] as String, elm['legacy']);
     }));
 
     var tweets = globalTweets.values.map((e) => TweetWithCard.fromCardJson(globalTweets, globalUsers, e)).toList();
+
+    for (var twt in tweets) {
+      if (twt.user?.idStr != null) {
+        twt.user!.verified = blueCheckUsers[twt.user!.idStr];
+      }
+    }
 
     return {for (var e in tweets) e.idStr!: e};
   }
@@ -776,6 +784,10 @@ class TweetWithCard extends Tweet {
     tweetWithCard.source = tweet.source;
     tweetWithCard.text = tweet.text;
     tweetWithCard.user = tweet.user;
+
+    if (tweet.user != null) {
+      tweet.user!.idStr = e['user_id_str'];
+    }
 
     tweetWithCard.coordinates = tweet.coordinates;
     tweetWithCard.truncated = tweet.truncated;

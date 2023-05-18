@@ -7,4 +7,4 @@
 * twitter.com bağlantılarını doğrudan açmayı destekler
 * Sağdan sola (RTL) içeriği destekler
 
-Quacker, öntanımlı olarak etkinleştirilmeyen, gönüllü hata bildirimi için Sentry kullanmaktadır.
+Quacker, öntanımlı olarak etkinleştirilmeyen, gönüllü hata bildirimi için  kullanmaktadır.

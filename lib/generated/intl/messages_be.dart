@@ -76,8 +76,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "all": MessageLookupByLibrary.simpleMessage("Усе"),
         "all_the_great_software_used_by_fritter":
             MessageLookupByLibrary.simpleMessage("Усё выдатнае праграмнае забеспячэнне, якое выкарыстоўваецца Quacker"),
-        "an_error_was_reported_to_sentry_thank_you":
-            MessageLookupByLibrary.simpleMessage("Памылка была перададзена ў Sentry. Дзякуй!"),
+        "an_error_was_reported_to__thank_you":
+            MessageLookupByLibrary.simpleMessage("Памылка была перададзена ў . Дзякуй!"),
         "an_update_for_fritter_is_available": MessageLookupByLibrary.simpleMessage("Абнаўленне Quacker даступна! 🚀"),
         "are_you_sure": MessageLookupByLibrary.simpleMessage("Вы ўпэўнены?"),
         "are_you_sure_you_want_to_delete_the_subscription_group_name_of_group": m0,
@@ -124,7 +124,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Немагчыма загрузіць. Гэта медыя можа быць даступна толькі ў выглядзе патоку, які Fritter пакуль не можа загрузіць."),
         "download_path": MessageLookupByLibrary.simpleMessage("Шлях для спампоўкі"),
         "downloading_media": MessageLookupByLibrary.simpleMessage("Загрузка медыя..."),
-        "enable_sentry": MessageLookupByLibrary.simpleMessage("Актываваць Sentry?"),
+        "enable_": MessageLookupByLibrary.simpleMessage("Актываваць ?"),
         "ended_timeago_format_endsAt_allowFromNow_true": m3,
         "ends_timeago_format_endsAt_allowFromNow_true": m4,
         "enter_your_twitter_username":
@@ -347,8 +347,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "username": MessageLookupByLibrary.simpleMessage("Імя карыстальніка"),
         "version": MessageLookupByLibrary.simpleMessage("Версія"),
         "when_a_new_app_update_is_available": MessageLookupByLibrary.simpleMessage("Калі новае абнаўленне даступна"),
-        "whether_errors_should_be_reported_to_sentry":
-            MessageLookupByLibrary.simpleMessage("Паведамляць пра памылкі ў Sentry"),
+        "whether_errors_should_be_reported_to_": MessageLookupByLibrary.simpleMessage("Паведамляць пра памылкі ў "),
         "whether_to_hide_tweets_marked_as_sensitive":
             MessageLookupByLibrary.simpleMessage("Ці варта хаваць твіты, пазначаныя як чуллівыя"),
         "which_tab_is_shown_when_the_app_opens":
@@ -369,7 +368,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "На вашым прыладзе ўсталявана версія Android старэйшыя за KitKat (< 4.4), таму экспарт можа быць захаваны толькі ў:"),
         "your_profile_must_be_public_otherwise_the_import_will_not_work":
             MessageLookupByLibrary.simpleMessage("Ваш профіль павінен быць адкрытым, інакш імпарт ня будзе працаваць"),
-        "your_report_will_be_sent_to_fritter_sentry_project": MessageLookupByLibrary.simpleMessage(
-            "Ваша справаздача будзе даслана ў Sentry Fritter, а інфармацыю пра канфідэнцыйнасць можна знайсці тут:")
+        "your_report_will_be_sent_to_fritter__project": MessageLookupByLibrary.simpleMessage(
+            "Ваша справаздача будзе даслана ў  Fritter, а інфармацыю пра канфідэнцыйнасць можна знайсці тут:")
       };
 }

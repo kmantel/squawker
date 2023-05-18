@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:flutter/src/widgets/framework.dart';
+
 import '../group/group_model.dart';
 import 'package:logging/logging.dart';
 import 'package:sqflite/sqflite.dart';
@@ -210,11 +212,6 @@ class Repository {
 
           await batch.commit();
         })),
-      ],
-      20: [
-        // Remove feed-related stuff
-        SqlMigration('DROP TABLE IF EXISTS $tableFeedGroupChunk'),
-        SqlMigration('DROP TABLE IF EXISTS $tableFeedGroupCursor'),
       ],
     });
     await openDatabase(

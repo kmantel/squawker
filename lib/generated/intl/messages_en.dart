@@ -78,8 +78,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "all": MessageLookupByLibrary.simpleMessage("All"),
         "all_the_great_software_used_by_fritter":
             MessageLookupByLibrary.simpleMessage("All the great software used by Quacker"),
-        "an_error_was_reported_to_sentry_thank_you":
-            MessageLookupByLibrary.simpleMessage("An error was reported to Sentry. Thank you!"),
+        "an_error_was_reported_to__thank_you":
+            MessageLookupByLibrary.simpleMessage("An error was reported to . Thank you!"),
         "an_update_for_fritter_is_available":
             MessageLookupByLibrary.simpleMessage("An update for Fritter is available! 🚀"),
         "are_you_sure": MessageLookupByLibrary.simpleMessage("Are you sure?"),
@@ -128,7 +128,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Unable to download. This media may only be available as a stream, which Fritter cannot yet download."),
         "download_path": MessageLookupByLibrary.simpleMessage("Download path"),
         "downloading_media": MessageLookupByLibrary.simpleMessage("Downloading media..."),
-        "enable_sentry": MessageLookupByLibrary.simpleMessage("Enable Sentry?"),
+        "enable_": MessageLookupByLibrary.simpleMessage("Enable ?"),
         "ended_timeago_format_endsAt_allowFromNow_true": m3,
         "ends_timeago_format_endsAt_allowFromNow_true": m4,
         "enter_your_twitter_username": MessageLookupByLibrary.simpleMessage("Enter your Twitter username"),
@@ -367,8 +367,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "version": MessageLookupByLibrary.simpleMessage("Version"),
         "when_a_new_app_update_is_available":
             MessageLookupByLibrary.simpleMessage("When a new app update is available"),
-        "whether_errors_should_be_reported_to_sentry":
-            MessageLookupByLibrary.simpleMessage("Whether errors should be reported to Sentry"),
+        "whether_errors_should_be_reported_to_":
+            MessageLookupByLibrary.simpleMessage("Whether errors should be reported to "),
         "whether_to_hide_tweets_marked_as_sensitive":
             MessageLookupByLibrary.simpleMessage("Whether to hide tweets marked as sensitive"),
         "which_tab_is_shown_when_the_app_opens":
@@ -388,7 +388,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Your device is running a version of Android older than KitKat (4.4), so the export can only be saved to:"),
         "your_profile_must_be_public_otherwise_the_import_will_not_work":
             MessageLookupByLibrary.simpleMessage("Your profile must be public, otherwise the import will not work"),
-        "your_report_will_be_sent_to_fritter_sentry_project": MessageLookupByLibrary.simpleMessage(
-            "Your report will be sent to Fritter\'s Sentry project, and privacy details can be found at:")
+        "your_report_will_be_sent_to_fritter__project": MessageLookupByLibrary.simpleMessage(
+            "Your report will be sent to Fritter\'s  project, and privacy details can be found at:")
       };
 }

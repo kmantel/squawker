@@ -77,8 +77,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "all": MessageLookupByLibrary.simpleMessage("الكل"),
         "all_the_great_software_used_by_fritter":
             MessageLookupByLibrary.simpleMessage("كل البرمجيات الرائعة التي يستخدمها فريتر"),
-        "an_error_was_reported_to_sentry_thank_you":
-            MessageLookupByLibrary.simpleMessage("بُلِّغ عن خطأ للحارس. شكرا!"),
+        "an_error_was_reported_to__thank_you": MessageLookupByLibrary.simpleMessage("بُلِّغ عن خطأ للحارس. شكرا!"),
         "an_update_for_fritter_is_available": MessageLookupByLibrary.simpleMessage("هناك تحديث متاح لفريتر! 🚀"),
         "are_you_sure": MessageLookupByLibrary.simpleMessage("هل أنت متأكد؟"),
         "are_you_sure_you_want_to_delete_the_subscription_group_name_of_group": m0,
@@ -126,7 +125,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "غير قادر على تحميل . هذا المحتوى قد يكون متاحا فقط على شكل بث ، فريتر لا يمكنه تحميله ."),
         "download_path": MessageLookupByLibrary.simpleMessage("مسار التنزيل"),
         "downloading_media": MessageLookupByLibrary.simpleMessage("تحميل الوسائط..."),
-        "enable_sentry": MessageLookupByLibrary.simpleMessage("تفعيل الحارس؟"),
+        "enable_": MessageLookupByLibrary.simpleMessage("تفعيل الحارس؟"),
         "ended_timeago_format_endsAt_allowFromNow_true": m3,
         "ends_timeago_format_endsAt_allowFromNow_true": m4,
         "enter_your_twitter_username": MessageLookupByLibrary.simpleMessage("ادخل اسم مستخدم للتويتر"),
@@ -364,7 +363,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "version": MessageLookupByLibrary.simpleMessage("الإصدار"),
         "when_a_new_app_update_is_available":
             MessageLookupByLibrary.simpleMessage("عندما يكون هناك تحديث جديد للتطبيق"),
-        "whether_errors_should_be_reported_to_sentry":
+        "whether_errors_should_be_reported_to_":
             MessageLookupByLibrary.simpleMessage("ما إذا يجب على الأخطاء البرمجية أن يُبلّغ عنها إلى الحارس"),
         "whether_to_hide_tweets_marked_as_sensitive": MessageLookupByLibrary.simpleMessage(
             "ما إذا كنت تريد إخفاء التغريدات التي تم وضع علامة عليها على أنها حساسة"),
@@ -385,7 +384,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "جهازك يشتغل على نظام أقدم من أندرويد كيت كات (4.4)، لذلك يستطيع التصدير أن يُحفظ فقط إلى:"),
         "your_profile_must_be_public_otherwise_the_import_will_not_work":
             MessageLookupByLibrary.simpleMessage("يجب أن يكون ملف التعريف الخاص بك عاما، وإلا لن يعمل الاستيراد"),
-        "your_report_will_be_sent_to_fritter_sentry_project": MessageLookupByLibrary.simpleMessage(
+        "your_report_will_be_sent_to_fritter__project": MessageLookupByLibrary.simpleMessage(
             "تقريرك سيُبعث إلى مشروع حراسة فريتر، ويمكن العثور على تفاصيل الخصوصية في:")
       };
 }

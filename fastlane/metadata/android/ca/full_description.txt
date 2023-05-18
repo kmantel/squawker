@@ -6,5 +6,3 @@
 * Cerca de tuits i usuaris
 * Admet obrir enllaços a twitter.com directament
 * Suporta contingut RTL
-
-Quacker utilitza Sentry per a l'informe d'errors voluntari, el cual no està habilitat per defecte.

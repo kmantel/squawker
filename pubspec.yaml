@@ -78,7 +78,7 @@ dependencies:
   share: ^2.0.4
   share_plus: ^6.2.0
   simple_icons: ^7.10.0
-  sqflite_sqlcipher: ^2.1.1+1 #TODO: Add data encryption
+  sqflite: ^2.2.2
   sqflite_common: ^2.4.0+2
   sqflite_migration_plan: ^1.0.0
   timeago: ^3.3.0

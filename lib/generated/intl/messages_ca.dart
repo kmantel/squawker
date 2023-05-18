@@ -77,8 +77,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "all": MessageLookupByLibrary.simpleMessage("Tot"),
         "all_the_great_software_used_by_fritter":
             MessageLookupByLibrary.simpleMessage("Tot el genial programari utilitzat per Fritter"),
-        "an_error_was_reported_to_sentry_thank_you":
-            MessageLookupByLibrary.simpleMessage("S\'ha reportat un error a Sentry. Moltes gràcies!"),
+        "an_error_was_reported_to__thank_you":
+            MessageLookupByLibrary.simpleMessage("S\'ha reportat un error a . Moltes gràcies!"),
         "an_update_for_fritter_is_available":
             MessageLookupByLibrary.simpleMessage("Hi ha disponible una actualització per Fritter! 🚀"),
         "are_you_sure": MessageLookupByLibrary.simpleMessage("N\'estàs segur?"),
@@ -126,7 +126,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "No s\'ha pogut descarregar. Aquest mitjà només pot estar disponible com a flux, cosa que Fritter encara no pot descarregar."),
         "download_path": MessageLookupByLibrary.simpleMessage("Ruta de descàrrega"),
         "downloading_media": MessageLookupByLibrary.simpleMessage("Descarregant suports..."),
-        "enable_sentry": MessageLookupByLibrary.simpleMessage("Habilitar Sentry?"),
+        "enable_": MessageLookupByLibrary.simpleMessage("Habilitar ?"),
         "ended_timeago_format_endsAt_allowFromNow_true": m3,
         "ends_timeago_format_endsAt_allowFromNow_true": m4,
         "enter_your_twitter_username":
@@ -357,8 +357,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "version": MessageLookupByLibrary.simpleMessage("Versió"),
         "when_a_new_app_update_is_available":
             MessageLookupByLibrary.simpleMessage("Quan hi ha disponible una nova actualització d\'una aplicació"),
-        "whether_errors_should_be_reported_to_sentry":
-            MessageLookupByLibrary.simpleMessage("Si s\'han d\'informar els errors a Sentry"),
+        "whether_errors_should_be_reported_to_":
+            MessageLookupByLibrary.simpleMessage("Si s\'han d\'informar els errors a "),
         "whether_to_hide_tweets_marked_as_sensitive":
             MessageLookupByLibrary.simpleMessage("Si s\'han d\'ocultar els tuits marcats com a sensibles"),
         "which_tab_is_shown_when_the_app_opens":
@@ -378,7 +378,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "El dispositiu té una versió d\'Android anterior a KitKat (4.4), de manera que l\'exportació només es pot desar a:"),
         "your_profile_must_be_public_otherwise_the_import_will_not_work": MessageLookupByLibrary.simpleMessage(
             "El teu perfil ha de ser públic, en cas contrari la importació no funcionarà"),
-        "your_report_will_be_sent_to_fritter_sentry_project": MessageLookupByLibrary.simpleMessage(
-            "L\'informe s\'enviarà al projecte Sentry de Fritter, els detalls de privadesa es poden trobar a:")
+        "your_report_will_be_sent_to_fritter__project": MessageLookupByLibrary.simpleMessage(
+            "L\'informe s\'enviarà al projecte  de Fritter, els detalls de privadesa es poden trobar a:")
       };
 }

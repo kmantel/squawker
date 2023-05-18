@@ -154,7 +154,7 @@ class Step2 extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             Text(
-              L10n.of(context).your_report_will_be_sent_to_fritter_sentry_project,
+              L10n.of(context).your_report_will_be_sent_to_fritter__project,
             ),
             const SizedBox(height: 16),
             InkWell(
@@ -180,7 +180,7 @@ class Step2 extends StatelessWidget {
                 );
               },
               onPressed: () async {
-                // return PrefService.of(context).set(optionErrorsSentryEnabled, false);
+                // return PrefService.of(context).set(optionErrorsEnabled, false);
                 onComplete();
               },
               child: const Icon(Icons.close),
@@ -189,7 +189,7 @@ class Step2 extends StatelessWidget {
               label: Text(L10n.current.yes_please),
               icon: const Icon(Icons.check),
               onPressed: () {
-                PrefService.of(context).set(optionErrorsSentryEnabled, true);
+                PrefService.of(context).set(optionErrorsEnabled, true);
               },
             ),
           ],

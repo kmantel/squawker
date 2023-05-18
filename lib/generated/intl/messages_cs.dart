@@ -77,8 +77,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "all": MessageLookupByLibrary.simpleMessage("Vše"),
         "all_the_great_software_used_by_fritter":
             MessageLookupByLibrary.simpleMessage("Všechen úžasný software používaný Fritterem"),
-        "an_error_was_reported_to_sentry_thank_you":
-            MessageLookupByLibrary.simpleMessage("Chyba byla nahlášena do Sentry. Děkujeme!"),
+        "an_error_was_reported_to__thank_you":
+            MessageLookupByLibrary.simpleMessage("Chyba byla nahlášena do . Děkujeme!"),
         "an_update_for_fritter_is_available":
             MessageLookupByLibrary.simpleMessage("Je dostupná aktualizace Fritteru! 🚀"),
         "are_you_sure": MessageLookupByLibrary.simpleMessage("Opravdu?"),
@@ -128,7 +128,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Nepodařilo se stáhnout média. Možná jsou dostupná jen jako stream, který Fritter zatím nedokáže stáhnout."),
         "download_path": MessageLookupByLibrary.simpleMessage("Cesta pro stažené"),
         "downloading_media": MessageLookupByLibrary.simpleMessage("Stahování médií..."),
-        "enable_sentry": MessageLookupByLibrary.simpleMessage("Povolit Sentry?"),
+        "enable_": MessageLookupByLibrary.simpleMessage("Povolit ?"),
         "ended_timeago_format_endsAt_allowFromNow_true": m3,
         "ends_timeago_format_endsAt_allowFromNow_true": m4,
         "enter_your_twitter_username":
@@ -372,8 +372,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "version": MessageLookupByLibrary.simpleMessage("Verze"),
         "when_a_new_app_update_is_available":
             MessageLookupByLibrary.simpleMessage("Když je dostupná aktualizace aplikace"),
-        "whether_errors_should_be_reported_to_sentry":
-            MessageLookupByLibrary.simpleMessage("Nastavit, zda mají být chyby nahlašovány do Sentry"),
+        "whether_errors_should_be_reported_to_":
+            MessageLookupByLibrary.simpleMessage("Nastavit, zda mají být chyby nahlašovány do "),
         "whether_to_hide_tweets_marked_as_sensitive":
             MessageLookupByLibrary.simpleMessage("Zda skrývat tweety označené jako citlivé"),
         "which_tab_is_shown_when_the_app_opens":
@@ -394,7 +394,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Vaše zařízení používá verzi Androidu starší než KitKat (4.4), takže může být export uložen pouze do:"),
         "your_profile_must_be_public_otherwise_the_import_will_not_work":
             MessageLookupByLibrary.simpleMessage("Váš profil musí být veřejný, jinak nebude import fungovat"),
-        "your_report_will_be_sent_to_fritter_sentry_project": MessageLookupByLibrary.simpleMessage(
-            "Vaše nahlášení bylo odesláno do Sentry projektu Fritteru. Podrobnosti o soukromí lze nalézt na:")
+        "your_report_will_be_sent_to_fritter__project": MessageLookupByLibrary.simpleMessage(
+            "Vaše nahlášení bylo odesláno do  projektu Fritteru. Podrobnosti o soukromí lze nalézt na:")
       };
 }
