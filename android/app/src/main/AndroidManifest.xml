@@ -197,6 +197,10 @@
                 <data
                     android:host="nitter.ca"
                     android:scheme="https" />
+                
+                <data
+                    android:host="nitter.cz"
+                    android:scheme="https" />
 
                 <data
                     android:host="twitter.076.ne.jp"
