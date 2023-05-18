@@ -5,13 +5,23 @@
   </a>
 </p>
 
-<h2 align="center">
-  A better way to browse Twitter
-</h2>
- 
-<h1></h1> <br>
+<p align="center">
+  <a href="https://apt.izzysoft.de/fdroid/index/apk/com.thehcj.quacker">
+    <img src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png"
+       alt="Get it on IzzyOnDroid"
+       height="80">
+   </a>
+   <a href="https://github.com/thehcj/quacker/releases">
+     <img src="https://ultrasonic.github.io/assets/img/get-it-on-github.png" 
+       alt="Get it on Github"
+       height="80">
+   </a>
+</p>
  
 ## Description
+*A better way to browse Twitter*
+<br>
+<br>
 Quacker is a private and account free way to browse Twitter. This also includes feed viewing, subscription grouping, offline tweet saving and more!
 
 ## Features:
