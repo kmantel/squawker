@@ -1,1 +1,1 @@
-An open-source, privacy-focused Twitter client
+A better way to browse Twitter

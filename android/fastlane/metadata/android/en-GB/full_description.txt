@@ -1,23 +1,5 @@
-A better way to browse Twitter
-
-Quacker is a better way to browse Twitter, focusing on giving you the best experience and keeping your data private, local and in your hands.
-
-Features:
-
-- 🔒 <b>Privacy:</b> No tracking, with all data stored locally
-- 💬 <b>Subscriptions:</b> Follow and group accounts
-- 🔖 <b>Bookmarks:</b> Save tweets locally and offline
-- 📈 <b>Trends:</b> See what's trending in the world
-- 🔎 <b>Search:</b> Find users and tweets
-- 🌙 <b>Light and Dark themes:</b> Protect your eyes
-
-Privacy:
-
-Quacker will never track your actions in the app, or send your personal data to a third-party. All your data (subscriptions, groups, tweets and settings) are stored locally, on your device, and no Twitter account is required to use any feature.
-
-- 🔒 No account required
-- 🔒 No special permissions
-- 🔒 No tracking
-- 🔒 All your data is stored locally
-
-Quacker is <a href="https://github.com/TheHCJ/Quacker">openly developed on GitHub</a>, and any contributions, bug reports or feature requests are welcomed: https://github.com/TheHCJ/Quacker
+* Supports feed viewing, including group feeds
+* Supports Material 3
+* Supports all new Quacker features
+* Made by the community for the community
+* Always open and always private

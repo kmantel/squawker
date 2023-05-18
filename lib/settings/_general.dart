@@ -91,22 +91,16 @@ class SettingsGeneralFragment extends StatelessWidget {
                     .sorted((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()))
                     .map((e) => DropdownMenuItem(value: e.code, child: Text(e.name)))
               ]),
-          if (getFlavor() != 'play')
-            //PrefSwitch(
-            //title: Text(L10n.of(context).should_check_for_updates_label),
-            //pref: optionShouldCheckForUpdates,
-            //subtitle: Text(L10n.of(context).should_check_for_updates_description),
-            //),
-            PrefDropdown(
-                fullWidth: false,
-                title: Text(L10n.of(context).default_tab),
-                subtitle: Text(
-                  L10n.of(context).which_tab_is_shown_when_the_app_opens,
-                ),
-                pref: optionHomeInitialTab,
-                items: defaultHomePages
-                    .map((e) => DropdownMenuItem(value: e.id, child: Text(e.titleBuilder(context))))
-                    .toList()),
+          PrefDropdown(
+              fullWidth: false,
+              title: Text(L10n.of(context).default_tab),
+              subtitle: Text(
+                L10n.of(context).which_tab_is_shown_when_the_app_opens,
+              ),
+              pref: optionHomeInitialTab,
+              items: defaultHomePages
+                  .map((e) => DropdownMenuItem(value: e.id, child: Text(e.titleBuilder(context))))
+                  .toList()),
           PrefDropdown(
               fullWidth: false,
               title: Text(L10n.of(context).media_size),

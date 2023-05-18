@@ -25,11 +25,11 @@
 Quacker is a private and account free way to browse Twitter. This also includes feed viewing, subscription grouping, offline tweet saving and more!
 
 ## Features:
-* Supports feed viewing, including group feeds
-* Supports Material 3
-* Supports all new Fritter features 
-* Made by the community for the community 🩷
-* Always open and always private 🐱‍💻
+* Feed: View all your subscriptions in a chronological feed
+* Material: Feels native no matter what your device is
+* Sync: In sync with the current fritter build
+* Updates: Constantly updated and improved
+* Private: Doesn't use the official twitter api
 
 ## Screenshots
 

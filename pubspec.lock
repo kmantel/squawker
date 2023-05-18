@@ -663,22 +663,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.2"
-  package_info_plus:
-    dependency: transitive
-    description:
-      name: package_info_plus
-      sha256: "10259b111176fba5c505b102e3a5b022b51dd97e30522e906d6922c745584745"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.1.2"
-  package_info_plus_platform_interface:
-    dependency: transitive
-    description:
-      name: package_info_plus_platform_interface
-      sha256: "9bc8ba46813a4cc42c66ab781470711781940780fd8beddd0c3da62506d3a6c6"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.1"
   path:
     dependency: "direct main"
     description:
@@ -903,22 +887,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.4.4"
-  sentry:
-    dependency: transitive
-    description:
-      name: sentry
-      sha256: "1c5498c8d1754dbf4fa51ca14d31c8c34ea0a0f897ff666ecd516dbd588dad6a"
-      url: "https://pub.dev"
-    source: hosted
-    version: "7.5.2"
-  sentry_flutter:
-    dependency: "direct main"
-    description:
-      name: sentry_flutter
-      sha256: "67a3c20cc72681ab5c3ece993290a5780e10816ff1da1ddb59ac33136fc58a3d"
-      url: "https://pub.dev"
-    source: hosted
-    version: "7.5.2"
   share:
     dependency: "direct main"
     description:
@@ -1029,7 +997,7 @@ packages:
     source: hosted
     version: "1.9.1"
   sqflite:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: sqflite
       sha256: "3a82c9a216b46b88617e3714dd74227eaca20c501c4abcc213e56db26b9caa00"
@@ -1060,6 +1028,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
+  sqflite_sqlcipher:
+    dependency: "direct main"
+    description:
+      name: sqflite_sqlcipher
+      sha256: bcc02bfcc549895338558ba9acd0e3c54f808ef7095bb1294973751c521c9ba2
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.1+1"
   sqlite3:
     dependency: transitive
     description:

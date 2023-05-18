@@ -1,0 +1,4 @@
+* Fixed duplicate tabs in search (🤦)
+* Updated to mirror the latest Quacker release (🔄)
+* Fixed True Black (⚫)
+* Code refactoring to shrink the apk (👍)

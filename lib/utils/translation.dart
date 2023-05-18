@@ -74,9 +74,7 @@ class TranslationAPI {
   static Future<TranslationAPIResult> cacheRequest(
       String key, Future<TranslationAPIResult> Function() makeRequest) async {
     var result = await cache.load(key);
-    if (result != null) {
-      // If we have a cached result, return it
-      // TODO: Is this success always true? What if we cache an error?
+    if (result != null && result == true) {
       return TranslationAPIResult(success: true, body: jsonDecode(result));
     }
 
