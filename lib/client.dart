@@ -784,11 +784,6 @@ class TweetWithCard extends Tweet {
     tweetWithCard.source = tweet.source;
     tweetWithCard.text = tweet.text;
     tweetWithCard.user = tweet.user;
-
-    if (tweet.user != null) {
-      tweet.user!.idStr = e['user_id_str'];
-    }
-
     tweetWithCard.coordinates = tweet.coordinates;
     tweetWithCard.truncated = tweet.truncated;
     tweetWithCard.place = tweet.place;
@@ -869,6 +864,10 @@ class TweetWithCard extends Tweet {
     tweet.source = e['source'] as String?;
     tweet.text = e['text'] ?? e['full_text'] as String?;
     tweet.user = user;
+
+    if (tweet.user != null) {
+      tweet.user!.idStr = e['user_id_str'];
+    }
 
     tweet.retweetedStatus = retweetedStatus;
     tweet.retweetedStatusWithCard = retweetedStatus;
