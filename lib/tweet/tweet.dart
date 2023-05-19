@@ -522,6 +522,12 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
                                               });
                                             }
                                           }),
+                                          createSheetButton(L10n.of(context).open_in_browser, Icons.open_in_browser,
+                                              () async {
+                                            openUri(
+                                                'https://twitter.com/${tweet.user!.screenName}/status/${tweet.idStr}');
+                                            Navigator.pop(context);
+                                          }),
                                           createSheetButton(
                                             L10n.of(context).share_tweet_content,
                                             Icons.share,

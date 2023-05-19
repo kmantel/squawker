@@ -2062,6 +2062,16 @@ class L10n {
     );
   }
 
+  /// `Open in browser`
+  String get open_in_browser {
+    return Intl.message(
+      'Open in browser',
+      name: 'open_in_browser',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Choose`
   String get choose {
     return Intl.message(

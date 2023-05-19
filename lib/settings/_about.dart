@@ -57,8 +57,8 @@ class SettingsAboutFragment extends StatelessWidget {
                   margin: const EdgeInsets.all(12),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(48.0),
-                    child: Image.asset(
-                      'assets/icon.png',
+                    child: Image.network(
+                      'https://raw.githubusercontent.com/TheHCJ/Quacker/master/android/app/src/main/play_store_512.png',
                       height: 48.0,
                       width: 48.0,
                     ),
