@@ -36,7 +36,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "send_always": MessageLookupByLibrary.simpleMessage("Trimite mereu"),
         "send_once": MessageLookupByLibrary.simpleMessage("Trimite o dată"),
         "something_just_went_wrong_in_fritter_and_an_error_report_has_been_generated": MessageLookupByLibrary.simpleMessage(
-            "Ceva pur și simplu nu a mers bine în Fritter și a fost generat un raport de eroare. Raportul poate fi trimis dezvoltatorilor Fritter pentru a ajuta la remedierea problemei."),
+            "Ceva pur și simplu nu a mers bine în  și a fost generat un raport de eroare. Raportul poate fi trimis dezvoltatorilor  pentru a ajuta la remedierea problemei."),
         "subscribe": MessageLookupByLibrary.simpleMessage("Abonează-te"),
         "thanks_for_reporting_we_will_try_and_fix_it_in_no_time": MessageLookupByLibrary.simpleMessage(
             "Mulțumesc pentru raportare. Vom încerca să o reparăm în cel mai scurt timp!"),
@@ -56,6 +56,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "would_you_like_to_enable_automatic_error_reporting":
             MessageLookupByLibrary.simpleMessage("Doriți să activați raportarea automată a erorilor?"),
         "your_report_will_be_sent_to_fritter__project": MessageLookupByLibrary.simpleMessage(
-            "Raportul dvs. va fi trimis către proiectul Fritter\'s , iar detaliile de confidențialitate pot fi găsite la:")
+            "Raportul dvs. va fi trimis către proiectul \'s , iar detaliile de confidențialitate pot fi găsite la:")
       };
 }

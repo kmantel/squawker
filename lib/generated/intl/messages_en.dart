@@ -80,13 +80,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("All the great software used by Quacker"),
         "an_error_was_reported_to__thank_you":
             MessageLookupByLibrary.simpleMessage("An error was reported to . Thank you!"),
-        "an_update_for_fritter_is_available":
-            MessageLookupByLibrary.simpleMessage("An update for Fritter is available! 🚀"),
+        "an_update_for_fritter_is_available": MessageLookupByLibrary.simpleMessage("An update for  is available! 🚀"),
         "are_you_sure": MessageLookupByLibrary.simpleMessage("Are you sure?"),
         "are_you_sure_you_want_to_delete_the_subscription_group_name_of_group": m0,
         "back": MessageLookupByLibrary.simpleMessage("Back"),
-        "bad_guest_token": MessageLookupByLibrary.simpleMessage(
-            "Twitter has invalidated our access token. Please try re-opening Fritter!"),
+        "bad_guest_token":
+            MessageLookupByLibrary.simpleMessage("Twitter has invalidated our access token. Please try re-opening !"),
         "blue_theme_based_on_the_twitter_color_scheme":
             MessageLookupByLibrary.simpleMessage("Blue theme based on the Twitter color scheme"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
@@ -94,7 +93,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "choose": MessageLookupByLibrary.simpleMessage("Choose"),
         "choose_pages": MessageLookupByLibrary.simpleMessage("Choose pages"),
         "close": MessageLookupByLibrary.simpleMessage("Close"),
-        "confirm_close_fritter": MessageLookupByLibrary.simpleMessage("Are you sure you want to close Fritter?"),
+        "confirm_close_fritter": MessageLookupByLibrary.simpleMessage("Are you sure you want to close ?"),
         "contribute": MessageLookupByLibrary.simpleMessage("Contribute"),
         "copied_address_to_clipboard": MessageLookupByLibrary.simpleMessage("Copied address to clipboard"),
         "copied_version_to_clipboard": MessageLookupByLibrary.simpleMessage("Copied version to clipboard"),
@@ -125,7 +124,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "download_handling_type_ask": MessageLookupByLibrary.simpleMessage("Always ask"),
         "download_handling_type_directory": MessageLookupByLibrary.simpleMessage("Save to directory"),
         "download_media_no_url": MessageLookupByLibrary.simpleMessage(
-            "Unable to download. This media may only be available as a stream, which Fritter cannot yet download."),
+            "Unable to download. This media may only be available as a stream, which  cannot yet download."),
         "download_path": MessageLookupByLibrary.simpleMessage("Download path"),
         "downloading_media": MessageLookupByLibrary.simpleMessage("Downloading media..."),
         "enable_": MessageLookupByLibrary.simpleMessage("Enable ?"),
@@ -147,17 +146,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "following": MessageLookupByLibrary.simpleMessage("Following"),
         "forbidden": MessageLookupByLibrary.simpleMessage("Twitter says access to this is forbidden"),
         "fritter": MessageLookupByLibrary.simpleMessage("Quacker"),
-        "fritter_blue": MessageLookupByLibrary.simpleMessage("Fritter blue"),
+        "fritter_blue": MessageLookupByLibrary.simpleMessage(" blue"),
         "functionality_unsupported":
             MessageLookupByLibrary.simpleMessage("This functionality is no longer supported by Twitter!"),
         "general": MessageLookupByLibrary.simpleMessage("General"),
         "group_name": m6,
         "groups": MessageLookupByLibrary.simpleMessage("Groups"),
         "help_make_fritter_even_better": MessageLookupByLibrary.simpleMessage("Help make Quacker even better"),
-        "help_support_fritters_future": MessageLookupByLibrary.simpleMessage("Help support Fritter\'s future"),
+        "help_support_fritters_future": MessageLookupByLibrary.simpleMessage("Help support \'s future"),
         "here_is_the_data_that_will_be_sent_it_will_only_be_used_to_determine_which_devices_and_languages_to_support_in_fritter_in_the_future":
             MessageLookupByLibrary.simpleMessage(
-                "Here is the data that will be sent. It will only be used to determine which devices and languages to support in Fritter in the future."),
+                "Here is the data that will be sent. It will only be used to determine which devices and languages to support in  in the future."),
         "hide_sensitive_tweets": MessageLookupByLibrary.simpleMessage("Hide sensitive tweets"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "if_you_have_any_feedback_on_this_feature_please_leave_it_on":
@@ -169,8 +168,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "imported_snapshot_data_users_so_far": m7,
         "include_replies": MessageLookupByLibrary.simpleMessage("Include replies"),
         "include_retweets": MessageLookupByLibrary.simpleMessage("Include retweets"),
-        "it_looks_like_you_have_already_said_hello_from_this_version_of_fritter": MessageLookupByLibrary.simpleMessage(
-            "It looks like you\'ve already said hello from this version of Fritter!"),
+        "it_looks_like_you_have_already_said_hello_from_this_version_of_fritter":
+            MessageLookupByLibrary.simpleMessage("It looks like you\'ve already said hello from this version of !"),
         "it_looks_like_you_have_already_sent_a_ping_recently":
             MessageLookupByLibrary.simpleMessage("It looks like you\'ve already sent a ping recently 🤔"),
         "joined": m8,
@@ -226,7 +225,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Please make sure the data you wish to import is located there, then press the import button below."),
         "please_note_that_the_method_fritter_uses_to_import_subscriptions_is_heavily_rate_limited_by_twitter_so_this_may_fail_if_you_have_a_lot_of_followed_accounts":
             MessageLookupByLibrary.simpleMessage(
-                "Please note that the method Fritter uses to import subscriptions is heavily rate-limited by Twitter, so this may fail if you have a lot of followed accounts."),
+                "Please note that the method  uses to import subscriptions is heavily rate-limited by Twitter, so this may fail if you have a lot of followed accounts."),
         "possibly_sensitive": MessageLookupByLibrary.simpleMessage("Potentially sensitive"),
         "possibly_sensitive_profile": MessageLookupByLibrary.simpleMessage(
             "This profile may include potentially sensitive images, language, or other content. Do you still want to view it?"),
@@ -272,7 +271,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "small": MessageLookupByLibrary.simpleMessage("Small"),
         "something_broke_in_fritter": MessageLookupByLibrary.simpleMessage("Something broke in Quacker."),
         "something_just_went_wrong_in_fritter_and_an_error_report_has_been_generated": MessageLookupByLibrary.simpleMessage(
-            "Something just went wrong in Fritter, and an error report has been generated. The report can be sent to the Fritter developers to help fix the problem."),
+            "Something just went wrong in , and an error report has been generated. The report can be sent to the  developers to help fix the problem."),
         "sorry_the_replied_tweet_could_not_be_found":
             MessageLookupByLibrary.simpleMessage("Sorry, the replied tweet could not be found!"),
         "subscribe": MessageLookupByLibrary.simpleMessage("Subscribe"),
@@ -282,7 +281,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "system": MessageLookupByLibrary.simpleMessage("System"),
         "tap_to_download_release_version": m11,
         "tap_to_show_getMediaType_item_type": m12,
-        "thanks_for_helping_fritter": MessageLookupByLibrary.simpleMessage("Thanks for helping Fritter! 💖"),
+        "thanks_for_helping_fritter": MessageLookupByLibrary.simpleMessage("Thanks for helping ! 💖"),
         "thanks_for_reporting_we_will_try_and_fix_it_in_no_time":
             MessageLookupByLibrary.simpleMessage("Thanks for reporting. We\'ll try and fix it in no time!"),
         "the_file_does_not_exist_please_ensure_it_is_located_at_file_path": m13,
@@ -389,6 +388,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "your_profile_must_be_public_otherwise_the_import_will_not_work":
             MessageLookupByLibrary.simpleMessage("Your profile must be public, otherwise the import will not work"),
         "your_report_will_be_sent_to_fritter__project": MessageLookupByLibrary.simpleMessage(
-            "Your report will be sent to Fritter\'s  project, and privacy details can be found at:")
+            "Your report will be sent to \'s  project, and privacy details can be found at:")
       };
 }

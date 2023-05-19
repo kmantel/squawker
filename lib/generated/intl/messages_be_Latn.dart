@@ -69,7 +69,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "send_always": MessageLookupByLibrary.simpleMessage("Adpraŭlać zaŭsiody"),
         "send_once": MessageLookupByLibrary.simpleMessage("Adpravić adzin raz"),
         "something_just_went_wrong_in_fritter_and_an_error_report_has_been_generated": MessageLookupByLibrary.simpleMessage(
-            "Niešta pajšło nie tak u Fritter, i była stvorana spravazdača ab pamyłcy. Spravazdaču možna adpravić raspracoŭnikam Fritter, kab dapamahčy vypravić prablemu."),
+            "Niešta pajšło nie tak u Quacker, i była stvorana spravazdača ab pamyłcy. Spravazdaču možna adpravić raspracoŭnikam Quacker, kab dapamahčy vypravić prablemu."),
         "subscribe": MessageLookupByLibrary.simpleMessage("Padpisacca"),
         "subscriptions": MessageLookupByLibrary.simpleMessage("Padpiski"),
         "thanks_for_helping_fritter": MessageLookupByLibrary.simpleMessage("Dziakuj za dapamohu Quacker! 💖"),

@@ -363,7 +363,7 @@ class TweetCard extends StatelessWidget {
         var author = card['binding_values']['author']['user_value']['id_str'];
         var user = card['users'][author]['screen_name'];
 
-        // TODO: This opens the URL externally. Create a screen for it in Fritter
+        // TODO: This opens the URL externally. Create a screen for it in Quacker
         return _createCard(
             url,
             Column(
@@ -404,7 +404,7 @@ class TweetCard extends StatelessWidget {
         // TODO: Figure out what states we can receive
         var state = card['binding_values']['broadcast_state']['string_value'];
 
-        // TODO: This opens the URL externally. Create a screen for it in Fritter
+        // TODO: This opens the URL externally. Create a screen for it in Quacker
         return _createCard(
             uri,
             Column(

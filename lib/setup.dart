@@ -30,8 +30,7 @@ class SetupWizard extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: L10n
     final wizardPages = [
-      WizardPage('Welcome to Fritter!', Step1(onComplete: onStepComplete)),
-      WizardPage('Errors', Step2(onComplete: onStepComplete)),
+      WizardPage('Welcome to Quacker!', Step1(onComplete: onStepComplete)),
       WizardPage('TODO', Step1(onComplete: onStepComplete)),
     ];
 
@@ -128,72 +127,6 @@ class Step1 extends StatelessWidget {
           icon: const Icon(Icons.face),
           onPressed: () => onComplete(),
         )
-      ],
-    );
-  }
-}
-
-class Step2 extends StatelessWidget {
-  final StepComplete onComplete;
-
-  const Step2({Key? key, required this.onComplete}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-                'Whenever something goes wrong with Fritter, an error report will be generated. The report can be sent to the Fritter developers to help fix the problem.'),
-            const SizedBox(height: 16),
-            Text(
-              L10n.of(context).would_you_like_to_enable_automatic_error_reporting,
-            ),
-            const SizedBox(height: 16),
-            Text(
-              L10n.of(context).your_report_will_be_sent_to_fritter__project,
-            ),
-            const SizedBox(height: 16),
-            InkWell(
-              child: const Text('https://fritter.cc/privacy', style: TextStyle(color: Colors.blue)),
-              onTap: () async => await openUri('https://fritter.cc/privacy'),
-            ),
-            const SizedBox(height: 16),
-            const Text('Please note that this can also be enabled or disabled later, in the Settings screen.',
-                style: TextStyle(fontStyle: FontStyle.italic)),
-          ],
-        ),
-        const SizedBox(height: 32),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            AsyncButtonBuilder(
-              successDuration: const Duration(days: 1),
-              builder: (context, child, callback, buttonState) {
-                return TextButton.icon(
-                  label: Text(L10n.current.no),
-                  icon: child,
-                  onPressed: callback,
-                );
-              },
-              onPressed: () async {
-                // return PrefService.of(context).set(optionErrorsEnabled, false);
-                onComplete();
-              },
-              child: const Icon(Icons.close),
-            ),
-            TextButton.icon(
-              label: Text(L10n.current.yes_please),
-              icon: const Icon(Icons.check),
-              onPressed: () {
-                PrefService.of(context).set(optionErrorsEnabled, true);
-              },
-            ),
-          ],
-        ),
       ],
     );
   }

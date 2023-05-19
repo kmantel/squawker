@@ -300,10 +300,14 @@ class Twitter {
     for (var entry in addEntries) {
       var entryId = entry['entryId'] as String;
       if (entryId.startsWith('tweet-')) {
-        var result = entry['content']['itemContent']['tweet_results']['result'];
+        var result = entry['content']['itemContent']['tweet_results']?['result'];
 
-        replies
-            .add(TweetChain(id: result['rest_id'], tweets: [TweetWithCard.fromGraphqlJson(result)], isPinned: false));
+        if (result != null) {
+          replies
+              .add(TweetChain(id: result['rest_id'], tweets: [TweetWithCard.fromGraphqlJson(result)], isPinned: false));
+        } else {
+          replies.add(TweetChain(id: entryId.substring(6), tweets: [TweetWithCard.tombstone({})], isPinned: false));
+        }
       }
 
       if (entryId.startsWith('cursor-bottom') || entryId.startsWith('cursor-showMore')) {
@@ -319,6 +323,8 @@ class Twitter {
           if (itemType == 'TimelineTweet') {
             if (item['item']['itemContent']['tweet_results']?['result'] != null) {
               tweets.add(TweetWithCard.fromGraphqlJson(item['item']['itemContent']['tweet_results']['result']));
+            } else {
+              tweets.add(TweetWithCard.tombstone({}));
             }
           }
         }

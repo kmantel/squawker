@@ -76,23 +76,23 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_to_group": MessageLookupByLibrary.simpleMessage("Gehitu taldera"),
         "all": MessageLookupByLibrary.simpleMessage("Dena"),
         "all_the_great_software_used_by_fritter":
-            MessageLookupByLibrary.simpleMessage("Fritter-ek erabiltzen duen software bikaina"),
+            MessageLookupByLibrary.simpleMessage("-ek erabiltzen duen software bikaina"),
         "an_error_was_reported_to__thank_you":
             MessageLookupByLibrary.simpleMessage("Akats baten berri eman zaio -ri. Eskerrik asko!"),
         "an_update_for_fritter_is_available":
-            MessageLookupByLibrary.simpleMessage("Fritter-en eguneraketa eskuragarri dago! 🚀"),
+            MessageLookupByLibrary.simpleMessage("-en eguneraketa eskuragarri dago! 🚀"),
         "are_you_sure": MessageLookupByLibrary.simpleMessage("Ziur zaude?"),
         "are_you_sure_you_want_to_delete_the_subscription_group_name_of_group": m0,
         "back": MessageLookupByLibrary.simpleMessage("Itzuli"),
         "bad_guest_token": MessageLookupByLibrary.simpleMessage(
-            "Twitterrek sarbide-tokena baliogabetu du. Mesedez, saiatu Fritter berriro irekitzen!"),
+            "Twitterrek sarbide-tokena baliogabetu du. Mesedez, saiatu  berriro irekitzen!"),
         "blue_theme_based_on_the_twitter_color_scheme":
             MessageLookupByLibrary.simpleMessage("Twitter-eko kolore eskeman oinarritutako gai urdina"),
         "cancel": MessageLookupByLibrary.simpleMessage("Ezeztatu"),
         "catastrophic_failure": MessageLookupByLibrary.simpleMessage("Akats katastrofikoa"),
         "choose": MessageLookupByLibrary.simpleMessage("Aukeratu"),
         "close": MessageLookupByLibrary.simpleMessage("Itxi"),
-        "confirm_close_fritter": MessageLookupByLibrary.simpleMessage("Ziur al zaude Fritter itxi nahi duzula?"),
+        "confirm_close_fritter": MessageLookupByLibrary.simpleMessage("Ziur al zaude  itxi nahi duzula?"),
         "contribute": MessageLookupByLibrary.simpleMessage("Egin ekarpena"),
         "copied_address_to_clipboard": MessageLookupByLibrary.simpleMessage("Helbidea arbelean kopiatu da"),
         "copied_version_to_clipboard": MessageLookupByLibrary.simpleMessage("Kopiatu da bertsioa arbelean"),
@@ -124,7 +124,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "download_handling_type_ask": MessageLookupByLibrary.simpleMessage("Galdetu beti"),
         "download_handling_type_directory": MessageLookupByLibrary.simpleMessage("Gorde direktorioan"),
         "download_media_no_url": MessageLookupByLibrary.simpleMessage(
-            "Ezin da deskargatu. Baliteke multimedia hau korronte gisa soilik egotea, Fritter-ek oraindik deskargatu ezin duena."),
+            "Ezin da deskargatu. Baliteke multimedia hau korronte gisa soilik egotea, -ek oraindik deskargatu ezin duena."),
         "download_path": MessageLookupByLibrary.simpleMessage("Deskargatzeko bidea"),
         "downloading_media": MessageLookupByLibrary.simpleMessage("Multimedia deskargatzen..."),
         "enable_": MessageLookupByLibrary.simpleMessage(" gaitu?"),
@@ -146,15 +146,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "following": MessageLookupByLibrary.simpleMessage("Jarraitzen"),
         "forbidden": MessageLookupByLibrary.simpleMessage("Twitterrek dio horretarako sarbidea debekatuta dagoela"),
         "fritter": MessageLookupByLibrary.simpleMessage("Quacker"),
-        "fritter_blue": MessageLookupByLibrary.simpleMessage("Fritter urdina"),
+        "fritter_blue": MessageLookupByLibrary.simpleMessage(" urdina"),
         "general": MessageLookupByLibrary.simpleMessage("Orokorra"),
         "group_name": m6,
         "groups": MessageLookupByLibrary.simpleMessage("Taldeak"),
-        "help_make_fritter_even_better": MessageLookupByLibrary.simpleMessage("Lagundu Fritter hobetzen"),
-        "help_support_fritters_future": MessageLookupByLibrary.simpleMessage("Lagundu Fritter-en etorkizuna bermatzen"),
+        "help_make_fritter_even_better": MessageLookupByLibrary.simpleMessage("Lagundu  hobetzen"),
+        "help_support_fritters_future": MessageLookupByLibrary.simpleMessage("Lagundu -en etorkizuna bermatzen"),
         "here_is_the_data_that_will_be_sent_it_will_only_be_used_to_determine_which_devices_and_languages_to_support_in_fritter_in_the_future":
             MessageLookupByLibrary.simpleMessage(
-                "Hona hemen bidaliko diren datuak. Etorkizunean Fritter-en zein gailu eta hizkuntza onartzen diren zehazteko soilik erabiliko da."),
+                "Hona hemen bidaliko diren datuak. Etorkizunean -en zein gailu eta hizkuntza onartzen diren zehazteko soilik erabiliko da."),
         "hide_sensitive_tweets": MessageLookupByLibrary.simpleMessage("Ezkutatu txio sentikorrak"),
         "home": MessageLookupByLibrary.simpleMessage("Hasiera"),
         "if_you_have_any_feedback_on_this_feature_please_leave_it_on":
@@ -167,7 +167,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "include_replies": MessageLookupByLibrary.simpleMessage("Erantzunak sartu"),
         "include_retweets": MessageLookupByLibrary.simpleMessage("Birtxioak sartu"),
         "it_looks_like_you_have_already_said_hello_from_this_version_of_fritter":
-            MessageLookupByLibrary.simpleMessage("Badirudi Fritter-en bertsio honetatik agurtu duzula jada!"),
+            MessageLookupByLibrary.simpleMessage("Badirudi -en bertsio honetatik agurtu duzula jada!"),
         "it_looks_like_you_have_already_sent_a_ping_recently":
             MessageLookupByLibrary.simpleMessage("Badirudi duela gutxi ping bat bidali duzula 🤔"),
         "joined": m8,
@@ -217,7 +217,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Mesedez, ziurtatu inportatu nahi dituzun datuak bertan daudela, eta sakatu beheko inportazio-botoia."),
         "please_note_that_the_method_fritter_uses_to_import_subscriptions_is_heavily_rate_limited_by_twitter_so_this_may_fail_if_you_have_a_lot_of_followed_accounts":
             MessageLookupByLibrary.simpleMessage(
-                "Kontuan izan Fritter-ek Twitter bidez harpidetzak inportatzeko erabiltzen duen modua oso mugatuta dagoela eta kontu asko jarraian baditu, huts egin dezakeela."),
+                "Kontuan izan -ek Twitter bidez harpidetzak inportatzeko erabiltzen duen modua oso mugatuta dagoela eta kontu asko jarraian baditu, huts egin dezakeela."),
         "possibly_sensitive": MessageLookupByLibrary.simpleMessage("Potentzialki sentikorra"),
         "possibly_sensitive_profile": MessageLookupByLibrary.simpleMessage(
             "Baliteke profil honek irudi, hizkuntz edo bestelako eduki sentikorrak izan ditzazkeela. Hala ere ikusi nahi al duzu?"),
@@ -247,19 +247,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "send": MessageLookupByLibrary.simpleMessage("Bidali"),
         "send_a_non_identifying_ping_to_let_me_know_you_are_using_fritter_and_to_help_future_development":
             MessageLookupByLibrary.simpleMessage(
-                "Bidali identifikatu gabeko ping bat Fritter erabiltzen ari zarela jakinarazteko eta etorkizuneko garapenari laguntzeko"),
+                "Bidali identifikatu gabeko ping bat  erabiltzen ari zarela jakinarazteko eta etorkizuneko garapenari laguntzeko"),
         "send_always": MessageLookupByLibrary.simpleMessage("Bidali beti"),
         "send_once": MessageLookupByLibrary.simpleMessage("Bidali behin"),
         "share_tweet_content": MessageLookupByLibrary.simpleMessage("Partekatu txioaren edukia"),
         "share_tweet_content_and_link": MessageLookupByLibrary.simpleMessage("Partekatu txioaren edukia eta esteka"),
         "share_tweet_link": MessageLookupByLibrary.simpleMessage("Partekatu txioaren esteka"),
         "should_check_for_updates_description":
-            MessageLookupByLibrary.simpleMessage("Egiaztatu eguneratzeak Fritter hasten denean"),
+            MessageLookupByLibrary.simpleMessage("Egiaztatu eguneratzeak  hasten denean"),
         "should_check_for_updates_label": MessageLookupByLibrary.simpleMessage("Egiaztatu eguneratzeak"),
         "small": MessageLookupByLibrary.simpleMessage("Txikia"),
-        "something_broke_in_fritter": MessageLookupByLibrary.simpleMessage("Fritter-en zerbait hautsi da."),
+        "something_broke_in_fritter": MessageLookupByLibrary.simpleMessage("-en zerbait hautsi da."),
         "something_just_went_wrong_in_fritter_and_an_error_report_has_been_generated": MessageLookupByLibrary.simpleMessage(
-            "Zerbait gaizki atera da Fritter-en, eta akatsen txostena sortu da. Txostena Fritterren garatzaileei bidali ahal zaie arazoa konpontzen laguntzeko."),
+            "Zerbait gaizki atera da -en, eta akatsen txostena sortu da. Txostena ren garatzaileei bidali ahal zaie arazoa konpontzen laguntzeko."),
         "sorry_the_replied_tweet_could_not_be_found":
             MessageLookupByLibrary.simpleMessage("Sentitzen dugu, ezin izan zen txioa aurkitu!"),
         "subscribe": MessageLookupByLibrary.simpleMessage("Harpidetu"),
@@ -269,7 +269,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "system": MessageLookupByLibrary.simpleMessage("Sistema"),
         "tap_to_download_release_version": m11,
         "tap_to_show_getMediaType_item_type": m12,
-        "thanks_for_helping_fritter": MessageLookupByLibrary.simpleMessage("Eskerrik asko Fritter laguntzeagatik! 💖"),
+        "thanks_for_helping_fritter": MessageLookupByLibrary.simpleMessage("Eskerrik asko  laguntzeagatik! 💖"),
         "thanks_for_reporting_we_will_try_and_fix_it_in_no_time": MessageLookupByLibrary.simpleMessage(
             "Eskerrik asko informatzeagatik. Denbora gutxian konpontzen saiatuko gara!"),
         "the_file_does_not_exist_please_ensure_it_is_located_at_file_path": m13,
@@ -375,6 +375,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "your_profile_must_be_public_otherwise_the_import_will_not_work": MessageLookupByLibrary.simpleMessage(
             "Zure profilak publikoa izan behar du, bestela inportazioak ez du funtzionatuko"),
         "your_report_will_be_sent_to_fritter__project": MessageLookupByLibrary.simpleMessage(
-            "Zure txostena Fritter-en  proiektura bidaliko da, eta pribatutasun xehetasunak helbide honetan aurki ditzakezu:")
+            "Zure txostena -en  proiektura bidaliko da, eta pribatutasun xehetasunak helbide honetan aurki ditzakezu:")
       };
 }

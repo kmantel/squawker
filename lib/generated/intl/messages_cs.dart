@@ -76,16 +76,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_to_group": MessageLookupByLibrary.simpleMessage("Přidat do skupiny"),
         "all": MessageLookupByLibrary.simpleMessage("Vše"),
         "all_the_great_software_used_by_fritter":
-            MessageLookupByLibrary.simpleMessage("Všechen úžasný software používaný Fritterem"),
+            MessageLookupByLibrary.simpleMessage("Všechen úžasný software používaný em"),
         "an_error_was_reported_to__thank_you":
             MessageLookupByLibrary.simpleMessage("Chyba byla nahlášena do . Děkujeme!"),
-        "an_update_for_fritter_is_available":
-            MessageLookupByLibrary.simpleMessage("Je dostupná aktualizace Fritteru! 🚀"),
+        "an_update_for_fritter_is_available": MessageLookupByLibrary.simpleMessage("Je dostupná aktualizace u! 🚀"),
         "are_you_sure": MessageLookupByLibrary.simpleMessage("Opravdu?"),
         "are_you_sure_you_want_to_delete_the_subscription_group_name_of_group": m0,
         "back": MessageLookupByLibrary.simpleMessage("Zpět"),
         "bad_guest_token": MessageLookupByLibrary.simpleMessage(
-            "Twitter zneplatnil náš přístupový token. Zkuste prosím znovu otevřít Fritter!"),
+            "Twitter zneplatnil náš přístupový token. Zkuste prosím znovu otevřít !"),
         "blue_theme_based_on_the_twitter_color_scheme":
             MessageLookupByLibrary.simpleMessage("Modré téma založené na barevném schématu Twitteru"),
         "cancel": MessageLookupByLibrary.simpleMessage("Zrušit"),
@@ -93,7 +92,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "choose": MessageLookupByLibrary.simpleMessage("Vybrat"),
         "choose_pages": MessageLookupByLibrary.simpleMessage("Vybrat stránky"),
         "close": MessageLookupByLibrary.simpleMessage("Zavřít"),
-        "confirm_close_fritter": MessageLookupByLibrary.simpleMessage("Opravdu chcete zavřít Fritter?"),
+        "confirm_close_fritter": MessageLookupByLibrary.simpleMessage("Opravdu chcete zavřít ?"),
         "contribute": MessageLookupByLibrary.simpleMessage("Pomoct s vývojem"),
         "copied_address_to_clipboard": MessageLookupByLibrary.simpleMessage("Adresa zkopírována do schránky"),
         "copied_version_to_clipboard": MessageLookupByLibrary.simpleMessage("Verze zkopírována do schránky"),
@@ -125,7 +124,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "download_handling_type_ask": MessageLookupByLibrary.simpleMessage("Vždy se zeptat"),
         "download_handling_type_directory": MessageLookupByLibrary.simpleMessage("Uložit do adresáře"),
         "download_media_no_url": MessageLookupByLibrary.simpleMessage(
-            "Nepodařilo se stáhnout média. Možná jsou dostupná jen jako stream, který Fritter zatím nedokáže stáhnout."),
+            "Nepodařilo se stáhnout média. Možná jsou dostupná jen jako stream, který  zatím nedokáže stáhnout."),
         "download_path": MessageLookupByLibrary.simpleMessage("Cesta pro stažené"),
         "downloading_media": MessageLookupByLibrary.simpleMessage("Stahování médií..."),
         "enable_": MessageLookupByLibrary.simpleMessage("Povolit ?"),
@@ -148,17 +147,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "following": MessageLookupByLibrary.simpleMessage("Sledování"),
         "forbidden": MessageLookupByLibrary.simpleMessage("Twitter říká, že přístup k tomuto je zamítnut"),
         "fritter": MessageLookupByLibrary.simpleMessage("Quacker"),
-        "fritter_blue": MessageLookupByLibrary.simpleMessage("Fritterová modrá"),
+        "fritter_blue": MessageLookupByLibrary.simpleMessage("ová modrá"),
         "functionality_unsupported":
             MessageLookupByLibrary.simpleMessage("Tato funkce již není podporována Twitterem!"),
         "general": MessageLookupByLibrary.simpleMessage("Obecné"),
         "group_name": m6,
         "groups": MessageLookupByLibrary.simpleMessage("Skupiny"),
-        "help_make_fritter_even_better": MessageLookupByLibrary.simpleMessage("Pomozte vylepšit Fritter"),
-        "help_support_fritters_future": MessageLookupByLibrary.simpleMessage("Podpořte vývoj Fritteru"),
+        "help_make_fritter_even_better": MessageLookupByLibrary.simpleMessage("Pomozte vylepšit "),
+        "help_support_fritters_future": MessageLookupByLibrary.simpleMessage("Podpořte vývoj u"),
         "here_is_the_data_that_will_be_sent_it_will_only_be_used_to_determine_which_devices_and_languages_to_support_in_fritter_in_the_future":
             MessageLookupByLibrary.simpleMessage(
-                "Zde jsou data, která budou odeslána. Budou použita pouze k určení, jaká zařízení a jazyky by měl v budoucnu Fritter podporovat."),
+                "Zde jsou data, která budou odeslána. Budou použita pouze k určení, jaká zařízení a jazyky by měl v budoucnu  podporovat."),
         "hide_sensitive_tweets": MessageLookupByLibrary.simpleMessage("Skrýt citlivé tweety"),
         "home": MessageLookupByLibrary.simpleMessage("Domů"),
         "if_you_have_any_feedback_on_this_feature_please_leave_it_on": MessageLookupByLibrary.simpleMessage(
@@ -171,7 +170,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "include_replies": MessageLookupByLibrary.simpleMessage("Zahrnout odpovědi"),
         "include_retweets": MessageLookupByLibrary.simpleMessage("Zahrnout retweety"),
         "it_looks_like_you_have_already_said_hello_from_this_version_of_fritter":
-            MessageLookupByLibrary.simpleMessage("Vypadá to, že z této verze Fritteru jste již poslali ahoj!"),
+            MessageLookupByLibrary.simpleMessage("Vypadá to, že z této verze u jste již poslali ahoj!"),
         "it_looks_like_you_have_already_sent_a_ping_recently":
             MessageLookupByLibrary.simpleMessage("Vypadá to, že jste již nedávno poslali ping 🤔"),
         "joined": m8,
@@ -228,7 +227,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Ujistěte se, že data, která chcete importovat, se zde nachází a poté stiskněte tlačítko níže."),
         "please_note_that_the_method_fritter_uses_to_import_subscriptions_is_heavily_rate_limited_by_twitter_so_this_may_fail_if_you_have_a_lot_of_followed_accounts":
             MessageLookupByLibrary.simpleMessage(
-                "Vezměte prosím na vědomí, že způsob, který používá Fritter pro import odběrů je silně limitován Twitterem, takže při velkém množství sledovaných účtů může tato akce selhat."),
+                "Vezměte prosím na vědomí, že způsob, který používá  pro import odběrů je silně limitován Twitterem, takže při velkém množství sledovaných účtů může tato akce selhat."),
         "possibly_sensitive": MessageLookupByLibrary.simpleMessage("Potenciálně citlivé"),
         "possibly_sensitive_profile": MessageLookupByLibrary.simpleMessage(
             "Tento profil může obsahovat potenciálně citlivé obrázky, jazyk nebo jiný obsah. Chcete jej přesto zobrazit?"),
@@ -259,7 +258,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "send": MessageLookupByLibrary.simpleMessage("Odeslat"),
         "send_a_non_identifying_ping_to_let_me_know_you_are_using_fritter_and_to_help_future_development":
             MessageLookupByLibrary.simpleMessage(
-                "Pošlete mi neidentifikovatelný ping, abych věděl, že používáte Fritter, a abyste pomohli budoucímu vývoji"),
+                "Pošlete mi neidentifikovatelný ping, abych věděl, že používáte , a abyste pomohli budoucímu vývoji"),
         "send_always": MessageLookupByLibrary.simpleMessage("Posílat vždy"),
         "send_once": MessageLookupByLibrary.simpleMessage("Poslat jednou"),
         "share_base_url": MessageLookupByLibrary.simpleMessage("Vlastní adresa URL sdílení"),
@@ -269,12 +268,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "share_tweet_content_and_link": MessageLookupByLibrary.simpleMessage("Sdílet obsah tweetu a odkaz"),
         "share_tweet_link": MessageLookupByLibrary.simpleMessage("Sdílet odkaz na tweet"),
         "should_check_for_updates_description":
-            MessageLookupByLibrary.simpleMessage("Zkontrolovat aktualizace při spuštění Fritteru"),
+            MessageLookupByLibrary.simpleMessage("Zkontrolovat aktualizace při spuštění u"),
         "should_check_for_updates_label": MessageLookupByLibrary.simpleMessage("Zkontrolovat aktualizace"),
         "small": MessageLookupByLibrary.simpleMessage("Malý"),
-        "something_broke_in_fritter": MessageLookupByLibrary.simpleMessage("Něco se pokazilo ve Fritteru."),
+        "something_broke_in_fritter": MessageLookupByLibrary.simpleMessage("Něco se pokazilo ve u."),
         "something_just_went_wrong_in_fritter_and_an_error_report_has_been_generated": MessageLookupByLibrary.simpleMessage(
-            "Ve Fritteru se něco pokazilo a byl vygenerován záznam o chybě. Záznam může být odeslán vývojářům Fritteru pro vyřešení problému."),
+            "Ve u se něco pokazilo a byl vygenerován záznam o chybě. Záznam může být odeslán vývojářům u pro vyřešení problému."),
         "sorry_the_replied_tweet_could_not_be_found":
             MessageLookupByLibrary.simpleMessage("Omlouváme se, ale odpovídaný tweety nebyl nalezen!"),
         "subscribe": MessageLookupByLibrary.simpleMessage("Odebírat"),
@@ -284,7 +283,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "system": MessageLookupByLibrary.simpleMessage("Systémové"),
         "tap_to_download_release_version": m11,
         "tap_to_show_getMediaType_item_type": m12,
-        "thanks_for_helping_fritter": MessageLookupByLibrary.simpleMessage("Děkujeme za pomoc Fritteru! 💖"),
+        "thanks_for_helping_fritter": MessageLookupByLibrary.simpleMessage("Děkujeme za pomoc u! 💖"),
         "thanks_for_reporting_we_will_try_and_fix_it_in_no_time": MessageLookupByLibrary.simpleMessage(
             "Děkujeme za nahlášení. Chybu se pokusíme opravit co nejdříve budeme moct!"),
         "the_file_does_not_exist_please_ensure_it_is_located_at_file_path": m13,
@@ -395,6 +394,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "your_profile_must_be_public_otherwise_the_import_will_not_work":
             MessageLookupByLibrary.simpleMessage("Váš profil musí být veřejný, jinak nebude import fungovat"),
         "your_report_will_be_sent_to_fritter__project": MessageLookupByLibrary.simpleMessage(
-            "Vaše nahlášení bylo odesláno do  projektu Fritteru. Podrobnosti o soukromí lze nalézt na:")
+            "Vaše nahlášení bylo odesláno do  projektu u. Podrobnosti o soukromí lze nalézt na:")
       };
 }

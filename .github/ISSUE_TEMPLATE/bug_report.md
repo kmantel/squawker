@@ -7,7 +7,7 @@ assignees: ''
 
 ---
 
-> Please search for similar issues first, and also make sure you've tried the [latest version](https://github.com/TheHCJ/Quacker/releases) of Fritter first, as the IzzyOnDroid version is sometimes out of date!
+> Please search for similar issues first, and also make sure you've tried the [latest version](https://github.com/TheHCJ/Quacker/releases) of Quacker first, as the IzzyOnDroid version is sometimes out of date!
 
 **Describe the bug**
 A clear description of what the bug is.
@@ -25,6 +25,3 @@ If applicable, add screenshots to help explain your problem.
 Your device model, OS version, device locale/language and Quacker version. Please supply the actual
 version of Quacker being used, and **do not** just write "latest version" or similar, as this
 changes constantly.
-
-**Does this bug affect fritter?**
-Yes/No/Don't Know

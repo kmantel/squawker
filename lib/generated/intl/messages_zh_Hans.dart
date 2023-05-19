@@ -74,20 +74,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_subscriptions": MessageLookupByLibrary.simpleMessage("添加订阅"),
         "add_to_group": MessageLookupByLibrary.simpleMessage("添加到订阅组"),
         "all": MessageLookupByLibrary.simpleMessage("全部"),
-        "all_the_great_software_used_by_fritter": MessageLookupByLibrary.simpleMessage("Fritter 所使用的伟大项目😇"),
+        "all_the_great_software_used_by_fritter": MessageLookupByLibrary.simpleMessage(" 所使用的伟大项目😇"),
         "an_error_was_reported_to__thank_you": MessageLookupByLibrary.simpleMessage("已向  报告了一个错误。感谢！"),
-        "an_update_for_fritter_is_available": MessageLookupByLibrary.simpleMessage("Fritter 有新版本 🚀"),
+        "an_update_for_fritter_is_available": MessageLookupByLibrary.simpleMessage(" 有新版本 🚀"),
         "are_you_sure": MessageLookupByLibrary.simpleMessage("你确定吗？"),
         "are_you_sure_you_want_to_delete_the_subscription_group_name_of_group": m0,
         "back": MessageLookupByLibrary.simpleMessage("返回"),
-        "bad_guest_token": MessageLookupByLibrary.simpleMessage("Twitter 使我们的访问令牌无效。请尝试重新打开 Fritter！"),
+        "bad_guest_token": MessageLookupByLibrary.simpleMessage("Twitter 使我们的访问令牌无效。请尝试重新打开 ！"),
         "blue_theme_based_on_the_twitter_color_scheme": MessageLookupByLibrary.simpleMessage("基于 Twitter 配色方案的蓝色主题"),
         "cancel": MessageLookupByLibrary.simpleMessage("取消"),
         "catastrophic_failure": MessageLookupByLibrary.simpleMessage("致命问题"),
         "choose": MessageLookupByLibrary.simpleMessage("选择"),
         "choose_pages": MessageLookupByLibrary.simpleMessage("选择页面"),
         "close": MessageLookupByLibrary.simpleMessage("关闭"),
-        "confirm_close_fritter": MessageLookupByLibrary.simpleMessage("确定要关闭 Fritter 吗？"),
+        "confirm_close_fritter": MessageLookupByLibrary.simpleMessage("确定要关闭  吗？"),
         "contribute": MessageLookupByLibrary.simpleMessage("贡献 💖"),
         "copied_address_to_clipboard": MessageLookupByLibrary.simpleMessage("已将地址复制到剪切板"),
         "copied_version_to_clipboard": MessageLookupByLibrary.simpleMessage("已复制版本号"),
@@ -114,7 +114,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "download_handling_description": MessageLookupByLibrary.simpleMessage("下载应该如何工作"),
         "download_handling_type_ask": MessageLookupByLibrary.simpleMessage("始终询问"),
         "download_handling_type_directory": MessageLookupByLibrary.simpleMessage("保存到目录"),
-        "download_media_no_url": MessageLookupByLibrary.simpleMessage("无法下载。 此媒体可能仅作为在线流提供，Fritter 尚无法下载。"),
+        "download_media_no_url": MessageLookupByLibrary.simpleMessage("无法下载。 此媒体可能仅作为在线流提供， 尚无法下载。"),
         "download_path": MessageLookupByLibrary.simpleMessage("下载路径"),
         "downloading_media": MessageLookupByLibrary.simpleMessage("正在下载媒体..."),
         "enable_": MessageLookupByLibrary.simpleMessage("启用 ？"),
@@ -136,15 +136,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "following": MessageLookupByLibrary.simpleMessage("正在关注"),
         "forbidden": MessageLookupByLibrary.simpleMessage("Twitter 表示禁止访问此内容"),
         "fritter": MessageLookupByLibrary.simpleMessage("Quacker"),
-        "fritter_blue": MessageLookupByLibrary.simpleMessage("Fritter 蓝"),
+        "fritter_blue": MessageLookupByLibrary.simpleMessage(" 蓝"),
         "functionality_unsupported": MessageLookupByLibrary.simpleMessage("Twitter 不再支持此功能！"),
         "general": MessageLookupByLibrary.simpleMessage("通用"),
         "group_name": m6,
         "groups": MessageLookupByLibrary.simpleMessage("订阅组"),
-        "help_make_fritter_even_better": MessageLookupByLibrary.simpleMessage("一起改进 Fritter，让它变得更好😉"),
-        "help_support_fritters_future": MessageLookupByLibrary.simpleMessage("帮助支持 Fritter 的未来🍚"),
+        "help_make_fritter_even_better": MessageLookupByLibrary.simpleMessage("一起改进 ，让它变得更好😉"),
+        "help_support_fritters_future": MessageLookupByLibrary.simpleMessage("帮助支持  的未来🍚"),
         "here_is_the_data_that_will_be_sent_it_will_only_be_used_to_determine_which_devices_and_languages_to_support_in_fritter_in_the_future":
-            MessageLookupByLibrary.simpleMessage("这是将要发送的数据，仅用于识别 Fritter 未来应该支持的设备和语言。"),
+            MessageLookupByLibrary.simpleMessage("这是将要发送的数据，仅用于识别  未来应该支持的设备和语言。"),
         "hide_sensitive_tweets": MessageLookupByLibrary.simpleMessage("隐藏敏感推文"),
         "home": MessageLookupByLibrary.simpleMessage("主页"),
         "if_you_have_any_feedback_on_this_feature_please_leave_it_on":
@@ -157,7 +157,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "include_replies": MessageLookupByLibrary.simpleMessage("包括回复"),
         "include_retweets": MessageLookupByLibrary.simpleMessage("包括转推"),
         "it_looks_like_you_have_already_said_hello_from_this_version_of_fritter":
-            MessageLookupByLibrary.simpleMessage("看来你已用这个版本的 Fritter 打过招呼了！"),
+            MessageLookupByLibrary.simpleMessage("看来你已用这个版本的  打过招呼了！"),
         "it_looks_like_you_have_already_sent_a_ping_recently":
             MessageLookupByLibrary.simpleMessage("您最近似乎已经 Ping 过一次了 🤔"),
         "joined": m8,
@@ -205,7 +205,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "please_make_sure_the_data_you_wish_to_import_is_located_there_then_press_the_import_button_below":
             MessageLookupByLibrary.simpleMessage("请确保您要导入的数据位于此处，然后点击下方的导入按钮。"),
         "please_note_that_the_method_fritter_uses_to_import_subscriptions_is_heavily_rate_limited_by_twitter_so_this_may_fail_if_you_have_a_lot_of_followed_accounts":
-            MessageLookupByLibrary.simpleMessage("请注意，Fritter 用于导入订阅的方法受到 Twitter 严格的速率限制，因此如果您有很多关注账号，这可能会失败。"),
+            MessageLookupByLibrary.simpleMessage("请注意， 用于导入订阅的方法受到 Twitter 严格的速率限制，因此如果您有很多关注账号，这可能会失败。"),
         "possibly_sensitive": MessageLookupByLibrary.simpleMessage("潜在敏感"),
         "possibly_sensitive_profile": MessageLookupByLibrary.simpleMessage("该个人资料可能包含潜在的敏感图像、语言或其他内容。是否仍要浏览？"),
         "possibly_sensitive_tweet": MessageLookupByLibrary.simpleMessage("该推文包含潜在的敏感内容。是否浏览？"),
@@ -231,7 +231,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("未来我们会支持导入单个账号到指定组！"),
         "send": MessageLookupByLibrary.simpleMessage("发送"),
         "send_a_non_identifying_ping_to_let_me_know_you_are_using_fritter_and_to_help_future_development":
-            MessageLookupByLibrary.simpleMessage("向开发人员发送匿名 Ping 以表明您正在使用 Fritter，并支持未来的开发"),
+            MessageLookupByLibrary.simpleMessage("向开发人员发送匿名 Ping 以表明您正在使用 ，并支持未来的开发"),
         "send_always": MessageLookupByLibrary.simpleMessage("总是发送"),
         "send_once": MessageLookupByLibrary.simpleMessage("发送一次"),
         "share_base_url": MessageLookupByLibrary.simpleMessage("自定义分享 URL"),
@@ -239,12 +239,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "share_tweet_content": MessageLookupByLibrary.simpleMessage("分享推特内容"),
         "share_tweet_content_and_link": MessageLookupByLibrary.simpleMessage("分享推文内容和链接"),
         "share_tweet_link": MessageLookupByLibrary.simpleMessage("分享推特链接"),
-        "should_check_for_updates_description": MessageLookupByLibrary.simpleMessage("Fritter 启动时检查更新"),
+        "should_check_for_updates_description": MessageLookupByLibrary.simpleMessage(" 启动时检查更新"),
         "should_check_for_updates_label": MessageLookupByLibrary.simpleMessage("检查更新"),
         "small": MessageLookupByLibrary.simpleMessage("小"),
-        "something_broke_in_fritter": MessageLookupByLibrary.simpleMessage("Fritter 发生异常。"),
+        "something_broke_in_fritter": MessageLookupByLibrary.simpleMessage(" 发生异常。"),
         "something_just_went_wrong_in_fritter_and_an_error_report_has_been_generated":
-            MessageLookupByLibrary.simpleMessage("Fritter 刚刚出了点问题，并生成了错误报告。可将该报告发送给 Fritter 开发者以帮助解决问题。"),
+            MessageLookupByLibrary.simpleMessage(" 刚刚出了点问题，并生成了错误报告。可将该报告发送给  开发者以帮助解决问题。"),
         "sorry_the_replied_tweet_could_not_be_found": MessageLookupByLibrary.simpleMessage("对不起，无法找到回复的推文！"),
         "subscribe": MessageLookupByLibrary.simpleMessage("订阅"),
         "subscriptions": MessageLookupByLibrary.simpleMessage("订阅"),
@@ -253,7 +253,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "system": MessageLookupByLibrary.simpleMessage("跟随系统"),
         "tap_to_download_release_version": m11,
         "tap_to_show_getMediaType_item_type": m12,
-        "thanks_for_helping_fritter": MessageLookupByLibrary.simpleMessage("感谢您帮助 Fritter！💖"),
+        "thanks_for_helping_fritter": MessageLookupByLibrary.simpleMessage("感谢您帮助 ！💖"),
         "thanks_for_reporting_we_will_try_and_fix_it_in_no_time":
             MessageLookupByLibrary.simpleMessage("感谢您的反馈。我们将尽快修复它！"),
         "the_file_does_not_exist_please_ensure_it_is_located_at_file_path": m13,
@@ -333,6 +333,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "your_profile_must_be_public_otherwise_the_import_will_not_work":
             MessageLookupByLibrary.simpleMessage("你的个人资料必须是公开的，否则无法导入"),
         "your_report_will_be_sent_to_fritter__project":
-            MessageLookupByLibrary.simpleMessage("您的报告将被发送至 Fritter 的  项目，隐私详情可在下述位置找到：")
+            MessageLookupByLibrary.simpleMessage("您的报告将被发送至  的  项目，隐私详情可在下述位置找到：")
       };
 }

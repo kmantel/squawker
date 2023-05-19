@@ -74,11 +74,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_to_group": MessageLookupByLibrary.simpleMessage("Legg til i gruppe"),
         "all": MessageLookupByLibrary.simpleMessage("Alle"),
         "all_the_great_software_used_by_fritter":
-            MessageLookupByLibrary.simpleMessage("All den flotte programvaren som brukes av Fritter"),
+            MessageLookupByLibrary.simpleMessage("All den flotte programvaren som brukes av "),
         "an_error_was_reported_to__thank_you":
             MessageLookupByLibrary.simpleMessage("En feil ble rapportert til . Takk skal du ha!"),
         "an_update_for_fritter_is_available":
-            MessageLookupByLibrary.simpleMessage("En oppdatering for Fritter er tilgjengelig! 🚀"),
+            MessageLookupByLibrary.simpleMessage("En oppdatering for  er tilgjengelig! 🚀"),
         "are_you_sure": MessageLookupByLibrary.simpleMessage("Er du sikker?"),
         "are_you_sure_you_want_to_delete_the_subscription_group_name_of_group": m0,
         "back": MessageLookupByLibrary.simpleMessage("Tilbake"),
@@ -88,7 +88,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "catastrophic_failure": MessageLookupByLibrary.simpleMessage("Katastrofal feil"),
         "choose": MessageLookupByLibrary.simpleMessage("Velg"),
         "close": MessageLookupByLibrary.simpleMessage("Lukk"),
-        "confirm_close_fritter": MessageLookupByLibrary.simpleMessage("Lukk Fritter?"),
+        "confirm_close_fritter": MessageLookupByLibrary.simpleMessage("Lukk ?"),
         "contribute": MessageLookupByLibrary.simpleMessage("Bidra"),
         "copied_address_to_clipboard": MessageLookupByLibrary.simpleMessage("Adresse kopiert til utklippstavle"),
         "copied_version_to_clipboard": MessageLookupByLibrary.simpleMessage("Versjon kopiert til utklippstavlen"),
@@ -134,15 +134,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "followers": MessageLookupByLibrary.simpleMessage("Følgere"),
         "following": MessageLookupByLibrary.simpleMessage("Følger"),
         "fritter": MessageLookupByLibrary.simpleMessage("Quacker"),
-        "fritter_blue": MessageLookupByLibrary.simpleMessage("Fritter-blå"),
+        "fritter_blue": MessageLookupByLibrary.simpleMessage("-blå"),
         "general": MessageLookupByLibrary.simpleMessage("Generelt"),
         "group_name": m6,
         "groups": MessageLookupByLibrary.simpleMessage("Grupper"),
-        "help_make_fritter_even_better": MessageLookupByLibrary.simpleMessage("Hjelp til å gjøre Fritter enda bedre"),
-        "help_support_fritters_future": MessageLookupByLibrary.simpleMessage("Hjelp til å støtte Fritters fremtid"),
+        "help_make_fritter_even_better": MessageLookupByLibrary.simpleMessage("Hjelp til å gjøre  enda bedre"),
+        "help_support_fritters_future": MessageLookupByLibrary.simpleMessage("Hjelp til å støtte s fremtid"),
         "here_is_the_data_that_will_be_sent_it_will_only_be_used_to_determine_which_devices_and_languages_to_support_in_fritter_in_the_future":
             MessageLookupByLibrary.simpleMessage(
-                "Denne dataen vil bli sendt. Den brukes kun til å bestemme hvilke enheter og språk som skal støttes i Fritter i fremtiden."),
+                "Denne dataen vil bli sendt. Den brukes kun til å bestemme hvilke enheter og språk som skal støttes i  i fremtiden."),
         "home": MessageLookupByLibrary.simpleMessage("Hjem"),
         "if_you_have_any_feedback_on_this_feature_please_leave_it_on": MessageLookupByLibrary.simpleMessage(
             "Hvis du har tilbakemeldinger om denne funksjonen, vennligst la den være på"),
@@ -153,8 +153,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "imported_snapshot_data_users_so_far": m7,
         "include_replies": MessageLookupByLibrary.simpleMessage("Ta med svar"),
         "include_retweets": MessageLookupByLibrary.simpleMessage("Inkluder retweets"),
-        "it_looks_like_you_have_already_said_hello_from_this_version_of_fritter": MessageLookupByLibrary.simpleMessage(
-            "Det ser ut som du allerede har sagt hei fra denne versjonen av Fritter."),
+        "it_looks_like_you_have_already_said_hello_from_this_version_of_fritter":
+            MessageLookupByLibrary.simpleMessage("Det ser ut som du allerede har sagt hei fra denne versjonen av ."),
         "it_looks_like_you_have_already_sent_a_ping_recently":
             MessageLookupByLibrary.simpleMessage("Det ser ut til at du allerede har sendt en ekkoforespørsel 🤔"),
         "joined": m8,
@@ -199,7 +199,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Forsikre deg om at dataen du ønsker å importere er å finne der. Deretter trykker du på «Import»-knappen nedenfor."),
         "please_note_that_the_method_fritter_uses_to_import_subscriptions_is_heavily_rate_limited_by_twitter_so_this_may_fail_if_you_have_a_lot_of_followed_accounts":
             MessageLookupByLibrary.simpleMessage(
-                "Vær oppmerksom på at metoden Fritter bruker for å importere abonnementer er sterkt takstbegrenset av Twitter, så dette kan mislykkes hvis du har mange fulgte kontoer."),
+                "Vær oppmerksom på at metoden  bruker for å importere abonnementer er sterkt takstbegrenset av Twitter, så dette kan mislykkes hvis du har mange fulgte kontoer."),
         "prefix": MessageLookupByLibrary.simpleMessage("prefiks"),
         "private_profile": MessageLookupByLibrary.simpleMessage("Privat profil"),
         "released_under_the_mit_license": MessageLookupByLibrary.simpleMessage("Utgitt under MIT-lisensen"),
@@ -222,16 +222,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "send": MessageLookupByLibrary.simpleMessage("Send"),
         "send_a_non_identifying_ping_to_let_me_know_you_are_using_fritter_and_to_help_future_development":
             MessageLookupByLibrary.simpleMessage(
-                "Send en ikke-identifiserende ekkoforespørsel til meg for å tilkjennegjøre at du bruker Fritter, og hjelp videre utvikling."),
+                "Send en ikke-identifiserende ekkoforespørsel til meg for å tilkjennegjøre at du bruker , og hjelp videre utvikling."),
         "send_always": MessageLookupByLibrary.simpleMessage("Send alltid"),
         "send_once": MessageLookupByLibrary.simpleMessage("Send en gang"),
         "share_tweet_content": MessageLookupByLibrary.simpleMessage("Del tvitringsinnhold"),
         "share_tweet_content_and_link": MessageLookupByLibrary.simpleMessage("Del tvitringsinnhold og lenk"),
         "share_tweet_link": MessageLookupByLibrary.simpleMessage("Del tweet-lenke"),
         "small": MessageLookupByLibrary.simpleMessage("Lite"),
-        "something_broke_in_fritter": MessageLookupByLibrary.simpleMessage("Noe brakk i Fritter."),
+        "something_broke_in_fritter": MessageLookupByLibrary.simpleMessage("Noe brakk i ."),
         "something_just_went_wrong_in_fritter_and_an_error_report_has_been_generated": MessageLookupByLibrary.simpleMessage(
-            "Noe gikk galt i Fritter, og en feilrapport har blitt generert. Rapporten kan sendes til Fritter-utviklerne for å hjelpe med å fikse problemet."),
+            "Noe gikk galt i , og en feilrapport har blitt generert. Rapporten kan sendes til -utviklerne for å hjelpe med å fikse problemet."),
         "sorry_the_replied_tweet_could_not_be_found":
             MessageLookupByLibrary.simpleMessage("Fant ikke svar-tvitringen."),
         "subscribe": MessageLookupByLibrary.simpleMessage("Abonnere"),
@@ -241,7 +241,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "system": MessageLookupByLibrary.simpleMessage("System"),
         "tap_to_download_release_version": m11,
         "tap_to_show_getMediaType_item_type": m12,
-        "thanks_for_helping_fritter": MessageLookupByLibrary.simpleMessage("Takk for at du hjelper Fritter. 💖"),
+        "thanks_for_helping_fritter": MessageLookupByLibrary.simpleMessage("Takk for at du hjelper . 💖"),
         "thanks_for_reporting_we_will_try_and_fix_it_in_no_time":
             MessageLookupByLibrary.simpleMessage("Takk for at du rapporterte. Vi skal prøve å fikse det på kort tid!"),
         "the_file_does_not_exist_please_ensure_it_is_located_at_file_path": m13,
@@ -337,6 +337,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "your_profile_must_be_public_otherwise_the_import_will_not_work":
             MessageLookupByLibrary.simpleMessage("Profilen din må være offentlig, ellers vil ikke importen fungere"),
         "your_report_will_be_sent_to_fritter__project": MessageLookupByLibrary.simpleMessage(
-            "Rapporten din vil bli sendt til Fritter\'s -prosjekt, og personverndetaljer kan finnes på:")
+            "Rapporten din vil bli sendt til \'s -prosjekt, og personverndetaljer kan finnes på:")
       };
 }

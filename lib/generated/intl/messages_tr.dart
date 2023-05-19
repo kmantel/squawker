@@ -76,16 +76,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_to_group": MessageLookupByLibrary.simpleMessage("Gruba ekle"),
         "all": MessageLookupByLibrary.simpleMessage("Hepsi"),
         "all_the_great_software_used_by_fritter":
-            MessageLookupByLibrary.simpleMessage("Fritter tarafından kullanılan tüm harika yazılımlar"),
+            MessageLookupByLibrary.simpleMessage(" tarafından kullanılan tüm harika yazılımlar"),
         "an_error_was_reported_to__thank_you":
             MessageLookupByLibrary.simpleMessage("Hata \'e bildirildi. Teşekkürler!"),
-        "an_update_for_fritter_is_available":
-            MessageLookupByLibrary.simpleMessage("Fritter için bir güncelleme mevcut! 🚀"),
+        "an_update_for_fritter_is_available": MessageLookupByLibrary.simpleMessage(" için bir güncelleme mevcut! 🚀"),
         "are_you_sure": MessageLookupByLibrary.simpleMessage("Emin misiniz?"),
         "are_you_sure_you_want_to_delete_the_subscription_group_name_of_group": m0,
         "back": MessageLookupByLibrary.simpleMessage("Geri"),
         "bad_guest_token": MessageLookupByLibrary.simpleMessage(
-            "Twitter erişim belirtecimizi geçersiz kıldı. Lütfen Fritter\'ı yeniden açmayı deneyin!"),
+            "Twitter erişim belirtecimizi geçersiz kıldı. Lütfen \'ı yeniden açmayı deneyin!"),
         "blue_theme_based_on_the_twitter_color_scheme":
             MessageLookupByLibrary.simpleMessage("Twitter renk şemasına dayalı mavi tema"),
         "cancel": MessageLookupByLibrary.simpleMessage("İptal et"),
@@ -93,8 +92,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "choose": MessageLookupByLibrary.simpleMessage("Seç"),
         "choose_pages": MessageLookupByLibrary.simpleMessage("Sayfaları seçin"),
         "close": MessageLookupByLibrary.simpleMessage("Kapat"),
-        "confirm_close_fritter":
-            MessageLookupByLibrary.simpleMessage("Fritter\'ı kapatmak istediğinizden emin misiniz?"),
+        "confirm_close_fritter": MessageLookupByLibrary.simpleMessage("\'ı kapatmak istediğinizden emin misiniz?"),
         "contribute": MessageLookupByLibrary.simpleMessage("Katkıda bulunun"),
         "copied_address_to_clipboard": MessageLookupByLibrary.simpleMessage("Adres panoya kopyalandı"),
         "copied_version_to_clipboard": MessageLookupByLibrary.simpleMessage("Sürüm panoya kopyalandı"),
@@ -125,7 +123,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "download_handling_type_ask": MessageLookupByLibrary.simpleMessage("Her zaman sor"),
         "download_handling_type_directory": MessageLookupByLibrary.simpleMessage("Dizine kaydet"),
         "download_media_no_url": MessageLookupByLibrary.simpleMessage(
-            "İndirilemiyor. Bu medya yalnızca Fritter\'ın henüz indiremediği bir akış olarak mevcut olabilir."),
+            "İndirilemiyor. Bu medya yalnızca \'ın henüz indiremediği bir akış olarak mevcut olabilir."),
         "download_path": MessageLookupByLibrary.simpleMessage("İndirme yolu"),
         "downloading_media": MessageLookupByLibrary.simpleMessage("Medya indiriliyor..."),
         "enable_": MessageLookupByLibrary.simpleMessage(" etkinleştirilsin mi?"),
@@ -148,19 +146,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "following": MessageLookupByLibrary.simpleMessage("Takip ediyor"),
         "forbidden": MessageLookupByLibrary.simpleMessage("Twitter buna erişimin yasak olduğunu söylüyor"),
         "fritter": MessageLookupByLibrary.simpleMessage("Quacker"),
-        "fritter_blue": MessageLookupByLibrary.simpleMessage("Fritter mavisi"),
+        "fritter_blue": MessageLookupByLibrary.simpleMessage(" mavisi"),
         "functionality_unsupported":
             MessageLookupByLibrary.simpleMessage("Bu işlev artık Twitter tarafından desteklenmiyor!"),
         "general": MessageLookupByLibrary.simpleMessage("Genel"),
         "group_name": m6,
         "groups": MessageLookupByLibrary.simpleMessage("Gruplar"),
         "help_make_fritter_even_better":
-            MessageLookupByLibrary.simpleMessage("Fritter\'ın daha da iyi olmasına yardımcı olun"),
+            MessageLookupByLibrary.simpleMessage("\'ın daha da iyi olmasına yardımcı olun"),
         "help_support_fritters_future":
-            MessageLookupByLibrary.simpleMessage("Fritter\'ın geleceğini desteklemeye yardımcı olun"),
+            MessageLookupByLibrary.simpleMessage("\'ın geleceğini desteklemeye yardımcı olun"),
         "here_is_the_data_that_will_be_sent_it_will_only_be_used_to_determine_which_devices_and_languages_to_support_in_fritter_in_the_future":
             MessageLookupByLibrary.simpleMessage(
-                "İşte gönderilecek veriler. Sadece gelecekte Fritter\'da hangi cihazların ve dillerin destekleneceğini belirlemek için kullanılacaktır."),
+                "İşte gönderilecek veriler. Sadece gelecekte \'da hangi cihazların ve dillerin destekleneceğini belirlemek için kullanılacaktır."),
         "hide_sensitive_tweets": MessageLookupByLibrary.simpleMessage("Hassas tweetleri gizle"),
         "home": MessageLookupByLibrary.simpleMessage("Ana sayfa"),
         "if_you_have_any_feedback_on_this_feature_please_leave_it_on": MessageLookupByLibrary.simpleMessage(
@@ -172,8 +170,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "imported_snapshot_data_users_so_far": m7,
         "include_replies": MessageLookupByLibrary.simpleMessage("Yanıtları dahil et"),
         "include_retweets": MessageLookupByLibrary.simpleMessage("Retweet\'leri dahil et"),
-        "it_looks_like_you_have_already_said_hello_from_this_version_of_fritter": MessageLookupByLibrary.simpleMessage(
-            "Görünüşe göre Fritter\'ın bu versiyonundan çoktan merhaba demişsiniz!"),
+        "it_looks_like_you_have_already_said_hello_from_this_version_of_fritter":
+            MessageLookupByLibrary.simpleMessage("Görünüşe göre \'ın bu versiyonundan çoktan merhaba demişsiniz!"),
         "it_looks_like_you_have_already_sent_a_ping_recently":
             MessageLookupByLibrary.simpleMessage("Görünüşe göre yakın zamanda bir ping göndermişsin 🤔"),
         "joined": m8,
@@ -230,7 +228,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Lütfen içe aktarmak istediğiniz verilerin orada olduğundan emin olun, ardından aşağıdaki içe aktar düğmesine basın."),
         "please_note_that_the_method_fritter_uses_to_import_subscriptions_is_heavily_rate_limited_by_twitter_so_this_may_fail_if_you_have_a_lot_of_followed_accounts":
             MessageLookupByLibrary.simpleMessage(
-                "Fritter\'ın abonelikleri içe aktarmak için kullandığı yöntemin Twitter tarafından yüksek oranda sınırlandırıldığını, bu nedenle çok sayıda takip ettiğiniz hesap varsa bunun başarısız olabileceğini lütfen unutmayın."),
+                "\'ın abonelikleri içe aktarmak için kullandığı yöntemin Twitter tarafından yüksek oranda sınırlandırıldığını, bu nedenle çok sayıda takip ettiğiniz hesap varsa bunun başarısız olabileceğini lütfen unutmayın."),
         "possibly_sensitive": MessageLookupByLibrary.simpleMessage("Hassas olabilir"),
         "possibly_sensitive_profile": MessageLookupByLibrary.simpleMessage(
             "Bu profil hassas olabilecek görüntüler, dil veya başka içerikler içerebilir. Yine de görüntülemek istiyor musunuz?"),
@@ -262,7 +260,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "send": MessageLookupByLibrary.simpleMessage("Gönder"),
         "send_a_non_identifying_ping_to_let_me_know_you_are_using_fritter_and_to_help_future_development":
             MessageLookupByLibrary.simpleMessage(
-                "Fritter kullandığınızı bildirmek ve gelecekteki geliştirmelere yardımcı olmak için tanımlayıcı olmayan bir ping gönderin"),
+                " kullandığınızı bildirmek ve gelecekteki geliştirmelere yardımcı olmak için tanımlayıcı olmayan bir ping gönderin"),
         "send_always": MessageLookupByLibrary.simpleMessage("Her zaman gönder"),
         "send_once": MessageLookupByLibrary.simpleMessage("Bir kez gönder"),
         "share_base_url": MessageLookupByLibrary.simpleMessage("Özel paylaşım URL\'si"),
@@ -271,12 +269,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "share_tweet_content_and_link": MessageLookupByLibrary.simpleMessage("Tweet içeriğini ve bağlantısını paylaş"),
         "share_tweet_link": MessageLookupByLibrary.simpleMessage("Tweet bağlantısını paylaş"),
         "should_check_for_updates_description":
-            MessageLookupByLibrary.simpleMessage("Fritter başladığında güncellemeleri denetle"),
+            MessageLookupByLibrary.simpleMessage(" başladığında güncellemeleri denetle"),
         "should_check_for_updates_label": MessageLookupByLibrary.simpleMessage("Güncellemeleri denetle"),
         "small": MessageLookupByLibrary.simpleMessage("Küçük"),
-        "something_broke_in_fritter": MessageLookupByLibrary.simpleMessage("Fritter\'da bir şey bozuldu."),
+        "something_broke_in_fritter": MessageLookupByLibrary.simpleMessage("\'da bir şey bozuldu."),
         "something_just_went_wrong_in_fritter_and_an_error_report_has_been_generated": MessageLookupByLibrary.simpleMessage(
-            "Fritter\'da bir şeyler ters gitti ve bir hata raporu oluşturuldu. Rapor, sorunun çözülmesine yardımcı olmaları için Fritter geliştiricilerine gönderilebilir."),
+            "\'da bir şeyler ters gitti ve bir hata raporu oluşturuldu. Rapor, sorunun çözülmesine yardımcı olmaları için  geliştiricilerine gönderilebilir."),
         "sorry_the_replied_tweet_could_not_be_found":
             MessageLookupByLibrary.simpleMessage("Üzgünüz, yanıtlanan tweet bulunamadı!"),
         "subscribe": MessageLookupByLibrary.simpleMessage("Abone ol"),
@@ -286,8 +284,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "system": MessageLookupByLibrary.simpleMessage("Sistem"),
         "tap_to_download_release_version": m11,
         "tap_to_show_getMediaType_item_type": m12,
-        "thanks_for_helping_fritter":
-            MessageLookupByLibrary.simpleMessage("Fritter\'a yardım ettiğin için teşekkürler! 💖"),
+        "thanks_for_helping_fritter": MessageLookupByLibrary.simpleMessage("\'a yardım ettiğin için teşekkürler! 💖"),
         "thanks_for_reporting_we_will_try_and_fix_it_in_no_time": MessageLookupByLibrary.simpleMessage(
             "Bildirdiğiniz için teşekkürler. En kısa sürede düzeltmeye çalışacağız!"),
         "the_file_does_not_exist_please_ensure_it_is_located_at_file_path": m13,
@@ -391,6 +388,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "your_profile_must_be_public_otherwise_the_import_will_not_work": MessageLookupByLibrary.simpleMessage(
             "Profiliniz herkese açık olmalıdır, aksi takdirde alma işlemi çalışmaz"),
         "your_report_will_be_sent_to_fritter__project": MessageLookupByLibrary.simpleMessage(
-            "Raporunuz Fritter\'ın  projesine gönderilecektir ve gizlilik detaylarını şu adreste bulabilirsiniz:")
+            "Raporunuz \'ın  projesine gönderilecektir ve gizlilik detaylarını şu adreste bulabilirsiniz:")
       };
 }

@@ -30,7 +30,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Een fout is gerapporteerd aan . Bedankt!"),
         "back": MessageLookupByLibrary.simpleMessage("Terug"),
         "bad_guest_token": MessageLookupByLibrary.simpleMessage(
-            "Twitter heeft onze toegangssleutel ongeldig gemaakt. Probeer Fritter opnieuw te starten!"),
+            "Twitter heeft onze toegangssleutel ongeldig gemaakt. Probeer  opnieuw te starten!"),
         "catastrophic_failure": MessageLookupByLibrary.simpleMessage("Katastrofale fout"),
         "could_not_contact_twitter": MessageLookupByLibrary.simpleMessage("Kon geen contact met Twitter krijgen"),
         "could_not_find_any_tweets_by_this_user":
@@ -62,7 +62,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "share_tweet_content_and_link": MessageLookupByLibrary.simpleMessage("Deel inhoud en link naar tweet"),
         "share_tweet_link": MessageLookupByLibrary.simpleMessage("Deel link naar tweet"),
         "something_just_went_wrong_in_fritter_and_an_error_report_has_been_generated": MessageLookupByLibrary.simpleMessage(
-            "Er ging iets mis in Fritter, een rapport is gegenereerd. Het rapport kan naar de Fritter ontwikkelaars worden gestuurd zodat het probleem kan worden opgespoord."),
+            "Er ging iets mis in , een rapport is gegenereerd. Het rapport kan naar de  ontwikkelaars worden gestuurd zodat het probleem kan worden opgespoord."),
         "sorry_the_replied_tweet_could_not_be_found":
             MessageLookupByLibrary.simpleMessage("Sorry, kon de beantwoorde tweet niet vinden!"),
         "subscribe": MessageLookupByLibrary.simpleMessage("Abonneer"),
@@ -93,6 +93,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "would_you_like_to_enable_automatic_error_reporting":
             MessageLookupByLibrary.simpleMessage("Automatische foutrapportage inschakelen?"),
         "your_report_will_be_sent_to_fritter__project": MessageLookupByLibrary.simpleMessage(
-            "Het rapport wordt naar het  project van Fritter gestuurd, details over privacy kunnen worden gevonden op:")
+            "Het rapport wordt naar het  project van  gestuurd, details over privacy kunnen worden gevonden op:")
       };
 }

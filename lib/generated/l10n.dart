@@ -148,36 +148,6 @@ class L10n {
     );
   }
 
-  /// `Something just went wrong in Fritter, and an error report has been generated. The report can be sent to the Fritter developers to help fix the problem.`
-  String get something_just_went_wrong_in_fritter_and_an_error_report_has_been_generated {
-    return Intl.message(
-      'Something just went wrong in Fritter, and an error report has been generated. The report can be sent to the Fritter developers to help fix the problem.',
-      name: 'something_just_went_wrong_in_fritter_and_an_error_report_has_been_generated',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Would you like to enable automatic error reporting?`
-  String get would_you_like_to_enable_automatic_error_reporting {
-    return Intl.message(
-      'Would you like to enable automatic error reporting?',
-      name: 'would_you_like_to_enable_automatic_error_reporting',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Your report will be sent to Fritter's  project, and privacy details can be found at:`
-  String get your_report_will_be_sent_to_fritter__project {
-    return Intl.message(
-      'Your report will be sent to Fritter\'s  project, and privacy details can be found at:',
-      name: 'your_report_will_be_sent_to_fritter__project',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Send once`
   String get send_once {
     return Intl.message(
@@ -628,16 +598,6 @@ class L10n {
     );
   }
 
-  /// `It looks like you've already said hello from this version of Fritter!`
-  String get it_looks_like_you_have_already_said_hello_from_this_version_of_fritter {
-    return Intl.message(
-      'It looks like you\'ve already said hello from this version of Fritter!',
-      name: 'it_looks_like_you_have_already_said_hello_from_this_version_of_fritter',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Cancel`
   String get cancel {
     return Intl.message(
@@ -648,103 +608,11 @@ class L10n {
     );
   }
 
-  /// `Thanks for helping Fritter! 💖`
-  String get thanks_for_helping_fritter {
-    return Intl.message(
-      'Thanks for helping Fritter! 💖',
-      name: 'thanks_for_helping_fritter',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `It looks like you've already sent a ping recently 🤔`
-  String get it_looks_like_you_have_already_sent_a_ping_recently {
-    return Intl.message(
-      'It looks like you\'ve already sent a ping recently 🤔',
-      name: 'it_looks_like_you_have_already_sent_a_ping_recently',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Unable to send the ping. The status code was {statusCode}`
-  String unable_to_send_the_ping_the_status_code_was_response_statusCode(Object statusCode) {
-    return Intl.message(
-      'Unable to send the ping. The status code was $statusCode',
-      name: 'unable_to_send_the_ping_the_status_code_was_response_statusCode',
-      desc: '',
-      args: [statusCode],
-    );
-  }
-
-  /// `Timed out trying to send the ping 😢`
-  String get timed_out_trying_to_send_the_ping {
-    return Intl.message(
-      'Timed out trying to send the ping 😢',
-      name: 'timed_out_trying_to_send_the_ping',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Unable to send the ping. {e}`
-  String unable_to_send_the_ping_e_to_string(Object e) {
-    return Intl.message(
-      'Unable to send the ping. $e',
-      name: 'unable_to_send_the_ping_e_to_string',
-      desc: '',
-      args: [e],
-    );
-  }
-
   /// `Send`
   String get send {
     return Intl.message(
       'Send',
       name: 'send',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Say Hello 👋`
-  String get say_hello_emoji {
-    return Intl.message(
-      'Say Hello 👋',
-      name: 'say_hello_emoji',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Say Hello`
-  String get say_hello {
-    return Intl.message(
-      'Say Hello',
-      name: 'say_hello',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Here is the data that will be sent. It will only be used to determine which devices and languages to support in Fritter in the future.`
-  String
-      get here_is_the_data_that_will_be_sent_it_will_only_be_used_to_determine_which_devices_and_languages_to_support_in_fritter_in_the_future {
-    return Intl.message(
-      'Here is the data that will be sent. It will only be used to determine which devices and languages to support in Fritter in the future.',
-      name:
-          'here_is_the_data_that_will_be_sent_it_will_only_be_used_to_determine_which_devices_and_languages_to_support_in_fritter_in_the_future',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Send a non-identifying ping to let me know you're using Fritter, and to help future development`
-  String get send_a_non_identifying_ping_to_let_me_know_you_are_using_fritter_and_to_help_future_development {
-    return Intl.message(
-      'Send a non-identifying ping to let me know you\'re using Fritter, and to help future development',
-      name: 'send_a_non_identifying_ping_to_let_me_know_you_are_using_fritter_and_to_help_future_development',
       desc: '',
       args: [],
     );
@@ -1160,10 +1028,10 @@ class L10n {
     );
   }
 
-  /// `Help support Fritter's future`
+  /// `Help support 's future`
   String get help_support_fritters_future {
     return Intl.message(
-      'Help support Fritter\'s future',
+      'Help support Quacker\'s future',
       name: 'help_support_fritters_future',
       desc: '',
       args: [],
@@ -1190,7 +1058,7 @@ class L10n {
     );
   }
 
-  /// `All the great software used by Fritter`
+  /// `All the great software used by Quacker`
   String get all_the_great_software_used_by_fritter {
     return Intl.message(
       'All the great software used by Quacker',
@@ -1200,10 +1068,10 @@ class L10n {
     );
   }
 
-  /// `Fritter`
+  /// `Quacker`
   String get fritter {
     return Intl.message(
-      'Fritter',
+      'Quacker',
       name: 'fritter',
       desc: '',
       args: [],
@@ -1410,11 +1278,11 @@ class L10n {
     );
   }
 
-  /// `Please note that the method Fritter uses to import subscriptions is heavily rate-limited by Twitter, so this may fail if you have a lot of followed accounts.`
+  /// `Please note that the method Quacker uses to import subscriptions is heavily rate-limited by Twitter, so this may fail if you have a lot of followed accounts.`
   String
       get please_note_that_the_method_fritter_uses_to_import_subscriptions_is_heavily_rate_limited_by_twitter_so_this_may_fail_if_you_have_a_lot_of_followed_accounts {
     return Intl.message(
-      'Please note that the method Fritter uses to import subscriptions is heavily rate-limited by Twitter, so this may fail if you have a lot of followed accounts.',
+      'Please note that the method Quacker uses to import subscriptions is heavily rate-limited by Twitter, so this may fail if you have a lot of followed accounts.',
       name:
           'please_note_that_the_method_fritter_uses_to_import_subscriptions_is_heavily_rate_limited_by_twitter_so_this_may_fail_if_you_have_a_lot_of_followed_accounts',
       desc: '',
@@ -1714,10 +1582,10 @@ class L10n {
     );
   }
 
-  /// `Unable to download. This media may only be available as a stream, which Fritter cannot yet download.`
+  /// `Unable to download. This media may only be available as a stream, which Quacker cannot yet download.`
   String get download_media_no_url {
     return Intl.message(
-      'Unable to download. This media may only be available as a stream, which Fritter cannot yet download.',
+      'Unable to download. This media may only be available as a stream, which Quacker cannot yet download.',
       name: 'download_media_no_url',
       desc: '',
       args: [],
@@ -1934,10 +1802,10 @@ class L10n {
     );
   }
 
-  /// `Twitter has invalidated our access token. Please try re-opening Fritter!`
+  /// `Twitter has invalidated our access token. Please try re-opening Quacker!`
   String get bad_guest_token {
     return Intl.message(
-      'Twitter has invalidated our access token. Please try re-opening Fritter!',
+      'Twitter has invalidated our access token. Please try re-opening Quacker!',
       name: 'bad_guest_token',
       desc: '',
       args: [],
@@ -2084,60 +1952,10 @@ class L10n {
     );
   }
 
-  /// `Updates`
-  String get updates {
-    return Intl.message(
-      'Updates',
-      name: 'updates',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `When a new app update is available`
-  String get when_a_new_app_update_is_available {
-    return Intl.message(
-      'When a new app update is available',
-      name: 'when_a_new_app_update_is_available',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `An update for Fritter is available! 🚀`
-  String get an_update_for_fritter_is_available {
-    return Intl.message(
-      'An update for Fritter is available! 🚀',
-      name: 'an_update_for_fritter_is_available',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Tap to download {releaseVersion}`
-  String tap_to_download_release_version(Object releaseVersion) {
-    return Intl.message(
-      'Tap to download $releaseVersion',
-      name: 'tap_to_download_release_version',
-      desc: '',
-      args: [releaseVersion],
-    );
-  }
-
-  /// `Update to {releaseVersion} through your F-Droid client`
-  String update_to_release_version_through_your_fdroid_client(Object releaseVersion) {
-    return Intl.message(
-      'Update to $releaseVersion through your F-Droid client',
-      name: 'update_to_release_version_through_your_fdroid_client',
-      desc: '',
-      args: [releaseVersion],
-    );
-  }
-
-  /// `Fritter blue`
+  /// `Quacker blue`
   String get fritter_blue {
     return Intl.message(
-      'Fritter blue',
+      'Quacker blue',
       name: 'fritter_blue',
       desc: '',
       args: [],
@@ -2154,10 +1972,10 @@ class L10n {
     );
   }
 
-  /// `Something broke in Fritter.`
+  /// `Something broke in Quacker.`
   String get something_broke_in_fritter {
     return Intl.message(
-      'Something broke in Fritter.',
+      'Something broke in Quacker.',
       name: 'something_broke_in_fritter',
       desc: '',
       args: [],
@@ -2169,26 +1987,6 @@ class L10n {
     return Intl.message(
       'Unable to run the database migrations',
       name: 'unable_to_run_the_database_migrations',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Check for updates`
-  String get should_check_for_updates_label {
-    return Intl.message(
-      'Check for updates',
-      name: 'should_check_for_updates_label',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Check for updates when Fritter starts`
-  String get should_check_for_updates_description {
-    return Intl.message(
-      'Check for updates when Quacker starts',
-      name: 'should_check_for_updates_description',
       desc: '',
       args: [],
     );

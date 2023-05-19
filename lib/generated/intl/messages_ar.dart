@@ -91,7 +91,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "choose": MessageLookupByLibrary.simpleMessage("أختر"),
         "choose_pages": MessageLookupByLibrary.simpleMessage("اختيار الصفحات"),
         "close": MessageLookupByLibrary.simpleMessage("اغلاق"),
-        "confirm_close_fritter": MessageLookupByLibrary.simpleMessage("هل أنت متأكد من أنك تريد إغلاق Fritter؟"),
+        "confirm_close_fritter": MessageLookupByLibrary.simpleMessage("هل أنت متأكد من أنك تريد إغلاق Quacker؟"),
         "contribute": MessageLookupByLibrary.simpleMessage("المساهمة"),
         "copied_address_to_clipboard": MessageLookupByLibrary.simpleMessage("نسخ العنوان إلى الحافظة"),
         "copied_version_to_clipboard": MessageLookupByLibrary.simpleMessage("نُسخ الإصدار إلى الحافظة"),
@@ -264,7 +264,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "share_tweet_content_and_link": MessageLookupByLibrary.simpleMessage("مشاركة محتوى التغريدة والرابط"),
         "share_tweet_link": MessageLookupByLibrary.simpleMessage("مشاركة رابط التغريدة"),
         "should_check_for_updates_description":
-            MessageLookupByLibrary.simpleMessage("تحقق من وجود تحديثات عندما يبدأ Fritter"),
+            MessageLookupByLibrary.simpleMessage("تحقق من وجود تحديثات عندما يبدأ "),
         "should_check_for_updates_label": MessageLookupByLibrary.simpleMessage("التحقق من وجود تحديثات"),
         "small": MessageLookupByLibrary.simpleMessage("صغير"),
         "something_broke_in_fritter": MessageLookupByLibrary.simpleMessage("حدث خطأ ما في فريتر."),
