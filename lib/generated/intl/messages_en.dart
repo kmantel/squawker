@@ -210,6 +210,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Subscriptions can only be imported from public profiles"),
         "oops_something_went_wrong": MessageLookupByLibrary.simpleMessage("Oops! Something went wrong 🥲"),
         "open_app_settings": MessageLookupByLibrary.simpleMessage("Open app settings"),
+        "open_in_browser": MessageLookupByLibrary.simpleMessage("Open in browser"),
         "page_not_found":
             MessageLookupByLibrary.simpleMessage("Twitter says the page does not exist, but that may not be true"),
         "permission_not_granted":
