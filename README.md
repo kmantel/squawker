@@ -16,6 +16,11 @@
        alt="Get it on Github"
        height="80">
    </a>
+   <a href="https://github.com/TheHCJ/Quacker/wiki/Installation-Guide#obtainium">
+     <img src="https://i.imgur.com/R7VBlT0.png" 
+       alt="Get it on Obtainium"
+       height="80">
+   </a>
 </p>
  
 ## Description
