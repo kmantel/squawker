@@ -53,7 +53,7 @@ If you feel like something is missing from Quacker, feel free to [open an issue]
 If you're looking for something to dip your toes into the codebase, check if there are any issues labelled good first issue. Otherwise, if you see another issue you'd like to tackle, go for it - just fork the repository, push to a branch, and create a PR detailing your changes. We'll review it and merge it in, once it meets all our checks and balances!
 
 ### Translations
-Quacker currently uses Fritter's [Weblate](https://hosted.weblate.org/engage/fritter/) for translations. You can help by translating the app into your preferred language(s)! I will be moving away from this in version 5.0.0, I will announce a replacement when the time has come.
+Quacker currently uses Fritter's [Weblate](https://hosted.weblate.org/engage/fritter/) for translations.
 
 #### Next steps:
 * Mastodon support - for being able to browse both Twitter and Mastodon content
