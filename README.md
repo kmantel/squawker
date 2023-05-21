@@ -4,6 +4,9 @@
     <img alt="Quacker" title="Quacker" src="fastlane/metadata/android/en-US/images/icon.png" width="144">
   </a>
 </p>
+<p align="center">
+  A better way to browse Twitter
+</p>
 
 <p align="center">
   <a href="https://apt.izzysoft.de/fdroid/index/apk/com.thehcj.quacker">
@@ -11,30 +14,20 @@
        alt="Get it on IzzyOnDroid"
        height="80">
    </a>
-   <a href="https://github.com/thehcj/quacker/releases">
-     <img src="https://ultrasonic.github.io/assets/img/get-it-on-github.png" 
-       alt="Get it on Github"
-       height="80">
-   </a>
-   <a href="https://github.com/TheHCJ/Quacker/wiki/Installation-Guide#obtainium">
-     <img src="https://i.imgur.com/R7VBlT0.png" 
-       alt="Get it on Obtainium"
-       height="80">
-   </a>
+</p>
+<p align="center">
+<a href="https://github.com/thehcj/quacker/releases" alt="GitHub release"><img src="https://img.shields.io/github/release/thehcj/quacker.svg" ></a>
+<a href="/LICENSE" alt="License: MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg"></a>
+<a href="https://github.com/thehcj/quacker/actions" alt="Build Status"><img src="https://github.com/thehcj/quacker/workflows/ci/badge.svg?branch=dev&event=push"></a>
+<a href="https://hosted.weblate.org/engage/fritter/" alt="Translation Status"><img src="https://hosted.weblate.org/widgets/fritter/-/svg-badge.svg"></a>
 </p>
  
-## Description
-*A better way to browse Twitter*
-<br>
-<br>
-Quacker is a private and account free way to browse Twitter. This also includes feed viewing, subscription grouping, offline tweet saving and more!
-
 ## Features:
 * Feed: View all your subscriptions in a chronological feed
-* Material: Feels native no matter what your device is
+* Material You: Looks and feels fluent
 * Sync: In sync with the current fritter build
-* Updates: Constantly updated and improved
 * Private: Doesn't use the official twitter api
+* Updated: Constantly improving week by week
 
 ## Screenshots
 
