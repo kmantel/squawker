@@ -90,19 +90,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "all": MessageLookupByLibrary.simpleMessage("Tutti"),
         "all_the_great_software_used_by_fritter":
             MessageLookupByLibrary.simpleMessage(
-                "Tutto l\'ottimo software utilizzato da "),
+                "Tutto l\'ottimo software utilizzato da Quacker"),
         "an_error_was_reported_to__thank_you":
             MessageLookupByLibrary.simpleMessage(
                 "Un errore è stato segnalato a . Grazie!"),
         "an_update_for_fritter_is_available":
             MessageLookupByLibrary.simpleMessage(
-                "È disponibile un aggiornamento di ! 🚀"),
+                "È disponibile un aggiornamento di Quacker! 🚀"),
         "are_you_sure": MessageLookupByLibrary.simpleMessage("Sei sicuro?"),
         "are_you_sure_you_want_to_delete_the_subscription_group_name_of_group":
             m0,
         "back": MessageLookupByLibrary.simpleMessage("Indietro"),
         "bad_guest_token": MessageLookupByLibrary.simpleMessage(
-            "Twitter ha invalidato il nostro token di accesso. Prova a riaprire !"),
+            "Twitter ha invalidato il nostro token di accesso. Prova a riaprire Quacker!"),
         "blue_theme_based_on_the_twitter_color_scheme":
             MessageLookupByLibrary.simpleMessage(
                 "Tema blu basato sui colori di Twitter"),
@@ -114,7 +114,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Scegli le pagine"),
         "close": MessageLookupByLibrary.simpleMessage("Chiudi"),
         "confirm_close_fritter": MessageLookupByLibrary.simpleMessage(
-            "Sei sicuro di voler chiudere ?"),
+            "Sei sicuro di voler chiudere Quacker?"),
         "contribute": MessageLookupByLibrary.simpleMessage("Contribuisci"),
         "copied_address_to_clipboard": MessageLookupByLibrary.simpleMessage(
             "Indirizzo copiato negli appunti"),
@@ -159,7 +159,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "download_handling_type_directory":
             MessageLookupByLibrary.simpleMessage("Salva nella cartella"),
         "download_media_no_url": MessageLookupByLibrary.simpleMessage(
-            "Impossibile effettuare il download. Questo contenuto potrebbe essere disponibile soltanto come stream, che  non è ancora in grado di scaricare."),
+            "Impossibile effettuare il download. Questo contenuto potrebbe essere disponibile soltanto come stream, che Quacker non è ancora in grado di scaricare."),
         "download_path":
             MessageLookupByLibrary.simpleMessage("Percorso di download"),
         "downloading_media": MessageLookupByLibrary.simpleMessage(
@@ -191,20 +191,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "following": MessageLookupByLibrary.simpleMessage("Seguiti"),
         "forbidden": MessageLookupByLibrary.simpleMessage(
             "Twitter dice che l\'accesso non è consentito"),
-        "fritter": MessageLookupByLibrary.simpleMessage(""),
-        "fritter_blue": MessageLookupByLibrary.simpleMessage("Blu "),
+        "fritter": MessageLookupByLibrary.simpleMessage("Quacker"),
+        "fritter_blue": MessageLookupByLibrary.simpleMessage("Blu Quacker"),
         "functionality_unsupported": MessageLookupByLibrary.simpleMessage(
             "Questa funzionalità non è più supportata da Twitter!"),
         "general": MessageLookupByLibrary.simpleMessage("Generale"),
         "group_name": m6,
         "groups": MessageLookupByLibrary.simpleMessage("Gruppi"),
-        "help_make_fritter_even_better":
-            MessageLookupByLibrary.simpleMessage("Aiuta a rendere  migliore"),
+        "help_make_fritter_even_better": MessageLookupByLibrary.simpleMessage(
+            "Aiuta a rendere Quacker migliore"),
         "help_support_fritters_future": MessageLookupByLibrary.simpleMessage(
-            "Aiuta a supportare il futuro di "),
+            "Aiuta a supportare il futuro di Quacker"),
         "here_is_the_data_that_will_be_sent_it_will_only_be_used_to_determine_which_devices_and_languages_to_support_in_fritter_in_the_future":
             MessageLookupByLibrary.simpleMessage(
-                "Ecco i dati che verranno inviati. Saranno usati solo per determinare quali dispositivi e lingue supportare su  in futuro."),
+                "Ecco i dati che verranno inviati. Saranno usati solo per determinare quali dispositivi e lingue supportare su Quacker in futuro."),
         "hide_sensitive_tweets":
             MessageLookupByLibrary.simpleMessage("Nascondi tweet sensibili"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
@@ -225,7 +225,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Includi retweet"),
         "it_looks_like_you_have_already_said_hello_from_this_version_of_fritter":
             MessageLookupByLibrary.simpleMessage(
-                "Sembra che tu abbia già detto ciao da questa versione di !"),
+                "Sembra che tu abbia già detto ciao da questa versione di Quacker!"),
         "it_looks_like_you_have_already_sent_a_ping_recently":
             MessageLookupByLibrary.simpleMessage(
                 "Sembra che tu abbia già inviato un ping di recente 🤔"),
@@ -297,7 +297,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Assicurati che i dati che vuoi importare si trovino lì, poi premi il pulsante di importazione qui sotto."),
         "please_note_that_the_method_fritter_uses_to_import_subscriptions_is_heavily_rate_limited_by_twitter_so_this_may_fail_if_you_have_a_lot_of_followed_accounts":
             MessageLookupByLibrary.simpleMessage(
-                "Si ricorda che il metodo che  usa per importare le iscrizioni è fortemente limitato da Twitter, quindi potrebbe fallire se segui molti account."),
+                "Si ricorda che il metodo che Quacker usa per importare le iscrizioni è fortemente limitato da Twitter, quindi potrebbe fallire se segui molti account."),
         "possibly_sensitive":
             MessageLookupByLibrary.simpleMessage("Potenzialmente sensibile"),
         "possibly_sensitive_profile": MessageLookupByLibrary.simpleMessage(
@@ -336,7 +336,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "send": MessageLookupByLibrary.simpleMessage("Invia"),
         "send_a_non_identifying_ping_to_let_me_know_you_are_using_fritter_and_to_help_future_development":
             MessageLookupByLibrary.simpleMessage(
-                "Invia un ping non identificativo per farmi sapere che stai usando  e per aiutare lo sviluppo futuro"),
+                "Invia un ping non identificativo per farmi sapere che stai usando Quacker e per aiutare lo sviluppo futuro"),
         "send_always": MessageLookupByLibrary.simpleMessage("Invia sempre"),
         "send_once": MessageLookupByLibrary.simpleMessage("Invia una volta"),
         "share_base_url": MessageLookupByLibrary.simpleMessage(
@@ -351,15 +351,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Condividi il link al tweet"),
         "should_check_for_updates_description":
             MessageLookupByLibrary.simpleMessage(
-                "Controlla gli aggiornamenti all\'avvio di "),
+                "Controlla gli aggiornamenti all\'avvio di Quacker"),
         "should_check_for_updates_label":
             MessageLookupByLibrary.simpleMessage("Controlla gli aggiornamenti"),
         "small": MessageLookupByLibrary.simpleMessage("Piccolo"),
-        "something_broke_in_fritter":
-            MessageLookupByLibrary.simpleMessage("Qualcosa si è rotto in ."),
+        "something_broke_in_fritter": MessageLookupByLibrary.simpleMessage(
+            "Qualcosa si è rotto in Quacker."),
         "something_just_went_wrong_in_fritter_and_an_error_report_has_been_generated":
             MessageLookupByLibrary.simpleMessage(
-                "Qualcosa è andato storto in  ed è stato generato un rapporto di errore. Il rapporto può essere inviato agli sviluppatori di  per aiutare a risolvere il problema."),
+                "Qualcosa è andato storto in Quacker ed è stato generato un rapporto di errore. Il rapporto può essere inviato agli sviluppatori di Quacker per aiutare a risolvere il problema."),
         "sorry_the_replied_tweet_could_not_be_found":
             MessageLookupByLibrary.simpleMessage(
                 "Spiacenti, il tweet a cui è riferita la risposta non è stato trovato!"),
@@ -372,7 +372,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "tap_to_download_release_version": m11,
         "tap_to_show_getMediaType_item_type": m12,
         "thanks_for_helping_fritter": MessageLookupByLibrary.simpleMessage(
-            "Grazie per aver aiutato ! 💖"),
+            "Grazie per aver aiutato Quacker! 💖"),
         "thanks_for_reporting_we_will_try_and_fix_it_in_no_time":
             MessageLookupByLibrary.simpleMessage(
                 "Grazie per la segnalazione. Proveremo a sistemarlo in pochissimo tempo!"),
@@ -526,6 +526,6 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Il tuo profilo deve essere pubblico, altrimenti l\'importazione non funzionerà"),
         "your_report_will_be_sent_to_fritter__project":
             MessageLookupByLibrary.simpleMessage(
-                "Il tuo rapporto verrà inviato al progetto  di , i dettagli sulla privacy possono essere trovati a:")
+                "Il tuo rapporto verrà inviato al progetto Quacker di , i dettagli sulla privacy possono essere trovati a:")
       };
 }

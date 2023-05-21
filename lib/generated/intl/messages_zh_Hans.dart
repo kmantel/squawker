@@ -78,11 +78,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_to_group": MessageLookupByLibrary.simpleMessage("添加到订阅组"),
         "all": MessageLookupByLibrary.simpleMessage("全部"),
         "all_the_great_software_used_by_fritter":
-            MessageLookupByLibrary.simpleMessage(" 所使用的伟大项目😇"),
+            MessageLookupByLibrary.simpleMessage("Quacker 所使用的伟大项目😇"),
         "an_error_was_reported_to__thank_you":
             MessageLookupByLibrary.simpleMessage("已向  报告了一个错误。感谢！"),
         "an_update_for_fritter_is_available":
-            MessageLookupByLibrary.simpleMessage(" 有新版本 🚀"),
+            MessageLookupByLibrary.simpleMessage("Quacker 有新版本 🚀"),
         "are_you_sure": MessageLookupByLibrary.simpleMessage("你确定吗？"),
         "are_you_sure_you_want_to_delete_the_subscription_group_name_of_group":
             m0,
@@ -159,20 +159,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "followers": MessageLookupByLibrary.simpleMessage("关注者"),
         "following": MessageLookupByLibrary.simpleMessage("正在关注"),
         "forbidden": MessageLookupByLibrary.simpleMessage("Twitter 表示禁止访问此内容"),
-        "fritter": MessageLookupByLibrary.simpleMessage(""),
-        "fritter_blue": MessageLookupByLibrary.simpleMessage(" 蓝"),
+        "fritter": MessageLookupByLibrary.simpleMessage("Quacker"),
+        "fritter_blue": MessageLookupByLibrary.simpleMessage("Quacker 蓝"),
         "functionality_unsupported":
             MessageLookupByLibrary.simpleMessage("Twitter 不再支持此功能！"),
         "general": MessageLookupByLibrary.simpleMessage("通用"),
         "group_name": m6,
         "groups": MessageLookupByLibrary.simpleMessage("订阅组"),
         "help_make_fritter_even_better":
-            MessageLookupByLibrary.simpleMessage("一起改进 ，让它变得更好😉"),
+            MessageLookupByLibrary.simpleMessage("一起改进 Quacker，让它变得更好😉"),
         "help_support_fritters_future":
-            MessageLookupByLibrary.simpleMessage("帮助支持  的未来🍚"),
+            MessageLookupByLibrary.simpleMessage("帮助支持 Quacker 的未来🍚"),
         "here_is_the_data_that_will_be_sent_it_will_only_be_used_to_determine_which_devices_and_languages_to_support_in_fritter_in_the_future":
             MessageLookupByLibrary.simpleMessage(
-                "这是将要发送的数据，仅用于识别  未来应该支持的设备和语言。"),
+                "这是将要发送的数据，仅用于识别 Quacker 未来应该支持的设备和语言。"),
         "hide_sensitive_tweets": MessageLookupByLibrary.simpleMessage("隐藏敏感推文"),
         "home": MessageLookupByLibrary.simpleMessage("主页"),
         "if_you_have_any_feedback_on_this_feature_please_leave_it_on":
@@ -187,7 +187,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "include_replies": MessageLookupByLibrary.simpleMessage("包括回复"),
         "include_retweets": MessageLookupByLibrary.simpleMessage("包括转推"),
         "it_looks_like_you_have_already_said_hello_from_this_version_of_fritter":
-            MessageLookupByLibrary.simpleMessage("看来你已用这个版本的  打过招呼了！"),
+            MessageLookupByLibrary.simpleMessage("看来你已用这个版本的 Quacker 打过招呼了！"),
         "it_looks_like_you_have_already_sent_a_ping_recently":
             MessageLookupByLibrary.simpleMessage("您最近似乎已经 Ping 过一次了 🤔"),
         "joined": m8,
@@ -276,7 +276,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "send": MessageLookupByLibrary.simpleMessage("发送"),
         "send_a_non_identifying_ping_to_let_me_know_you_are_using_fritter_and_to_help_future_development":
             MessageLookupByLibrary.simpleMessage(
-                "向开发人员发送匿名 Ping 以表明您正在使用 ，并支持未来的开发"),
+                "向开发人员发送匿名 Ping 以表明您正在使用 Quacker，并支持未来的开发"),
         "send_always": MessageLookupByLibrary.simpleMessage("总是发送"),
         "send_once": MessageLookupByLibrary.simpleMessage("发送一次"),
         "share_base_url": MessageLookupByLibrary.simpleMessage("自定义分享 URL"),
@@ -292,10 +292,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("检查更新"),
         "small": MessageLookupByLibrary.simpleMessage("小"),
         "something_broke_in_fritter":
-            MessageLookupByLibrary.simpleMessage(" 发生异常。"),
+            MessageLookupByLibrary.simpleMessage("Quacker 发生异常。"),
         "something_just_went_wrong_in_fritter_and_an_error_report_has_been_generated":
             MessageLookupByLibrary.simpleMessage(
-                " 刚刚出了点问题，并生成了错误报告。可将该报告发送给  开发者以帮助解决问题。"),
+                "Quacker 刚刚出了点问题，并生成了错误报告。可将该报告发送给 Quacker 开发者以帮助解决问题。"),
         "sorry_the_replied_tweet_could_not_be_found":
             MessageLookupByLibrary.simpleMessage("对不起，无法找到回复的推文！"),
         "subscribe": MessageLookupByLibrary.simpleMessage("订阅"),
@@ -307,7 +307,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "tap_to_download_release_version": m11,
         "tap_to_show_getMediaType_item_type": m12,
         "thanks_for_helping_fritter":
-            MessageLookupByLibrary.simpleMessage("感谢您帮助 ！💖"),
+            MessageLookupByLibrary.simpleMessage("感谢您帮助 Quacker！💖"),
         "thanks_for_reporting_we_will_try_and_fix_it_in_no_time":
             MessageLookupByLibrary.simpleMessage("感谢您的反馈。我们将尽快修复它！"),
         "the_file_does_not_exist_please_ensure_it_is_located_at_file_path": m13,
@@ -426,6 +426,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("你的个人资料必须是公开的，否则无法导入"),
         "your_report_will_be_sent_to_fritter__project":
             MessageLookupByLibrary.simpleMessage(
-                "您的报告将被发送至  的  项目，隐私详情可在下述位置找到：")
+                "您的报告将被发送至 Quacker 的  项目，隐私详情可在下述位置找到：")
       };
 }

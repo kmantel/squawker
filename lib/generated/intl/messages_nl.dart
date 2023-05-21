@@ -34,7 +34,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Een fout is gerapporteerd aan . Bedankt!"),
         "back": MessageLookupByLibrary.simpleMessage("Terug"),
         "bad_guest_token": MessageLookupByLibrary.simpleMessage(
-            "Twitter heeft onze toegangssleutel ongeldig gemaakt. Probeer  opnieuw te starten!"),
+            "Twitter heeft onze toegangssleutel ongeldig gemaakt. Probeer Quacker opnieuw te starten!"),
         "catastrophic_failure":
             MessageLookupByLibrary.simpleMessage("Katastrofale fout"),
         "could_not_contact_twitter": MessageLookupByLibrary.simpleMessage(
@@ -81,7 +81,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Deel link naar tweet"),
         "something_just_went_wrong_in_fritter_and_an_error_report_has_been_generated":
             MessageLookupByLibrary.simpleMessage(
-                "Er ging iets mis in , een rapport is gegenereerd. Het rapport kan naar de  ontwikkelaars worden gestuurd zodat het probleem kan worden opgespoord."),
+                "Er ging iets mis in Quacker, een rapport is gegenereerd. Het rapport kan naar de Quacker ontwikkelaars worden gestuurd zodat het probleem kan worden opgespoord."),
         "sorry_the_replied_tweet_could_not_be_found":
             MessageLookupByLibrary.simpleMessage(
                 "Sorry, kon de beantwoorde tweet niet vinden!"),
@@ -129,6 +129,6 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Automatische foutrapportage inschakelen?"),
         "your_report_will_be_sent_to_fritter__project":
             MessageLookupByLibrary.simpleMessage(
-                "Het rapport wordt naar het  project van  gestuurd, details over privacy kunnen worden gevonden op:")
+                "Het rapport wordt naar het  project van Quacker gestuurd, details over privacy kunnen worden gevonden op:")
       };
 }

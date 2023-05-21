@@ -50,7 +50,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "send_once": MessageLookupByLibrary.simpleMessage("Enviar una vez"),
         "something_just_went_wrong_in_fritter_and_an_error_report_has_been_generated":
             MessageLookupByLibrary.simpleMessage(
-                "Algo ha ido mal en  y se ha generado un informe de error. El informe puede ser enviado a los desarrolladores de  para ayudar a solucionar el problema."),
+                "Algo ha ido mal en Quacker y se ha generado un informe de error. El informe puede ser enviado a los desarrolladores de Quacker para ayudar a solucionar el problema."),
         "subscribe": MessageLookupByLibrary.simpleMessage("suscribirse"),
         "subscriptions": MessageLookupByLibrary.simpleMessage("Subscripciones"),
         "thanks_for_reporting_we_will_try_and_fix_it_in_no_time":
@@ -101,6 +101,6 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Todavía no se has guardado ningún tuit."),
         "your_report_will_be_sent_to_fritter__project":
             MessageLookupByLibrary.simpleMessage(
-                "Su informe se enviará al proyecto \'s , y los detalles de privacidad se pueden encontrar en:")
+                "Su informe se enviará al proyecto Quacker\'s , y los detalles de privacidad se pueden encontrar en:")
       };
 }

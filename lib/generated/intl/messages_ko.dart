@@ -63,7 +63,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "send_once": MessageLookupByLibrary.simpleMessage("한번 보내기"),
         "something_just_went_wrong_in_fritter_and_an_error_report_has_been_generated":
             MessageLookupByLibrary.simpleMessage(
-                "에 오류가 발생하였으며, 오류 보고서가 생성되었습니다. 문제해결을 위해 보고서를  개발자에게 보낼 수 있습니다."),
+                "Quacker에 오류가 발생하였으며, 오류 보고서가 생성되었습니다. 문제해결을 위해 보고서를 Quacker 개발자에게 보낼 수 있습니다."),
         "subscribe": MessageLookupByLibrary.simpleMessage("구독"),
         "subscriptions": MessageLookupByLibrary.simpleMessage("구독"),
         "thanks_for_reporting_we_will_try_and_fix_it_in_no_time":

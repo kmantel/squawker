@@ -89,20 +89,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "all": MessageLookupByLibrary.simpleMessage("Semua"),
         "all_the_great_software_used_by_fritter":
             MessageLookupByLibrary.simpleMessage(
-                "Semua perangkat lunak hebat yang digunakan oleh "),
+                "Semua perangkat lunak hebat yang digunakan oleh Quacker"),
         "an_error_was_reported_to__thank_you":
             MessageLookupByLibrary.simpleMessage(
                 "Sebuah galat telah dilaporkan ke . Terima kasih!"),
         "an_update_for_fritter_is_available":
             MessageLookupByLibrary.simpleMessage(
-                "Pembaruan untuk  tersedia! 🚀"),
+                "Pembaruan untuk Quacker tersedia! 🚀"),
         "are_you_sure":
             MessageLookupByLibrary.simpleMessage("Apakah Anda yakin?"),
         "are_you_sure_you_want_to_delete_the_subscription_group_name_of_group":
             m0,
         "back": MessageLookupByLibrary.simpleMessage("Kembali"),
         "bad_guest_token": MessageLookupByLibrary.simpleMessage(
-            "Twitter telah membatalkan token akses kami. Coba buka ulang !"),
+            "Twitter telah membatalkan token akses kami. Coba buka ulang Quacker!"),
         "blue_theme_based_on_the_twitter_color_scheme":
             MessageLookupByLibrary.simpleMessage(
                 "Tema biru berdasarkan pada skema warna Twitter"),
@@ -113,7 +113,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "choose_pages": MessageLookupByLibrary.simpleMessage("Pilih halaman"),
         "close": MessageLookupByLibrary.simpleMessage("Tutup"),
         "confirm_close_fritter": MessageLookupByLibrary.simpleMessage(
-            "Apakah Anda yakin ingin menutup ?"),
+            "Apakah Anda yakin ingin menutup Quacker?"),
         "contribute": MessageLookupByLibrary.simpleMessage("Kontribusi"),
         "copied_address_to_clipboard": MessageLookupByLibrary.simpleMessage(
             "Alamat disalin ke papan klip"),
@@ -156,7 +156,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "download_handling_type_directory":
             MessageLookupByLibrary.simpleMessage("Simpan ke direktori"),
         "download_media_no_url": MessageLookupByLibrary.simpleMessage(
-            "Tidak bisa mengunduh. Media ini hanya tersedia sebagai siaran, yang  belum bisa mengunduhnya."),
+            "Tidak bisa mengunduh. Media ini hanya tersedia sebagai siaran, yang Quacker belum bisa mengunduhnya."),
         "download_path": MessageLookupByLibrary.simpleMessage("Jalur unduhan"),
         "downloading_media":
             MessageLookupByLibrary.simpleMessage("Mengunduh media..."),
@@ -185,18 +185,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "following": MessageLookupByLibrary.simpleMessage("Mengikuti"),
         "forbidden": MessageLookupByLibrary.simpleMessage(
             "Twitter mengatakan bahwa akses ke sini terlarang"),
-        "fritter": MessageLookupByLibrary.simpleMessage(""),
-        "fritter_blue": MessageLookupByLibrary.simpleMessage(" biru"),
+        "fritter": MessageLookupByLibrary.simpleMessage("Quacker"),
+        "fritter_blue": MessageLookupByLibrary.simpleMessage("Quacker biru"),
         "general": MessageLookupByLibrary.simpleMessage("Umum"),
         "group_name": m6,
         "groups": MessageLookupByLibrary.simpleMessage("Grup"),
-        "help_make_fritter_even_better":
-            MessageLookupByLibrary.simpleMessage("Bantu  menjadi lebih baik"),
-        "help_support_fritters_future":
-            MessageLookupByLibrary.simpleMessage("Bantu dukung masa depan "),
+        "help_make_fritter_even_better": MessageLookupByLibrary.simpleMessage(
+            "Bantu Quacker menjadi lebih baik"),
+        "help_support_fritters_future": MessageLookupByLibrary.simpleMessage(
+            "Bantu dukung masa depan Quacker"),
         "here_is_the_data_that_will_be_sent_it_will_only_be_used_to_determine_which_devices_and_languages_to_support_in_fritter_in_the_future":
             MessageLookupByLibrary.simpleMessage(
-                "Berikut data yang akan dikirim. Ini hanya akan digunakan untuk menentukan perangkat dan bahasa mana yang akan didukung di  di masa mendatang."),
+                "Berikut data yang akan dikirim. Ini hanya akan digunakan untuk menentukan perangkat dan bahasa mana yang akan didukung di Quacker di masa mendatang."),
         "hide_sensitive_tweets":
             MessageLookupByLibrary.simpleMessage("Sembunyikan cuitan sensitif"),
         "home": MessageLookupByLibrary.simpleMessage("Beranda"),
@@ -217,7 +217,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Sertakan cuit ulang"),
         "it_looks_like_you_have_already_said_hello_from_this_version_of_fritter":
             MessageLookupByLibrary.simpleMessage(
-                "Sepertinya Anda sudah menyapa dari versi  ini!"),
+                "Sepertinya Anda sudah menyapa dari versi Quacker ini!"),
         "it_looks_like_you_have_already_sent_a_ping_recently":
             MessageLookupByLibrary.simpleMessage(
                 "Sepertinya Anda sudah mengirim ping baru-baru ini 🤔"),
@@ -285,7 +285,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Mohon pastikan data yang ingin Anda impor terletak di sana, kemudian tekan tombol impor di bawah."),
         "please_note_that_the_method_fritter_uses_to_import_subscriptions_is_heavily_rate_limited_by_twitter_so_this_may_fail_if_you_have_a_lot_of_followed_accounts":
             MessageLookupByLibrary.simpleMessage(
-                "Mohon dicatat bahwa metode yang  gunakan untuk mengimpor langganan sangat dibatasi oleh Twitter, jadi ini mungkin akan gagal jika Anda mengikuti banyak akun."),
+                "Mohon dicatat bahwa metode yang Quacker gunakan untuk mengimpor langganan sangat dibatasi oleh Twitter, jadi ini mungkin akan gagal jika Anda mengikuti banyak akun."),
         "possibly_sensitive":
             MessageLookupByLibrary.simpleMessage("Kemungkinan sensitif"),
         "possibly_sensitive_profile": MessageLookupByLibrary.simpleMessage(
@@ -324,7 +324,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "send": MessageLookupByLibrary.simpleMessage("Kirim"),
         "send_a_non_identifying_ping_to_let_me_know_you_are_using_fritter_and_to_help_future_development":
             MessageLookupByLibrary.simpleMessage(
-                "Kirim ping tak-mengidentifikasi untuk memberi tahu saya bahwa Anda menggunakan , dan untuk membantu pengembangan di masa mendatang"),
+                "Kirim ping tak-mengidentifikasi untuk memberi tahu saya bahwa Anda menggunakan Quacker, dan untuk membantu pengembangan di masa mendatang"),
         "send_always": MessageLookupByLibrary.simpleMessage("Kirim selalu"),
         "send_once": MessageLookupByLibrary.simpleMessage("Kirim sekali"),
         "share_tweet_content":
@@ -335,15 +335,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Bagi tautan cuitan"),
         "should_check_for_updates_description":
             MessageLookupByLibrary.simpleMessage(
-                "Periksa pembaruan ketika  dimulai"),
+                "Periksa pembaruan ketika Quacker dimulai"),
         "should_check_for_updates_label":
             MessageLookupByLibrary.simpleMessage("Periksa pembaruan"),
         "small": MessageLookupByLibrary.simpleMessage("Kecil"),
         "something_broke_in_fritter":
-            MessageLookupByLibrary.simpleMessage("Sesuatu rusak di ."),
+            MessageLookupByLibrary.simpleMessage("Sesuatu rusak di Quacker."),
         "something_just_went_wrong_in_fritter_and_an_error_report_has_been_generated":
             MessageLookupByLibrary.simpleMessage(
-                "Ada sesuatu yang salah di , dan laporan galat telah dibuat. Laporan bisa dikirim ke pengembang  untuk membantu memperbaiki masalah."),
+                "Ada sesuatu yang salah di Quacker, dan laporan galat telah dibuat. Laporan bisa dikirim ke pengembang Quacker untuk membantu memperbaiki masalah."),
         "sorry_the_replied_tweet_could_not_be_found":
             MessageLookupByLibrary.simpleMessage(
                 "Maaf, cuitan yang dibalas tidak dapat ditemukan!"),
@@ -356,7 +356,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "tap_to_download_release_version": m11,
         "tap_to_show_getMediaType_item_type": m12,
         "thanks_for_helping_fritter": MessageLookupByLibrary.simpleMessage(
-            "Terima kasih telah membantu ! 💖"),
+            "Terima kasih telah membantu Quacker! 💖"),
         "thanks_for_reporting_we_will_try_and_fix_it_in_no_time":
             MessageLookupByLibrary.simpleMessage(
                 "Terima kasih telah melaporkan. Kami akan mencoba dan memperbaikinya secepatnya!"),
@@ -509,6 +509,6 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Profil Anda harus publik, jika tidak impor tidak akan bekerja"),
         "your_report_will_be_sent_to_fritter__project":
             MessageLookupByLibrary.simpleMessage(
-                "Laporan Anda akan dikirim ke proyek  , dan detail privasi bisa ditemukan pada:")
+                "Laporan Anda akan dikirim ke proyek  Quacker, dan detail privasi bisa ditemukan pada:")
       };
 }

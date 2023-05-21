@@ -135,7 +135,7 @@ class SettingsGeneralFragment extends StatelessWidget {
             title: Text(L10n.of(context).mute_videos),
             subtitle: Text(L10n.of(context).mute_video_description),
           ),
-          PrefCheckbox(
+          PrefSwitch(
             title: Text(L10n.of(context).hide_sensitive_tweets),
             subtitle: Text(L10n.of(context).whether_to_hide_tweets_marked_as_sensitive),
             pref: optionTweetsHideSensitive,

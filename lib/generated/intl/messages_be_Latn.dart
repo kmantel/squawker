@@ -66,7 +66,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Uklučajučy retvity"),
         "it_looks_like_you_have_already_said_hello_from_this_version_of_fritter":
             MessageLookupByLibrary.simpleMessage(
-                "Vyhladaje na toje, što vy ŭžo nas pryvitali ad hetaj versyi !"),
+                "Vyhladaje na toje, što vy ŭžo nas pryvitali ad hetaj versyi Quacker!"),
         "it_looks_like_you_have_already_sent_a_ping_recently":
             MessageLookupByLibrary.simpleMessage(
                 "Padobna, što vy ŭžo adpraŭlali pinh niadaŭna 🤔"),
@@ -87,11 +87,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "send_once": MessageLookupByLibrary.simpleMessage("Adpravić adzin raz"),
         "something_just_went_wrong_in_fritter_and_an_error_report_has_been_generated":
             MessageLookupByLibrary.simpleMessage(
-                "Niešta pajšło nie tak u , i była stvorana spravazdača ab pamyłcy. Spravazdaču možna adpravić raspracoŭnikam , kab dapamahčy vypravić prablemu."),
+                "Niešta pajšło nie tak u Quacker, i była stvorana spravazdača ab pamyłcy. Spravazdaču možna adpravić raspracoŭnikam Quacker, kab dapamahčy vypravić prablemu."),
         "subscribe": MessageLookupByLibrary.simpleMessage("Padpisacca"),
         "subscriptions": MessageLookupByLibrary.simpleMessage("Padpiski"),
-        "thanks_for_helping_fritter":
-            MessageLookupByLibrary.simpleMessage("Dziakuj za dapamohu ! 💖"),
+        "thanks_for_helping_fritter": MessageLookupByLibrary.simpleMessage(
+            "Dziakuj za dapamohu Quacker! 💖"),
         "thanks_for_reporting_we_will_try_and_fix_it_in_no_time":
             MessageLookupByLibrary.simpleMessage(
                 "Dziakuj za spravazdaču. My pastarajemsia vypravić heta ŭ bližejšy čas!"),
@@ -155,6 +155,6 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Vaša pryłada pracuje pad kiravańniem versyi Android, starejšyj za KitKat (4.4), tamu ekspart moža być zachavany tolki ŭ:"),
         "your_report_will_be_sent_to_fritter__project":
             MessageLookupByLibrary.simpleMessage(
-                "Vaša spravazdača budzie dasłana ŭ  , a infarmacyju pra kanfidencyjnaść možna znajści tut:")
+                "Vaša spravazdača budzie dasłana ŭ  Quacker, a infarmacyju pra kanfidencyjnaść možna znajści tut:")
       };
 }

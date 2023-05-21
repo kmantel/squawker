@@ -68,7 +68,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "about": MessageLookupByLibrary.simpleMessage("について"),
+        "about": MessageLookupByLibrary.simpleMessage("Quackerについて"),
         "account_suspended": MessageLookupByLibrary.simpleMessage("凍結済みアカウント"),
         "activate_non_confirmation_bias_mode_description":
             MessageLookupByLibrary.simpleMessage(
@@ -78,12 +78,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_to_group": MessageLookupByLibrary.simpleMessage("グループに追加"),
         "all": MessageLookupByLibrary.simpleMessage("すべて"),
         "all_the_great_software_used_by_fritter":
-            MessageLookupByLibrary.simpleMessage("で使用する偉大なソフトウェア"),
+            MessageLookupByLibrary.simpleMessage("Quackerで使用する偉大なソフトウェア"),
         "an_error_was_reported_to__thank_you":
             MessageLookupByLibrary.simpleMessage(
                 "エラーがSentoryに送信されました。ありがとうございました！"),
         "an_update_for_fritter_is_available":
-            MessageLookupByLibrary.simpleMessage("の更新が利用可能です！🚀"),
+            MessageLookupByLibrary.simpleMessage("Quackerの更新が利用可能です！🚀"),
         "are_you_sure": MessageLookupByLibrary.simpleMessage("確認"),
         "are_you_sure_you_want_to_delete_the_subscription_group_name_of_group":
             m0,
@@ -95,7 +95,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "choose": MessageLookupByLibrary.simpleMessage("選択"),
         "close": MessageLookupByLibrary.simpleMessage("閉じる"),
         "confirm_close_fritter":
-            MessageLookupByLibrary.simpleMessage(" を閉じますか？"),
+            MessageLookupByLibrary.simpleMessage("Quacker を閉じますか？"),
         "contribute": MessageLookupByLibrary.simpleMessage("貢献する"),
         "copied_address_to_clipboard":
             MessageLookupByLibrary.simpleMessage("アドレスをクリップボードにコピーしました"),
@@ -134,7 +134,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "download_handling_type_directory":
             MessageLookupByLibrary.simpleMessage("ディレクトリに保存"),
         "download_media_no_url": MessageLookupByLibrary.simpleMessage(
-            "ダウンロードできません。このメディアはストリーム限定の可能性があり、今のではダウンロードできません。"),
+            "ダウンロードできません。このメディアはストリーム限定の可能性があり、今のQuackerではダウンロードできません。"),
         "download_path": MessageLookupByLibrary.simpleMessage("ダウンロード先"),
         "downloading_media":
             MessageLookupByLibrary.simpleMessage("メディアをダウンロード中..."),
@@ -159,18 +159,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "followers": MessageLookupByLibrary.simpleMessage("フォロワー"),
         "following": MessageLookupByLibrary.simpleMessage("フォロー"),
         "forbidden": MessageLookupByLibrary.simpleMessage("Twitterによればアクセス禁止"),
-        "fritter": MessageLookupByLibrary.simpleMessage(""),
-        "fritter_blue": MessageLookupByLibrary.simpleMessage("ブルー"),
+        "fritter": MessageLookupByLibrary.simpleMessage("Quacker"),
+        "fritter_blue": MessageLookupByLibrary.simpleMessage("Quackerブルー"),
         "general": MessageLookupByLibrary.simpleMessage("一般"),
         "group_name": m6,
         "groups": MessageLookupByLibrary.simpleMessage("グループ"),
         "help_make_fritter_even_better":
-            MessageLookupByLibrary.simpleMessage("を改善するために協力する"),
+            MessageLookupByLibrary.simpleMessage("Quackerを改善するために協力する"),
         "help_support_fritters_future":
-            MessageLookupByLibrary.simpleMessage("の将来を支援する"),
+            MessageLookupByLibrary.simpleMessage("Quackerの将来を支援する"),
         "here_is_the_data_that_will_be_sent_it_will_only_be_used_to_determine_which_devices_and_languages_to_support_in_fritter_in_the_future":
             MessageLookupByLibrary.simpleMessage(
-                "以下が送信されるデータです。今後がサポートすべき端末と言語を特定するためにのみ使用されます。"),
+                "以下が送信されるデータです。今後Quackerがサポートすべき端末と言語を特定するためにのみ使用されます。"),
         "hide_sensitive_tweets":
             MessageLookupByLibrary.simpleMessage("センシティブな内容のツイートを隠す"),
         "home": MessageLookupByLibrary.simpleMessage("ホーム"),
@@ -188,7 +188,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "include_replies": MessageLookupByLibrary.simpleMessage("返信を含める"),
         "include_retweets": MessageLookupByLibrary.simpleMessage("リツイートを含める"),
         "it_looks_like_you_have_already_said_hello_from_this_version_of_fritter":
-            MessageLookupByLibrary.simpleMessage("既にこのバージョンのから挨拶を送っているようです！"),
+            MessageLookupByLibrary.simpleMessage(
+                "既にこのバージョンのQuackerから挨拶を送っているようです！"),
         "it_looks_like_you_have_already_sent_a_ping_recently":
             MessageLookupByLibrary.simpleMessage("既に最近pingを送信しているようです。🤔"),
         "joined": m8,
@@ -244,7 +245,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "インポートしたいデータが存在することを確認し、下のインポートボタンを押してください。"),
         "please_note_that_the_method_fritter_uses_to_import_subscriptions_is_heavily_rate_limited_by_twitter_so_this_may_fail_if_you_have_a_lot_of_followed_accounts":
             MessageLookupByLibrary.simpleMessage(
-                "が登録アカウントをインポートする際に使うメソッドはTwitterが厳しくレート制限しているため、フォローアカウントが多い場合は失敗する可能性があります。"),
+                "Quackerが登録アカウントをインポートする際に使うメソッドはTwitterが厳しくレート制限しているため、フォローアカウントが多い場合は失敗する可能性があります。"),
         "possibly_sensitive_profile": MessageLookupByLibrary.simpleMessage(
             "プロフィールにセンシティブな画像、言語、その他のコンテンツが含まれる可能性があります。表示しますか？"),
         "possibly_sensitive_tweet": MessageLookupByLibrary.simpleMessage(
@@ -272,7 +273,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "send": MessageLookupByLibrary.simpleMessage("送信"),
         "send_a_non_identifying_ping_to_let_me_know_you_are_using_fritter_and_to_help_future_development":
             MessageLookupByLibrary.simpleMessage(
-                "を使用していることを示す匿名のpingを開発者に送り、今後の開発を支援する"),
+                "Quackerを使用していることを示す匿名のpingを開発者に送り、今後の開発を支援する"),
         "send_always": MessageLookupByLibrary.simpleMessage("いつも送信する"),
         "send_once": MessageLookupByLibrary.simpleMessage("今回だけ送信"),
         "share_tweet_content":
@@ -281,15 +282,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ツイート内容とリンクを共有"),
         "share_tweet_link": MessageLookupByLibrary.simpleMessage("ツイートリンクを共有"),
         "should_check_for_updates_description":
-            MessageLookupByLibrary.simpleMessage("開始時に更新を確認する"),
+            MessageLookupByLibrary.simpleMessage("Quacker開始時に更新を確認する"),
         "should_check_for_updates_label":
             MessageLookupByLibrary.simpleMessage("更新を確認"),
         "small": MessageLookupByLibrary.simpleMessage("小"),
         "something_broke_in_fritter":
-            MessageLookupByLibrary.simpleMessage("に異常が発生しました。"),
+            MessageLookupByLibrary.simpleMessage("Quackerに異常が発生しました。"),
         "something_just_went_wrong_in_fritter_and_an_error_report_has_been_generated":
             MessageLookupByLibrary.simpleMessage(
-                "に問題が発生し、エラーレポートが作成されました。問題修正のため、このレポートを開発者に送信できます。"),
+                "Quackerに問題が発生し、エラーレポートが作成されました。問題修正のため、このレポートを開発者に送信できます。"),
         "sorry_the_replied_tweet_could_not_be_found":
             MessageLookupByLibrary.simpleMessage("返信ツイートが見つかりませんでした！"),
         "subscribe": MessageLookupByLibrary.simpleMessage("登録する"),
@@ -301,7 +302,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "tap_to_download_release_version": m11,
         "tap_to_show_getMediaType_item_type": m12,
         "thanks_for_helping_fritter":
-            MessageLookupByLibrary.simpleMessage("を支援いただきありがとうございます！💖"),
+            MessageLookupByLibrary.simpleMessage("Quackerを支援いただきありがとうございます！💖"),
         "thanks_for_reporting_we_will_try_and_fix_it_in_no_time":
             MessageLookupByLibrary.simpleMessage(
                 "レポートありがとうございます。できるだけ早く修正いたします！"),
@@ -418,6 +419,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("公開アカウントである必要があります"),
         "your_report_will_be_sent_to_fritter__project":
             MessageLookupByLibrary.simpleMessage(
-                "レポートはのプロジェクトに送信されます。プライバシーの詳細は以下の通りです：")
+                "レポートはQuackerのプロジェクトに送信されます。プライバシーの詳細は以下の通りです：")
       };
 }

@@ -22,9 +22,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m0(name) => "هل أنت متأكد من حذف اسم مجموعة الاشتراك ${name}?";
 
-  static String m1(fileName) => "صُدِّرَت البيانات إلى ${fileName}";
+  static String m1(fileName) => "صُدِّرَت البيانات إلى ${fileName}";
 
-  static String m2(fullPath) => "صُدِّرَت البيانات إلى ${fullPath}";
+  static String m2(fullPath) => "صُدِّرَت البيانات إلى ${fullPath}";
 
   static String m3(timeagoFormat) => "اتنهى ${timeagoFormat}";
 
@@ -90,6 +90,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "all_the_great_software_used_by_fritter":
             MessageLookupByLibrary.simpleMessage(
                 "كل البرمجيات الرائعة التي يستخدمها فريتر"),
+        "an_error_was_reported_to__thank_you":
+            MessageLookupByLibrary.simpleMessage("بُلِّغ عن خطأ للحارس. شكرا!"),
         "an_update_for_fritter_is_available":
             MessageLookupByLibrary.simpleMessage("هناك تحديث متاح لفريتر! 🚀"),
         "are_you_sure": MessageLookupByLibrary.simpleMessage("هل أنت متأكد؟"),
@@ -97,7 +99,7 @@ class MessageLookup extends MessageLookupByLibrary {
             m0,
         "back": MessageLookupByLibrary.simpleMessage("رجوع"),
         "bad_guest_token": MessageLookupByLibrary.simpleMessage(
-            "لقد ألغى Twitter رمز الوصول الخاص بنا. من فضلك حاول إعادة فتح Fritter!"),
+            "لقد ألغى Twitter رمز الوصول الخاص بنا. من فضلك حاول إعادة فتح Quacker!"),
         "blue_theme_based_on_the_twitter_color_scheme":
             MessageLookupByLibrary.simpleMessage(
                 "السمة الزرقاء بنائاً على سمة تويتر"),
@@ -108,7 +110,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "choose_pages": MessageLookupByLibrary.simpleMessage("اختيار الصفحات"),
         "close": MessageLookupByLibrary.simpleMessage("اغلاق"),
         "confirm_close_fritter": MessageLookupByLibrary.simpleMessage(
-            "هل أنت متأكد من أنك تريد إغلاق Fritter؟"),
+            "هل أنت متأكد من أنك تريد إغلاق Quacker؟"),
         "contribute": MessageLookupByLibrary.simpleMessage("المساهمة"),
         "copied_address_to_clipboard":
             MessageLookupByLibrary.simpleMessage("نسخ العنوان إلى الحافظة"),
@@ -156,6 +158,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "download_path": MessageLookupByLibrary.simpleMessage("مسار التنزيل"),
         "downloading_media":
             MessageLookupByLibrary.simpleMessage("تحميل الوسائط..."),
+        "enable_": MessageLookupByLibrary.simpleMessage("تفعيل الحارس؟"),
         "ended_timeago_format_endsAt_allowFromNow_true": m3,
         "ends_timeago_format_endsAt_allowFromNow_true": m4,
         "enter_your_twitter_username":
@@ -195,7 +198,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ساعد على دعم مستقبل فريتر"),
         "here_is_the_data_that_will_be_sent_it_will_only_be_used_to_determine_which_devices_and_languages_to_support_in_fritter_in_the_future":
             MessageLookupByLibrary.simpleMessage(
-                "هنا البيانات التي سيتم إرسالها. سيتم استخدامه فقط لتحديد الأجهزة واللغات التي يجب دعمها في Fritter في المستقبل."),
+                "هنا البيانات التي سيتم إرسالها. سيتم استخدامه فقط لتحديد الأجهزة واللغات التي يجب دعمها في Quacker في المستقبل."),
         "hide_sensitive_tweets":
             MessageLookupByLibrary.simpleMessage("إخفاء التغريدات الحساسة"),
         "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
@@ -285,7 +288,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "رجائاً تأكد ما إذا كانت البيانات موجودة هناك, ومن ثم اضغط على زر الاستيراد في أدناه."),
         "please_note_that_the_method_fritter_uses_to_import_subscriptions_is_heavily_rate_limited_by_twitter_so_this_may_fail_if_you_have_a_lot_of_followed_accounts":
             MessageLookupByLibrary.simpleMessage(
-                "يرجى ملاحظة أن الطريقة التي يستخدمها Fritter لاستيراد الاشتراكات محدودة بشكل كبير من قبل Twitter ، لذلك قد يفشل هذا إذا كان لديك الكثير من الحسابات المتابعة."),
+                "يرجى ملاحظة أن الطريقة التي يستخدمها Quacker لاستيراد الاشتراكات محدودة بشكل كبير من قبل Twitter ، لذلك قد يفشل هذا إذا كان لديك الكثير من الحسابات المتابعة."),
         "possibly_sensitive":
             MessageLookupByLibrary.simpleMessage("يحتمل أن تكون حساسة"),
         "possibly_sensitive_profile": MessageLookupByLibrary.simpleMessage(
@@ -322,7 +325,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "send": MessageLookupByLibrary.simpleMessage("إرسال"),
         "send_a_non_identifying_ping_to_let_me_know_you_are_using_fritter_and_to_help_future_development":
             MessageLookupByLibrary.simpleMessage(
-                "أرسل ping غير محدد الهوية لإخباري بأنك تستخدم Fritter وللمساعدة في التطوير المستقبلي"),
+                "أرسل ping غير محدد الهوية لإخباري بأنك تستخدم Quacker وللمساعدة في التطوير المستقبلي"),
         "send_always": MessageLookupByLibrary.simpleMessage("ابعث كل مرة"),
         "send_once": MessageLookupByLibrary.simpleMessage("ابعث مرة واحدة"),
         "share_base_url":
@@ -337,7 +340,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("مشاركة رابط التغريدة"),
         "should_check_for_updates_description":
             MessageLookupByLibrary.simpleMessage(
-                "تحقق من وجود تحديثات عندما يبدأ Fritter"),
+                "تحقق من وجود تحديثات عندما يبدأ Quacker"),
         "should_check_for_updates_label":
             MessageLookupByLibrary.simpleMessage("التحقق من وجود تحديثات"),
         "small": MessageLookupByLibrary.simpleMessage("صغير"),
@@ -480,6 +483,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "when_a_new_app_update_is_available":
             MessageLookupByLibrary.simpleMessage(
                 "عندما يكون هناك تحديث جديد للتطبيق"),
+        "whether_errors_should_be_reported_to_":
+            MessageLookupByLibrary.simpleMessage(
+                "ما إذا يجب على الأخطاء البرمجية أن يُبلّغ عنها إلى الحارس"),
         "whether_to_hide_tweets_marked_as_sensitive":
             MessageLookupByLibrary.simpleMessage(
                 "ما إذا كنت تريد إخفاء التغريدات التي تم وضع علامة عليها على أنها حساسة"),
@@ -504,6 +510,9 @@ class MessageLookup extends MessageLookupByLibrary {
                 "جهازك يشتغل على نظام أقدم من أندرويد كيت كات (4.4)، لذلك يستطيع التصدير أن يُحفظ فقط إلى:"),
         "your_profile_must_be_public_otherwise_the_import_will_not_work":
             MessageLookupByLibrary.simpleMessage(
-                "يجب أن يكون ملف التعريف الخاص بك عاما، وإلا لن يعمل الاستيراد")
+                "يجب أن يكون ملف التعريف الخاص بك عاما، وإلا لن يعمل الاستيراد"),
+        "your_report_will_be_sent_to_fritter__project":
+            MessageLookupByLibrary.simpleMessage(
+                "تقريرك سيُبعث إلى مشروع حراسة فريتر، ويمكن العثور على تفاصيل الخصوصية في:")
       };
 }

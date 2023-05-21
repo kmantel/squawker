@@ -91,19 +91,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "all": MessageLookupByLibrary.simpleMessage("Hepsi"),
         "all_the_great_software_used_by_fritter":
             MessageLookupByLibrary.simpleMessage(
-                " tarafından kullanılan tüm harika yazılımlar"),
+                "Quacker tarafından kullanılan tüm harika yazılımlar"),
         "an_error_was_reported_to__thank_you":
             MessageLookupByLibrary.simpleMessage(
                 "Hata \'e bildirildi. Teşekkürler!"),
         "an_update_for_fritter_is_available":
             MessageLookupByLibrary.simpleMessage(
-                " için bir güncelleme mevcut! 🚀"),
+                "Quacker için bir güncelleme mevcut! 🚀"),
         "are_you_sure": MessageLookupByLibrary.simpleMessage("Emin misiniz?"),
         "are_you_sure_you_want_to_delete_the_subscription_group_name_of_group":
             m0,
         "back": MessageLookupByLibrary.simpleMessage("Geri"),
         "bad_guest_token": MessageLookupByLibrary.simpleMessage(
-            "Twitter erişim belirtecimizi geçersiz kıldı. Lütfen \'ı yeniden açmayı deneyin!"),
+            "Twitter erişim belirtecimizi geçersiz kıldı. Lütfen Quacker\'ı yeniden açmayı deneyin!"),
         "blue_theme_based_on_the_twitter_color_scheme":
             MessageLookupByLibrary.simpleMessage(
                 "Twitter renk şemasına dayalı mavi tema"),
@@ -114,7 +114,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "choose_pages": MessageLookupByLibrary.simpleMessage("Sayfaları seçin"),
         "close": MessageLookupByLibrary.simpleMessage("Kapat"),
         "confirm_close_fritter": MessageLookupByLibrary.simpleMessage(
-            "\'ı kapatmak istediğinizden emin misiniz?"),
+            "Quacker\'ı kapatmak istediğinizden emin misiniz?"),
         "contribute": MessageLookupByLibrary.simpleMessage("Katkıda bulunun"),
         "copied_address_to_clipboard":
             MessageLookupByLibrary.simpleMessage("Adres panoya kopyalandı"),
@@ -158,7 +158,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "download_handling_type_directory":
             MessageLookupByLibrary.simpleMessage("Dizine kaydet"),
         "download_media_no_url": MessageLookupByLibrary.simpleMessage(
-            "İndirilemiyor. Bu medya yalnızca \'ın henüz indiremediği bir akış olarak mevcut olabilir."),
+            "İndirilemiyor. Bu medya yalnızca Quacker\'ın henüz indiremediği bir akış olarak mevcut olabilir."),
         "download_path": MessageLookupByLibrary.simpleMessage("İndirme yolu"),
         "downloading_media":
             MessageLookupByLibrary.simpleMessage("Medya indiriliyor..."),
@@ -190,20 +190,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "following": MessageLookupByLibrary.simpleMessage("Takip ediyor"),
         "forbidden": MessageLookupByLibrary.simpleMessage(
             "Twitter buna erişimin yasak olduğunu söylüyor"),
-        "fritter": MessageLookupByLibrary.simpleMessage(""),
-        "fritter_blue": MessageLookupByLibrary.simpleMessage(" mavisi"),
+        "fritter": MessageLookupByLibrary.simpleMessage("Quacker"),
+        "fritter_blue": MessageLookupByLibrary.simpleMessage("Quacker mavisi"),
         "functionality_unsupported": MessageLookupByLibrary.simpleMessage(
             "Bu işlev artık Twitter tarafından desteklenmiyor!"),
         "general": MessageLookupByLibrary.simpleMessage("Genel"),
         "group_name": m6,
         "groups": MessageLookupByLibrary.simpleMessage("Gruplar"),
         "help_make_fritter_even_better": MessageLookupByLibrary.simpleMessage(
-            "\'ın daha da iyi olmasına yardımcı olun"),
+            "Quacker\'ın daha da iyi olmasına yardımcı olun"),
         "help_support_fritters_future": MessageLookupByLibrary.simpleMessage(
-            "\'ın geleceğini desteklemeye yardımcı olun"),
+            "Quacker\'ın geleceğini desteklemeye yardımcı olun"),
         "here_is_the_data_that_will_be_sent_it_will_only_be_used_to_determine_which_devices_and_languages_to_support_in_fritter_in_the_future":
             MessageLookupByLibrary.simpleMessage(
-                "İşte gönderilecek veriler. Sadece gelecekte \'da hangi cihazların ve dillerin destekleneceğini belirlemek için kullanılacaktır."),
+                "İşte gönderilecek veriler. Sadece gelecekte Quacker\'da hangi cihazların ve dillerin destekleneceğini belirlemek için kullanılacaktır."),
         "hide_sensitive_tweets":
             MessageLookupByLibrary.simpleMessage("Hassas tweetleri gizle"),
         "home": MessageLookupByLibrary.simpleMessage("Ana sayfa"),
@@ -224,7 +224,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Retweet\'leri dahil et"),
         "it_looks_like_you_have_already_said_hello_from_this_version_of_fritter":
             MessageLookupByLibrary.simpleMessage(
-                "Görünüşe göre \'ın bu versiyonundan çoktan merhaba demişsiniz!"),
+                "Görünüşe göre Quacker\'ın bu versiyonundan çoktan merhaba demişsiniz!"),
         "it_looks_like_you_have_already_sent_a_ping_recently":
             MessageLookupByLibrary.simpleMessage(
                 "Görünüşe göre yakın zamanda bir ping göndermişsin 🤔"),
@@ -295,7 +295,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Lütfen içe aktarmak istediğiniz verilerin orada olduğundan emin olun, ardından aşağıdaki içe aktar düğmesine basın."),
         "please_note_that_the_method_fritter_uses_to_import_subscriptions_is_heavily_rate_limited_by_twitter_so_this_may_fail_if_you_have_a_lot_of_followed_accounts":
             MessageLookupByLibrary.simpleMessage(
-                "\'ın abonelikleri içe aktarmak için kullandığı yöntemin Twitter tarafından yüksek oranda sınırlandırıldığını, bu nedenle çok sayıda takip ettiğiniz hesap varsa bunun başarısız olabileceğini lütfen unutmayın."),
+                "Quacker\'ın abonelikleri içe aktarmak için kullandığı yöntemin Twitter tarafından yüksek oranda sınırlandırıldığını, bu nedenle çok sayıda takip ettiğiniz hesap varsa bunun başarısız olabileceğini lütfen unutmayın."),
         "possibly_sensitive":
             MessageLookupByLibrary.simpleMessage("Hassas olabilir"),
         "possibly_sensitive_profile": MessageLookupByLibrary.simpleMessage(
@@ -333,7 +333,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "send": MessageLookupByLibrary.simpleMessage("Gönder"),
         "send_a_non_identifying_ping_to_let_me_know_you_are_using_fritter_and_to_help_future_development":
             MessageLookupByLibrary.simpleMessage(
-                " kullandığınızı bildirmek ve gelecekteki geliştirmelere yardımcı olmak için tanımlayıcı olmayan bir ping gönderin"),
+                "Quacker kullandığınızı bildirmek ve gelecekteki geliştirmelere yardımcı olmak için tanımlayıcı olmayan bir ping gönderin"),
         "send_always": MessageLookupByLibrary.simpleMessage("Her zaman gönder"),
         "send_once": MessageLookupByLibrary.simpleMessage("Bir kez gönder"),
         "share_base_url":
@@ -348,15 +348,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Tweet bağlantısını paylaş"),
         "should_check_for_updates_description":
             MessageLookupByLibrary.simpleMessage(
-                " başladığında güncellemeleri denetle"),
+                "Quacker başladığında güncellemeleri denetle"),
         "should_check_for_updates_label":
             MessageLookupByLibrary.simpleMessage("Güncellemeleri denetle"),
         "small": MessageLookupByLibrary.simpleMessage("Küçük"),
-        "something_broke_in_fritter":
-            MessageLookupByLibrary.simpleMessage("\'da bir şey bozuldu."),
+        "something_broke_in_fritter": MessageLookupByLibrary.simpleMessage(
+            "Quacker\'da bir şey bozuldu."),
         "something_just_went_wrong_in_fritter_and_an_error_report_has_been_generated":
             MessageLookupByLibrary.simpleMessage(
-                "\'da bir şeyler ters gitti ve bir hata raporu oluşturuldu. Rapor, sorunun çözülmesine yardımcı olmaları için  geliştiricilerine gönderilebilir."),
+                "Quacker\'da bir şeyler ters gitti ve bir hata raporu oluşturuldu. Rapor, sorunun çözülmesine yardımcı olmaları için Quacker geliştiricilerine gönderilebilir."),
         "sorry_the_replied_tweet_could_not_be_found":
             MessageLookupByLibrary.simpleMessage(
                 "Üzgünüz, yanıtlanan tweet bulunamadı!"),
@@ -369,7 +369,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "tap_to_download_release_version": m11,
         "tap_to_show_getMediaType_item_type": m12,
         "thanks_for_helping_fritter": MessageLookupByLibrary.simpleMessage(
-            "\'a yardım ettiğin için teşekkürler! 💖"),
+            "Quacker\'a yardım ettiğin için teşekkürler! 💖"),
         "thanks_for_reporting_we_will_try_and_fix_it_in_no_time":
             MessageLookupByLibrary.simpleMessage(
                 "Bildirdiğiniz için teşekkürler. En kısa sürede düzeltmeye çalışacağız!"),
@@ -521,6 +521,6 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Profiliniz herkese açık olmalıdır, aksi takdirde alma işlemi çalışmaz"),
         "your_report_will_be_sent_to_fritter__project":
             MessageLookupByLibrary.simpleMessage(
-                "Raporunuz \'ın  projesine gönderilecektir ve gizlilik detaylarını şu adreste bulabilirsiniz:")
+                "Raporunuz Quacker\'ın  projesine gönderilecektir ve gizlilik detaylarını şu adreste bulabilirsiniz:")
       };
 }

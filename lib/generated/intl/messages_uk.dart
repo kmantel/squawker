@@ -46,7 +46,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "about": MessageLookupByLibrary.simpleMessage("Про "),
+        "about": MessageLookupByLibrary.simpleMessage("Про Quacker"),
         "activate_non_confirmation_bias_mode_description":
             MessageLookupByLibrary.simpleMessage(
                 "Приховати авторів твітів. Уникайте підтвердження, заснованого на авторитетних аргументах."),
@@ -57,7 +57,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "all": MessageLookupByLibrary.simpleMessage("Все"),
         "all_the_great_software_used_by_fritter":
             MessageLookupByLibrary.simpleMessage(
-                "Все чудове програмне забезпечення, яке використовує "),
+                "Все чудове програмне забезпечення, яке використовує Quacker"),
         "an_error_was_reported_to__thank_you":
             MessageLookupByLibrary.simpleMessage(
                 "До  надійшло повідомлення про помилку. Дякую!"),
@@ -114,16 +114,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "finished_with_snapshotData_users": m5,
         "followers": MessageLookupByLibrary.simpleMessage("Підписники"),
         "following": MessageLookupByLibrary.simpleMessage("Слідкує"),
-        "fritter": MessageLookupByLibrary.simpleMessage(""),
+        "fritter": MessageLookupByLibrary.simpleMessage("Quacker"),
         "general": MessageLookupByLibrary.simpleMessage("Головне"),
         "groups": MessageLookupByLibrary.simpleMessage("Групи"),
         "help_make_fritter_even_better": MessageLookupByLibrary.simpleMessage(
-            "Допоможіть зробити  ще кращим"),
+            "Допоможіть зробити Quacker ще кращим"),
         "help_support_fritters_future": MessageLookupByLibrary.simpleMessage(
-            "Допоможіть підтримати майбутнє "),
+            "Допоможіть підтримати майбутнє Quacker"),
         "here_is_the_data_that_will_be_sent_it_will_only_be_used_to_determine_which_devices_and_languages_to_support_in_fritter_in_the_future":
             MessageLookupByLibrary.simpleMessage(
-                "Ось дані, які будуть надіслані. Вони будуть використані лише для того, щоб визначити, які пристрої та мови підтримувати у  в майбутньому."),
+                "Ось дані, які будуть надіслані. Вони будуть використані лише для того, щоб визначити, які пристрої та мови підтримувати у Quacker в майбутньому."),
         "if_you_have_any_feedback_on_this_feature_please_leave_it_on":
             MessageLookupByLibrary.simpleMessage(
                 "Якщо у вас є відгуки про цю функцію, будь ласка, залиште їх на"),
@@ -141,7 +141,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Включити ретвіти"),
         "it_looks_like_you_have_already_said_hello_from_this_version_of_fritter":
             MessageLookupByLibrary.simpleMessage(
-                "Схоже, ви вже привіталися з цією версією !"),
+                "Схоже, ви вже привіталися з цією версією Quacker!"),
         "it_looks_like_you_have_already_sent_a_ping_recently":
             MessageLookupByLibrary.simpleMessage(
                 "Схоже, що ви вже відправляли пінг нещодавно 🤔"),
@@ -183,7 +183,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Будь ласка, переконайтеся, що дані, які ви хочете імпортувати, знаходяться там, а потім натисніть кнопку імпорту нижче."),
         "please_note_that_the_method_fritter_uses_to_import_subscriptions_is_heavily_rate_limited_by_twitter_so_this_may_fail_if_you_have_a_lot_of_followed_accounts":
             MessageLookupByLibrary.simpleMessage(
-                "Будь ласка, зверніть увагу, що метод, який використовує  для імпорту підписок, сильно обмежений Twitter, тому він може не спрацювати, якщо у вас багато акаунтів, на які ви підписані."),
+                "Будь ласка, зверніть увагу, що метод, який використовує Quacker для імпорту підписок, сильно обмежений Twitter, тому він може не спрацювати, якщо у вас багато акаунтів, на які ви підписані."),
         "prefix": MessageLookupByLibrary.simpleMessage("префікс"),
         "released_under_the_mit_license":
             MessageLookupByLibrary.simpleMessage("Випущено за ліцензією MIT"),
@@ -206,13 +206,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "send": MessageLookupByLibrary.simpleMessage("Надіслати"),
         "send_a_non_identifying_ping_to_let_me_know_you_are_using_fritter_and_to_help_future_development":
             MessageLookupByLibrary.simpleMessage(
-                "Надішліть неідентифікуючий пінг, щоб повідомити мені, що ви використовуєте  і допомогти в подальшій розробці"),
+                "Надішліть неідентифікуючий пінг, щоб повідомити мені, що ви використовуєте Quacker і допомогти в подальшій розробці"),
         "send_always": MessageLookupByLibrary.simpleMessage("Надсилати завжди"),
         "send_once": MessageLookupByLibrary.simpleMessage("Надіслати один раз"),
         "small": MessageLookupByLibrary.simpleMessage("Маленький"),
         "something_just_went_wrong_in_fritter_and_an_error_report_has_been_generated":
             MessageLookupByLibrary.simpleMessage(
-                "Щойно у  щось пішло не так, і було створено звіт про помилку. Звіт можна відправити розробникам , щоб вони допомогли розв\'язати проблему."),
+                "Щойно у Quacker щось пішло не так, і було створено звіт про помилку. Звіт можна відправити розробникам Quacker, щоб вони допомогли розв\'язати проблему."),
         "subscribe": MessageLookupByLibrary.simpleMessage("Підписатися"),
         "subscriptions": MessageLookupByLibrary.simpleMessage("Підписки"),
         "system": MessageLookupByLibrary.simpleMessage("Система"),
@@ -327,6 +327,6 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Ваш профіль має бути публічним, інакше імпорт не спрацює"),
         "your_report_will_be_sent_to_fritter__project":
             MessageLookupByLibrary.simpleMessage(
-                "Ваш звіт буде надіслано до проекту \'s , а деталі конфіденційності можна знайти за посиланням:")
+                "Ваш звіт буде надіслано до проекту Quacker\'s , а деталі конфіденційності можна знайти за посиланням:")
       };
 }
