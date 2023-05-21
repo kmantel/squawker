@@ -213,10 +213,16 @@ class Repository {
           await batch.commit();
         })),
       ],
+      20: [
+        Migration(Operation((db) async {
+          await db.update(tableSubscriptionGroup, {'icon': defaultGroupIcon},
+              where: "icon IS NULL OR icon = '' OR icon = ?", whereArgs: ['rss']);
+        }))
+      ]
     });
     await openDatabase(
       databaseName,
-      version: 19,
+      version: 20,
       onUpgrade: myMigrationPlan,
       onCreate: myMigrationPlan,
       onDowngrade: myMigrationPlan,

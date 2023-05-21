@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import '../trends/_list.dart';
 import '../trends/_settings.dart';
 import '../trends/_tabs.dart';
@@ -23,7 +24,7 @@ class _TrendsScreenState extends State<TrendsScreen> with AutomaticKeepAliveClie
     return Scaffold(
       appBar: const TrendsTabBar(),
       floatingActionButton: FloatingActionButton(
-          child: const Icon(Icons.add),
+          child: const Icon(MaterialSymbols.add),
           onPressed: () async => showDialog(
                 context: context,
                 builder: (context) => const TrendsSettings(),

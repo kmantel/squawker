@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import '../client.dart';
 import '../constants.dart';
@@ -102,7 +103,7 @@ class _SearchScreenState extends State<_SearchScreen> with SingleTickerProviderS
             textInputAction: TextInputAction.search,
           ),
           actions: [
-            IconButton(icon: const Icon(Icons.clear), onPressed: () => _queryController.clear()),
+            IconButton(icon: const Icon(MaterialSymbols.close), onPressed: () => _queryController.clear()),
             ScopedBuilder<SubscriptionsModel, Object, List<Subscription>>.transition(
               store: subscriptionsModel,
               onState: (_, state) {
@@ -115,7 +116,7 @@ class _SearchScreenState extends State<_SearchScreen> with SingleTickerProviderS
                       var currentlyFollowed = state.any((element) => element.id == id);
                       if (!currentlyFollowed) {
                         return IconButton(
-                            icon: const Icon(Icons.save),
+                            icon: const Icon(MaterialSymbols.save),
                             onPressed: () async {
                               await subscriptionsModel.toggleSubscribe(
                                   SearchSubscription(id: id, createdAt: DateTime.now()), currentlyFollowed);
@@ -123,7 +124,7 @@ class _SearchScreenState extends State<_SearchScreen> with SingleTickerProviderS
                       }
                     }
 
-                    return const IconButton(icon: Icon(Icons.save), onPressed: null);
+                    return const IconButton(icon: Icon(MaterialSymbols.save), onPressed: null);
                   },
                 );
               },
@@ -135,8 +136,8 @@ class _SearchScreenState extends State<_SearchScreen> with SingleTickerProviderS
             Material(
               color: Theme.of(context).appBarTheme.backgroundColor,
               child: TabBar(controller: _tabController, tabs: const [
-                Tab(icon: Icon(Icons.person)),
-                Tab(icon: Icon(Icons.comment)),
+                Tab(icon: Icon(MaterialSymbols.person)),
+                Tab(icon: Icon(MaterialSymbols.comment)),
               ]),
             ),
             MultiProvider(

@@ -154,7 +154,7 @@ class SubscriptionGroup with ToMappable {
   factory SubscriptionGroup.fromMap(Map<String, Object?> json) {
     // This is here to handle imports of data from before v2.15.0
     var icon = json['icon'] as String?;
-    if (icon == null || icon == 'rss_feed' || icon == '') {
+    if (icon == null || icon == 'rss' || icon == '') {
       icon = defaultGroupIcon;
     }
 

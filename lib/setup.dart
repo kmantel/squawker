@@ -1,5 +1,6 @@
 import 'package:async_button_builder/async_button_builder.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import '../constants.dart';
 import '../generated/l10n.dart';
 import '../utils/urls.dart';
@@ -70,20 +71,20 @@ class SetupWizard extends StatelessWidget {
           if (page > 0) {
             prevButton = TextButton.icon(
                 label: Text(L10n.current.back),
-                icon: const Icon(Icons.arrow_back),
+                icon: const Icon(MaterialSymbols.arrow_back),
                 onPressed: () {
                   _pageController.previousPage(duration: const Duration(milliseconds: 100), curve: Curves.easeIn);
                 });
           } else {
-            prevButton =
-                TextButton.icon(label: Text(L10n.current.back), icon: const Icon(Icons.arrow_back), onPressed: null);
+            prevButton = TextButton.icon(
+                label: Text(L10n.current.back), icon: const Icon(MaterialSymbols.arrow_back), onPressed: null);
           }
 
           Widget nextButton;
           if (page == wizardPages.length - 1) {
             nextButton = TextButton.icon(
                 label: Text(L10n.current.finish),
-                icon: const Icon(Icons.done),
+                icon: const Icon(MaterialSymbols.done),
                 onPressed: () async {
                   // TODO: Store the prefs and stuff
                   await PrefService.of(context).set(optionWizardCompleted, true);
@@ -91,7 +92,7 @@ class SetupWizard extends StatelessWidget {
           } else {
             nextButton = TextButton.icon(
                 label: Text(L10n.current.next),
-                icon: const Icon(Icons.arrow_forward),
+                icon: const Icon(MaterialSymbols.arrow_forward),
                 onPressed: () {
                   _pageController.nextPage(duration: const Duration(milliseconds: 100), curve: Curves.easeIn);
                 });
@@ -124,7 +125,7 @@ class Step1 extends StatelessWidget {
         const Text('step 1'),
         TextButton.icon(
           label: const Text('Hi'),
-          icon: const Icon(Icons.face),
+          icon: const Icon(MaterialSymbols.face),
           onPressed: () => onComplete(),
         )
       ],

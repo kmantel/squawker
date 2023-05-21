@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:flutter/services.dart';
 import '../generated/l10n.dart';
-import '../settings/_general.dart';
 import '../utils/urls.dart';
 import 'package:pref/pref.dart';
-import 'package:simple_icons/simple_icons.dart';
 
 class SettingsAboutFragment extends StatelessWidget {
   final String appVersion;
@@ -19,7 +18,7 @@ class SettingsAboutFragment extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 8),
         child: ListView(children: [
           PrefLabel(
-            leading: const Icon(Icons.info),
+            leading: const Icon(MaterialSymbols.info),
             title: Text(L10n.of(context).version),
             subtitle: Text(appVersion),
             onTap: () async {
@@ -31,13 +30,13 @@ class SettingsAboutFragment extends StatelessWidget {
             },
           ),
           PrefLabel(
-            leading: const Icon(Icons.favorite),
+            leading: const Icon(MaterialSymbols.favorite),
             title: Text(L10n.of(context).contribute),
             subtitle: Text(L10n.of(context).help_make_fritter_even_better),
             onTap: () => openUri('https://github.com/TheHCJ/Quacker'),
           ),
           PrefLabel(
-            leading: const Icon(Icons.bug_report),
+            leading: const Icon(MaterialSymbols.bug_report),
             title: Text(L10n.of(context).report_a_bug),
             subtitle: Text(
               L10n.of(context).let_the_developers_know_if_something_is_broken,
@@ -45,7 +44,7 @@ class SettingsAboutFragment extends StatelessWidget {
             onTap: () => openUri('https://github.com/TheHCJ/Quacker/issues'),
           ),
           PrefLabel(
-            leading: const Icon(Icons.copyright),
+            leading: const Icon(MaterialSymbols.copyright),
             title: Text(L10n.of(context).licenses),
             subtitle: Text(L10n.of(context).all_the_great_software_used_by_fritter),
             onTap: () => showLicensePage(

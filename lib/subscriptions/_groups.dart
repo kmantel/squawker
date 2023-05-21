@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
-import 'package:flutter_iconpicker/IconPicker/Packs/Material.dart';
 import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import '../constants.dart';
@@ -109,7 +109,7 @@ class _SubscriptionGroupsState extends State<SubscriptionGroups> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Icon(Icons.add, size: 16),
+                        const Icon(MaterialSymbols.add, size: 16),
                         const SizedBox(height: 4),
                         Text(
                           L10n.of(context).newTrans,
@@ -207,13 +207,6 @@ class _SubscriptionGroupEditDialogState extends State<SubscriptionGroupEditDialo
       return const Center(child: CircularProgressIndicator());
     }
 
-    // Filter the Material icons to only the baseline ones
-    var iconPack = icons.entries.where((value) =>
-        !value.key.endsWith('_sharp') &&
-        !value.key.endsWith('_rounded') &&
-        !value.key.endsWith('_outlined') &&
-        !value.key.endsWith('_outline'));
-
     return AlertDialog(
       actions: [
         TextButton(
@@ -281,7 +274,7 @@ class _SubscriptionGroupEditDialogState extends State<SubscriptionGroupEditDialo
                     ),
                   ),
                   IconButton(
-                    icon: Icon(Icons.color_lens, color: color),
+                    icon: Icon(MaterialSymbols.palette, color: color),
                     onPressed: () {
                       showDialog(
                           context: context,
@@ -325,7 +318,7 @@ class _SubscriptionGroupEditDialogState extends State<SubscriptionGroupEditDialo
                     onPressed: () async {
                       var selectedIcon = await FlutterIconPicker.showIconPicker(context,
                           iconPackModes: [IconPack.custom],
-                          customIconPack: Map.fromEntries(iconPack),
+                          customIconPack: MaterialSymbols.all,
                           title: Text(L10n.of(context).pick_an_icon),
                           closeChild: Text(L10n.of(context).close),
                           searchHintText: L10n.of(context).search,
@@ -350,7 +343,7 @@ class _SubscriptionGroupEditDialogState extends State<SubscriptionGroupEditDialo
                         subscription is SearchSubscription ? L10n.current.search_term : '@${subscription.screenName}';
 
                     var icon = subscription is SearchSubscription
-                        ? const SizedBox(width: 48, child: Icon(Icons.search))
+                        ? const SizedBox(width: 48, child: Icon(MaterialSymbols.search))
                         : UserAvatar(uri: subscription.profileImageUrlHttps);
 
                     return CheckboxListTile(

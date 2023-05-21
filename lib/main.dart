@@ -121,7 +121,6 @@ Future<void> main() async {
     optionSubscriptionOrderByField: 'name',
     optionThemeMode: 'system',
     optionThemeTrueBlack: false,
-    optionThemeMaterial3: true,
     optionThemeColorScheme: 'mango',
     optionTweetsHideSensitive: false,
     optionUserTrendsLocations: jsonEncode({
@@ -201,7 +200,6 @@ class _FritterAppState extends State<FritterApp> {
 
   String _themeMode = 'system';
   bool _trueBlack = false;
-  bool _material3 = true;
   FlexScheme _colorScheme = FlexScheme.mango;
   Locale? _locale;
 
@@ -242,7 +240,6 @@ class _FritterAppState extends State<FritterApp> {
       setLocale(prefService.get<String>(optionLocale));
       _themeMode = prefService.get(optionThemeMode);
       _trueBlack = prefService.get(optionThemeTrueBlack);
-      _material3 = prefService.get(optionThemeMaterial3);
       setColorScheme(prefService.get(optionThemeColorScheme));
       setDisableScreenshots(prefService.get(optionDisableScreenshots));
     });
@@ -262,13 +259,6 @@ class _FritterAppState extends State<FritterApp> {
     prefService.addKeyListener(optionThemeTrueBlack, () {
       setState(() {
         _trueBlack = prefService.get(optionThemeTrueBlack);
-      });
-    });
-
-    // Whenever the "use material 3" preference is toggled, apply the toggle
-    prefService.addKeyListener(optionThemeMaterial3, () {
-      setState(() {
-        _material3 = prefService.get(optionThemeMaterial3);
       });
     });
 
@@ -367,7 +357,7 @@ class _FritterAppState extends State<FritterApp> {
           blendOnColors: false,
         ),
         visualDensity: FlexColorScheme.comfortablePlatformDensity,
-        useMaterial3: _material3,
+        useMaterial3: true,
         appBarStyle: FlexAppBarStyle.primary,
       ),
       darkTheme: FlexThemeData.dark(
@@ -382,7 +372,7 @@ class _FritterAppState extends State<FritterApp> {
           blendOnColors: false,
         ),
         visualDensity: FlexColorScheme.comfortablePlatformDensity,
-        useMaterial3: _material3,
+        useMaterial3: true,
         appBarStyle: _trueBlack ? FlexAppBarStyle.surface : FlexAppBarStyle.primary,
       ),
       themeMode: themeMode,

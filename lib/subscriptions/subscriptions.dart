@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import '../constants.dart';
 import '../generated/l10n.dart';
 import '../home/home_screen.dart';
@@ -16,15 +17,16 @@ class SubscriptionsScreen extends StatelessWidget {
         title: Text(L10n.current.subscriptions),
         actions: [
           IconButton(
-            icon: const Icon(Icons.import_export),
+            icon: const Icon(MaterialSymbols.publish),
             onPressed: () => Navigator.pushNamed(context, routeSubscriptionsImport),
           ),
           IconButton(
-            icon: const Icon(Icons.refresh),
+            // TODO: Replace with MaterialSymbols.refresh when https://github.com/rehmatsg/flutter_material_symbols/issues/1 is fixed
+            icon: const Icon(MaterialSymbols.replay),
             onPressed: () => context.read<SubscriptionsModel>().refreshSubscriptionData(),
           ),
           PopupMenuButton<String>(
-            icon: const Icon(Icons.sort),
+            icon: const Icon(MaterialSymbols.sort),
             itemBuilder: (context) => [
               PopupMenuItem(
                 value: 'name',
@@ -42,7 +44,7 @@ class SubscriptionsScreen extends StatelessWidget {
             onSelected: (value) => context.read<SubscriptionsModel>().changeOrderSubscriptionsBy(value),
           ),
           IconButton(
-            icon: const Icon(Icons.sort_by_alpha),
+            icon: const Icon(MaterialSymbols.sort_by_alpha),
             onPressed: () => context.read<SubscriptionsModel>().toggleOrderSubscriptionsAscending(),
           ),
           ...createCommonAppBarActions(context)

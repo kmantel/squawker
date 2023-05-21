@@ -2,6 +2,7 @@ import 'package:chewie/chewie.dart';
 import 'package:dart_twitter_api/twitter_api.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import '../generated/l10n.dart';
 import '../tweet/_video_controls.dart';
 import '../utils/downloads.dart';
@@ -118,7 +119,7 @@ class _TweetVideoState extends State<TweetVideo> {
               },
             );
           },
-          iconData: Icons.download_sharp,
+          iconData: MaterialSymbols.download_sharp,
           title: L10n.of(context).download,
         )
       ],
@@ -130,7 +131,7 @@ class _TweetVideoState extends State<TweetVideo> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Icon(
-                Icons.error,
+                MaterialSymbols.error,
                 color: Colors.white,
                 size: 42,
               ),

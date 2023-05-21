@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import '../constants.dart';
@@ -11,7 +12,7 @@ import 'package:logging/logging.dart';
 import 'package:pref/pref.dart';
 import 'package:uuid/uuid.dart';
 
-var defaultGroupIcon = '{"pack":"material","key":"rss_feed"}';
+var defaultGroupIcon = '{"pack":"custom","key":"rss_feed"}';
 
 IconData deserializeIconData(String iconData) {
   try {
@@ -24,7 +25,7 @@ IconData deserializeIconData(String iconData) {
   }
 
   // Use this as a default;
-  return Icons.rss_feed;
+  return MaterialSymbols.rss_feed;
 }
 
 class GroupModel extends StreamStore<Object, SubscriptionGroupGet> {

@@ -1,5 +1,6 @@
 import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import '../database/entities.dart';
 import '../generated/l10n.dart';
@@ -118,15 +119,17 @@ class SubscriptionGroupScreen extends StatelessWidget {
                 floating: true,
                 title: Text(name),
                 actions: [
-                  IconButton(icon: const Icon(Icons.more_vert), onPressed: () => showFeedSettings(context, model)),
                   IconButton(
-                      icon: const Icon(Icons.arrow_upward),
+                      icon: const Icon(MaterialSymbols.more_vert), onPressed: () => showFeedSettings(context, model)),
+                  IconButton(
+                      icon: const Icon(MaterialSymbols.arrow_upward),
                       onPressed: () async {
                         await scrollController.animateTo(0,
                             duration: const Duration(seconds: 1), curve: Curves.easeInOut);
                       }),
                   IconButton(
-                      icon: const Icon(Icons.refresh),
+                      // TODO: Replace with MaterialSymbols.refresh when https://github.com/rehmatsg/flutter_material_symbols/issues/1 is fixed
+                      icon: const Icon(MaterialSymbols.replay),
                       onPressed: () async {
                         await model.loadGroup();
                       }),

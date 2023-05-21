@@ -45,13 +45,6 @@ class SettingsThemeFragment extends StatelessWidget {
               L10n.of(context).use_true_black_for_the_dark_mode_theme,
             ),
           ),
-          PrefSwitch(
-            title: Text(L10n.of(context).material3),
-            pref: optionThemeMaterial3,
-            subtitle: Text(
-              L10n.of(context).use_material3,
-            ),
-          ),
         ]),
       ),
     );

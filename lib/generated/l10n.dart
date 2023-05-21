@@ -931,26 +931,6 @@ class L10n {
     );
   }
 
-  /// `Material 3?`
-  String get material3 {
-    return Intl.message(
-      'Material 3?',
-      name: 'material3',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Use material 3`
-  String get use_material3 {
-    return Intl.message(
-      'Use material 3',
-      name: 'use_material3',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Data`
   String get data {
     return Intl.message(

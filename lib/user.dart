@@ -2,6 +2,7 @@ import 'package:dart_twitter_api/src/utils/date_utils.dart';
 import 'package:dart_twitter_api/twitter_api.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import '../constants.dart';
 import '../database/entities.dart';
@@ -24,7 +25,7 @@ Widget _createUserAvatar(String? uri, double size) {
       loadStateChanged: (state) {
         switch (state.extendedImageLoadState) {
           case LoadState.failed:
-            return const Icon(Icons.error);
+            return const Icon(MaterialSymbols.error);
           default:
             return state.completedWidget;
         }
@@ -62,7 +63,7 @@ class UserTile extends StatelessWidget {
         children: [
           Flexible(child: Text(user.name, maxLines: 1, overflow: TextOverflow.ellipsis)),
           if (user.verified) const SizedBox(width: 6),
-          if (user.verified) const Icon(Icons.verified, size: 14, color: Colors.blue)
+          if (user.verified) const Icon(MaterialSymbols.verified, size: 14, color: Colors.blue)
         ],
       ),
       subtitle: Text('@${user.screenName}', maxLines: 1, overflow: TextOverflow.ellipsis),
@@ -103,8 +104,8 @@ class _FollowButtonSelectGroupDialogState extends State<FollowButtonSelectGroupD
       searchHint: L10n.of(context).search,
       confirmText: Text(L10n.of(context).ok),
       cancelText: Text(L10n.of(context).cancel),
-      searchIcon: Icon(Icons.search, color: color),
-      closeSearchIcon: Icon(Icons.close, color: color),
+      searchIcon: Icon(MaterialSymbols.search, color: color),
+      closeSearchIcon: Icon(MaterialSymbols.close, color: color),
       itemsTextStyle: Theme.of(context).textTheme.bodyLarge,
       selectedColor: Theme.of(context).colorScheme.secondary,
       unselectedColor: color,
@@ -139,7 +140,9 @@ class FollowButton extends StatelessWidget {
       onState: (_, state) {
         var followed = state.any((element) => element.id == user.id);
 
-        var icon = followed ? Icon(Icons.person_remove, color: color) : Icon(Icons.person_add, color: color);
+        var icon = followed
+            ? Icon(MaterialSymbols.person_remove, color: color)
+            : Icon(MaterialSymbols.person_add, color: color);
         var text = followed ? L10n.of(context).unsubscribe : L10n.of(context).subscribe;
 
         return PopupMenuButton<String>(
