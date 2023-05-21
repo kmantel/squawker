@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:flutter/services.dart';
-import '../generated/l10n.dart';
-import '../utils/urls.dart';
+import 'package:quacker/generated/l10n.dart';
+import 'package:quacker/utils/urls.dart';
 import 'package:pref/pref.dart';
 
 class SettingsAboutFragment extends StatelessWidget {

@@ -7,9 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:flutter/services.dart';
 
-import '../client.dart';
-import '../constants.dart';
-import '../generated/l10n.dart';
+import 'package:quacker/client.dart';
+import 'package:quacker/constants.dart';
+import 'package:quacker/generated/l10n.dart';
 
 void showSnackBar(BuildContext context, {required String icon, required String message, bool clearBefore = true}) {
   if (clearBefore) {

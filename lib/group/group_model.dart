@@ -3,11 +3,11 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_material_symbols/flutter_material_symbols.dart';
-import 'package:flutter_iconpicker/flutter_iconpicker.dart';
+import 'package:flutter_iconpicker_plus/flutter_iconpicker.dart';
 import 'package:flutter_triple/flutter_triple.dart';
-import '../constants.dart';
-import '../database/entities.dart';
-import '../database/repository.dart';
+import 'package:quacker/constants.dart';
+import 'package:quacker/database/entities.dart';
+import 'package:quacker/database/repository.dart';
 import 'package:logging/logging.dart';
 import 'package:pref/pref.dart';
 import 'package:uuid/uuid.dart';

@@ -4,16 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:flutter/services.dart';
 
-import '../client.dart';
-import '../database/entities.dart';
-import '../database/repository.dart';
-import '../group/group_model.dart';
-import '../import_data_model.dart';
-import '../subscriptions/users_model.dart';
-import '../ui/errors.dart';
-import '../utils/urls.dart';
+import 'package:quacker/client.dart';
+import 'package:quacker/database/entities.dart';
+import 'package:quacker/database/repository.dart';
+import 'package:quacker/group/group_model.dart';
+import 'package:quacker/import_data_model.dart';
+import 'package:quacker/subscriptions/users_model.dart';
+import 'package:quacker/ui/errors.dart';
+import 'package:quacker/utils/urls.dart';
 import 'package:provider/provider.dart';
-import '../generated/l10n.dart';
+import 'package:quacker/generated/l10n.dart';
 
 class SubscriptionImportScreen extends StatefulWidget {
   const SubscriptionImportScreen({Key? key}) : super(key: key);

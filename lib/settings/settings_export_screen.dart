@@ -5,17 +5,16 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:flutter_file_dialog/flutter_file_dialog.dart';
-import '../database/entities.dart';
-import '../group/group_model.dart';
-import '../saved/saved_tweet_model.dart';
-import '../settings/_data.dart';
-import '../subscriptions/users_model.dart';
-import '../utils/legacy.dart';
+import 'package:quacker/database/entities.dart';
+import 'package:quacker/group/group_model.dart';
+import 'package:quacker/saved/saved_tweet_model.dart';
+import 'package:quacker/settings/_data.dart';
+import 'package:quacker/subscriptions/users_model.dart';
 import 'package:intl/intl.dart';
 import 'package:path/path.dart' as path;
 import 'package:pref/pref.dart';
 import 'package:provider/provider.dart';
-import '../generated/l10n.dart';
+import 'package:quacker/generated/l10n.dart';
 
 class SettingsExportScreen extends StatefulWidget {
   const SettingsExportScreen({Key? key}) : super(key: key);
@@ -30,25 +29,10 @@ class _SettingsExportScreenState extends State<SettingsExportScreen> {
   bool _exportSubscriptionGroups = false;
   bool _exportSubscriptionGroupMembers = false;
   bool _exportTweets = false;
-  bool _isLegacyAndroid = false;
-  String _legacyExportPath = '';
 
   @override
   void initState() {
     super.initState();
-
-    // Check if the platform is too old to support a directory picker or not
-    Future.microtask(() async {
-      var isLegacy = await isLegacyAndroid();
-      if (isLegacy) {
-        var legacyExportPath = await getLegacyPath(legacyExportFileName);
-
-        setState(() {
-          _isLegacyAndroid = isLegacy;
-          _legacyExportPath = legacyExportPath;
-        });
-      }
-    });
   }
 
   void toggleExportSubscriptionGroupMembersIfRequired() {
@@ -145,37 +129,21 @@ class _SettingsExportScreenState extends State<SettingsExportScreen> {
 
                 var exportData = jsonEncode(data.toJson());
 
-                var isLegacy = await isLegacyAndroid();
-                if (isLegacy) {
-                  // This platform is too old to support a directory picker, so we just save the file to a predefined location
-                  var fullPath = await getLegacyPath(legacyExportFileName);
+                var dateFormat = DateFormat('yyyy-MM-dd');
+                var fileName = 'quacker-${dateFormat.format(DateTime.now())}.json';
 
-                  await Directory(path.dirname(fullPath)).create(recursive: true);
-                  await File(fullPath).writeAsString(exportData);
+                // This platform can support the directory picker, so display it
+                var path = await FlutterFileDialog.saveFile(
+                    params:
+                        SaveFileDialogParams(fileName: fileName, data: Uint8List.fromList(utf8.encode(exportData))));
+                if (path != null) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text(
-                        L10n.of(context).data_exported_to_fullPath(fullPath),
+                        L10n.of(context).data_exported_to_fileName(fileName),
                       ),
                     ),
                   );
-                } else {
-                  var dateFormat = DateFormat('yyyy-MM-dd');
-                  var fileName = 'quacker-${dateFormat.format(DateTime.now())}.json';
-
-                  // This platform can support the directory picker, so display it
-                  var path = await FlutterFileDialog.saveFile(
-                      params:
-                          SaveFileDialogParams(fileName: fileName, data: Uint8List.fromList(utf8.encode(exportData))));
-                  if (path != null) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(
-                          L10n.of(context).data_exported_to_fileName(fileName),
-                        ),
-                      ),
-                    );
-                  }
                 }
               },
             ),
@@ -210,20 +178,6 @@ class _SettingsExportScreenState extends State<SettingsExportScreen> {
                   onChanged: (v) => toggleExportTweets()),
             ],
           ))),
-          if (_isLegacyAndroid)
-            Container(
-              margin: const EdgeInsets.all(8),
-              child: Column(
-                children: [
-                  Text(
-                      L10n.of(context)
-                          .your_device_is_running_a_version_of_android_older_than_kitKat_so_the_export_can_only_be_saved_to,
-                      textAlign: TextAlign.center),
-                  const SizedBox(height: 8),
-                  Text(_legacyExportPath, textAlign: TextAlign.center),
-                ],
-              ),
-            )
         ],
       ),
     );

@@ -22,10 +22,6 @@ environment:
   sdk: ">=2.18.0 <3.0.0"
 
 dependency_overrides:
-  auto_direction:
-    git:
-      url: https://github.com/AhmedAlYousif/auto_direction.git
-      ref: 41e091d1bcef2f710e10ca88e72d05ea182135d7
   # Required until device_info_plus updates, as it transitively depends on an old version
   file: ^6.1.4
 
@@ -51,7 +47,6 @@ dependencies:
   flutter_colorpicker: ^1.0.3
   flutter_file_dialog: ^2.3.2
   flutter_iconpicker_plus: ^3.2.3
-  flutter_local_notifications: ^12.0.4
   flutter_localized_locales: ^2.0.3
   flutter_triple: ^1.2.7+4
   flutter_windowmanager: ^0.2.0
@@ -87,12 +82,13 @@ dependencies:
 
   flutter_localizations:
     sdk: flutter
+  sqlcipher_flutter_libs: ^0.5.6
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_launcher_MaterialSymbols: ^0.11.0
+  flutter_launcher_icons: ^0.11.0
   flutter_lints:
   flutter_oss_licenses: ^2.0.1
   intl_utils: ^2.8.1

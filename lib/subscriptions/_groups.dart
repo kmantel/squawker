@@ -4,15 +4,15 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
-import 'package:flutter_iconpicker/flutter_iconpicker.dart';
+import 'package:flutter_iconpicker_plus/flutter_iconpicker.dart';
 import 'package:flutter_triple/flutter_triple.dart';
-import '../constants.dart';
-import '../database/entities.dart';
-import '../generated/l10n.dart';
-import '../group/group_model.dart';
-import '../group/group_screen.dart';
-import '../subscriptions/users_model.dart';
-import '../user.dart';
+import 'package:quacker/constants.dart';
+import 'package:quacker/database/entities.dart';
+import 'package:quacker/generated/l10n.dart';
+import 'package:quacker/group/group_model.dart';
+import 'package:quacker/group/group_screen.dart';
+import 'package:quacker/subscriptions/users_model.dart';
+import 'package:quacker/user.dart';
 import 'package:provider/provider.dart';
 
 Future openSubscriptionGroupDialog(BuildContext context, String? id, String name, String icon) {

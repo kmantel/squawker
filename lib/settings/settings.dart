@@ -2,14 +2,13 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_material_symbols/flutter_material_symbols.dart';
-import '../generated/l10n.dart';
-import '../home/home_screen.dart';
-import '../settings/_about.dart';
-import '../settings/_data.dart';
-import '../settings/_general.dart';
-import '../settings/_home.dart';
-import '../settings/_theme.dart';
-import '../utils/legacy.dart';
+import 'package:quacker/generated/l10n.dart';
+import 'package:quacker/home/home_screen.dart';
+import 'package:quacker/settings/_about.dart';
+import 'package:quacker/settings/_data.dart';
+import 'package:quacker/settings/_general.dart';
+import 'package:quacker/settings/_home.dart';
+import 'package:quacker/settings/_theme.dart';
 import 'package:package_info/package_info.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -28,16 +27,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   void initState() {
     super.initState();
-
-    Future.microtask(() async {
-      var packageInfo = await PackageInfo.fromPlatform();
-      var legacyExportPath = await getLegacyPath(legacyExportFileName);
-
-      setState(() {
-        _packageInfo = packageInfo;
-        _legacyExportPath = legacyExportPath;
-      });
-    });
   }
 
   @override

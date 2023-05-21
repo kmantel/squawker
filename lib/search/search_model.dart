@@ -1,6 +1,6 @@
 import 'package:flutter_triple/flutter_triple.dart';
-import '../client.dart';
-import '../user.dart';
+import 'package:quacker/client.dart';
+import 'package:quacker/user.dart';
 
 class SearchTweetsModel extends StreamStore<Object, List<TweetWithCard>> {
   SearchTweetsModel() : super([]);

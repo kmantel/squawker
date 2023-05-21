@@ -6,15 +6,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 
-import '../client.dart';
-import '../constants.dart';
-import '../database/entities.dart';
-import '../generated/l10n.dart';
-import '../home/home_screen.dart';
-import '../profile/profile.dart';
-import '../saved/saved_tweet_model.dart';
-import '../tweet/tweet.dart';
-import '../ui/errors.dart';
+import 'package:quacker/client.dart';
+import 'package:quacker/constants.dart';
+import 'package:quacker/database/entities.dart';
+import 'package:quacker/generated/l10n.dart';
+import 'package:quacker/home/home_screen.dart';
+import 'package:quacker/profile/profile.dart';
+import 'package:quacker/saved/saved_tweet_model.dart';
+import 'package:quacker/tweet/tweet.dart';
+import 'package:quacker/ui/errors.dart';
 import 'package:pref/pref.dart';
 import 'package:provider/provider.dart';
 

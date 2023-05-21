@@ -7,31 +7,29 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_windowmanager/flutter_windowmanager.dart';
 
-import '../constants.dart';
-import '../database/repository.dart';
-import '../generated/l10n.dart';
-import '../group/group_model.dart';
-import '../group/group_screen.dart';
-import '../home/home_model.dart';
-import '../home/home_screen.dart';
-import '../import_data_model.dart';
-import '../profile/profile.dart';
-import '../saved/saved_tweet_model.dart';
-import '../search/search.dart';
-import '../search/search_model.dart';
-import '../settings/settings.dart';
-import '../settings/settings_export_screen.dart';
-import '../status.dart';
-import '../subscriptions/_import.dart';
-import '../subscriptions/users_model.dart';
-import '../trends/trends_model.dart';
-import '../tweet/_video.dart';
-import '../ui/errors.dart';
-import '../utils/urls.dart';
+import 'package:quacker/constants.dart';
+import 'package:quacker/database/repository.dart';
+import 'package:quacker/generated/l10n.dart';
+import 'package:quacker/group/group_model.dart';
+import 'package:quacker/group/group_screen.dart';
+import 'package:quacker/home/home_model.dart';
+import 'package:quacker/home/home_screen.dart';
+import 'package:quacker/import_data_model.dart';
+import 'package:quacker/profile/profile.dart';
+import 'package:quacker/saved/saved_tweet_model.dart';
+import 'package:quacker/search/search.dart';
+import 'package:quacker/search/search_model.dart';
+import 'package:quacker/settings/settings.dart';
+import 'package:quacker/settings/settings_export_screen.dart';
+import 'package:quacker/status.dart';
+import 'package:quacker/subscriptions/_import.dart';
+import 'package:quacker/subscriptions/users_model.dart';
+import 'package:quacker/trends/trends_model.dart';
+import 'package:quacker/tweet/_video.dart';
+import 'package:quacker/ui/errors.dart';
 import 'package:logging/logging.dart';
 import 'package:pref/pref.dart';
 import 'package:provider/provider.dart';
@@ -82,15 +80,6 @@ setTimeagoLocales() {
   timeago.setLocaleMessages('zh', timeago.ZhMessages());
 }
 
-Future<void> handleNotificationCallback(NotificationResponse response) async {
-  var actionId = response.actionId;
-  if (actionId != null && actionId.startsWith('updates.ignore.')) {
-    log('Setting $actionId');
-    var prefs = await SharedPreferences.getInstance();
-    await prefs.setBool(actionId, true);
-  }
-}
-
 Future<void> main() async {
   Logger.root.onRecord.listen((event) async {
     log(event.message, error: event.error, stackTrace: event.stackTrace);
@@ -114,7 +103,6 @@ Future<void> main() async {
     optionMediaSize: 'medium',
     optionMediaDefaultMute: true,
     optionNonConfirmationBiasMode: false,
-    optionShouldCheckForUpdates: false,
     optionSubscriptionGroupsOrderByAscending: true,
     optionSubscriptionGroupsOrderByField: 'name',
     optionSubscriptionOrderByAscending: true,
@@ -130,20 +118,6 @@ Future<void> main() async {
       ]
     }),
   });
-  if (Platform.isAndroid) {
-    FlutterLocalNotificationsPlugin notifications = FlutterLocalNotificationsPlugin();
-
-    const InitializationSettings settings =
-        InitializationSettings(android: AndroidInitializationSettings('@drawable/ic_notification'));
-
-    await notifications.initialize(settings, onDidReceiveBackgroundNotificationResponse: handleNotificationCallback,
-        onDidReceiveNotificationResponse: (response) async {
-      var payload = response.payload;
-      if (payload != null && payload.startsWith('https://')) {
-        await openUri(payload);
-      }
-    });
-  }
 
   // Run the migrations early, so models work. We also do this later on so we can display errors to the user
   try {

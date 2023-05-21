@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../group/group_model.dart';
-import '../user.dart';
+import 'package:quacker/group/group_model.dart';
+import 'package:quacker/user.dart';
 import 'package:intl/intl.dart';
 
 final DateFormat sqliteDateFormat = DateFormat('yyyy-MM-dd hh:mm:ss');

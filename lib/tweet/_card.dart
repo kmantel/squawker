@@ -5,12 +5,12 @@ import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 
-import '../client.dart';
-import '../constants.dart';
-import '../generated/l10n.dart';
-import '../tweet/_media.dart';
-import '../tweet/_video.dart';
-import '../utils/urls.dart';
+import 'package:quacker/client.dart';
+import 'package:quacker/constants.dart';
+import 'package:quacker/generated/l10n.dart';
+import 'package:quacker/tweet/_media.dart';
+import 'package:quacker/tweet/_video.dart';
+import 'package:quacker/utils/urls.dart';
 import 'package:intl/intl.dart';
 import 'package:logging/logging.dart';
 import 'package:pref/pref.dart';

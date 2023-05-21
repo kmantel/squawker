@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:flutter_triple/flutter_triple.dart';
-import '../constants.dart';
-import '../database/entities.dart';
-import '../search/search.dart';
-import '../subscriptions/users_model.dart';
-import '../ui/errors.dart';
-import '../user.dart';
+import 'package:quacker/constants.dart';
+import 'package:quacker/database/entities.dart';
+import 'package:quacker/search/search.dart';
+import 'package:quacker/subscriptions/users_model.dart';
+import 'package:quacker/ui/errors.dart';
+import 'package:quacker/user.dart';
 import 'package:provider/provider.dart';
-import '../generated/l10n.dart';
+import 'package:quacker/generated/l10n.dart';
 
 class SubscriptionUsers extends StatefulWidget {
   const SubscriptionUsers({Key? key}) : super(key: key);

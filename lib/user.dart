@@ -4,12 +4,12 @@ import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:flutter_triple/flutter_triple.dart';
-import '../constants.dart';
-import '../database/entities.dart';
-import '../generated/l10n.dart';
-import '../group/group_model.dart';
-import '../profile/profile.dart';
-import '../subscriptions/users_model.dart';
+import 'package:quacker/constants.dart';
+import 'package:quacker/database/entities.dart';
+import 'package:quacker/generated/l10n.dart';
+import 'package:quacker/group/group_model.dart';
+import 'package:quacker/profile/profile.dart';
+import 'package:quacker/subscriptions/users_model.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:provider/provider.dart';
 

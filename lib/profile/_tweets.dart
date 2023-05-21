@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../client.dart';
-import '../profile/profile.dart';
-import '../tweet/conversation.dart';
-import '../ui/errors.dart';
-import '../user.dart';
+import 'package:quacker/client.dart';
+import 'package:quacker/profile/profile.dart';
+import 'package:quacker/tweet/conversation.dart';
+import 'package:quacker/ui/errors.dart';
+import 'package:quacker/user.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import '../generated/l10n.dart';
+import 'package:quacker/generated/l10n.dart';
 import 'package:provider/provider.dart';
 
 class ProfileTweets extends StatefulWidget {

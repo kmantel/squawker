@@ -1,12 +1,12 @@
 import 'package:dart_twitter_api/twitter_api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_triple/flutter_triple.dart';
-import '../constants.dart';
-import '../generated/l10n.dart';
-import '../search/search.dart';
-import '../trends/trends_model.dart';
-import '../ui/errors.dart';
-import '../ui/physics.dart';
+import 'package:quacker/constants.dart';
+import 'package:quacker/generated/l10n.dart';
+import 'package:quacker/search/search.dart';
+import 'package:quacker/trends/trends_model.dart';
+import 'package:quacker/ui/errors.dart';
+import 'package:quacker/ui/physics.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 

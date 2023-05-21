@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../database/entities.dart';
-import '../database/repository.dart';
+import 'package:quacker/database/entities.dart';
+import 'package:quacker/database/repository.dart';
 import 'package:logging/logging.dart';
 import 'package:sqflite/sqflite.dart';
 

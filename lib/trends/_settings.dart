@@ -3,13 +3,13 @@ import 'dart:convert';
 import 'package:dart_twitter_api/twitter_api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_triple/flutter_triple.dart';
-import '../constants.dart';
-import '../trends/trends_model.dart';
-import '../ui/errors.dart';
-import '../utils/iterables.dart';
+import 'package:quacker/constants.dart';
+import 'package:quacker/trends/trends_model.dart';
+import 'package:quacker/ui/errors.dart';
+import 'package:quacker/utils/iterables.dart';
 import 'package:pref/pref.dart';
 import 'package:provider/provider.dart';
-import '../generated/l10n.dart';
+import 'package:quacker/generated/l10n.dart';
 
 class TrendsSettings extends StatefulWidget {
   const TrendsSettings({Key? key}) : super(key: key);

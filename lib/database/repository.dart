@@ -2,8 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/src/widgets/framework.dart';
 
-import '../group/group_model.dart';
+import 'package:quacker/group/group_model.dart';
 import 'package:logging/logging.dart';
+import 'package:sqlcipher_flutter_libs/sqlcipher_flutter_libs.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite_migration_plan/migration/sql.dart';
 import 'package:sqflite_migration_plan/sqflite_migration_plan.dart';

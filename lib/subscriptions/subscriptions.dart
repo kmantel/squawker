@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_material_symbols/flutter_material_symbols.dart';
-import '../constants.dart';
-import '../generated/l10n.dart';
-import '../home/home_screen.dart';
-import '../subscriptions/_list.dart';
-import '../subscriptions/users_model.dart';
+import 'package:quacker/constants.dart';
+import 'package:quacker/generated/l10n.dart';
+import 'package:quacker/home/home_screen.dart';
+import 'package:quacker/subscriptions/_list.dart';
+import 'package:quacker/subscriptions/users_model.dart';
 import 'package:provider/provider.dart';
 
 class SubscriptionsScreen extends StatelessWidget {

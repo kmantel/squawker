@@ -3,24 +3,25 @@ import 'package:dart_twitter_api/twitter_api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 
-import '../client.dart';
-import '../constants.dart';
-import '../generated/l10n.dart';
-import '../import_data_model.dart';
-import '../profile/profile.dart';
-import '../saved/saved_tweet_model.dart';
-import '../search/search.dart';
-import '../status.dart';
-import '../tweet/_card.dart';
-import '../tweet/_entities.dart';
-import '../tweet/_media.dart';
-import '../ui/dates.dart';
-import '../ui/errors.dart';
-import '../user.dart';
-import '../utils/iterables.dart';
-import '../utils/misc.dart';
-import '../utils/translation.dart';
-import '../utils/urls.dart';
+import 'package:quacker/client.dart';
+import 'package:quacker/constants.dart';
+import 'package:quacker/generated/l10n.dart';
+import 'package:quacker/import_data_model.dart';
+import 'package:quacker/profile/profile.dart';
+import 'package:quacker/saved/saved_tweet_model.dart';
+import 'package:quacker/search/search.dart';
+import 'package:quacker/status.dart';
+import 'package:quacker/tweet/_card.dart';
+import 'package:quacker/tweet/_entities.dart';
+import 'package:quacker/tweet/_media.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:quacker/ui/dates.dart';
+import 'package:quacker/ui/errors.dart';
+import 'package:quacker/user.dart';
+import 'package:quacker/utils/iterables.dart';
+import 'package:quacker/utils/misc.dart';
+import 'package:quacker/utils/translation.dart';
+import 'package:quacker/utils/urls.dart';
 import 'package:html_unescape/html_unescape.dart';
 import 'package:intl/intl.dart';
 import 'package:logging/logging.dart';
@@ -528,8 +529,11 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
                                           createSheetButton(
                                               L10n.of(context).open_in_browser, MaterialSymbols.open_in_browser,
                                               () async {
-                                            openUri(
+                                            final Uri url = Uri.parse(
                                                 'https://twitter.com/${tweet.user!.screenName}/status/${tweet.idStr}');
+                                            if (!await launchUrl(url)) {
+                                              throw Exception('Could not launch $url');
+                                            }
                                             Navigator.pop(context);
                                           }),
                                           createSheetButton(

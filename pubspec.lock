@@ -52,11 +52,10 @@ packages:
   auto_direction:
     dependency: "direct main"
     description:
-      path: "."
-      ref: "41e091d1bcef2f710e10ca88e72d05ea182135d7"
-      resolved-ref: "41e091d1bcef2f710e10ca88e72d05ea182135d7"
-      url: "https://github.com/AhmedAlYousif/auto_direction.git"
-    source: git
+      name: auto_direction
+      sha256: "5486041d6fae1cd9ca431217a3fa4699f9237a4218d295b421d384d9710f2ad4"
+      url: "https://pub.dev"
+    source: hosted
     version: "0.0.6"
   boolean_selector:
     dependency: transitive
@@ -178,14 +177,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.5.8"
-  dbus:
-    dependency: transitive
-    description:
-      name: dbus
-      sha256: "6f07cba3f7b3448d42d015bfd3d53fe12e5b36da2423f23838efc1d5fb31a263"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.7.8"
   device_frame:
     dependency: transitive
     description:
@@ -343,15 +334,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.2"
-  flutter_iconpicker:
+  flutter_iconpicker_plus:
     dependency: "direct main"
     description:
-      path: "."
-      ref: cc8878dbd9b3f4d7e29540dcd57d78896f9d9fb7
-      resolved-ref: cc8878dbd9b3f4d7e29540dcd57d78896f9d9fb7
-      url: "https://github.com/kechankrisna/FlutterIconPicker"
-    source: git
-    version: "3.2.2"
+      name: flutter_iconpicker_plus
+      sha256: "29f22d4efbb2e29e7a15b3e159857791b6b75600d80c43bcc780c81c8c776c98"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.2.3"
   flutter_launcher_icons:
     dependency: "direct dev"
     description:
@@ -368,30 +358,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.1"
-  flutter_local_notifications:
-    dependency: "direct main"
-    description:
-      name: flutter_local_notifications
-      sha256: f222919a34545931e47b06000836b5101baeffb0e6eb5a4691d2d42851740dd9
-      url: "https://pub.dev"
-    source: hosted
-    version: "12.0.4"
-  flutter_local_notifications_linux:
-    dependency: transitive
-    description:
-      name: flutter_local_notifications_linux
-      sha256: "3c6d6db334f609a92be0c0915f40871ec56f5d2adf01e77ae364162c587c0ca8"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.0"
-  flutter_local_notifications_platform_interface:
-    dependency: transitive
-    description:
-      name: flutter_local_notifications_platform_interface
-      sha256: "5ec1feac5f7f7d9266759488bc5f76416152baba9aa1b26fe572246caa00d1ab"
-      url: "https://pub.dev"
-    source: hosted
-    version: "6.0.0"
   flutter_localizations:
     dependency: "direct main"
     description: flutter
@@ -405,6 +371,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.4"
+  flutter_material_symbols:
+    dependency: "direct main"
+    description:
+      name: flutter_material_symbols
+      sha256: "14845fb68cfb4ec264de5a49e0f3e7bc7c8f1b61898605162a378b17a06a80a0"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.4"
   flutter_oss_licenses:
     dependency: "direct dev"
     description:
@@ -967,14 +941,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.0"
-  simple_icons:
-    dependency: "direct main"
-    description:
-      name: simple_icons
-      sha256: "8aa6832dc7a263a3213e40ecbf1328a392308c809d534a3b860693625890483b"
-      url: "https://pub.dev"
-    source: hosted
-    version: "7.10.0"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -1028,6 +994,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
+  sqlcipher_flutter_libs:
+    dependency: "direct main"
+    description:
+      name: sqlcipher_flutter_libs
+      sha256: d8786de001c01d81e8dc00daf6d307a798473971d614af502f7bce6f62726a43
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.6"
   sqlite3:
     dependency: transitive
     description:
@@ -1092,14 +1066,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.3.0"
-  timezone:
-    dependency: transitive
-    description:
-      name: timezone
-      sha256: "1cfd8ddc2d1cfd836bc93e67b9be88c3adaeca6f40a00ca999104c30693cdca0"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.9.2"
   triple:
     dependency: transitive
     description:

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:flutter_triple/flutter_triple.dart';
-import '../database/entities.dart';
-import '../generated/l10n.dart';
-import '../group/group_model.dart';
+import 'package:quacker/database/entities.dart';
+import 'package:quacker/generated/l10n.dart';
+import 'package:quacker/group/group_model.dart';
 
 void showFeedSettings(BuildContext context, GroupModel model) {
   showModalBottomSheet(
