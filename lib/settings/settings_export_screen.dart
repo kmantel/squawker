@@ -129,7 +129,7 @@ class _SettingsExportScreenState extends State<SettingsExportScreen> {
 
                 var exportData = jsonEncode(data.toJson());
 
-                var dateFormat = DateFormat('yyyy-MM-dd');
+                var dateFormat = DateFormat('yyyy-MM-dd-hhmm');
                 var fileName = 'quacker-${dateFormat.format(DateTime.now())}.json';
 
                 // This platform can support the directory picker, so display it
