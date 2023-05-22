@@ -27,6 +27,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   void initState() {
     super.initState();
+
+    Future.microtask(() async {
+      var packageInfo = await PackageInfo.fromPlatform();
+
+      setState(() {
+        _packageInfo = packageInfo;
+      });
+    });
   }
 
   @override
