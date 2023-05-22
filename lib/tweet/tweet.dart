@@ -27,7 +27,7 @@ import 'package:intl/intl.dart';
 import 'package:logging/logging.dart';
 import 'package:pref/pref.dart';
 import 'package:provider/provider.dart';
-import 'package:share/share.dart';
+import 'package:share_plus/share_plus.dart';
 
 class TweetTile extends StatefulWidget {
   final bool clickable;
