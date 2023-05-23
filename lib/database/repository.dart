@@ -129,7 +129,7 @@ class Repository {
       12: [
         // Insert a dummy record for the "All" subscription group
         Migration(Operation((db) async {
-          await db.insert(tableSubscriptionGroup, {'id': '-1', 'name': 'All', 'icon': 'rss_feed'},
+          await db.insert(tableSubscriptionGroup, {'id': '-1', 'name': 'All', 'icon': 'rss_feed_rounded'},
               conflictAlgorithm: ConflictAlgorithm.replace);
         }), reverse: Operation((db) async {
           await db.delete(tableSubscriptionGroup, where: 'id = ?', whereArgs: ['-1']);
@@ -138,7 +138,7 @@ class Repository {
       13: [
         // Duplicate migration 12, as some people had deleted the "All" group when it displayed twice in the groups list
         Migration(Operation((db) async {
-          await db.insert(tableSubscriptionGroup, {'id': '-1', 'name': 'All', 'icon': 'rss_feed'},
+          await db.insert(tableSubscriptionGroup, {'id': '-1', 'name': 'All', 'icon': 'rss_feed_rounded'},
               conflictAlgorithm: ConflictAlgorithm.replace);
         }), reverse: Operation((db) async {
           await db.delete(tableSubscriptionGroup, where: 'id = ?', whereArgs: ['-1']);
@@ -165,7 +165,7 @@ class Repository {
 
         Migration(Operation((db) async {
           await db.update(tableSubscriptionGroup, {'icon': defaultGroupIcon},
-              where: "icon IS NULL OR icon = '' OR icon = ?", whereArgs: ['rss_feed']);
+              where: "icon IS NULL OR icon = '' OR icon = ?", whereArgs: ['rss_feed_rounded']);
         }))
       ],
       17: [

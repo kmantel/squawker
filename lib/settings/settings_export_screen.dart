@@ -3,7 +3,6 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:flutter_file_dialog/flutter_file_dialog.dart';
 import 'package:quacker/database/entities.dart';
 import 'package:quacker/group/group_model.dart';
@@ -94,7 +93,7 @@ class _SettingsExportScreenState extends State<SettingsExportScreen> {
       floatingActionButton: noExportOptionSelected()
           ? null
           : FloatingActionButton(
-              child: const Icon(MaterialSymbols.save),
+              child: const Icon(Icons.save_outlined),
               onPressed: () async {
                 var groupModel = context.read<GroupsModel>();
                 await groupModel.reloadGroups();

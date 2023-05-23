@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:quacker/constants.dart';
 import 'package:quacker/generated/l10n.dart';
@@ -33,11 +32,11 @@ class NavigationPage {
 List<Widget> createCommonAppBarActions(BuildContext context) {
   return [
     IconButton(
-      icon: const Icon(MaterialSymbols.search),
+      icon: const Icon(Icons.search_rounded),
       onPressed: () => Navigator.pushNamed(context, routeSearch, arguments: SearchArguments(0, focusInputOnOpen: true)),
     ),
     IconButton(
-      icon: const Icon(MaterialSymbols.settings),
+      icon: const Icon(Icons.settings_outlined),
       onPressed: () {
         Navigator.pushNamed(context, routeSettings);
       },
@@ -46,11 +45,11 @@ List<Widget> createCommonAppBarActions(BuildContext context) {
 }
 
 final List<NavigationPage> defaultHomePages = [
-  NavigationPage('feed', (c) => L10n.of(c).feed, MaterialSymbols.rss_feed),
-  NavigationPage('subscriptions', (c) => L10n.of(c).subscriptions, MaterialSymbols.subscriptions),
-  NavigationPage('groups', (c) => L10n.of(c).groups, MaterialSymbols.group),
-  NavigationPage('trending', (c) => L10n.of(c).trending, MaterialSymbols.trending_up),
-  NavigationPage('saved', (c) => L10n.of(c).saved, MaterialSymbols.bookmark),
+  NavigationPage('feed', (c) => L10n.of(c).feed, Icons.rss_feed_rounded),
+  NavigationPage('subscriptions', (c) => L10n.of(c).subscriptions, Icons.subscriptions_outlined),
+  NavigationPage('groups', (c) => L10n.of(c).groups, Icons.group_outlined),
+  NavigationPage('trending', (c) => L10n.of(c).trending, Icons.trending_up_rounded),
+  NavigationPage('saved', (c) => L10n.of(c).saved, Icons.bookmark_border_rounded),
 ];
 
 class HomeScreen extends StatelessWidget {
@@ -185,7 +184,7 @@ class _ScaffoldWithBottomNavigationState extends State<ScaffoldWithBottomNavigat
     var widgetPages = pages;
     if (widgetPages.length < 2) {
       widgetPages.addAll(List.generate(2 - widgetPages.length, (index) {
-        return NavigationPage('none', (context) => L10n.current.missing_page, MaterialSymbols.disabled_by_default);
+        return NavigationPage('none', (context) => L10n.current.missing_page, Icons.disabled_by_default_outlined);
       }));
     }
 

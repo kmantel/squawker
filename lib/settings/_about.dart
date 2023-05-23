@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:flutter/services.dart';
 import 'package:quacker/generated/l10n.dart';
 import 'package:quacker/utils/urls.dart';
@@ -18,7 +17,7 @@ class SettingsAboutFragment extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 8),
         child: ListView(children: [
           PrefLabel(
-            leading: const Icon(MaterialSymbols.info),
+            leading: const Icon(Icons.info_outlined),
             title: Text(L10n.of(context).version),
             subtitle: Text(appVersion),
             onTap: () async {
@@ -30,13 +29,13 @@ class SettingsAboutFragment extends StatelessWidget {
             },
           ),
           PrefLabel(
-            leading: const Icon(MaterialSymbols.favorite),
+            leading: const Icon(Icons.favorite_border_rounded),
             title: Text(L10n.of(context).contribute),
             subtitle: Text(L10n.of(context).help_make_fritter_even_better),
             onTap: () => openUri('https://github.com/TheHCJ/Quacker'),
           ),
           PrefLabel(
-            leading: const Icon(MaterialSymbols.bug_report),
+            leading: const Icon(Icons.bug_report_outlined),
             title: Text(L10n.of(context).report_a_bug),
             subtitle: Text(
               L10n.of(context).let_the_developers_know_if_something_is_broken,
@@ -44,7 +43,7 @@ class SettingsAboutFragment extends StatelessWidget {
             onTap: () => openUri('https://github.com/TheHCJ/Quacker/issues'),
           ),
           PrefLabel(
-            leading: const Icon(MaterialSymbols.copyright),
+            leading: const Icon(Icons.copyright),
             title: Text(L10n.of(context).licenses),
             subtitle: Text(L10n.of(context).all_the_great_software_used_by_fritter),
             onTap: () => showLicensePage(

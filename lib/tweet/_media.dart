@@ -4,7 +4,6 @@ import 'package:async_button_builder/async_button_builder.dart';
 import 'package:dart_twitter_api/twitter_api.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:quacker/constants.dart';
 import 'package:quacker/generated/l10n.dart';
 import 'package:quacker/profile/profile.dart';
@@ -219,7 +218,7 @@ class _TweetMediaViewState extends State<TweetMediaView> {
       appBar: AppBar(
         actions: [
           AsyncButtonBuilder(
-            child: const Icon(MaterialSymbols.download),
+            child: const Icon(Icons.download_outlined),
             builder: (context, child, callback, buttonState) {
               return IconButton(onPressed: callback, icon: child);
             },
@@ -256,7 +255,7 @@ class _TweetMediaViewState extends State<TweetMediaView> {
               var fileBytes = await downloadFile(context, uri);
               Share.shareXFiles([XFile.fromData(fileBytes, mimeType: 'image/jpeg')]);
             },
-            child: const Icon(MaterialSymbols.share),
+            child: const Icon(Icons.share),
           ),
         ],
       ),

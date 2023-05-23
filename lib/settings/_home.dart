@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:quacker/generated/l10n.dart';
 import 'package:quacker/home/home_model.dart';
@@ -18,7 +17,7 @@ class SettingsHomeFragment extends StatelessWidget {
         title: Text(L10n.current.home),
         actions: [
           IconButton(
-              icon: const Icon(MaterialSymbols.restart_alt),
+              icon: const Icon(Icons.restart_alt_rounded),
               tooltip: L10n.current.reset_home_pages,
               onPressed: () async => await model.resetPages())
         ],
@@ -43,7 +42,7 @@ class SettingsHomeFragment extends StatelessWidget {
 
                 return CheckboxListTile(
                   key: Key(page.id),
-                  secondary: const Icon(MaterialSymbols.drag_handle),
+                  secondary: const Icon(Icons.drag_handle_rounded),
                   title: Text(page.page.titleBuilder(context)),
                   value: page.selected,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),

@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:flutter_file_dialog/flutter_file_dialog.dart';
 import 'package:quacker/constants.dart';
 import 'package:quacker/database/entities.dart';
@@ -129,7 +128,7 @@ class SettingsDataFragment extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 8),
         child: ListView(children: [
           PrefLabel(
-            leading: const Icon(MaterialSymbols.publish),
+            leading: const Icon(Icons.import_export_rounded),
             title: Text(L10n.of(context).import),
             subtitle: Text(L10n.of(context).import_data_from_another_device),
             onTap: () async {
@@ -140,7 +139,7 @@ class SettingsDataFragment extends StatelessWidget {
             },
           ),
           PrefLabel(
-            leading: const Icon(MaterialSymbols.save),
+            leading: const Icon(Icons.save_outlined),
             title: Text(L10n.of(context).export),
             subtitle: Text(L10n.of(context).export_your_data),
             onTap: () => Navigator.pushNamed(context, routeSettingsExport),

@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:flutter/services.dart';
 
 import 'package:quacker/client.dart';
@@ -186,7 +185,7 @@ class _SubscriptionImportScreenState extends State<SubscriptionImportScreen> {
                           children: [
                             const Padding(
                               padding: EdgeInsets.all(16),
-                              child: Icon(MaterialSymbols.check_circle, size: 36, color: Colors.green),
+                              child: Icon(Icons.check_circle_outlined, size: 36, color: Colors.green),
                             ),
                             Text(
                               L10n.of(context).finished_with_snapshotData_users(
@@ -204,7 +203,7 @@ class _SubscriptionImportScreenState extends State<SubscriptionImportScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: const Icon(MaterialSymbols.publish),
+        child: const Icon(Icons.import_export_rounded),
         onPressed: () async => await importSubscriptions(),
       ),
     );

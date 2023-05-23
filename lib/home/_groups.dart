@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:quacker/generated/l10n.dart';
 import 'package:quacker/group/group_model.dart';
 import 'package:quacker/home/home_screen.dart';
@@ -25,7 +24,7 @@ class GroupsScreen extends StatelessWidget {
             title: Text(L10n.current.groups),
             actions: [
               PopupMenuButton<String>(
-                icon: const Icon(MaterialSymbols.sort),
+                icon: const Icon(Icons.sort_rounded),
                 itemBuilder: (context) => [
                   PopupMenuItem(
                     value: 'name',
@@ -39,7 +38,7 @@ class GroupsScreen extends StatelessWidget {
                 onSelected: (value) => context.read<GroupsModel>().changeOrderSubscriptionGroupsBy(value),
               ),
               IconButton(
-                icon: const Icon(MaterialSymbols.sort_by_alpha),
+                icon: const Icon(Icons.sort_by_alpha_rounded),
                 onPressed: () => context.read<GroupsModel>().toggleOrderSubscriptionGroupsAscending(),
               ),
               ...createCommonAppBarActions(context),

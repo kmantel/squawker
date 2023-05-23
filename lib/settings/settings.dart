@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:quacker/generated/l10n.dart';
 import 'package:quacker/home/home_screen.dart';
 import 'package:quacker/settings/_about.dart';
@@ -42,11 +41,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
     var appVersion = 'v${_packageInfo.version}+${_packageInfo.buildNumber}';
 
     var pages = [
-      NavigationPage('general', (c) => L10n.of(c).general, MaterialSymbols.settings),
-      NavigationPage('home', (c) => L10n.of(c).home, MaterialSymbols.home),
-      NavigationPage('theme', (c) => L10n.of(c).theme, MaterialSymbols.format_paint),
-      NavigationPage('data', (c) => L10n.of(c).data, MaterialSymbols.storage),
-      NavigationPage('about', (c) => L10n.of(c).about, MaterialSymbols.help),
+      NavigationPage('general', (c) => L10n.of(c).general, Icons.settings_outlined),
+      NavigationPage('home', (c) => L10n.of(c).home, Icons.home_outlined),
+      NavigationPage('theme', (c) => L10n.of(c).theme, Icons.format_paint_outlined),
+      NavigationPage('data', (c) => L10n.of(c).data, Icons.storage_rounded),
+      NavigationPage('about', (c) => L10n.of(c).about, Icons.help_outline),
     ];
 
     var initialPage = pages.indexWhere((element) => element.id == widget.initialPage);

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:quacker/constants.dart';
 import 'package:quacker/database/entities.dart';
@@ -82,7 +81,7 @@ class SubscriptionUsersList extends StatelessWidget {
 
         return ListTile(
           dense: true,
-          leading: const SizedBox(width: 48, child: Icon(MaterialSymbols.search)),
+          leading: const SizedBox(width: 48, child: Icon(Icons.search_rounded)),
           title: Text(user.name, maxLines: 1, overflow: TextOverflow.ellipsis),
           subtitle: Text(L10n.current.search_term),
           trailing: SizedBox(

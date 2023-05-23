@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:flutter_iconpicker_plus/flutter_iconpicker.dart';
 import 'package:flutter_triple/flutter_triple.dart';
@@ -109,7 +108,7 @@ class _SubscriptionGroupsState extends State<SubscriptionGroups> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Icon(MaterialSymbols.add, size: 16),
+                        const Icon(Icons.add_rounded, size: 16),
                         const SizedBox(height: 4),
                         Text(
                           L10n.of(context).newTrans,
@@ -274,7 +273,7 @@ class _SubscriptionGroupEditDialogState extends State<SubscriptionGroupEditDialo
                     ),
                   ),
                   IconButton(
-                    icon: Icon(MaterialSymbols.palette, color: color),
+                    icon: Icon(Icons.palette_outlined, color: color),
                     onPressed: () {
                       showDialog(
                           context: context,
@@ -317,8 +316,7 @@ class _SubscriptionGroupEditDialogState extends State<SubscriptionGroupEditDialo
                     icon: Icon(deserializeIconData(icon)),
                     onPressed: () async {
                       var selectedIcon = await FlutterIconPicker.showIconPicker(context,
-                          iconPackModes: [IconPack.custom],
-                          customIconPack: MaterialSymbols.all,
+                          iconPackModes: [IconPack.material],
                           title: Text(L10n.of(context).pick_an_icon),
                           closeChild: Text(L10n.of(context).close),
                           searchHintText: L10n.of(context).search,
@@ -343,7 +341,7 @@ class _SubscriptionGroupEditDialogState extends State<SubscriptionGroupEditDialo
                         subscription is SearchSubscription ? L10n.current.search_term : '@${subscription.screenName}';
 
                     var icon = subscription is SearchSubscription
-                        ? const SizedBox(width: 48, child: Icon(MaterialSymbols.search))
+                        ? const SizedBox(width: 48, child: Icon(Icons.search_rounded))
                         : UserAvatar(uri: subscription.profileImageUrlHttps);
 
                     return CheckboxListTile(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:quacker/database/entities.dart';
 import 'package:quacker/generated/l10n.dart';
@@ -24,7 +23,7 @@ void showFeedSettings(BuildContext context, GroupModel model) {
               children: [
                 ListTile(
                   leading: IconButton(
-                      icon: const Icon(MaterialSymbols.arrow_back),
+                      icon: const Icon(Icons.arrow_back_rounded),
                       onPressed: () {
                         Navigator.of(context).pop();
                       }),
