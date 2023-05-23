@@ -290,15 +290,19 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
   @override
   Widget build(BuildContext context) {
     final prefs = PrefService.of(context, listen: false);
-    final hideAuthorInformation = prefs.get(optionNonConfirmationBiasMode);
-    var numberFormat = NumberFormat.compact();
-    var theme = Theme.of(context);
 
     var shareBaseUrlOption = prefs.get(optionShareBaseUrl);
     var shareBaseUrl =
         shareBaseUrlOption != null && shareBaseUrlOption.isNotEmpty ? shareBaseUrlOption : 'https://twitter.com';
 
     TweetWithCard tweet = this.tweet.retweetedStatusWithCard == null ? this.tweet : this.tweet.retweetedStatusWithCard!;
+
+    // If the user is on a profile, all the shown tweets are from that profile, so it makes no sense to hide it
+    final isTweetOnSameProfile = currentUsername != null && currentUsername == tweet.user!.screenName;
+    final hideAuthorInformation = !isTweetOnSameProfile && prefs.get(optionNonConfirmationBiasMode);
+
+    var numberFormat = NumberFormat.compact();
+    var theme = Theme.of(context);
 
     if (tweet.isTombstone ?? false) {
       return SizedBox(
@@ -575,7 +579,7 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
                         ),
                         // Profile picture
                         leading: hideAuthorInformation
-                            ? null
+                            ? const Icon(Icons.account_circle_rounded, size: 48)
                             : ClipRRect(
                                 borderRadius: BorderRadius.circular(64),
                                 child: UserAvatar(uri: tweet.user!.profileImageUrlHttps),
