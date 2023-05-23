@@ -2497,6 +2497,16 @@ class L10n {
     );
   }
 
+  /// `User`
+  String get generic_username {
+    return Intl.message(
+      'User',
+      name: 'generic_username',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Missing page`
   String get missing_page {
     return Intl.message(
