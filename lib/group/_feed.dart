@@ -78,8 +78,6 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> {
 
     if (!widget.includeRetweets) {
       query += '-filter:retweets ';
-    } else {
-      query += 'include:nativeretweets ';
     }
 
     var remainingLength = 490 - query.length;
@@ -232,6 +230,8 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> {
     return Scaffold(
       body: RefreshIndicator(
         onRefresh: () async {
+          var repository = await Repository.writable();
+          await repository.delete(tableFeedGroupChunk);
           _pagingController.refresh();
         },
         child: MultiProvider(

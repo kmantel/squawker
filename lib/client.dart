@@ -1,10 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:math';
 // ignore: implementation_imports
 import 'package:dart_twitter_api/src/utils/date_utils.dart';
 import 'package:dart_twitter_api/twitter_api.dart';
 import 'package:faker/faker.dart';
 import 'package:ffcache/ffcache.dart';
+import 'package:flutter/material.dart';
 import 'package:quacker/generated/l10n.dart';
 import 'package:quacker/profile/profile_model.dart';
 import 'package:quacker/user.dart';
