@@ -1,1 +1,0 @@
-* Behoben: "Alle"-Abonnement-Gruppe lädt nicht

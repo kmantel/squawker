@@ -1,2 +1,0 @@
-* Twitter API anahtarını engelledikten sonra profillerin yüklenmemesi düzeltildi (#319)
-* Üçüncü taraf kütüphane hatası nedeniyle tarihlerin yüklenmemesi düzeltildi (#313)

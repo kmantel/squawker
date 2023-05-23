@@ -1,1 +1,0 @@
-* Corrigidas migrações que não se aplicavam quando uma versão de pré-lançamento já havia sido instalada

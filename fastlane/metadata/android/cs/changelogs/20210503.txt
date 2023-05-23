@@ -1,2 +1,0 @@
-* Opraveno zobrazování odpovědí na obrazovce profilu
-* Opraveno řazení odběrů přidáním možnosti ručního řazení

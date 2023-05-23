@@ -1,1 +1,0 @@
-* Correction des migrations qui ne s'appliquaient pas lorsqu'une version préliminaire avait été installée auparavant

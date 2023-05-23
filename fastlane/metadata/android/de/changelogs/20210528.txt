@@ -1,3 +1,0 @@
-- Verbesserte Fehlerbehandlung in der gesamten Anwendung
-- Hinzugefügt: Möglichkeit, Absturzberichte zu übermitteln
-- Hinzugefügt: Möglichkeit, fehlgeschlagene Anfragen an Twitter zu wiederholen

@@ -1,2 +1,0 @@
-- Opravena nefunkčnost skupiny "Vše" při manuálním odstranění skupiny
-- Skupina "Vše" nyní nemůže být odstraněna a již se nezobrazuje dvakrát

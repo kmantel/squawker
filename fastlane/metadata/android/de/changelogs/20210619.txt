@@ -1,1 +1,0 @@
-* Beoben: Migration inkompatibel mit älteren SQLite-Versionen (#165)

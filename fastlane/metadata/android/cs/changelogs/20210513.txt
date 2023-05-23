@@ -1,1 +1,0 @@
-* Opraveno nenačítání profilů po zakázání endpointu Twitterem

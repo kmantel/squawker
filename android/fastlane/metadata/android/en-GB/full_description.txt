@@ -1,5 +1,0 @@
-* Supports feed viewing, including group feeds
-* Supports Material 3
-* Supports all new Quacker features
-* Made by the community for the community
-* Always open and always private

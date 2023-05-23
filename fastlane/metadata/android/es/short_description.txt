@@ -1,1 +1,0 @@
-Un cliente para Twitter libre y de código abierto.

@@ -1,1 +1,0 @@
-* Opraveno nekonečné načítání skupiny odběrů "Vše"

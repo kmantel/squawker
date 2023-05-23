@@ -1,2 +1,0 @@
-* Behoben: Antworten werden nicht auf dem Profilbildschirm angezeigt
-* Behoben: Reihenfolge der Abonnements, neu wurde die Möglichkeit für manuelles Sortieren hinzugefügt
