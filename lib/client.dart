@@ -674,9 +674,18 @@ class Twitter {
 
     var filteredTweets = allTweets.where(includeTweet);
 
+    Map<String, Map<String, dynamic>> cards = {};
+
     var globalTweets = Map.fromEntries(filteredTweets.map((e) {
-      return MapEntry(e['content']['itemContent']['tweet_results']['result']['rest_id'] as String,
-          e['content']['itemContent']['tweet_results']['result']['legacy']);
+      var elm = e['content']['itemContent']['tweet_results']['result'];
+      if (elm['card']?['legacy'] != null) {
+        Map<String, dynamic> card = elm['card']['legacy'];
+        List bindingValuesList = card['binding_values'] as List;
+        Map bindingValues = bindingValuesList.fold({}, (prev, elm) { prev[elm['key']] = elm['value']; return prev; });
+        card['binding_values'] = bindingValues;
+        cards[elm['rest_id'] as String] = card;
+      }
+      return MapEntry(elm['rest_id'] as String, elm['legacy']);
     }));
 
     Map<String, bool> blueCheckUsers = {};
@@ -693,6 +702,7 @@ class Twitter {
       if (twt.user?.idStr != null) {
         twt.user!.verified = blueCheckUsers[twt.user!.idStr];
       }
+      twt.card ??= cards[twt.idStr];
     }
 
     return {for (var e in tweets) e.idStr!: e};
@@ -823,11 +833,17 @@ class TweetWithCard extends Tweet {
       noteEntities = Entities.fromJson(noteResult['entity_set']);
     }
 
-    return TweetWithCard.fromData(result['legacy'], noteText, noteEntities, user, retweetedStatus, quotedStatus);
+    TweetWithCard tweet = TweetWithCard.fromData(result['legacy'], noteText, noteEntities, user, retweetedStatus, quotedStatus);
+    if (tweet.card == null && result['card']?['legacy'] != null) {
+      tweet.card = result['card']['legacy'];
+      List bindingValuesList = tweet.card!['binding_values'] as List;
+      Map<String, dynamic> bindingValues = bindingValuesList.fold({}, (prev, elm) { prev[elm['key']] = elm['value']; return prev; });
+      tweet.card!['binding_values'] = bindingValues;
+    }
+    return tweet;
   }
 
-  factory TweetWithCard.fromCardJson(Map<String, dynamic> tweets, Map<String, dynamic> users, Map<String, dynamic> e) {
-    var user = e['user_id_str'] == null ? null : UserWithExtra.fromJson(users[e['user_id_str']]);
+  factory TweetWithCard.fromCardJson(Map<String, dynamic> tweets, Map<String, dynamic> users, Map<String, dynamic> e) {    var user = e['user_id_str'] == null ? null : UserWithExtra.fromJson(users[e['user_id_str']]);
 
     var retweetedStatus = e['retweeted_status_id_str'] == null
         ? null
