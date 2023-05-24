@@ -100,6 +100,7 @@ Future<void> main() async {
     optionDownloadType: optionDownloadTypeAsk,
     optionHomePages: defaultHomePages.map((e) => e.id).toList(),
     optionLocale: optionLocaleDefault,
+    optionHomeInitialTab: 'feed',
     optionMediaSize: 'medium',
     optionMediaDefaultMute: true,
     optionNonConfirmationBiasMode: false,
@@ -109,8 +110,8 @@ Future<void> main() async {
     optionSubscriptionOrderByField: 'name',
     optionThemeMode: 'system',
     optionThemeTrueBlack: false,
-    optionThemeColorScheme: 'mango',
-    optionTweetsHideSensitive: false,
+    optionThemeColorScheme: 'gold',
+    optionTweetsHideSensitive: true,
     optionUserTrendsLocations: jsonEncode({
       'active': {'name': 'Worldwide', 'woeid': 1},
       'locations': [
@@ -174,7 +175,7 @@ class _FritterAppState extends State<FritterApp> {
 
   String _themeMode = 'system';
   bool _trueBlack = false;
-  FlexScheme _colorScheme = FlexScheme.mango;
+  FlexScheme _colorScheme = FlexScheme.gold;
   Locale? _locale;
 
   @override
