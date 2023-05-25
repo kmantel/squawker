@@ -22,8 +22,6 @@ environment:
   sdk: ">=2.18.0 <3.0.0"
 
 dependency_overrides:
-  # Required until dart_twitter_api updates, as it transitively depends on an old version
-  intl: ^0.17.0
   # Required until device_info_plus updates, as it transitively depends on an old version
   file: ^6.1.4
 
@@ -55,7 +53,7 @@ dependencies:
   html_unescape: ^2.0.0
   http: ^0.13.5
   infinite_scroll_pagination: ^3.2.0
-  intl: ^0.18.1
+  intl: ^0.17.0
   logging: ^1.1.0
   measure_size: ^4.0.0
   multi_select_flutter: ^4.1.3
@@ -68,7 +66,9 @@ dependencies:
   quiver: ^3.1.0
   scroll_bottom_navigation_bar: ^4.0.0
   scroll_to_index: ^3.0.1
+  share: ^2.0.4
   share_plus: ^6.2.0
+  flutter_material_symbols: ^0.0.4
   sqflite: ^2.2.2
   sqflite_common: ^2.4.0+2
   sqflite_migration_plan: ^1.0.0
@@ -79,6 +79,7 @@ dependencies:
   video_player: ^2.4.9
   visibility_detector: ^0.3.3
   wakelock: ^0.6.2
+
   flutter_localizations:
     sdk: flutter
 
@@ -92,7 +93,7 @@ dev_dependencies:
   intl_utils: ^2.8.1
   sqflite_common_ffi: ^2.2.0+1
 
-flutter_Icons:
+flutter_MaterialSymbols:
   android: "launcher_icon"
   ios: true
 
@@ -101,9 +102,9 @@ flutter_Icons:
 # The following section is specific to Flutter.
 flutter:
 
-  # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the Icons in
-  # the material Icons class.
+  # The following line ensures that the Material MaterialSymbols font is
+  # included with your application, so that you can use the MaterialSymbols in
+  # the material MaterialSymbols class.
   uses-material-design: true
 
   # An image asset can refer to one or more resolution-specific "variants", see
