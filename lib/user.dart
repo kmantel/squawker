@@ -160,7 +160,8 @@ class FollowButton extends StatelessWidget {
       onState: (_, state) {
         var followed = state.any((element) => element.id == user.id);
 
-        var icon = followed ? Icon(Icons.person_remove_outlined, color: color) : Icon(Icons.person_add_outlined, color: color);
+        var icon =
+            followed ? Icon(Icons.person_remove_outlined, color: color) : Icon(Icons.person_add_outlined, color: color);
         var text = followed ? L10n.of(context).unsubscribe : L10n.of(context).subscribe;
 
         return PopupMenuButton<String>(

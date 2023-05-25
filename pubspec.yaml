@@ -22,6 +22,7 @@ environment:
   sdk: ">=2.18.0 <3.0.0"
 
 dependency_overrides:
+  intl: ^0.17.0
   # Required until device_info_plus updates, as it transitively depends on an old version
   file: ^6.1.4
 
