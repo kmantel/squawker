@@ -230,8 +230,8 @@ class Repository {
 
     // Clean up any old feed chunks and cursors
     var repository = await writable();
-    await repository.delete(tableFeedGroupChunk, where: "created_at <= date('now', '-30 day')");
-    await repository.delete(tableFeedGroupCursor, where: "created_at <= date('now', '-30 day')");
+    await repository.delete(tableFeedGroupChunk, where: "created_at <= date('now', '-7 day')");
+    await repository.delete(tableFeedGroupCursor, where: "created_at <= date('now', '-7 day')");
 
     log.info('Finished migrating database');
 

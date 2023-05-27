@@ -80,7 +80,7 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> {
       query += '-filter:retweets ';
     }
 
-    var remainingLength = 490 - query.length;
+    var remainingLength = 512 - query.length;
 
     for (var user in users) {
       var queryToAdd = '';
@@ -90,7 +90,7 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> {
         queryToAdd = '"${user.id}"';
       }
 
-      // If we can add this user to the query and still be less than ~500 characters, do so
+      // If we can add this user to the query and still be less than ~512 characters, do so
       if (query.length + queryToAdd.length < remainingLength) {
         if (query.isNotEmpty) {
           query += '+OR+';

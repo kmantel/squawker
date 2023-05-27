@@ -75,9 +75,7 @@ class UserSubscription extends Subscription {
       required super.createdAt});
 
   factory UserSubscription.fromMap(Map<String, Object?> map) {
-    // TODO: Remove this after a while, as it's to handle broken exports from v2.10.0
-    var verifiedIsBool = map['verified'] is bool;
-    var verifiedIsInt = map['verified'] is int;
+    var verified = map['verified'] is int;
     var createdAt = map['created_at'] == null ? DateTime.now() : DateTime.parse(map['created_at'] as String);
 
     return UserSubscription(
@@ -85,11 +83,7 @@ class UserSubscription extends Subscription {
         screenName: map['screen_name'] as String,
         name: map['name'] as String,
         profileImageUrlHttps: map['profile_image_url_https'] as String?,
-        verified: verifiedIsBool
-            ? map['verified'] as bool
-            : verifiedIsInt
-                ? map['verified'] == 1
-                : false,
+        verified: verified ? map['verified'] == 1 : false,
         createdAt: createdAt);
   }
 
