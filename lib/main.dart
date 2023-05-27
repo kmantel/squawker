@@ -329,7 +329,7 @@ class _FritterAppState extends State<FritterApp> {
         tabBarStyle: FlexTabBarStyle.flutterDefault,
         subThemesData: const FlexSubThemesData(
           blendOnLevel: 20,
-          blendOnColors: true,
+          blendOnColors: false,
         ),
         visualDensity: FlexColorScheme.comfortablePlatformDensity,
         useMaterial3: true,
@@ -344,7 +344,7 @@ class _FritterAppState extends State<FritterApp> {
         tabBarStyle: FlexTabBarStyle.flutterDefault,
         subThemesData: const FlexSubThemesData(
           blendOnLevel: 20,
-          blendOnColors: true,
+          blendOnColors: false,
         ),
         visualDensity: FlexColorScheme.comfortablePlatformDensity,
         useMaterial3: true,
