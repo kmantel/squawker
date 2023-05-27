@@ -24,9 +24,7 @@ Future openSubscriptionGroupDialog(BuildContext context, String? id, String name
 }
 
 class SubscriptionGroups extends StatefulWidget {
-  final ScrollController scrollController;
-
-  const SubscriptionGroups({Key? key, required this.scrollController}) : super(key: key);
+  const SubscriptionGroups({Key? key}) : super(key: key);
 
   @override
   State<SubscriptionGroups> createState() => _SubscriptionGroupsState();
@@ -77,8 +75,8 @@ class _SubscriptionGroupsState extends State<SubscriptionGroups> {
       // TODO: Error
       onState: (_, state) {
         return GridView.builder(
-          controller: widget.scrollController,
-          padding: const EdgeInsets.only(top: 4),
+          shrinkWrap: true,
+          padding: EdgeInsets.only(left: 20, right: 20),
           gridDelegate:
               const SliverGridDelegateWithMaxCrossAxisExtent(maxCrossAxisExtent: 180, childAspectRatio: 200 / 150),
           itemCount: state.length + 2,
@@ -338,6 +336,7 @@ class _SubscriptionGroupEditDialogState extends State<SubscriptionGroupEditDialo
               Expanded(
                 child: ListView.builder(
                   shrinkWrap: true,
+                  padding: const EdgeInsets.symmetric(vertical: 8),
                   itemCount: subscriptionsModel.state.length,
                   itemBuilder: (context, index) {
                     var subscription = subscriptionsModel.state[index];

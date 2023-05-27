@@ -47,7 +47,6 @@ List<Widget> createCommonAppBarActions(BuildContext context) {
 final List<NavigationPage> defaultHomePages = [
   NavigationPage('feed', (c) => L10n.of(c).feed, Icons.rss_feed_rounded),
   NavigationPage('subscriptions', (c) => L10n.of(c).subscriptions, Icons.subscriptions_outlined),
-  NavigationPage('groups', (c) => L10n.of(c).groups, Icons.group_outlined),
   NavigationPage('trending', (c) => L10n.of(c).trending, Icons.trending_up_rounded),
   NavigationPage('saved', (c) => L10n.of(c).saved, Icons.bookmark_border_rounded),
 ];
@@ -129,8 +128,6 @@ class _HomeScreenState extends State<_HomeScreen> {
                         return FeedScreen(scrollController: scrollController, id: '-1', name: L10n.current.feed);
                       case 'subscriptions':
                         return const SubscriptionsScreen();
-                      case 'groups':
-                        return GroupsScreen(scrollController: scrollController);
                       case 'trending':
                         return TrendsScreen(scrollController: scrollController);
                       case 'saved':

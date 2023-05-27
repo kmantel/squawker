@@ -46,7 +46,7 @@ class GroupsScreen extends StatelessWidget {
           )
         ];
       },
-      body: SubscriptionGroups(scrollController: scrollController),
+      body: SubscriptionGroups(),
     ));
   }
 }

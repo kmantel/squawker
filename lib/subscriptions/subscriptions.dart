@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:quacker/constants.dart';
 import 'package:quacker/generated/l10n.dart';
+import 'package:quacker/group/group_model.dart';
 import 'package:quacker/home/home_screen.dart';
+import 'package:quacker/subscriptions/_groups.dart';
 import 'package:quacker/subscriptions/_list.dart';
 import 'package:quacker/subscriptions/users_model.dart';
 import 'package:provider/provider.dart';
@@ -16,12 +18,11 @@ class SubscriptionsScreen extends StatelessWidget {
         title: Text(L10n.current.subscriptions),
         actions: [
           IconButton(
-            icon: const Icon(Icons.import_export_rounded),
-            onPressed: () => Navigator.pushNamed(context, routeSubscriptionsImport),
-          ),
-          IconButton(
             icon: const Icon(Icons.refresh_rounded),
-            onPressed: () => context.read<SubscriptionsModel>().refreshSubscriptionData(),
+            onPressed: () {
+              context.read<SubscriptionsModel>().refreshSubscriptionData();
+              context.read<GroupsModel>().reloadGroups();
+            },
           ),
           PopupMenuButton<String>(
             icon: const Icon(Icons.sort_rounded),
@@ -48,7 +49,23 @@ class SubscriptionsScreen extends StatelessWidget {
           ...createCommonAppBarActions(context)
         ],
       ),
-      body: const SubscriptionUsers(),
+      body: Column(children: [
+        ExpansionTile(
+          title: Text(L10n.current.groups),
+          children: const [SubscriptionGroups()],
+        ),
+        ExpansionTile(
+          title: Text(L10n.current.subscriptions),
+          children: const [SubscriptionUsers()],
+        ),
+        Container(
+          margin: const EdgeInsets.symmetric(vertical: 8),
+          child: TextButton(
+            child: Text(L10n.of(context).import_from_twitter),
+            onPressed: () => Navigator.pushNamed(context, routeSubscriptionsImport),
+          ),
+        )
+      ]),
     );
   }
 }

@@ -47,13 +47,6 @@ class _SubscriptionUsersState extends State<SubscriptionUsers> {
                             color: Theme.of(context).hintColor,
                           )),
                     ),
-                    Container(
-                      margin: const EdgeInsets.symmetric(vertical: 8),
-                      child: ElevatedButton(
-                        child: Text(L10n.of(context).import_from_twitter),
-                        onPressed: () => Navigator.pushNamed(context, routeSubscriptionsImport),
-                      ),
-                    )
                   ]));
         }
 
@@ -71,6 +64,7 @@ class SubscriptionUsersList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      shrinkWrap: true,
       padding: const EdgeInsets.symmetric(vertical: 8),
       itemCount: subscriptions.length,
       itemBuilder: (context, i) {
