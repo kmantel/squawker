@@ -64,6 +64,8 @@ class SettingsData {
 class SettingsBackupFragment extends StatelessWidget {
   static final log = Logger('SettingsBackupFragment');
 
+  const SettingsBackupFragment({super.key});
+
   Future<void> _import(BuildContext context, File file, String json, bool useJson) async {
     dynamic content;
     if (useJson) {

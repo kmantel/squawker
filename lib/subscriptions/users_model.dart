@@ -1,4 +1,3 @@
-import 'package:flutter_triple/flutter_triple.dart';
 import 'package:quacker/client.dart';
 import 'package:quacker/constants.dart';
 import 'package:quacker/database/entities.dart';

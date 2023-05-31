@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
           //);
         },
       );
-    } on FormatException catch (ex) {
+    } on FormatException {
       print('Pressed the Back Button before Scanning');
     } catch (ex) {
       print('Unknown Error $ex');

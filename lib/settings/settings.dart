@@ -7,7 +7,7 @@ import 'package:quacker/settings/_backup.dart';
 import 'package:quacker/settings/_general.dart';
 import 'package:quacker/settings/_home.dart';
 import 'package:quacker/settings/_theme.dart';
-import 'package:package_info/package_info.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 class SettingsScreen extends StatefulWidget {
   final String? initialPage;
@@ -58,7 +58,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           SettingsGeneralFragment(appVersion: appVersion),
           const SettingsHomeFragment(),
           const SettingsThemeFragment(),
-          SettingsBackupFragment()
+          const SettingsBackupFragment()
         ];
       },
     );

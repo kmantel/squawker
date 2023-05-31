@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -10,8 +9,6 @@ import 'package:quacker/utils/iterables.dart';
 import 'package:logging/logging.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:pref/pref.dart';
-import 'package:package_info/package_info.dart';
-import 'package:quacker/utils/urls.dart';
 
 class SettingLocale {
   final String code;

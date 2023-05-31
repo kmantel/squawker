@@ -6,7 +6,6 @@ import 'package:flutter_triple/flutter_triple.dart';
 import 'package:quacker/constants.dart';
 import 'package:quacker/trends/trends_model.dart';
 import 'package:quacker/ui/errors.dart';
-import 'package:quacker/utils/iterables.dart';
 import 'package:pref/pref.dart';
 import 'package:provider/provider.dart';
 import 'package:quacker/generated/l10n.dart';

@@ -7,7 +7,6 @@ import 'package:quacker/group/group_model.dart';
 import 'package:quacker/group/_feed.dart';
 import 'package:quacker/group/_settings.dart';
 import 'package:quacker/ui/errors.dart';
-import 'package:quacker/utils/iterables.dart';
 import 'package:provider/provider.dart';
 import 'package:quiver/iterables.dart';
 

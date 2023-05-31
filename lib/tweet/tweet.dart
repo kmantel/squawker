@@ -12,7 +12,6 @@ import 'package:quacker/status.dart';
 import 'package:quacker/tweet/_card.dart';
 import 'package:quacker/tweet/_entities.dart';
 import 'package:quacker/tweet/_media.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:quacker/ui/dates.dart';
 import 'package:quacker/ui/errors.dart';
 import 'package:quacker/user.dart';
