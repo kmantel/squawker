@@ -3,8 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:quacker/generated/l10n.dart';
 import 'package:quacker/home/home_screen.dart';
-import 'package:quacker/settings/_about.dart';
-import 'package:quacker/settings/_data.dart';
+import 'package:quacker/settings/_backup.dart';
 import 'package:quacker/settings/_general.dart';
 import 'package:quacker/settings/_home.dart';
 import 'package:quacker/settings/_theme.dart';
@@ -21,7 +20,6 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState extends State<SettingsScreen> {
   PackageInfo _packageInfo = PackageInfo(appName: '', packageName: '', version: '', buildNumber: '');
-  String _legacyExportPath = '';
 
   @override
   void initState() {
@@ -45,7 +43,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
       NavigationPage('home', (c) => L10n.of(c).home, Icons.home_outlined),
       NavigationPage('theme', (c) => L10n.of(c).theme, Icons.format_paint_outlined),
       NavigationPage('data', (c) => L10n.of(c).data, Icons.storage_rounded),
-      NavigationPage('about', (c) => L10n.of(c).about, Icons.help_outline),
     ];
 
     var initialPage = pages.indexWhere((element) => element.id == widget.initialPage);
@@ -58,11 +55,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
       pages: pages,
       builder: (scrollController) {
         return [
-          const SettingsGeneralFragment(),
+          SettingsGeneralFragment(appVersion: appVersion),
           const SettingsHomeFragment(),
           const SettingsThemeFragment(),
-          SettingsDataFragment(legacyExportPath: _legacyExportPath),
-          SettingsAboutFragment(appVersion: appVersion)
+          SettingsBackupFragment()
         ];
       },
     );

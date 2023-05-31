@@ -25,7 +25,7 @@
 ## Features:
 * Feed: View all your subscriptions in a chronological feed
 * Material You: Looks and feels fluent
-* Sync: In sync with the current fritter build
+* Transfer: Easily transfer your data to another device
 * Private: Doesn't use the official twitter api
 * Updated: Constantly improving week by week
 

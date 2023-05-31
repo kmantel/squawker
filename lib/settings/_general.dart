@@ -1,6 +1,4 @@
-import 'dart:async';
-import 'dart:convert';
-import 'dart:io';
+import 'dart:ui';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -9,21 +7,11 @@ import 'package:quacker/constants.dart';
 import 'package:quacker/generated/l10n.dart';
 import 'package:quacker/home/home_screen.dart';
 import 'package:quacker/utils/iterables.dart';
-import 'package:http/http.dart' as http;
 import 'package:logging/logging.dart';
-import 'package:package_info/package_info.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:pref/pref.dart';
-
-String getFlavor() {
-  const flavor = String.fromEnvironment('app.flavor');
-
-  if (flavor == '') {
-    return 'fdroid';
-  }
-
-  return flavor;
-}
+import 'package:package_info/package_info.dart';
+import 'package:quacker/utils/urls.dart';
 
 class SettingLocale {
   final String code;
@@ -41,8 +29,9 @@ class SettingLocale {
 
 class SettingsGeneralFragment extends StatelessWidget {
   static final log = Logger('SettingsGeneralFragment');
+  final String appVersion;
 
-  const SettingsGeneralFragment({Key? key}) : super(key: key);
+  const SettingsGeneralFragment({super.key, required this.appVersion});
 
   PrefDialog _createShareBaseDialog(BuildContext context) {
     var prefService = PrefService.of(context);
@@ -75,7 +64,27 @@ class SettingsGeneralFragment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(L10n.current.general)),
+      appBar: AppBar(
+        title: Text(L10n.current.general),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.info_outline),
+            onPressed: () {
+              showAboutDialog(
+                  context: context,
+                  applicationName: L10n.of(context).fritter,
+                  applicationIcon: Image.network(
+                    'https://raw.githubusercontent.com/TheHCJ/Quacker/master/fastlane/metadata/android/en-US/images/icon.png',
+                    width: 48,
+                  ),
+                  applicationVersion: appVersion,
+                  children: [
+                    const Text('A better way to browse twitter', style: TextStyle(fontStyle: FontStyle.italic)),
+                  ]);
+            },
+          )
+        ],
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8),
         child: ListView(children: [

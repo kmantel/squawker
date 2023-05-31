@@ -351,7 +351,7 @@ class TweetCard extends StatelessWidget {
       case 'unified_card':
         try {
           return _createUnifiedCard(context, card, imageKey, imageSize);
-        } catch (e, stackTrace) {
+        } catch (e) {
           log.severe('Unable to render the unified card');
           return Container();
         }
@@ -402,7 +402,7 @@ class TweetCard extends StatelessWidget {
         var title = card['binding_values']['broadcast_title']['string_value'];
 
         // TODO: Figure out what states we can receive
-        var state = card['binding_values']['broadcast_state']['string_value'];
+        //var state = card['binding_values']['broadcast_state']['string_value'];
 
         // TODO: This opens the URL externally. Create a screen for it in Quacker
         return _createCard(

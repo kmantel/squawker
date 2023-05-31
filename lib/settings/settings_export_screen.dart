@@ -1,16 +1,15 @@
 import 'dart:convert';
-import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_file_dialog/flutter_file_dialog.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 import 'package:quacker/database/entities.dart';
 import 'package:quacker/group/group_model.dart';
 import 'package:quacker/saved/saved_tweet_model.dart';
-import 'package:quacker/settings/_data.dart';
+import 'package:quacker/settings/_backup.dart';
 import 'package:quacker/subscriptions/users_model.dart';
 import 'package:intl/intl.dart';
-import 'package:path/path.dart' as path;
 import 'package:pref/pref.dart';
 import 'package:provider/provider.dart';
 import 'package:quacker/generated/l10n.dart';
@@ -92,62 +91,110 @@ class _SettingsExportScreenState extends State<SettingsExportScreen> {
       ),
       floatingActionButton: noExportOptionSelected()
           ? null
-          : FloatingActionButton(
-              child: const Icon(Icons.save_outlined),
-              onPressed: () async {
-                var groupModel = context.read<GroupsModel>();
-                await groupModel.reloadGroups();
+          : Column(mainAxisAlignment: MainAxisAlignment.end, children: [
+              FloatingActionButton(
+                  child: const Icon(Icons.qr_code_rounded),
+                  onPressed: () async {
+                    var groupModel = context.read<GroupsModel>();
+                    await groupModel.reloadGroups();
 
-                var subscriptionsModel = context.read<SubscriptionsModel>();
-                await subscriptionsModel.reloadSubscriptions();
+                    var subscriptionsModel = context.read<SubscriptionsModel>();
+                    subscriptionsModel.reloadSubscriptions();
 
-                var savedTweetModel = context.read<SavedTweetModel>();
-                await savedTweetModel.listSavedTweets();
+                    var savedTweetModel = context.read<SavedTweetModel>();
+                    await savedTweetModel.listSavedTweets();
 
-                var prefs = PrefService.of(context);
+                    var prefs = PrefService.of(context);
 
-                // TODO: Check exporting
-                var settings = _exportSettings ? prefs.toMap() : null;
+                    // TODO: Check exporting
+                    var settings = _exportSettings ? prefs.toMap() : null;
 
-                var subscriptions = _exportSubscriptions ? subscriptionsModel.state : null;
+                    var subscriptions = _exportSubscriptions ? subscriptionsModel.state : null;
 
-                var subscriptionGroups = _exportSubscriptionGroups ? groupModel.state : null;
+                    var subscriptionGroups = _exportSubscriptionGroups ? groupModel.state : null;
 
-                var subscriptionGroupMembers =
-                    _exportSubscriptionGroupMembers ? await groupModel.listGroupMembers() : null;
+                    var subscriptionGroupMembers =
+                        _exportSubscriptionGroupMembers ? await groupModel.listGroupMembers() : null;
 
-                var tweets = _exportTweets ? savedTweetModel.state : null;
+                    var tweets = _exportTweets ? savedTweetModel.state : null;
 
-                var data = SettingsData(
-                    settings: settings,
-                    searchSubscriptions: subscriptions?.whereType<SearchSubscription>().toList(),
-                    userSubscriptions: subscriptions?.whereType<UserSubscription>().toList(),
-                    subscriptionGroups: subscriptionGroups,
-                    subscriptionGroupMembers: subscriptionGroupMembers,
-                    tweets: tweets);
+                    var data = SettingsData(
+                        settings: settings,
+                        searchSubscriptions: subscriptions?.whereType<SearchSubscription>().toList(),
+                        userSubscriptions: subscriptions?.whereType<UserSubscription>().toList(),
+                        subscriptionGroups: subscriptionGroups,
+                        subscriptionGroupMembers: subscriptionGroupMembers,
+                        tweets: tweets);
 
-                var exportData = jsonEncode(data.toJson());
+                    var exportData = jsonEncode(data.toJson());
 
-                var dateFormat = DateFormat('yyyy-MM-dd-hhmm');
-                var fileName = 'quacker-${dateFormat.format(DateTime.now())}.json';
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) {
+                        return Column(children: [
+                          AppBar(
+                            title: Text('${L10n.of(context).export} QR'),
+                          ),
+                          QrImageView(data: exportData, version: QrVersions.auto, size: 200.0)
+                        ]);
+                      },
+                    ));
+                  }),
+              FloatingActionButton(
+                child: const Icon(Icons.save_outlined),
+                onPressed: () async {
+                  var groupModel = context.read<GroupsModel>();
+                  await groupModel.reloadGroups();
 
-                // This platform can support the directory picker, so display it
-                var path = await FlutterFileDialog.saveFile(
-                    params:
-                        SaveFileDialogParams(fileName: fileName, data: Uint8List.fromList(utf8.encode(exportData))));
-                if (path != null) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(
-                        L10n.of(context).data_exported_to_fileName(fileName),
+                  var subscriptionsModel = context.read<SubscriptionsModel>();
+                  await subscriptionsModel.reloadSubscriptions();
+
+                  var savedTweetModel = context.read<SavedTweetModel>();
+                  await savedTweetModel.listSavedTweets();
+
+                  var prefs = PrefService.of(context);
+
+                  // TODO: Check exporting
+                  var settings = _exportSettings ? prefs.toMap() : null;
+
+                  var subscriptions = _exportSubscriptions ? subscriptionsModel.state : null;
+
+                  var subscriptionGroups = _exportSubscriptionGroups ? groupModel.state : null;
+
+                  var subscriptionGroupMembers =
+                      _exportSubscriptionGroupMembers ? await groupModel.listGroupMembers() : null;
+
+                  var tweets = _exportTweets ? savedTweetModel.state : null;
+
+                  var data = SettingsData(
+                      settings: settings,
+                      searchSubscriptions: subscriptions?.whereType<SearchSubscription>().toList(),
+                      userSubscriptions: subscriptions?.whereType<UserSubscription>().toList(),
+                      subscriptionGroups: subscriptionGroups,
+                      subscriptionGroupMembers: subscriptionGroupMembers,
+                      tweets: tweets);
+
+                  var exportData = jsonEncode(data.toJson());
+
+                  var dateFormat = DateFormat('yyyy-MM-dd-hhmm');
+                  var fileName = 'quacker-${dateFormat.format(DateTime.now())}.json';
+
+                  // This platform can support the directory picker, so display it
+                  var path = await FlutterFileDialog.saveFile(
+                      params:
+                          SaveFileDialogParams(fileName: fileName, data: Uint8List.fromList(utf8.encode(exportData))));
+                  if (path != null) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                          L10n.of(context).data_exported_to_fileName(fileName),
+                        ),
                       ),
-                    ),
-                  );
-                }
-              },
-            ),
+                    );
+                  }
+                },
+              )
+            ]),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Expanded(
               child: SingleChildScrollView(
