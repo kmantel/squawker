@@ -14,7 +14,7 @@ body:
     attributes:
       label: "Checklist"
       options:
-        - label: "I am able to reproduce the bug with the [latest version] on Github Releases (https://github.com/thehcj/quacker/releases)."
+        - label: "I am able to reproduce the bug with the [latest version](https://github.com/thehcj/quacker/releases)."
           required: true
         - label: "I made sure that there are *no existing issues* - [open](https://github.com/thehcj/quacker/issues) or [closed](https://github.com/thehcj/quacker/issues?q=is%3Aissue+is%3Aclosed) - which I could contribute my information to."
           required: true
