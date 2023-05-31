@@ -1,3 +1,4 @@
+import 'package:flutter_triple/flutter_triple.dart';
 import 'package:quacker/client.dart';
 import 'package:quacker/user.dart';
 
@@ -8,7 +9,7 @@ class Profile {
   Profile(this.user, this.pinnedTweets);
 }
 
-class ProfileModel extends StreamStore<Object, Profile> {
+class ProfileModel extends Store<Profile> {
   ProfileModel() : super(Profile(UserWithExtra(), []));
 
   Future<void> loadProfileById(String id) async {

@@ -1,3 +1,4 @@
+import 'package:flutter_triple/flutter_triple.dart';
 import 'package:quacker/constants.dart';
 import 'package:quacker/generated/l10n.dart';
 import 'package:quacker/group/group_model.dart';
@@ -13,7 +14,7 @@ class HomePage {
   HomePage(this.id, this.selected, this.page);
 }
 
-class HomeModel extends StreamStore<Object, List<HomePage>> {
+class HomeModel extends Store<List<HomePage>> {
   final BasePrefService prefs;
   final GroupsModel groupsModel;
 

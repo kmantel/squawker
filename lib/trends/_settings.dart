@@ -9,6 +9,7 @@ import 'package:quacker/ui/errors.dart';
 import 'package:pref/pref.dart';
 import 'package:provider/provider.dart';
 import 'package:quacker/generated/l10n.dart';
+import 'package:quacker/utils/iterables.dart';
 
 class TrendsSettings extends StatefulWidget {
   const TrendsSettings({Key? key}) : super(key: key);
@@ -31,7 +32,7 @@ class _TrendsSettingsState extends State<TrendsSettings> {
     var model = context.read<TrendLocationsModel>();
 
     return AlertDialog(
-      content: ScopedBuilder<TrendLocationsModel, Object, List<TrendLocation>>.transition(
+      content: ScopedBuilder<TrendLocationsModel, List<TrendLocation>>.transition(
         store: model,
         onError: (_, e) => FullPageErrorWidget(
           error: e,

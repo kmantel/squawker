@@ -1,11 +1,12 @@
 import 'dart:convert';
 
 import 'package:dart_twitter_api/twitter_api.dart';
+import 'package:flutter_triple/flutter_triple.dart';
 import 'package:quacker/client.dart';
 import 'package:quacker/constants.dart';
 import 'package:pref/pref.dart';
 
-class TrendLocationsModel extends StreamStore<Object, List<TrendLocation>> {
+class TrendLocationsModel extends Store<List<TrendLocation>> {
   TrendLocationsModel() : super([]);
 
   Future<void> loadLocations() async {
@@ -15,7 +16,7 @@ class TrendLocationsModel extends StreamStore<Object, List<TrendLocation>> {
   }
 }
 
-class TrendsModel extends StreamStore<Object, List<Trends>> {
+class TrendsModel extends Store<List<Trends>> {
   final UserTrendLocationModel userTrendLocationModel;
 
   TrendsModel(this.userTrendLocationModel) : super([]) {
@@ -32,7 +33,7 @@ class TrendsModel extends StreamStore<Object, List<Trends>> {
   }
 }
 
-class UserTrendLocationModel extends StreamStore<Object, UserTrendLocations> {
+class UserTrendLocationModel extends Store<UserTrendLocations> {
   final BasePrefService _prefs;
 
   UserTrendLocationModel(this._prefs) : super(UserTrendLocations());

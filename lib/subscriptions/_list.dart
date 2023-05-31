@@ -21,7 +21,7 @@ class _SubscriptionUsersState extends State<SubscriptionUsers> {
   Widget build(BuildContext context) {
     var model = context.read<SubscriptionsModel>();
 
-    return ScopedBuilder<SubscriptionsModel, Object, List<Subscription>>.transition(
+    return ScopedBuilder<SubscriptionsModel, List<Subscription>>.transition(
       store: model,
       onLoading: (_) => const Center(child: CircularProgressIndicator()),
       onError: (_, e) =>

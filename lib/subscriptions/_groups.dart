@@ -72,7 +72,7 @@ class _SubscriptionGroupsState extends State<SubscriptionGroups> {
 
   @override
   Widget build(BuildContext context) {
-    return ScopedBuilder<GroupsModel, Object, List<SubscriptionGroup>>.transition(
+    return ScopedBuilder<GroupsModel, List<SubscriptionGroup>>.transition(
       store: context.read<GroupsModel>(),
       // TODO: Error
       onState: (_, state) {

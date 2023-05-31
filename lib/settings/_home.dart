@@ -24,7 +24,7 @@ class SettingsHomeFragment extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8),
-        child: ScopedBuilder<HomeModel, Object, List<HomePage>>.transition(
+        child: ScopedBuilder<HomeModel, List<HomePage>>.transition(
           store: model,
           onError: (_, e) => ScaffoldErrorWidget(
             prefix: L10n.current.unable_to_load_home_pages,

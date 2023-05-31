@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_iconpicker_plus/flutter_iconpicker.dart';
+import 'package:flutter_triple/flutter_triple.dart';
 import 'package:quacker/constants.dart';
 import 'package:quacker/database/entities.dart';
 import 'package:quacker/database/repository.dart';
@@ -26,7 +27,7 @@ IconData deserializeIconData(String iconData) {
   return Icons.rss_feed_rounded;
 }
 
-class GroupModel extends StreamStore<Object, SubscriptionGroupGet> {
+class GroupModel extends Store<SubscriptionGroupGet> {
   final String id;
 
   GroupModel(this.id)
@@ -99,7 +100,7 @@ class GroupModel extends StreamStore<Object, SubscriptionGroupGet> {
   }
 }
 
-class GroupsModel extends StreamStore<Object, List<SubscriptionGroup>> {
+class GroupsModel extends Store<List<SubscriptionGroup>> {
   static final log = Logger('GroupModel');
 
   final BasePrefService prefs;

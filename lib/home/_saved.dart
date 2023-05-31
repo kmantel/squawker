@@ -60,7 +60,7 @@ class _SavedScreenState extends State<SavedScreen> with AutomaticKeepAliveClient
           ChangeNotifierProvider<TweetContextState>(
               create: (_) => TweetContextState(prefs.get(optionTweetsHideSensitive))),
         ],
-        child: ScopedBuilder<SavedTweetModel, Object, List<SavedTweet>>.transition(
+        child: ScopedBuilder<SavedTweetModel, List<SavedTweet>>.transition(
           store: model,
           onError: (_, e) => FullPageErrorWidget(
             error: e,

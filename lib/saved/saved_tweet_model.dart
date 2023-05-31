@@ -1,10 +1,11 @@
 import 'dart:convert';
 
+import 'package:flutter_triple/flutter_triple.dart';
 import 'package:quacker/database/entities.dart';
 import 'package:quacker/database/repository.dart';
 import 'package:logging/logging.dart';
 
-class SavedTweetModel extends StreamStore<Object, List<SavedTweet>> {
+class SavedTweetModel extends Store<List<SavedTweet>> {
   static final log = Logger('SavedTweetModel');
 
   SavedTweetModel() : super([]);

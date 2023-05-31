@@ -63,7 +63,7 @@ class _ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ScopedBuilder<ProfileModel, Object, Profile>.transition(
+      body: ScopedBuilder<ProfileModel, Profile>.transition(
         store: context.read<ProfileModel>(),
         onError: (_, error) => FullPageErrorWidget(
           error: error,

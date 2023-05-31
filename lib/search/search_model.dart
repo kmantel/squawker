@@ -1,7 +1,8 @@
+import 'package:flutter_triple/flutter_triple.dart';
 import 'package:quacker/client.dart';
 import 'package:quacker/user.dart';
 
-class SearchTweetsModel extends StreamStore<Object, List<TweetWithCard>> {
+class SearchTweetsModel extends Store<List<TweetWithCard>> {
   SearchTweetsModel() : super([]);
 
   Future<void> searchTweets(String query) async {
@@ -20,7 +21,7 @@ class SearchTweetsModel extends StreamStore<Object, List<TweetWithCard>> {
   }
 }
 
-class SearchUsersModel extends StreamStore<Object, List<UserWithExtra>> {
+class SearchUsersModel extends Store<List<UserWithExtra>> {
   SearchUsersModel() : super([]);
 
   Future<void> searchUsers(String query) async {

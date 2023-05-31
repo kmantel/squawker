@@ -64,7 +64,7 @@ class _TrendsTabBarState extends State<TrendsTabBar> with TickerProviderStateMix
   Widget build(BuildContext context) {
     var model = context.read<UserTrendLocationModel>();
 
-    return ScopedBuilder<UserTrendLocationModel, Object, UserTrendLocations>(
+    return ScopedBuilder<UserTrendLocationModel, UserTrendLocations>(
       store: context.read<UserTrendLocationModel>(),
       onState: (context, state) {
         return AppBar(

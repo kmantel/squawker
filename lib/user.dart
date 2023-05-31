@@ -155,7 +155,7 @@ class FollowButton extends StatelessWidget {
   Widget build(BuildContext context) {
     var model = context.read<SubscriptionsModel>();
 
-    return ScopedBuilder<SubscriptionsModel, Object, List<Subscription>>(
+    return ScopedBuilder<SubscriptionsModel, List<Subscription>>(
       store: model,
       onState: (_, state) {
         var followed = state.any((element) => element.id == user.id);

@@ -8,6 +8,7 @@ import 'package:quacker/group/_feed.dart';
 import 'package:quacker/group/_settings.dart';
 import 'package:quacker/ui/errors.dart';
 import 'package:provider/provider.dart';
+import 'package:quacker/utils/iterables.dart';
 import 'package:quiver/iterables.dart';
 
 class GroupScreenArguments {
@@ -41,7 +42,7 @@ class SubscriptionGroupScreenContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScopedBuilder<GroupModel, Object, SubscriptionGroupGet>.transition(
+    return ScopedBuilder<GroupModel, SubscriptionGroupGet>.transition(
       store: context.read<GroupModel>(),
       onLoading: (_) => const Center(child: Text('lad')),
       onError: (_, error) =>

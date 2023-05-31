@@ -103,7 +103,7 @@ class _SearchScreenState extends State<_SearchScreen> with SingleTickerProviderS
           ),
           actions: [
             IconButton(icon: const Icon(Icons.close_rounded), onPressed: () => _queryController.clear()),
-            ScopedBuilder<SubscriptionsModel, Object, List<Subscription>>.transition(
+            ScopedBuilder<SubscriptionsModel, List<Subscription>>.transition(
               store: subscriptionsModel,
               onState: (_, state) {
                 return AnimatedBuilder(
@@ -171,7 +171,7 @@ class _SearchScreenState extends State<_SearchScreen> with SingleTickerProviderS
 
 typedef ItemWidgetBuilder<T> = Widget Function(BuildContext context, T item);
 
-class TweetSearchResultList<S extends Store<Object, List<T>>, T> extends StatefulWidget {
+class TweetSearchResultList<S extends Store<List<T>>, T> extends StatefulWidget {
   final TextEditingController queryController;
   final S store;
   final Future<void> Function(String query) searchFunction;
@@ -189,7 +189,7 @@ class TweetSearchResultList<S extends Store<Object, List<T>>, T> extends Statefu
   State<TweetSearchResultList<S, T>> createState() => _TweetSearchResultListState<S, T>();
 }
 
-class _TweetSearchResultListState<S extends Store<Object, List<T>>, T> extends State<TweetSearchResultList<S, T>> {
+class _TweetSearchResultListState<S extends Store<List<T>>, T> extends State<TweetSearchResultList<S, T>> {
   Timer? _debounce;
   String? _previousQuery = '';
 
@@ -227,7 +227,7 @@ class _TweetSearchResultListState<S extends Store<Object, List<T>>, T> extends S
 
   @override
   Widget build(BuildContext context) {
-    return ScopedBuilder<S, Object, List<T>>.transition(
+    return ScopedBuilder<S, List<T>>.transition(
       store: widget.store,
       onLoading: (_) => const Center(child: CircularProgressIndicator()),
       onError: (_, error) => FullPageErrorWidget(

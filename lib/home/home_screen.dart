@@ -100,7 +100,7 @@ class _HomeScreenState extends State<_HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return ScopedBuilder<HomeModel, Object, List<HomePage>>.transition(
+    return ScopedBuilder<HomeModel, List<HomePage>>.transition(
         store: widget.model,
         onError: (_, e) => ScaffoldErrorWidget(
               prefix: L10n.current.unable_to_load_home_pages,

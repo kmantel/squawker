@@ -39,7 +39,7 @@ void showFeedSettings(BuildContext context, GroupModel model) {
                         color: Theme.of(context).disabledColor,
                       ),
                     )),
-                ScopedBuilder<GroupModel, Object, SubscriptionGroupGet>(
+                ScopedBuilder<GroupModel, SubscriptionGroupGet>(
                   store: model,
                   onState: (_, state) {
                     return Column(

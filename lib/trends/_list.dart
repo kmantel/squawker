@@ -24,9 +24,9 @@ class _TrendsListState extends State<TrendsList> {
   Widget build(BuildContext context) {
     var model = context.read<TrendsModel>();
 
-    return ScopedBuilder<TrendsModel, Object, List<Trends>>.transition(
+    return ScopedBuilder<TrendsModel, List<Trends>>.transition(
       store: model,
-      onError: (context, e) => TripleBuilder<UserTrendLocationModel, Object, UserTrendLocations>(
+      onError: (context, e) => TripleBuilder<UserTrendLocationModel, UserTrendLocations>(
         store: context.read<UserTrendLocationModel>(),
         builder: (context, triple) {
           return FullPageErrorWidget(

@@ -1,3 +1,4 @@
+import 'package:flutter_triple/flutter_triple.dart';
 import 'package:quacker/client.dart';
 import 'package:quacker/constants.dart';
 import 'package:quacker/database/entities.dart';
@@ -7,7 +8,7 @@ import 'package:quacker/utils/iterables.dart';
 import 'package:logging/logging.dart';
 import 'package:pref/pref.dart';
 
-class SubscriptionsModel extends StreamStore<Object, List<Subscription>> {
+class SubscriptionsModel extends Store<List<Subscription>> {
   static final log = Logger('SubscriptionsModel');
 
   final BasePrefService prefs;
