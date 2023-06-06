@@ -123,7 +123,7 @@ class _SearchScreenState extends State<_SearchScreen> with SingleTickerProviderS
                       }
                     }
 
-                    return const IconButton(icon: Icon(Icons.save_outlined), onPressed: null);
+                    return Container();
                   },
                 );
               },
@@ -134,10 +134,15 @@ class _SearchScreenState extends State<_SearchScreen> with SingleTickerProviderS
           children: [
             Material(
               color: Theme.of(context).appBarTheme.backgroundColor,
-              child: TabBar(controller: _tabController, tabs: const [
-                Tab(icon: Icon(Icons.person_outlined)),
-                Tab(icon: Icon(Icons.comment_outlined)),
-              ]),
+              child: TabBar(
+                controller: _tabController,
+                tabs: const [
+                  Tab(icon: Icon(Icons.person_outlined)),
+                  Tab(icon: Icon(Icons.comment_outlined)),
+                ],
+                labelColor: Theme.of(context).appBarTheme.foregroundColor,
+                indicatorColor: Theme.of(context).appBarTheme.foregroundColor,
+              ),
             ),
             MultiProvider(
               providers: [

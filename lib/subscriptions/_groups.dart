@@ -212,40 +212,44 @@ class _SubscriptionGroupEditDialogState extends State<SubscriptionGroupEditDialo
 
     return AlertDialog(
       actions: [
-        TextButton(
-          onPressed: () {
-            setState(() {
-              if (members.isEmpty) {
-                members = subscriptionsModel.state.map((e) => e.id).toSet();
-              } else {
-                members.clear();
-              }
-            });
-          },
-          child: Text(L10n.of(context).toggle_all),
-        ),
-        TextButton(
-          onPressed: id == null ? null : () => openDeleteSubscriptionGroupDialog(id!, name!),
-          child: Text(L10n.of(context).delete),
-        ),
-        TextButton(
-          onPressed: () => Navigator.pop(context),
-          child: Text(L10n.of(context).cancel),
-        ),
-        Builder(builder: (context) {
-          onPressed() async {
-            if (_formKey.currentState!.validate()) {
-              await context.read<GroupsModel>().saveGroup(id, name!, icon, color, members);
+        SizedBox(
+            width: MediaQuery.of(context).size.width,
+            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              TextButton(
+                onPressed: () {
+                  setState(() {
+                    if (members.isEmpty) {
+                      members = subscriptionsModel.state.map((e) => e.id).toSet();
+                    } else {
+                      members.clear();
+                    }
+                  });
+                },
+                child: Text(L10n.of(context).toggle_all),
+              ),
+              TextButton(
+                onPressed: id == null ? null : () => openDeleteSubscriptionGroupDialog(id!, name!),
+                child: Text(L10n.of(context).delete),
+              ),
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: Text(L10n.of(context).cancel),
+              ),
+              Builder(builder: (context) {
+                onPressed() async {
+                  if (_formKey.currentState!.validate()) {
+                    await context.read<GroupsModel>().saveGroup(id, name!, icon, color, members);
 
-              Navigator.pop(context);
-            }
-          }
+                    Navigator.pop(context);
+                  }
+                }
 
-          return TextButton(
-            onPressed: onPressed,
-            child: Text(L10n.of(context).ok),
-          );
-        }),
+                return TextButton(
+                  onPressed: onPressed,
+                  child: Text(L10n.of(context).ok),
+                );
+              }),
+            ])),
       ],
       content: Form(
         key: _formKey,
