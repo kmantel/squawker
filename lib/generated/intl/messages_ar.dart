@@ -64,12 +64,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m17(responseStatusCode) =>
       "تعذر حفظ الوسائط. أعاد تويتر حالة ${responseStatusCode}";
 
-  static String m18(e) => "غير قادر على إرسال البنج. ${e}";
-
-  static String m19(statusCode) =>
-      "تعذر إرسال الأمر ping. كان رمز الحالة ${statusCode}";
-
-  static String m20(releaseVersion) =>
+  static String m18(releaseVersion) =>
       "حدّث إلى ${releaseVersion} عبر عميل الـF-Droid لديك";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -90,8 +85,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "all_the_great_software_used_by_fritter":
             MessageLookupByLibrary.simpleMessage(
                 "كل البرمجيات الرائعة التي يستخدمها فريتر"),
-        "an_error_was_reported_to__thank_you":
-            MessageLookupByLibrary.simpleMessage("بُلِّغ عن خطأ للحارس. شكرا!"),
         "an_update_for_fritter_is_available":
             MessageLookupByLibrary.simpleMessage("هناك تحديث متاح لفريتر! 🚀"),
         "are_you_sure": MessageLookupByLibrary.simpleMessage("هل أنت متأكد؟"),
@@ -142,7 +135,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "disable_screenshots_hint": MessageLookupByLibrary.simpleMessage(
             "منع التقاط لقطات الشاشة. قد لا يعمل هذا على جميع الأجهزة."),
         "disabled": MessageLookupByLibrary.simpleMessage("معطل"),
-        "don_not_send": MessageLookupByLibrary.simpleMessage("لا تبعث"),
         "donate": MessageLookupByLibrary.simpleMessage("التبرع"),
         "download": MessageLookupByLibrary.simpleMessage("تحميل"),
         "download_handling":
@@ -196,9 +188,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("المساعدة في جعل فريتر أفضل"),
         "help_support_fritters_future":
             MessageLookupByLibrary.simpleMessage("ساعد على دعم مستقبل فريتر"),
-        "here_is_the_data_that_will_be_sent_it_will_only_be_used_to_determine_which_devices_and_languages_to_support_in_fritter_in_the_future":
-            MessageLookupByLibrary.simpleMessage(
-                "هنا البيانات التي سيتم إرسالها. سيتم استخدامه فقط لتحديد الأجهزة واللغات التي يجب دعمها في Quacker في المستقبل."),
         "hide_sensitive_tweets":
             MessageLookupByLibrary.simpleMessage("إخفاء التغريدات الحساسة"),
         "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
@@ -216,12 +205,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "include_replies": MessageLookupByLibrary.simpleMessage("تضمين الردود"),
         "include_retweets":
             MessageLookupByLibrary.simpleMessage("تضمين إعادات التغاريد"),
-        "it_looks_like_you_have_already_said_hello_from_this_version_of_fritter":
-            MessageLookupByLibrary.simpleMessage(
-                "يبدوا أنك قد سلمت بالفعل من إصدار فريتر هذا!"),
-        "it_looks_like_you_have_already_sent_a_ping_recently":
-            MessageLookupByLibrary.simpleMessage(
-                "يبدوا أنك بالفعل قد أرسلت بينج حديثاً 🤔"),
         "joined": m8,
         "language": MessageLookupByLibrary.simpleMessage("اللغات"),
         "language_subtitle":
@@ -245,7 +228,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "mute_videos":
             MessageLookupByLibrary.simpleMessage("كتم صوت مقاطع الفيديو"),
         "name": MessageLookupByLibrary.simpleMessage("الاسم"),
-        "never_send": MessageLookupByLibrary.simpleMessage("يا ويلك لو تبعث"),
         "newTrans": MessageLookupByLibrary.simpleMessage("الجديد"),
         "next": MessageLookupByLibrary.simpleMessage("التالي"),
         "no": MessageLookupByLibrary.simpleMessage("لا"),
@@ -314,8 +296,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "saved": MessageLookupByLibrary.simpleMessage("المحفوظ"),
         "saved_tweet_too_large": MessageLookupByLibrary.simpleMessage(
             "تعذر عرض هذه التغريدة المحفوظة لأنها كبيرة جدًا بحيث لا يمكن تحميلها. الرجاء الإبلاغ عن ذلك للمطورين."),
-        "say_hello": MessageLookupByLibrary.simpleMessage("سَلّم"),
-        "say_hello_emoji": MessageLookupByLibrary.simpleMessage("سَلّم 👋"),
         "search": MessageLookupByLibrary.simpleMessage("البحث"),
         "search_term": MessageLookupByLibrary.simpleMessage("مصطلح البحث"),
         "select": MessageLookupByLibrary.simpleMessage("اختيار"),
@@ -323,11 +303,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "تحديد حسابات مفردة، وتعيين مجموعات هما ميزات قد خُطط لها بالفعل للمستقبل!"),
         "send": MessageLookupByLibrary.simpleMessage("إرسال"),
-        "send_a_non_identifying_ping_to_let_me_know_you_are_using_fritter_and_to_help_future_development":
-            MessageLookupByLibrary.simpleMessage(
-                "أرسل ping غير محدد الهوية لإخباري بأنك تستخدم Quacker وللمساعدة في التطوير المستقبلي"),
-        "send_always": MessageLookupByLibrary.simpleMessage("ابعث كل مرة"),
-        "send_once": MessageLookupByLibrary.simpleMessage("ابعث مرة واحدة"),
         "share_base_url":
             MessageLookupByLibrary.simpleMessage("عنوان URL المخصص للمشاركة"),
         "share_base_url_description": MessageLookupByLibrary.simpleMessage(
@@ -362,9 +337,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "tap_to_show_getMediaType_item_type": m12,
         "thanks_for_helping_fritter": MessageLookupByLibrary.simpleMessage(
             "شكراً على مساعدتك لفريتر! 💖"),
-        "thanks_for_reporting_we_will_try_and_fix_it_in_no_time":
-            MessageLookupByLibrary.simpleMessage(
-                "شكراً علي تبليغك لنا. سنحاول أن نصحله بأسرع ما يمكن!"),
         "the_file_does_not_exist_please_ensure_it_is_located_at_file_path": m13,
         "the_github_issue":
             MessageLookupByLibrary.simpleMessage("مشكلة جيثب (# 143)"),
@@ -394,9 +366,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "thread": MessageLookupByLibrary.simpleMessage("سلسلة"),
         "thumbnail": MessageLookupByLibrary.simpleMessage("الصورة المصغرة"),
         "timed_out": MessageLookupByLibrary.simpleMessage("انتهت المهلة"),
-        "timed_out_trying_to_send_the_ping":
-            MessageLookupByLibrary.simpleMessage(
-                "انتهت مهلة المحاولة لإرسال البنج 😢"),
         "to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below":
             MessageLookupByLibrary.simpleMessage(
                 "لاستيراد الاشتراكات من حساب تويتر موجود، أدخل اسم المستخدم أدناه."),
@@ -461,8 +430,6 @@ class MessageLookup extends MessageLookupByLibrary {
                 "غير قادر على تشغيل تحديث قاعدة البيانات"),
         "unable_to_save_the_media_twitter_returned_a_status_of_response_statusCode":
             m17,
-        "unable_to_send_the_ping_e_to_string": m18,
-        "unable_to_send_the_ping_the_status_code_was_response_statusCode": m19,
         "unable_to_stream_the_trend_location_preference":
             MessageLookupByLibrary.simpleMessage(
                 "غير قادر على بث تفضيل موقع الترندات"),
@@ -471,7 +438,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "unsubscribe": MessageLookupByLibrary.simpleMessage("إلغاء الاشتراك"),
         "unsupported_url":
             MessageLookupByLibrary.simpleMessage("عنوان URL غير مدعوم"),
-        "update_to_release_version_through_your_fdroid_client": m20,
+        "update_to_release_version_through_your_fdroid_client": m18,
         "updates": MessageLookupByLibrary.simpleMessage("التحديثات"),
         "use_true_black_for_the_dark_mode_theme":
             MessageLookupByLibrary.simpleMessage(
@@ -502,12 +469,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "you_must_have_at_least_2_home_screen_pages":
             MessageLookupByLibrary.simpleMessage(
                 "يجب أن يكون لديك على الأقل 2 صفحات الشاشة الرئيسية"),
-        "your_device_is_running_a_version_of_android_older_than_kitKat_so_data_can_only_be_imported_from":
-            MessageLookupByLibrary.simpleMessage(
-                "جهازك يشتغل على نظام أقدم من أندرويد كيت كات (4.4)، لذلك ستُستورد البيانات من:"),
-        "your_device_is_running_a_version_of_android_older_than_kitKat_so_the_export_can_only_be_saved_to":
-            MessageLookupByLibrary.simpleMessage(
-                "جهازك يشتغل على نظام أقدم من أندرويد كيت كات (4.4)، لذلك يستطيع التصدير أن يُحفظ فقط إلى:"),
         "your_profile_must_be_public_otherwise_the_import_will_not_work":
             MessageLookupByLibrary.simpleMessage(
                 "يجب أن يكون ملف التعريف الخاص بك عاما، وإلا لن يعمل الاستيراد"),

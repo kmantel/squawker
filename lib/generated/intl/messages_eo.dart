@@ -65,12 +65,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m17(responseStatusCode) =>
       "Ne eblas konservi la plurmedion. Twitter revenigis staton de ${responseStatusCode}";
 
-  static String m18(e) => "Ne eblas sendi la ping-on. ${e}";
-
-  static String m19(statusCode) =>
-      "Ne eblis sendi la ping-on. La statkodo estis ${statusCode}";
-
-  static String m20(releaseVersion) =>
+  static String m18(releaseVersion) =>
       "Ĝisdatigu al ${releaseVersion} per via kliento de F-Droid";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -89,9 +84,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "all_the_great_software_used_by_fritter":
             MessageLookupByLibrary.simpleMessage(
                 "Ĉiu el la programaro bonega uzate per Quacker"),
-        "an_error_was_reported_to__thank_you":
-            MessageLookupByLibrary.simpleMessage(
-                "Eraro raportiĝis al . Dankon!"),
         "an_update_for_fritter_is_available":
             MessageLookupByLibrary.simpleMessage(
                 "Ĝisdatigo por Quacker estas disponebla! 🚀"),
@@ -142,7 +134,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "disable_screenshots_hint": MessageLookupByLibrary.simpleMessage(
             "Eviti ekrankopiojn farote. Eble ne funkcii kun ĉiuj aparatoj."),
         "disabled": MessageLookupByLibrary.simpleMessage("Malŝaltita"),
-        "don_not_send": MessageLookupByLibrary.simpleMessage("Ne sendi"),
         "donate": MessageLookupByLibrary.simpleMessage("Donaci"),
         "download": MessageLookupByLibrary.simpleMessage("Elŝuti"),
         "download_handling":
@@ -195,9 +186,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Helpi plibonigi Quacker-on"),
         "help_support_fritters_future": MessageLookupByLibrary.simpleMessage(
             "Helpi subteni estontecon de Quacker"),
-        "here_is_the_data_that_will_be_sent_it_will_only_be_used_to_determine_which_devices_and_languages_to_support_in_fritter_in_the_future":
-            MessageLookupByLibrary.simpleMessage(
-                "Jen datumoj kiuj sendiĝos. Si nur uziĝos por determini kiujn aparatojn kaj lingvojn subtenote de Quacker estontece."),
         "hide_sensitive_tweets":
             MessageLookupByLibrary.simpleMessage("Kaŝi sentemajn pepojn"),
         "home": MessageLookupByLibrary.simpleMessage("Hejmo"),
@@ -216,12 +204,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Ampleksi respondojn"),
         "include_retweets":
             MessageLookupByLibrary.simpleMessage("Ampleksi repepojn"),
-        "it_looks_like_you_have_already_said_hello_from_this_version_of_fritter":
-            MessageLookupByLibrary.simpleMessage(
-                "Ŝajnas, vi jam diris saluton el tiu ĉi versio de Quacker!"),
-        "it_looks_like_you_have_already_sent_a_ping_recently":
-            MessageLookupByLibrary.simpleMessage(
-                "Ŝajnas, vi jam sendis ping-on de antaŭ ne longe 🤔"),
         "joined": m8,
         "language": MessageLookupByLibrary.simpleMessage("Lingvo"),
         "language_subtitle":
@@ -245,7 +227,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Ĉu videoj mutiĝu defaŭlte"),
         "mute_videos": MessageLookupByLibrary.simpleMessage("Mutigi videojn"),
         "name": MessageLookupByLibrary.simpleMessage("Nomo"),
-        "never_send": MessageLookupByLibrary.simpleMessage("Sendi neniam"),
         "newTrans": MessageLookupByLibrary.simpleMessage("Nova"),
         "next": MessageLookupByLibrary.simpleMessage("Sekven"),
         "no": MessageLookupByLibrary.simpleMessage("Ne"),
@@ -315,9 +296,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "saved": MessageLookupByLibrary.simpleMessage("Konservitaĵoj"),
         "saved_tweet_too_large": MessageLookupByLibrary.simpleMessage(
             "Tiu ĉi pepo konservita ne eblas vidiĝi, pro ĝi estas tro granda por ŝarĝi. Bonvolu raporti al la programistoj."),
-        "say_hello": MessageLookupByLibrary.simpleMessage("Diri saluton"),
-        "say_hello_emoji":
-            MessageLookupByLibrary.simpleMessage("Diri saluton 👋"),
         "search": MessageLookupByLibrary.simpleMessage("Serĉi"),
         "search_term": MessageLookupByLibrary.simpleMessage("Termino de serĉo"),
         "select": MessageLookupByLibrary.simpleMessage("Elekti"),
@@ -325,11 +303,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Elektado de kontoj individuaj por importi, kaj asignado de grupoj estas ambaŭ planite estontece jam!"),
         "send": MessageLookupByLibrary.simpleMessage("Sendi"),
-        "send_a_non_identifying_ping_to_let_me_know_you_are_using_fritter_and_to_help_future_development":
-            MessageLookupByLibrary.simpleMessage(
-                "Sendi ping-on neidentigan por konigi al mi, ke vi uzas Quacker, kaj helpi programadon estontece"),
-        "send_always": MessageLookupByLibrary.simpleMessage("Sendi ĉiufoje"),
-        "send_once": MessageLookupByLibrary.simpleMessage("Sendi unufoje"),
         "share_base_url":
             MessageLookupByLibrary.simpleMessage("URL kunhavanta propra"),
         "share_base_url_description": MessageLookupByLibrary.simpleMessage(
@@ -364,9 +337,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "tap_to_show_getMediaType_item_type": m12,
         "thanks_for_helping_fritter": MessageLookupByLibrary.simpleMessage(
             "Dankon pro helpi Quacker! 💖"),
-        "thanks_for_reporting_we_will_try_and_fix_it_in_no_time":
-            MessageLookupByLibrary.simpleMessage(
-                "Dankon pro la raporto. Ni klopodos ripari ĝin baldaŭ!"),
         "the_file_does_not_exist_please_ensure_it_is_located_at_file_path": m13,
         "the_github_issue": MessageLookupByLibrary.simpleMessage(
             "la problemo ĉe GitHub (#143)"),
@@ -396,9 +366,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "thread": MessageLookupByLibrary.simpleMessage("Diskutfadeno"),
         "thumbnail": MessageLookupByLibrary.simpleMessage("Miniaturo"),
         "timed_out": MessageLookupByLibrary.simpleMessage("Tempolimiĝis"),
-        "timed_out_trying_to_send_the_ping":
-            MessageLookupByLibrary.simpleMessage(
-                "Tempolimo dum trovi sendi la ping-on 😢"),
         "to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below":
             MessageLookupByLibrary.simpleMessage(
                 "Por importi abonojn el ekzistanta Twitter-konto, enigi vian uzantnomon sube."),
@@ -463,8 +430,6 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Ne eblas ruli migradojn de la datumbazo"),
         "unable_to_save_the_media_twitter_returned_a_status_of_response_statusCode":
             m17,
-        "unable_to_send_the_ping_e_to_string": m18,
-        "unable_to_send_the_ping_the_status_code_was_response_statusCode": m19,
         "unable_to_stream_the_trend_location_preference":
             MessageLookupByLibrary.simpleMessage(
                 "Ne eblas fluigi la agordon de loko de tendencoj"),
@@ -473,7 +438,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "unsubscribe": MessageLookupByLibrary.simpleMessage("Malaboni"),
         "unsupported_url":
             MessageLookupByLibrary.simpleMessage("URL malsubtenita"),
-        "update_to_release_version_through_your_fdroid_client": m20,
+        "update_to_release_version_through_your_fdroid_client": m18,
         "updates": MessageLookupByLibrary.simpleMessage("Ĝisdatigoj"),
         "use_true_black_for_the_dark_mode_theme":
             MessageLookupByLibrary.simpleMessage(
@@ -504,12 +469,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "you_must_have_at_least_2_home_screen_pages":
             MessageLookupByLibrary.simpleMessage(
                 "Vi devas havi malpleje 2 paĝojn de hejmekrano"),
-        "your_device_is_running_a_version_of_android_older_than_kitKat_so_data_can_only_be_imported_from":
-            MessageLookupByLibrary.simpleMessage(
-                "Via aparato rulas version de Android pliaĝan ol KitKat (4.4), do la datumoj nur eblas importiĝi el:"),
-        "your_device_is_running_a_version_of_android_older_than_kitKat_so_the_export_can_only_be_saved_to":
-            MessageLookupByLibrary.simpleMessage(
-                "Via aparato rulas version de Android pliaĝan ol KitKat (4.4), do la eksporto nur eblas konserviĝi al:"),
         "your_profile_must_be_public_otherwise_the_import_will_not_work":
             MessageLookupByLibrary.simpleMessage(
                 "Via profilo devas esti publika, alie la importo ne funkcios"),

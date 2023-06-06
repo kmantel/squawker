@@ -7,6 +7,7 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_windowmanager/flutter_windowmanager.dart';
 
@@ -30,12 +31,62 @@ import 'package:quacker/subscriptions/users_model.dart';
 import 'package:quacker/trends/trends_model.dart';
 import 'package:quacker/tweet/_video.dart';
 import 'package:quacker/ui/errors.dart';
+import 'package:faker/faker.dart';
 import 'package:logging/logging.dart';
 import 'package:pref/pref.dart';
 import 'package:provider/provider.dart';
+import 'package:quacker/utils/urls.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:uni_links2/uni_links.dart';
+import 'package:package_info_plus/package_info_plus.dart';
+
+Future checkForUpdates() async {
+  Logger.root.info('Checking for updates');
+
+  PackageInfo packageInfo = await PackageInfo.fromPlatform();
+  final client = HttpClient();
+  client.userAgent = faker.internet.userAgent();
+
+  final request = await client.getUrl(Uri.parse("https://api.github.com/repos/thehcj/quacker/releases/latest"));
+  final response = await request.close();
+
+  if (response.statusCode == 200) {
+    final contentAsString = await utf8.decodeStream(response);
+    final Map<dynamic, dynamic> map = json.decode(contentAsString);
+    if (map["tag_name"] != null) {
+      if (map["tag_name"] != 'v${packageInfo.version}') {
+        await FlutterLocalNotificationsPlugin().show(
+            0,
+            'An update for Quacker is available! 🚀',
+            'View version ${map["tag_name"]} on Github',
+            const NotificationDetails(
+                android: AndroidNotificationDetails(
+              'updates',
+              'Updates',
+              channelDescription: 'When a new app update is available show a notification',
+              importance: Importance.max,
+              priority: Priority.high,
+              showWhen: false,
+            )),
+            payload: map['html_url']);
+      } else if (map['html_url'].isEmpty) {
+        Logger.root.severe('Unable to check for updates');
+      }
+    }
+  }
+}
+
+class UnableToCheckForUpdatesException {
+  final String body;
+
+  UnableToCheckForUpdatesException(this.body);
+
+  @override
+  String toString() {
+    return 'Unable to check for updates: {body: $body}';
+  }
+}
 
 setTimeagoLocales() {
   timeago.setLocaleMessages('ar', timeago.ArMessages());
@@ -102,6 +153,7 @@ Future<void> main() async {
     optionMediaSize: 'medium',
     optionMediaDefaultMute: true,
     optionNonConfirmationBiasMode: false,
+    optionShouldCheckForUpdates: true,
     optionSubscriptionGroupsOrderByAscending: true,
     optionSubscriptionGroupsOrderByField: 'name',
     optionSubscriptionOrderByAscending: true,
@@ -117,6 +169,24 @@ Future<void> main() async {
       ]
     }),
   });
+
+  FlutterLocalNotificationsPlugin notifications = FlutterLocalNotificationsPlugin();
+
+  const InitializationSettings settings =
+      InitializationSettings(android: AndroidInitializationSettings('@drawable/ic_notification'));
+
+  await notifications.initialize(settings, onDidReceiveNotificationResponse: (response) async {
+    var payload = response.payload;
+    if (payload != null && payload.startsWith('https://')) {
+      await openUri(payload);
+    }
+  });
+
+  var shouldCheckForUpdates = prefService.get(optionShouldCheckForUpdates);
+  if (shouldCheckForUpdates) {
+    // Don't check for updates if user disabled it.
+    checkForUpdates();
+  }
 
   // Run the migrations early, so models work. We also do this later on so we can display errors to the user
   try {
@@ -217,10 +287,9 @@ class _FritterAppState extends State<FritterApp> {
       setDisableScreenshots(prefService.get(optionDisableScreenshots));
     });
 
-    // TODO: Automatic updates
-    //prefService.addKeyListener(optionShouldCheckForUpdates, () {
-    //setState(() {});
-    //});
+    prefService.addKeyListener(optionShouldCheckForUpdates, () {
+      setState(() {});
+    });
 
     prefService.addKeyListener(optionLocale, () {
       setState(() {

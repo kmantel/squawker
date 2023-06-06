@@ -66,12 +66,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m17(responseStatusCode) =>
       "Ezin da multimedia gorde. Twitter-ek ${responseStatusCode} egoerara itzuli du";
 
-  static String m18(e) => "Ezin da ping-a bidali. ${e}";
-
-  static String m19(statusCode) =>
-      "Ezin da ping-a bidali. Egoera kodea ${statusCode} zen";
-
-  static String m20(releaseVersion) =>
+  static String m18(releaseVersion) =>
       "Eguneratu ${releaseVersion} zure F-Droid bezeroaren bidez";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -90,9 +85,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "all_the_great_software_used_by_fritter":
             MessageLookupByLibrary.simpleMessage(
                 "Quacker-ek erabiltzen duen software bikaina"),
-        "an_error_was_reported_to__thank_you":
-            MessageLookupByLibrary.simpleMessage(
-                "Akats baten berri eman zaio -ri. Eskerrik asko!"),
         "an_update_for_fritter_is_available":
             MessageLookupByLibrary.simpleMessage(
                 "Quacker-en eguneraketa eskuragarri dago! 🚀"),
@@ -142,7 +134,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "disable_screenshots_hint": MessageLookupByLibrary.simpleMessage(
             "Saihestu pantaila-argazkiak ateratzea. Baliteke honek gailu guztietan ez funtzionatzea."),
         "disabled": MessageLookupByLibrary.simpleMessage("Desgaituta"),
-        "don_not_send": MessageLookupByLibrary.simpleMessage("Ez bidali"),
         "donate": MessageLookupByLibrary.simpleMessage("Dohaintza"),
         "download": MessageLookupByLibrary.simpleMessage("Deskargatu"),
         "download_handling":
@@ -194,9 +185,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Lagundu Quacker hobetzen"),
         "help_support_fritters_future": MessageLookupByLibrary.simpleMessage(
             "Lagundu Quacker-en etorkizuna bermatzen"),
-        "here_is_the_data_that_will_be_sent_it_will_only_be_used_to_determine_which_devices_and_languages_to_support_in_fritter_in_the_future":
-            MessageLookupByLibrary.simpleMessage(
-                "Hona hemen bidaliko diren datuak. Etorkizunean Quacker-en zein gailu eta hizkuntza onartzen diren zehazteko soilik erabiliko da."),
         "hide_sensitive_tweets":
             MessageLookupByLibrary.simpleMessage("Ezkutatu txio sentikorrak"),
         "home": MessageLookupByLibrary.simpleMessage("Hasiera"),
@@ -215,12 +203,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Erantzunak sartu"),
         "include_retweets":
             MessageLookupByLibrary.simpleMessage("Birtxioak sartu"),
-        "it_looks_like_you_have_already_said_hello_from_this_version_of_fritter":
-            MessageLookupByLibrary.simpleMessage(
-                "Badirudi Quacker-en bertsio honetatik agurtu duzula jada!"),
-        "it_looks_like_you_have_already_sent_a_ping_recently":
-            MessageLookupByLibrary.simpleMessage(
-                "Badirudi duela gutxi ping bat bidali duzula 🤔"),
         "joined": m8,
         "language": MessageLookupByLibrary.simpleMessage("Hizkuntza"),
         "language_subtitle":
@@ -240,7 +222,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Multimedia tamaina"),
         "medium": MessageLookupByLibrary.simpleMessage("Ertaina"),
         "name": MessageLookupByLibrary.simpleMessage("Izena"),
-        "never_send": MessageLookupByLibrary.simpleMessage("Ez bidali inoiz"),
         "newTrans": MessageLookupByLibrary.simpleMessage("Berria"),
         "no": MessageLookupByLibrary.simpleMessage("Ez"),
         "no_data_was_returned_which_should_never_happen_please_report_a_bug_if_possible":
@@ -309,8 +290,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Gorde banda-zabalera irudi txikiagoekin"),
         "saved": MessageLookupByLibrary.simpleMessage("Gordeak"),
-        "say_hello": MessageLookupByLibrary.simpleMessage("Agurtu"),
-        "say_hello_emoji": MessageLookupByLibrary.simpleMessage("Agurtu 👋"),
         "search": MessageLookupByLibrary.simpleMessage("Bilatu"),
         "search_term": MessageLookupByLibrary.simpleMessage("Bilatu"),
         "select": MessageLookupByLibrary.simpleMessage("Hautatu"),
@@ -318,11 +297,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Inportatu beharreko kontu indibidualak hautatzea eta taldeak esleitzea etorkizunerako aurreikusita daude dagoeneko!"),
         "send": MessageLookupByLibrary.simpleMessage("Bidali"),
-        "send_a_non_identifying_ping_to_let_me_know_you_are_using_fritter_and_to_help_future_development":
-            MessageLookupByLibrary.simpleMessage(
-                "Bidali identifikatu gabeko ping bat Quacker erabiltzen ari zarela jakinarazteko eta etorkizuneko garapenari laguntzeko"),
-        "send_always": MessageLookupByLibrary.simpleMessage("Bidali beti"),
-        "send_once": MessageLookupByLibrary.simpleMessage("Bidali behin"),
         "share_tweet_content":
             MessageLookupByLibrary.simpleMessage("Partekatu txioaren edukia"),
         "share_tweet_content_and_link": MessageLookupByLibrary.simpleMessage(
@@ -353,9 +327,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "tap_to_show_getMediaType_item_type": m12,
         "thanks_for_helping_fritter": MessageLookupByLibrary.simpleMessage(
             "Eskerrik asko Quacker laguntzeagatik! 💖"),
-        "thanks_for_reporting_we_will_try_and_fix_it_in_no_time":
-            MessageLookupByLibrary.simpleMessage(
-                "Eskerrik asko informatzeagatik. Denbora gutxian konpontzen saiatuko gara!"),
         "the_file_does_not_exist_please_ensure_it_is_located_at_file_path": m13,
         "the_github_issue":
             MessageLookupByLibrary.simpleMessage("Github arazoa (#143)"),
@@ -384,9 +355,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "thread": MessageLookupByLibrary.simpleMessage("Haria"),
         "thumbnail": MessageLookupByLibrary.simpleMessage("Miniatura"),
         "timed_out": MessageLookupByLibrary.simpleMessage("Denbora agortuta"),
-        "timed_out_trying_to_send_the_ping":
-            MessageLookupByLibrary.simpleMessage(
-                "Itxaronaldia agortu da ping-a bidali nahian 😢"),
         "to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below":
             MessageLookupByLibrary.simpleMessage(
                 "Lehendik dagoen Twitter kontu batetik harpidetzak inportatzeko, idatzi zure erabiltzaile-izena behean."),
@@ -449,15 +417,13 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Ezin dira datu-baseko migrazioak gauzatu"),
         "unable_to_save_the_media_twitter_returned_a_status_of_response_statusCode":
             m17,
-        "unable_to_send_the_ping_e_to_string": m18,
-        "unable_to_send_the_ping_the_status_code_was_response_statusCode": m19,
         "unable_to_stream_the_trend_location_preference":
             MessageLookupByLibrary.simpleMessage(
                 "Ezin da igorri joera kokapenaren hobespena"),
         "unknown": MessageLookupByLibrary.simpleMessage("Ezezaguna"),
         "unsave": MessageLookupByLibrary.simpleMessage("Ez gorde"),
         "unsubscribe": MessageLookupByLibrary.simpleMessage("Kendu harpidetza"),
-        "update_to_release_version_through_your_fdroid_client": m20,
+        "update_to_release_version_through_your_fdroid_client": m18,
         "updates": MessageLookupByLibrary.simpleMessage("Eguneraketak"),
         "use_true_black_for_the_dark_mode_theme":
             MessageLookupByLibrary.simpleMessage(
@@ -489,12 +455,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "you_must_have_at_least_2_home_screen_pages":
             MessageLookupByLibrary.simpleMessage(
                 "Hasierako 2 orrialde izan behar ditu gutxienez"),
-        "your_device_is_running_a_version_of_android_older_than_kitKat_so_data_can_only_be_imported_from":
-            MessageLookupByLibrary.simpleMessage(
-                "Zure gailua KitKat (4.4) baino zaharragoa den Android bertsio bat exekutatzen ari da; beraz, datuak honetatik soilik inporta daitezke:"),
-        "your_device_is_running_a_version_of_android_older_than_kitKat_so_the_export_can_only_be_saved_to":
-            MessageLookupByLibrary.simpleMessage(
-                "Zure gailua KitKat (4.4) baino zaharragoa den Android-en bertsio bat exekutatzen ari da; beraz, esportazioa hemen bakarrik gorde daiteke:"),
         "your_profile_must_be_public_otherwise_the_import_will_not_work":
             MessageLookupByLibrary.simpleMessage(
                 "Zure profilak publikoa izan behar du, bestela inportazioak ez du funtzionatuko"),

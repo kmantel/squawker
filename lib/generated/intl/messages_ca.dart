@@ -65,12 +65,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m17(responseStatusCode) =>
       "No s\'ha pogut desar el suport. Twitter ha retornat un estat de ${responseStatusCode}";
 
-  static String m18(e) => "No s\'ha pogut enviar el ping. ${e}";
-
-  static String m19(statusCode) =>
-      "No es pot enviar el ping. El codi d\'estatus és ${statusCode}";
-
-  static String m20(releaseVersion) =>
+  static String m18(releaseVersion) =>
       "Actualitza-ho a ${releaseVersion} a través del client de F-Droid";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -89,9 +84,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "all_the_great_software_used_by_fritter":
             MessageLookupByLibrary.simpleMessage(
                 "Tot el genial programari utilitzat per Quacker"),
-        "an_error_was_reported_to__thank_you":
-            MessageLookupByLibrary.simpleMessage(
-                "S\'ha reportat un error a . Moltes gràcies!"),
         "an_update_for_fritter_is_available":
             MessageLookupByLibrary.simpleMessage(
                 "Hi ha disponible una actualització per Quacker! 🚀"),
@@ -142,7 +134,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "disable_screenshots_hint": MessageLookupByLibrary.simpleMessage(
             "Evita que es prenguin captures de pantalla. Pot ser que això no funcioni en tots els dispositius."),
         "disabled": MessageLookupByLibrary.simpleMessage("Deshabilitat"),
-        "don_not_send": MessageLookupByLibrary.simpleMessage("No enviar"),
         "donate": MessageLookupByLibrary.simpleMessage("Donar"),
         "download": MessageLookupByLibrary.simpleMessage("Descarregar"),
         "download_handling":
@@ -194,9 +185,6 @@ class MessageLookup extends MessageLookupByLibrary {
             "Ajuda a fer que Quacker sigui encara millor"),
         "help_support_fritters_future": MessageLookupByLibrary.simpleMessage(
             "Ajuda a donar suport al futur de Quacker"),
-        "here_is_the_data_that_will_be_sent_it_will_only_be_used_to_determine_which_devices_and_languages_to_support_in_fritter_in_the_future":
-            MessageLookupByLibrary.simpleMessage(
-                "Aquestes són les dades que s\'enviaran. Només s\'utilitzaràn per determinar en quins dispositius i idiomes donarà suport Quacker en el futur."),
         "hide_sensitive_tweets":
             MessageLookupByLibrary.simpleMessage("Amaga els tuits sensibles"),
         "home": MessageLookupByLibrary.simpleMessage("Inici"),
@@ -215,12 +203,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Incloure respostes"),
         "include_retweets":
             MessageLookupByLibrary.simpleMessage("Incloure retuits"),
-        "it_looks_like_you_have_already_said_hello_from_this_version_of_fritter":
-            MessageLookupByLibrary.simpleMessage(
-                "Sembla que ja has saludat des d\'aquesta versió de Quacker!"),
-        "it_looks_like_you_have_already_sent_a_ping_recently":
-            MessageLookupByLibrary.simpleMessage(
-                "Sembla que ja has enviat un ping recentment 🤔"),
         "joined": m8,
         "language": MessageLookupByLibrary.simpleMessage("Idioma"),
         "language_subtitle":
@@ -239,7 +221,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "media_size": MessageLookupByLibrary.simpleMessage("Tamany de mèdia"),
         "medium": MessageLookupByLibrary.simpleMessage("Mitjà"),
         "name": MessageLookupByLibrary.simpleMessage("Nom"),
-        "never_send": MessageLookupByLibrary.simpleMessage("No enviar mai"),
         "newTrans": MessageLookupByLibrary.simpleMessage("Nou"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
         "no_data_was_returned_which_should_never_happen_please_report_a_bug_if_possible":
@@ -305,8 +286,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Estalviar amplada de banda amb imatges més petites"),
         "saved": MessageLookupByLibrary.simpleMessage("Desat"),
-        "say_hello": MessageLookupByLibrary.simpleMessage("Saluda"),
-        "say_hello_emoji": MessageLookupByLibrary.simpleMessage("Saluda 👋"),
         "search": MessageLookupByLibrary.simpleMessage("Cerca"),
         "search_term": MessageLookupByLibrary.simpleMessage("Terme de cerca"),
         "select": MessageLookupByLibrary.simpleMessage("Selecciona"),
@@ -314,11 +293,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "La selecció de comptes individuals per importar i l\'assignació de grups ja estan planificats per al futur!"),
         "send": MessageLookupByLibrary.simpleMessage("Enviar"),
-        "send_a_non_identifying_ping_to_let_me_know_you_are_using_fritter_and_to_help_future_development":
-            MessageLookupByLibrary.simpleMessage(
-                "Envia un ping no identificatiu per fer-me saber que estàs utilitzant Quacker i ajudar-me amb el futur desenvolupament"),
-        "send_always": MessageLookupByLibrary.simpleMessage("Enviar sempre"),
-        "send_once": MessageLookupByLibrary.simpleMessage("Enviar una vegada"),
         "share_tweet_content": MessageLookupByLibrary.simpleMessage(
             "Compartir el contingut del tuit"),
         "share_tweet_content_and_link": MessageLookupByLibrary.simpleMessage(
@@ -349,9 +323,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "tap_to_show_getMediaType_item_type": m12,
         "thanks_for_helping_fritter": MessageLookupByLibrary.simpleMessage(
             "Gràcies per ajudar a Quacker! 💖"),
-        "thanks_for_reporting_we_will_try_and_fix_it_in_no_time":
-            MessageLookupByLibrary.simpleMessage(
-                "Gràcies per informar. Intentarem solucionar-ho de seguida!"),
         "the_file_does_not_exist_please_ensure_it_is_located_at_file_path": m13,
         "the_github_issue": MessageLookupByLibrary.simpleMessage(
             "el problema de GitHub (#143)"),
@@ -381,9 +352,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "thread": MessageLookupByLibrary.simpleMessage("Fil"),
         "thumbnail": MessageLookupByLibrary.simpleMessage("Miniatura"),
         "timed_out": MessageLookupByLibrary.simpleMessage("Temps excedit"),
-        "timed_out_trying_to_send_the_ping":
-            MessageLookupByLibrary.simpleMessage(
-                "S\'ha esgotat el temps intentant enviar el ping 😢"),
         "to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below":
             MessageLookupByLibrary.simpleMessage(
                 "Per importar subscripcions des d\'un compte de Twitter existent, introduïu el vostre nom d\'usuari a continuació."),
@@ -447,8 +415,6 @@ class MessageLookup extends MessageLookupByLibrary {
                 "No s\'han pogut executar les migracions de la base de dades"),
         "unable_to_save_the_media_twitter_returned_a_status_of_response_statusCode":
             m17,
-        "unable_to_send_the_ping_e_to_string": m18,
-        "unable_to_send_the_ping_the_status_code_was_response_statusCode": m19,
         "unable_to_stream_the_trend_location_preference":
             MessageLookupByLibrary.simpleMessage(
                 "No s\'ha pogut transmetre la preferència d\'ubicació de la tendència"),
@@ -456,7 +422,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "unsave": MessageLookupByLibrary.simpleMessage("Desfés"),
         "unsubscribe":
             MessageLookupByLibrary.simpleMessage("Anul·lar subscripció"),
-        "update_to_release_version_through_your_fdroid_client": m20,
+        "update_to_release_version_through_your_fdroid_client": m18,
         "updates": MessageLookupByLibrary.simpleMessage("Actualitzacions"),
         "use_true_black_for_the_dark_mode_theme":
             MessageLookupByLibrary.simpleMessage(
@@ -488,12 +454,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "you_must_have_at_least_2_home_screen_pages":
             MessageLookupByLibrary.simpleMessage(
                 "Heu de tenir almenys 2 pàgines de pantalla d\'inici"),
-        "your_device_is_running_a_version_of_android_older_than_kitKat_so_data_can_only_be_imported_from":
-            MessageLookupByLibrary.simpleMessage(
-                "El dispositiu està executant una versió d\'Android anterior a KitKat (4.4), de manera que les dades només es poden importar des de:"),
-        "your_device_is_running_a_version_of_android_older_than_kitKat_so_the_export_can_only_be_saved_to":
-            MessageLookupByLibrary.simpleMessage(
-                "El dispositiu té una versió d\'Android anterior a KitKat (4.4), de manera que l\'exportació només es pot desar a:"),
         "your_profile_must_be_public_otherwise_the_import_will_not_work":
             MessageLookupByLibrary.simpleMessage(
                 "El teu perfil ha de ser públic, en cas contrari la importació no funcionarà"),

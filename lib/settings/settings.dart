@@ -3,7 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:quacker/generated/l10n.dart';
 import 'package:quacker/home/home_screen.dart';
-import 'package:quacker/settings/_backup.dart';
+import 'package:quacker/settings/_about.dart';
+import 'package:quacker/settings/_data.dart';
 import 'package:quacker/settings/_general.dart';
 import 'package:quacker/settings/_home.dart';
 import 'package:quacker/settings/_theme.dart';
@@ -20,6 +21,7 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState extends State<SettingsScreen> {
   PackageInfo _packageInfo = PackageInfo(appName: '', packageName: '', version: '', buildNumber: '');
+  String _legacyExportPath = '';
 
   @override
   void initState() {
@@ -39,10 +41,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
     var appVersion = 'v${_packageInfo.version}+${_packageInfo.buildNumber}';
 
     var pages = [
-      NavigationPage('general', (c) => L10n.of(c).general, Icons.settings_outlined),
-      NavigationPage('home', (c) => L10n.of(c).home, Icons.home_outlined),
-      NavigationPage('theme', (c) => L10n.of(c).theme, Icons.format_paint_outlined),
-      NavigationPage('data', (c) => L10n.of(c).data, Icons.storage_rounded),
+      NavigationPage('general', (c) => L10n.of(c).general, Icons.settings),
+      NavigationPage('home', (c) => L10n.of(c).home, Icons.home),
+      NavigationPage('theme', (c) => L10n.of(c).theme, Icons.format_paint),
+      NavigationPage('data', (c) => L10n.of(c).data, Icons.storage),
+      NavigationPage('about', (c) => L10n.of(c).about, Icons.help),
     ];
 
     var initialPage = pages.indexWhere((element) => element.id == widget.initialPage);
@@ -55,10 +58,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
       pages: pages,
       builder: (scrollController) {
         return [
-          SettingsGeneralFragment(appVersion: appVersion),
+          const SettingsGeneralFragment(),
           const SettingsHomeFragment(),
           const SettingsThemeFragment(),
-          const SettingsBackupFragment()
+          SettingsDataFragment(legacyExportPath: _legacyExportPath),
+          SettingsAboutFragment(appVersion: appVersion)
         ];
       },
     );

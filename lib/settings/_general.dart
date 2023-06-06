@@ -1,4 +1,8 @@
+import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
 
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localized_locales/flutter_localized_locales.dart';
@@ -6,9 +10,21 @@ import 'package:quacker/constants.dart';
 import 'package:quacker/generated/l10n.dart';
 import 'package:quacker/home/home_screen.dart';
 import 'package:quacker/utils/iterables.dart';
+import 'package:http/http.dart' as http;
 import 'package:logging/logging.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:pref/pref.dart';
+
+String getFlavor() {
+  const flavor = String.fromEnvironment('app.flavor');
+
+  if (flavor == '') {
+    return 'fdroid';
+  }
+
+  return flavor;
+}
 
 class SettingLocale {
   final String code;
@@ -26,9 +42,8 @@ class SettingLocale {
 
 class SettingsGeneralFragment extends StatelessWidget {
   static final log = Logger('SettingsGeneralFragment');
-  final String appVersion;
 
-  const SettingsGeneralFragment({super.key, required this.appVersion});
+  const SettingsGeneralFragment({Key? key}) : super(key: key);
 
   PrefDialog _createShareBaseDialog(BuildContext context) {
     var prefService = PrefService.of(context);
@@ -58,33 +73,72 @@ class SettingsGeneralFragment extends StatelessWidget {
         ]);
   }
 
+  Future<void> _appInfo(BuildContext context) async {
+    var deviceInfo = DeviceInfoPlugin();
+    var packageInfo = await PackageInfo.fromPlatform();
+    var prefService = PrefService.of(context);
+    Map<String, Object> metadata;
+
+    if (Platform.isAndroid) {
+      var info = await deviceInfo.androidInfo;
+
+      metadata = {
+        'abis': info.supportedAbis,
+        'device': info.device,
+        'flavor': getFlavor(),
+        'locale': Localizations.localeOf(context).languageCode,
+        'os': 'android',
+        'system': info.version.sdkInt.toString(),
+        'version': packageInfo.buildNumber,
+      };
+    } else {
+      var info = await deviceInfo.iosInfo;
+
+      metadata = {
+        'abis': [],
+        'device': info.utsname.machine,
+        'flavor': getFlavor(),
+        'locale': Localizations.localeOf(context).languageCode,
+        'os': 'ios',
+        'system': info.systemVersion,
+        'version': packageInfo.buildNumber,
+      };
+    }
+
+    showDialog(
+        context: context,
+        builder: (context) {
+          var content = JsonEncoder.withIndent(' ' * 2).convert(metadata);
+
+          return AlertDialog(
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text(L10n.of(context).ok)),
+              ],
+              title: Text(L10n.of(context).app_info),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [const SizedBox(height: 16), Text(content, style: const TextStyle(fontFamily: 'monospace'))],
+              ));
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(L10n.current.general),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.info_outline),
-            onPressed: () {
-              showAboutDialog(
-                  context: context,
-                  applicationName: L10n.of(context).fritter,
-                  applicationIcon: Image.network(
-                    'https://raw.githubusercontent.com/TheHCJ/Quacker/master/fastlane/metadata/android/en-US/images/icon.png',
-                    width: 48,
-                  ),
-                  applicationVersion: appVersion,
-                  children: [
-                    const Text('A better way to browse twitter', style: TextStyle(fontStyle: FontStyle.italic)),
-                  ]);
-            },
-          )
-        ],
-      ),
+      appBar: AppBar(title: Text(L10n.current.general)),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8),
         child: ListView(children: [
+          PrefButton(
+            title: Text(L10n.of(context).app_info),
+            onTap: () => _appInfo(context),
+            child: const Icon(Icons.info),
+          ),
           PrefDropdown(
               fullWidth: false,
               title: Text(L10n.current.language),
@@ -97,6 +151,12 @@ class SettingsGeneralFragment extends StatelessWidget {
                     .sorted((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()))
                     .map((e) => DropdownMenuItem(value: e.code, child: Text(e.name)))
               ]),
+          if (getFlavor() != 'play')
+            PrefSwitch(
+              title: Text(L10n.of(context).should_check_for_updates_label),
+              pref: optionShouldCheckForUpdates,
+              subtitle: Text(L10n.of(context).should_check_for_updates_description),
+            ),
           PrefDropdown(
               fullWidth: false,
               title: Text(L10n.of(context).default_tab),
@@ -141,7 +201,7 @@ class SettingsGeneralFragment extends StatelessWidget {
             title: Text(L10n.of(context).mute_videos),
             subtitle: Text(L10n.of(context).mute_video_description),
           ),
-          PrefSwitch(
+          PrefCheckbox(
             title: Text(L10n.of(context).hide_sensitive_tweets),
             subtitle: Text(L10n.of(context).whether_to_hide_tweets_marked_as_sensitive),
             pref: optionTweetsHideSensitive,

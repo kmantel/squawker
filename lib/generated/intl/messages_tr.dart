@@ -66,12 +66,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m17(responseStatusCode) =>
       "Medya kaydedilemiyor. Twitter ${responseStatusCode} durumuyla döndü";
 
-  static String m18(e) => "Ping gönderilemiyor. ${e}";
-
-  static String m19(statusCode) =>
-      "Ping gönderilemedi. Durum kodu ${statusCode}";
-
-  static String m20(releaseVersion) =>
+  static String m18(releaseVersion) =>
       "F-Droid istemciniz aracılığıyla ${releaseVersion} sürümüne güncelleyin";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -92,9 +87,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "all_the_great_software_used_by_fritter":
             MessageLookupByLibrary.simpleMessage(
                 "Quacker tarafından kullanılan tüm harika yazılımlar"),
-        "an_error_was_reported_to__thank_you":
-            MessageLookupByLibrary.simpleMessage(
-                "Hata \'e bildirildi. Teşekkürler!"),
         "an_update_for_fritter_is_available":
             MessageLookupByLibrary.simpleMessage(
                 "Quacker için bir güncelleme mevcut! 🚀"),
@@ -146,7 +138,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "disable_screenshots_hint": MessageLookupByLibrary.simpleMessage(
             "Ekran görüntülerinin alınmasını engelleyin. Bu, tüm aygıtlarda çalışmayabilir."),
         "disabled": MessageLookupByLibrary.simpleMessage("Devre dışı"),
-        "don_not_send": MessageLookupByLibrary.simpleMessage("Gönderme"),
         "donate": MessageLookupByLibrary.simpleMessage("Bağış yapın"),
         "download": MessageLookupByLibrary.simpleMessage("İndir"),
         "download_handling":
@@ -201,9 +192,6 @@ class MessageLookup extends MessageLookupByLibrary {
             "Quacker\'ın daha da iyi olmasına yardımcı olun"),
         "help_support_fritters_future": MessageLookupByLibrary.simpleMessage(
             "Quacker\'ın geleceğini desteklemeye yardımcı olun"),
-        "here_is_the_data_that_will_be_sent_it_will_only_be_used_to_determine_which_devices_and_languages_to_support_in_fritter_in_the_future":
-            MessageLookupByLibrary.simpleMessage(
-                "İşte gönderilecek veriler. Sadece gelecekte Quacker\'da hangi cihazların ve dillerin destekleneceğini belirlemek için kullanılacaktır."),
         "hide_sensitive_tweets":
             MessageLookupByLibrary.simpleMessage("Hassas tweetleri gizle"),
         "home": MessageLookupByLibrary.simpleMessage("Ana sayfa"),
@@ -222,12 +210,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Yanıtları dahil et"),
         "include_retweets":
             MessageLookupByLibrary.simpleMessage("Retweet\'leri dahil et"),
-        "it_looks_like_you_have_already_said_hello_from_this_version_of_fritter":
-            MessageLookupByLibrary.simpleMessage(
-                "Görünüşe göre Quacker\'ın bu versiyonundan çoktan merhaba demişsiniz!"),
-        "it_looks_like_you_have_already_sent_a_ping_recently":
-            MessageLookupByLibrary.simpleMessage(
-                "Görünüşe göre yakın zamanda bir ping göndermişsin 🤔"),
         "joined": m8,
         "language": MessageLookupByLibrary.simpleMessage("Dil"),
         "language_subtitle":
@@ -251,7 +233,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "mute_videos":
             MessageLookupByLibrary.simpleMessage("Videoların sesini kapat"),
         "name": MessageLookupByLibrary.simpleMessage("Ad"),
-        "never_send": MessageLookupByLibrary.simpleMessage("Asla gönderme"),
         "newTrans": MessageLookupByLibrary.simpleMessage("Yeni"),
         "next": MessageLookupByLibrary.simpleMessage("İleri"),
         "no": MessageLookupByLibrary.simpleMessage("Hayır"),
@@ -321,9 +302,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "saved": MessageLookupByLibrary.simpleMessage("Kaydedilmiş"),
         "saved_tweet_too_large": MessageLookupByLibrary.simpleMessage(
             "Kaydedilen bu tweet, yüklenemeyecek kadar büyük olduğu için görüntülenemedi. Lütfen bunu geliştiricilere bildirin."),
-        "say_hello": MessageLookupByLibrary.simpleMessage("Merhaba de"),
-        "say_hello_emoji":
-            MessageLookupByLibrary.simpleMessage("Merhaba de 👋"),
         "search": MessageLookupByLibrary.simpleMessage("Ara"),
         "search_term": MessageLookupByLibrary.simpleMessage("Arama terimi"),
         "select": MessageLookupByLibrary.simpleMessage("Seç"),
@@ -331,11 +309,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "İçe aktarılacak bireysel hesapların seçilmesi ve grupların atanması şimdiden gelecek için planlanmıştır!"),
         "send": MessageLookupByLibrary.simpleMessage("Gönder"),
-        "send_a_non_identifying_ping_to_let_me_know_you_are_using_fritter_and_to_help_future_development":
-            MessageLookupByLibrary.simpleMessage(
-                "Quacker kullandığınızı bildirmek ve gelecekteki geliştirmelere yardımcı olmak için tanımlayıcı olmayan bir ping gönderin"),
-        "send_always": MessageLookupByLibrary.simpleMessage("Her zaman gönder"),
-        "send_once": MessageLookupByLibrary.simpleMessage("Bir kez gönder"),
         "share_base_url":
             MessageLookupByLibrary.simpleMessage("Özel paylaşım URL\'si"),
         "share_base_url_description": MessageLookupByLibrary.simpleMessage(
@@ -370,9 +343,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "tap_to_show_getMediaType_item_type": m12,
         "thanks_for_helping_fritter": MessageLookupByLibrary.simpleMessage(
             "Quacker\'a yardım ettiğin için teşekkürler! 💖"),
-        "thanks_for_reporting_we_will_try_and_fix_it_in_no_time":
-            MessageLookupByLibrary.simpleMessage(
-                "Bildirdiğiniz için teşekkürler. En kısa sürede düzeltmeye çalışacağız!"),
         "the_file_does_not_exist_please_ensure_it_is_located_at_file_path": m13,
         "the_github_issue":
             MessageLookupByLibrary.simpleMessage("GitHub sorunu (#143)"),
@@ -403,9 +373,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "thumbnail": MessageLookupByLibrary.simpleMessage("Küçük resim"),
         "timed_out":
             MessageLookupByLibrary.simpleMessage("Zaman aşımına uğradı"),
-        "timed_out_trying_to_send_the_ping":
-            MessageLookupByLibrary.simpleMessage(
-                "Ping göndermeye çalışırken zaman aşımına uğradı 😢"),
         "to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below":
             MessageLookupByLibrary.simpleMessage(
                 "Mevcut bir Twitter hesabından abonelikleri içe aktarmak için aşağıya kullanıcı adınızı girin."),
@@ -469,8 +436,6 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Veritabanı geçişleri çalıştırılamıyor"),
         "unable_to_save_the_media_twitter_returned_a_status_of_response_statusCode":
             m17,
-        "unable_to_send_the_ping_e_to_string": m18,
-        "unable_to_send_the_ping_the_status_code_was_response_statusCode": m19,
         "unable_to_stream_the_trend_location_preference":
             MessageLookupByLibrary.simpleMessage(
                 "Trend konumu tercihi aktarılamıyor"),
@@ -479,7 +444,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "unsubscribe": MessageLookupByLibrary.simpleMessage("Abonelikten çık"),
         "unsupported_url":
             MessageLookupByLibrary.simpleMessage("Desteklenmeyen URL"),
-        "update_to_release_version_through_your_fdroid_client": m20,
+        "update_to_release_version_through_your_fdroid_client": m18,
         "updates": MessageLookupByLibrary.simpleMessage("Güncellemeler"),
         "use_true_black_for_the_dark_mode_theme":
             MessageLookupByLibrary.simpleMessage(
@@ -510,12 +475,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "you_must_have_at_least_2_home_screen_pages":
             MessageLookupByLibrary.simpleMessage(
                 "En az 2 ana ekran sayfanız olmalıdır"),
-        "your_device_is_running_a_version_of_android_older_than_kitKat_so_data_can_only_be_imported_from":
-            MessageLookupByLibrary.simpleMessage(
-                "Cihazınız KitKat\'tan (4.4) daha eski bir Android sürümü çalıştırıyor, bu nedenle veriler yalnızca şuradan içe aktarılabilir:"),
-        "your_device_is_running_a_version_of_android_older_than_kitKat_so_the_export_can_only_be_saved_to":
-            MessageLookupByLibrary.simpleMessage(
-                "Cihazınız KitKat\'tan (4.4) daha eski bir Android sürümü çalıştırıyor, bu nedenle dışa aktarma sadece şuraya kaydedilebilir:"),
         "your_profile_must_be_public_otherwise_the_import_will_not_work":
             MessageLookupByLibrary.simpleMessage(
                 "Profiliniz herkese açık olmalıdır, aksi takdirde alma işlemi çalışmaz"),

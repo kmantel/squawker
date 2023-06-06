@@ -64,12 +64,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m17(responseStatusCode) =>
       "Nepodařilo se uložit média. Twitter vrátil stav ${responseStatusCode}";
 
-  static String m18(e) => "Nepodařilo se odeslat ping. ${e}";
-
-  static String m19(statusCode) =>
-      "Nepodařilo se poslat ping. Stavový kód byl ${statusCode}";
-
-  static String m20(releaseVersion) =>
+  static String m18(releaseVersion) =>
       "Aktualizovat na ${releaseVersion} pomocí F-Droidu";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -91,9 +86,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "all_the_great_software_used_by_fritter":
             MessageLookupByLibrary.simpleMessage(
                 "Všechen úžasný software používaný Quackerem"),
-        "an_error_was_reported_to__thank_you":
-            MessageLookupByLibrary.simpleMessage(
-                "Chyba byla nahlášena do . Děkujeme!"),
         "an_update_for_fritter_is_available":
             MessageLookupByLibrary.simpleMessage(
                 "Je dostupná aktualizace Quackeru! 🚀"),
@@ -143,7 +135,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "disable_screenshots_hint": MessageLookupByLibrary.simpleMessage(
             "Zabránit pořizování snímků obrazovky. Nemusí fungovat na všech zařízeních."),
         "disabled": MessageLookupByLibrary.simpleMessage("Zakázáno"),
-        "don_not_send": MessageLookupByLibrary.simpleMessage("Neposílat"),
         "donate": MessageLookupByLibrary.simpleMessage("Přispět"),
         "download": MessageLookupByLibrary.simpleMessage("Stáhnout"),
         "download_handling":
@@ -199,9 +190,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Pomozte vylepšit Quacker"),
         "help_support_fritters_future":
             MessageLookupByLibrary.simpleMessage("Podpořte vývoj Quackeru"),
-        "here_is_the_data_that_will_be_sent_it_will_only_be_used_to_determine_which_devices_and_languages_to_support_in_fritter_in_the_future":
-            MessageLookupByLibrary.simpleMessage(
-                "Zde jsou data, která budou odeslána. Budou použita pouze k určení, jaká zařízení a jazyky by měl v budoucnu Quacker podporovat."),
         "hide_sensitive_tweets":
             MessageLookupByLibrary.simpleMessage("Skrýt citlivé tweety"),
         "home": MessageLookupByLibrary.simpleMessage("Domů"),
@@ -220,12 +208,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Zahrnout odpovědi"),
         "include_retweets":
             MessageLookupByLibrary.simpleMessage("Zahrnout retweety"),
-        "it_looks_like_you_have_already_said_hello_from_this_version_of_fritter":
-            MessageLookupByLibrary.simpleMessage(
-                "Vypadá to, že z této verze Quackeru jste již poslali ahoj!"),
-        "it_looks_like_you_have_already_sent_a_ping_recently":
-            MessageLookupByLibrary.simpleMessage(
-                "Vypadá to, že jste již nedávno poslali ping 🤔"),
         "joined": m8,
         "language": MessageLookupByLibrary.simpleMessage("Jazyk"),
         "language_subtitle":
@@ -249,7 +231,6 @@ class MessageLookup extends MessageLookupByLibrary {
             "Zda mají být videa ve výchozím nastavení ztlumena"),
         "mute_videos": MessageLookupByLibrary.simpleMessage("Ztlumit videa"),
         "name": MessageLookupByLibrary.simpleMessage("Název"),
-        "never_send": MessageLookupByLibrary.simpleMessage("Nikdy neposílat"),
         "newTrans": MessageLookupByLibrary.simpleMessage("Nová"),
         "next": MessageLookupByLibrary.simpleMessage("Další"),
         "no": MessageLookupByLibrary.simpleMessage("Ne"),
@@ -322,9 +303,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "saved": MessageLookupByLibrary.simpleMessage("Uloženo"),
         "saved_tweet_too_large": MessageLookupByLibrary.simpleMessage(
             "Tento uložený tweet nebylo možné zobrazit, protože je příliš velký na to, aby se načetl. Nahlaste to prosím vývojářům."),
-        "say_hello": MessageLookupByLibrary.simpleMessage("Řekněte ahoj"),
-        "say_hello_emoji":
-            MessageLookupByLibrary.simpleMessage("Řekněte ahoj 👋"),
         "search": MessageLookupByLibrary.simpleMessage("Hledat"),
         "search_term": MessageLookupByLibrary.simpleMessage("Hledaný výraz"),
         "select": MessageLookupByLibrary.simpleMessage("Vybrat"),
@@ -332,11 +310,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Vybírání individuálních účtů pro import a přidělování skupin jsou již v plánu!"),
         "send": MessageLookupByLibrary.simpleMessage("Odeslat"),
-        "send_a_non_identifying_ping_to_let_me_know_you_are_using_fritter_and_to_help_future_development":
-            MessageLookupByLibrary.simpleMessage(
-                "Pošlete mi neidentifikovatelný ping, abych věděl, že používáte Quacker, a abyste pomohli budoucímu vývoji"),
-        "send_always": MessageLookupByLibrary.simpleMessage("Posílat vždy"),
-        "send_once": MessageLookupByLibrary.simpleMessage("Poslat jednou"),
         "share_base_url":
             MessageLookupByLibrary.simpleMessage("Vlastní adresa URL sdílení"),
         "share_base_url_description": MessageLookupByLibrary.simpleMessage(
@@ -371,9 +344,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "tap_to_show_getMediaType_item_type": m12,
         "thanks_for_helping_fritter": MessageLookupByLibrary.simpleMessage(
             "Děkujeme za pomoc Quackeru! 💖"),
-        "thanks_for_reporting_we_will_try_and_fix_it_in_no_time":
-            MessageLookupByLibrary.simpleMessage(
-                "Děkujeme za nahlášení. Chybu se pokusíme opravit co nejdříve budeme moct!"),
         "the_file_does_not_exist_please_ensure_it_is_located_at_file_path": m13,
         "the_github_issue":
             MessageLookupByLibrary.simpleMessage("problém na GitHubu (#143)"),
@@ -403,9 +373,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "thread": MessageLookupByLibrary.simpleMessage("Vlákno"),
         "thumbnail": MessageLookupByLibrary.simpleMessage("Náhled"),
         "timed_out": MessageLookupByLibrary.simpleMessage("Vypršel čas"),
-        "timed_out_trying_to_send_the_ping":
-            MessageLookupByLibrary.simpleMessage(
-                "Při pokusu odeslat ping vypršel čas 😢"),
         "to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below":
             MessageLookupByLibrary.simpleMessage(
                 "Pro import odběrů z existujícího Twitter účtu zadejte níže vaše uživatelské jméno."),
@@ -470,8 +437,6 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Nepodařilo se spustit migrace databáze"),
         "unable_to_save_the_media_twitter_returned_a_status_of_response_statusCode":
             m17,
-        "unable_to_send_the_ping_e_to_string": m18,
-        "unable_to_send_the_ping_the_status_code_was_response_statusCode": m19,
         "unable_to_stream_the_trend_location_preference":
             MessageLookupByLibrary.simpleMessage(
                 "Nepodařilo se stremovat předvolbu umístění trendů"),
@@ -480,7 +445,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "unsubscribe": MessageLookupByLibrary.simpleMessage("Zrušit odběr"),
         "unsupported_url":
             MessageLookupByLibrary.simpleMessage("Nepodporovaná adresa URL"),
-        "update_to_release_version_through_your_fdroid_client": m20,
+        "update_to_release_version_through_your_fdroid_client": m18,
         "updates": MessageLookupByLibrary.simpleMessage("Aktualizace"),
         "use_true_black_for_the_dark_mode_theme":
             MessageLookupByLibrary.simpleMessage(
@@ -512,12 +477,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "you_must_have_at_least_2_home_screen_pages":
             MessageLookupByLibrary.simpleMessage(
                 "Musíte mít alespoň 2 stránky domovské obrazovky"),
-        "your_device_is_running_a_version_of_android_older_than_kitKat_so_data_can_only_be_imported_from":
-            MessageLookupByLibrary.simpleMessage(
-                "Vaše zařízení používá verzi Androidu starší než KitKat (4.4), takže data mohou být importována pouze z:"),
-        "your_device_is_running_a_version_of_android_older_than_kitKat_so_the_export_can_only_be_saved_to":
-            MessageLookupByLibrary.simpleMessage(
-                "Vaše zařízení používá verzi Androidu starší než KitKat (4.4), takže může být export uložen pouze do:"),
         "your_profile_must_be_public_otherwise_the_import_will_not_work":
             MessageLookupByLibrary.simpleMessage(
                 "Váš profil musí být veřejný, jinak nebude import fungovat"),

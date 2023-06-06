@@ -27,15 +27,12 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "add_to_group": MessageLookupByLibrary.simpleMessage("그룹에 추가"),
-        "an_error_was_reported_to__thank_you":
-            MessageLookupByLibrary.simpleMessage("오류가 보고되었습니다. 감사합니다!"),
         "could_not_find_any_tweets_from_the_last_7_days":
             MessageLookupByLibrary.simpleMessage("7일 이상의 트윗을 찾을 수 없습니다!"),
         "data_exported_to_fileName": m1,
         "data_exported_to_fullPath": m2,
         "data_imported_successfully":
             MessageLookupByLibrary.simpleMessage("데이터가 성공적으로 내보내졌습니다"),
-        "don_not_send": MessageLookupByLibrary.simpleMessage("보내지 않기"),
         "export": MessageLookupByLibrary.simpleMessage("내보내기"),
         "export_settings": MessageLookupByLibrary.simpleMessage("내보내기 설정?"),
         "export_subscription_group_members":
@@ -52,22 +49,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "include_replies": MessageLookupByLibrary.simpleMessage("답장 포함"),
         "include_retweets": MessageLookupByLibrary.simpleMessage("리트윗 포함"),
         "media": MessageLookupByLibrary.simpleMessage("미디어"),
-        "never_send": MessageLookupByLibrary.simpleMessage("절대 보내지 않기"),
         "no_results": MessageLookupByLibrary.simpleMessage("결과 없음"),
         "note_due_to_a_twitter_limitation_not_all_tweets_may_be_included":
             MessageLookupByLibrary.simpleMessage(
                 "공지: 트위터의 한계로 인하여 모든 트윗이 포함되지 않을 수 있습니다"),
         "reporting_an_error": MessageLookupByLibrary.simpleMessage("오류를 보고합니다"),
         "saved": MessageLookupByLibrary.simpleMessage("저장됨"),
-        "send_always": MessageLookupByLibrary.simpleMessage("항상 보내기"),
-        "send_once": MessageLookupByLibrary.simpleMessage("한번 보내기"),
         "something_just_went_wrong_in_fritter_and_an_error_report_has_been_generated":
             MessageLookupByLibrary.simpleMessage(
                 "Quacker에 오류가 발생하였으며, 오류 보고서가 생성되었습니다. 문제해결을 위해 보고서를 Quacker 개발자에게 보낼 수 있습니다."),
         "subscribe": MessageLookupByLibrary.simpleMessage("구독"),
         "subscriptions": MessageLookupByLibrary.simpleMessage("구독"),
-        "thanks_for_reporting_we_will_try_and_fix_it_in_no_time":
-            MessageLookupByLibrary.simpleMessage("보고 감사합니다. 빨리 수정하도록 하겠습니다!"),
         "this_user_does_not_follow_anyone":
             MessageLookupByLibrary.simpleMessage("해당 유저는 아무도 팔로우 하지 않았습니다!"),
         "this_user_does_not_have_anyone_following_them":
@@ -99,9 +91,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "would_you_like_to_enable_automatic_error_reporting":
             MessageLookupByLibrary.simpleMessage("자동 오류 보고를 켜시겠습니까?"),
         "you_have_not_saved_any_tweets_yet":
-            MessageLookupByLibrary.simpleMessage("아무 트윗도 저장하지 않았습니다!"),
-        "your_device_is_running_a_version_of_android_older_than_kitKat_so_the_export_can_only_be_saved_to":
-            MessageLookupByLibrary.simpleMessage(
-                "해당 기기는 안드로이드 4.4(KitKat)보다 버전이 높기에 추출이 해당으로만 저장될 수 있습니다:")
+            MessageLookupByLibrary.simpleMessage("아무 트윗도 저장하지 않았습니다!")
       };
 }

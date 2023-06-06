@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_file_dialog/flutter_file_dialog.dart';
-import 'package:barcode_scan2/barcode_scan2.dart';
 import 'package:quacker/constants.dart';
 import 'package:quacker/database/entities.dart';
 import 'package:quacker/database/repository.dart';
@@ -23,7 +22,7 @@ class SettingsData {
   final List<SubscriptionGroupMember>? subscriptionGroupMembers;
   final List<SavedTweet>? tweets;
 
-  const SettingsData(
+  SettingsData(
       {required this.settings,
       required this.searchSubscriptions,
       required this.userSubscriptions,
@@ -61,20 +60,15 @@ class SettingsData {
   }
 }
 
-class SettingsBackupFragment extends StatelessWidget {
-  static final log = Logger('SettingsBackupFragment');
+class SettingsDataFragment extends StatelessWidget {
+  static final log = Logger('SettingsDataFragment');
 
-  const SettingsBackupFragment({super.key});
+  final String legacyExportPath;
 
-  Future<void> _import(BuildContext context, File file, String json, bool useJson) async {
-    dynamic content;
-    if (useJson) {
-      print('jso');
-      content = jsonDecode(json);
-    } else {
-      print('fil');
-      content = jsonDecode(file.readAsStringSync());
-    }
+  const SettingsDataFragment({Key? key, required this.legacyExportPath}) : super(key: key);
+
+  Future<void> _importFromFile(BuildContext context, File file) async {
+    var content = jsonDecode(file.readAsStringSync());
 
     var importModel = context.read<ImportDataModel>();
     var groupModel = context.read<GroupsModel>();
@@ -132,28 +126,19 @@ class SettingsBackupFragment extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 8),
         child: ListView(children: [
           PrefLabel(
-            leading: const Icon(Icons.qr_code_rounded),
-            title: Text('QR ${L10n.of(context).import}'),
-            subtitle: Text('QR ${L10n.of(context).import_data_from_another_device}'),
-            onTap: () async {
-              var qrResult = await BarcodeScanner.scan();
-              print("Content: ${qrResult.rawContent}");
-              _import(context, File(''), qrResult.rawContent, true);
-            },
-          ),
-          PrefLabel(
-            leading: const Icon(Icons.import_export_rounded),
+            leading: const Icon(Icons.import_export),
             title: Text(L10n.of(context).import),
             subtitle: Text(L10n.of(context).import_data_from_another_device),
             onTap: () async {
-              var path = await FlutterFileDialog.pickFile(params: const OpenFileDialogParams());
-              if (path != null) {
-                await _import(context, File(path), '', false);
-              }
+              
+                var path = await FlutterFileDialog.pickFile(params: const OpenFileDialogParams());
+                if (path != null) {
+                  await _importFromFile(context, File(path));
+                }
             },
           ),
           PrefLabel(
-            leading: const Icon(Icons.save_outlined),
+            leading: const Icon(Icons.save),
             title: Text(L10n.of(context).export),
             subtitle: Text(L10n.of(context).export_your_data),
             onTap: () => Navigator.pushNamed(context, routeSettingsExport),

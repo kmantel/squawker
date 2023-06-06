@@ -39,11 +39,6 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m16(widgetPlaceName) =>
       "Не вдалося завантажити тренди для ${widgetPlaceName}";
 
-  static String m18(e) => "Не вдалося надіслати пінг. ${e}";
-
-  static String m19(statusCode) =>
-      "Не вдається надіслати пінг. Код стану був ${statusCode}";
-
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "about": MessageLookupByLibrary.simpleMessage("Про Quacker"),
@@ -58,9 +53,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "all_the_great_software_used_by_fritter":
             MessageLookupByLibrary.simpleMessage(
                 "Все чудове програмне забезпечення, яке використовує Quacker"),
-        "an_error_was_reported_to__thank_you":
-            MessageLookupByLibrary.simpleMessage(
-                "До  надійшло повідомлення про помилку. Дякую!"),
         "are_you_sure": MessageLookupByLibrary.simpleMessage("Ви впевнені?"),
         "are_you_sure_you_want_to_delete_the_subscription_group_name_of_group":
             m0,
@@ -90,7 +82,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Вкладка за замовчуванням"),
         "delete": MessageLookupByLibrary.simpleMessage("Видалити"),
         "disabled": MessageLookupByLibrary.simpleMessage("Вимкнено"),
-        "don_not_send": MessageLookupByLibrary.simpleMessage("Не надсилати"),
         "donate": MessageLookupByLibrary.simpleMessage("Пожертвувати"),
         "enable_": MessageLookupByLibrary.simpleMessage("Увімкнути ?"),
         "enter_your_twitter_username": MessageLookupByLibrary.simpleMessage(
@@ -121,9 +112,6 @@ class MessageLookup extends MessageLookupByLibrary {
             "Допоможіть зробити Quacker ще кращим"),
         "help_support_fritters_future": MessageLookupByLibrary.simpleMessage(
             "Допоможіть підтримати майбутнє Quacker"),
-        "here_is_the_data_that_will_be_sent_it_will_only_be_used_to_determine_which_devices_and_languages_to_support_in_fritter_in_the_future":
-            MessageLookupByLibrary.simpleMessage(
-                "Ось дані, які будуть надіслані. Вони будуть використані лише для того, щоб визначити, які пристрої та мови підтримувати у Quacker в майбутньому."),
         "if_you_have_any_feedback_on_this_feature_please_leave_it_on":
             MessageLookupByLibrary.simpleMessage(
                 "Якщо у вас є відгуки про цю функцію, будь ласка, залиште їх на"),
@@ -139,12 +127,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Включити відповіді"),
         "include_retweets":
             MessageLookupByLibrary.simpleMessage("Включити ретвіти"),
-        "it_looks_like_you_have_already_said_hello_from_this_version_of_fritter":
-            MessageLookupByLibrary.simpleMessage(
-                "Схоже, ви вже привіталися з цією версією Quacker!"),
-        "it_looks_like_you_have_already_sent_a_ping_recently":
-            MessageLookupByLibrary.simpleMessage(
-                "Схоже, що ви вже відправляли пінг нещодавно 🤔"),
         "joined": m8,
         "large": MessageLookupByLibrary.simpleMessage("Великий"),
         "legacy_android_import":
@@ -159,8 +141,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "media_size": MessageLookupByLibrary.simpleMessage("Розмір медіа"),
         "medium": MessageLookupByLibrary.simpleMessage("Середній"),
         "name": MessageLookupByLibrary.simpleMessage("Ім\'я"),
-        "never_send":
-            MessageLookupByLibrary.simpleMessage("Ніколи не надсилати"),
         "newTrans": MessageLookupByLibrary.simpleMessage("Нове"),
         "no": MessageLookupByLibrary.simpleMessage("Ні"),
         "no_results": MessageLookupByLibrary.simpleMessage("Немає результатів"),
@@ -195,20 +175,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Економте трафік за допомогою менших зображень"),
         "saved": MessageLookupByLibrary.simpleMessage("Збережено"),
-        "say_hello": MessageLookupByLibrary.simpleMessage("Скажіть привіт"),
-        "say_hello_emoji":
-            MessageLookupByLibrary.simpleMessage("Скажіть привіт 👋"),
         "search": MessageLookupByLibrary.simpleMessage("Пошук"),
         "select": MessageLookupByLibrary.simpleMessage("Вибрати"),
         "selecting_individual_accounts_to_import_and_assigning_groups_are_both_planned_for_the_future_already":
             MessageLookupByLibrary.simpleMessage(
                 "Вибір окремих облікових записів для імпорту та призначення груп вже заплановано на майбутнє!"),
         "send": MessageLookupByLibrary.simpleMessage("Надіслати"),
-        "send_a_non_identifying_ping_to_let_me_know_you_are_using_fritter_and_to_help_future_development":
-            MessageLookupByLibrary.simpleMessage(
-                "Надішліть неідентифікуючий пінг, щоб повідомити мені, що ви використовуєте Quacker і допомогти в подальшій розробці"),
-        "send_always": MessageLookupByLibrary.simpleMessage("Надсилати завжди"),
-        "send_once": MessageLookupByLibrary.simpleMessage("Надіслати один раз"),
         "small": MessageLookupByLibrary.simpleMessage("Маленький"),
         "something_just_went_wrong_in_fritter_and_an_error_report_has_been_generated":
             MessageLookupByLibrary.simpleMessage(
@@ -218,9 +190,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "system": MessageLookupByLibrary.simpleMessage("Система"),
         "thanks_for_helping_fritter":
             MessageLookupByLibrary.simpleMessage("Дякуємо за допомогу! 💖"),
-        "thanks_for_reporting_we_will_try_and_fix_it_in_no_time":
-            MessageLookupByLibrary.simpleMessage(
-                "Дякуємо за повідомлення. Ми постараємося виправити це якнайшвидше!"),
         "the_file_does_not_exist_please_ensure_it_is_located_at_file_path": m13,
         "the_github_issue":
             MessageLookupByLibrary.simpleMessage("GitHub issue (#143)"),
@@ -239,9 +208,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Цей користувач не має жодного підписника!"),
         "thumbnail": MessageLookupByLibrary.simpleMessage("Ескіз"),
-        "timed_out_trying_to_send_the_ping":
-            MessageLookupByLibrary.simpleMessage(
-                "Минув час очікування під час спроби надіслати запит пінг 😢"),
         "to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below":
             MessageLookupByLibrary.simpleMessage(
                 "Щоб імпортувати підписки з наявного облікового запису Twitter, введіть своє ім\'я користувача нижче."),
@@ -294,8 +260,6 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Не вдається завантажити твіти для стрічки"),
         "unable_to_refresh_the_subscriptions":
             MessageLookupByLibrary.simpleMessage("Не вдалося оновити підписки"),
-        "unable_to_send_the_ping_e_to_string": m18,
-        "unable_to_send_the_ping_the_status_code_was_response_statusCode": m19,
         "unsubscribe": MessageLookupByLibrary.simpleMessage("Відписатися"),
         "use_true_black_for_the_dark_mode_theme":
             MessageLookupByLibrary.simpleMessage(
@@ -316,12 +280,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "you_have_not_saved_any_tweets_yet":
             MessageLookupByLibrary.simpleMessage(
                 "Ви ще не зберегли жодного твіту!"),
-        "your_device_is_running_a_version_of_android_older_than_kitKat_so_data_can_only_be_imported_from":
-            MessageLookupByLibrary.simpleMessage(
-                "На вашому пристрої встановлено версію Android, старішу за KitKat (4.4), тому дані можна імпортувати лише з:"),
-        "your_device_is_running_a_version_of_android_older_than_kitKat_so_the_export_can_only_be_saved_to":
-            MessageLookupByLibrary.simpleMessage(
-                "На вашому пристрої встановлено версію Android, старішу за KitKat (4.4), тому експорт може бути збережено лише до:"),
         "your_profile_must_be_public_otherwise_the_import_will_not_work":
             MessageLookupByLibrary.simpleMessage(
                 "Ваш профіль має бути публічним, інакше імпорт не спрацює"),

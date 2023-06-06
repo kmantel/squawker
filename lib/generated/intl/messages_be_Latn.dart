@@ -29,9 +29,6 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "add_to_group": MessageLookupByLibrary.simpleMessage("Dadać u hrupu"),
-        "an_error_was_reported_to__thank_you":
-            MessageLookupByLibrary.simpleMessage(
-                "Pamyłka była pieradadziena ŭ . Dziakuj!"),
         "cancel": MessageLookupByLibrary.simpleMessage("Skasavać"),
         "could_not_find_any_tweets_by_this_user":
             MessageLookupByLibrary.simpleMessage(
@@ -43,7 +40,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "data_exported_to_fullPath": m2,
         "data_imported_successfully": MessageLookupByLibrary.simpleMessage(
             "Dadzienyja paśpiachova impartavany"),
-        "don_not_send": MessageLookupByLibrary.simpleMessage("Nie adpraŭlać"),
         "export": MessageLookupByLibrary.simpleMessage("Ekspartavać"),
         "export_settings":
             MessageLookupByLibrary.simpleMessage("Ekspartavać nałady?"),
@@ -64,16 +60,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Uklučajučy adkazy"),
         "include_retweets":
             MessageLookupByLibrary.simpleMessage("Uklučajučy retvity"),
-        "it_looks_like_you_have_already_said_hello_from_this_version_of_fritter":
-            MessageLookupByLibrary.simpleMessage(
-                "Vyhladaje na toje, što vy ŭžo nas pryvitali ad hetaj versyi Quacker!"),
-        "it_looks_like_you_have_already_sent_a_ping_recently":
-            MessageLookupByLibrary.simpleMessage(
-                "Padobna, što vy ŭžo adpraŭlali pinh niadaŭna 🤔"),
         "joined": m8,
         "media": MessageLookupByLibrary.simpleMessage("Medyja"),
-        "never_send":
-            MessageLookupByLibrary.simpleMessage("Nikoli nie adpraŭlać"),
         "no_results": MessageLookupByLibrary.simpleMessage("Niama vyniku"),
         "note_due_to_a_twitter_limitation_not_all_tweets_may_be_included":
             MessageLookupByLibrary.simpleMessage(
@@ -82,9 +70,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Paviedamić ab pamyłcy"),
         "saved": MessageLookupByLibrary.simpleMessage("Zachavanaje"),
         "select": MessageLookupByLibrary.simpleMessage("Vybrać"),
-        "send_always":
-            MessageLookupByLibrary.simpleMessage("Adpraŭlać zaŭsiody"),
-        "send_once": MessageLookupByLibrary.simpleMessage("Adpravić adzin raz"),
         "something_just_went_wrong_in_fritter_and_an_error_report_has_been_generated":
             MessageLookupByLibrary.simpleMessage(
                 "Niešta pajšło nie tak u Quacker, i była stvorana spravazdača ab pamyłcy. Spravazdaču možna adpravić raspracoŭnikam Quacker, kab dapamahčy vypravić prablemu."),
@@ -92,9 +77,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "subscriptions": MessageLookupByLibrary.simpleMessage("Padpiski"),
         "thanks_for_helping_fritter": MessageLookupByLibrary.simpleMessage(
             "Dziakuj za dapamohu Quacker! 💖"),
-        "thanks_for_reporting_we_will_try_and_fix_it_in_no_time":
-            MessageLookupByLibrary.simpleMessage(
-                "Dziakuj za spravazdaču. My pastarajemsia vypravić heta ŭ bližejšy čas!"),
         "this_group_contains_no_subscriptions":
             MessageLookupByLibrary.simpleMessage(
                 "U hetaj hrupie niama padpisak!"),
@@ -150,9 +132,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "you_have_not_saved_any_tweets_yet":
             MessageLookupByLibrary.simpleMessage(
                 "Vy jašče nie zachavali nivodnaha tvitu!"),
-        "your_device_is_running_a_version_of_android_older_than_kitKat_so_the_export_can_only_be_saved_to":
-            MessageLookupByLibrary.simpleMessage(
-                "Vaša pryłada pracuje pad kiravańniem versyi Android, starejšyj za KitKat (4.4), tamu ekspart moža być zachavany tolki ŭ:"),
         "your_report_will_be_sent_to_fritter__project":
             MessageLookupByLibrary.simpleMessage(
                 "Vaša spravazdača budzie dasłana ŭ  Quacker, a infarmacyju pra kanfidencyjnaść možna znajści tut:")

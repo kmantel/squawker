@@ -66,12 +66,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m17(responseStatusCode) =>
       "Tidak dapat menyimpan media. Twitter mengembalikan status ${responseStatusCode}";
 
-  static String m18(e) => "Tidak bisa mengirim ping. ${e}";
-
-  static String m19(statusCode) =>
-      "Tidak bisa mengirim ping. Kode statusnya adalah ${statusCode}";
-
-  static String m20(releaseVersion) =>
+  static String m18(releaseVersion) =>
       "Perbarui ke ${releaseVersion} lewat klien F-Droid Anda";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -90,9 +85,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "all_the_great_software_used_by_fritter":
             MessageLookupByLibrary.simpleMessage(
                 "Semua perangkat lunak hebat yang digunakan oleh Quacker"),
-        "an_error_was_reported_to__thank_you":
-            MessageLookupByLibrary.simpleMessage(
-                "Sebuah galat telah dilaporkan ke . Terima kasih!"),
         "an_update_for_fritter_is_available":
             MessageLookupByLibrary.simpleMessage(
                 "Pembaruan untuk Quacker tersedia! 🚀"),
@@ -144,7 +136,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "disable_screenshots_hint": MessageLookupByLibrary.simpleMessage(
             "Cegah tangkapan layar untuk diambil. Ini mungkin tidak bekerja pada semua perangkat."),
         "disabled": MessageLookupByLibrary.simpleMessage("Dinonaktifkan"),
-        "don_not_send": MessageLookupByLibrary.simpleMessage("Jangan kirim"),
         "donate": MessageLookupByLibrary.simpleMessage("Donasi"),
         "download": MessageLookupByLibrary.simpleMessage("Unduh"),
         "download_handling":
@@ -194,9 +185,6 @@ class MessageLookup extends MessageLookupByLibrary {
             "Bantu Quacker menjadi lebih baik"),
         "help_support_fritters_future": MessageLookupByLibrary.simpleMessage(
             "Bantu dukung masa depan Quacker"),
-        "here_is_the_data_that_will_be_sent_it_will_only_be_used_to_determine_which_devices_and_languages_to_support_in_fritter_in_the_future":
-            MessageLookupByLibrary.simpleMessage(
-                "Berikut data yang akan dikirim. Ini hanya akan digunakan untuk menentukan perangkat dan bahasa mana yang akan didukung di Quacker di masa mendatang."),
         "hide_sensitive_tweets":
             MessageLookupByLibrary.simpleMessage("Sembunyikan cuitan sensitif"),
         "home": MessageLookupByLibrary.simpleMessage("Beranda"),
@@ -215,12 +203,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Sertakan balasan"),
         "include_retweets":
             MessageLookupByLibrary.simpleMessage("Sertakan cuit ulang"),
-        "it_looks_like_you_have_already_said_hello_from_this_version_of_fritter":
-            MessageLookupByLibrary.simpleMessage(
-                "Sepertinya Anda sudah menyapa dari versi Quacker ini!"),
-        "it_looks_like_you_have_already_sent_a_ping_recently":
-            MessageLookupByLibrary.simpleMessage(
-                "Sepertinya Anda sudah mengirim ping baru-baru ini 🤔"),
         "joined": m8,
         "language": MessageLookupByLibrary.simpleMessage("Bahasa"),
         "language_subtitle":
@@ -240,8 +222,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "medium": MessageLookupByLibrary.simpleMessage("Sedang"),
         "missing_page": MessageLookupByLibrary.simpleMessage("Halaman hilang"),
         "name": MessageLookupByLibrary.simpleMessage("Nama"),
-        "never_send":
-            MessageLookupByLibrary.simpleMessage("Jangan pernah kirim"),
         "newTrans": MessageLookupByLibrary.simpleMessage("Baru"),
         "no": MessageLookupByLibrary.simpleMessage("Tidak"),
         "no_data_was_returned_which_should_never_happen_please_report_a_bug_if_possible":
@@ -313,8 +293,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "saved": MessageLookupByLibrary.simpleMessage("Disimpan"),
         "saved_tweet_too_large": MessageLookupByLibrary.simpleMessage(
             "Tweet yang disimpan ini tidak bisa ditampilkan, karna terlalu besar. Silahkan laporkan ke developer."),
-        "say_hello": MessageLookupByLibrary.simpleMessage("Sapa"),
-        "say_hello_emoji": MessageLookupByLibrary.simpleMessage("Sapa 👋"),
         "search": MessageLookupByLibrary.simpleMessage("Cari"),
         "search_term": MessageLookupByLibrary.simpleMessage("Kata pencarian"),
         "select": MessageLookupByLibrary.simpleMessage("Pilih"),
@@ -322,11 +300,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Memilih akun individu untuk diimpor, dan menetapkan grup sudah direncanakan untuk masa mendatang!"),
         "send": MessageLookupByLibrary.simpleMessage("Kirim"),
-        "send_a_non_identifying_ping_to_let_me_know_you_are_using_fritter_and_to_help_future_development":
-            MessageLookupByLibrary.simpleMessage(
-                "Kirim ping tak-mengidentifikasi untuk memberi tahu saya bahwa Anda menggunakan Quacker, dan untuk membantu pengembangan di masa mendatang"),
-        "send_always": MessageLookupByLibrary.simpleMessage("Kirim selalu"),
-        "send_once": MessageLookupByLibrary.simpleMessage("Kirim sekali"),
         "share_tweet_content":
             MessageLookupByLibrary.simpleMessage("Bagi konten cuitan"),
         "share_tweet_content_and_link": MessageLookupByLibrary.simpleMessage(
@@ -357,9 +330,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "tap_to_show_getMediaType_item_type": m12,
         "thanks_for_helping_fritter": MessageLookupByLibrary.simpleMessage(
             "Terima kasih telah membantu Quacker! 💖"),
-        "thanks_for_reporting_we_will_try_and_fix_it_in_no_time":
-            MessageLookupByLibrary.simpleMessage(
-                "Terima kasih telah melaporkan. Kami akan mencoba dan memperbaikinya secepatnya!"),
         "the_file_does_not_exist_please_ensure_it_is_located_at_file_path": m13,
         "the_github_issue":
             MessageLookupByLibrary.simpleMessage("isu GitHub (#143)"),
@@ -389,9 +359,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "thread": MessageLookupByLibrary.simpleMessage("Utas"),
         "thumbnail": MessageLookupByLibrary.simpleMessage("Keluku"),
         "timed_out": MessageLookupByLibrary.simpleMessage("Waktu habis"),
-        "timed_out_trying_to_send_the_ping":
-            MessageLookupByLibrary.simpleMessage(
-                "Waktu habis mencoba untuk mengirim ping 😢"),
         "to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below":
             MessageLookupByLibrary.simpleMessage(
                 "Untuk mengimpor langganan dari akun Twitter yang ada, masukkan nama pengguna Anda di bawah ini."),
@@ -456,8 +423,6 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Tidak bisa menjalankan migrasi basis data"),
         "unable_to_save_the_media_twitter_returned_a_status_of_response_statusCode":
             m17,
-        "unable_to_send_the_ping_e_to_string": m18,
-        "unable_to_send_the_ping_the_status_code_was_response_statusCode": m19,
         "unable_to_stream_the_trend_location_preference":
             MessageLookupByLibrary.simpleMessage(
                 "Tidak bisa mengalirkan preferensi lokasi tren"),
@@ -466,7 +431,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "unsubscribe": MessageLookupByLibrary.simpleMessage("Batal langganan"),
         "unsupported_url":
             MessageLookupByLibrary.simpleMessage("URL tidak didukung"),
-        "update_to_release_version_through_your_fdroid_client": m20,
+        "update_to_release_version_through_your_fdroid_client": m18,
         "updates": MessageLookupByLibrary.simpleMessage("Pembaruan"),
         "use_true_black_for_the_dark_mode_theme":
             MessageLookupByLibrary.simpleMessage(
@@ -498,12 +463,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "you_must_have_at_least_2_home_screen_pages":
             MessageLookupByLibrary.simpleMessage(
                 "Anda harus paling tidak memiliki dua halaman beranda"),
-        "your_device_is_running_a_version_of_android_older_than_kitKat_so_data_can_only_be_imported_from":
-            MessageLookupByLibrary.simpleMessage(
-                "Perangkat Anda menjalankan versi Android yang lebih tua dari KitKat (4.4), jadi data hanya bisa diimpor dari:"),
-        "your_device_is_running_a_version_of_android_older_than_kitKat_so_the_export_can_only_be_saved_to":
-            MessageLookupByLibrary.simpleMessage(
-                "Perangkat Anda menjalankan versi Android yang lebih tua dari KitKat (4.4), jadi ekspor hanya bisa disimpan ke:"),
         "your_profile_must_be_public_otherwise_the_import_will_not_work":
             MessageLookupByLibrary.simpleMessage(
                 "Profil Anda harus publik, jika tidak impor tidak akan bekerja"),

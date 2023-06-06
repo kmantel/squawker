@@ -65,12 +65,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m17(responseStatusCode) =>
       "Kunne ikke lagre mediafilen. Twitter svarte med ${responseStatusCode}";
 
-  static String m18(e) => "Kunne ikke sende ekkoforespørselen. ${e}";
-
-  static String m19(statusCode) =>
-      "Kunne ikke sende ekkoforespørselen. Statuskoden er ${statusCode}";
-
-  static String m20(releaseVersion) =>
+  static String m18(releaseVersion) =>
       "Oppgrader til ${releaseVersion} med din F-Droid-klient";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -89,9 +84,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "all_the_great_software_used_by_fritter":
             MessageLookupByLibrary.simpleMessage(
                 "All den flotte programvaren som brukes av Quacker"),
-        "an_error_was_reported_to__thank_you":
-            MessageLookupByLibrary.simpleMessage(
-                "En feil ble rapportert til . Takk skal du ha!"),
         "an_update_for_fritter_is_available":
             MessageLookupByLibrary.simpleMessage(
                 "En oppdatering for Quacker er tilgjengelig! 🚀"),
@@ -138,7 +130,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "disable_screenshots":
             MessageLookupByLibrary.simpleMessage("Skru av skjermavbildninger"),
         "disabled": MessageLookupByLibrary.simpleMessage("Avskrudd"),
-        "don_not_send": MessageLookupByLibrary.simpleMessage("Ikke send"),
         "donate": MessageLookupByLibrary.simpleMessage("Doner"),
         "download": MessageLookupByLibrary.simpleMessage("Last ned"),
         "download_handling_type_ask":
@@ -181,9 +172,6 @@ class MessageLookup extends MessageLookupByLibrary {
             "Hjelp til å gjøre Quacker enda bedre"),
         "help_support_fritters_future": MessageLookupByLibrary.simpleMessage(
             "Hjelp til å støtte Quackers fremtid"),
-        "here_is_the_data_that_will_be_sent_it_will_only_be_used_to_determine_which_devices_and_languages_to_support_in_fritter_in_the_future":
-            MessageLookupByLibrary.simpleMessage(
-                "Denne dataen vil bli sendt. Den brukes kun til å bestemme hvilke enheter og språk som skal støttes i Quacker i fremtiden."),
         "home": MessageLookupByLibrary.simpleMessage("Hjem"),
         "if_you_have_any_feedback_on_this_feature_please_leave_it_on":
             MessageLookupByLibrary.simpleMessage(
@@ -199,12 +187,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "include_replies": MessageLookupByLibrary.simpleMessage("Ta med svar"),
         "include_retweets":
             MessageLookupByLibrary.simpleMessage("Inkluder retweets"),
-        "it_looks_like_you_have_already_said_hello_from_this_version_of_fritter":
-            MessageLookupByLibrary.simpleMessage(
-                "Det ser ut som du allerede har sagt hei fra denne versjonen av Quacker."),
-        "it_looks_like_you_have_already_sent_a_ping_recently":
-            MessageLookupByLibrary.simpleMessage(
-                "Det ser ut til at du allerede har sendt en ekkoforespørsel 🤔"),
         "joined": m8,
         "language": MessageLookupByLibrary.simpleMessage("Språk"),
         "language_subtitle":
@@ -223,7 +205,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "media_size": MessageLookupByLibrary.simpleMessage("Mediastørrelse"),
         "medium": MessageLookupByLibrary.simpleMessage("Middels"),
         "name": MessageLookupByLibrary.simpleMessage("Navn"),
-        "never_send": MessageLookupByLibrary.simpleMessage("Send aldri"),
         "newTrans": MessageLookupByLibrary.simpleMessage("Ny"),
         "no": MessageLookupByLibrary.simpleMessage("Nei"),
         "no_data_was_returned_which_should_never_happen_please_report_a_bug_if_possible":
@@ -274,19 +255,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Spar båndbredde ved å bruke mindre bilder"),
         "saved": MessageLookupByLibrary.simpleMessage("Lagret"),
-        "say_hello": MessageLookupByLibrary.simpleMessage("Si hei"),
-        "say_hello_emoji": MessageLookupByLibrary.simpleMessage("Si hei 👋"),
         "search": MessageLookupByLibrary.simpleMessage("Søk"),
         "select": MessageLookupByLibrary.simpleMessage("Velg"),
         "selecting_individual_accounts_to_import_and_assigning_groups_are_both_planned_for_the_future_already":
             MessageLookupByLibrary.simpleMessage(
                 "Valg av individuelle kontoer og importere, samt tildeling av grupper er allerede planlagt."),
         "send": MessageLookupByLibrary.simpleMessage("Send"),
-        "send_a_non_identifying_ping_to_let_me_know_you_are_using_fritter_and_to_help_future_development":
-            MessageLookupByLibrary.simpleMessage(
-                "Send en ikke-identifiserende ekkoforespørsel til meg for å tilkjennegjøre at du bruker Quacker, og hjelp videre utvikling."),
-        "send_always": MessageLookupByLibrary.simpleMessage("Send alltid"),
-        "send_once": MessageLookupByLibrary.simpleMessage("Send en gang"),
         "share_tweet_content":
             MessageLookupByLibrary.simpleMessage("Del tvitringsinnhold"),
         "share_tweet_content_and_link": MessageLookupByLibrary.simpleMessage(
@@ -311,9 +285,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "tap_to_show_getMediaType_item_type": m12,
         "thanks_for_helping_fritter": MessageLookupByLibrary.simpleMessage(
             "Takk for at du hjelper Quacker. 💖"),
-        "thanks_for_reporting_we_will_try_and_fix_it_in_no_time":
-            MessageLookupByLibrary.simpleMessage(
-                "Takk for at du rapporterte. Vi skal prøve å fikse det på kort tid!"),
         "the_file_does_not_exist_please_ensure_it_is_located_at_file_path": m13,
         "the_tweet_did_not_contain_any_text_this_is_unexpected":
             MessageLookupByLibrary.simpleMessage(
@@ -341,9 +312,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "thread": MessageLookupByLibrary.simpleMessage("Tråd"),
         "thumbnail": MessageLookupByLibrary.simpleMessage("Miniatyrbilde"),
         "timed_out": MessageLookupByLibrary.simpleMessage("Tidsavbrudd"),
-        "timed_out_trying_to_send_the_ping":
-            MessageLookupByLibrary.simpleMessage(
-                "Tidsavbrudd under forsendelse av ekkoforespørsel 😢"),
         "to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below":
             MessageLookupByLibrary.simpleMessage(
                 "Skriv inn brukernavnet ditt nedenfor hvis du vil importere abonnementer fra en eksisterende Twitter-konto."),
@@ -401,8 +369,6 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Kunne ikke kjøre databaseflytting"),
         "unable_to_save_the_media_twitter_returned_a_status_of_response_statusCode":
             m17,
-        "unable_to_send_the_ping_e_to_string": m18,
-        "unable_to_send_the_ping_the_status_code_was_response_statusCode": m19,
         "unable_to_stream_the_trend_location_preference":
             MessageLookupByLibrary.simpleMessage(
                 "Kunne ikke strømme tendensposisjonsvalg"),
@@ -410,7 +376,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "unsave": MessageLookupByLibrary.simpleMessage("Opphev lagring"),
         "unsubscribe":
             MessageLookupByLibrary.simpleMessage("Avslutte abonnementet"),
-        "update_to_release_version_through_your_fdroid_client": m20,
+        "update_to_release_version_through_your_fdroid_client": m18,
         "updates": MessageLookupByLibrary.simpleMessage("Oppdateringer"),
         "use_true_black_for_the_dark_mode_theme":
             MessageLookupByLibrary.simpleMessage(
@@ -436,12 +402,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "you_have_not_saved_any_tweets_yet":
             MessageLookupByLibrary.simpleMessage(
                 "Du har ikke lagret noen tweets ennå!"),
-        "your_device_is_running_a_version_of_android_older_than_kitKat_so_data_can_only_be_imported_from":
-            MessageLookupByLibrary.simpleMessage(
-                "Enheten din kjører en versjon av Android eldre enn KitKat (4.4), så data kan kun importeres fra:"),
-        "your_device_is_running_a_version_of_android_older_than_kitKat_so_the_export_can_only_be_saved_to":
-            MessageLookupByLibrary.simpleMessage(
-                "Enheten din kjører en versjon av Android eldre enn KitKat (4.4), så eksporten kan kun lagres i:"),
         "your_profile_must_be_public_otherwise_the_import_will_not_work":
             MessageLookupByLibrary.simpleMessage(
                 "Profilen din må være offentlig, ellers vil ikke importen fungere"),

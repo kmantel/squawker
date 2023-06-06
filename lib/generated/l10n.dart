@@ -182,66 +182,6 @@ class L10n {
     );
   }
 
-  /// `Send once`
-  String get send_once {
-    return Intl.message(
-      'Send once',
-      name: 'send_once',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Send always`
-  String get send_always {
-    return Intl.message(
-      'Send always',
-      name: 'send_always',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Don't send`
-  String get don_not_send {
-    return Intl.message(
-      'Don\'t send',
-      name: 'don_not_send',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Never send`
-  String get never_send {
-    return Intl.message(
-      'Never send',
-      name: 'never_send',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `An error was reported to . Thank you!`
-  String get an_error_was_reported_to__thank_you {
-    return Intl.message(
-      'An error was reported to . Thank you!',
-      name: 'an_error_was_reported_to__thank_you',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Thanks for reporting. We'll try and fix it in no time!`
-  String get thanks_for_reporting_we_will_try_and_fix_it_in_no_time {
-    return Intl.message(
-      'Thanks for reporting. We\'ll try and fix it in no time!',
-      name: 'thanks_for_reporting_we_will_try_and_fix_it_in_no_time',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Unable to load the next page of tweets`
   String get unable_to_load_the_next_page_of_tweets {
     return Intl.message(
@@ -562,18 +502,6 @@ class L10n {
     );
   }
 
-  /// `Your device is running a version of Android older than KitKat (4.4), so the export can only be saved to:`
-  String
-      get your_device_is_running_a_version_of_android_older_than_kitKat_so_the_export_can_only_be_saved_to {
-    return Intl.message(
-      'Your device is running a version of Android older than KitKat (4.4), so the export can only be saved to:',
-      name:
-          'your_device_is_running_a_version_of_android_older_than_kitKat_so_the_export_can_only_be_saved_to',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Export settings?`
   String get export_settings {
     return Intl.message(
@@ -634,18 +562,6 @@ class L10n {
     );
   }
 
-  /// `It looks like you've already said hello from this version of Quacker!`
-  String
-      get it_looks_like_you_have_already_said_hello_from_this_version_of_fritter {
-    return Intl.message(
-      'It looks like you\'ve already said hello from this version of Quacker!',
-      name:
-          'it_looks_like_you_have_already_said_hello_from_this_version_of_fritter',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Cancel`
   String get cancel {
     return Intl.message(
@@ -666,96 +582,11 @@ class L10n {
     );
   }
 
-  /// `It looks like you've already sent a ping recently 🤔`
-  String get it_looks_like_you_have_already_sent_a_ping_recently {
-    return Intl.message(
-      'It looks like you\'ve already sent a ping recently 🤔',
-      name: 'it_looks_like_you_have_already_sent_a_ping_recently',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Unable to send the ping. The status code was {statusCode}`
-  String unable_to_send_the_ping_the_status_code_was_response_statusCode(
-      Object statusCode) {
-    return Intl.message(
-      'Unable to send the ping. The status code was $statusCode',
-      name: 'unable_to_send_the_ping_the_status_code_was_response_statusCode',
-      desc: '',
-      args: [statusCode],
-    );
-  }
-
-  /// `Timed out trying to send the ping 😢`
-  String get timed_out_trying_to_send_the_ping {
-    return Intl.message(
-      'Timed out trying to send the ping 😢',
-      name: 'timed_out_trying_to_send_the_ping',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Unable to send the ping. {e}`
-  String unable_to_send_the_ping_e_to_string(Object e) {
-    return Intl.message(
-      'Unable to send the ping. $e',
-      name: 'unable_to_send_the_ping_e_to_string',
-      desc: '',
-      args: [e],
-    );
-  }
-
   /// `Send`
   String get send {
     return Intl.message(
       'Send',
       name: 'send',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Say Hello 👋`
-  String get say_hello_emoji {
-    return Intl.message(
-      'Say Hello 👋',
-      name: 'say_hello_emoji',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Say Hello`
-  String get say_hello {
-    return Intl.message(
-      'Say Hello',
-      name: 'say_hello',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Here is the data that will be sent. It will only be used to determine which devices and languages to support in Quacker in the future.`
-  String
-      get here_is_the_data_that_will_be_sent_it_will_only_be_used_to_determine_which_devices_and_languages_to_support_in_fritter_in_the_future {
-    return Intl.message(
-      'Here is the data that will be sent. It will only be used to determine which devices and languages to support in Quacker in the future.',
-      name:
-          'here_is_the_data_that_will_be_sent_it_will_only_be_used_to_determine_which_devices_and_languages_to_support_in_fritter_in_the_future',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Send a non-identifying ping to let me know you're using Quacker, and to help future development`
-  String
-      get send_a_non_identifying_ping_to_let_me_know_you_are_using_fritter_and_to_help_future_development {
-    return Intl.message(
-      'Send a non-identifying ping to let me know you\'re using Quacker, and to help future development',
-      name:
-          'send_a_non_identifying_ping_to_let_me_know_you_are_using_fritter_and_to_help_future_development',
       desc: '',
       args: [],
     );
@@ -776,6 +607,16 @@ class L10n {
     return Intl.message(
       'Default tab',
       name: 'default_tab',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `App Info`
+  String get app_info {
+    return Intl.message(
+      'App Info',
+      name: 'app_info',
       desc: '',
       args: [],
     );
@@ -987,18 +828,6 @@ class L10n {
     return Intl.message(
       'prefix',
       name: 'prefix',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Your device is running a version of Android older than KitKat (4.4), so data can only be imported from:`
-  String
-      get your_device_is_running_a_version_of_android_older_than_kitKat_so_data_can_only_be_imported_from {
-    return Intl.message(
-      'Your device is running a version of Android older than KitKat (4.4), so data can only be imported from:',
-      name:
-          'your_device_is_running_a_version_of_android_older_than_kitKat_so_data_can_only_be_imported_from',
       desc: '',
       args: [],
     );

@@ -17,7 +17,7 @@ class SettingsHomeFragment extends StatelessWidget {
         title: Text(L10n.current.home),
         actions: [
           IconButton(
-              icon: const Icon(Icons.restart_alt_rounded),
+              icon: const Icon(Icons.restart_alt),
               tooltip: L10n.current.reset_home_pages,
               onPressed: () async => await model.resetPages())
         ],
@@ -42,10 +42,9 @@ class SettingsHomeFragment extends StatelessWidget {
 
                 return CheckboxListTile(
                   key: Key(page.id),
-                  secondary: const Icon(Icons.drag_handle_rounded),
+                  secondary: const Icon(Icons.drag_handle),
                   title: Text(page.page.titleBuilder(context)),
                   value: page.selected,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                   onChanged: (value) async {
                     var selected = value ?? false;
                     if (selected == false && data.where((e) => e.selected).length == 2) {

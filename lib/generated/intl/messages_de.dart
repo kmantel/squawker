@@ -67,12 +67,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m17(responseStatusCode) =>
       "Medien konnten nicht gespeichert werden. Twitter gab folgenden Statuscode zurück: ${responseStatusCode}";
 
-  static String m18(e) => "Der Ping konnte nicht gesendet werden. ${e}";
-
-  static String m19(statusCode) =>
-      "Der Ping konnte nicht gesendet werden. Der Status-Code lautet ${statusCode}";
-
-  static String m20(releaseVersion) =>
+  static String m18(releaseVersion) =>
       "Update auf Version ${releaseVersion} über F-Droid";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -94,9 +89,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "all_the_great_software_used_by_fritter":
             MessageLookupByLibrary.simpleMessage(
                 "All die fantastische Software, die Quacker verwendet"),
-        "an_error_was_reported_to__thank_you":
-            MessageLookupByLibrary.simpleMessage(
-                "Der Fehler wurde auf  gemeldet. Vielen Dank!"),
         "an_update_for_fritter_is_available":
             MessageLookupByLibrary.simpleMessage(
                 "Ein Update für Quacker ist verfügbar! 🚀"),
@@ -148,7 +140,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "disable_screenshots_hint": MessageLookupByLibrary.simpleMessage(
             "Versucht zu verhindern, dass Screenshots von Fritter gemacht werden können. Dies ist keine Garantie und funktioniert möglicherweise nicht auf allen Geräten."),
         "disabled": MessageLookupByLibrary.simpleMessage("Deaktiviert"),
-        "don_not_send": MessageLookupByLibrary.simpleMessage("Nicht Senden"),
         "donate": MessageLookupByLibrary.simpleMessage("Spenden"),
         "download": MessageLookupByLibrary.simpleMessage("Herunterladen"),
         "download_handling":
@@ -203,9 +194,6 @@ class MessageLookup extends MessageLookupByLibrary {
             "Hilf dabei, Quacker noch besser zu machen"),
         "help_support_fritters_future": MessageLookupByLibrary.simpleMessage(
             "Unterstütze Quackers Zukunft"),
-        "here_is_the_data_that_will_be_sent_it_will_only_be_used_to_determine_which_devices_and_languages_to_support_in_fritter_in_the_future":
-            MessageLookupByLibrary.simpleMessage(
-                "Hier sind die Daten, die versendet werden. Sie werden nur verwendet, um festzustellen, welche Geräte und Sprachen Quacker zukünftig unterstützen soll."),
         "hide_sensitive_tweets":
             MessageLookupByLibrary.simpleMessage("Anstößige Tweets ausblenden"),
         "home": MessageLookupByLibrary.simpleMessage("Start"),
@@ -224,12 +212,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Antworten anzeigen"),
         "include_retweets":
             MessageLookupByLibrary.simpleMessage("Retweets anzeigen"),
-        "it_looks_like_you_have_already_said_hello_from_this_version_of_fritter":
-            MessageLookupByLibrary.simpleMessage(
-                "Du hast anscheinend bereits mit dieser Quacker-Version Hallo gesagt!"),
-        "it_looks_like_you_have_already_sent_a_ping_recently":
-            MessageLookupByLibrary.simpleMessage(
-                "Anscheinend hast du erst kürzlich einen Ping gesendet 🤔"),
         "joined": m8,
         "language": MessageLookupByLibrary.simpleMessage("Sprache"),
         "language_subtitle":
@@ -253,7 +235,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "mute_videos":
             MessageLookupByLibrary.simpleMessage("Videos stumm schalten"),
         "name": MessageLookupByLibrary.simpleMessage("Name"),
-        "never_send": MessageLookupByLibrary.simpleMessage("Nie Senden"),
         "newTrans": MessageLookupByLibrary.simpleMessage("Neu"),
         "next": MessageLookupByLibrary.simpleMessage("Weiter"),
         "no": MessageLookupByLibrary.simpleMessage("Nein"),
@@ -326,8 +307,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "saved": MessageLookupByLibrary.simpleMessage("Archiv"),
         "saved_tweet_too_large": MessageLookupByLibrary.simpleMessage(
             "Der gespeicherte Tweet konnte nicht geladen werden, da er zu groß ist. Bitte melde das Problem den Entwicklern."),
-        "say_hello": MessageLookupByLibrary.simpleMessage("Sag Hallo"),
-        "say_hello_emoji": MessageLookupByLibrary.simpleMessage("Sag Hallo 👋"),
         "search": MessageLookupByLibrary.simpleMessage("Suche"),
         "search_term": MessageLookupByLibrary.simpleMessage("Suchbegriff"),
         "select": MessageLookupByLibrary.simpleMessage("Auswählen"),
@@ -335,11 +314,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Die Auswahl einzelner Accounts zum Importieren und die Zuweisung zu Gruppen sind bereits in Planung!"),
         "send": MessageLookupByLibrary.simpleMessage("Senden"),
-        "send_a_non_identifying_ping_to_let_me_know_you_are_using_fritter_and_to_help_future_development":
-            MessageLookupByLibrary.simpleMessage(
-                "Schicke einen nicht-identifizierenden Ping, um mir mitzuteilen, dass du Quacker nutzt und um die zukünftige Entwicklung zu unterstützen"),
-        "send_always": MessageLookupByLibrary.simpleMessage("Immer Senden"),
-        "send_once": MessageLookupByLibrary.simpleMessage("Einmalig Senden"),
         "share_base_url":
             MessageLookupByLibrary.simpleMessage("Eigene Teilen-URL"),
         "share_base_url_description": MessageLookupByLibrary.simpleMessage(
@@ -374,9 +348,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "tap_to_show_getMediaType_item_type": m12,
         "thanks_for_helping_fritter": MessageLookupByLibrary.simpleMessage(
             "Danke, dass du Quacker unterstützt! 💖"),
-        "thanks_for_reporting_we_will_try_and_fix_it_in_no_time":
-            MessageLookupByLibrary.simpleMessage(
-                "Danke für die Meldung. Wir werden versuchen das Problem schnellstmöglich zu beheben!"),
         "the_file_does_not_exist_please_ensure_it_is_located_at_file_path": m13,
         "the_github_issue":
             MessageLookupByLibrary.simpleMessage("dem GitHub-Issue (#143)"),
@@ -406,9 +377,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "thread": MessageLookupByLibrary.simpleMessage("Diskussionsfaden"),
         "thumbnail": MessageLookupByLibrary.simpleMessage("Vorschaubild"),
         "timed_out": MessageLookupByLibrary.simpleMessage("Zeit abgelaufen"),
-        "timed_out_trying_to_send_the_ping":
-            MessageLookupByLibrary.simpleMessage(
-                "Das Senden des Pings hat zu lange gedauert 😢"),
         "to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below":
             MessageLookupByLibrary.simpleMessage(
                 "Gebe unten deinen Nutzernamen an, um Abonnements von einem bestehenden Twitter-Konto zu importieren."),
@@ -472,8 +440,6 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Die Datenbankmigrationen können nicht ausgeführt werden"),
         "unable_to_save_the_media_twitter_returned_a_status_of_response_statusCode":
             m17,
-        "unable_to_send_the_ping_e_to_string": m18,
-        "unable_to_send_the_ping_the_status_code_was_response_statusCode": m19,
         "unable_to_stream_the_trend_location_preference":
             MessageLookupByLibrary.simpleMessage(
                 "Die Trendortpräferenz kann nicht gestreamt werden"),
@@ -482,7 +448,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "unsubscribe": MessageLookupByLibrary.simpleMessage("Deabonnieren"),
         "unsupported_url":
             MessageLookupByLibrary.simpleMessage("Nicht unterstützte URL"),
-        "update_to_release_version_through_your_fdroid_client": m20,
+        "update_to_release_version_through_your_fdroid_client": m18,
         "updates": MessageLookupByLibrary.simpleMessage("Updates"),
         "use_true_black_for_the_dark_mode_theme":
             MessageLookupByLibrary.simpleMessage(
@@ -514,12 +480,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "you_must_have_at_least_2_home_screen_pages":
             MessageLookupByLibrary.simpleMessage(
                 "Du musst mindestens 2 Tabs auf der Startseite haben"),
-        "your_device_is_running_a_version_of_android_older_than_kitKat_so_data_can_only_be_imported_from":
-            MessageLookupByLibrary.simpleMessage(
-                "Auf Ihrem Gerät läuft eine ältere Android-Version als KitKat (4.4), daher können Daten nur aus folgendem Verzeichnis importiert werden:"),
-        "your_device_is_running_a_version_of_android_older_than_kitKat_so_the_export_can_only_be_saved_to":
-            MessageLookupByLibrary.simpleMessage(
-                "Auf Ihrem Gerät läuft eine Android-Version, die älter ist als KitKat (4.4), daher kann nur exportiert werden nach:"),
         "your_profile_must_be_public_otherwise_the_import_will_not_work":
             MessageLookupByLibrary.simpleMessage(
                 "Ein öffentliches Profil ist erforderlich, sonst funktioniert der Import nicht"),

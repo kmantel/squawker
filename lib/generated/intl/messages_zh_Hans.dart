@@ -60,11 +60,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m17(responseStatusCode) =>
       "无法保存媒体。Twitter 返回的状态是 ${responseStatusCode}";
 
-  static String m18(e) => "无法发送 Ping。${e}";
-
-  static String m19(statusCode) => "无法发送 Ping。状态代码为 ${statusCode}";
-
-  static String m20(releaseVersion) => "从 F-Droid 客户端更新 ${releaseVersion}";
+  static String m18(releaseVersion) => "从 F-Droid 客户端更新 ${releaseVersion}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -79,8 +75,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "all": MessageLookupByLibrary.simpleMessage("全部"),
         "all_the_great_software_used_by_fritter":
             MessageLookupByLibrary.simpleMessage("Quacker 所使用的伟大项目😇"),
-        "an_error_was_reported_to__thank_you":
-            MessageLookupByLibrary.simpleMessage("已向  报告了一个错误。感谢！"),
         "an_update_for_fritter_is_available":
             MessageLookupByLibrary.simpleMessage("Quacker 有新版本 🚀"),
         "are_you_sure": MessageLookupByLibrary.simpleMessage("你确定吗？"),
@@ -124,7 +118,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "disable_screenshots_hint":
             MessageLookupByLibrary.simpleMessage("防止截屏。可能不适用于所有设备。"),
         "disabled": MessageLookupByLibrary.simpleMessage("不显示"),
-        "don_not_send": MessageLookupByLibrary.simpleMessage("不要发送"),
         "donate": MessageLookupByLibrary.simpleMessage("捐赠"),
         "download": MessageLookupByLibrary.simpleMessage("下载"),
         "download_handling": MessageLookupByLibrary.simpleMessage("下载处理"),
@@ -170,9 +163,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("一起改进 Quacker，让它变得更好😉"),
         "help_support_fritters_future":
             MessageLookupByLibrary.simpleMessage("帮助支持 Quacker 的未来🍚"),
-        "here_is_the_data_that_will_be_sent_it_will_only_be_used_to_determine_which_devices_and_languages_to_support_in_fritter_in_the_future":
-            MessageLookupByLibrary.simpleMessage(
-                "这是将要发送的数据，仅用于识别 Quacker 未来应该支持的设备和语言。"),
         "hide_sensitive_tweets": MessageLookupByLibrary.simpleMessage("隐藏敏感推文"),
         "home": MessageLookupByLibrary.simpleMessage("主页"),
         "if_you_have_any_feedback_on_this_feature_please_leave_it_on":
@@ -186,10 +176,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "imported_snapshot_data_users_so_far": m7,
         "include_replies": MessageLookupByLibrary.simpleMessage("包括回复"),
         "include_retweets": MessageLookupByLibrary.simpleMessage("包括转推"),
-        "it_looks_like_you_have_already_said_hello_from_this_version_of_fritter":
-            MessageLookupByLibrary.simpleMessage("看来你已用这个版本的 Quacker 打过招呼了！"),
-        "it_looks_like_you_have_already_sent_a_ping_recently":
-            MessageLookupByLibrary.simpleMessage("您最近似乎已经 Ping 过一次了 🤔"),
         "joined": m8,
         "language": MessageLookupByLibrary.simpleMessage("语言"),
         "language_subtitle": MessageLookupByLibrary.simpleMessage("需要重启应用"),
@@ -210,7 +196,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("是否应默认将视频静音"),
         "mute_videos": MessageLookupByLibrary.simpleMessage("将视频静音"),
         "name": MessageLookupByLibrary.simpleMessage("取个名字"),
-        "never_send": MessageLookupByLibrary.simpleMessage("从不发送"),
         "newTrans": MessageLookupByLibrary.simpleMessage("新的"),
         "next": MessageLookupByLibrary.simpleMessage("下一条"),
         "no": MessageLookupByLibrary.simpleMessage("不"),
@@ -266,19 +251,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "saved": MessageLookupByLibrary.simpleMessage("书签"),
         "saved_tweet_too_large": MessageLookupByLibrary.simpleMessage(
             "无法显示这条已保存的推文，因其太大导致难以加载。请将它报告给开发者。"),
-        "say_hello": MessageLookupByLibrary.simpleMessage("打招呼"),
-        "say_hello_emoji": MessageLookupByLibrary.simpleMessage("打招呼👋"),
         "search": MessageLookupByLibrary.simpleMessage("搜索"),
         "search_term": MessageLookupByLibrary.simpleMessage("搜索词"),
         "select": MessageLookupByLibrary.simpleMessage("选择"),
         "selecting_individual_accounts_to_import_and_assigning_groups_are_both_planned_for_the_future_already":
             MessageLookupByLibrary.simpleMessage("未来我们会支持导入单个账号到指定组！"),
         "send": MessageLookupByLibrary.simpleMessage("发送"),
-        "send_a_non_identifying_ping_to_let_me_know_you_are_using_fritter_and_to_help_future_development":
-            MessageLookupByLibrary.simpleMessage(
-                "向开发人员发送匿名 Ping 以表明您正在使用 Quacker，并支持未来的开发"),
-        "send_always": MessageLookupByLibrary.simpleMessage("总是发送"),
-        "send_once": MessageLookupByLibrary.simpleMessage("发送一次"),
         "share_base_url": MessageLookupByLibrary.simpleMessage("自定义分享 URL"),
         "share_base_url_description":
             MessageLookupByLibrary.simpleMessage("分享时使用自定义的基 URL"),
@@ -308,8 +286,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "tap_to_show_getMediaType_item_type": m12,
         "thanks_for_helping_fritter":
             MessageLookupByLibrary.simpleMessage("感谢您帮助 Quacker！💖"),
-        "thanks_for_reporting_we_will_try_and_fix_it_in_no_time":
-            MessageLookupByLibrary.simpleMessage("感谢您的反馈。我们将尽快修复它！"),
         "the_file_does_not_exist_please_ensure_it_is_located_at_file_path": m13,
         "the_github_issue":
             MessageLookupByLibrary.simpleMessage("GitHub Issue (#143)"),
@@ -333,8 +309,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "thread": MessageLookupByLibrary.simpleMessage("时间线"),
         "thumbnail": MessageLookupByLibrary.simpleMessage("缩略图"),
         "timed_out": MessageLookupByLibrary.simpleMessage("超时"),
-        "timed_out_trying_to_send_the_ping":
-            MessageLookupByLibrary.simpleMessage("Ping 传输超时 😢"),
         "to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below":
             MessageLookupByLibrary.simpleMessage(
                 "要从现有的 Twitter 账号导入订阅，请在下方输入您的用户名。"),
@@ -385,15 +359,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("无法进行数据迁移"),
         "unable_to_save_the_media_twitter_returned_a_status_of_response_statusCode":
             m17,
-        "unable_to_send_the_ping_e_to_string": m18,
-        "unable_to_send_the_ping_the_status_code_was_response_statusCode": m19,
         "unable_to_stream_the_trend_location_preference":
             MessageLookupByLibrary.simpleMessage("无法传输趋势位置首选项"),
         "unknown": MessageLookupByLibrary.simpleMessage("未知"),
         "unsave": MessageLookupByLibrary.simpleMessage("取消保存"),
         "unsubscribe": MessageLookupByLibrary.simpleMessage("取消订阅"),
         "unsupported_url": MessageLookupByLibrary.simpleMessage("不受支持的 URL"),
-        "update_to_release_version_through_your_fdroid_client": m20,
+        "update_to_release_version_through_your_fdroid_client": m18,
         "updates": MessageLookupByLibrary.simpleMessage("更新"),
         "use_true_black_for_the_dark_mode_theme":
             MessageLookupByLibrary.simpleMessage("在暗色主题中使用纯黑"),
@@ -416,12 +388,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("您尚未保存任何推文！"),
         "you_must_have_at_least_2_home_screen_pages":
             MessageLookupByLibrary.simpleMessage("必须至少有 2 个主屏幕页面"),
-        "your_device_is_running_a_version_of_android_older_than_kitKat_so_data_can_only_be_imported_from":
-            MessageLookupByLibrary.simpleMessage(
-                "您的系统版本低于 Android 4.4，所以数据只能从这里导入："),
-        "your_device_is_running_a_version_of_android_older_than_kitKat_so_the_export_can_only_be_saved_to":
-            MessageLookupByLibrary.simpleMessage(
-                "您的系统版本低于 Android 4.4，因此导出的数据只能保存至以下位置："),
         "your_profile_must_be_public_otherwise_the_import_will_not_work":
             MessageLookupByLibrary.simpleMessage("你的个人资料必须是公开的，否则无法导入"),
         "your_report_will_be_sent_to_fritter__project":

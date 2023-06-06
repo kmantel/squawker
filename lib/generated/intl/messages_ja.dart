@@ -60,11 +60,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m17(responseStatusCode) =>
       "メディアを保存できませんでした。Twitterから返されたステータス：${responseStatusCode}";
 
-  static String m18(e) => "Pingの送信に失敗しました。${e}";
-
-  static String m19(statusCode) => "Pingを送信できませんでした。ステータスコード：${statusCode}";
-
-  static String m20(releaseVersion) => "F-Droidクライアントから${releaseVersion}に更新";
+  static String m18(releaseVersion) => "F-Droidクライアントから${releaseVersion}に更新";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -79,9 +75,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "all": MessageLookupByLibrary.simpleMessage("すべて"),
         "all_the_great_software_used_by_fritter":
             MessageLookupByLibrary.simpleMessage("Quackerで使用する偉大なソフトウェア"),
-        "an_error_was_reported_to__thank_you":
-            MessageLookupByLibrary.simpleMessage(
-                "エラーがSentoryに送信されました。ありがとうございました！"),
         "an_update_for_fritter_is_available":
             MessageLookupByLibrary.simpleMessage("Quackerの更新が利用可能です！🚀"),
         "are_you_sure": MessageLookupByLibrary.simpleMessage("確認"),
@@ -123,7 +116,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "disable_screenshots_hint": MessageLookupByLibrary.simpleMessage(
             "スクリーンショットの撮影を防止する。すべての端末で動作しない可能性があります。"),
         "disabled": MessageLookupByLibrary.simpleMessage("無効"),
-        "don_not_send": MessageLookupByLibrary.simpleMessage("送信しない"),
         "donate": MessageLookupByLibrary.simpleMessage("寄付"),
         "download": MessageLookupByLibrary.simpleMessage("ダウンロード"),
         "download_handling": MessageLookupByLibrary.simpleMessage("ダウンロード制御"),
@@ -168,9 +160,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Quackerを改善するために協力する"),
         "help_support_fritters_future":
             MessageLookupByLibrary.simpleMessage("Quackerの将来を支援する"),
-        "here_is_the_data_that_will_be_sent_it_will_only_be_used_to_determine_which_devices_and_languages_to_support_in_fritter_in_the_future":
-            MessageLookupByLibrary.simpleMessage(
-                "以下が送信されるデータです。今後Quackerがサポートすべき端末と言語を特定するためにのみ使用されます。"),
         "hide_sensitive_tweets":
             MessageLookupByLibrary.simpleMessage("センシティブな内容のツイートを隠す"),
         "home": MessageLookupByLibrary.simpleMessage("ホーム"),
@@ -187,11 +176,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "imported_snapshot_data_users_so_far": m7,
         "include_replies": MessageLookupByLibrary.simpleMessage("返信を含める"),
         "include_retweets": MessageLookupByLibrary.simpleMessage("リツイートを含める"),
-        "it_looks_like_you_have_already_said_hello_from_this_version_of_fritter":
-            MessageLookupByLibrary.simpleMessage(
-                "既にこのバージョンのQuackerから挨拶を送っているようです！"),
-        "it_looks_like_you_have_already_sent_a_ping_recently":
-            MessageLookupByLibrary.simpleMessage("既に最近pingを送信しているようです。🤔"),
         "joined": m8,
         "language": MessageLookupByLibrary.simpleMessage("言語"),
         "language_subtitle": MessageLookupByLibrary.simpleMessage("再起動が必要"),
@@ -208,7 +192,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "media_size": MessageLookupByLibrary.simpleMessage("メディアの大きさ"),
         "medium": MessageLookupByLibrary.simpleMessage("中"),
         "name": MessageLookupByLibrary.simpleMessage("グループ名"),
-        "never_send": MessageLookupByLibrary.simpleMessage("今後送信しない"),
         "newTrans": MessageLookupByLibrary.simpleMessage("新着"),
         "next": MessageLookupByLibrary.simpleMessage("次"),
         "no": MessageLookupByLibrary.simpleMessage("いいえ"),
@@ -263,19 +246,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "save_bandwidth_using_smaller_images":
             MessageLookupByLibrary.simpleMessage("小さい画像にすると通信容量を削減できます"),
         "saved": MessageLookupByLibrary.simpleMessage("保存ツイート"),
-        "say_hello": MessageLookupByLibrary.simpleMessage("挨拶する"),
-        "say_hello_emoji": MessageLookupByLibrary.simpleMessage("こんにちは👋"),
         "search": MessageLookupByLibrary.simpleMessage("検索"),
         "select": MessageLookupByLibrary.simpleMessage("選択"),
         "selecting_individual_accounts_to_import_and_assigning_groups_are_both_planned_for_the_future_already":
             MessageLookupByLibrary.simpleMessage(
                 "インポートするアカウントの選択やグループへの割り当ては今後対応予定です！"),
         "send": MessageLookupByLibrary.simpleMessage("送信"),
-        "send_a_non_identifying_ping_to_let_me_know_you_are_using_fritter_and_to_help_future_development":
-            MessageLookupByLibrary.simpleMessage(
-                "Quackerを使用していることを示す匿名のpingを開発者に送り、今後の開発を支援する"),
-        "send_always": MessageLookupByLibrary.simpleMessage("いつも送信する"),
-        "send_once": MessageLookupByLibrary.simpleMessage("今回だけ送信"),
         "share_tweet_content":
             MessageLookupByLibrary.simpleMessage("ツイート内容を共有"),
         "share_tweet_content_and_link":
@@ -303,9 +279,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "tap_to_show_getMediaType_item_type": m12,
         "thanks_for_helping_fritter":
             MessageLookupByLibrary.simpleMessage("Quackerを支援いただきありがとうございます！💖"),
-        "thanks_for_reporting_we_will_try_and_fix_it_in_no_time":
-            MessageLookupByLibrary.simpleMessage(
-                "レポートありがとうございます。できるだけ早く修正いたします！"),
         "the_file_does_not_exist_please_ensure_it_is_located_at_file_path": m13,
         "the_github_issue":
             MessageLookupByLibrary.simpleMessage("GitHub issue (#143)"),
@@ -331,8 +304,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "thread": MessageLookupByLibrary.simpleMessage("スレッド"),
         "thumbnail": MessageLookupByLibrary.simpleMessage("サムネイル"),
         "timed_out": MessageLookupByLibrary.simpleMessage("タイムアウト"),
-        "timed_out_trying_to_send_the_ping":
-            MessageLookupByLibrary.simpleMessage("Pingの送信がタイムアウトしました😢"),
         "to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below":
             MessageLookupByLibrary.simpleMessage(
                 "Twitterアカウントから登録アカウントをインポートするには、以下にユーザ名を入力してください。"),
@@ -380,15 +351,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("データベース移行ができませんでした"),
         "unable_to_save_the_media_twitter_returned_a_status_of_response_statusCode":
             m17,
-        "unable_to_send_the_ping_e_to_string": m18,
-        "unable_to_send_the_ping_the_status_code_was_response_statusCode": m19,
         "unable_to_stream_the_trend_location_preference":
             MessageLookupByLibrary.simpleMessage("トレンドの地域設定をストリームできませんでした"),
         "unknown": MessageLookupByLibrary.simpleMessage("不明"),
         "unsave": MessageLookupByLibrary.simpleMessage("保存取り消し"),
         "unsubscribe": MessageLookupByLibrary.simpleMessage("登録解除"),
         "unsupported_url": MessageLookupByLibrary.simpleMessage("未対応のURL"),
-        "update_to_release_version_through_your_fdroid_client": m20,
+        "update_to_release_version_through_your_fdroid_client": m18,
         "updates": MessageLookupByLibrary.simpleMessage("更新"),
         "use_true_black_for_the_dark_mode_theme":
             MessageLookupByLibrary.simpleMessage("ダークテーマで完全な黒を使用する"),
@@ -409,12 +378,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "yes_please": MessageLookupByLibrary.simpleMessage("はいどうぞ"),
         "you_have_not_saved_any_tweets_yet":
             MessageLookupByLibrary.simpleMessage("まだツイートを保存していません！"),
-        "your_device_is_running_a_version_of_android_older_than_kitKat_so_data_can_only_be_imported_from":
-            MessageLookupByLibrary.simpleMessage(
-                "KitKat (4.4)以前のAndroidバージョンで動作しているため、エクスポートでは以下の場所のみに保存できます："),
-        "your_device_is_running_a_version_of_android_older_than_kitKat_so_the_export_can_only_be_saved_to":
-            MessageLookupByLibrary.simpleMessage(
-                "KitKat (4.4)以前のAndroidバージョンで動作しているため、エクスポートでは以下の場所のみに保存できます："),
         "your_profile_must_be_public_otherwise_the_import_will_not_work":
             MessageLookupByLibrary.simpleMessage("公開アカウントである必要があります"),
         "your_report_will_be_sent_to_fritter__project":

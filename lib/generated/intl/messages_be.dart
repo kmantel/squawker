@@ -67,12 +67,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m17(responseStatusCode) =>
       "Немагчыма захаваць мэдыяфайл. Twitter вярнуў статус ${responseStatusCode}";
 
-  static String m18(e) => "Не ўдалося адправіць ping. ${e}";
-
-  static String m19(statusCode) =>
-      "Не ўдалося адправіць ping. Код стану быў ${statusCode}";
-
-  static String m20(releaseVersion) =>
+  static String m18(releaseVersion) =>
       "Абнавіць да ${releaseVersion} праз кліент F-Droid";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -91,9 +86,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "all_the_great_software_used_by_fritter":
             MessageLookupByLibrary.simpleMessage(
                 "Усё выдатнае праграмнае забеспячэнне, якое выкарыстоўваецца Quacker"),
-        "an_error_was_reported_to__thank_you":
-            MessageLookupByLibrary.simpleMessage(
-                "Памылка была перададзена ў . Дзякуй!"),
         "an_update_for_fritter_is_available":
             MessageLookupByLibrary.simpleMessage(
                 "Абнаўленне Quacker даступна! 🚀"),
@@ -144,7 +136,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "disable_screenshots_hint": MessageLookupByLibrary.simpleMessage(
             "Прадухіленне стварэння скрыншотаў. Гэта можа працаваць не на ўсіх прыладах."),
         "disabled": MessageLookupByLibrary.simpleMessage("Адключана"),
-        "don_not_send": MessageLookupByLibrary.simpleMessage("Не адпраўляць"),
         "donate": MessageLookupByLibrary.simpleMessage("Падтрымаць праект"),
         "download": MessageLookupByLibrary.simpleMessage("Спампаваць"),
         "download_handling":
@@ -196,9 +187,6 @@ class MessageLookup extends MessageLookupByLibrary {
             "Дапамажыце зрабіць Quacker яшчэ лепш"),
         "help_support_fritters_future": MessageLookupByLibrary.simpleMessage(
             "Падтрымайце будучыню Quacker"),
-        "here_is_the_data_that_will_be_sent_it_will_only_be_used_to_determine_which_devices_and_languages_to_support_in_fritter_in_the_future":
-            MessageLookupByLibrary.simpleMessage(
-                "Вось дадзеныя, якія будуць адпраўлены. Яны будуць скарыстаны толькі для вызначэння таго, якія прылады і мовы будуць падтрымлівацца ў Quacker у будучыні."),
         "hide_sensitive_tweets":
             MessageLookupByLibrary.simpleMessage("Хаваць чуллівы кантэнт"),
         "home": MessageLookupByLibrary.simpleMessage("Галоўная"),
@@ -217,12 +205,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Уключаючы адказы"),
         "include_retweets":
             MessageLookupByLibrary.simpleMessage("Уключаючы рэтвіты"),
-        "it_looks_like_you_have_already_said_hello_from_this_version_of_fritter":
-            MessageLookupByLibrary.simpleMessage(
-                "Выглядае на тое, што вы ўжо нас прывіталі ад гэтай версіі Quacker!"),
-        "it_looks_like_you_have_already_sent_a_ping_recently":
-            MessageLookupByLibrary.simpleMessage(
-                "Падобна, што вы ўжо адпраўлялі пінг нядаўна 🤔"),
         "joined": m8,
         "language": MessageLookupByLibrary.simpleMessage("Мова"),
         "language_subtitle":
@@ -241,8 +223,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "media_size": MessageLookupByLibrary.simpleMessage("Памер медыя"),
         "medium": MessageLookupByLibrary.simpleMessage("Сярэдні"),
         "name": MessageLookupByLibrary.simpleMessage("Імя"),
-        "never_send":
-            MessageLookupByLibrary.simpleMessage("Ніколі не адпраўляць"),
         "newTrans": MessageLookupByLibrary.simpleMessage("Новыя"),
         "no": MessageLookupByLibrary.simpleMessage("Не"),
         "no_data_was_returned_which_should_never_happen_please_report_a_bug_if_possible":
@@ -309,8 +289,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Эканомце месца на экране, з выявамі меншага памеру"),
         "saved": MessageLookupByLibrary.simpleMessage("Захаванае"),
-        "say_hello": MessageLookupByLibrary.simpleMessage("Прывітаць"),
-        "say_hello_emoji": MessageLookupByLibrary.simpleMessage("Прывітаць 👋"),
         "search": MessageLookupByLibrary.simpleMessage("Пошук"),
         "search_term": MessageLookupByLibrary.simpleMessage("Пошукавы запыт"),
         "select": MessageLookupByLibrary.simpleMessage("Выбраць"),
@@ -318,13 +296,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Выбар асобных акаўнтаў для імпарту і прызначэнне груп ужо запланаваны на будучыню!"),
         "send": MessageLookupByLibrary.simpleMessage("Даслаць"),
-        "send_a_non_identifying_ping_to_let_me_know_you_are_using_fritter_and_to_help_future_development":
-            MessageLookupByLibrary.simpleMessage(
-                "Адпраўце ананімны пінг, каб я ведаў, што вы карыстаецеся Quacker, і каб дапамагчы будучай распрацоўцы"),
-        "send_always":
-            MessageLookupByLibrary.simpleMessage("Заўсёды адпраўляць"),
-        "send_once":
-            MessageLookupByLibrary.simpleMessage("Адправіць адзін раз"),
         "share_tweet_content":
             MessageLookupByLibrary.simpleMessage("Падзяліцца змесцівам твіту"),
         "share_tweet_content_and_link": MessageLookupByLibrary.simpleMessage(
@@ -355,9 +326,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "tap_to_show_getMediaType_item_type": m12,
         "thanks_for_helping_fritter": MessageLookupByLibrary.simpleMessage(
             "Дзякуй за дапамогу Quacker! 💖"),
-        "thanks_for_reporting_we_will_try_and_fix_it_in_no_time":
-            MessageLookupByLibrary.simpleMessage(
-                "Дзякуй за паведамленне. Мы пастараемся выправіць гэта ў бліжэйшы час!"),
         "the_file_does_not_exist_please_ensure_it_is_located_at_file_path": m13,
         "the_github_issue":
             MessageLookupByLibrary.simpleMessage("Прапанова GitHub (#143)"),
@@ -387,9 +355,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "thread": MessageLookupByLibrary.simpleMessage("Галінка"),
         "thumbnail": MessageLookupByLibrary.simpleMessage("Мініяцюра"),
         "timed_out": MessageLookupByLibrary.simpleMessage("Час выйшаў"),
-        "timed_out_trying_to_send_the_ping":
-            MessageLookupByLibrary.simpleMessage(
-                "Перарвалася спроба адправіць ping 😢"),
         "to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below":
             MessageLookupByLibrary.simpleMessage(
                 "Каб імпартаваць падпіскі з існуючага акаўнта Twitter, увядзіце сваё імя карыстальніка ніжэй."),
@@ -452,15 +417,13 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Не ўдалося зрабіць перамяшчэнне базы даных"),
         "unable_to_save_the_media_twitter_returned_a_status_of_response_statusCode":
             m17,
-        "unable_to_send_the_ping_e_to_string": m18,
-        "unable_to_send_the_ping_the_status_code_was_response_statusCode": m19,
         "unable_to_stream_the_trend_location_preference":
             MessageLookupByLibrary.simpleMessage(
                 "Немагчыма выканаць перадачу мясцовых пераваг"),
         "unknown": MessageLookupByLibrary.simpleMessage("Невядомы"),
         "unsave": MessageLookupByLibrary.simpleMessage("Адмяніць захаванне"),
         "unsubscribe": MessageLookupByLibrary.simpleMessage("Перастаць чытаць"),
-        "update_to_release_version_through_your_fdroid_client": m20,
+        "update_to_release_version_through_your_fdroid_client": m18,
         "updates": MessageLookupByLibrary.simpleMessage("Абнаўленні"),
         "use_true_black_for_the_dark_mode_theme":
             MessageLookupByLibrary.simpleMessage(
@@ -491,12 +454,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "you_must_have_at_least_2_home_screen_pages":
             MessageLookupByLibrary.simpleMessage(
                 "Вы павінны ўсталяваць як мінімум дзве старонкі для галоўнага экрана"),
-        "your_device_is_running_a_version_of_android_older_than_kitKat_so_data_can_only_be_imported_from":
-            MessageLookupByLibrary.simpleMessage(
-                "На вашым прыладзе ўсталявана версія Android старэй KitKat (4.4), таму дадзеныя могуць быць імпартаваныя толькі з:"),
-        "your_device_is_running_a_version_of_android_older_than_kitKat_so_the_export_can_only_be_saved_to":
-            MessageLookupByLibrary.simpleMessage(
-                "На вашым прыладзе ўсталявана версія Android старэйшыя за KitKat (< 4.4), таму экспарт можа быць захаваны толькі ў:"),
         "your_profile_must_be_public_otherwise_the_import_will_not_work":
             MessageLookupByLibrary.simpleMessage(
                 "Ваш профіль павінен быць адкрытым, інакш імпарт ня будзе працаваць"),

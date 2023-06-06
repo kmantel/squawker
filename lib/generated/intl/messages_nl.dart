@@ -29,9 +29,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Account uitgeschakeld"),
         "add_to_group":
             MessageLookupByLibrary.simpleMessage("Aan groep toevoegen"),
-        "an_error_was_reported_to__thank_you":
-            MessageLookupByLibrary.simpleMessage(
-                "Een fout is gerapporteerd aan . Bedankt!"),
         "back": MessageLookupByLibrary.simpleMessage("Terug"),
         "bad_guest_token": MessageLookupByLibrary.simpleMessage(
             "Twitter heeft onze toegangssleutel ongeldig gemaakt. Probeer Quacker opnieuw te starten!"),
@@ -45,13 +42,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "could_not_find_any_tweets_from_the_last_7_days":
             MessageLookupByLibrary.simpleMessage(
                 "Kon geen tweets van de laatste 7 dagen vinden!"),
-        "don_not_send": MessageLookupByLibrary.simpleMessage("Niet verzenden"),
         "filters": MessageLookupByLibrary.simpleMessage("Filters"),
         "forbidden": MessageLookupByLibrary.simpleMessage(
             "Twitter zegt dat de toegang verboden is"),
         "include_replies":
             MessageLookupByLibrary.simpleMessage("Reacties toevoegen"),
-        "never_send": MessageLookupByLibrary.simpleMessage("Nooit verzonden"),
         "note_due_to_a_twitter_limitation_not_all_tweets_may_be_included":
             MessageLookupByLibrary.simpleMessage(
                 "Opmerking: door een beperking bij Twitter kunnen niet alle tweets worden opgenomen"),
@@ -71,8 +66,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "retry": MessageLookupByLibrary.simpleMessage("Opnieuw"),
         "save": MessageLookupByLibrary.simpleMessage("Veilig"),
         "select": MessageLookupByLibrary.simpleMessage("Selecteer"),
-        "send_always": MessageLookupByLibrary.simpleMessage("Altijd verzenden"),
-        "send_once": MessageLookupByLibrary.simpleMessage("Eén keer verzenden"),
         "share_tweet_content":
             MessageLookupByLibrary.simpleMessage("Deel inhoud van de tweet"),
         "share_tweet_content_and_link": MessageLookupByLibrary.simpleMessage(
@@ -86,9 +79,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Sorry, kon de beantwoorde tweet niet vinden!"),
         "subscribe": MessageLookupByLibrary.simpleMessage("Abonneer"),
-        "thanks_for_reporting_we_will_try_and_fix_it_in_no_time":
-            MessageLookupByLibrary.simpleMessage(
-                "Bedankt voor de rapportage. We proberen het zo snel mogelijk te repareren!"),
         "the_tweet_did_not_contain_any_text_this_is_unexpected":
             MessageLookupByLibrary.simpleMessage(
                 "De tweet bevat geen tekst. Dit is onverwacht"),
