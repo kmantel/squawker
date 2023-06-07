@@ -694,6 +694,16 @@ class Twitter {
       return MapEntry(elm['rest_id'] as String, elm['legacy']);
     }));
 
+    Map<String, Map> quotedStatusTweets = {};
+
+    quotedStatusTweets = filteredTweets.fold({}, (prev, e) {
+      var quotedResult = e['content']['itemContent']['tweet_results']['result']['quoted_status_result']?['result'];
+      if (quotedResult != null) {
+        prev[e['content']['itemContent']['tweet_results']['result']['rest_id']] = quotedResult;
+      }
+      return prev;
+    });
+
     var tweets = globalTweets.values.map((e) => TweetWithCard.fromCardJson(globalTweets, globalUsers, e)).toList();
 
     for (var twt in tweets) {
@@ -701,10 +711,14 @@ class Twitter {
         twt.user!.verified = blueCheckUsers[twt.user!.idStr];
       }
       twt.card ??= cards[twt.idStr];
+      if (twt.quotedStatus == null && quotedStatusTweets[twt.idStr] != null) {
+        TweetWithCard twtCard = TweetWithCard.fromGraphqlJson(quotedStatusTweets[twt.idStr] as Map<String, dynamic>);
+        twt.quotedStatus = twtCard;
+        twt.quotedStatusWithCard = twtCard;
+      }
     }
 
-    return {for (var e in tweets) e.idStr!: e};
-  }
+    return {for (var e in tweets) e.idStr!: e};  }
 
   static Map<String, TweetWithCard> _createTweets(
       String entryPrefix, Map<String, dynamic> result, bool includeReplies) {
