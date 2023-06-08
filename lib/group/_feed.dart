@@ -77,7 +77,10 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> {
     }
 
     if (!widget.includeRetweets) {
-      query += '-filter:retweets ';
+            query += '-filter:retweets ';
+                } else {
+                      query += 'include:nativeretweets ';
+                          }
     }
 
     var remainingLength = 512 - query.length;
