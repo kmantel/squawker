@@ -81,7 +81,6 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> {
                 } else {
                       query += 'include:nativeretweets ';
                           }
-    }
 
     var remainingLength = 512 - query.length;
 
