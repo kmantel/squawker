@@ -694,12 +694,23 @@ class Twitter {
       return MapEntry(elm['rest_id'] as String, elm['legacy']);
     }));
 
-    Map<String, Map> quotedStatusTweets = {};
+    Map<String, Map> quotedStatusNotesTweets = {};
 
-    quotedStatusTweets = filteredTweets.fold({}, (prev, e) {
-      var quotedResult = e['content']['itemContent']['tweet_results']['result']['quoted_status_result']?['result'];
+    quotedStatusNotesTweets = filteredTweets.fold({}, (prev, e) {
+      var result = e['content']['itemContent']['tweet_results']['result'];
+      var restId = result['rest_id'];
+      var quotedResult = result['quoted_status_result']?['result'];
       if (quotedResult != null) {
-        prev[e['content']['itemContent']['tweet_results']['result']['rest_id']] = quotedResult;
+        prev[restId] = {};
+        prev[restId]!['quotedResult'] = quotedResult;
+      }
+      var noteResult = result['note_tweet']?['note_tweet_results']?['result'];
+      if (noteResult != null) {
+        if (prev[restId] == null) {
+          prev[restId] = {};
+        }
+        prev[restId]!['noteText'] = noteResult['text'];
+        prev[restId]!['noteEntities'] = Entities.fromJson(noteResult['entity_set']);
       }
       return prev;
     });
@@ -711,10 +722,16 @@ class Twitter {
         twt.user!.verified = blueCheckUsers[twt.user!.idStr];
       }
       twt.card ??= cards[twt.idStr];
-      if (twt.quotedStatus == null && quotedStatusTweets[twt.idStr] != null) {
-        TweetWithCard twtCard = TweetWithCard.fromGraphqlJson(quotedStatusTweets[twt.idStr] as Map<String, dynamic>);
+      if (twt.quotedStatus == null && quotedStatusNotesTweets[twt.idStr]?['quotedResult'] != null) {
+        TweetWithCard twtCard = TweetWithCard.fromGraphqlJson(quotedStatusNotesTweets[twt.idStr]!['quotedResult'] as Map<String, dynamic>);
         twt.quotedStatus = twtCard;
         twt.quotedStatusWithCard = twtCard;
+      }
+      twt.noteText ??= quotedStatusNotesTweets[twt.idStr]?['noteText'];
+      if (quotedStatusNotesTweets[twt.idStr]?['noteEntities'] != null) {
+        Entities noteEntities = quotedStatusNotesTweets[twt.idStr]!['noteEntities'];
+        twt.entities = twt.entities == null ? noteEntities : TweetWithCard.copyEntities(noteEntities, twt.entities!);
+        twt.extendedEntities = twt.extendedEntities == null ? noteEntities : TweetWithCard.copyEntities(noteEntities, twt.extendedEntities!);
       }
     }
 
@@ -917,29 +934,7 @@ class TweetWithCard extends Tweet {
     tweet.truncated = null;
     tweet.place = null;
     tweet.possiblySensitiveAppealable = null;
-
-    Entities copyEntities(Entities src, Entities trg) {
-      if (src.media != null) {
-        trg.media = src.media;
-      }
-      if (src.urls != null) {
-        trg.urls = src.urls;
-      }
-      if (src.userMentions != null) {
-        trg.userMentions = src.userMentions;
-      }
-      if (src.hashtags != null) {
-        trg.hashtags = src.hashtags;
-      }
-      if (src.symbols != null) {
-        trg.symbols = src.symbols;
-      }
-      if (src.polls != null) {
-        trg.polls = src.polls;
-      }
-      return trg;
-    }
-
+    
     tweet.noteText = noteText;
     if (noteEntities != null) {
       tweet.entities = tweet.entities == null ? noteEntities : copyEntities(noteEntities, tweet.entities!);
@@ -948,6 +943,28 @@ class TweetWithCard extends Tweet {
     }
 
     return tweet;
+  }
+
+  static Entities copyEntities(Entities src, Entities trg) {
+    if (src.media != null) {
+      trg.media = src.media;
+    }
+    if (src.urls != null) {
+      trg.urls = src.urls;
+    }
+    if (src.userMentions != null) {
+      trg.userMentions = src.userMentions;
+    }
+    if (src.hashtags != null) {
+      trg.hashtags = src.hashtags;
+    }
+    if (src.symbols != null) {
+      trg.symbols = src.symbols;
+    }
+    if (src.polls != null) {
+      trg.polls = src.polls;
+    }
+    return trg;
   }
 }
 
