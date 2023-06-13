@@ -362,7 +362,7 @@ class Twitter {
 
     var result = json.decode(response.body);
 
-    var instructions = List.from(result?['data']?['threaded_conversation_with_injections_v2']?['instructions']);
+    var instructions = List.from(result?['data']?['threaded_conversation_with_injections_v2']?['instructions'] ?? []);
     if (instructions.isEmpty) {
       return TweetStatus(chains: [], cursorBottom: null, cursorTop: null);
     }
