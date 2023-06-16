@@ -150,6 +150,8 @@ class _SubscriptionGroupEditDialogState extends State<SubscriptionGroupEditDialo
   late String icon;
   Color? color;
   Set<String> members = <String>{};
+  double breakpointScreenWidth1 = 200;
+  double breakpointScreenWidth2 = 400;
 
   @override
   void initState() {
@@ -210,46 +212,65 @@ class _SubscriptionGroupEditDialogState extends State<SubscriptionGroupEditDialo
     // Filter the Material icons to only the ones the app uses
     var iconPack = icons.entries.where((value) => value.key.endsWith('_outlined') || value.key.endsWith('_outline'));
 
+    List<Widget> buttonsLst1 = [
+      TextButton(
+        onPressed: () {
+          setState(() {
+            if (members.isEmpty) {
+              members = subscriptionsModel.state.map((e) => e.id).toSet();
+            } else {
+              members.clear();
+            }
+          });
+        },
+        child: Text(L10n.of(context).toggle_all),
+      ),
+      TextButton(
+        onPressed: id == null ? null : () => openDeleteSubscriptionGroupDialog(id!, name!),
+        child: Text(L10n.of(context).delete),
+      ),
+    ];
+    List<Widget> buttonsLst2 = [
+      TextButton(
+        onPressed: () => Navigator.pop(context),
+        child: Text(L10n.of(context).cancel),
+      ),
+      Builder(builder: (context) {
+        onPressed() async {
+          if (_formKey.currentState!.validate()) {
+            await context.read<GroupsModel>().saveGroup(id, name!, icon, color, members);
+
+            Navigator.pop(context);
+          }
+        }
+
+        return TextButton(
+          onPressed: onPressed,
+          child: Text(L10n.of(context).ok),
+        );
+      }),
+    ];
+    double screenWidth = MediaQuery.of(context).size.width;
+
     return AlertDialog(
       actions: [
         SizedBox(
-            width: MediaQuery.of(context).size.width,
-            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              TextButton(
-                onPressed: () {
-                  setState(() {
-                    if (members.isEmpty) {
-                      members = subscriptionsModel.state.map((e) => e.id).toSet();
-                    } else {
-                      members.clear();
-                    }
-                  });
-                },
-                child: Text(L10n.of(context).toggle_all),
-              ),
-              TextButton(
-                onPressed: id == null ? null : () => openDeleteSubscriptionGroupDialog(id!, name!),
-                child: Text(L10n.of(context).delete),
-              ),
-              TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: Text(L10n.of(context).cancel),
-              ),
-              Builder(builder: (context) {
-                onPressed() async {
-                  if (_formKey.currentState!.validate()) {
-                    await context.read<GroupsModel>().saveGroup(id, name!, icon, color, members);
-
-                    Navigator.pop(context);
-                  }
-                }
-
-                return TextButton(
-                  onPressed: onPressed,
-                  child: Text(L10n.of(context).ok),
-                );
-              }),
-            ])),
+          width: screenWidth,
+          child: screenWidth >= breakpointScreenWidth2 ? Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            ...buttonsLst1,
+            ...buttonsLst2,
+          ]) : screenWidth >= breakpointScreenWidth1 ? Column(mainAxisSize: MainAxisSize.min, children: [
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                ...buttonsLst1,
+            ]),
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              ...buttonsLst2,
+            ]),
+          ]) : Column(mainAxisSize: MainAxisSize.min, children: [
+            ...buttonsLst1,
+            ...buttonsLst2,
+          ])
+        ),
       ],
       content: Form(
         key: _formKey,
