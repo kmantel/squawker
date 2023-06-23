@@ -6,6 +6,10 @@
     <!-- Force usage of the file picker library even on SDKs < 19, as we handle it at runtime -->
     <uses-sdk tools:overrideLibrary="com.kineapps.flutter_file_dialog" />
 
+    <!-- Required for importing and exporting on older versions of Android (<=10) -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
     <!-- Required for importing from qr code -->
     <uses-permission android:name="android.permission.CAMERA" android:required="false"/>
 
@@ -17,7 +21,8 @@
     <application
         android:name="com.jonjomckay.fritter.FritterApplication"
         android:label="@string/app_name"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:requestLegacyExternalStorage="true">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
