@@ -45,7 +45,7 @@ dependencies:
   ffcache: ^1.1.0
   flex_color_scheme: ^7.1.2
   flutter_cache: ^0.1.0
-  file_picker: ^5.2.3
+  file_picker: ^5.3.2
   flutter_colorpicker: ^1.0.3
   flutter_file_dialog: ^3.0.1
   flutter_iconpicker_plus: ^3.2.3
@@ -64,7 +64,7 @@ dependencies:
   barcode_scan2: ^4.2.4
   path: ^1.8.2
   path_provider: ^2.0.11
-  permission_handler: ^10.2.0
+  permission_handler: ^10.3.0
   pref: ^2.7.0
   provider: ^6.0.4
   quiver: ^3.1.0
