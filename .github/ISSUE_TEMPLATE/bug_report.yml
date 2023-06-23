@@ -1,11 +1,11 @@
-name: Feed Bug Report
+name: Bug Report
 description: Create a bug report to help Quacker improve
 labels: [bug]
 body:
   - type: markdown
     attributes:
       value: |
-        Only make feed related bug reports
+        Please only report issues that **only** affect Quacker
         Other issues should be reported to [fritter](https://github.com/jonjomckay/fritter/issues)
 
   - type: checkboxes
@@ -19,9 +19,7 @@ body:
           required: true
         - label: "I have taken the time to fill in all the required details. I understand that the bug report will be dismissed otherwise."
           required: true
-        - label: "This issue contains only one bug."
-          required: true
-        - label: "This issue relates to the feed."
+        - label: "This issue contains only one bug, that only occurs in Quacker"
           required: true
 
   - type: input
