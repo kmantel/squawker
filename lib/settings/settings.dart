@@ -1,13 +1,13 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:quacker/generated/l10n.dart';
-import 'package:quacker/home/home_screen.dart';
-import 'package:quacker/settings/_about.dart';
-import 'package:quacker/settings/_data.dart';
-import 'package:quacker/settings/_general.dart';
-import 'package:quacker/settings/_home.dart';
-import 'package:quacker/settings/_theme.dart';
+import 'package:squawker/generated/l10n.dart';
+import 'package:squawker/home/home_screen.dart';
+import 'package:squawker/settings/_about.dart';
+import 'package:squawker/settings/_data.dart';
+import 'package:squawker/settings/_general.dart';
+import 'package:squawker/settings/_home.dart';
+import 'package:squawker/settings/_theme.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 class SettingsScreen extends StatefulWidget {

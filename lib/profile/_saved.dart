@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:quacker/database/entities.dart';
-import 'package:quacker/generated/l10n.dart';
-import 'package:quacker/home/_saved.dart';
-import 'package:quacker/profile/profile.dart';
-import 'package:quacker/saved/saved_tweet_model.dart';
-import 'package:quacker/ui/errors.dart';
-import 'package:quacker/user.dart';
+import 'package:squawker/database/entities.dart';
+import 'package:squawker/generated/l10n.dart';
+import 'package:squawker/home/_saved.dart';
+import 'package:squawker/profile/profile.dart';
+import 'package:squawker/saved/saved_tweet_model.dart';
+import 'package:squawker/ui/errors.dart';
+import 'package:squawker/user.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 

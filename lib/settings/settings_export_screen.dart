@@ -3,15 +3,15 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_file_dialog/flutter_file_dialog.dart';
-import 'package:quacker/database/entities.dart';
-import 'package:quacker/group/group_model.dart';
-import 'package:quacker/saved/saved_tweet_model.dart';
-import 'package:quacker/settings/_data.dart';
-import 'package:quacker/subscriptions/users_model.dart';
+import 'package:squawker/database/entities.dart';
+import 'package:squawker/group/group_model.dart';
+import 'package:squawker/saved/saved_tweet_model.dart';
+import 'package:squawker/settings/_data.dart';
+import 'package:squawker/subscriptions/users_model.dart';
 import 'package:intl/intl.dart';
 import 'package:pref/pref.dart';
 import 'package:provider/provider.dart';
-import 'package:quacker/generated/l10n.dart';
+import 'package:squawker/generated/l10n.dart';
 
 class SettingsExportScreen extends StatefulWidget {
   const SettingsExportScreen({Key? key}) : super(key: key);

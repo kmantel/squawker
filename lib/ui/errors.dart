@@ -6,9 +6,9 @@ import 'package:async_button_builder/async_button_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:quacker/client.dart';
-import 'package:quacker/constants.dart';
-import 'package:quacker/generated/l10n.dart';
+import 'package:squawker/client.dart';
+import 'package:squawker/constants.dart';
+import 'package:squawker/generated/l10n.dart';
 
 void showSnackBar(BuildContext context, {required String icon, required String message, bool clearBefore = true}) {
   if (clearBefore) {

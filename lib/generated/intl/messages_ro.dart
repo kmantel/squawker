@@ -35,7 +35,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "select": MessageLookupByLibrary.simpleMessage("Selectați"),
         "something_just_went_wrong_in_fritter_and_an_error_report_has_been_generated":
             MessageLookupByLibrary.simpleMessage(
-                "Ceva pur și simplu nu a mers bine în Quacker și a fost generat un raport de eroare. Raportul poate fi trimis dezvoltatorilor Quacker pentru a ajuta la remedierea problemei."),
+                "Ceva pur și simplu nu a mers bine în Squawker și a fost generat un raport de eroare. Raportul poate fi trimis dezvoltatorilor Squawker pentru a ajuta la remedierea problemei."),
         "subscribe": MessageLookupByLibrary.simpleMessage("Abonează-te"),
         "this_group_contains_no_subscriptions":
             MessageLookupByLibrary.simpleMessage(
@@ -62,6 +62,6 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Doriți să activați raportarea automată a erorilor?"),
         "your_report_will_be_sent_to_fritter__project":
             MessageLookupByLibrary.simpleMessage(
-                "Raportul dvs. va fi trimis către proiectul Quacker\'s , iar detaliile de confidențialitate pot fi găsite la:")
+                "Raportul dvs. va fi trimis către proiectul Squawker\'s , iar detaliile de confidențialitate pot fi găsite la:")
       };
 }

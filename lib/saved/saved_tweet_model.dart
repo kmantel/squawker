@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter_triple/flutter_triple.dart';
-import 'package:quacker/database/entities.dart';
-import 'package:quacker/database/repository.dart';
+import 'package:squawker/database/entities.dart';
+import 'package:squawker/database/repository.dart';
 import 'package:logging/logging.dart';
 
 class SavedTweetModel extends Store<List<SavedTweet>> {

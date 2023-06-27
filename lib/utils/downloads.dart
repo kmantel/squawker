@@ -4,9 +4,9 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_file_dialog/flutter_file_dialog.dart';
 
-import 'package:quacker/constants.dart';
-import 'package:quacker/generated/l10n.dart';
-import 'package:quacker/ui/errors.dart';
+import 'package:squawker/constants.dart';
+import 'package:squawker/generated/l10n.dart';
+import 'package:squawker/ui/errors.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as p;
 import 'package:permission_handler/permission_handler.dart';

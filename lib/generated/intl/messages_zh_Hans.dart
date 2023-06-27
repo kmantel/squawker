@@ -74,15 +74,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_to_group": MessageLookupByLibrary.simpleMessage("添加到订阅组"),
         "all": MessageLookupByLibrary.simpleMessage("全部"),
         "all_the_great_software_used_by_fritter":
-            MessageLookupByLibrary.simpleMessage("Quacker 所使用的伟大项目😇"),
+            MessageLookupByLibrary.simpleMessage("Squawker 所使用的伟大项目😇"),
         "an_update_for_fritter_is_available":
-            MessageLookupByLibrary.simpleMessage("Quacker 有新版本 🚀"),
+            MessageLookupByLibrary.simpleMessage("Squawker 有新版本 🚀"),
         "are_you_sure": MessageLookupByLibrary.simpleMessage("你确定吗？"),
         "are_you_sure_you_want_to_delete_the_subscription_group_name_of_group":
             m0,
         "back": MessageLookupByLibrary.simpleMessage("返回"),
         "bad_guest_token": MessageLookupByLibrary.simpleMessage(
-            "Twitter 使我们的访问令牌无效。请尝试重新打开 Quacker！"),
+            "Twitter 使我们的访问令牌无效。请尝试重新打开 Squawker！"),
         "blue_theme_based_on_the_twitter_color_scheme":
             MessageLookupByLibrary.simpleMessage("基于 Twitter 配色方案的蓝色主题"),
         "cancel": MessageLookupByLibrary.simpleMessage("取消"),
@@ -91,7 +91,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "choose_pages": MessageLookupByLibrary.simpleMessage("选择页面"),
         "close": MessageLookupByLibrary.simpleMessage("关闭"),
         "confirm_close_fritter":
-            MessageLookupByLibrary.simpleMessage("确定要关闭 Quacker 吗？"),
+            MessageLookupByLibrary.simpleMessage("确定要关闭 Squawker 吗？"),
         "contribute": MessageLookupByLibrary.simpleMessage("贡献 💖"),
         "copied_address_to_clipboard":
             MessageLookupByLibrary.simpleMessage("已将地址复制到剪切板"),
@@ -128,7 +128,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "download_handling_type_directory":
             MessageLookupByLibrary.simpleMessage("保存到目录"),
         "download_media_no_url": MessageLookupByLibrary.simpleMessage(
-            "无法下载。 此媒体可能仅作为在线流提供，Quacker 尚无法下载。"),
+            "无法下载。 此媒体可能仅作为在线流提供，Squawker 尚无法下载。"),
         "download_path": MessageLookupByLibrary.simpleMessage("下载路径"),
         "downloading_media": MessageLookupByLibrary.simpleMessage("正在下载媒体..."),
         "enable_": MessageLookupByLibrary.simpleMessage("启用 ？"),
@@ -152,17 +152,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "followers": MessageLookupByLibrary.simpleMessage("关注者"),
         "following": MessageLookupByLibrary.simpleMessage("正在关注"),
         "forbidden": MessageLookupByLibrary.simpleMessage("Twitter 表示禁止访问此内容"),
-        "fritter": MessageLookupByLibrary.simpleMessage("Quacker"),
-        "fritter_blue": MessageLookupByLibrary.simpleMessage("Quacker 蓝"),
+        "fritter": MessageLookupByLibrary.simpleMessage("Squawker"),
+        "fritter_blue": MessageLookupByLibrary.simpleMessage("Squawker 蓝"),
         "functionality_unsupported":
             MessageLookupByLibrary.simpleMessage("Twitter 不再支持此功能！"),
         "general": MessageLookupByLibrary.simpleMessage("通用"),
         "group_name": m6,
         "groups": MessageLookupByLibrary.simpleMessage("订阅组"),
         "help_make_fritter_even_better":
-            MessageLookupByLibrary.simpleMessage("一起改进 Quacker，让它变得更好😉"),
+            MessageLookupByLibrary.simpleMessage("一起改进 Squawker，让它变得更好😉"),
         "help_support_fritters_future":
-            MessageLookupByLibrary.simpleMessage("帮助支持 Quacker 的未来🍚"),
+            MessageLookupByLibrary.simpleMessage("帮助支持 Squawker 的未来🍚"),
         "hide_sensitive_tweets": MessageLookupByLibrary.simpleMessage("隐藏敏感推文"),
         "home": MessageLookupByLibrary.simpleMessage("主页"),
         "if_you_have_any_feedback_on_this_feature_please_leave_it_on":
@@ -229,7 +229,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("请确保您要导入的数据位于此处，然后点击下方的导入按钮。"),
         "please_note_that_the_method_fritter_uses_to_import_subscriptions_is_heavily_rate_limited_by_twitter_so_this_may_fail_if_you_have_a_lot_of_followed_accounts":
             MessageLookupByLibrary.simpleMessage(
-                "请注意，Quacker 用于导入订阅的方法受到 Twitter 严格的速率限制，因此如果您有很多关注账号，这可能会失败。"),
+                "请注意，Squawker 用于导入订阅的方法受到 Twitter 严格的速率限制，因此如果您有很多关注账号，这可能会失败。"),
         "possibly_sensitive": MessageLookupByLibrary.simpleMessage("潜在敏感"),
         "possibly_sensitive_profile": MessageLookupByLibrary.simpleMessage(
             "该个人资料可能包含潜在的敏感图像、语言或其他内容。是否仍要浏览？"),
@@ -265,15 +265,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("分享推文内容和链接"),
         "share_tweet_link": MessageLookupByLibrary.simpleMessage("分享推特链接"),
         "should_check_for_updates_description":
-            MessageLookupByLibrary.simpleMessage("Quacker 启动时检查更新"),
+            MessageLookupByLibrary.simpleMessage("Squawker 启动时检查更新"),
         "should_check_for_updates_label":
             MessageLookupByLibrary.simpleMessage("检查更新"),
         "small": MessageLookupByLibrary.simpleMessage("小"),
         "something_broke_in_fritter":
-            MessageLookupByLibrary.simpleMessage("Quacker 发生异常。"),
+            MessageLookupByLibrary.simpleMessage("Squawker 发生异常。"),
         "something_just_went_wrong_in_fritter_and_an_error_report_has_been_generated":
             MessageLookupByLibrary.simpleMessage(
-                "Quacker 刚刚出了点问题，并生成了错误报告。可将该报告发送给 Quacker 开发者以帮助解决问题。"),
+                "Squawker 刚刚出了点问题，并生成了错误报告。可将该报告发送给 Squawker 开发者以帮助解决问题。"),
         "sorry_the_replied_tweet_could_not_be_found":
             MessageLookupByLibrary.simpleMessage("对不起，无法找到回复的推文！"),
         "subscribe": MessageLookupByLibrary.simpleMessage("订阅"),
@@ -285,7 +285,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "tap_to_download_release_version": m11,
         "tap_to_show_getMediaType_item_type": m12,
         "thanks_for_helping_fritter":
-            MessageLookupByLibrary.simpleMessage("感谢您帮助 Quacker！💖"),
+            MessageLookupByLibrary.simpleMessage("感谢您帮助 Squawker！💖"),
         "the_file_does_not_exist_please_ensure_it_is_located_at_file_path": m13,
         "the_github_issue":
             MessageLookupByLibrary.simpleMessage("GitHub Issue (#143)"),
@@ -392,6 +392,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("你的个人资料必须是公开的，否则无法导入"),
         "your_report_will_be_sent_to_fritter__project":
             MessageLookupByLibrary.simpleMessage(
-                "您的报告将被发送至 Quacker 的  项目，隐私详情可在下述位置找到：")
+                "您的报告将被发送至 Squawker 的  项目，隐私详情可在下述位置找到：")
       };
 }

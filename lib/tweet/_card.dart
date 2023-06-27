@@ -4,12 +4,12 @@ import 'package:dart_twitter_api/twitter_api.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 
-import 'package:quacker/client.dart';
-import 'package:quacker/constants.dart';
-import 'package:quacker/generated/l10n.dart';
-import 'package:quacker/tweet/_media.dart';
-import 'package:quacker/tweet/_video.dart';
-import 'package:quacker/utils/urls.dart';
+import 'package:squawker/client.dart';
+import 'package:squawker/constants.dart';
+import 'package:squawker/generated/l10n.dart';
+import 'package:squawker/tweet/_media.dart';
+import 'package:squawker/tweet/_video.dart';
+import 'package:squawker/utils/urls.dart';
 import 'package:intl/intl.dart';
 import 'package:logging/logging.dart';
 import 'package:pref/pref.dart';

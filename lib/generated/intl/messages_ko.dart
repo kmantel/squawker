@@ -57,7 +57,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "saved": MessageLookupByLibrary.simpleMessage("저장됨"),
         "something_just_went_wrong_in_fritter_and_an_error_report_has_been_generated":
             MessageLookupByLibrary.simpleMessage(
-                "Quacker에 오류가 발생하였으며, 오류 보고서가 생성되었습니다. 문제해결을 위해 보고서를 Quacker 개발자에게 보낼 수 있습니다."),
+                "Squawker에 오류가 발생하였으며, 오류 보고서가 생성되었습니다. 문제해결을 위해 보고서를 Squawker 개발자에게 보낼 수 있습니다."),
         "subscribe": MessageLookupByLibrary.simpleMessage("구독"),
         "subscriptions": MessageLookupByLibrary.simpleMessage("구독"),
         "this_user_does_not_follow_anyone":

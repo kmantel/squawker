@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:quacker/group/group_model.dart';
+import 'package:squawker/group/group_model.dart';
 import 'package:logging/logging.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite_migration_plan/migration/sql.dart';

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:quacker/client.dart';
-import 'package:quacker/database/entities.dart';
-import 'package:quacker/ui/errors.dart';
-import 'package:quacker/user.dart';
+import 'package:squawker/client.dart';
+import 'package:squawker/database/entities.dart';
+import 'package:squawker/ui/errors.dart';
+import 'package:squawker/user.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:quacker/generated/l10n.dart';
+import 'package:squawker/generated/l10n.dart';
 
 class ProfileFollows extends StatefulWidget {
   final UserWithExtra user;

@@ -87,17 +87,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "all": MessageLookupByLibrary.simpleMessage("Kõik"),
         "all_the_great_software_used_by_fritter":
             MessageLookupByLibrary.simpleMessage(
-                "Kõik suurepärane tarkvara, mida Quacker kasutab"),
+                "Kõik suurepärane tarkvara, mida Squawker kasutab"),
         "an_update_for_fritter_is_available":
             MessageLookupByLibrary.simpleMessage(
-                "Quacker\'i tarkvarauuendus on saadaval! 🚀"),
+                "Squawker\'i tarkvarauuendus on saadaval! 🚀"),
         "are_you_sure":
             MessageLookupByLibrary.simpleMessage("Kas sa oled kindel?"),
         "are_you_sure_you_want_to_delete_the_subscription_group_name_of_group":
             m0,
         "back": MessageLookupByLibrary.simpleMessage("Tagasi"),
         "bad_guest_token": MessageLookupByLibrary.simpleMessage(
-            "Twitter on meie juurdepääsutunnuse kehtetuks tunnistanud. Palun proovi uuesti avada Quacker!"),
+            "Twitter on meie juurdepääsutunnuse kehtetuks tunnistanud. Palun proovi uuesti avada Squawker!"),
         "blue_theme_based_on_the_twitter_color_scheme":
             MessageLookupByLibrary.simpleMessage(
                 "Sinine värviteema, mille aluseks on Twitteri kujundus"),
@@ -108,7 +108,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "choose_pages": MessageLookupByLibrary.simpleMessage("Vali lehed"),
         "close": MessageLookupByLibrary.simpleMessage("Sulge"),
         "confirm_close_fritter": MessageLookupByLibrary.simpleMessage(
-            "Kas sa oled kindel, et soovid panna Quacker\'i kinni?"),
+            "Kas sa oled kindel, et soovid panna Squawker\'i kinni?"),
         "contribute": MessageLookupByLibrary.simpleMessage("Osale arenduses"),
         "copied_address_to_clipboard": MessageLookupByLibrary.simpleMessage(
             "Kopeerisin aadressi lõikelauale"),
@@ -150,7 +150,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "download_handling_type_directory":
             MessageLookupByLibrary.simpleMessage("Salvesta kausta"),
         "download_media_no_url": MessageLookupByLibrary.simpleMessage(
-            "Allalaadimine ei õnnestu. See meedia võib olla saadaval vaid voogedastusena ning Quacker veel ei oska teda alla laadida."),
+            "Allalaadimine ei õnnestu. See meedia võib olla saadaval vaid voogedastusena ning Squawker veel ei oska teda alla laadida."),
         "download_path":
             MessageLookupByLibrary.simpleMessage("Allalaadimiste kaust"),
         "downloading_media":
@@ -183,18 +183,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "following": MessageLookupByLibrary.simpleMessage("Jälgitavaid"),
         "forbidden": MessageLookupByLibrary.simpleMessage(
             "Twitter ütleb, et juurdepääs sellele sisule on keelatud"),
-        "fritter": MessageLookupByLibrary.simpleMessage("Quacker"),
+        "fritter": MessageLookupByLibrary.simpleMessage("Squawker"),
         "fritter_blue":
-            MessageLookupByLibrary.simpleMessage("Quacker\'i sinine"),
+            MessageLookupByLibrary.simpleMessage("Squawker\'i sinine"),
         "functionality_unsupported": MessageLookupByLibrary.simpleMessage(
             "Twitter enam ei võimalda sellise funktsionaalsuse kasutamist!"),
         "general": MessageLookupByLibrary.simpleMessage("Üldised seadistused"),
         "group_name": m6,
         "groups": MessageLookupByLibrary.simpleMessage("Grupid"),
         "help_make_fritter_even_better": MessageLookupByLibrary.simpleMessage(
-            "Aita muuta Quacker\'it veelgi paremaks"),
+            "Aita muuta Squawker\'it veelgi paremaks"),
         "help_support_fritters_future": MessageLookupByLibrary.simpleMessage(
-            "Toeta Quacker\'i arendust rahaliselt"),
+            "Toeta Squawker\'i arendust rahaliselt"),
         "hide_sensitive_tweets": MessageLookupByLibrary.simpleMessage(
             "Peida võimalikud ebasobiliku sisuga säutsud"),
         "home": MessageLookupByLibrary.simpleMessage("Koduleht"),
@@ -281,7 +281,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Palun veendu, et andmed, mida soovid importida, asuvad seal, seejärel vajuta allpool olevat importimisnuppu."),
         "please_note_that_the_method_fritter_uses_to_import_subscriptions_is_heavily_rate_limited_by_twitter_so_this_may_fail_if_you_have_a_lot_of_followed_accounts":
             MessageLookupByLibrary.simpleMessage(
-                "Palun arvesta, et Quacker kasutab tellimuste impordiks päringut, mille kasutamise sagedust Twitter piirab. Seega kui sul on palju jälgitavaid kontosid, siis import ei pruugi õnnestuda."),
+                "Palun arvesta, et Squawker kasutab tellimuste impordiks päringut, mille kasutamise sagedust Twitter piirab. Seega kui sul on palju jälgitavaid kontosid, siis import ei pruugi õnnestuda."),
         "possibly_sensitive":
             MessageLookupByLibrary.simpleMessage("Võimalik ebasobilik sisu"),
         "possibly_sensitive_profile": MessageLookupByLibrary.simpleMessage(
@@ -327,15 +327,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Jaga säutsu linki"),
         "should_check_for_updates_description":
             MessageLookupByLibrary.simpleMessage(
-                "Quacker\'i käivitumisel kontrolli uuenduste olemasolu"),
+                "Squawker\'i käivitumisel kontrolli uuenduste olemasolu"),
         "should_check_for_updates_label":
             MessageLookupByLibrary.simpleMessage("Kontrolli uuendusi"),
         "small": MessageLookupByLibrary.simpleMessage("Väikesed pildid"),
         "something_broke_in_fritter": MessageLookupByLibrary.simpleMessage(
-            "Midagi läks nüüd Quacker\'is katki."),
+            "Midagi läks nüüd Squawker\'is katki."),
         "something_just_went_wrong_in_fritter_and_an_error_report_has_been_generated":
             MessageLookupByLibrary.simpleMessage(
-                "Midagi läks Quackeris viltu ja selle alusel on olemas ka veakirjeldus. Probleemi uurimiseks ja lahendamiseks võid sa selle saata Quackeri arendajatele."),
+                "Midagi läks Squawkeris viltu ja selle alusel on olemas ka veakirjeldus. Probleemi uurimiseks ja lahendamiseks võid sa selle saata Squawkeri arendajatele."),
         "sorry_the_replied_tweet_could_not_be_found":
             MessageLookupByLibrary.simpleMessage(
                 "Vabandust, aga vastatud säutsu enam ei leidu!"),
@@ -348,7 +348,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "tap_to_download_release_version": m11,
         "tap_to_show_getMediaType_item_type": m12,
         "thanks_for_helping_fritter": MessageLookupByLibrary.simpleMessage(
-            "Täname, et aitad Quacker\'it! 💖"),
+            "Täname, et aitad Squawker\'it! 💖"),
         "the_file_does_not_exist_please_ensure_it_is_located_at_file_path": m13,
         "the_github_issue": MessageLookupByLibrary.simpleMessage(
             "veakirjeldus GitHub\'is (#143)"),
@@ -441,7 +441,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Tellimuste sisu ei saa hetkel laadida"),
         "unable_to_run_the_database_migrations":
             MessageLookupByLibrary.simpleMessage(
-                "Quackeri andmebaaside versiooniuuendus ei õnnestu"),
+                "Squawkeri andmebaaside versiooniuuendus ei õnnestu"),
         "unable_to_save_the_media_twitter_returned_a_status_of_response_statusCode":
             m17,
         "unable_to_stream_the_trend_location_preference":
@@ -489,6 +489,6 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Sinu profiil peab olema avalik, muidu import ei toimi"),
         "your_report_will_be_sent_to_fritter__project":
             MessageLookupByLibrary.simpleMessage(
-                "Veakirjeldus saadetakse Quacker\'i kontole  veahaldusrakenduses.  privaatusteabe leiad siit:")
+                "Veakirjeldus saadetakse Squawker\'i kontole  veahaldusrakenduses.  privaatusteabe leiad siit:")
       };
 }

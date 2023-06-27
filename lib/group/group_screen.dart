@@ -1,14 +1,14 @@
 import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_triple/flutter_triple.dart';
-import 'package:quacker/database/entities.dart';
-import 'package:quacker/generated/l10n.dart';
-import 'package:quacker/group/group_model.dart';
-import 'package:quacker/group/_feed.dart';
-import 'package:quacker/group/_settings.dart';
-import 'package:quacker/ui/errors.dart';
+import 'package:squawker/database/entities.dart';
+import 'package:squawker/generated/l10n.dart';
+import 'package:squawker/group/group_model.dart';
+import 'package:squawker/group/_feed.dart';
+import 'package:squawker/group/_settings.dart';
+import 'package:squawker/ui/errors.dart';
 import 'package:provider/provider.dart';
-import 'package:quacker/utils/iterables.dart';
+import 'package:squawker/utils/iterables.dart';
 import 'package:quiver/iterables.dart';
 
 class GroupScreenArguments {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:quacker/group/group_screen.dart';
-import 'package:quacker/home/home_screen.dart';
+import 'package:squawker/group/group_screen.dart';
+import 'package:squawker/home/home_screen.dart';
 
 class FeedScreen extends StatefulWidget {
   final ScrollController scrollController;

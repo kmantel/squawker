@@ -41,7 +41,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "about": MessageLookupByLibrary.simpleMessage("Про Quacker"),
+        "about": MessageLookupByLibrary.simpleMessage("Про Squawker"),
         "activate_non_confirmation_bias_mode_description":
             MessageLookupByLibrary.simpleMessage(
                 "Приховати авторів твітів. Уникайте підтвердження, заснованого на авторитетних аргументах."),
@@ -52,7 +52,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "all": MessageLookupByLibrary.simpleMessage("Все"),
         "all_the_great_software_used_by_fritter":
             MessageLookupByLibrary.simpleMessage(
-                "Все чудове програмне забезпечення, яке використовує Quacker"),
+                "Все чудове програмне забезпечення, яке використовує Squawker"),
         "are_you_sure": MessageLookupByLibrary.simpleMessage("Ви впевнені?"),
         "are_you_sure_you_want_to_delete_the_subscription_group_name_of_group":
             m0,
@@ -105,13 +105,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "finished_with_snapshotData_users": m5,
         "followers": MessageLookupByLibrary.simpleMessage("Підписники"),
         "following": MessageLookupByLibrary.simpleMessage("Слідкує"),
-        "fritter": MessageLookupByLibrary.simpleMessage("Quacker"),
+        "fritter": MessageLookupByLibrary.simpleMessage("Squawker"),
         "general": MessageLookupByLibrary.simpleMessage("Головне"),
         "groups": MessageLookupByLibrary.simpleMessage("Групи"),
         "help_make_fritter_even_better": MessageLookupByLibrary.simpleMessage(
-            "Допоможіть зробити Quacker ще кращим"),
+            "Допоможіть зробити Squawker ще кращим"),
         "help_support_fritters_future": MessageLookupByLibrary.simpleMessage(
-            "Допоможіть підтримати майбутнє Quacker"),
+            "Допоможіть підтримати майбутнє Squawker"),
         "if_you_have_any_feedback_on_this_feature_please_leave_it_on":
             MessageLookupByLibrary.simpleMessage(
                 "Якщо у вас є відгуки про цю функцію, будь ласка, залиште їх на"),
@@ -163,7 +163,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Будь ласка, переконайтеся, що дані, які ви хочете імпортувати, знаходяться там, а потім натисніть кнопку імпорту нижче."),
         "please_note_that_the_method_fritter_uses_to_import_subscriptions_is_heavily_rate_limited_by_twitter_so_this_may_fail_if_you_have_a_lot_of_followed_accounts":
             MessageLookupByLibrary.simpleMessage(
-                "Будь ласка, зверніть увагу, що метод, який використовує Quacker для імпорту підписок, сильно обмежений Twitter, тому він може не спрацювати, якщо у вас багато акаунтів, на які ви підписані."),
+                "Будь ласка, зверніть увагу, що метод, який використовує Squawker для імпорту підписок, сильно обмежений Twitter, тому він може не спрацювати, якщо у вас багато акаунтів, на які ви підписані."),
         "prefix": MessageLookupByLibrary.simpleMessage("префікс"),
         "released_under_the_mit_license":
             MessageLookupByLibrary.simpleMessage("Випущено за ліцензією MIT"),
@@ -184,7 +184,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "small": MessageLookupByLibrary.simpleMessage("Маленький"),
         "something_just_went_wrong_in_fritter_and_an_error_report_has_been_generated":
             MessageLookupByLibrary.simpleMessage(
-                "Щойно у Quacker щось пішло не так, і було створено звіт про помилку. Звіт можна відправити розробникам Quacker, щоб вони допомогли розв\'язати проблему."),
+                "Щойно у Squawker щось пішло не так, і було створено звіт про помилку. Звіт можна відправити розробникам Squawker, щоб вони допомогли розв\'язати проблему."),
         "subscribe": MessageLookupByLibrary.simpleMessage("Підписатися"),
         "subscriptions": MessageLookupByLibrary.simpleMessage("Підписки"),
         "system": MessageLookupByLibrary.simpleMessage("Система"),
@@ -285,6 +285,6 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Ваш профіль має бути публічним, інакше імпорт не спрацює"),
         "your_report_will_be_sent_to_fritter__project":
             MessageLookupByLibrary.simpleMessage(
-                "Ваш звіт буде надіслано до проекту Quacker\'s , а деталі конфіденційності можна знайти за посиланням:")
+                "Ваш звіт буде надіслано до проекту Squawker\'s , а деталі конфіденційності можна знайти за посиланням:")
       };
 }

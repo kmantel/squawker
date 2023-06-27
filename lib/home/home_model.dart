@@ -1,9 +1,9 @@
 import 'package:flutter_triple/flutter_triple.dart';
-import 'package:quacker/constants.dart';
-import 'package:quacker/generated/l10n.dart';
-import 'package:quacker/group/group_model.dart';
-import 'package:quacker/home/home_screen.dart';
-import 'package:quacker/utils/iterables.dart';
+import 'package:squawker/constants.dart';
+import 'package:squawker/generated/l10n.dart';
+import 'package:squawker/group/group_model.dart';
+import 'package:squawker/home/home_screen.dart';
+import 'package:squawker/utils/iterables.dart';
 import 'package:pref/pref.dart';
 
 class HomePage {

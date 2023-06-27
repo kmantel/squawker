@@ -1,4 +1,4 @@
-package com.jonjomckay.fritter
+package org.ca.squawker
 
 import io.flutter.embedding.android.FlutterActivity
 

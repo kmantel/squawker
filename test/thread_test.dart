@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:quacker/client.dart';
+import 'package:squawker/client.dart';
 
 void main() {
   testWidgets('Converting a list of tweets and replies to a list of threads', (WidgetTester tester) async {

@@ -83,10 +83,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "all": MessageLookupByLibrary.simpleMessage("Alle"),
         "all_the_great_software_used_by_fritter":
             MessageLookupByLibrary.simpleMessage(
-                "All den flotte programvaren som brukes av Quacker"),
+                "All den flotte programvaren som brukes av Squawker"),
         "an_update_for_fritter_is_available":
             MessageLookupByLibrary.simpleMessage(
-                "En oppdatering for Quacker er tilgjengelig! 🚀"),
+                "En oppdatering for Squawker er tilgjengelig! 🚀"),
         "are_you_sure": MessageLookupByLibrary.simpleMessage("Er du sikker?"),
         "are_you_sure_you_want_to_delete_the_subscription_group_name_of_group":
             m0,
@@ -100,7 +100,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "choose": MessageLookupByLibrary.simpleMessage("Velg"),
         "close": MessageLookupByLibrary.simpleMessage("Lukk"),
         "confirm_close_fritter":
-            MessageLookupByLibrary.simpleMessage("Lukk Quacker?"),
+            MessageLookupByLibrary.simpleMessage("Lukk Squawker?"),
         "contribute": MessageLookupByLibrary.simpleMessage("Bidra"),
         "copied_address_to_clipboard": MessageLookupByLibrary.simpleMessage(
             "Adresse kopiert til utklippstavle"),
@@ -163,15 +163,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "finished_with_snapshotData_users": m5,
         "followers": MessageLookupByLibrary.simpleMessage("Følgere"),
         "following": MessageLookupByLibrary.simpleMessage("Følger"),
-        "fritter": MessageLookupByLibrary.simpleMessage("Quacker"),
-        "fritter_blue": MessageLookupByLibrary.simpleMessage("Quacker-blå"),
+        "fritter": MessageLookupByLibrary.simpleMessage("Squawker"),
+        "fritter_blue": MessageLookupByLibrary.simpleMessage("Squawker-blå"),
         "general": MessageLookupByLibrary.simpleMessage("Generelt"),
         "group_name": m6,
         "groups": MessageLookupByLibrary.simpleMessage("Grupper"),
         "help_make_fritter_even_better": MessageLookupByLibrary.simpleMessage(
-            "Hjelp til å gjøre Quacker enda bedre"),
+            "Hjelp til å gjøre Squawker enda bedre"),
         "help_support_fritters_future": MessageLookupByLibrary.simpleMessage(
-            "Hjelp til å støtte Quackers fremtid"),
+            "Hjelp til å støtte Squawkers fremtid"),
         "home": MessageLookupByLibrary.simpleMessage("Hjem"),
         "if_you_have_any_feedback_on_this_feature_please_leave_it_on":
             MessageLookupByLibrary.simpleMessage(
@@ -237,7 +237,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Forsikre deg om at dataen du ønsker å importere er å finne der. Deretter trykker du på «Import»-knappen nedenfor."),
         "please_note_that_the_method_fritter_uses_to_import_subscriptions_is_heavily_rate_limited_by_twitter_so_this_may_fail_if_you_have_a_lot_of_followed_accounts":
             MessageLookupByLibrary.simpleMessage(
-                "Vær oppmerksom på at metoden Quacker bruker for å importere abonnementer er sterkt takstbegrenset av Twitter, så dette kan mislykkes hvis du har mange fulgte kontoer."),
+                "Vær oppmerksom på at metoden Squawker bruker for å importere abonnementer er sterkt takstbegrenset av Twitter, så dette kan mislykkes hvis du har mange fulgte kontoer."),
         "prefix": MessageLookupByLibrary.simpleMessage("prefiks"),
         "private_profile":
             MessageLookupByLibrary.simpleMessage("Privat profil"),
@@ -269,10 +269,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Del tweet-lenke"),
         "small": MessageLookupByLibrary.simpleMessage("Lite"),
         "something_broke_in_fritter":
-            MessageLookupByLibrary.simpleMessage("Noe brakk i Quacker."),
+            MessageLookupByLibrary.simpleMessage("Noe brakk i Squawker."),
         "something_just_went_wrong_in_fritter_and_an_error_report_has_been_generated":
             MessageLookupByLibrary.simpleMessage(
-                "Noe gikk galt i Quacker, og en feilrapport har blitt generert. Rapporten kan sendes til Quacker-utviklerne for å hjelpe med å fikse problemet."),
+                "Noe gikk galt i Squawker, og en feilrapport har blitt generert. Rapporten kan sendes til Squawker-utviklerne for å hjelpe med å fikse problemet."),
         "sorry_the_replied_tweet_could_not_be_found":
             MessageLookupByLibrary.simpleMessage("Fant ikke svar-tvitringen."),
         "subscribe": MessageLookupByLibrary.simpleMessage("Abonnere"),
@@ -284,7 +284,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "tap_to_download_release_version": m11,
         "tap_to_show_getMediaType_item_type": m12,
         "thanks_for_helping_fritter": MessageLookupByLibrary.simpleMessage(
-            "Takk for at du hjelper Quacker. 💖"),
+            "Takk for at du hjelper Squawker. 💖"),
         "the_file_does_not_exist_please_ensure_it_is_located_at_file_path": m13,
         "the_tweet_did_not_contain_any_text_this_is_unexpected":
             MessageLookupByLibrary.simpleMessage(
@@ -407,6 +407,6 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Profilen din må være offentlig, ellers vil ikke importen fungere"),
         "your_report_will_be_sent_to_fritter__project":
             MessageLookupByLibrary.simpleMessage(
-                "Rapporten din vil bli sendt til Quacker\'s -prosjekt, og personverndetaljer kan finnes på:")
+                "Rapporten din vil bli sendt til Squawker\'s -prosjekt, og personverndetaljer kan finnes på:")
       };
 }

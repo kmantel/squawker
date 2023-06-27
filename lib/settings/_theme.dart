@@ -1,8 +1,8 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
-import 'package:quacker/constants.dart';
-import 'package:quacker/generated/l10n.dart';
-import 'package:quacker/utils/iterables.dart';
+import 'package:squawker/constants.dart';
+import 'package:squawker/generated/l10n.dart';
+import 'package:squawker/utils/iterables.dart';
 import 'package:pref/pref.dart';
 
 class SettingsThemeFragment extends StatelessWidget {

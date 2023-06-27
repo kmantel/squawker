@@ -72,11 +72,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "select": MessageLookupByLibrary.simpleMessage("Vybrać"),
         "something_just_went_wrong_in_fritter_and_an_error_report_has_been_generated":
             MessageLookupByLibrary.simpleMessage(
-                "Niešta pajšło nie tak u Quacker, i była stvorana spravazdača ab pamyłcy. Spravazdaču možna adpravić raspracoŭnikam Quacker, kab dapamahčy vypravić prablemu."),
+                "Niešta pajšło nie tak u Squawker, i była stvorana spravazdača ab pamyłcy. Spravazdaču možna adpravić raspracoŭnikam Squawker, kab dapamahčy vypravić prablemu."),
         "subscribe": MessageLookupByLibrary.simpleMessage("Padpisacca"),
         "subscriptions": MessageLookupByLibrary.simpleMessage("Padpiski"),
         "thanks_for_helping_fritter": MessageLookupByLibrary.simpleMessage(
-            "Dziakuj za dapamohu Quacker! 💖"),
+            "Dziakuj za dapamohu Squawker! 💖"),
         "this_group_contains_no_subscriptions":
             MessageLookupByLibrary.simpleMessage(
                 "U hetaj hrupie niama padpisak!"),
@@ -134,6 +134,6 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Vy jašče nie zachavali nivodnaha tvitu!"),
         "your_report_will_be_sent_to_fritter__project":
             MessageLookupByLibrary.simpleMessage(
-                "Vaša spravazdača budzie dasłana ŭ  Quacker, a infarmacyju pra kanfidencyjnaść možna znajści tut:")
+                "Vaša spravazdača budzie dasłana ŭ  Squawker, a infarmacyju pra kanfidencyjnaść možna znajści tut:")
       };
 }

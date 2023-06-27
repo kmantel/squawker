@@ -150,11 +150,11 @@ class L10n {
     );
   }
 
-  /// `Something just went wrong in Quacker, and an error report has been generated. The report can be sent to the Quacker developers to help fix the problem.`
+  /// `Something just went wrong in Squawker, and an error report has been generated. The report can be sent to the Squawker developers to help fix the problem.`
   String
       get something_just_went_wrong_in_fritter_and_an_error_report_has_been_generated {
     return Intl.message(
-      'Something just went wrong in Quacker, and an error report has been generated. The report can be sent to the Quacker developers to help fix the problem.',
+      'Something just went wrong in Squawker, and an error report has been generated. The report can be sent to the Squawker developers to help fix the problem.',
       name:
           'something_just_went_wrong_in_fritter_and_an_error_report_has_been_generated',
       desc: '',
@@ -172,10 +172,10 @@ class L10n {
     );
   }
 
-  /// `Your report will be sent to Quacker's  project, and privacy details can be found at:`
+  /// `Your report will be sent to Squawker's  project, and privacy details can be found at:`
   String get your_report_will_be_sent_to_fritter__project {
     return Intl.message(
-      'Your report will be sent to Quacker\'s  project, and privacy details can be found at:',
+      'Your report will be sent to Squawker\'s  project, and privacy details can be found at:',
       name: 'your_report_will_be_sent_to_fritter__project',
       desc: '',
       args: [],
@@ -572,10 +572,10 @@ class L10n {
     );
   }
 
-  /// `Thanks for helping Quacker! 💖`
+  /// `Thanks for helping Squawker! 💖`
   String get thanks_for_helping_fritter {
     return Intl.message(
-      'Thanks for helping Quacker! 💖',
+      'Thanks for helping Squawker! 💖',
       name: 'thanks_for_helping_fritter',
       desc: '',
       args: [],
@@ -945,10 +945,10 @@ class L10n {
     );
   }
 
-  /// `Help make Quacker even better`
+  /// `Help make Squawker even better`
   String get help_make_fritter_even_better {
     return Intl.message(
-      'Help make Quacker even better',
+      'Help make Squawker even better',
       name: 'help_make_fritter_even_better',
       desc: '',
       args: [],
@@ -985,10 +985,10 @@ class L10n {
     );
   }
 
-  /// `Help support Quacker's future`
+  /// `Help support Squawker's future`
   String get help_support_fritters_future {
     return Intl.message(
-      'Help support Quacker\'s future',
+      'Help support Squawker\'s future',
       name: 'help_support_fritters_future',
       desc: '',
       args: [],
@@ -1015,20 +1015,20 @@ class L10n {
     );
   }
 
-  /// `All the great software used by Quacker`
+  /// `All the great software used by Squawker`
   String get all_the_great_software_used_by_fritter {
     return Intl.message(
-      'All the great software used by Quacker',
+      'All the great software used by Squawker',
       name: 'all_the_great_software_used_by_fritter',
       desc: '',
       args: [],
     );
   }
 
-  /// `Quacker`
+  /// `Squawker`
   String get fritter {
     return Intl.message(
-      'Quacker',
+      'Squawker',
       name: 'fritter',
       desc: '',
       args: [],
@@ -1239,11 +1239,11 @@ class L10n {
     );
   }
 
-  /// `Please note that the method Quacker uses to import subscriptions is heavily rate-limited by Twitter, so this may fail if you have a lot of followed accounts.`
+  /// `Please note that the method Squawker uses to import subscriptions is heavily rate-limited by Twitter, so this may fail if you have a lot of followed accounts.`
   String
       get please_note_that_the_method_fritter_uses_to_import_subscriptions_is_heavily_rate_limited_by_twitter_so_this_may_fail_if_you_have_a_lot_of_followed_accounts {
     return Intl.message(
-      'Please note that the method Quacker uses to import subscriptions is heavily rate-limited by Twitter, so this may fail if you have a lot of followed accounts.',
+      'Please note that the method Squawker uses to import subscriptions is heavily rate-limited by Twitter, so this may fail if you have a lot of followed accounts.',
       name:
           'please_note_that_the_method_fritter_uses_to_import_subscriptions_is_heavily_rate_limited_by_twitter_so_this_may_fail_if_you_have_a_lot_of_followed_accounts',
       desc: '',
@@ -1551,10 +1551,10 @@ class L10n {
     );
   }
 
-  /// `Unable to download. This media may only be available as a stream, which Quacker cannot yet download.`
+  /// `Unable to download. This media may only be available as a stream, which Squawker cannot yet download.`
   String get download_media_no_url {
     return Intl.message(
-      'Unable to download. This media may only be available as a stream, which Quacker cannot yet download.',
+      'Unable to download. This media may only be available as a stream, which Squawker cannot yet download.',
       name: 'download_media_no_url',
       desc: '',
       args: [],
@@ -1772,10 +1772,10 @@ class L10n {
     );
   }
 
-  /// `Twitter has invalidated our access token. Please try re-opening Quacker!`
+  /// `Twitter has invalidated our access token. Please try re-opening Squawker!`
   String get bad_guest_token {
     return Intl.message(
-      'Twitter has invalidated our access token. Please try re-opening Quacker!',
+      'Twitter has invalidated our access token. Please try re-opening Squawker!',
       name: 'bad_guest_token',
       desc: '',
       args: [],
@@ -1945,10 +1945,10 @@ class L10n {
     );
   }
 
-  /// `An update for Quacker is available! 🚀`
+  /// `An update for Squawker is available! 🚀`
   String get an_update_for_fritter_is_available {
     return Intl.message(
-      'An update for Quacker is available! 🚀',
+      'An update for Squawker is available! 🚀',
       name: 'an_update_for_fritter_is_available',
       desc: '',
       args: [],
@@ -1976,10 +1976,10 @@ class L10n {
     );
   }
 
-  /// `Quacker blue`
+  /// `Squawker blue`
   String get fritter_blue {
     return Intl.message(
-      'Quacker blue',
+      'Squawker blue',
       name: 'fritter_blue',
       desc: '',
       args: [],
@@ -1996,10 +1996,10 @@ class L10n {
     );
   }
 
-  /// `Something broke in Quacker.`
+  /// `Something broke in Squawker.`
   String get something_broke_in_fritter {
     return Intl.message(
-      'Something broke in Quacker.',
+      'Something broke in Squawker.',
       name: 'something_broke_in_fritter',
       desc: '',
       args: [],
@@ -2026,10 +2026,10 @@ class L10n {
     );
   }
 
-  /// `Check for updates when Quacker starts`
+  /// `Check for updates when Squawker starts`
   String get should_check_for_updates_description {
     return Intl.message(
-      'Check for updates when Quacker starts',
+      'Check for updates when Squawker starts',
       name: 'should_check_for_updates_description',
       desc: '',
       args: [],
@@ -2276,10 +2276,10 @@ class L10n {
     );
   }
 
-  /// `Are you sure you want to close Quacker?`
+  /// `Are you sure you want to close Squawker?`
   String get confirm_close_fritter {
     return Intl.message(
-      'Are you sure you want to close Quacker?',
+      'Are you sure you want to close Squawker?',
       name: 'confirm_close_fritter',
       desc: '',
       args: [],

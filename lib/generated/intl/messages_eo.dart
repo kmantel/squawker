@@ -70,7 +70,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "about": MessageLookupByLibrary.simpleMessage("Pri Quacker"),
+        "about": MessageLookupByLibrary.simpleMessage("Pri Squawker"),
         "account_suspended":
             MessageLookupByLibrary.simpleMessage("Konto haltiĝis"),
         "activate_non_confirmation_bias_mode_description":
@@ -83,16 +83,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "all": MessageLookupByLibrary.simpleMessage("Ĉio"),
         "all_the_great_software_used_by_fritter":
             MessageLookupByLibrary.simpleMessage(
-                "Ĉiu el la programaro bonega uzate per Quacker"),
+                "Ĉiu el la programaro bonega uzate per Squawker"),
         "an_update_for_fritter_is_available":
             MessageLookupByLibrary.simpleMessage(
-                "Ĝisdatigo por Quacker estas disponebla! 🚀"),
+                "Ĝisdatigo por Squawker estas disponebla! 🚀"),
         "are_you_sure": MessageLookupByLibrary.simpleMessage("Ĉu vi certas?"),
         "are_you_sure_you_want_to_delete_the_subscription_group_name_of_group":
             m0,
         "back": MessageLookupByLibrary.simpleMessage("Antaŭen"),
         "bad_guest_token": MessageLookupByLibrary.simpleMessage(
-            "Twitter malvalidigis la ĵetonon de atingo. Bonvolu provi remalfermi Quacker-on!"),
+            "Twitter malvalidigis la ĵetonon de atingo. Bonvolu provi remalfermi Squawker-on!"),
         "blue_theme_based_on_the_twitter_color_scheme":
             MessageLookupByLibrary.simpleMessage(
                 "Blua temo bazite de la kolorskemo de Twitter"),
@@ -103,7 +103,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "choose_pages": MessageLookupByLibrary.simpleMessage("Elekti paĝojn"),
         "close": MessageLookupByLibrary.simpleMessage("Fermi"),
         "confirm_close_fritter": MessageLookupByLibrary.simpleMessage(
-            "Ĉu vi certas, vi volas fermi Quacker-on?"),
+            "Ĉu vi certas, vi volas fermi Squawker-on?"),
         "contribute": MessageLookupByLibrary.simpleMessage("Kontribui"),
         "copied_address_to_clipboard": MessageLookupByLibrary.simpleMessage(
             "Kopiis adreson al la tondujo"),
@@ -145,7 +145,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "download_handling_type_directory":
             MessageLookupByLibrary.simpleMessage("Konservi al dosierujo"),
         "download_media_no_url": MessageLookupByLibrary.simpleMessage(
-            "Ne eblas elŝuti. Tiu ĉi plurmedio eble nur estas disponebla kiel fluo, kiun Quacker ne ankoraŭ eblas elŝuti."),
+            "Ne eblas elŝuti. Tiu ĉi plurmedio eble nur estas disponebla kiel fluo, kiun Squawker ne ankoraŭ eblas elŝuti."),
         "download_path":
             MessageLookupByLibrary.simpleMessage("Dosiervojo de elŝutado"),
         "downloading_media":
@@ -177,15 +177,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "following": MessageLookupByLibrary.simpleMessage("Abonoj"),
         "forbidden": MessageLookupByLibrary.simpleMessage(
             "Twitter diras, atingo estas malpermesita"),
-        "fritter": MessageLookupByLibrary.simpleMessage("Quacker"),
-        "fritter_blue": MessageLookupByLibrary.simpleMessage("Quacker blua"),
+        "fritter": MessageLookupByLibrary.simpleMessage("Squawker"),
+        "fritter_blue": MessageLookupByLibrary.simpleMessage("Squawker blua"),
         "general": MessageLookupByLibrary.simpleMessage("Ĝenerala"),
         "group_name": m6,
         "groups": MessageLookupByLibrary.simpleMessage("Grupoj"),
         "help_make_fritter_even_better":
-            MessageLookupByLibrary.simpleMessage("Helpi plibonigi Quacker-on"),
+            MessageLookupByLibrary.simpleMessage("Helpi plibonigi Squawker-on"),
         "help_support_fritters_future": MessageLookupByLibrary.simpleMessage(
-            "Helpi subteni estontecon de Quacker"),
+            "Helpi subteni estontecon de Squawker"),
         "hide_sensitive_tweets":
             MessageLookupByLibrary.simpleMessage("Kaŝi sentemajn pepojn"),
         "home": MessageLookupByLibrary.simpleMessage("Hejmo"),
@@ -269,7 +269,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Bonvolu certigi, ke la datumoj dezirate importontaj lokiĝas tie, tiam premu la butono de importi sube."),
         "please_note_that_the_method_fritter_uses_to_import_subscriptions_is_heavily_rate_limited_by_twitter_so_this_may_fail_if_you_have_a_lot_of_followed_accounts":
             MessageLookupByLibrary.simpleMessage(
-                "Bonvolu noti, ke la metodon Quacker uzas por importi abonojn peze rapidolimigante de Twitter, do eble malsukcesus se vi havus tre multajn da kontojn abonitajn."),
+                "Bonvolu noti, ke la metodon Squawker uzas por importi abonojn peze rapidolimigante de Twitter, do eble malsukcesus se vi havus tre multajn da kontojn abonitajn."),
         "possibly_sensitive":
             MessageLookupByLibrary.simpleMessage("Eble sentema"),
         "possibly_sensitive_profile": MessageLookupByLibrary.simpleMessage(
@@ -315,15 +315,15 @@ class MessageLookup extends MessageLookupByLibrary {
             "Kunhavigi la ligilon de la pepo"),
         "should_check_for_updates_description":
             MessageLookupByLibrary.simpleMessage(
-                "Kontroli por ĝisdatigoj kiam Quacker komenciĝus"),
+                "Kontroli por ĝisdatigoj kiam Squawker komenciĝus"),
         "should_check_for_updates_label":
             MessageLookupByLibrary.simpleMessage("Kontroli por ĝisdatigoj"),
         "small": MessageLookupByLibrary.simpleMessage("Malgranda"),
         "something_broke_in_fritter":
-            MessageLookupByLibrary.simpleMessage("Io malfunkciis en Quacker."),
+            MessageLookupByLibrary.simpleMessage("Io malfunkciis en Squawker."),
         "something_just_went_wrong_in_fritter_and_an_error_report_has_been_generated":
             MessageLookupByLibrary.simpleMessage(
-                "Io ĵus misokazis en Quacker, kaj raporto de la eraro kreiĝis. La raporto eblas sendiĝi al la programistoj de Quacker por helpi ripari la problemon."),
+                "Io ĵus misokazis en Squawker, kaj raporto de la eraro kreiĝis. La raporto eblas sendiĝi al la programistoj de Squawker por helpi ripari la problemon."),
         "sorry_the_replied_tweet_could_not_be_found":
             MessageLookupByLibrary.simpleMessage(
                 "Pardonu, la pepo alrespondita ne eblas troviĝi!"),
@@ -336,7 +336,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "tap_to_download_release_version": m11,
         "tap_to_show_getMediaType_item_type": m12,
         "thanks_for_helping_fritter": MessageLookupByLibrary.simpleMessage(
-            "Dankon pro helpi Quacker! 💖"),
+            "Dankon pro helpi Squawker! 💖"),
         "the_file_does_not_exist_please_ensure_it_is_located_at_file_path": m13,
         "the_github_issue": MessageLookupByLibrary.simpleMessage(
             "la problemo ĉe GitHub (#143)"),
@@ -474,6 +474,6 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Via profilo devas esti publika, alie la importo ne funkcios"),
         "your_report_will_be_sent_to_fritter__project":
             MessageLookupByLibrary.simpleMessage(
-                "Via raporto sendiĝos al -projekto de Quacker, kaj la detaloj de privateco eblas troviĝi ĉe:")
+                "Via raporto sendiĝos al -projekto de Squawker, kaj la detaloj de privateco eblas troviĝi ĉe:")
       };
 }

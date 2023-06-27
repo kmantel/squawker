@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter_cache/flutter_cache.dart' as cache;
-import 'package:quacker/utils/iterables.dart';
-import 'package:quacker/utils/misc.dart';
+import 'package:squawker/utils/iterables.dart';
+import 'package:squawker/utils/misc.dart';
 import 'package:http/http.dart' as http;
 import 'package:logging/logging.dart';
 

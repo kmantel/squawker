@@ -84,17 +84,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "all": MessageLookupByLibrary.simpleMessage("All"),
         "all_the_great_software_used_by_fritter":
             MessageLookupByLibrary.simpleMessage(
-                "All the great software used by Quacker"),
+                "All the great software used by Squawker"),
         "an_update_for_fritter_is_available":
             MessageLookupByLibrary.simpleMessage(
-                "An update for Quacker is available! 🚀"),
+                "An update for Squawker is available! 🚀"),
         "app_info": MessageLookupByLibrary.simpleMessage("App Info"),
         "are_you_sure": MessageLookupByLibrary.simpleMessage("Are you sure?"),
         "are_you_sure_you_want_to_delete_the_subscription_group_name_of_group":
             m0,
         "back": MessageLookupByLibrary.simpleMessage("Back"),
         "bad_guest_token": MessageLookupByLibrary.simpleMessage(
-            "Twitter has invalidated our access token. Please try re-opening Quacker!"),
+            "Twitter has invalidated our access token. Please try re-opening Squawker!"),
         "blue_theme_based_on_the_twitter_color_scheme":
             MessageLookupByLibrary.simpleMessage(
                 "Blue theme based on the Twitter color scheme"),
@@ -105,7 +105,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "choose_pages": MessageLookupByLibrary.simpleMessage("Choose pages"),
         "close": MessageLookupByLibrary.simpleMessage("Close"),
         "confirm_close_fritter": MessageLookupByLibrary.simpleMessage(
-            "Are you sure you want to close Quacker?"),
+            "Are you sure you want to close Squawker?"),
         "contribute": MessageLookupByLibrary.simpleMessage("Contribute"),
         "copied_address_to_clipboard":
             MessageLookupByLibrary.simpleMessage("Copied address to clipboard"),
@@ -147,7 +147,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "download_handling_type_directory":
             MessageLookupByLibrary.simpleMessage("Save to directory"),
         "download_media_no_url": MessageLookupByLibrary.simpleMessage(
-            "Unable to download. This media may only be available as a stream, which Quacker cannot yet download."),
+            "Unable to download. This media may only be available as a stream, which Squawker cannot yet download."),
         "download_path": MessageLookupByLibrary.simpleMessage("Download path"),
         "downloading_media":
             MessageLookupByLibrary.simpleMessage("Downloading media..."),
@@ -177,8 +177,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "following": MessageLookupByLibrary.simpleMessage("Following"),
         "forbidden": MessageLookupByLibrary.simpleMessage(
             "Twitter says access to this is forbidden"),
-        "fritter": MessageLookupByLibrary.simpleMessage("Quacker"),
-        "fritter_blue": MessageLookupByLibrary.simpleMessage("Quacker blue"),
+        "fritter": MessageLookupByLibrary.simpleMessage("Squawker"),
+        "fritter_blue": MessageLookupByLibrary.simpleMessage("Squawker blue"),
         "functionality_unsupported": MessageLookupByLibrary.simpleMessage(
             "This functionality is no longer supported by Twitter!"),
         "general": MessageLookupByLibrary.simpleMessage("General"),
@@ -186,9 +186,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "group_name": m6,
         "groups": MessageLookupByLibrary.simpleMessage("Groups"),
         "help_make_fritter_even_better": MessageLookupByLibrary.simpleMessage(
-            "Help make Quacker even better"),
+            "Help make Squawker even better"),
         "help_support_fritters_future": MessageLookupByLibrary.simpleMessage(
-            "Help support Quacker\'s future"),
+            "Help support Squawker\'s future"),
         "hide_sensitive_tweets":
             MessageLookupByLibrary.simpleMessage("Hide sensitive tweets"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
@@ -273,7 +273,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Please make sure the data you wish to import is located there, then press the import button below."),
         "please_note_that_the_method_fritter_uses_to_import_subscriptions_is_heavily_rate_limited_by_twitter_so_this_may_fail_if_you_have_a_lot_of_followed_accounts":
             MessageLookupByLibrary.simpleMessage(
-                "Please note that the method Quacker uses to import subscriptions is heavily rate-limited by Twitter, so this may fail if you have a lot of followed accounts."),
+                "Please note that the method Squawker uses to import subscriptions is heavily rate-limited by Twitter, so this may fail if you have a lot of followed accounts."),
         "possibly_sensitive":
             MessageLookupByLibrary.simpleMessage("Potentially sensitive"),
         "possibly_sensitive_profile": MessageLookupByLibrary.simpleMessage(
@@ -319,15 +319,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Share tweet link"),
         "should_check_for_updates_description":
             MessageLookupByLibrary.simpleMessage(
-                "Check for updates when Quacker starts"),
+                "Check for updates when Squawker starts"),
         "should_check_for_updates_label":
             MessageLookupByLibrary.simpleMessage("Check for updates"),
         "small": MessageLookupByLibrary.simpleMessage("Small"),
-        "something_broke_in_fritter":
-            MessageLookupByLibrary.simpleMessage("Something broke in Quacker."),
+        "something_broke_in_fritter": MessageLookupByLibrary.simpleMessage(
+            "Something broke in Squawker."),
         "something_just_went_wrong_in_fritter_and_an_error_report_has_been_generated":
             MessageLookupByLibrary.simpleMessage(
-                "Something just went wrong in Quacker, and an error report has been generated. The report can be sent to the Quacker developers to help fix the problem."),
+                "Something just went wrong in Squawker, and an error report has been generated. The report can be sent to the Squawker developers to help fix the problem."),
         "sorry_the_replied_tweet_could_not_be_found":
             MessageLookupByLibrary.simpleMessage(
                 "Sorry, the replied tweet could not be found!"),
@@ -340,7 +340,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "tap_to_download_release_version": m11,
         "tap_to_show_getMediaType_item_type": m12,
         "thanks_for_helping_fritter": MessageLookupByLibrary.simpleMessage(
-            "Thanks for helping Quacker! 💖"),
+            "Thanks for helping Squawker! 💖"),
         "the_file_does_not_exist_please_ensure_it_is_located_at_file_path": m13,
         "the_github_issue":
             MessageLookupByLibrary.simpleMessage("the GitHub issue (#143)"),
@@ -479,6 +479,6 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Your profile must be public, otherwise the import will not work"),
         "your_report_will_be_sent_to_fritter__project":
             MessageLookupByLibrary.simpleMessage(
-                "Your report will be sent to Quacker\'s  project, and privacy details can be found at:")
+                "Your report will be sent to Squawker\'s  project, and privacy details can be found at:")
       };
 }

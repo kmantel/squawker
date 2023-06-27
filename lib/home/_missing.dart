@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:quacker/constants.dart';
-import 'package:quacker/generated/l10n.dart';
-import 'package:quacker/home/home_screen.dart';
-import 'package:quacker/ui/errors.dart';
+import 'package:squawker/constants.dart';
+import 'package:squawker/generated/l10n.dart';
+import 'package:squawker/home/home_screen.dart';
+import 'package:squawker/ui/errors.dart';
 
 class MissingScreen extends StatelessWidget {
   const MissingScreen({Key? key}) : super(key: key);

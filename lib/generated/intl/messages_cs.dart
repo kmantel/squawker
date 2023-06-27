@@ -85,16 +85,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "all": MessageLookupByLibrary.simpleMessage("Vše"),
         "all_the_great_software_used_by_fritter":
             MessageLookupByLibrary.simpleMessage(
-                "Všechen úžasný software používaný Quackerem"),
+                "Všechen úžasný software používaný Squawkerem"),
         "an_update_for_fritter_is_available":
             MessageLookupByLibrary.simpleMessage(
-                "Je dostupná aktualizace Quackeru! 🚀"),
+                "Je dostupná aktualizace Squawkeru! 🚀"),
         "are_you_sure": MessageLookupByLibrary.simpleMessage("Opravdu?"),
         "are_you_sure_you_want_to_delete_the_subscription_group_name_of_group":
             m0,
         "back": MessageLookupByLibrary.simpleMessage("Zpět"),
         "bad_guest_token": MessageLookupByLibrary.simpleMessage(
-            "Twitter zneplatnil náš přístupový token. Zkuste prosím znovu otevřít Quacker!"),
+            "Twitter zneplatnil náš přístupový token. Zkuste prosím znovu otevřít Squawker!"),
         "blue_theme_based_on_the_twitter_color_scheme":
             MessageLookupByLibrary.simpleMessage(
                 "Modré téma založené na barevném schématu Twitteru"),
@@ -105,7 +105,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "choose_pages": MessageLookupByLibrary.simpleMessage("Vybrat stránky"),
         "close": MessageLookupByLibrary.simpleMessage("Zavřít"),
         "confirm_close_fritter": MessageLookupByLibrary.simpleMessage(
-            "Opravdu chcete zavřít Quacker?"),
+            "Opravdu chcete zavřít Squawker?"),
         "contribute": MessageLookupByLibrary.simpleMessage("Pomoct s vývojem"),
         "copied_address_to_clipboard": MessageLookupByLibrary.simpleMessage(
             "Adresa zkopírována do schránky"),
@@ -146,7 +146,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "download_handling_type_directory":
             MessageLookupByLibrary.simpleMessage("Uložit do adresáře"),
         "download_media_no_url": MessageLookupByLibrary.simpleMessage(
-            "Nepodařilo se stáhnout média. Možná jsou dostupná jen jako stream, který Quacker zatím nedokáže stáhnout."),
+            "Nepodařilo se stáhnout média. Možná jsou dostupná jen jako stream, který Squawker zatím nedokáže stáhnout."),
         "download_path":
             MessageLookupByLibrary.simpleMessage("Cesta pro stažené"),
         "downloading_media":
@@ -178,18 +178,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "following": MessageLookupByLibrary.simpleMessage("Sledování"),
         "forbidden": MessageLookupByLibrary.simpleMessage(
             "Twitter říká, že přístup k tomuto je zamítnut"),
-        "fritter": MessageLookupByLibrary.simpleMessage("Quacker"),
+        "fritter": MessageLookupByLibrary.simpleMessage("Squawker"),
         "fritter_blue":
-            MessageLookupByLibrary.simpleMessage("Quackerová modrá"),
+            MessageLookupByLibrary.simpleMessage("Squawkerová modrá"),
         "functionality_unsupported": MessageLookupByLibrary.simpleMessage(
             "Tato funkce již není podporována Twitterem!"),
         "general": MessageLookupByLibrary.simpleMessage("Obecné"),
         "group_name": m6,
         "groups": MessageLookupByLibrary.simpleMessage("Skupiny"),
         "help_make_fritter_even_better":
-            MessageLookupByLibrary.simpleMessage("Pomozte vylepšit Quacker"),
+            MessageLookupByLibrary.simpleMessage("Pomozte vylepšit Squawker"),
         "help_support_fritters_future":
-            MessageLookupByLibrary.simpleMessage("Podpořte vývoj Quackeru"),
+            MessageLookupByLibrary.simpleMessage("Podpořte vývoj Squawkeru"),
         "hide_sensitive_tweets":
             MessageLookupByLibrary.simpleMessage("Skrýt citlivé tweety"),
         "home": MessageLookupByLibrary.simpleMessage("Domů"),
@@ -275,7 +275,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Ujistěte se, že data, která chcete importovat, se zde nachází a poté stiskněte tlačítko níže."),
         "please_note_that_the_method_fritter_uses_to_import_subscriptions_is_heavily_rate_limited_by_twitter_so_this_may_fail_if_you_have_a_lot_of_followed_accounts":
             MessageLookupByLibrary.simpleMessage(
-                "Vezměte prosím na vědomí, že způsob, který používá Quacker pro import odběrů je silně limitován Twitterem, takže při velkém množství sledovaných účtů může tato akce selhat."),
+                "Vezměte prosím na vědomí, že způsob, který používá Squawker pro import odběrů je silně limitován Twitterem, takže při velkém množství sledovaných účtů může tato akce selhat."),
         "possibly_sensitive":
             MessageLookupByLibrary.simpleMessage("Potenciálně citlivé"),
         "possibly_sensitive_profile": MessageLookupByLibrary.simpleMessage(
@@ -322,15 +322,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Sdílet odkaz na tweet"),
         "should_check_for_updates_description":
             MessageLookupByLibrary.simpleMessage(
-                "Zkontrolovat aktualizace při spuštění Quackeru"),
+                "Zkontrolovat aktualizace při spuštění Squawkeru"),
         "should_check_for_updates_label":
             MessageLookupByLibrary.simpleMessage("Zkontrolovat aktualizace"),
         "small": MessageLookupByLibrary.simpleMessage("Malý"),
         "something_broke_in_fritter": MessageLookupByLibrary.simpleMessage(
-            "Něco se pokazilo ve Quackeru."),
+            "Něco se pokazilo ve Squawkeru."),
         "something_just_went_wrong_in_fritter_and_an_error_report_has_been_generated":
             MessageLookupByLibrary.simpleMessage(
-                "Ve Quackeru se něco pokazilo a byl vygenerován záznam o chybě. Záznam může být odeslán vývojářům Quackeru pro vyřešení problému."),
+                "Ve Squawkeru se něco pokazilo a byl vygenerován záznam o chybě. Záznam může být odeslán vývojářům Squawkeru pro vyřešení problému."),
         "sorry_the_replied_tweet_could_not_be_found":
             MessageLookupByLibrary.simpleMessage(
                 "Omlouváme se, ale odpovídaný tweety nebyl nalezen!"),
@@ -343,7 +343,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "tap_to_download_release_version": m11,
         "tap_to_show_getMediaType_item_type": m12,
         "thanks_for_helping_fritter": MessageLookupByLibrary.simpleMessage(
-            "Děkujeme za pomoc Quackeru! 💖"),
+            "Děkujeme za pomoc Squawkeru! 💖"),
         "the_file_does_not_exist_please_ensure_it_is_located_at_file_path": m13,
         "the_github_issue":
             MessageLookupByLibrary.simpleMessage("problém na GitHubu (#143)"),
@@ -482,6 +482,6 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Váš profil musí být veřejný, jinak nebude import fungovat"),
         "your_report_will_be_sent_to_fritter__project":
             MessageLookupByLibrary.simpleMessage(
-                "Vaše nahlášení bylo odesláno do  projektu Quackeru. Podrobnosti o soukromí lze nalézt na:")
+                "Vaše nahlášení bylo odesláno do  projektu Squawkeru. Podrobnosti o soukromí lze nalézt na:")
       };
 }

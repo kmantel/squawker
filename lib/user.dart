@@ -3,12 +3,12 @@ import 'package:dart_twitter_api/twitter_api.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_triple/flutter_triple.dart';
-import 'package:quacker/constants.dart';
-import 'package:quacker/database/entities.dart';
-import 'package:quacker/generated/l10n.dart';
-import 'package:quacker/group/group_model.dart';
-import 'package:quacker/profile/profile.dart';
-import 'package:quacker/subscriptions/users_model.dart';
+import 'package:squawker/constants.dart';
+import 'package:squawker/database/entities.dart';
+import 'package:squawker/generated/l10n.dart';
+import 'package:squawker/group/group_model.dart';
+import 'package:squawker/profile/profile.dart';
+import 'package:squawker/subscriptions/users_model.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:provider/provider.dart';
 

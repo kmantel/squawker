@@ -1,10 +1,10 @@
 import 'package:flutter_triple/flutter_triple.dart';
-import 'package:quacker/client.dart';
-import 'package:quacker/constants.dart';
-import 'package:quacker/database/entities.dart';
-import 'package:quacker/database/repository.dart';
-import 'package:quacker/group/group_model.dart';
-import 'package:quacker/utils/iterables.dart';
+import 'package:squawker/client.dart';
+import 'package:squawker/constants.dart';
+import 'package:squawker/database/entities.dart';
+import 'package:squawker/database/repository.dart';
+import 'package:squawker/group/group_model.dart';
+import 'package:squawker/utils/iterables.dart';
 import 'package:logging/logging.dart';
 import 'package:pref/pref.dart';
 
