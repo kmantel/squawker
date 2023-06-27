@@ -1,32 +1,32 @@
 name: Bug Report
-description: Create a bug report to help Quacker improve
+description: Create a bug report to help Squawker improve
 labels: [bug]
 body:
   - type: markdown
     attributes:
       value: |
-        Please only report issues that **only** affect Quacker
-        Other issues should be reported to [fritter](https://github.com/jonjomckay/fritter/issues)
+        Please only report issues that **only** affect Squawker
+        Other issues should be reported to [Fritter](https://github.com/jonjomckay/fritter/issues)
 
   - type: checkboxes
     id: checklist
     attributes:
       label: "Checklist"
       options:
-        - label: "I am able to reproduce the bug with the [latest version](https://github.com/thehcj/quacker/releases)."
+        - label: "I am able to reproduce the bug with the [latest version](https://github.com/j-fbriere/squawker/releases)."
           required: true
-        - label: "I made sure that there are *no existing issues* - [open](https://github.com/thehcj/quacker/issues) or [closed](https://github.com/thehcj/quacker/issues?q=is%3Aissue+is%3Aclosed) - which I could contribute my information to."
+        - label: "I made sure that there are *no existing issues* - [open](https://github.com/j-fbriere/squawker/issues) or [closed](https://github.com/j-fbriere/squawker/issues?q=is%3Aissue+is%3Aclosed) - which I could contribute my information to."
           required: true
         - label: "I have taken the time to fill in all the required details. I understand that the bug report will be dismissed otherwise."
           required: true
-        - label: "This issue contains only one bug, that only occurs in Quacker"
+        - label: "This issue contains only one bug, that only occurs in Squawker"
           required: true
 
   - type: input
     id: app-version
     attributes:
      label: Affected version
-     description: "In which Quacker version did you encounter the bug?"
+     description: "In which Squawker version did you encounter the bug?"
      placeholder: "x.x.x+x - Can be seen in the app from the 'About' section in settings"
     validations:
       required: true

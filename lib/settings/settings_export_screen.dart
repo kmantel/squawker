@@ -123,7 +123,7 @@ class _SettingsExportScreenState extends State<SettingsExportScreen> {
 
                 
                   var dateFormat = DateFormat('yyyy-MM-dd');
-                  var fileName = 'quacker-${dateFormat.format(DateTime.now())}.json';
+                  var fileName = 'squawker-${dateFormat.format(DateTime.now())}.json';
 
                   // This platform can support the directory picker, so display it
                   var path = await FlutterFileDialog.saveFile(

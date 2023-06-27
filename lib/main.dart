@@ -48,7 +48,7 @@ Future checkForUpdates() async {
   final client = HttpClient();
   client.userAgent = faker.internet.userAgent();
 
-  final request = await client.getUrl(Uri.parse("https://api.github.com/repos/thehcj/quacker/releases/latest"));
+  final request = await client.getUrl(Uri.parse("https://api.github.com/repos/j-fbriere/squawker/releases/latest"));
   final response = await request.close();
 
   if (response.statusCode == 200) {
@@ -58,7 +58,7 @@ Future checkForUpdates() async {
       if (map["tag_name"] != 'v${packageInfo.version}') {
         await FlutterLocalNotificationsPlugin().show(
             0,
-            'An update for Quacker is available! 🚀',
+            'An update for Squawker is available! 🚀',
             'View version ${map["tag_name"]} on Github',
             const NotificationDetails(
                 android: AndroidNotificationDetails(
@@ -387,7 +387,7 @@ class _FritterAppState extends State<FritterApp> {
       ],
       supportedLocales: L10n.delegate.supportedLocales,
       locale: _locale ?? DevicePreview.locale(context),
-      title: 'Quacker',
+      title: 'Squawker',
       theme: FlexThemeData.light(
         scheme: _colorScheme,
         surfaceMode: FlexSurfaceMode.highScaffoldLowSurface,
