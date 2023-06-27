@@ -234,7 +234,7 @@ class _ScaffoldWithBottomNavigationState extends State<ScaffoldWithBottomNavigat
       ),
       bottomNavigationBar: ScrollBottomNavigationBar(
         controller: scrollController,
-        showUnselectedLabels: false,
+        showUnselectedLabels: true,
         items: [
           ..._pages.map((e) => BottomNavigationBarItem(icon: Icon(e.icon, size: 22), label: e.titleBuilder(context)))
         ],

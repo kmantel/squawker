@@ -399,7 +399,7 @@ class _FritterAppState extends State<FritterApp> {
           blendOnColors: false,
         ),
         visualDensity: FlexColorScheme.comfortablePlatformDensity,
-        useMaterial3: true,
+        useMaterial3: false,
         appBarStyle: FlexAppBarStyle.primary,
       ),
       darkTheme: FlexThemeData.dark(
@@ -414,11 +414,10 @@ class _FritterAppState extends State<FritterApp> {
           blendOnColors: false,
         ),
         visualDensity: FlexColorScheme.comfortablePlatformDensity,
-        useMaterial3: true,
+        useMaterial3: false,
         appBarStyle: _trueBlack ? FlexAppBarStyle.surface : FlexAppBarStyle.primary,
       ),
-      themeMode: themeMode,
-      initialRoute: '/',
+      themeMode: themeMode,      initialRoute: '/',
       routes: {
         routeHome: (context) => const DefaultPage(),
         routeGroup: (context) => const GroupScreen(),
