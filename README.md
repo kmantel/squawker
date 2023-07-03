@@ -18,14 +18,21 @@
 <p align="center">
 <a href="https://github.com/j-fbriere/squawker/releases" alt="GitHub release"><img src="https://img.shields.io/github/release/j-fbriere/squawker.svg" ></a>
 <a href="/LICENSE" alt="License: MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg"></a>
-<a href="https://github.com/j-fbriere/squawker/actions" alt="Build Status"><img src="https://github.com/j-fbriere/squawker/workflows/ci/badge.svg?branch=dev&event=push"></a>
+<a href="https://github.com/j-fbriere/squawker/actions" alt="Build Status"><img src="https://github.com/j-fbriere/squawker/workflows/ci/badge.svg?branch=master&event=push"></a>
 <a href="https://hosted.weblate.org/engage/fritter/" alt="Translation Status"><img src="https://hosted.weblate.org/widgets/fritter/-/svg-badge.svg"></a>
 </p>
  
 ## Features:
+
+* Privacy: No login, no tracking, with all data local
 * Feed: View all your subscriptions in a chronological feed
-* Material You: Looks and feels fluent
-* Private: Doesn't use the official twitter api
+* Subscriptions: Follow and group accounts
+* Search: Find users and tweets
+* Bookmarks: Save tweets locally and offline
+* Trends: See what's trending in the world
+* Polls: View results without needing to vote
+* Light and Dark themes: Protect your eyes
+* And more!
   
 ## Screenshots
 
