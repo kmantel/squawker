@@ -1,1 +1,1 @@
-First release of Quacker
+fix some naming issues from Quacker to Squawker

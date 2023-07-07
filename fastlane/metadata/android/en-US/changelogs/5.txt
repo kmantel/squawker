@@ -1,3 +1,0 @@
-• Fix: Translations
-• Changed: Now using outlined icons
-• Removed: Android versions lower than 5.0
