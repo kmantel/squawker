@@ -1,1 +1,1 @@
-A better way to browse Twitter
+An open-source anonymous Twitter client

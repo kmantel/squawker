@@ -54,3 +54,6 @@ If you're looking for something to dip your toes into the codebase, check if the
 
 ### Translations
 Squawker currently uses Fritter's [Weblate](https://hosted.weblate.org/engage/fritter/) for translations.
+
+### Acknowledgments
+<a href="https://www.vecteezy.com/free-vector/bathroom">Bathroom Vectors by Vecteezy</a>
