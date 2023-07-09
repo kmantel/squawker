@@ -14,7 +14,7 @@
 </p>
 
 <p align="center">
-  <a href="https://apt.izzysoft.de/fdroid/index/apk/org.jfbriere.squawker">
+  <a href="https://apt.izzysoft.de/fdroid/index/apk/org.ca.squawker">
     <img src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png"
        alt="Get it on IzzyOnDroid"
        height="80">
