@@ -425,7 +425,7 @@
   "@whether_to_hide_tweets_marked_as_sensitive": {},
   "disable_screenshots": "Screenshots deaktivieren",
   "@disable_screenshots": {},
-  "disable_screenshots_hint": "Versucht zu verhindern, dass Screenshots von Fritter gemacht werden können. Dies ist keine Garantie und funktioniert möglicherweise nicht auf allen Geräten.",
+  "disable_screenshots_hint": "Versucht zu verhindern, dass Screenshots von Squawker gemacht werden können. Dies ist keine Garantie und funktioniert möglicherweise nicht auf allen Geräten.",
   "@disable_screenshots_hint": {},
   "generic_username": "Benutzer",
   "@generic_username": {},

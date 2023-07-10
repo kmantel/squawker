@@ -138,7 +138,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "disable_screenshots":
             MessageLookupByLibrary.simpleMessage("Screenshots deaktivieren"),
         "disable_screenshots_hint": MessageLookupByLibrary.simpleMessage(
-            "Versucht zu verhindern, dass Screenshots von Fritter gemacht werden können. Dies ist keine Garantie und funktioniert möglicherweise nicht auf allen Geräten."),
+            "Versucht zu verhindern, dass Screenshots von Squawker gemacht werden können. Dies ist keine Garantie und funktioniert möglicherweise nicht auf allen Geräten."),
         "disabled": MessageLookupByLibrary.simpleMessage("Deaktiviert"),
         "donate": MessageLookupByLibrary.simpleMessage("Spenden"),
         "download": MessageLookupByLibrary.simpleMessage("Herunterladen"),

@@ -226,20 +226,20 @@ Future<void> main() async {
         ],
         child: DevicePreview(
           enabled: !kReleaseMode,
-          builder: (context) => const FritterApp(),
+          builder: (context) => const SquawkerApp(),
         ),
       )));
 }
 
-class FritterApp extends StatefulWidget {
-  const FritterApp({Key? key}) : super(key: key);
+class SquawkerApp extends StatefulWidget {
+  const SquawkerApp({Key? key}) : super(key: key);
 
   @override
-  State<FritterApp> createState() => _FritterAppState();
+  State<SquawkerApp> createState() => _SquawkerAppState();
 }
 
-class _FritterAppState extends State<FritterApp> {
-  static final log = Logger('_MyAppState');
+class _SquawkerAppState extends State<SquawkerApp> {
+  static final log = Logger('_SquawkerAppState');
 
   String _themeMode = 'system';
   bool _trueBlack = false;

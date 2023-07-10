@@ -18,10 +18,10 @@ import 'package:synchronized/synchronized.dart';
 const Duration _defaultTimeout = Duration(seconds: 30);
 const String _accessToken = 'AAAAAAAAAAAAAAAAAAAAAGHtAgAAAAAA%2Bx7ILXNILCqkSGIzy6faIHZ9s3Q%3DQy97w6SIrzE7lQwPJEYQBsArEE2fC25caFwRBvAGi456G09vGR';
 
-class _FritterTwitterClient extends TwitterClient {
-  static final log = Logger('_FritterTwitterClient');
+class _SquawkerTwitterClient extends TwitterClient {
+  static final log = Logger('_SquawkerTwitterClient');
 
-  _FritterTwitterClient() : super(consumerKey: '', consumerSecret: '', token: '', secret: '');
+  _SquawkerTwitterClient() : super(consumerKey: '', consumerSecret: '', token: '', secret: '');
 
   static Lock _lock = Lock();
   static Completer? _guestTokenCompleter;
@@ -152,7 +152,7 @@ class UnknownProfileUnavailableReason implements Exception {
 }
 
 class Twitter {
-  static final TwitterApi _twitterApi = TwitterApi(client: _FritterTwitterClient());
+  static final TwitterApi _twitterApi = TwitterApi(client: _SquawkerTwitterClient());
 
   static final FFCache _cache = FFCache();
 
