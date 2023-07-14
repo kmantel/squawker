@@ -1,0 +1,2 @@
+* Added Squawker to IzzyOnDroid (thanks to @TheHCJ).
+* Fixed the feed with changes on Twitter of July 2023.

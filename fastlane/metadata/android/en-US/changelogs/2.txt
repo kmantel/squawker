@@ -1,1 +1,2 @@
-increase version
+* Fixed the search user with changes on Twitter of July 2023.
+* Fixed the subscription timeline with changes on Twitter of July 2023.

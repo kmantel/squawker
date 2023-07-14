@@ -404,7 +404,7 @@ class Twitter {
     return TweetStatus(chains: chains, cursorBottom: cursorBottom, cursorTop: cursorTop);
   }
 
-  static Future<TweetStatus> searchTweets(String query, bool includeReplies, {int limit = 25, String? cursor}) async {
+  static Future<TweetStatus> searchTweetsGraphql(String query, bool includeReplies, {int limit = 25, String? cursor}) async {
     var variables = {
       "rawQuery": query,
       "count": limit.toString(),
@@ -453,6 +453,73 @@ class Twitter {
     }
 
     return createUnconversationedChainsGraphql(timeline, 'tweet', [], true, includeReplies);
+  }
+
+  static Future<TweetStatus> searchTweets(String query, bool includeReplies, {int limit = 25, String? cursor}) async {
+    var queryParameters = {
+      'q': query,
+      'count': limit.toString(),
+      'result_type': 'recent',
+      'include_entities': 'true',
+      'tweet_mode': 'extended',
+      'include_ext_media_availability': 'true',
+      'include_ext_alt_text': 'true',
+      'include_quote_count': 'true',
+      'include_reply_count': includeReplies ? 'true' : 'false',
+    };
+
+    if (cursor != null) {
+      queryParameters['max_id'] = cursor;
+    }
+
+    var response = await _twitterApi.client.get(Uri.https('api.twitter.com', '/1.1/search/tweets.json', queryParameters));
+    var result = json.decode(response.body);
+
+    var tweets = result['statuses'];
+
+    if (tweets == null || tweets.isEmpty) {
+      return TweetStatus(chains: [], cursorBottom: null, cursorTop: null);
+    }
+
+    var tweetChains = _createTweetsChains(tweets, includeReplies);
+
+    var cursorBottom = result['search_metadata']['max_id_str'] as String?;
+    var cursorTop = result['search_metadata']['since_id_str'] as String?;
+
+    return TweetStatus(chains: tweetChains, cursorBottom: cursorBottom, cursorTop: cursorTop);
+  }
+
+  static List<TweetChain> _createTweetsChains(List<dynamic> tweets, bool includeReplies) {
+    var tweetMap = <String, TweetWithCard>{};
+
+    for (var tweetData in tweets) {
+      var tweet = TweetWithCard.fromJson(tweetData);
+
+      if (!includeReplies && tweet.inReplyToStatusIdStr != null) {
+        // Exclude replies
+        continue;
+      }
+
+      tweetMap[tweet.idStr!] = tweet;
+    }
+
+    var chains = <TweetChain>[];
+
+    for (var tweet in tweetMap.values) {
+      var chainId = tweet.conversationIdStr ?? tweet.idStr!;
+      var chainExists = chains.any((chain) => chain.id == chainId);
+
+      if (chainExists) {
+        // Add tweet to existing chain
+        var existingChain = chains.firstWhere((chain) => chain.id == chainId);
+        existingChain.tweets.add(tweet);
+      } else {
+        // Create new chain
+        chains.add(TweetChain(id: chainId, tweets: [tweet], isPinned: false));
+      }
+    }
+
+    return chains;
   }
 
   static Future<List<UserWithExtra>> searchUsers(String query, {int limit = 25, String? maxId, String? cursor}) async {

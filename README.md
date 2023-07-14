@@ -1,9 +1,5 @@
 <h1 align="center"> Squawker </h1>
 <br>
-<h3 align="center">
-  Warning! Currently with the latest Twitter changes, the feed and groups return no result. Only subscription timelines and search user work.
-</h3>
-<br>
 <p align="center">
   <a href="https://github.com/j-fbriere/squawker">
     <img alt="Squawker" title="Squawker" src="fastlane/metadata/android/en-US/images/icon.png" width="144">

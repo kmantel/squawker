@@ -63,13 +63,6 @@ class HomeModel extends Store<List<HomePage>> {
         pages.add(HomePage(page.id, false, page));
       }
 
-      // TODO: The following code is to be deleted when the SearchTimeline endpoint work again
-      for (var page in pages) {
-        if (page.id.startsWith('feed') || page.id.startsWith('group')) {
-          page.selected = false;
-        }
-      }
-
       return pages;
     });
   }
