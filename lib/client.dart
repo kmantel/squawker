@@ -169,25 +169,24 @@ class Twitter {
     'skip_status': '1',
     'cards_platform': 'Web-12',
     'include_cards': '1',
-    'include_ext_alt_text': 'true',
-    'include_ext_limited_action_results': 'false',
-    'include_quote_count': 'true',
+    'include_ext_alt_text': '1',
+    'include_ext_limited_action_results': '0',
+    'include_quote_count': '1',
     'include_reply_count': '1',
     'tweet_mode': 'extended',
-    'include_ext_collab_control': 'true',
-    'include_entities': 'true',
-    'include_user_entities': 'true',
-    'include_ext_media_color': 'true',
-    'include_ext_media_availability': 'true',
-    'include_ext_sensitive_media_warning': 'true',
-    'include_ext_trusted_friends_metadata': 'true',
-    'send_error_codes': 'true',
-    'simple_quoted_tweet': 'true',
+    'include_ext_collab_control': '1',
+    'include_entities': '1',
+    'include_user_entities': '1',
+    'include_ext_media_color': '1',
+    'include_ext_media_availability': '1',
+    'include_ext_sensitive_media_warning': '1',
+    'include_ext_trusted_friends_metadata': '1',
+    'send_error_codes': '1',
+    'simple_quoted_tweet': '1',
     'pc': '1',
     'spelling_corrections': '1',
-    'include_ext_edit_control': 'true',
-    'ext':
-        'mediaStats,highlightedLabel,hasNftAvatar,voiceInfo,enrichments,superFollowMetadata,unmentionInfo,editControl,collab_control,vibe,'
+    'include_ext_edit_control': '1',
+    'ext': 'mediaStats,highlightedLabel,hasNftAvatar,voiceInfo,enrichments,superFollowMetadata,unmentionInfo,editControl,collab_control,vibe,'
   };
 
   static Future<Profile> getProfileById(String id) async {
@@ -459,13 +458,21 @@ class Twitter {
     var queryParameters = {
       'q': query,
       'count': limit.toString(),
-      'result_type': 'recent',
-      'include_entities': 'true',
       'tweet_mode': 'extended',
-      'include_ext_media_availability': 'true',
-      'include_ext_alt_text': 'true',
-      'include_quote_count': 'true',
-      'include_reply_count': includeReplies ? 'true' : 'false',
+      'skip_status': '1',
+      'cards_platform': 'Web-12',
+      'include_cards': '1',
+      'include_entities': '1',
+      'include_user_entities': '1',
+      'include_can_media_tag': '1',
+      'include_ext_is_blue_verified': '1',
+      'include_ext_media_availability': '1',
+      'include_ext_alt_text': '1',
+      'include_quote_count': '1',
+      'include_reply_count': '1',
+      'simple_quoted_tweet': '1',
+      'send_error_codes': '1',
+      'tweet_search_mode': 'live',
     };
 
     if (cursor != null) {
@@ -494,6 +501,13 @@ class Twitter {
 
     for (var tweetData in tweets) {
       var tweet = TweetWithCard.fromJson(tweetData);
+
+      var quotedStatusMap = tweetData['quoted_status'];
+      if (quotedStatusMap != null) {
+        TweetWithCard quotedStatus = TweetWithCard.fromJson(quotedStatusMap);
+        tweet.quotedStatus = quotedStatus;
+        tweet.quotedStatusWithCard = quotedStatus;
+      }
 
       if (!includeReplies && tweet.inReplyToStatusIdStr != null) {
         // Exclude replies
