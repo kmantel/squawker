@@ -47,6 +47,12 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> {
 
     _pagingController = PagingController(firstPageKey: null);
     _pagingController.addPageRequestListener((cursor) async {
+      var prefService = PrefService.of(context);
+      if (prefService.get(actionFlushFeedCacheOnce312) == null) {
+        prefService.put(actionFlushFeedCacheOnce312, true);
+        var repository = await Repository.writable();
+        await repository.delete(tableFeedGroupChunk);
+      }
       await _listTweets(cursor);
     });
   }
@@ -77,10 +83,10 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> {
     }
 
     if (!widget.includeRetweets) {
-            query += '-filter:retweets ';
-                } else {
-                      query += 'include:nativeretweets ';
-                          }
+      query += '-filter:retweets ';
+    } else {
+      query += 'include:nativeretweets ';
+    }
 
     var remainingLength = 512 - query.length;
 
@@ -146,7 +152,7 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> {
             // Use the latest chunk's top cursor to load any new tweets since the last time we checked
             var latestChunk = storedChunks.firstOrNull;
             if (latestChunk != null) {
-              searchCursor = latestChunk['cursor_top'] as String;
+              searchCursor = latestChunk['cursor_bottom'] as String;
             } else {
               // Otherwise we need to perform a fresh load from scratch for this chunk
               searchCursor = null;

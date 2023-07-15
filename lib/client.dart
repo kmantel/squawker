@@ -476,7 +476,7 @@ class Twitter {
     };
 
     if (cursor != null) {
-      queryParameters['max_id'] = cursor;
+      queryParameters['since_id'] = cursor;
     }
 
     var response = await _twitterApi.client.get(Uri.https('api.twitter.com', '/1.1/search/tweets.json', queryParameters));
