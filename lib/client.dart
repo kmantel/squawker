@@ -102,7 +102,7 @@ class _SquawkerTwitterClient extends TwitterClient {
 
     var response = await http.get(uri, headers: {
       ...?headers,
-      'Authorization': 'Bearer $_accessToken',
+      'authorization': 'Bearer $_accessToken',
       'x-guest-token': await getToken(),
       'x-twitter-active-user': 'yes',
       'user-agent': faker.internet.userAgent()
@@ -502,16 +502,22 @@ class Twitter {
     for (var tweetData in tweets) {
       var tweet = TweetWithCard.fromJson(tweetData);
 
+      if (!includeReplies && tweet.inReplyToStatusIdStr != null) {
+        // Exclude replies
+        continue;
+      }
+
       var quotedStatusMap = tweetData['quoted_status'];
       if (quotedStatusMap != null) {
         TweetWithCard quotedStatus = TweetWithCard.fromJson(quotedStatusMap);
         tweet.quotedStatus = quotedStatus;
         tweet.quotedStatusWithCard = quotedStatus;
       }
-
-      if (!includeReplies && tweet.inReplyToStatusIdStr != null) {
-        // Exclude replies
-        continue;
+      var retweetedStatusMap = tweetData['retweeted_status'];
+      if (retweetedStatusMap != null) {
+        TweetWithCard retweetedStatus = TweetWithCard.fromJson(retweetedStatusMap);
+        tweet.retweetedStatus = retweetedStatus;
+        tweet.retweetedStatusWithCard = retweetedStatus;
       }
 
       tweetMap[tweet.idStr!] = tweet;
