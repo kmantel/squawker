@@ -47,14 +47,18 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> {
 
     _pagingController = PagingController(firstPageKey: null);
     _pagingController.addPageRequestListener((cursor) async {
-      var prefService = PrefService.of(context);
-      if (prefService.get(actionFlushFeedCacheOnce312) == null) {
-        prefService.put(actionFlushFeedCacheOnce312, true);
-        var repository = await Repository.writable();
-        await repository.delete(tableFeedGroupChunk);
-      }
+      await _flushFeedCacheOnce312();
       await _listTweets(cursor);
     });
+  }
+
+  Future<void> _flushFeedCacheOnce312() async {
+    var prefService = PrefService.of(context);
+    if (prefService.get(actionFlushFeedCacheOnce312) == null) {
+      prefService.put(actionFlushFeedCacheOnce312, true);
+      var repository = await Repository.writable();
+      await repository.delete(tableFeedGroupChunk);
+    }
   }
 
   @override
