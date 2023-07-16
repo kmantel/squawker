@@ -54,7 +54,7 @@ android {
 
     defaultConfig {
         applicationId "org.ca.squawker"
-        minSdkVersion 21
+        minSdkVersion 19
         targetSdkVersion 33
         multiDexEnabled true
         versionCode flutterVersionCode.toInteger()
