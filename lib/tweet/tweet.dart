@@ -253,7 +253,19 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
       }
 
       // Then add the actual entity
-      things.add(TweetTextPart(part.getContent(), null));
+      bool addPartContent = false;
+      if (part is TweetUrl) {
+        TweetUrl urlEnt = part;
+        if (urlEnt.url.expandedUrl == null || !_isTwitterUrl(urlEnt.url.expandedUrl!)) {
+          addPartContent = true;
+        }
+      }
+      else {
+        addPartContent = true;
+      }
+      if (addPartContent) {
+        things.add(TweetTextPart(part.getContent(), null));
+      }
 
       // Then set our index in the tweet text as the end of our entity
       index = end;
@@ -268,6 +280,12 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
       _displayParts = things;
       _originalParts = things;
     });
+  }
+
+  static const List<String> _twitterUrls = ['twitter.com', 'pic.twitter.com', 'twimg.com', 'abs.twimg.com', 'pbs.twimg.com', 'video.twimg.com'];
+
+  bool _isTwitterUrl(String url) {
+    return _twitterUrls.firstWhereOrNull((elm) => url.startsWith('https://$elm/')) != null;
   }
 
   _createFooterIconButton(IconData icon, [Color? color, Function()? onPressed]) {
