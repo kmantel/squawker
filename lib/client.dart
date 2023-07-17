@@ -500,24 +500,11 @@ class Twitter {
     var tweetMap = <String, TweetWithCard>{};
 
     for (var tweetData in tweets) {
-      var tweet = TweetWithCard.fromJson(tweetData);
+      var tweet = _fromCardJsonLegacy(tweetData);
 
       if (!includeReplies && tweet.inReplyToStatusIdStr != null) {
         // Exclude replies
         continue;
-      }
-
-      var quotedStatusMap = tweetData['quoted_status'];
-      if (quotedStatusMap != null) {
-        TweetWithCard quotedStatus = TweetWithCard.fromJson(quotedStatusMap);
-        tweet.quotedStatus = quotedStatus;
-        tweet.quotedStatusWithCard = quotedStatus;
-      }
-      var retweetedStatusMap = tweetData['retweeted_status'];
-      if (retweetedStatusMap != null) {
-        TweetWithCard retweetedStatus = TweetWithCard.fromJson(retweetedStatusMap);
-        tweet.retweetedStatus = retweetedStatus;
-        tweet.retweetedStatusWithCard = retweetedStatus;
       }
 
       tweetMap[tweet.idStr!] = tweet;
@@ -540,6 +527,25 @@ class Twitter {
     }
 
     return chains;
+  }
+
+  static TweetWithCard _fromCardJsonLegacy(Map<String,dynamic> tweetData) {
+    var tweet = TweetWithCard.fromJson(tweetData);
+
+    var quotedStatusMap = tweetData['quoted_status'];
+    if (quotedStatusMap != null) {
+      TweetWithCard quotedStatus = _fromCardJsonLegacy(quotedStatusMap);
+      tweet.quotedStatus = quotedStatus;
+      tweet.quotedStatusWithCard = quotedStatus;
+    }
+    var retweetedStatusMap = tweetData['retweeted_status'];
+    if (retweetedStatusMap != null) {
+      TweetWithCard retweetedStatus = _fromCardJsonLegacy(retweetedStatusMap);
+      tweet.retweetedStatus = retweetedStatus;
+      tweet.retweetedStatusWithCard = retweetedStatus;
+    }
+
+    return tweet;
   }
 
   static Future<List<UserWithExtra>> searchUsers(String query, {int limit = 25, String? maxId, String? cursor}) async {
@@ -1002,7 +1008,8 @@ class TweetWithCard extends Tweet {
     return tweet;
   }
 
-  factory TweetWithCard.fromCardJson(Map<String, dynamic> tweets, Map<String, dynamic> users, Map<String, dynamic> e) {    var user = e['user_id_str'] == null ? null : UserWithExtra.fromJson(users[e['user_id_str']]);
+  factory TweetWithCard.fromCardJson(Map<String, dynamic> tweets, Map<String, dynamic> users, Map<String, dynamic> e) {
+    var user = e['user_id_str'] == null ? null : UserWithExtra.fromJson(users[e['user_id_str']]);
 
     var retweetedStatus = e['retweeted_status_id_str'] == null
         ? null
