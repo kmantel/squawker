@@ -613,9 +613,8 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
                             scrollDirection: Axis.horizontal,
                             child: Row(
                               children: [
-                                if (tweet.replyCount != null)
-                                  _createFooterTextButton(Icons.comment_outlined, numberFormat.format(tweet.replyCount),
-                                      null, () => onClickOpenTweet(tweet)),
+                                _createFooterTextButton(Icons.comment_outlined, tweet.replyCount != null ? numberFormat.format(tweet.replyCount) : '',
+                                    null, () => onClickOpenTweet(tweet)),
                                 if (tweet.retweetCount != null)
                                   _createFooterTextButton(
                                       Icons.repeat_rounded, numberFormat.format(tweet.retweetCount)),
