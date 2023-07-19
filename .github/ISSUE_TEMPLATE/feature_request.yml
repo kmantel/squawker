@@ -3,21 +3,21 @@ description: Suggest an idea for Squawker
 labels: [enhancement]
 body:
   - type: textarea
-      id: describe-problem
-      attributes:
-        label: Describe the problem
-        description: |
-          Describe the problem that needs solving
+    id: describe-problem
+    attributes:
+      label: Describe the problem
+      description: |
+        Describe the problem that needs solving
 
-          A clear description of what the problem is. E.g. I'm always frustrated when [...]
+        A clear description of what the problem is. E.g. I'm always frustrated when [...]
+
   - type: textarea
-      id: describe-solution
-      attributes:
-        label: Describe the solution
-        description: |
-          Describe the solution you'd like
+    id: describe-solution
+    attributes:
+      label: Describe the solution
+      description: |
+        Describe the solution you'd like
 
-          A clear description of what you want to happen.
-      validations:
-        required: true
-        
+        A clear description of what you want to happen.
+    validations:
+      required: true
