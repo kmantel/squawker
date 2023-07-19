@@ -1,0 +1,1 @@
+* Enhancement change from #8 Makes quoted status cards optional to #16 make link previews in tweets optional

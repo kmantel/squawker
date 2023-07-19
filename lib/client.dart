@@ -460,8 +460,6 @@ class Twitter {
       'count': limit.toString(),
       'tweet_mode': 'extended',
       'skip_status': '1',
-      'cards_platform': 'Web-12',
-      'include_cards': '1',
       'include_entities': '1',
       'include_user_entities': '1',
       'include_can_media_tag': '1',
@@ -474,6 +472,10 @@ class Twitter {
       'send_error_codes': '1',
       'tweet_search_mode': 'live',
     };
+    if (!leanerFeeds) {
+      queryParameters['cards_platform'] = 'Web-12';
+      queryParameters['include_cards'] = '1';
+    }
 
     if (cursor != null) {
       queryParameters['since_id'] = cursor;
@@ -488,7 +490,7 @@ class Twitter {
       return TweetStatus(chains: [], cursorBottom: null, cursorTop: null);
     }
 
-    var tweetChains = _createTweetsChains(tweets, includeReplies, leanerFeeds: leanerFeeds);
+    var tweetChains = _createTweetsChains(tweets, includeReplies);
 
     var cursorBottom = result['search_metadata']['max_id_str'] as String?;
     var cursorTop = result['search_metadata']['since_id_str'] as String?;
@@ -496,11 +498,11 @@ class Twitter {
     return TweetStatus(chains: tweetChains, cursorBottom: cursorBottom, cursorTop: cursorTop);
   }
 
-  static List<TweetChain> _createTweetsChains(List<dynamic> tweets, bool includeReplies, {bool leanerFeeds = false}) {
+  static List<TweetChain> _createTweetsChains(List<dynamic> tweets, bool includeReplies) {
     var tweetMap = <String, TweetWithCard>{};
 
     for (var tweetData in tweets) {
-      var tweet = _fromCardJsonLegacy(tweetData, leanerFeeds: leanerFeeds);
+      var tweet = _fromCardJsonLegacy(tweetData);
 
       if (!includeReplies && tweet.inReplyToStatusIdStr != null) {
         // Exclude replies
@@ -529,20 +531,18 @@ class Twitter {
     return chains;
   }
 
-  static TweetWithCard _fromCardJsonLegacy(Map<String,dynamic> tweetData, {bool leanerFeeds = false}) {
+  static TweetWithCard _fromCardJsonLegacy(Map<String,dynamic> tweetData) {
     var tweet = TweetWithCard.fromJson(tweetData);
 
-    if (!leanerFeeds) {
-      var quotedStatusMap = tweetData['quoted_status'];
-      if (quotedStatusMap != null) {
-        TweetWithCard quotedStatus = _fromCardJsonLegacy(quotedStatusMap, leanerFeeds: leanerFeeds);
-        tweet.quotedStatus = quotedStatus;
-        tweet.quotedStatusWithCard = quotedStatus;
-      }
+    var quotedStatusMap = tweetData['quoted_status'];
+    if (quotedStatusMap != null) {
+      TweetWithCard quotedStatus = _fromCardJsonLegacy(quotedStatusMap);
+      tweet.quotedStatus = quotedStatus;
+      tweet.quotedStatusWithCard = quotedStatus;
     }
     var retweetedStatusMap = tweetData['retweeted_status'];
     if (retweetedStatusMap != null) {
-      TweetWithCard retweetedStatus = _fromCardJsonLegacy(retweetedStatusMap, leanerFeeds: leanerFeeds);
+      TweetWithCard retweetedStatus = _fromCardJsonLegacy(retweetedStatusMap);
       tweet.retweetedStatus = retweetedStatus;
       tweet.retweetedStatusWithCard = retweetedStatus;
     }

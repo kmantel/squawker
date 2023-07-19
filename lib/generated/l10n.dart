@@ -2436,10 +2436,10 @@ class L10n {
     );
   }
 
-  /// `The tweets from feeds do not display quotes`
+  /// `The tweets from feeds do not display preview links`
   String get leaner_feeds_description {
     return Intl.message(
-      'The tweets from feeds do not display quotes',
+      'The tweets from feeds do not display preview links',
       name: 'leaner_feeds_description',
       desc: '',
       args: [],

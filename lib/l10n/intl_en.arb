@@ -414,5 +414,5 @@
   "functionality_unsupported": "This functionality is no longer supported by Twitter!",
   "add_subscriptions": "Add subscriptions",
   "leaner_feeds_label": "Leaner feeds",
-  "leaner_feeds_description": "The tweets from feeds do not display quotes"
+  "leaner_feeds_description": "The tweets from feeds do not display preview links"
 }
