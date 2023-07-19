@@ -28,12 +28,35 @@ class TranslationAPIResult {
 class TranslationAPI {
   static final log = Logger('TranslationAPI');
 
+  static final translation_hosts = ['libretranslate.com', 'libretranslate.de', 'translate.fedilab.app', 'translate.astian.org'];
+  static int current_translation_host_idx = 0;
+
+  static String translationHost() {
+    return translation_hosts[current_translation_host_idx];
+  }
+
+  static String nextTranslationHost() {
+    current_translation_host_idx++;
+    if (current_translation_host_idx == translation_hosts.length) {
+      current_translation_host_idx = 0;
+    }
+    return translationHost();
+  }
+
   static Future<TranslationAPIResult> getSupportedLanguages() async {
     var key = 'translation.supported_languages';
 
     return cacheRequest(key, () async {
-      var response = await http.get(Uri.https('libretranslate.de', '/languages'));
-      return await parseResponse(response, 'Unable to get supported languages');
+      int connectTries = 0;
+      while (connectTries < translation_hosts.length) {
+        var response = await http.get(Uri.https(translationHost(), '/languages'));
+        if (response.statusCode != 502) {
+          return await parseResponse(response);
+        }
+        nextTranslationHost();
+        connectTries++;
+      }
+      throw Exception('Unable to get supported languages');
     });
   }
 
@@ -51,10 +74,17 @@ class TranslationAPI {
     var key = 'translation.$sourceLanguage.$id';
 
     var res = await cacheRequest(key, () async {
-      var response = await http.post(Uri.https('libretranslate.de', '/translate'),
-          body: jsonEncode(formData), headers: {'Content-Type': 'application/json'});
-
-      return await parseResponse(response, 'Unable to send translation request');
+      int connectTries = 0;
+      while (connectTries < translation_hosts.length) {
+        var response = await http.post(Uri.https(translationHost(), '/translate'),
+            body: jsonEncode(formData), headers: {'Content-Type': 'application/json'});
+        if (response.statusCode != 502) {
+          return await parseResponse(response);
+        }
+        nextTranslationHost();
+        connectTries++;
+      }
+      throw Exception('Unable to send translation request');
     });
 
     if (res.success) {
@@ -91,7 +121,7 @@ class TranslationAPI {
     return response;
   }
 
-  static Future<TranslationAPIResult> parseResponse(http.Response response, String errorUnableTo) async {
+  static Future<TranslationAPIResult> parseResponse(http.Response response) async {
     var body = jsonDecode(response.body);
     if (response.statusCode == 200) {
       return TranslationAPIResult(success: true, body: body);
