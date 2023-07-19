@@ -212,6 +212,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "language_subtitle":
             MessageLookupByLibrary.simpleMessage("Requires a restart"),
         "large": MessageLookupByLibrary.simpleMessage("Large"),
+        "leaner_feeds_description": MessageLookupByLibrary.simpleMessage(
+            "The tweets from feeds do not display quotes"),
+        "leaner_feeds_label":
+            MessageLookupByLibrary.simpleMessage("Leaner feeds"),
         "legacy_android_import":
             MessageLookupByLibrary.simpleMessage("Legacy Android Import"),
         "let_the_developers_know_if_something_is_broken":

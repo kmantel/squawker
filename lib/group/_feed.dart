@@ -47,15 +47,15 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> {
 
     _pagingController = PagingController(firstPageKey: null);
     _pagingController.addPageRequestListener((cursor) async {
-      await _flushFeedCacheOnce312();
-      await _listTweets(cursor);
+      BasePrefService prefs = PrefService.of(context);
+      await _flushFeedCacheOnce312(prefs);
+      await _listTweets(cursor, prefs);
     });
   }
 
-  Future<void> _flushFeedCacheOnce312() async {
-    var prefService = PrefService.of(context);
-    if (prefService.get(actionFlushFeedCacheOnce312) == null) {
-      prefService.put(actionFlushFeedCacheOnce312, true);
+  Future<void> _flushFeedCacheOnce312(BasePrefService prefs) async {
+    if (prefs.get(actionFlushFeedCacheOnce312) == null) {
+      prefs.put(actionFlushFeedCacheOnce312, true);
       var repository = await Repository.writable();
       await repository.delete(tableFeedGroupChunk);
     }
@@ -124,7 +124,7 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> {
   /// Here, each page is actually a set of mappings, where the ID of each set is the hash of all the user IDs in that
   /// set. We store this along with the top and bottom pagination cursors, which we use to perform pagination for all
   /// sets at the same time, allowing us to create a feed made up of individual search queries.
-  Future _listTweets(String? cursorKey) async {
+  Future _listTweets(String? cursorKey, BasePrefService prefs) async {
     try {
       List<Future<List<TweetChain>>> futures = [];
 
@@ -174,7 +174,7 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> {
 
           // Perform our search for the next page of results for this chunk, and add those tweets to our collection
           var query = _buildSearchQuery(chunk.users);
-          var result = await Twitter.searchTweets(query, widget.includeReplies, limit: 100, cursor: searchCursor);
+          var result = await Twitter.searchTweets(query, widget.includeReplies, limit: 100, cursor: searchCursor, leanerFeeds: prefs.get(optionLeanerFeeds));
 
           if (result.chains.isNotEmpty) {
             tweets.addAll(result.chains);
@@ -237,7 +237,7 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> {
       );
     }
 
-    var prefs = PrefService.of(context, listen: false);
+    BasePrefService prefs = PrefService.of(context, listen: false);
 
     return Scaffold(
       body: RefreshIndicator(
@@ -267,13 +267,13 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> {
                 error: _pagingController.error[0],
                 stackTrace: _pagingController.error[1],
                 prefix: L10n.of(context).unable_to_load_the_next_page_of_tweets,
-                onRetry: () => _listTweets(_pagingController.firstPageKey),
+                onRetry: () => _listTweets(_pagingController.firstPageKey, prefs),
               ),
               firstPageErrorIndicatorBuilder: (context) => FullPageErrorWidget(
                 error: _pagingController.error[0],
                 stackTrace: _pagingController.error[1],
                 prefix: L10n.of(context).unable_to_load_the_tweets_for_the_feed,
-                onRetry: () => _listTweets(_pagingController.nextPageKey),
+                onRetry: () => _listTweets(_pagingController.nextPageKey, prefs),
               ),
               noItemsFoundIndicatorBuilder: (context) => Center(
                 child: Text(

@@ -2425,6 +2425,26 @@ class L10n {
       args: [],
     );
   }
+
+  /// `Leaner feeds`
+  String get leaner_feeds_label {
+    return Intl.message(
+      'Leaner feeds',
+      name: 'leaner_feeds_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The tweets from feeds do not display quotes`
+  String get leaner_feeds_description {
+    return Intl.message(
+      'The tweets from feeds do not display quotes',
+      name: 'leaner_feeds_description',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<L10n> {

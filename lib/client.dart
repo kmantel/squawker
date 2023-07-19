@@ -454,7 +454,7 @@ class Twitter {
     return createUnconversationedChainsGraphql(timeline, 'tweet', [], true, includeReplies);
   }
 
-  static Future<TweetStatus> searchTweets(String query, bool includeReplies, {int limit = 25, String? cursor}) async {
+  static Future<TweetStatus> searchTweets(String query, bool includeReplies, {int limit = 25, String? cursor, bool leanerFeeds = false}) async {
     var queryParameters = {
       'q': query,
       'count': limit.toString(),
@@ -488,7 +488,7 @@ class Twitter {
       return TweetStatus(chains: [], cursorBottom: null, cursorTop: null);
     }
 
-    var tweetChains = _createTweetsChains(tweets, includeReplies);
+    var tweetChains = _createTweetsChains(tweets, includeReplies, leanerFeeds: leanerFeeds);
 
     var cursorBottom = result['search_metadata']['max_id_str'] as String?;
     var cursorTop = result['search_metadata']['since_id_str'] as String?;
@@ -496,11 +496,11 @@ class Twitter {
     return TweetStatus(chains: tweetChains, cursorBottom: cursorBottom, cursorTop: cursorTop);
   }
 
-  static List<TweetChain> _createTweetsChains(List<dynamic> tweets, bool includeReplies) {
+  static List<TweetChain> _createTweetsChains(List<dynamic> tweets, bool includeReplies, {bool leanerFeeds = false}) {
     var tweetMap = <String, TweetWithCard>{};
 
     for (var tweetData in tweets) {
-      var tweet = _fromCardJsonLegacy(tweetData);
+      var tweet = _fromCardJsonLegacy(tweetData, leanerFeeds: leanerFeeds);
 
       if (!includeReplies && tweet.inReplyToStatusIdStr != null) {
         // Exclude replies
@@ -529,18 +529,20 @@ class Twitter {
     return chains;
   }
 
-  static TweetWithCard _fromCardJsonLegacy(Map<String,dynamic> tweetData) {
+  static TweetWithCard _fromCardJsonLegacy(Map<String,dynamic> tweetData, {bool leanerFeeds = false}) {
     var tweet = TweetWithCard.fromJson(tweetData);
 
-    var quotedStatusMap = tweetData['quoted_status'];
-    if (quotedStatusMap != null) {
-      TweetWithCard quotedStatus = _fromCardJsonLegacy(quotedStatusMap);
-      tweet.quotedStatus = quotedStatus;
-      tweet.quotedStatusWithCard = quotedStatus;
+    if (!leanerFeeds) {
+      var quotedStatusMap = tweetData['quoted_status'];
+      if (quotedStatusMap != null) {
+        TweetWithCard quotedStatus = _fromCardJsonLegacy(quotedStatusMap, leanerFeeds: leanerFeeds);
+        tweet.quotedStatus = quotedStatus;
+        tweet.quotedStatusWithCard = quotedStatus;
+      }
     }
     var retweetedStatusMap = tweetData['retweeted_status'];
     if (retweetedStatusMap != null) {
-      TweetWithCard retweetedStatus = _fromCardJsonLegacy(retweetedStatusMap);
+      TweetWithCard retweetedStatus = _fromCardJsonLegacy(retweetedStatusMap, leanerFeeds: leanerFeeds);
       tweet.retweetedStatus = retweetedStatus;
       tweet.retweetedStatusWithCard = retweetedStatus;
     }

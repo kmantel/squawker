@@ -490,5 +490,7 @@
   "functionality_unsupported": "Cette fonctionnalité n'est plus prise en charge par Twitter !",
   "@functionality_unsupported": {},
   "add_subscriptions": "Ajouter des abonnements",
-  "@add_subscriptions": {}
+  "@add_subscriptions": {},
+  "leaner_feeds_label": "Flux plus léger",
+  "leaner_feeds_description": "Les tweets de flux ne montrent pas de tweet en citation"
 }

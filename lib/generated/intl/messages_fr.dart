@@ -220,6 +220,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "language_subtitle":
             MessageLookupByLibrary.simpleMessage("Nécessite un redémarrage"),
         "large": MessageLookupByLibrary.simpleMessage("Grand"),
+        "leaner_feeds_description": MessageLookupByLibrary.simpleMessage(
+            "Les tweets de flux ne montrent pas de tweet en citation"),
+        "leaner_feeds_label":
+            MessageLookupByLibrary.simpleMessage("Flux plus léger"),
         "legacy_android_import": MessageLookupByLibrary.simpleMessage(
             "Importation depuis un appareil Android ancien"),
         "let_the_developers_know_if_something_is_broken":

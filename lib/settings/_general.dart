@@ -201,10 +201,10 @@ class SettingsGeneralFragment extends StatelessWidget {
             title: Text(L10n.of(context).mute_videos),
             subtitle: Text(L10n.of(context).mute_video_description),
           ),
-          PrefCheckbox(
+          PrefSwitch(
+            pref: optionTweetsHideSensitive,
             title: Text(L10n.of(context).hide_sensitive_tweets),
             subtitle: Text(L10n.of(context).whether_to_hide_tweets_marked_as_sensitive),
-            pref: optionTweetsHideSensitive,
           ),
           PrefDialogButton(
             title: Text(L10n.of(context).share_base_url),
@@ -221,6 +221,11 @@ class SettingsGeneralFragment extends StatelessWidget {
             title: Text(L10n.of(context).activate_non_confirmation_bias_mode_label),
             pref: optionNonConfirmationBiasMode,
             subtitle: Text(L10n.of(context).activate_non_confirmation_bias_mode_description),
+          ),
+          PrefSwitch(
+            title: Text(L10n.of(context).leaner_feeds_label),
+            subtitle: Text(L10n.of(context).leaner_feeds_description),
+            pref: optionLeanerFeeds,
           ),
         ]),
       ),

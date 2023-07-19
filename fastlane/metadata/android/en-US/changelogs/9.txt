@@ -1,1 +1,2 @@
 * Fix issue #14 Can't open/check replies of media tweets in Feed.
+* Enhancement #8 Makes quoted status cards optional
