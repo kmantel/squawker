@@ -2,12 +2,6 @@ name: Bug Report
 description: Create a bug report to help Squawker improve
 labels: [bug]
 body:
-  - type: markdown
-    attributes:
-      value: |
-        Please only report issues that **only** affect Squawker
-        Other issues should be reported to [Fritter](https://github.com/jonjomckay/fritter/issues)
-
   - type: checkboxes
     id: checklist
     attributes:
