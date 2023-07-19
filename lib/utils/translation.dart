@@ -1,4 +1,5 @@
 import 'dart:convert';
+//import 'dart:math';
 
 import 'package:flutter_cache/flutter_cache.dart' as cache;
 import 'package:squawker/utils/iterables.dart';
@@ -28,8 +29,12 @@ class TranslationAPIResult {
 class TranslationAPI {
   static final log = Logger('TranslationAPI');
 
-  static final translation_hosts = ['libretranslate.com', 'libretranslate.de', 'translate.fedilab.app', 'translate.astian.org'];
-  static int current_translation_host_idx = 0;
+  // other possibilities not working currently:
+  //   translate.astian.org, translate.foxhaven.cyou, trans.zillyhuhn.com
+  // other possibilities working but badly translated:
+  //   translate.terraprint.co
+  static final translation_hosts = ['libretranslate.de', 'translate.fedilab.app', 'translate.argosopentech.com'];
+  static int current_translation_host_idx = 0; //Random().nextInt(translation_hosts.length);
 
   static String translationHost() {
     return translation_hosts[current_translation_host_idx];
