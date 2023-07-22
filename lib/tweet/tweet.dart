@@ -152,7 +152,7 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
 
     var originalText = _originalParts.map((e) => e.toString()).toList();
 
-    var res = await TranslationAPI.translate(tweet.idStr!, originalText, tweet.lang ?? "");
+    var res = await TranslationAPI.translate(context, tweet.idStr!, originalText, tweet.lang ?? "");
     if (res.success) {
       var translatedParts = convertTextPartsToTweetEntities(List.from(res.body['translatedText']));
 

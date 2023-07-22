@@ -1,6 +1,7 @@
 import 'dart:convert';
 // import 'dart:math';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_cache/flutter_cache.dart' as cache;
 import 'package:squawker/utils/iterables.dart';
 import 'package:squawker/utils/misc.dart';
@@ -65,14 +66,14 @@ class TranslationAPI {
     });
   }
 
-  static Future<TranslationAPIResult> translate(String id, List<String> text, String sourceLanguage) async {
+  static Future<TranslationAPIResult> translate(BuildContext context, String id, List<String> text, String sourceLanguage) async {
     var hasTextOrNot = text.map((e) => e.isNotEmpty ? true : false).toList();
 
     var formData = {
       // We need to strip out any empty parts, as the API barfs on them sometimes
       'q': text.where((e) => e.isNotEmpty).toList(),
       'source': sourceLanguage,
-      'target': getShortSystemLocale(),
+      'target': Localizations.localeOf(context).languageCode,
       'format': 'text'
     };
 
@@ -127,7 +128,7 @@ class TranslationAPI {
   }
 
   static Future<TranslationAPIResult> parseResponse(http.Response response) async {
-    var body = jsonDecode(response.body);
+    var body = jsonDecode(utf8.decode(response.bodyBytes));
     if (response.statusCode == 200) {
       return TranslationAPIResult(success: true, body: body);
     }
