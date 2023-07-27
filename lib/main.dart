@@ -521,6 +521,7 @@ class _DefaultPageState extends State<DefaultPage> {
         _migrationError = e;
         _migrationStackTrace = s;
       });
+      return true;
     });
 
     getInitialUri().then((link) {

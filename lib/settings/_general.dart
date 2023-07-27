@@ -10,7 +10,6 @@ import 'package:squawker/constants.dart';
 import 'package:squawker/generated/l10n.dart';
 import 'package:squawker/home/home_screen.dart';
 import 'package:squawker/utils/iterables.dart';
-import 'package:http/http.dart' as http;
 import 'package:logging/logging.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -76,7 +75,6 @@ class SettingsGeneralFragment extends StatelessWidget {
   Future<void> _appInfo(BuildContext context) async {
     var deviceInfo = DeviceInfoPlugin();
     var packageInfo = await PackageInfo.fromPlatform();
-    var prefService = PrefService.of(context);
     Map<String, Object> metadata;
 
     if (Platform.isAndroid) {
