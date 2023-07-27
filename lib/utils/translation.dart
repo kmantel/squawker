@@ -146,6 +146,7 @@ class TranslationAPI {
   }
 
   static Future<TranslationAPIResult> parseResponse(http.Response response) async {
+    // the server does not return a content-type header with the UTF-8 charset specified, so we must force the decoding from UTF-8
     var body = jsonDecode(utf8.decode(response.bodyBytes));
     if (response.statusCode == 200) {
       return TranslationAPIResult(success: true, body: body);

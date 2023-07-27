@@ -51,5 +51,3 @@ const routeSettingsExport = '/settings/export';
 const routeSettingsHome = '/settings/home';
 const routeStatus = '/status';
 const routeSubscriptionsImport = '/subscriptions/import';
-
-const actionFlushFeedCacheOnce312 = 'action.flush_feed_cache_once_312';

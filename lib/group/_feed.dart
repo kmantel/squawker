@@ -48,17 +48,8 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> {
     _pagingController = PagingController(firstPageKey: null);
     _pagingController.addPageRequestListener((cursor) async {
       BasePrefService prefs = PrefService.of(context);
-      await _flushFeedCacheOnce312(prefs);
       await _listTweets(cursor, prefs);
     });
-  }
-
-  Future<void> _flushFeedCacheOnce312(BasePrefService prefs) async {
-    if (prefs.get(actionFlushFeedCacheOnce312) == null) {
-      prefs.put(actionFlushFeedCacheOnce312, true);
-      var repository = await Repository.writable();
-      await repository.delete(tableFeedGroupChunk);
-    }
   }
 
   @override
@@ -138,6 +129,7 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> {
           var tweets = <TweetChain>[];
 
           String? searchCursor;
+          String? cursorType;
 
           if (cursorKey == null) {
             // We're loading the initial content for the feed screen, so load all the chunks we already have
@@ -156,7 +148,8 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> {
             // Use the latest chunk's top cursor to load any new tweets since the last time we checked
             var latestChunk = storedChunks.firstOrNull;
             if (latestChunk != null) {
-              searchCursor = latestChunk['cursor_bottom'] as String;
+              searchCursor = latestChunk['cursor_top'] as String;
+              cursorType = 'cursor_top';
             } else {
               // Otherwise we need to perform a fresh load from scratch for this chunk
               searchCursor = null;
@@ -167,6 +160,7 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> {
                 where: 'cursor_id = ? AND hash = ?', whereArgs: [int.parse(cursorKey), hash]);
             if (storedChunks.isNotEmpty) {
               searchCursor = storedChunks.first['cursor_bottom'] as String;
+              cursorType = 'cursor_bottom';
             } else {
               searchCursor = null;
             }
@@ -174,7 +168,7 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> {
 
           // Perform our search for the next page of results for this chunk, and add those tweets to our collection
           var query = _buildSearchQuery(chunk.users);
-          var result = await Twitter.searchTweets(query, widget.includeReplies, limit: 100, cursor: searchCursor, leanerFeeds: prefs.get(optionLeanerFeeds));
+          var result = await Twitter.searchTweets(query, widget.includeReplies, limit: 100, cursor: searchCursor, cursorType: cursorType, leanerFeeds: prefs.get(optionLeanerFeeds));
 
           if (result.chains.isNotEmpty) {
             tweets.addAll(result.chains);
@@ -242,8 +236,6 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> {
     return Scaffold(
       body: RefreshIndicator(
         onRefresh: () async {
-          var repository = await Repository.writable();
-          await repository.delete(tableFeedGroupChunk);
           _pagingController.refresh();
         },
         child: MultiProvider(

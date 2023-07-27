@@ -216,6 +216,11 @@ class Repository {
           await db.update(tableSubscriptionGroup, {'icon': defaultGroupIcon},
               where: "icon IS NULL OR icon = '' OR icon = ?", whereArgs: ['rss']);
         }))
+      ],
+      21: [
+        Migration(Operation((db) async {
+          await db.delete(tableFeedGroupChunk);
+        }))
       ]
     });
     await openDatabase(

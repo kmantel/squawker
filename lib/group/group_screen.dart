@@ -2,6 +2,7 @@ import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:squawker/database/entities.dart';
+import 'package:squawker/database/repository.dart';
 import 'package:squawker/generated/l10n.dart';
 import 'package:squawker/group/group_model.dart';
 import 'package:squawker/group/_feed.dart';
@@ -128,6 +129,9 @@ class SubscriptionGroupScreen extends StatelessWidget {
                   IconButton(
                       icon: const Icon(Icons.refresh_rounded),
                       onPressed: () async {
+                        // flush the feed cache before the refresh
+                        var repository = await Repository.writable();
+                        await repository.delete(tableFeedGroupChunk);
                         await model.loadGroup();
                       }),
                   ...actions

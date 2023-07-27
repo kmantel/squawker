@@ -454,7 +454,7 @@ class Twitter {
     return createUnconversationedChainsGraphql(timeline, 'tweet', [], true, includeReplies);
   }
 
-  static Future<TweetStatus> searchTweets(String query, bool includeReplies, {int limit = 25, String? cursor, bool leanerFeeds = false}) async {
+  static Future<TweetStatus> searchTweets(String query, bool includeReplies, {int limit = 25, String? cursor, String? cursorType, bool leanerFeeds = false}) async {
     var queryParameters = {
       'q': query,
       'count': limit.toString(),
@@ -477,8 +477,13 @@ class Twitter {
       queryParameters['include_cards'] = '1';
     }
 
-    if (cursor != null) {
-      queryParameters['since_id'] = cursor;
+    if (cursor != null && cursorType != null) {
+      if (cursorType == 'cursor_bottom') {
+        queryParameters['max_id'] = cursor;
+      }
+      else { // cursorType == 'top'
+        queryParameters['since_id'] = cursor;
+      }
     }
 
     var response = await _twitterApi.client.get(Uri.https('api.twitter.com', '/1.1/search/tweets.json', queryParameters));
@@ -492,8 +497,8 @@ class Twitter {
 
     var tweetChains = _createTweetsChains(tweets, includeReplies);
 
-    var cursorBottom = result['search_metadata']['max_id_str'] as String?;
-    var cursorTop = result['search_metadata']['since_id_str'] as String?;
+    var cursorBottom = result['search_metadata']['since_id_str'] as String?;
+    var cursorTop = result['search_metadata']['max_id_str'] as String?;
 
     return TweetStatus(chains: tweetChains, cursorBottom: cursorBottom, cursorTop: cursorTop);
   }
