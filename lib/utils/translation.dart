@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 // import 'dart:math';
 
@@ -34,7 +35,7 @@ class TranslationAPI {
   //   translate.astian.org, translate.foxhaven.cyou, trans.zillyhuhn.com
   // other possibilities working but badly translated:
   //   translate.terraprint.co
-  static final translation_hosts = ['translate.fedilab.app', 'translate.argosopentech.com', 'libretranslate.de'];
+  static final translation_hosts = ['libretranslate.de', 'translate.fedilab.app', 'translate.argosopentech.com'];
   static int current_translation_host_idx = 0; // Random().nextInt(translation_hosts.length);
 
   static String translationHost() {
@@ -55,9 +56,17 @@ class TranslationAPI {
     return cacheRequest(key, () async {
       int connectTries = 0;
       while (connectTries < translation_hosts.length) {
-        var response = await http.get(Uri.https(translationHost(), '/languages'));
-        if (response.statusCode != 502) {
-          return await parseResponse(response);
+        try {
+          var response = await http.get(Uri.https(translationHost(), '/languages')).timeout(const Duration(seconds: 3));
+          TranslationAPIResult rsp = await parseResponse(response);
+          if (rsp.success) {
+            return rsp;
+          }
+          else {
+            log.warning('get supported languages error ${rsp.errorMessage} from host ${translationHost()}');
+          }
+        } on TimeoutException {
+          log.warning('get supported languages timeout from host ${translationHost()}');
         }
         nextTranslationHost();
         connectTries++;
@@ -68,24 +77,33 @@ class TranslationAPI {
 
   static Future<TranslationAPIResult> translate(BuildContext context, String id, List<String> text, String sourceLanguage) async {
     var hasTextOrNot = text.map((e) => e.isNotEmpty ? true : false).toList();
+    var targetLanguage = Localizations.localeOf(context).languageCode;
 
     var formData = {
       // We need to strip out any empty parts, as the API barfs on them sometimes
       'q': text.where((e) => e.isNotEmpty).toList(),
       'source': sourceLanguage,
-      'target': Localizations.localeOf(context).languageCode,
+      'target': targetLanguage,
       'format': 'text'
     };
 
-    var key = 'translation.$sourceLanguage.$id';
+    var key = 'translation.$sourceLanguage.$targetLanguage.$id';
 
     var res = await cacheRequest(key, () async {
       int connectTries = 0;
       while (connectTries < translation_hosts.length) {
-        var response = await http.post(Uri.https(translationHost(), '/translate'),
-            body: jsonEncode(formData), headers: {'Content-Type': 'application/json'});
-        if (response.statusCode != 502) {
-          return await parseResponse(response);
+        try {
+          var response = await http.post(Uri.https(translationHost(), '/translate'),
+              body: jsonEncode(formData), headers: {'Content-Type': 'application/json'}).timeout(const Duration(seconds: 3));
+          TranslationAPIResult rsp = await parseResponse(response);
+          if (rsp.success) {
+            return rsp;
+          }
+          else {
+            log.warning('translate error ${rsp.errorMessage} from host ${translationHost()}');
+          }
+        } on TimeoutException {
+          log.warning('translate timeout from host ${translationHost()}');
         }
         nextTranslationHost();
         connectTries++;
@@ -154,6 +172,9 @@ class TranslationAPI {
         break;
       case 500:
         message = 'Error: The translation API failed to translate the tweet';
+        break;
+      case 502:
+        message = 'Error: The translation API site is unreachable';
         break;
     }
 
