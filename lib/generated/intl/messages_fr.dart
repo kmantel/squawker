@@ -216,6 +216,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "include_retweets":
             MessageLookupByLibrary.simpleMessage("Inclure les retweets"),
         "joined": m8,
+        "keep_feed_offset_description": MessageLookupByLibrary.simpleMessage(
+            "Retenir la position des flux lors de la réouverture d\'appli"),
+        "keep_feed_offset_label": MessageLookupByLibrary.simpleMessage(
+            "Retenir la position des flux"),
         "language": MessageLookupByLibrary.simpleMessage("Langue"),
         "language_subtitle":
             MessageLookupByLibrary.simpleMessage("Nécessite un redémarrage"),

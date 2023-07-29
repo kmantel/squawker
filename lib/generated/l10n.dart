@@ -2426,6 +2426,26 @@ class L10n {
     );
   }
 
+  /// `Keep feeds offset`
+  String get keep_feed_offset_label {
+    return Intl.message(
+      'Keep feeds offset',
+      name: 'keep_feed_offset_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The timeline offset is kept for feeds when the app restarts`
+  String get keep_feed_offset_description {
+    return Intl.message(
+      'The timeline offset is kept for feeds when the app restarts',
+      name: 'keep_feed_offset_description',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Leaner feeds`
   String get leaner_feeds_label {
     return Intl.message(

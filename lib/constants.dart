@@ -40,6 +40,7 @@ const optionUserTrendsLocations = 'trends.locations';
 
 const optionNonConfirmationBiasMode = 'other.improve_non_confirmation_bias';
 
+const optionKeepFeedOffset = 'keep_feed_offset';
 const optionLeanerFeeds = 'leaner_feeds';
 
 const routeHome = '/';
@@ -51,3 +52,4 @@ const routeSettingsExport = '/settings/export';
 const routeSettingsHome = '/settings/home';
 const routeStatus = '/status';
 const routeSubscriptionsImport = '/subscriptions/import';
+

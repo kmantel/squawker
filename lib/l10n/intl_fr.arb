@@ -491,6 +491,8 @@
   "@functionality_unsupported": {},
   "add_subscriptions": "Ajouter des abonnements",
   "@add_subscriptions": {},
+  "keep_feed_offset_label": "Retenir la position des flux",
+  "keep_feed_offset_description": "Retenir la position des flux lors de la réouverture d'appli",
   "leaner_feeds_label": "Flux plus léger",
   "leaner_feeds_description": "Les tweets de flux ne montrent pas d'aperçu de liens'"
 }

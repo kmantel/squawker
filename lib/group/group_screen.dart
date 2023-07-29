@@ -1,6 +1,7 @@
 import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_triple/flutter_triple.dart';
+import 'package:provider/provider.dart';
 import 'package:squawker/database/entities.dart';
 import 'package:squawker/database/repository.dart';
 import 'package:squawker/generated/l10n.dart';
@@ -8,7 +9,6 @@ import 'package:squawker/group/group_model.dart';
 import 'package:squawker/group/_feed.dart';
 import 'package:squawker/group/_settings.dart';
 import 'package:squawker/ui/errors.dart';
-import 'package:provider/provider.dart';
 import 'package:squawker/utils/iterables.dart';
 import 'package:quiver/iterables.dart';
 
@@ -38,8 +38,9 @@ class GroupScreen extends StatelessWidget {
 
 class SubscriptionGroupScreenContent extends StatelessWidget {
   final String id;
+  ScrollController? scrollController = ScrollController();
 
-  const SubscriptionGroupScreenContent({Key? key, required this.id}) : super(key: key);
+  SubscriptionGroupScreenContent({Key? key, required this.id}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -66,6 +67,7 @@ class SubscriptionGroupScreenContent extends StatelessWidget {
           chunks: chunks,
           includeReplies: group.includeReplies,
           includeRetweets: group.includeRetweets,
+          scrollController: scrollController,
         );
       },
     );
@@ -107,7 +109,7 @@ class SubscriptionGroupScreen extends StatelessWidget {
       },
       builder: (context, child) {
         var model = context.read<GroupModel>();
-
+        SubscriptionGroupScreenContent content = SubscriptionGroupScreenContent(id: id);
         return NestedScrollView(
           controller: scrollController,
           floatHeaderSlivers: true,
@@ -123,7 +125,7 @@ class SubscriptionGroupScreen extends StatelessWidget {
                   IconButton(
                       icon: const Icon(Icons.arrow_upward_rounded),
                       onPressed: () async {
-                        await scrollController.animateTo(0,
+                        await content.scrollController!.animateTo(0,
                             duration: const Duration(seconds: 1), curve: Curves.easeInOut);
                       }),
                   IconButton(
@@ -131,7 +133,8 @@ class SubscriptionGroupScreen extends StatelessWidget {
                       onPressed: () async {
                         // flush the feed cache before the refresh
                         var repository = await Repository.writable();
-                        await repository.delete(tableFeedGroupChunk);
+                        await repository.delete(tableFeedGroupChunk, where: 'group_id = ?', whereArgs: [id]);
+                        await repository.delete(tableFeedGroupOffset, where: 'group_id = ?', whereArgs: [id]);
                         await model.loadGroup();
                       }),
                   ...actions
@@ -139,7 +142,7 @@ class SubscriptionGroupScreen extends StatelessWidget {
               )
             ];
           },
-          body: SubscriptionGroupScreenContent(id: id),
+          body: content,
         );
       },
     );

@@ -7,6 +7,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localized_locales/flutter_localized_locales.dart';
 import 'package:squawker/constants.dart';
+import 'package:squawker/database/repository.dart';
 import 'package:squawker/generated/l10n.dart';
 import 'package:squawker/home/home_screen.dart';
 import 'package:squawker/utils/iterables.dart';
@@ -219,6 +220,17 @@ class SettingsGeneralFragment extends StatelessWidget {
             title: Text(L10n.of(context).activate_non_confirmation_bias_mode_label),
             pref: optionNonConfirmationBiasMode,
             subtitle: Text(L10n.of(context).activate_non_confirmation_bias_mode_description),
+          ),
+          PrefSwitch(
+            title: Text(L10n.of(context).keep_feed_offset_label),
+            subtitle: Text(L10n.of(context).keep_feed_offset_description),
+            pref: optionKeepFeedOffset,
+            onChange: (value) async {
+              if (!value) {
+                var repository = await Repository.writable();
+                await repository.delete(tableFeedGroupOffset);
+              }
+            },
           ),
           PrefSwitch(
             title: Text(L10n.of(context).leaner_feeds_label),

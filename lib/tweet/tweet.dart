@@ -32,6 +32,7 @@ class TweetTile extends StatefulWidget {
   final TweetWithCard tweet;
   final bool isPinned;
   final bool isThread;
+  final ScrollOffsetReader? scrollOffsetReader;
 
   const TweetTile(
       {Key? key,
@@ -39,7 +40,8 @@ class TweetTile extends StatefulWidget {
       this.currentUsername,
       required this.tweet,
       this.isPinned = false,
-      this.isThread = false})
+      this.isThread = false,
+      this.scrollOffsetReader})
       : super(key: key);
 
   @override
@@ -307,6 +309,10 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
   @override
   Widget build(BuildContext context) {
     final prefs = PrefService.of(context, listen: false);
+
+    if (widget.scrollOffsetReader != null) {
+      widget.scrollOffsetReader!.readCurrentOffset();
+    }
 
     var shareBaseUrlOption = prefs.get(optionShareBaseUrl);
     var shareBaseUrl =
@@ -688,6 +694,18 @@ class TweetTextPart {
   @override
   String toString() {
     return plainText ?? '';
+  }
+}
+
+class ScrollOffsetReader {
+  final ScrollController scrollController;
+  double? currentOffset;
+
+  ScrollOffsetReader(this.scrollController);
+
+  void readCurrentOffset() {
+    //print('*** ScrollOffsetReader.readCurrentOffset - scrollController.offset=${scrollController.offset}');
+    currentOffset = scrollController.offset;
   }
 }
 

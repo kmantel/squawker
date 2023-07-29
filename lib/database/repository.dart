@@ -11,6 +11,7 @@ const String databaseName = 'squawker.db';
 
 const String tableFeedGroupChunk = 'feed_group_chunk';
 const String tableFeedGroupCursor = 'feed_group_cursor';
+const String tableFeedGroupOffset = 'feed_group_offset';
 
 const String tableSavedTweet = 'saved_tweet';
 const String tableSearchSubscription = 'search_subscription';
@@ -143,8 +144,7 @@ class Repository {
       ],
       14: [
         // Add a "verified" column to the subscriptions table
-        SqlMigration('ALTER TABLE $tableSubscription ADD COLUMN verified BOOLEAN DEFAULT 0',
-            reverseSql: 'ALTER TABLE $tableSubscription DROP COLUMN verified')
+        SqlMigration('ALTER TABLE $tableSubscription ADD COLUMN verified BOOLEAN DEFAULT 0')
       ],
       15: [
         // Re-apply migration 14 in a different way, as it looks like it didn't apply for some people
@@ -157,8 +157,7 @@ class Repository {
       ],
       16: [
         // Add a "color" column to the subscription groups table, and set a default icon for existing groups
-        SqlMigration('ALTER TABLE $tableSubscriptionGroup ADD COLUMN color INT DEFAULT NULL',
-            reverseSql: 'ALTER TABLE $tableSubscriptionGroup DROP COLUMN color'),
+        SqlMigration('ALTER TABLE $tableSubscriptionGroup ADD COLUMN color INT DEFAULT NULL'),
 
         Migration(Operation((db) async {
           await db.update(tableSubscriptionGroup, {'icon': defaultGroupIcon},
@@ -185,8 +184,7 @@ class Repository {
       ],
       19: [
         // Add a new column for saved tweet user IDs, and extract them from all existing records
-        SqlMigration('ALTER TABLE $tableSavedTweet ADD COLUMN user_id VARCHAR DEFAULT NULL',
-            reverseSql: 'ALTER TABLE $tableSavedTweet DROP COLUMN user_id'),
+        SqlMigration('ALTER TABLE $tableSavedTweet ADD COLUMN user_id VARCHAR DEFAULT NULL'),
         Migration(Operation((db) async {
           var tweets = await db.query(tableSavedTweet, columns: ['id', 'content']);
           var batch = db.batch();
@@ -220,12 +218,15 @@ class Repository {
       21: [
         Migration(Operation((db) async {
           await db.delete(tableFeedGroupChunk);
-        }))
+        })),
+        SqlMigration('ALTER TABLE $tableFeedGroupChunk ADD COLUMN group_id VARCHAR'),
+        SqlMigration('CREATE TABLE IF NOT EXISTS $tableFeedGroupOffset (group_id VARCHAR, offset REAL)',
+          reverseSql: 'DROP TABLE $tableFeedGroupOffset'),
       ]
     });
     await openDatabase(
       databaseName,
-      version: 20,
+      version: 21,
       onUpgrade: myMigrationPlan,
       onCreate: myMigrationPlan,
       onDowngrade: myMigrationPlan,

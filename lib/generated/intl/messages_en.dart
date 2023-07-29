@@ -208,6 +208,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "include_retweets":
             MessageLookupByLibrary.simpleMessage("Include retweets"),
         "joined": m8,
+        "keep_feed_offset_description": MessageLookupByLibrary.simpleMessage(
+            "The timeline offset is kept for feeds when the app restarts"),
+        "keep_feed_offset_label":
+            MessageLookupByLibrary.simpleMessage("Keep feeds offset"),
         "language": MessageLookupByLibrary.simpleMessage("Language"),
         "language_subtitle":
             MessageLookupByLibrary.simpleMessage("Requires a restart"),
