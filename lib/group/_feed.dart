@@ -226,7 +226,6 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
 
               // Make sure we insert the set of cursors for this latest chunk, ready for the next time we paginate
               await repository.insert(tableFeedGroupChunk, {
-                'group_id': widget.group.id,
                 'cursor_id': int.parse(nextCursor),
                 'hash': hash,
                 'cursor_top': result.cursorTop,

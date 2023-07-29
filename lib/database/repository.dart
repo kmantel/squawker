@@ -219,7 +219,6 @@ class Repository {
         Migration(Operation((db) async {
           await db.delete(tableFeedGroupChunk);
         })),
-        SqlMigration('ALTER TABLE $tableFeedGroupChunk ADD COLUMN group_id VARCHAR'),
         SqlMigration('CREATE TABLE IF NOT EXISTS $tableFeedGroupOffset (group_id VARCHAR, offset REAL)',
           reverseSql: 'DROP TABLE $tableFeedGroupOffset'),
       ]
