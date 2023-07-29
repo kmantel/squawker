@@ -25,6 +25,7 @@ import 'package:logging/logging.dart';
 import 'package:pref/pref.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
 class TweetTile extends StatefulWidget {
   final bool clickable;
@@ -310,10 +311,6 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
   Widget build(BuildContext context) {
     final prefs = PrefService.of(context, listen: false);
 
-    if (widget.scrollOffsetReader != null) {
-      widget.scrollOffsetReader!.readCurrentOffset();
-    }
-
     var shareBaseUrlOption = prefs.get(optionShareBaseUrl);
     var shareBaseUrl =
         shareBaseUrlOption != null && shareBaseUrlOption.isNotEmpty ? shareBaseUrlOption : 'https://twitter.com';
@@ -328,6 +325,24 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
     var theme = Theme.of(context);
 
     if (tweet.isTombstone ?? false) {
+      return VisibilityDetector(
+        key: UniqueKey(),
+        onVisibilityChanged: (visibilityInfo) {
+          if (visibilityInfo.visibleFraction > 0) {
+            if (widget.scrollOffsetReader != null) {
+              widget.scrollOffsetReader!.readCurrentOffset();
+            }
+          }
+        },
+        child: SizedBox(
+          width: double.infinity,
+          child: Card(
+            child: Container(
+                padding: const EdgeInsets.all(16),
+                child: Text(tweet.text!, style: const TextStyle(fontStyle: FontStyle.italic))),
+          ),
+        )
+      );
       return SizedBox(
         width: double.infinity,
         child: Card(
@@ -391,7 +406,17 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
 
     var tweetText = tweet.fullText ?? tweet.text;
     if (tweetText == null) {
-      return Text(L10n.of(context).the_tweet_did_not_contain_any_text_this_is_unexpected);
+      return VisibilityDetector(
+          key: UniqueKey(),
+          onVisibilityChanged: (visibilityInfo) {
+            if (visibilityInfo.visibleFraction > 0) {
+              if (widget.scrollOffsetReader != null) {
+                widget.scrollOffsetReader!.readCurrentOffset();
+              }
+            }
+          },
+          child: Text(L10n.of(context).the_tweet_did_not_contain_any_text_this_is_unexpected)
+      );
     }
 
     var quotedTweet = Container();
@@ -461,8 +486,17 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
       createdAt = tweet.createdAt;
     }
 
-    return Consumer<ImportDataModel>(
-        builder: (context, model, child) => Card(
+    return VisibilityDetector(
+      key: UniqueKey(),
+      onVisibilityChanged: (visibilityInfo) {
+        if (visibilityInfo.visibleFraction > 0) {
+          if (widget.scrollOffsetReader != null) {
+            widget.scrollOffsetReader!.readCurrentOffset();
+          }
+        }
+      },
+      child: Consumer<ImportDataModel>(
+          builder: (context, model, child) => Card(
               child: Row(
                 children: [
                   retweetSidebar,
@@ -639,7 +673,7 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
                   ))
                 ],
               ),
-            ));
+            )));
   }
 }
 

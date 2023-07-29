@@ -1,4 +1,4 @@
-* Implement feature #3: Keep read position in feed after refreshing.
+* Implement feature #19: Keep read position in feed after refreshing.
   The feature is not activated by default. Must be activated in Settings / Keep feeds offset.
 * Fix the black screen when the app is in recent screen mode.
 * Change the feed cache flush from scroll up to tap on the rounded arrow icon.
