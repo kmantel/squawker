@@ -1,0 +1,1 @@
+* Fix issue #25 Downloaded images not showing in gallery.

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_file_dialog/flutter_file_dialog.dart';
+import 'package:media_scanner/media_scanner.dart';
 
 import 'package:squawker/constants.dart';
 import 'package:squawker/generated/l10n.dart';
@@ -63,6 +64,9 @@ Future<void> downloadUriToPickedFile(BuildContext context, Uri uri, String fileN
     // Finally, save to the user-defined directory
     var savedFile = p.join(downloadPath, sanitizedFilename);
     await File(savedFile).writeAsBytes(response);
+    if (Platform.isAndroid) {
+      MediaScanner.loadMedia(path: savedFile);
+    }
     onSuccess();
   } catch (e) {
     showSnackBar(context, icon: '🙊', message: e.toString());
