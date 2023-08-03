@@ -10,6 +10,7 @@ import 'package:squawker/saved/saved_tweet_model.dart';
 import 'package:squawker/search/search.dart';
 import 'package:squawker/status.dart';
 import 'package:squawker/tweet/_card.dart';
+import 'package:squawker/tweet/_context_menu.dart';
 import 'package:squawker/tweet/_entities.dart';
 import 'package:squawker/tweet/_media.dart';
 import 'package:squawker/ui/dates.dart';
@@ -63,6 +64,8 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
   List<TweetTextPart> _originalParts = [];
   List<TweetTextPart> _displayParts = [];
   List<TweetTextPart> _translatedParts = [];
+
+  List<String> _extraContextMenuItems = [];
 
   static String? _convertRunesToText(Iterable<int> runes, int start, [int? end]) {
     var string = runes.getRange(start, end).map((e) => String.fromCharCode(e)).join('');
@@ -205,9 +208,15 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
     return translatedParts;
   }
 
+  void _getExtraContextMenuItems() async {
+    _extraContextMenuItems = await getSupportedTextActivityList();
+  }
+
   @override
   void initState() {
     super.initState();
+
+    _getExtraContextMenuItems();
 
     clickable = widget.clickable;
     currentUsername = widget.currentUsername;
@@ -307,6 +316,10 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
     );
   }
 
+  Widget _contextMenuBuilder(BuildContext context, EditableTextState editableTextState) {
+    return customContextMenuBuilder(context, editableTextState, _extraContextMenuItems, processTextActivity);
+  }
+
   @override
   Widget build(BuildContext context) {
     final prefs = PrefService.of(context, listen: false);
@@ -339,7 +352,7 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
           child: Card(
             child: Container(
                 padding: const EdgeInsets.all(16),
-                child: Text(tweet.text!, style: const TextStyle(fontStyle: FontStyle.italic))),
+                child: SelectableText(tweet.text!, style: const TextStyle(fontStyle: FontStyle.italic), contextMenuBuilder: _contextMenuBuilder)),
           ),
         )
       );
@@ -457,6 +470,7 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
                 })
               ]),
               onTap: () => onClickOpenTweet(tweet),
+              contextMenuBuilder: _contextMenuBuilder,
             )),
       );
     }
