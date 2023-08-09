@@ -50,7 +50,6 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
   late ItemPositionsListener _itemPositionsListener;
   bool _insertOffset = true;
   bool _keepFeedOffset = false;
-  String? _currentCursorId;
   List<TweetChain> _data = [];
   bool _toScroll = false;
 
@@ -86,7 +85,7 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
       await _lock.synchronized(() async {
         if (_data.isEmpty || _itemPositionsListener.itemPositions.value.first.index > 0.8 * _data.length) {
           BasePrefService prefs = PrefService.of(context);
-          await _listTweets(_currentCursorId, prefs);
+          await _listTweets(_data.isEmpty, prefs);
         }
       });
     }
@@ -117,7 +116,6 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
   void _resetData() {
     _visiblePositionState.initialized = false;
     _data.clear();
-    _currentCursorId = null;
   }
 
   @override
@@ -128,10 +126,6 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
       _resetData();
       _checkFetchData();
     }
-  }
-
-  Future<String> createCursor(Database repository) async {
-    return (await repository.insert(tableFeedGroupCursor, {}, nullColumnHack: 'id')).toString();
   }
 
   String _buildSearchQuery(List<Subscription> users) {
@@ -178,12 +172,11 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
   /// Here, each page is actually a set of mappings, where the ID of each set is the hash of all the user IDs in that
   /// set. We store this along with the top and bottom pagination cursors, which we use to perform pagination for all
   /// sets at the same time, allowing us to create a feed made up of individual search queries.
-  Future _listTweets(String? cursorKey, BasePrefService prefs) async {
+  Future _listTweets(bool dataIsEmpty, BasePrefService prefs) async {
     try {
       List<Future<List<TweetChain>>> futures = [];
 
       var repository = await Repository.writable();
-      var nextCursor = await createCursor(repository);
 
       _keepFeedOffset = prefs.get(optionKeepFeedOffset);
       String? positionedChainId;
@@ -208,12 +201,12 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
 
           String? searchCursor;
           String? cursorType;
+          bool requestToDo = false;
 
-          if (cursorKey == null) {
-            // We're loading the initial content for the feed screen, so load all the chunks we already have
-            var storedChunks = await repository.query(tableFeedGroupChunk,
-                where: 'hash = ?', whereArgs: [hash], orderBy: 'created_at DESC');
-
+          var storedChunks = await repository.query(tableFeedGroupChunk,
+              where: 'group_id = ? AND hash = ?', whereArgs: [widget.group.id, hash], orderBy: 'created_at DESC');
+          if (dataIsEmpty) {
+            requestToDo = true;
             // Make sure we load any existing stored tweets from the chunk
             var storedChunksTweets = storedChunks
                 .map((e) => jsonDecode(e['response'] as String))
@@ -234,32 +227,30 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
             }
           } else {
             // We're currently at the end of our current feed, so load the oldest chunk and use its cursor to load more
-            var storedChunks = await repository.query(tableFeedGroupChunk,
-                where: 'cursor_id = ? AND hash = ?', whereArgs: [int.parse(cursorKey), hash]);
             if (storedChunks.isNotEmpty) {
-              searchCursor = storedChunks.first['cursor_bottom'] as String;
+              requestToDo = true;
+              searchCursor = storedChunks.last['cursor_bottom'] as String;
               cursorType = 'cursor_bottom';
-            } else {
-              searchCursor = null;
             }
           }
 
-          // Perform our search for the next page of results for this chunk, and add those tweets to our collection
-          var query = _buildSearchQuery(chunk.users);
-          var result = await Twitter.searchTweets(query, widget.includeReplies, limit: 100, cursor: searchCursor, cursorType: cursorType, leanerFeeds: prefs.get(optionLeanerFeeds));
+          if (requestToDo) {
+            // Perform our search for the next page of results for this chunk, and add those tweets to our collection
+            var query = _buildSearchQuery(chunk.users);
+            var result = await Twitter.searchTweets(query, widget.includeReplies, limit: 100, cursor: searchCursor, cursorType: cursorType, leanerFeeds: prefs.get(optionLeanerFeeds));
 
-          if (result.chains.isNotEmpty) {
-            tweets.addAll(result.chains);
+            if (result.chains.isNotEmpty) {
+              tweets.addAll(result.chains);
 
-            // Make sure we insert the set of cursors for this latest chunk, ready for the next time we paginate
-            await repository.insert(tableFeedGroupChunk, {
-              'group_id': widget.group.id,
-              'cursor_id': int.parse(nextCursor),
-              'hash': hash,
-              'cursor_top': result.cursorTop,
-              'cursor_bottom': result.cursorBottom,
-              'response': jsonEncode(result.chains.map((e) => e.toJson()).toList())
-            });
+              // Make sure we insert the set of cursors for this latest chunk, ready for the next time we paginate
+              await repository.insert(tableFeedGroupChunk, {
+                'group_id': widget.group.id,
+                'hash': hash,
+                'cursor_top': result.cursorTop,
+                'cursor_bottom': result.cursorBottom,
+                'response': jsonEncode(result.chains.map((e) => e.toJson()).toList())
+              });
+            }
           }
 
           return tweets;
@@ -297,11 +288,10 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
       }
 
       setState(() {
-        if (cursorKey == null) {
+        if (dataIsEmpty) {
           _data.clear();
         }
         _data.addAll(threads);
-        _currentCursorId = nextCursor;
       });
 
       _toScroll = false;

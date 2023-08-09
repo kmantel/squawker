@@ -220,17 +220,15 @@ class Repository {
           await db.delete(tableFeedGroupChunk);
         })),
         SqlMigration('CREATE TABLE IF NOT EXISTS feed_group_offset (group_id VARCHAR, offset REAL)',
-          reverseSql: 'DROP TABLE feed_group_offset'),
+          reverseSql: 'DROP TABLE IF EXISTS feed_group_offset'),
       ],
       22: [
-        Migration(Operation((db) async {
-          await db.delete(tableFeedGroupChunk);
-        })),
         SqlMigration('DROP TABLE IF EXISTS feed_group_offset'),
+        SqlMigration('DROP TABLE IF EXISTS $tableFeedGroupCursor'),
         SqlMigration('DROP TABLE IF EXISTS $tableFeedGroupChunk'),
-        SqlMigration('CREATE TABLE IF NOT EXISTS $tableFeedGroupChunk (group_id VARCHAR, cursor_id INTEGER NOT NULL, hash VARCHAR NOT NULL, cursor_top VARCHAR, cursor_bottom VARCHAR, response VARCHAR, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)'),
+        SqlMigration('CREATE TABLE IF NOT EXISTS $tableFeedGroupChunk (group_id VARCHAR, hash VARCHAR NOT NULL, cursor_top VARCHAR, cursor_bottom VARCHAR, response VARCHAR, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)'),
         SqlMigration('CREATE TABLE IF NOT EXISTS $tableFeedGroupPositionState (group_id VARCHAR, chain_id VARCHAR, tweet_id VARCHAR)',
-            reverseSql: 'DROP TABLE $tableFeedGroupPositionState'),
+            reverseSql: 'DROP TABLE IF EXISTS $tableFeedGroupPositionState'),
       ]
     });
     await openDatabase(
@@ -245,7 +243,6 @@ class Repository {
     var repository = await writable();
 
     await repository.delete(tableFeedGroupChunk, where: "created_at <= date('now', '-7 day')");
-    await repository.delete(tableFeedGroupCursor, where: "created_at <= date('now', '-7 day')");
 
     int version = await repository.getVersion();
 
