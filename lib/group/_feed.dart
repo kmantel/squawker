@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
-
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:squawker/client.dart';
 import 'package:squawker/constants.dart';
 import 'package:squawker/database/entities.dart';
@@ -14,19 +14,18 @@ import 'package:squawker/profile/profile.dart';
 import 'package:squawker/tweet/_video.dart';
 import 'package:squawker/tweet/conversation.dart';
 import 'package:squawker/tweet/tweet.dart';
-import 'package:squawker/ui/errors.dart';
 import 'package:squawker/utils/iterables.dart';
-import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:pref/pref.dart';
 import 'package:provider/provider.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:synchronized/synchronized.dart';
 
 class SubscriptionGroupFeed extends StatefulWidget {
   final SubscriptionGroupGet group;
   final List<SubscriptionGroupFeedChunk> chunks;
   final bool includeReplies;
   final bool includeRetweets;
-  final ScrollController? scrollController;
+  final ItemScrollController? scrollController;
 
   const SubscriptionGroupFeed(
       {Key? key,
@@ -45,21 +44,26 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
 
   static final log = Logger('_SubscriptionGroupFeedState');
 
-  late PagingController<String?, TweetChain> _pagingController;
+  static final Lock _lock = Lock();
+
+  late VisiblePositionState _visiblePositionState;
+  late ItemPositionsListener _itemPositionsListener;
   bool _insertOffset = true;
-  late ScrollOffsetReader _scrollOffsetReader;
   bool _keepFeedOffset = false;
+  String? _currentCursorId;
+  List<TweetChain> _data = [];
+  bool _toScroll = false;
 
   @override
   void initState() {
     super.initState();
 
-    _scrollOffsetReader = ScrollOffsetReader(widget.scrollController!);
     WidgetsBinding.instance.addObserver(this);
-    _pagingController = PagingController(firstPageKey: null);
-    _pagingController.addPageRequestListener((cursor) async {
-      BasePrefService prefs = PrefService.of(context);
-      await _listTweets(cursor, prefs);
+    _visiblePositionState = VisiblePositionState();
+    _itemPositionsListener = ItemPositionsListener.create();
+    _itemPositionsListener.itemPositions.addListener(() { _checkFetchData(); });
+    Future.delayed(Duration.zero, () {
+      _checkFetchData();
     });
   }
 
@@ -67,7 +71,6 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
   void dispose() {
     _updateOffset();
     WidgetsBinding.instance.removeObserver(this);
-    _pagingController.dispose();
     super.dispose();
   }
 
@@ -78,18 +81,29 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
     }
   }
 
-  void _updateOffset() async {
+  Future<void> _checkFetchData() async {
+    if (_data.isEmpty || _itemPositionsListener.itemPositions.value.first.index > 0.8 * _data.length) {
+      await _lock.synchronized(() async {
+        if (_data.isEmpty || _itemPositionsListener.itemPositions.value.first.index > 0.8 * _data.length) {
+          BasePrefService prefs = PrefService.of(context);
+          await _listTweets(_currentCursorId, prefs);
+        }
+      });
+    }
+  }
+
+  Future<void> _updateOffset() async {
     try {
-      if (_keepFeedOffset && _scrollOffsetReader.currentOffset != null) {
+      if (_keepFeedOffset && _visiblePositionState.initialized && _visiblePositionState.chainId != null) {
         if (kDebugMode) {
-          print('*** _SubscriptionGroupFeedState._updateOffset - widget.group.id=${widget.group.id}, _scrollOffsetReader.currentOffset=${_scrollOffsetReader.currentOffset}, insert=$_insertOffset');
+          print('*** _SubscriptionGroupFeedState._updateOffset - widget.group.id=${widget.group.id}, chainId=${_visiblePositionState.chainId}, tweetId=${_visiblePositionState.tweetId}, insert=$_insertOffset');
         }
         var repository = await Repository.writable();
         if (_insertOffset) {
-          await repository.insert(tableFeedGroupOffset, {'group_id': widget.group.id, 'offset': _scrollOffsetReader.currentOffset});
+          await repository.insert(tableFeedGroupPositionState, {'group_id': widget.group.id, 'chain_id': _visiblePositionState.chainId, 'tweet_id': _visiblePositionState.tweetId});
         }
         else {
-          await repository.update(tableFeedGroupOffset, {'offset': _scrollOffsetReader.currentOffset}, where: 'group_id = ?', whereArgs: [widget.group.id]);
+          await repository.update(tableFeedGroupPositionState, {'chain_id': _visiblePositionState.chainId, 'tweet_id': _visiblePositionState.tweetId}, where: 'group_id = ?', whereArgs: [widget.group.id]);
         }
       }
     }
@@ -100,12 +114,19 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
     }
   }
 
+  void _resetData() {
+    _visiblePositionState.initialized = false;
+    _data.clear();
+    _currentCursorId = null;
+  }
+
   @override
   void didUpdateWidget(SubscriptionGroupFeed oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.includeReplies != widget.includeReplies || oldWidget.includeRetweets != widget.includeRetweets) {
-      _pagingController.refresh();
+      _resetData();
+      _checkFetchData();
     }
   }
 
@@ -165,11 +186,18 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
       var nextCursor = await createCursor(repository);
 
       _keepFeedOffset = prefs.get(optionKeepFeedOffset);
-      double? offset;
+      String? positionedChainId;
+      String? positionedTweetId;
       if (_keepFeedOffset) {
-        var offsetData = await repository.query(tableFeedGroupOffset, where: 'group_id = ?', whereArgs: [widget.group.id]);
-        _insertOffset = offsetData.isEmpty;
-        offset = offsetData.isNotEmpty ? offsetData[0]['offset'] as double? : null;
+        var positionStateData = await repository.query(tableFeedGroupPositionState, where: 'group_id = ?', whereArgs: [widget.group.id]);
+        _insertOffset = positionStateData.isEmpty;
+        if (positionStateData.isNotEmpty) {
+          positionedChainId = positionStateData[0]['chain_id'] as String?;
+          positionedTweetId = positionStateData[0]['tweet_id'] as String?;
+          if (kDebugMode) {
+            print('*** _SubscriptionGroupFeedState._listTweets - repository.query - positionedChainId=$positionedChainId, positionedTweetId=$positionedTweetId');
+          }
+        }
       }
 
       for (var chunk in widget.chunks) {
@@ -216,23 +244,22 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
             }
           }
 
-          if (_scrollOffsetReader.currentOffset != null || offset == null) {
-            // Perform our search for the next page of results for this chunk, and add those tweets to our collection
-            var query = _buildSearchQuery(chunk.users);
-            var result = await Twitter.searchTweets(query, widget.includeReplies, limit: 100, cursor: searchCursor, cursorType: cursorType, leanerFeeds: prefs.get(optionLeanerFeeds));
+          // Perform our search for the next page of results for this chunk, and add those tweets to our collection
+          var query = _buildSearchQuery(chunk.users);
+          var result = await Twitter.searchTweets(query, widget.includeReplies, limit: 100, cursor: searchCursor, cursorType: cursorType, leanerFeeds: prefs.get(optionLeanerFeeds));
 
-            if (result.chains.isNotEmpty) {
-              tweets.addAll(result.chains);
+          if (result.chains.isNotEmpty) {
+            tweets.addAll(result.chains);
 
-              // Make sure we insert the set of cursors for this latest chunk, ready for the next time we paginate
-              await repository.insert(tableFeedGroupChunk, {
-                'cursor_id': int.parse(nextCursor),
-                'hash': hash,
-                'cursor_top': result.cursorTop,
-                'cursor_bottom': result.cursorBottom,
-                'response': jsonEncode(result.chains.map((e) => e.toJson()).toList())
-              });
-            }
+            // Make sure we insert the set of cursors for this latest chunk, ready for the next time we paginate
+            await repository.insert(tableFeedGroupChunk, {
+              'group_id': widget.group.id,
+              'cursor_id': int.parse(nextCursor),
+              'hash': hash,
+              'cursor_top': result.cursorTop,
+              'cursor_bottom': result.cursorBottom,
+              'response': jsonEncode(result.chains.map((e) => e.toJson()).toList())
+            });
           }
 
           return tweets;
@@ -256,27 +283,35 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
         return;
       }
 
-      if (result.isEmpty) {
-        _pagingController.appendLastPage([]);
-      } else {
-        // If this page is the same as the last page we received before, assume it's the last page
-        if (nextCursor == _pagingController.nextPageKey) {
-          _pagingController.appendLastPage([]);
-        } else {
-          _pagingController.appendPage(threads, nextCursor);
+      if (positionedChainId != null && !_visiblePositionState.initialized) {
+        int positionedChainIdx = threads.indexWhere((e) => e.id == positionedChainId);
+        int positionedTweetIdx = -1;
+        if (positionedChainIdx > -1 && positionedTweetId != null) {
+          positionedTweetIdx = threads[positionedChainIdx].tweets.indexWhere((e) => e.idStr == positionedTweetId);
+        }
+        _visiblePositionState.chainIdx = positionedChainIdx > -1 ? positionedChainIdx : null;
+        _visiblePositionState.tweetIdx = positionedTweetIdx > -1 ? positionedTweetIdx : null;
+        if (kDebugMode) {
+          print('*** _SubscriptionGroupFeedState._listTweets - setPositionIndexes - _visiblePositionState.chainIdx=${_visiblePositionState.chainIdx}, _visiblePositionState.tweetIdx=${_visiblePositionState.tweetIdx}');
         }
       }
 
-      if (threads.isNotEmpty && _scrollOffsetReader.currentOffset == null && offset != null) {
-        if (kDebugMode) {
-          print('*** _SubscriptionGroupFeedState._listTweets - scrollController.animateTo - offset=$offset, widget.group.id=${widget.group.id}');
+      setState(() {
+        if (cursorKey == null) {
+          _data.clear();
         }
-        widget.scrollController!.animateTo(offset, duration: const Duration(seconds: 1), curve: Curves.easeInOut);
+        _data.addAll(threads);
+        _currentCursorId = nextCursor;
+      });
+
+      _toScroll = false;
+      if (threads.isNotEmpty && !_visiblePositionState.initialized && _visiblePositionState.chainIdx != null) {
+        _toScroll = true;
       }
 
     } catch (e, stackTrace) {
       if (mounted) {
-        _pagingController.error = [e, stackTrace];
+        // probably something to do
       }
     }
   }
@@ -285,6 +320,16 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
   Widget build(BuildContext context) {
     BasePrefService prefs = PrefService.of(context, listen: false);
     _keepFeedOffset = prefs.get(optionKeepFeedOffset);
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (_toScroll) {
+        _toScroll = false;
+        if (kDebugMode) {
+          print('*** _SubscriptionGroupFeedState._listTweets - scrollController.animateTo - index=${_visiblePositionState.chainIdx}, widget.group.id=${widget.group.id}');
+        }
+        widget.scrollController!.scrollTo(index: _visiblePositionState.chainIdx!, duration: const Duration(seconds: 1), curve: Curves.easeInOut);
+      }
+    });
 
     if (widget.chunks.isEmpty) {
       return Scaffold(
@@ -297,7 +342,9 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
     return Scaffold(
       body: RefreshIndicator(
         onRefresh: () async {
-          _pagingController.refresh();
+          await _updateOffset();
+          _resetData();
+          _checkFetchData();
         },
         child: MultiProvider(
           providers: [
@@ -306,34 +353,15 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
             ChangeNotifierProvider<VideoContextState>(
                 create: (_) => VideoContextState(prefs.get(optionMediaDefaultMute))),
           ],
-          child: PagedListView<String?, TweetChain>(
+          child: ScrollablePositionedList.builder(
+            itemCount: _data.length,
+            itemBuilder: (context, index) {
+              TweetChain tc = _data[index];
+              return TweetConversation(key: ValueKey(tc.id), id: tc.id, username: null, isPinned: tc.isPinned, tweets: tc.tweets, visiblePositionState: _visiblePositionState);
+            },
+            itemScrollController: widget.scrollController,
+            itemPositionsListener: _itemPositionsListener,
             padding: const EdgeInsets.only(top: 4),
-            scrollController: widget.scrollController,
-            pagingController: _pagingController,
-            addAutomaticKeepAlives: false,
-            builderDelegate: PagedChildBuilderDelegate(
-              itemBuilder: (context, conversation, index) {
-                return TweetConversation(
-                    id: conversation.id, username: null, tweets: conversation.tweets, isPinned: conversation.isPinned, scrollOffsetReader: _scrollOffsetReader);
-              },
-              newPageErrorIndicatorBuilder: (context) => FullPageErrorWidget(
-                error: _pagingController.error[0],
-                stackTrace: _pagingController.error[1],
-                prefix: L10n.of(context).unable_to_load_the_next_page_of_tweets,
-                onRetry: () => _listTweets(_pagingController.firstPageKey, prefs),
-              ),
-              firstPageErrorIndicatorBuilder: (context) => FullPageErrorWidget(
-                error: _pagingController.error[0],
-                stackTrace: _pagingController.error[1],
-                prefix: L10n.of(context).unable_to_load_the_tweets_for_the_feed,
-                onRetry: () => _listTweets(_pagingController.nextPageKey, prefs),
-              ),
-              noItemsFoundIndicatorBuilder: (context) => Center(
-                child: Text(
-                  L10n.of(context).could_not_find_any_tweets_from_the_last_7_days,
-                ),
-              ),
-            ),
           ),
         ),
       ),

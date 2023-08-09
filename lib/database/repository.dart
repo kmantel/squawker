@@ -11,7 +11,7 @@ const String databaseName = 'squawker.db';
 
 const String tableFeedGroupChunk = 'feed_group_chunk';
 const String tableFeedGroupCursor = 'feed_group_cursor';
-const String tableFeedGroupOffset = 'feed_group_offset';
+const String tableFeedGroupPositionState = 'feed_group_position_state';
 
 const String tableSavedTweet = 'saved_tweet';
 const String tableSearchSubscription = 'search_subscription';
@@ -219,13 +219,23 @@ class Repository {
         Migration(Operation((db) async {
           await db.delete(tableFeedGroupChunk);
         })),
-        SqlMigration('CREATE TABLE IF NOT EXISTS $tableFeedGroupOffset (group_id VARCHAR, offset REAL)',
-          reverseSql: 'DROP TABLE $tableFeedGroupOffset'),
+        SqlMigration('CREATE TABLE IF NOT EXISTS feed_group_offset (group_id VARCHAR, offset REAL)',
+          reverseSql: 'DROP TABLE feed_group_offset'),
+      ],
+      22: [
+        Migration(Operation((db) async {
+          await db.delete(tableFeedGroupChunk);
+        })),
+        SqlMigration('DROP TABLE IF EXISTS feed_group_offset'),
+        SqlMigration('DROP TABLE IF EXISTS $tableFeedGroupChunk'),
+        SqlMigration('CREATE TABLE IF NOT EXISTS $tableFeedGroupChunk (group_id VARCHAR, cursor_id INTEGER NOT NULL, hash VARCHAR NOT NULL, cursor_top VARCHAR, cursor_bottom VARCHAR, response VARCHAR, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)'),
+        SqlMigration('CREATE TABLE IF NOT EXISTS $tableFeedGroupPositionState (group_id VARCHAR, chain_id VARCHAR, tweet_id VARCHAR)',
+            reverseSql: 'DROP TABLE $tableFeedGroupPositionState'),
       ]
     });
     await openDatabase(
       databaseName,
-      version: 21,
+      version: 22,
       onUpgrade: myMigrationPlan,
       onCreate: myMigrationPlan,
       onDowngrade: myMigrationPlan,
@@ -233,10 +243,13 @@ class Repository {
 
     // Clean up any old feed chunks and cursors
     var repository = await writable();
+
     await repository.delete(tableFeedGroupChunk, where: "created_at <= date('now', '-7 day')");
     await repository.delete(tableFeedGroupCursor, where: "created_at <= date('now', '-7 day')");
 
-    log.info('Finished migrating database');
+    int version = await repository.getVersion();
+
+    log.info('Finished migrating database version $version');
 
     return true;
   }

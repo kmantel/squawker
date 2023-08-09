@@ -23,7 +23,7 @@ class _SquawkerTwitterClient extends TwitterClient {
 
   _SquawkerTwitterClient() : super(consumerKey: '', consumerSecret: '', token: '', secret: '');
 
-  static Lock _lock = Lock();
+  static final Lock _lock = Lock();
   static Completer? _guestTokenCompleter;
   static String? _guestToken;
   static int _expiresAt = -1;

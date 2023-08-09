@@ -2,6 +2,7 @@ import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:provider/provider.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:squawker/database/entities.dart';
 import 'package:squawker/database/repository.dart';
 import 'package:squawker/generated/l10n.dart';
@@ -38,7 +39,7 @@ class GroupScreen extends StatelessWidget {
 
 class SubscriptionGroupScreenContent extends StatelessWidget {
   final String id;
-  ScrollController? scrollController = ScrollController();
+  ItemScrollController? scrollController = ItemScrollController();
 
   SubscriptionGroupScreenContent({Key? key, required this.id}) : super(key: key);
 
@@ -125,7 +126,7 @@ class SubscriptionGroupScreen extends StatelessWidget {
                   IconButton(
                       icon: const Icon(Icons.arrow_upward_rounded),
                       onPressed: () async {
-                        await content.scrollController!.animateTo(0,
+                        await content.scrollController!.scrollTo(index: 0,
                             duration: const Duration(seconds: 1), curve: Curves.easeInOut);
                       }),
                   IconButton(
@@ -134,7 +135,6 @@ class SubscriptionGroupScreen extends StatelessWidget {
                         // flush the feed cache before the refresh
                         var repository = await Repository.writable();
                         await repository.delete(tableFeedGroupChunk, where: 'group_id = ?', whereArgs: [id]);
-                        await repository.delete(tableFeedGroupOffset, where: 'group_id = ?', whereArgs: [id]);
                         await model.loadGroup();
                       }),
                   ...actions

@@ -8,10 +8,10 @@ class TweetConversation extends StatefulWidget {
   final String? username;
   final bool isPinned;
   final List<TweetWithCard> tweets;
-  final ScrollOffsetReader? scrollOffsetReader;
+  final VisiblePositionState? visiblePositionState;
 
   const TweetConversation(
-      {Key? key, required this.id, required this.username, required this.isPinned, required this.tweets, this.scrollOffsetReader})
+      {Key? key, required this.id, required this.username, required this.isPinned, required this.tweets, this.visiblePositionState})
       : super(key: key);
 
   @override
@@ -23,7 +23,7 @@ class _TweetConversationState extends State<TweetConversation> {
   Widget build(BuildContext context) {
     if (widget.tweets.length == 1) {
       return TweetTile(
-          clickable: true, tweet: widget.tweets.first, currentUsername: widget.username, isPinned: widget.isPinned, scrollOffsetReader: widget.scrollOffsetReader);
+          conversationId: widget.id, clickable: true, tweet: widget.tweets.first, currentUsername: widget.username, isPinned: widget.isPinned, visiblePositionState: widget.visiblePositionState);
     }
 
     var tiles = [];
@@ -32,12 +32,13 @@ class _TweetConversationState extends State<TweetConversation> {
     // We need to do a simple for loop so we can mark the first item as the thread start
     for (var i = 0; i < tweets.length; i++) {
       tiles.add(TweetTile(
-          clickable: true,
-          tweet: tweets[i],
-          currentUsername: widget.username,
-          isPinned: widget.isPinned,
-          isThread: i == 0,
-          scrollOffsetReader: widget.scrollOffsetReader));
+        conversationId: widget.id,
+        clickable: true,
+        tweet: tweets[i],
+        currentUsername: widget.username,
+        isPinned: widget.isPinned,
+        isThread: i == 0,
+        visiblePositionState: widget.visiblePositionState));
     }
 
     return Container(

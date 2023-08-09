@@ -29,21 +29,23 @@ import 'package:share_plus/share_plus.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class TweetTile extends StatefulWidget {
+  final String? conversationId;
   final bool clickable;
   final String? currentUsername;
   final TweetWithCard tweet;
   final bool isPinned;
   final bool isThread;
-  final ScrollOffsetReader? scrollOffsetReader;
+  final VisiblePositionState? visiblePositionState;
 
   const TweetTile(
       {Key? key,
+      this.conversationId,
       required this.clickable,
       this.currentUsername,
       required this.tweet,
       this.isPinned = false,
       this.isThread = false,
-      this.scrollOffsetReader})
+      this.visiblePositionState})
       : super(key: key);
 
   @override
@@ -342,8 +344,10 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
         key: UniqueKey(),
         onVisibilityChanged: (visibilityInfo) {
           if (visibilityInfo.visibleFraction > 0) {
-            if (widget.scrollOffsetReader != null) {
-              widget.scrollOffsetReader!.readCurrentOffset();
+            if (widget.visiblePositionState != null) {
+              widget.visiblePositionState!.chainId = widget.conversationId;
+              widget.visiblePositionState!.tweetId = this.tweet.idStr;
+              widget.visiblePositionState!.initialized = true;
             }
           }
         },
@@ -423,8 +427,10 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
           key: UniqueKey(),
           onVisibilityChanged: (visibilityInfo) {
             if (visibilityInfo.visibleFraction > 0) {
-              if (widget.scrollOffsetReader != null) {
-                widget.scrollOffsetReader!.readCurrentOffset();
+              if (widget.visiblePositionState != null) {
+                widget.visiblePositionState!.chainId = widget.conversationId;
+                widget.visiblePositionState!.tweetId = this.tweet.idStr;
+                widget.visiblePositionState!.initialized = true;
               }
             }
           },
@@ -504,8 +510,10 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
       key: UniqueKey(),
       onVisibilityChanged: (visibilityInfo) {
         if (visibilityInfo.visibleFraction > 0) {
-          if (widget.scrollOffsetReader != null) {
-            widget.scrollOffsetReader!.readCurrentOffset();
+          if (widget.visiblePositionState != null) {
+            widget.visiblePositionState!.chainId = widget.conversationId;
+            widget.visiblePositionState!.tweetId = this.tweet.idStr;
+            widget.visiblePositionState!.initialized = true;
           }
         }
       },
@@ -745,16 +753,15 @@ class TweetTextPart {
   }
 }
 
-class ScrollOffsetReader {
-  final ScrollController scrollController;
-  double? currentOffset;
+class VisiblePositionState {
+  bool initialized = false;
+  String? chainId;
+  String? tweetId;
+  int? chainIdx;
+  int? tweetIdx;
 
-  ScrollOffsetReader(this.scrollController);
+  VisiblePositionState();
 
-  void readCurrentOffset() {
-    //print('*** ScrollOffsetReader.readCurrentOffset - scrollController.offset=${scrollController.offset}');
-    currentOffset = scrollController.offset;
-  }
 }
 
 enum TranslationStatus { original, translating, translationFailed, translated }

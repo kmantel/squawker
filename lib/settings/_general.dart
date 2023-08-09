@@ -228,7 +228,7 @@ class SettingsGeneralFragment extends StatelessWidget {
             onChange: (value) async {
               if (!value) {
                 var repository = await Repository.writable();
-                await repository.delete(tableFeedGroupOffset);
+                await repository.delete(tableFeedGroupPositionState);
               }
             },
           ),
