@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dotted_border/dotted_border.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:flutter_iconpicker_plus/IconPicker/Packs/Material.dart';
@@ -13,6 +14,7 @@ import 'package:squawker/group/group_model.dart';
 import 'package:squawker/group/group_screen.dart';
 import 'package:squawker/subscriptions/users_model.dart';
 import 'package:squawker/user.dart';
+import 'package:squawker/utils/ui_util.dart';
 import 'package:provider/provider.dart';
 
 Future openSubscriptionGroupDialog(BuildContext context, String? id, String name, String icon) {
@@ -152,6 +154,7 @@ class _SubscriptionGroupEditDialogState extends State<SubscriptionGroupEditDialo
   Set<String> members = <String>{};
   double breakpointScreenWidth1 = 200;
   double breakpointScreenWidth2 = 400;
+  double breakpointTextWidth = 280;
 
   @override
   void initState() {
@@ -251,15 +254,23 @@ class _SubscriptionGroupEditDialogState extends State<SubscriptionGroupEditDialo
       }),
     ];
     double screenWidth = MediaQuery.of(context).size.width;
+    double allTextsWidth = calcTextSize(context, '   ${L10n.of(context).toggle_all}   ${L10n.of(context).delete}   ${L10n.of(context).cancel}  ${L10n.of(context).ok}   ').width;
+    double halfTextsWidth1 = calcTextSize(context, '   ${L10n.of(context).toggle_all}   ${L10n.of(context).delete}   ').width;
+    double halfTextsWidth2 = calcTextSize(context, '   ${L10n.of(context).cancel}   ${L10n.of(context).ok}   ').width;
+    double halfTextsWidth = halfTextsWidth1 > halfTextsWidth2 ? halfTextsWidth1 : halfTextsWidth2;
+    if (kDebugMode) {
+      print('*** _SubscriptionGroupEditDialogState - screenWidth = $screenWidth, allTextsWidth = $allTextsWidth, halfTextsWidth = $halfTextsWidth');
+    }
 
     return AlertDialog(
+      actionsPadding: EdgeInsets.symmetric(horizontal: 0, vertical: screenWidth >= breakpointScreenWidth2 && allTextsWidth < breakpointTextWidth ? 20 : screenWidth >= breakpointScreenWidth1 && halfTextsWidth < breakpointTextWidth ? 10 : 5),
       actions: [
         SizedBox(
           width: screenWidth,
-          child: screenWidth >= breakpointScreenWidth2 ? Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          child: screenWidth >= breakpointScreenWidth2 && allTextsWidth < breakpointTextWidth ? Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             ...buttonsLst1,
             ...buttonsLst2,
-          ]) : screenWidth >= breakpointScreenWidth1 ? Column(mainAxisSize: MainAxisSize.min, children: [
+          ]) : screenWidth >= breakpointScreenWidth1 && halfTextsWidth < breakpointTextWidth ? Column(mainAxisSize: MainAxisSize.min, children: [
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 ...buttonsLst1,
             ]),
