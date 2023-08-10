@@ -315,9 +315,9 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
       if (_toScroll) {
         _toScroll = false;
         if (kDebugMode) {
-          print('*** _SubscriptionGroupFeedState._listTweets - scrollController.scrollTo - index=${_visiblePositionState.chainIdx}, widget.group.id=${widget.group.id}');
+          print('*** _SubscriptionGroupFeedState._listTweets - scrollController.jumpTo - index=${_visiblePositionState.chainIdx}, widget.group.id=${widget.group.id}');
         }
-        widget.scrollController!.scrollTo(index: _visiblePositionState.chainIdx!, duration: const Duration(seconds: 1), curve: Curves.easeInOut);
+        widget.scrollController!.jumpTo(index: _visiblePositionState.chainIdx!);
       }
     });
 
