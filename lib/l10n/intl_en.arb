@@ -416,5 +416,7 @@
   "keep_feed_offset_label": "Keep feeds offset",
   "keep_feed_offset_description": "The timeline offset is kept for feeds when the app restarts",
   "leaner_feeds_label": "Leaner feeds",
-  "leaner_feeds_description": "The tweets from feeds do not display preview links"
+  "leaner_feeds_description": "The tweets from feeds do not display preview links",
+  "tweet_font_size": "Font size",
+  "tweet_font_size_description": "Font size of the tweets"
 }

@@ -394,6 +394,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "trending": MessageLookupByLibrary.simpleMessage("Tendances"),
         "trends": MessageLookupByLibrary.simpleMessage("Tendances"),
         "true_black": MessageLookupByLibrary.simpleMessage("Vrai noir ?"),
+        "tweet_font_size":
+            MessageLookupByLibrary.simpleMessage("Taille de fonte"),
+        "tweet_font_size_description":
+            MessageLookupByLibrary.simpleMessage("Taille de fonte des tweets"),
         "tweets": MessageLookupByLibrary.simpleMessage("Tweets"),
         "tweets_and_replies":
             MessageLookupByLibrary.simpleMessage("Tweets & Réponses"),

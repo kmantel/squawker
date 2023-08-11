@@ -12,3 +12,5 @@ Size calcTextSizeWithStyle(BuildContext context, String text, TextStyle style) {
 Size calcTextSize(BuildContext context, String text) {
   return calcTextSizeWithStyle(context, text, DefaultTextStyle.of(context).style);
 }
+
+

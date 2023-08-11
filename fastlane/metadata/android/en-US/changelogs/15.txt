@@ -1,2 +1,2 @@
 * Fix issue of feature #19 where position is not kept after the fetch of feeds (at startup or after refreshes).
-
+* Fix issue #35 Refresh button in the top bar doesn't work.

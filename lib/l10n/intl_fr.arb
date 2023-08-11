@@ -494,5 +494,7 @@
   "keep_feed_offset_label": "Retenir la position des flux",
   "keep_feed_offset_description": "Retenir la position des flux lors de la réouverture d'appli",
   "leaner_feeds_label": "Flux plus léger",
-  "leaner_feeds_description": "Les tweets de flux ne montrent pas d'aperçu de liens'"
+  "leaner_feeds_description": "Les tweets de flux ne montrent pas d'aperçu de liens'",
+  "tweet_font_size": "Taille de fonte",
+  "tweet_font_size_description": "Taille de fonte des tweets"
 }

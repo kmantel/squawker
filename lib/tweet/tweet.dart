@@ -326,6 +326,8 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
   Widget build(BuildContext context) {
     final prefs = PrefService.of(context, listen: false);
 
+    double optionTweetFontSizeValue = prefs.get<int>(optionTweetFontSize)?.toDouble() ?? DefaultTextStyle.of(context).style.fontSize!;
+
     var shareBaseUrlOption = prefs.get(optionShareBaseUrl);
     var shareBaseUrl =
         shareBaseUrlOption != null && shareBaseUrlOption.isNotEmpty ? shareBaseUrlOption : 'https://twitter.com';
@@ -356,7 +358,7 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
           child: Card(
             child: Container(
                 padding: const EdgeInsets.all(16),
-                child: SelectableText(tweet.text!, style: const TextStyle(fontStyle: FontStyle.italic), contextMenuBuilder: _contextMenuBuilder)),
+                child: SelectableText(tweet.text!, style: TextStyle(fontStyle: FontStyle.italic, fontSize: optionTweetFontSizeValue), contextMenuBuilder: _contextMenuBuilder)),
           ),
         )
       );
@@ -434,7 +436,7 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
               }
             }
           },
-          child: Text(L10n.of(context).the_tweet_did_not_contain_any_text_this_is_unexpected)
+          child: Text(L10n.of(context).the_tweet_did_not_contain_any_text_this_is_unexpected, style: TextStyle(fontSize: optionTweetFontSizeValue))
       );
     }
 
@@ -469,7 +471,7 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
               TextSpan(children: [
                 ..._displayParts.map((e) {
                   if (e.plainText != null) {
-                    return TextSpan(text: e.plainText);
+                    return TextSpan(text: e.plainText, style: TextStyle(fontSize: optionTweetFontSizeValue));
                   } else {
                     return e.entity!;
                   }

@@ -1,0 +1,3 @@
+* Fix issue #38 Unable to create group because [Ok] is outside dialog due to longer german button labels.
+* Change the startup or refresh initial scroll animation to scroll jump.
+* Implement feature #40 Option in settings to increase text size in the app.

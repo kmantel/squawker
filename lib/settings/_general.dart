@@ -73,6 +73,21 @@ class SettingsGeneralFragment extends StatelessWidget {
         ]);
   }
 
+  void _createTweetFontSizeDialog(BuildContext context) async {
+    int? selectedFontSize = await showDialog<int>(
+      context: context,
+      builder: (context) => FontSizePickerDialog(initialFontSize: _getOptionTweetFontSizeValue(context)),
+    );
+    if (selectedFontSize != null) {
+      PrefService.of(context).set<int>(optionTweetFontSize, selectedFontSize);
+    }
+  }
+
+  int _getOptionTweetFontSizeValue(BuildContext context) {
+    int optionTweetFontSizeValue = PrefService.of(context).get<int>(optionTweetFontSize) ?? DefaultTextStyle.of(context).style.fontSize!.round();
+    return optionTweetFontSizeValue;
+  }
+
   Future<void> _appInfo(BuildContext context) async {
     var deviceInfo = DeviceInfoPlugin();
     var packageInfo = await PackageInfo.fromPlatform();
@@ -237,6 +252,12 @@ class SettingsGeneralFragment extends StatelessWidget {
             subtitle: Text(L10n.of(context).leaner_feeds_description),
             pref: optionLeanerFeeds,
           ),
+          PrefButton(
+            title: Text(L10n.of(context).tweet_font_size),
+            subtitle: Text(L10n.of(context).tweet_font_size_description),
+            onTap: () => _createTweetFontSizeDialog(context),
+            child: Text('${_getOptionTweetFontSizeValue(context)} px'),
+          ),
         ]),
       ),
     );
@@ -308,3 +329,64 @@ class DownloadTypeSettingState extends State<DownloadTypeSetting> {
     );
   }
 }
+
+class FontSizePickerDialog extends StatefulWidget {
+  /// initial selection for the slider
+  final int initialFontSize;
+
+  const FontSizePickerDialog({Key? key, required this.initialFontSize}) : super(key: key);
+
+  @override
+  FontSizePickerDialogState createState() => FontSizePickerDialogState();
+}
+
+class FontSizePickerDialogState extends State<FontSizePickerDialog> {
+  /// current selection of the slider
+  late int tweetFontSize;
+
+  @override
+  void initState() {
+    super.initState();
+    tweetFontSize = widget.initialFontSize;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    double defaultFontSize = DefaultTextStyle.of(context).style.fontSize!;
+    double minFontSize = defaultFontSize - 4;
+    double maxFontSize = defaultFontSize + 8;
+    return AlertDialog(
+      title: Text(L10n.of(context).tweet_font_size),
+      content: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text('$tweetFontSize px'),
+          Slider(
+            value: tweetFontSize.toDouble(),
+            min: minFontSize,
+            max: maxFontSize,
+            divisions: ((maxFontSize - minFontSize) / 2).round(),
+            label: '$tweetFontSize px',
+            onChanged: (value) {
+              setState(() {
+                tweetFontSize = value.round();
+              });
+            },
+          ),
+        ]
+      ),
+
+      actions: [
+        TextButton(onPressed: () => Navigator.pop(context), child: Text(L10n.of(context).cancel)),
+        TextButton(
+            onPressed: () async {
+              Navigator.pop(context, tweetFontSize);
+            },
+            child: Text(L10n.of(context).save)
+        )
+      ],
+    );
+  }
+}
+

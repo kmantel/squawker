@@ -2465,6 +2465,26 @@ class L10n {
       args: [],
     );
   }
+
+  /// `Font size`
+  String get tweet_font_size {
+    return Intl.message(
+      'Font size',
+      name: 'tweet_font_size',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Font size of the tweets`
+  String get tweet_font_size_description {
+    return Intl.message(
+      'Font size of the tweets',
+      name: 'tweet_font_size_description',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<L10n> {
