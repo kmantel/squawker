@@ -17,7 +17,6 @@ import 'package:squawker/tweet/tweet.dart';
 import 'package:squawker/utils/iterables.dart';
 import 'package:pref/pref.dart';
 import 'package:provider/provider.dart';
-import 'package:sqflite/sqflite.dart';
 import 'package:synchronized/synchronized.dart';
 
 class SubscriptionGroupFeed extends StatefulWidget {
