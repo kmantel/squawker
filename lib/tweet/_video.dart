@@ -21,7 +21,7 @@ class TweetVideoUrls {
 
 class TweetVideoMetadata {
   final double aspectRatio;
-  final String imageUrl;
+  final String? imageUrl;
   final Future<TweetVideoUrls> Function() streamUrlsBuilder;
 
   TweetVideoMetadata(this.aspectRatio, this.imageUrl, this.streamUrlsBuilder);
@@ -33,7 +33,7 @@ class TweetVideoMetadata {
 
     var variants = media.videoInfo?.variants ?? [];
     var streamUrl = variants[0].url!;
-    var imageUrl = media.mediaUrlHttps!;
+    var imageUrl = media.mediaUrlHttps;
 
     // Find the MP4 video with the highest bitrate
     var downloadUrl = variants
@@ -171,7 +171,11 @@ class _TweetVideoState extends State<TweetVideo> {
               : GestureDetector(
                   onTap: onTapPlay,
                   child: Stack(alignment: Alignment.center, children: [
-                    ExtendedImage.network(widget.metadata.imageUrl, width: double.infinity, fit: BoxFit.fitWidth),
+                    widget.metadata.imageUrl != null ? ExtendedImage.network(widget.metadata.imageUrl!, width: double.infinity, fit: BoxFit.fitWidth) :
+                    FittedBox(
+                      fit: BoxFit.fitWidth,
+                      child: Text(L10n.of(context).thumbnail_not_available),
+                    ),
                     Center(
                       child: FritterCenterPlayButton(
                         backgroundColor: Colors.black54,

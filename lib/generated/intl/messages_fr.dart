@@ -386,6 +386,8 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Cet utilisateur n\'a personne qui le suit !"),
         "thread": MessageLookupByLibrary.simpleMessage("Fil de discussion"),
         "thumbnail": MessageLookupByLibrary.simpleMessage("Miniature"),
+        "thumbnail_not_available":
+            MessageLookupByLibrary.simpleMessage("Vignette non disponible"),
         "timed_out": MessageLookupByLibrary.simpleMessage("Délai expiré"),
         "to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below":
             MessageLookupByLibrary.simpleMessage(

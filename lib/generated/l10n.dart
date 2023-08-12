@@ -2485,6 +2485,16 @@ class L10n {
       args: [],
     );
   }
+
+  /// `Thumbnail not available`
+  String get thumbnail_not_available {
+    return Intl.message(
+      'Thumbnail not available',
+      name: 'thumbnail_not_available',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<L10n> {

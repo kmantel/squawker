@@ -377,6 +377,8 @@ class MessageLookup extends MessageLookupByLibrary {
                 "This user does not have anyone following them!"),
         "thread": MessageLookupByLibrary.simpleMessage("Thread"),
         "thumbnail": MessageLookupByLibrary.simpleMessage("Thumbnail"),
+        "thumbnail_not_available":
+            MessageLookupByLibrary.simpleMessage("Thumbnail not available"),
         "timed_out": MessageLookupByLibrary.simpleMessage("Timed out"),
         "to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below":
             MessageLookupByLibrary.simpleMessage(

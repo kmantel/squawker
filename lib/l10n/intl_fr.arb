@@ -496,5 +496,6 @@
   "leaner_feeds_label": "Flux plus léger",
   "leaner_feeds_description": "Les tweets de flux ne montrent pas d'aperçu de liens'",
   "tweet_font_size": "Taille de fonte",
-  "tweet_font_size_description": "Taille de fonte des tweets"
+  "tweet_font_size_description": "Taille de fonte des tweets",
+  "thumbnail_not_available": "Vignette non disponible"
 }
