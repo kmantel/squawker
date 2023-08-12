@@ -1,0 +1,2 @@
+* Fix issue #37 Wide video doesn't play after going fullscreen.
+* Fix issue of exception raised when video thumbnail image URL is null.
