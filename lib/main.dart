@@ -38,7 +38,6 @@ import 'package:provider/provider.dart';
 import 'package:squawker/utils/urls.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:timeago/timeago.dart' as timeago;
-import 'package:uni_links2/uni_links.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 Future checkForUpdates() async {
@@ -455,62 +454,7 @@ class DefaultPage extends StatefulWidget {
 class _DefaultPageState extends State<DefaultPage> {
   Object? _migrationError;
   StackTrace? _migrationStackTrace;
-  StreamSubscription? _sub;
 
-  void handleInitialLink(Uri link) {
-    // Assume it's a username if there's only one segment (or two segments with the second empty, meaning the URI ends with /)
-    if (link.pathSegments.length == 1 || (link.pathSegments.length == 2 && link.pathSegments.last.isEmpty)) {
-      Navigator.pushReplacementNamed(context, routeProfile,
-          arguments: ProfileScreenArguments.fromScreenName(link.pathSegments.first));
-      return;
-    }
-
-    if (link.pathSegments.length == 2) {
-      var secondSegment = link.pathSegments[1];
-
-      // https://twitter.com/i/redirect?url=https%3A%2F%2Ftwitter.com%2Fi%2Ftopics%2Ftweet%2F1447290060123033601
-      if (secondSegment == 'redirect') {
-        // This is a redirect URL, so we should extract it and use that as our initial link instead
-        var redirect = link.queryParameters['url'];
-        if (redirect == null) {
-          // TODO
-          return;
-        }
-
-        handleInitialLink(Uri.parse(redirect));
-        return;
-      }
-    }
-
-    if (link.pathSegments.length == 3) {
-      var segment2 = link.pathSegments[1];
-      if (segment2 == 'status') {
-        // Assume it's a tweet
-        var username = link.pathSegments[0];
-        var statusId = link.pathSegments[2];
-
-        Navigator.pushReplacementNamed(context, routeStatus,
-            arguments: StatusScreenArguments(
-              id: statusId,
-              username: username,
-            ));
-        return;
-      }
-    }
-
-    if (link.pathSegments.length == 4) {
-      var segment2 = link.pathSegments[1];
-      var segment3 = link.pathSegments[2];
-      var segment4 = link.pathSegments[3];
-
-      // https://twitter.com/i/topics/tweet/1447290060123033601
-      if (segment2 == 'topics' && segment3 == 'tweet') {
-        Navigator.pushReplacementNamed(context, routeStatus,
-            arguments: StatusScreenArguments(id: segment4, username: null));
-        return;
-      }
-    }
-  }
 
   @override
   void initState() {
@@ -525,16 +469,6 @@ class _DefaultPageState extends State<DefaultPage> {
       return true;
     });
 
-    getInitialUri().then((link) {
-      if (link != null) {
-        handleInitialLink(link);
-      }
-
-      // Attach a listener to the stream
-      _sub = uriLinkStream.listen((link) => handleInitialLink(link!), onError: (err) {
-        // TODO: Handle exception by warning the user their action did not succeed
-      });
-    });
   }
 
   @override
@@ -573,6 +507,5 @@ class _DefaultPageState extends State<DefaultPage> {
   @override
   void dispose() {
     super.dispose();
-    _sub?.cancel();
   }
 }
