@@ -1,2 +1,3 @@
 * Fix issue #37 Wide video doesn't play after going fullscreen.
 * Fix issue of exception raised when video thumbnail image URL is null.
+* Fix feature #43 to allow to go back to home page after launching the app from a tweet or profile link.
