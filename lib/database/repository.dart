@@ -19,6 +19,7 @@ const String tableSearchSubscriptionGroupMember = 'search_subscription_group_mem
 const String tableSubscription = 'subscription';
 const String tableSubscriptionGroup = 'subscription_group';
 const String tableSubscriptionGroupMember = 'subscription_group_member';
+const String tableGuestAccount = 'guest_account';
 
 class Repository {
   static final log = Logger('Repository');
@@ -229,11 +230,19 @@ class Repository {
         SqlMigration('CREATE TABLE IF NOT EXISTS $tableFeedGroupChunk (group_id VARCHAR, hash VARCHAR NOT NULL, cursor_top VARCHAR, cursor_bottom VARCHAR, response VARCHAR, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)'),
         SqlMigration('CREATE TABLE IF NOT EXISTS $tableFeedGroupPositionState (group_id VARCHAR, chain_id VARCHAR, tweet_id VARCHAR)',
             reverseSql: 'DROP TABLE IF EXISTS $tableFeedGroupPositionState'),
+      ],
+      23: [
+        Migration(Operation((db) async {
+          await db.delete(tableFeedGroupChunk);
+          await db.delete(tableFeedGroupPositionState);
+        })),
+        SqlMigration('CREATE TABLE IF NOT EXISTS $tableGuestAccount (id_str VARCHAR, screen_name VARCHAR, oauth_token VARCHAR, oauth_token_secret VARCHAR, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)',
+            reverseSql: 'DROP TABLE IF EXISTS $tableGuestAccount'),
       ]
     });
     await openDatabase(
       databaseName,
-      version: 22,
+      version: 23,
       onUpgrade: myMigrationPlan,
       onCreate: myMigrationPlan,
       onDowngrade: myMigrationPlan,
@@ -243,6 +252,7 @@ class Repository {
     var repository = await writable();
 
     await repository.delete(tableFeedGroupChunk, where: "created_at <= date('now', '-7 day')");
+    await repository.delete(tableGuestAccount, where: "created_at < date('now', '-10 day')");
 
     int version = await repository.getVersion();
 

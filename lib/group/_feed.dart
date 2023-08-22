@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:logging/logging.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:squawker/client.dart';
@@ -51,6 +52,7 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
   bool _keepFeedOffset = false;
   List<TweetChain> _data = [];
   bool _toScroll = false;
+  Response? _errorResponse;
 
   @override
   void initState() {
@@ -192,6 +194,7 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
         }
       }
 
+      _errorResponse = null;
       for (var chunk in widget.chunks) {
         var hash = chunk.hash;
 
@@ -236,7 +239,17 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
           if (requestToDo) {
             // Perform our search for the next page of results for this chunk, and add those tweets to our collection
             var query = _buildSearchQuery(chunk.users);
-            var result = await Twitter.searchTweets(query, widget.includeReplies, limit: 100, cursor: searchCursor, cursorType: cursorType, leanerFeeds: prefs.get(optionLeanerFeeds));
+            TweetStatus result;
+            try {
+              result = await Twitter.searchTweets(query, widget.includeReplies, limit: 100,
+                  cursor: searchCursor,
+                  cursorType: cursorType,
+                  leanerFeeds: prefs.get(optionLeanerFeeds));
+            }
+            catch (rsp) {
+              _errorResponse = _errorResponse ?? rsp as Response;
+              return [];
+            }
 
             if (result.chains.isNotEmpty) {
               tweets.addAll(result.chains);

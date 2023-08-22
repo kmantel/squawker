@@ -10,6 +10,7 @@ import 'package:squawker/profile/profile_model.dart';
 import 'package:squawker/user.dart';
 import 'package:squawker/utils/cache.dart';
 import 'package:squawker/utils/iterables.dart';
+import 'package:squawker/client_android.dart';
 import 'package:http/http.dart' as http;
 import 'package:logging/logging.dart';
 import 'package:quiver/iterables.dart';
@@ -32,12 +33,14 @@ class _SquawkerTwitterClient extends TwitterClient {
 
   @override
   Future<http.Response> get(Uri uri, {Map<String, String>? headers, Duration? timeout}) {
-    return fetch(uri, headers: headers).timeout(timeout ?? _defaultTimeout).then((response) {
+    return TwitterAndroid.fetch(uri, headers: headers).timeout(timeout ?? _defaultTimeout).then((response) {
       if (response.statusCode >= 200 && response.statusCode < 300) {
         return response;
       } else {
         return Future.error(response);
       }
+    }, onError: (err) {
+      return Future.error(err);
     });
   }
 
