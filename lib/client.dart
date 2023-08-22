@@ -193,7 +193,7 @@ class Twitter {
   };
 
   static Future<Profile> getProfileById(String id) async {
-    var uri = Uri.https('twitter.com', '/i/api/graphql/Lxg1V9AiIzzXEiP2c8dRnw/UserByRestId', {
+    var uri = Uri.https('api.twitter.com', '/graphql/Lxg1V9AiIzzXEiP2c8dRnw/UserByRestId', {
       'variables': jsonEncode({
         'userId': id,
         'withHighlightedLabel': true,
@@ -215,7 +215,7 @@ class Twitter {
   }
 
   static Future<Profile> getProfileByScreenName(String screenName) async {
-    var uri = Uri.https('twitter.com', '/i/api/graphql/oUZZZ8Oddwxs8Cd3iW3UEA/UserByScreenName', {
+    var uri = Uri.https('api.twitter.com', '/graphql/oUZZZ8Oddwxs8Cd3iW3UEA/UserByScreenName', {
       'variables': jsonEncode({
         'screen_name': screenName,
         'withHighlightedLabel': true,
@@ -356,7 +356,7 @@ class Twitter {
     }
 
     var response =
-        await _twitterApi.client.get(Uri.https('twitter.com', '/i/api/graphql/3XDB26fBve-MmjHaWTUZxA/TweetDetail', {
+        await _twitterApi.client.get(Uri.https('api.twitter.com', '/graphql/3XDB26fBve-MmjHaWTUZxA/TweetDetail', {
       'variables': jsonEncode(variables),
       'features': jsonEncode({
         'rweb_lists_timeline_redesign_enabled': true,
@@ -420,7 +420,7 @@ class Twitter {
       variables['cursor'] = cursor;
     }
 
-    var uri = Uri.https('twitter.com', '/i/api/graphql/nK1dw4oV3k4w5TdtcAdSww/SearchTimeline', {
+    var uri = Uri.https('api.twitter.com', '/graphql/nK1dw4oV3k4w5TdtcAdSww/SearchTimeline', {
       'variables': jsonEncode(variables),
       'features': jsonEncode({
         'rweb_lists_timeline_redesign_enabled': true,
