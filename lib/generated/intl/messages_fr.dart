@@ -157,6 +157,12 @@ class MessageLookup extends MessageLookupByLibrary {
             "Téléchargement impossible. Ce média pourrais être seulement disponible sous forme de flux, ce que Squawker ne sais pas encore télécharger."),
         "download_path":
             MessageLookupByLibrary.simpleMessage("Chemin de téléchargement"),
+        "download_video_best_quality_description":
+            MessageLookupByLibrary.simpleMessage(
+                "Télécharger les vidéos avec la plus grande résolution disponible"),
+        "download_video_best_quality_label":
+            MessageLookupByLibrary.simpleMessage(
+                "Télécharger les vidéos avec la plus grande résolution"),
         "downloading_media":
             MessageLookupByLibrary.simpleMessage("Téléchargement des médias…"),
         "enable_": MessageLookupByLibrary.simpleMessage("Activer  ?"),

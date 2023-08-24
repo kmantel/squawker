@@ -419,5 +419,7 @@
   "leaner_feeds_description": "The tweets from feeds do not display preview links",
   "tweet_font_size": "Font size",
   "tweet_font_size_description": "Font size of the tweets",
-  "thumbnail_not_available": "Thumbnail not available"
+  "thumbnail_not_available": "Thumbnail not available",
+  "download_video_best_quality_label": "Download videos with best quality",
+  "download_video_best_quality_description": "Download videos with the best quality available"
 }

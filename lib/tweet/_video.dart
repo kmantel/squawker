@@ -2,6 +2,8 @@ import 'package:chewie/chewie.dart';
 import 'package:dart_twitter_api/twitter_api.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
+import 'package:pref/pref.dart';
+import 'package:squawker/constants.dart';
 import 'package:squawker/generated/l10n.dart';
 import 'package:squawker/tweet/_video_controls.dart';
 import 'package:squawker/utils/downloads.dart';
@@ -26,7 +28,8 @@ class TweetVideoMetadata {
 
   TweetVideoMetadata(this.aspectRatio, this.imageUrl, this.streamUrlsBuilder);
 
-  factory TweetVideoMetadata.fromMedia(Media media) {
+  factory TweetVideoMetadata.fromMedia(BuildContext context, Media media) {
+    bool downloadBestVideoQuality = PrefService.of(context).get(optionDownloadBestVideoQuality);
     var aspectRatio = media.videoInfo?.aspectRatio == null
         ? 1.0
         : media.videoInfo!.aspectRatio![0] / media.videoInfo!.aspectRatio![1];
@@ -35,12 +38,12 @@ class TweetVideoMetadata {
     var streamUrl = variants[0].url!;
     var imageUrl = media.mediaUrlHttps;
 
-    // Find the MP4 video with the highest bitrate
+    // Find the MP4 video with the lowest or highest bitrate depending of the option
     var downloadUrl = variants
         .where((e) => e.bitrate != null)
         .where((e) => e.url != null)
         .where((e) => e.contentType == 'video/mp4')
-        .sorted((a, b) => a.bitrate!.compareTo(b.bitrate!))
+        .sorted((a, b) => downloadBestVideoQuality ? b.bitrate!.compareTo(a.bitrate!) : a.bitrate!.compareTo(b.bitrate!))
         .map((e) => e.url)
         .firstWhereOrNull((e) => e != null);
 

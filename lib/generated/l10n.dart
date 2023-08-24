@@ -2495,6 +2495,26 @@ class L10n {
       args: [],
     );
   }
+
+  /// `Download videos with best quality`
+  String get download_video_best_quality_label {
+    return Intl.message(
+      'Download videos with best quality',
+      name: 'download_video_best_quality_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Download videos with the best quality available`
+  String get download_video_best_quality_description {
+    return Intl.message(
+      'Download videos with the best quality available',
+      name: 'download_video_best_quality_description',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<L10n> {

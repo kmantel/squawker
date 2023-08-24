@@ -149,6 +149,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "download_media_no_url": MessageLookupByLibrary.simpleMessage(
             "Unable to download. This media may only be available as a stream, which Squawker cannot yet download."),
         "download_path": MessageLookupByLibrary.simpleMessage("Download path"),
+        "download_video_best_quality_description":
+            MessageLookupByLibrary.simpleMessage(
+                "Download videos with the best quality available"),
+        "download_video_best_quality_label":
+            MessageLookupByLibrary.simpleMessage(
+                "Download videos with best quality"),
         "downloading_media":
             MessageLookupByLibrary.simpleMessage("Downloading media..."),
         "enable_": MessageLookupByLibrary.simpleMessage("Enable ?"),

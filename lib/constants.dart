@@ -15,6 +15,8 @@ const optionMediaDefaultMute = 'media.mute';
 const optionDownloadType = 'download.type';
 const optionDownloadPath = 'download.path';
 
+const optionDownloadBestVideoQuality = 'download_best_video_quality';
+
 const optionDownloadTypeDirectory = 'directory';
 const optionDownloadTypeAsk = 'ask';
 

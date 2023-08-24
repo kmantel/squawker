@@ -152,6 +152,7 @@ Future<void> main() async {
     optionMediaSize: 'medium',
     optionMediaDefaultMute: true,
     optionNonConfirmationBiasMode: false,
+    optionDownloadBestVideoQuality: false,
     optionShouldCheckForUpdates: true,
     optionSubscriptionGroupsOrderByAscending: true,
     optionSubscriptionGroupsOrderByField: 'name',

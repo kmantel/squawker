@@ -232,6 +232,11 @@ class SettingsGeneralFragment extends StatelessWidget {
           ),
           const DownloadTypeSetting(),
           PrefSwitch(
+            title: Text(L10n.of(context).download_video_best_quality_label),
+            pref: optionDownloadBestVideoQuality,
+            subtitle: Text(L10n.of(context).download_video_best_quality_description),
+          ),
+          PrefSwitch(
             title: Text(L10n.of(context).activate_non_confirmation_bias_mode_label),
             pref: optionNonConfirmationBiasMode,
             subtitle: Text(L10n.of(context).activate_non_confirmation_bias_mode_description),
