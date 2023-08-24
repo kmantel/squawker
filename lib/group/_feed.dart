@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -76,9 +77,15 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state == AppLifecycleState.paused) {
+    if (state == AppLifecycleState.paused || state == AppLifecycleState.detached) {
       _updateOffset();
     }
+  }
+
+  @override
+  Future<AppExitResponse> didRequestAppExit() async {
+    _updateOffset();
+    return super.didRequestAppExit();
   }
 
   Future<void> _checkFetchData() async {
