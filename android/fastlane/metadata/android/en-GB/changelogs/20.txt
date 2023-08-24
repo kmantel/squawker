@@ -1,4 +1,4 @@
 * Temporary Twitter/X guest account is now valid 20 days instead of 10.
-* Implement feature #48 Option to have best available quality of downloaded videos.
+* Implement feature #48 Option to have best available quality of downloaded videos (thanks @votemp).
 * Fix some tweets that when tapping for detail are giving an error.
 * Implement the push notification permission request for Android >= 13.

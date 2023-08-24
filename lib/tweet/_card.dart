@@ -382,7 +382,10 @@ class TweetCard extends StatelessWidget {
         // https://twitter.com/KwasiKwarteng/status/1573229010779516929
         var uri = card['binding_values']['card_url']['string_value'];
         var image = card['binding_values']['broadcast_thumbnail$imageKey']?['image_value']['url'];
-        var key = card['binding_values']['broadcast_media_key']['string_value'];
+        var key = card['binding_values']['broadcast_media_key']?['string_value'];
+        if (key == null) {
+          return Container();
+        }
 
         var width = double.parse(card['binding_values']['broadcast_width']['string_value']);
         var height = double.parse(card['binding_values']['broadcast_height']['string_value']);
