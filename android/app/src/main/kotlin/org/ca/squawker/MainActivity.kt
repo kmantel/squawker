@@ -1,12 +1,16 @@
 package org.ca.squawker
 
+import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.pm.ResolveInfo
 import android.os.Build
 import android.os.Bundle
+import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
@@ -14,6 +18,8 @@ import io.flutter.plugin.common.MethodChannel
 class MainActivity: FlutterActivity() {
 
     private val CHANNEL = "squawker/android_info"
+
+    private val MY_PERMISSIONS_POST_NOTIFICATIONS = 1
 
     private val textActivityList = ArrayList<ResolveInfo>()
     private val callbackMap = HashMap<Int, MethodChannel.Result>()
@@ -63,6 +69,10 @@ class MainActivity: FlutterActivity() {
                         callbackCode
                     )
                 }
+                "requestPostNotificationsPermissions" -> {
+                    requestPostNotificationsPermissions()
+                    result.success(true)
+                }
                 else -> result.notImplemented()
             }
         }
@@ -101,6 +111,44 @@ class MainActivity: FlutterActivity() {
 
     private fun returnResult(callbackCode: Int, result: String?) {
         callbackMap.remove(callbackCode)?.success(result)
+    }
+
+    private fun requestPostNotificationsPermissions() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.POST_NOTIFICATIONS)) {
+                    Toast.makeText(this, "Please grant permissions to post local notifications", Toast.LENGTH_LONG).show()
+                    ActivityCompat.requestPermissions(this, arrayOf<String>(Manifest.permission.POST_NOTIFICATIONS), MY_PERMISSIONS_POST_NOTIFICATIONS)
+                } else {
+                    ActivityCompat.requestPermissions(this, arrayOf<String>(Manifest.permission.POST_NOTIFICATIONS), MY_PERMISSIONS_POST_NOTIFICATIONS)
+                }
+            }
+            else {
+                this@MainActivity.runOnUiThread {
+                    methodChannel!!.invokeMethod("requestPostNotificationsPermissionsCallback", true)
+                }
+            }
+        }
+        else {
+            this@MainActivity.runOnUiThread {
+                methodChannel!!.invokeMethod("requestPostNotificationsPermissionsCallback", true)
+            }
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            MY_PERMISSIONS_POST_NOTIFICATIONS -> {
+                val granted = false
+                if (grantResults.isNotEmpty()) {
+                    granted = (grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                }
+                this@MainActivity.runOnUiThread {
+                    methodChannel!!.invokeMethod("requestPostNotificationsPermissionsCallback", granted)
+                }
+            }
+        }
     }
 
 }

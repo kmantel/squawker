@@ -32,16 +32,22 @@ class _SquawkerTwitterClient extends TwitterClient {
   static int _tokenRemaining = -1;
 
   @override
-  Future<http.Response> get(Uri uri, {Map<String, String>? headers, Duration? timeout}) {
-    return TwitterAndroid.fetch(uri, headers: headers).timeout(timeout ?? _defaultTimeout).then((response) {
+  Future<http.Response> get(Uri uri, {Map<String, String>? headers, Duration? timeout}) async {
+    try {
+      http.Response response = await TwitterAndroid.fetch(uri, headers: headers).timeout(timeout ?? _defaultTimeout);
       if (response.statusCode >= 200 && response.statusCode < 300) {
         return response;
       } else {
+        log.severe('statusCode: ${response.statusCode}');
+        log.severe('${response.statusCode} - ${utf8.decode(response.bodyBytes.toList())}');
         return Future.error(response);
       }
-    }, onError: (err) {
-      return Future.error(err);
-    });
+    }
+    on Exception catch (err) {
+      log.severe('error:');
+      log.severe(err.toString());
+      return Future.error(ExceptionResponse(err));
+    }
   }
 
   static Future<String> getToken() async {
@@ -304,8 +310,8 @@ class Twitter {
         var result = entry['content']['itemContent']['tweet_results']?['result'];
 
         if (result != null) {
-          replies
-              .add(TweetChain(id: result['rest_id'], tweets: [TweetWithCard.fromGraphqlJson(result)], isPinned: false));
+          result = result['rest_id'] == null ? result['tweet'] : result;
+          replies.add(TweetChain(id: result['rest_id'], tweets: [TweetWithCard.fromGraphqlJson(result)], isPinned: false));
         } else {
           replies.add(TweetChain(id: entryId.substring(6), tweets: [TweetWithCard.tombstone({})], isPinned: false));
         }
@@ -322,8 +328,10 @@ class Twitter {
         for (var item in entry['content']['items']) {
           var itemType = item['item']?['itemContent']?['itemType'];
           if (itemType == 'TimelineTweet') {
-            if (item['item']['itemContent']['tweet_results']?['result'] != null) {
-              tweets.add(TweetWithCard.fromGraphqlJson(item['item']['itemContent']['tweet_results']['result']));
+            var result = item['item']['itemContent']['tweet_results']?['result'];
+            if (result != null) {
+              result = result['rest_id'] == null ? result['tweet'] : result;
+              tweets.add(TweetWithCard.fromGraphqlJson(result));
             } else {
               tweets.add(TweetWithCard.tombstone({}));
             }
@@ -844,6 +852,7 @@ class Twitter {
 
     quotedStatusNotesTweets = filteredTweets.fold({}, (prev, e) {
       var result = e['content']['itemContent']['tweet_results']['result'];
+      result = result['rest_id'] == null ? result['tweet'] : result;
       var restId = result['rest_id'];
       var quotedResult = result['quoted_status_result']?['result'];
       if (quotedResult != null) {
@@ -905,7 +914,7 @@ class Twitter {
   }
 
   static Future<Map<String, dynamic>> getBroadcastDetails(String key) async {
-    var response = await _twitterApi.client.get(Uri.https('twitter.com', '/i/api/1.1/live_video_stream/status/$key'));
+    var response = await _twitterApi.client.get(Uri.https('api.twitter.com', '/1.1/live_video_stream/status/$key'));
 
     return json.decode(response.body);
   }
@@ -989,10 +998,10 @@ class TweetWithCard extends Tweet {
   factory TweetWithCard.fromGraphqlJson(Map<String, dynamic> result) {
     var retweetedStatus = result['retweeted_status_result'] == null
         ? null
-        : TweetWithCard.fromGraphqlJson(result['retweeted_status_result']['result']);
+        : TweetWithCard.fromGraphqlJson(result['retweeted_status_result']['result']['rest_id'] == null ? result['retweeted_status_result']['result']['tweet'] : result['retweeted_status_result']['result']);
     var quotedStatus = result['quoted_status_result'] == null
         ? null
-        : TweetWithCard.fromGraphqlJson(result['quoted_status_result']['result']);
+        : TweetWithCard.fromGraphqlJson(result['quoted_status_result']['result']['rest_id'] == null ? result['quoted_status_result']['result']['tweet'] : result['quoted_status_result']['result']);
     var resCore = result['core']?['user_results']?['result'];
     var user = resCore?['legacy'] == null
         ? null

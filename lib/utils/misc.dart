@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 const androidChannel = MethodChannel('squawker/android_info');
@@ -58,3 +59,21 @@ Future<String?> processTextActivity(int index, String value, bool readonly) asyn
   }) as String?;
   return newValue;
 }
+
+Future requestPostNotificationsPermissions(AsyncCallback callback) async {
+  if (!Platform.isAndroid) {
+    callback();
+    return;
+  }
+  androidChannel.setMethodCallHandler((MethodCall call) async {
+    if (call.method == 'requestPostNotificationsPermissionsCallback') {
+      bool granted = call.arguments;
+      if (granted) {
+        callback();
+      }
+    }
+    return true;
+  });
+  await androidChannel.invokeMethod('requestPostNotificationsPermissions');
+}
+

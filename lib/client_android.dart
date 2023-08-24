@@ -15,6 +15,7 @@ class TwitterAndroid {
   static Map? _guestAccountTokens;
   static int _guestAccountIndex = 0;
   static final Map<String,int> _rateLimitRemaining = {};
+  static final Map<String,int> _rateLimitReset = {};
 
   static Future<String> _getAccessToken() async {
     String oauthConsumerKeySecret = base64.encode(utf8.encode('$_oauthConsumerKey:$_oauthConsumerSecret'));
@@ -36,7 +37,7 @@ class TwitterAndroid {
       }
     }
 
-    throw Exception('Unable to get the access token. The response (${response.statusCode}) from Twitter was: ${response.body}');
+    throw GuestAccountException('Unable to get the access token. The response (${response.statusCode}) from Twitter was: ${response.body}');
   }
 
   static Future<String> _getGuestToken(String accessToken) async {
@@ -53,7 +54,7 @@ class TwitterAndroid {
       }
     }
 
-    throw Exception('Unable to get the guest token. The response (${response.statusCode}) from Twitter was: ${response.body}');
+    throw GuestAccountException('Unable to get the guest token. The response (${response.statusCode}) from Twitter was: ${response.body}');
   }
 
   static Future<String> _getFlowToken(String accessToken, String guestToken) async {
@@ -146,7 +147,7 @@ class TwitterAndroid {
       }
     }
 
-    throw Exception('Unable to get the flow token. The response (${response.statusCode}) from Twitter was: ${response.body}');
+    throw GuestAccountException('Unable to get the flow token. The response (${response.statusCode}) from Twitter was: ${response.body}');
   }
 
   static Future<dynamic> _getGuestAccountFromTwitter(String accessToken, String guestToken, String flowToken) async {
@@ -246,12 +247,12 @@ class TwitterAndroid {
       }
     }
 
-    throw Exception('Unable to get the guest account. The response (${response.statusCode}) from Twitter was: ${response.body}');
+    throw GuestAccountException('Unable to create the guest account. The response (${response.statusCode}) from Twitter was: ${response.body}');
   }
 
-  static Future<Map> _getGuestAccountTokens({bool forceNew = false}) async {
+  static Future<Map> _getGuestAccountTokens() async {
 
-    if (!forceNew && _guestAccountTokens != null) {
+    if (_guestAccountTokens != null) {
       return _guestAccountTokens!;
     }
     Map guestAccountTokens = await _lock.synchronized(() async {
@@ -261,10 +262,7 @@ class TwitterAndroid {
       var repository = await Repository.writable();
 
       int guestAccountIndex = _guestAccountIndex;
-      if (forceNew) {
-        guestAccountIndex++;
-      }
-      var guestAccountDbData = await repository.query(tableGuestAccount, orderBy: 'created_at ASC', limit: (1 + guestAccountIndex));
+      var guestAccountDbData = await repository.query(tableGuestAccount, orderBy: 'created_at ASC', limit: 1);
       if (guestAccountDbData.isNotEmpty) {
         if (guestAccountDbData.length > guestAccountIndex) {
           var guestAccountDb = guestAccountDbData[guestAccountIndex];
@@ -308,8 +306,8 @@ class TwitterAndroid {
     return base64.encode(values).replaceAll(RegExp('[=/+]'), '');
   }
 
-  static Future<String> _getSignOauth(Uri uri, String method, {bool forceNew = false}) async {
-    Map guestAccountTokens = await _getGuestAccountTokens(forceNew: forceNew);
+  static Future<String> _getSignOauth(Uri uri, String method) async {
+    Map guestAccountTokens = await _getGuestAccountTokens();
     Map<String,String> params = Map<String,String>.from(uri.queryParameters);
     params['oauth_version'] = '1.0';
     params['oauth_signature_method'] = 'HMAC-SHA1';
@@ -328,7 +326,10 @@ class TwitterAndroid {
   }
 
   static Future<http.Response> fetch(Uri uri, {Map<String, String>? headers}) async {
-    String authorization = await _getSignOauth(uri, 'GET', forceNew: (_rateLimitRemaining.containsKey(uri.path) && _rateLimitRemaining[uri.path]! == 0));
+    if (_rateLimitRemaining.containsKey(uri.path) && _rateLimitRemaining[uri.path]! == 0) {
+      throw RateLimitException('The request ${uri.path} has reached its limit. Please wait ${DateTime.fromMillisecondsSinceEpoch(_rateLimitReset[uri.path]!).difference(DateTime.now()).inMinutes} minutes.');
+    }
+    String authorization = await _getSignOauth(uri, 'GET');
     var response = await http.get(uri, headers: {
       ...?headers,
       'Authorization': authorization,
@@ -343,15 +344,47 @@ class TwitterAndroid {
     });
 
     var headerRateLimitRemaining = response.headers['x-rate-limit-remaining'];
+    var headerRateLimitReset = response.headers['x-rate-limit-reset'];
 
-    if (headerRateLimitRemaining == null) {
+    if (headerRateLimitRemaining == null || headerRateLimitReset == null) {
       return response;
     }
 
     _rateLimitRemaining[uri.path] = int.parse(headerRateLimitRemaining);
+    _rateLimitReset[uri.path] = int.parse(headerRateLimitReset) * 1000;
 
     return response;
   }
 
 }
+
+class GuestAccountException implements Exception {
+  final String message;
+
+  GuestAccountException(this.message);
+
+  @override
+  String toString() {
+    return message;
+  }
+}
+
+class RateLimitException implements Exception {
+  final String message;
+
+  RateLimitException(this.message);
+
+  @override
+  String toString() {
+    return message;
+  }
+}
+
+class ExceptionResponse extends http.Response {
+  final Exception exception;
+
+  ExceptionResponse(this.exception) : super(exception.toString(), 500);
+
+}
+
 

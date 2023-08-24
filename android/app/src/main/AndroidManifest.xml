@@ -15,6 +15,9 @@
     <!-- Required for importing from qr code -->
     <uses-permission android:name="android.permission.CAMERA" android:required="false"/>
 
+    <!-- Permission for the Android 13 and above -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+
     <!-- io.flutter.app.FlutterApplication is an android.app.Application that
          calls FlutterMain.startInitialization(this); in its onCreate method.
          In most cases you can leave this as-is, but you if you want to provide

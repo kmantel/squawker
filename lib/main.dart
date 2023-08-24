@@ -35,6 +35,7 @@ import 'package:faker/faker.dart';
 import 'package:logging/logging.dart';
 import 'package:pref/pref.dart';
 import 'package:provider/provider.dart';
+import 'package:squawker/utils/misc.dart';
 import 'package:squawker/utils/urls.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:timeago/timeago.dart' as timeago;
@@ -55,20 +56,22 @@ Future checkForUpdates() async {
     final Map<dynamic, dynamic> map = json.decode(contentAsString);
     if (map["tag_name"] != null) {
       if (map["tag_name"] != 'v${packageInfo.version}') {
-        await FlutterLocalNotificationsPlugin().show(
-            0,
-            'An update for Squawker is available! 🚀',
-            'View version ${map["tag_name"]} on Github',
-            const NotificationDetails(
-                android: AndroidNotificationDetails(
-              'updates',
-              'Updates',
-              channelDescription: 'When a new app update is available show a notification',
-              importance: Importance.max,
-              priority: Priority.high,
-              showWhen: false,
-            )),
-            payload: map['html_url']);
+        await requestPostNotificationsPermissions(() async {
+          await FlutterLocalNotificationsPlugin().show(
+              0,
+              'An update for Squawker is available! 🚀',
+              'View version ${map["tag_name"]} on Github',
+              const NotificationDetails(
+                  android: AndroidNotificationDetails(
+                    'updates',
+                    'Updates',
+                    channelDescription: 'When a new app update is available show a notification',
+                    importance: Importance.max,
+                    priority: Priority.high,
+                    showWhen: false,
+                  )),
+              payload: map['html_url']);
+        });
       } else if (map['html_url'].isEmpty) {
         Logger.root.severe('Unable to check for updates');
       }
