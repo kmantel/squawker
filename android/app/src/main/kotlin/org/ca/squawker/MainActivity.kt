@@ -24,10 +24,12 @@ class MainActivity: FlutterActivity() {
     private val textActivityList = ArrayList<ResolveInfo>()
     private val callbackMap = HashMap<Int, MethodChannel.Result>()
 
+    private var methodChannel: MethodChannel? = null
+
     override fun onPause() {
         super.onPause()
         try {
-            java.lang.Thread.sleep(200)
+            Thread.sleep(200)
         } catch (e: InterruptedException) {
             e.printStackTrace()
         }
@@ -52,11 +54,11 @@ class MainActivity: FlutterActivity() {
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
-        MethodChannel(
+        methodChannel = MethodChannel(
             flutterEngine.dartExecutor.binaryMessenger,
             CHANNEL
         )
-        .setMethodCallHandler { call, result ->
+        methodChannel!!.setMethodCallHandler { call, result ->
             when (call.method) {
                 "supportedTextActivityList" -> result.success(getTextActivityList())
                 "processTextActivity" -> {
@@ -118,9 +120,9 @@ class MainActivity: FlutterActivity() {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
                 if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.POST_NOTIFICATIONS)) {
                     Toast.makeText(this, "Please grant permissions to post local notifications", Toast.LENGTH_LONG).show()
-                    ActivityCompat.requestPermissions(this, arrayOf<String>(Manifest.permission.POST_NOTIFICATIONS), MY_PERMISSIONS_POST_NOTIFICATIONS)
+                    ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.POST_NOTIFICATIONS), MY_PERMISSIONS_POST_NOTIFICATIONS)
                 } else {
-                    ActivityCompat.requestPermissions(this, arrayOf<String>(Manifest.permission.POST_NOTIFICATIONS), MY_PERMISSIONS_POST_NOTIFICATIONS)
+                    ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.POST_NOTIFICATIONS), MY_PERMISSIONS_POST_NOTIFICATIONS)
                 }
             }
             else {
@@ -140,7 +142,7 @@ class MainActivity: FlutterActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
             MY_PERMISSIONS_POST_NOTIFICATIONS -> {
-                val granted = false
+                var granted = false
                 if (grantResults.isNotEmpty()) {
                     granted = (grantResults[0] == PackageManager.PERMISSION_GRANTED)
                 }
