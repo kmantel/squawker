@@ -330,8 +330,11 @@ class Twitter {
           if (itemType == 'TimelineTweet') {
             var result = item['item']['itemContent']['tweet_results']?['result'];
             if (result != null) {
-              result = result['rest_id'] == null ? result['tweet'] : result;
-              tweets.add(TweetWithCard.fromGraphqlJson(result));
+              if (result['rest_id'] != null || result['tweet'] != null) {
+                tweets.add(TweetWithCard.fromGraphqlJson(result['rest_id'] != null ? result : result['tweet']));
+              } else {
+                tweets.add(TweetWithCard.tombstone({}));
+              }
             } else {
               tweets.add(TweetWithCard.tombstone({}));
             }
@@ -946,7 +949,7 @@ class TweetWithCard extends Tweet {
     var tweetWithCard = TweetWithCard();
     tweetWithCard.idStr = '';
     tweetWithCard.isTombstone = true;
-    tweetWithCard.text = ((e['richText']?['text'] ?? e['text'] ?? L10n.current.this_tweet_is_unavailable) as String)
+    tweetWithCard.text = ((e['richText']?['text'] ?? e['text']?['text'] ?? L10n.current.this_tweet_is_unavailable) as String)
         .replaceFirst(' Learn more', '');
 
     return tweetWithCard;
