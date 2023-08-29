@@ -1,0 +1,2 @@
+* Implement some safeguards to avoid the Twitter/X 24 hours embargo when rate limits are reached.
+* Implement an automatic Twitter/X guest account creation (one new per IP address per day) if the embargo is in place.

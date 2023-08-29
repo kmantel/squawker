@@ -10,7 +10,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_windowmanager/flutter_windowmanager.dart';
+import 'package:squawker/client.dart';
 
+import 'package:squawker/client_android.dart';
 import 'package:squawker/constants.dart';
 import 'package:squawker/database/repository.dart';
 import 'package:squawker/generated/l10n.dart';
@@ -213,6 +215,12 @@ Future<void> main() async {
 
   var trendLocationModel = UserTrendLocationModel(prefService);
 
+  try {
+    await TwitterAndroid.loadRateLimits();
+  } catch (_) {
+    // Ignore
+  }
+
   runApp(PrefService(
       service: prefService,
       child: MultiProvider(
@@ -243,13 +251,26 @@ class SquawkerApp extends StatefulWidget {
   State<SquawkerApp> createState() => _SquawkerAppState();
 }
 
-class _SquawkerAppState extends State<SquawkerApp> {
+class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
   static final log = Logger('_SquawkerAppState');
 
   String _themeMode = 'system';
   bool _trueBlack = false;
   FlexScheme _colorScheme = FlexScheme.gold;
   Locale? _locale;
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.paused || state == AppLifecycleState.detached) {
+      TwitterAndroid.saveRateLimits();
+    }
+  }
+
+  @override
+  void dispose() {
+    TwitterAndroid.saveRateLimits();
+    super.dispose();
+  }
 
   @override
   void didChangeDependencies() {

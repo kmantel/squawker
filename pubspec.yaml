@@ -16,7 +16,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 
-version: 3.4.2+20
+version: 3.4.3+21
 
 environment:
   sdk: ">=2.18.0 <3.0.0"
@@ -26,6 +26,8 @@ dependency_overrides:
   intl: ^0.17.0
   # Required until device_info_plus updates, as it transitively depends on an old version
   file: ^6.1.4
+  http: ^1.0.0
+  sliver_tools: ^0.2.12
 
 dependencies:
   flutter:
@@ -35,11 +37,11 @@ dependencies:
   auto_direction: ^0.0.6
   chewie: ^1.7.0
   crypto: ^3.0.3
-  dart_twitter_api: ^0.5.7+1
+  dart_twitter_api: ^0.5.8
   device_info_plus: ^9.0.2
   device_preview: ^1.1.0
   dotted_border: ^2.0.0+3
-  extended_image: ^8.0.2
+  extended_image: ^8.1.0
   extended_nested_scroll_view: ^6.0.0
   faker: ^2.1.0
   ffcache: ^1.1.0

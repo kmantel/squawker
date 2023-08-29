@@ -7,6 +7,7 @@ import 'package:http/http.dart';
 import 'package:logging/logging.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:squawker/client.dart';
+import 'package:squawker/client_android.dart';
 import 'package:squawker/constants.dart';
 import 'package:squawker/database/entities.dart';
 import 'package:squawker/database/repository.dart';
@@ -16,6 +17,7 @@ import 'package:squawker/profile/profile.dart';
 import 'package:squawker/tweet/_video.dart';
 import 'package:squawker/tweet/conversation.dart';
 import 'package:squawker/tweet/tweet.dart';
+import 'package:squawker/ui/errors.dart';
 import 'package:squawker/utils/iterables.dart';
 import 'package:pref/pref.dart';
 import 'package:provider/provider.dart';
@@ -202,6 +204,7 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
       }
 
       _errorResponse = null;
+      RateFetchContext fetchContext = RateFetchContext(widget.chunks.length);
       for (var chunk in widget.chunks) {
         var hash = chunk.hash;
 
@@ -251,11 +254,12 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
               result = await Twitter.searchTweets(query, widget.includeReplies, limit: 100,
                   cursor: searchCursor,
                   cursorType: cursorType,
-                  leanerFeeds: prefs.get(optionLeanerFeeds));
+                  leanerFeeds: prefs.get(optionLeanerFeeds),
+                  fetchContext: fetchContext);
             }
             catch (rsp) {
               _errorResponse = _errorResponse ?? rsp as Response;
-              return [];
+              return tweets;
             }
 
             if (result.chains.isNotEmpty) {
@@ -270,6 +274,9 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
                 'response': jsonEncode(result.chains.map((e) => e.toJson()).toList())
               });
             }
+          }
+          else {
+            fetchContext.fetchNoRate();
           }
 
           return tweets;
@@ -338,6 +345,11 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
         }
         widget.scrollController!.jumpTo(index: _visiblePositionState.chainIdx!);
       }
+      if (_errorResponse != null && _data.isNotEmpty && (_errorResponse!.statusCode < 200 || _errorResponse!.statusCode >= 300)) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(_errorResponse!.body),
+        ));
+      }
     });
 
     if (widget.chunks.isEmpty) {
@@ -345,6 +357,12 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
         body: Center(
           child: Text(L10n.of(context).this_group_contains_no_subscriptions),
         ),
+      );
+    }
+
+    if (_errorResponse != null && _data.isEmpty && (_errorResponse!.statusCode < 200 || _errorResponse!.statusCode >= 300)) {
+      return Scaffold(
+          body: FullPageErrorWidget(error: _errorResponse, prefix: 'Error request Twitter/X', stackTrace: null)
       );
     }
 

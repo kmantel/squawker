@@ -20,6 +20,7 @@ const String tableSubscription = 'subscription';
 const String tableSubscriptionGroup = 'subscription_group';
 const String tableSubscriptionGroupMember = 'subscription_group_member';
 const String tableGuestAccount = 'guest_account';
+const String tableRateLimits = 'rate_limits';
 
 class Repository {
   static final log = Logger('Repository');
@@ -238,11 +239,15 @@ class Repository {
         })),
         SqlMigration('CREATE TABLE IF NOT EXISTS $tableGuestAccount (id_str VARCHAR, screen_name VARCHAR, oauth_token VARCHAR, oauth_token_secret VARCHAR, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)',
             reverseSql: 'DROP TABLE IF EXISTS $tableGuestAccount'),
+      ],
+      24: [
+        SqlMigration('CREATE TABLE IF NOT EXISTS $tableRateLimits (remaining VARCHAR, reset VARCHAR)',
+            reverseSql: 'DROP TABLE IF EXISTS $tableRateLimits'),
       ]
     });
     await openDatabase(
       databaseName,
-      version: 23,
+      version: 24,
       onUpgrade: myMigrationPlan,
       onCreate: myMigrationPlan,
       onDowngrade: myMigrationPlan,

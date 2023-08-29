@@ -6,6 +6,8 @@ import 'package:squawker/utils/iterables.dart';
 import 'package:squawker/database/repository.dart';
 import 'package:synchronized/synchronized.dart';
 
+typedef ApplyRates = void Function(int remaining, int reset);
+
 class TwitterAndroid {
 
   static const String _oauthConsumerKey = '3nVuSoBZnx6U4vzUxf5w';
@@ -14,8 +16,39 @@ class TwitterAndroid {
   static final Lock _lock = Lock();
   static Map? _guestAccountTokens;
   static int _guestAccountIndex = 0;
-  static final Map<String,int> _rateLimitRemaining = {};
-  static final Map<String,int> _rateLimitReset = {};
+  static Map<String,int> _rateLimitRemaining = {};
+  static Map<String,int> _rateLimitReset = {};
+  static bool _rateLimitsLoadedFromDb = false;
+
+  static Future<void> loadRateLimits() async {
+    var repository = await Repository.readOnly();
+    var rateLimitsDbData = await repository.query(tableRateLimits);
+    if (rateLimitsDbData.isNotEmpty) {
+      _rateLimitsLoadedFromDb = true;
+      String remainingData = rateLimitsDbData[0]['remaining'] as String;
+      String resetData = rateLimitsDbData[0]['reset'] as String;
+      Map<String,dynamic> rateLimitRemaining = json.decode(remainingData);
+      _rateLimitRemaining = rateLimitRemaining.entries.fold({}, (prev, elm) {
+        prev[elm.key] = elm.value;
+        return prev;
+      });
+      Map<String,dynamic> rateLimitReset = json.decode(resetData);
+      _rateLimitReset = rateLimitReset.entries.fold({}, (prev, elm) {
+        prev[elm.key] = elm.value;
+        return prev;
+      });
+    }
+  }
+
+  static Future<void> saveRateLimits() async {
+    var repository = await Repository.writable();
+    if (_rateLimitsLoadedFromDb) {
+      repository.update(tableRateLimits, {'remaining': json.encode(_rateLimitRemaining), 'reset': json.encode(_rateLimitReset)});
+    }
+    else {
+      repository.insert(tableRateLimits, {'remaining': json.encode(_rateLimitRemaining), 'reset': json.encode(_rateLimitReset)});
+    }
+  }
 
   static Future<String> _getAccessToken() async {
     String oauthConsumerKeySecret = base64.encode(utf8.encode('$_oauthConsumerKey:$_oauthConsumerSecret'));
@@ -250,46 +283,57 @@ class TwitterAndroid {
     throw GuestAccountException('Unable to create the guest account. The response (${response.statusCode}) from Twitter was: ${response.body}');
   }
 
-  static Future<Map> _getGuestAccountTokens() async {
+  static Future<Map> _getGuestAccountTokens({forceNewAccount = false}) async {
 
-    if (_guestAccountTokens != null) {
+    if (!forceNewAccount && _guestAccountTokens != null) {
       return _guestAccountTokens!;
     }
+    Map? currentGuestAccountTokens = _guestAccountTokens;
+    _guestAccountTokens = null;
     Map guestAccountTokens = await _lock.synchronized(() async {
       if (_guestAccountTokens != null) {
         return _guestAccountTokens!;
       }
-      var repository = await Repository.writable();
+      try {
+        var repository = await Repository.writable();
 
-      int guestAccountIndex = _guestAccountIndex;
-      var guestAccountDbData = await repository.query(tableGuestAccount, orderBy: 'created_at ASC', limit: 1);
-      if (guestAccountDbData.isNotEmpty) {
-        if (guestAccountDbData.length > guestAccountIndex) {
-          var guestAccountDb = guestAccountDbData[guestAccountIndex];
-          _guestAccountTokens = {
-            'oauthConsumerKey': _oauthConsumerKey,
-            'oauthConsumerSecret': _oauthConsumerSecret,
-            'oauthToken': guestAccountDb['oauth_token'],
-            'oauthTokenSecret': guestAccountDb['oauth_token_secret']
-          };
-          _guestAccountIndex = guestAccountIndex;
-          return _guestAccountTokens!;
+        int guestAccountIndex = _guestAccountIndex;
+        if (forceNewAccount) {
+          guestAccountIndex++;
         }
+        var guestAccountDbData = await repository.query(tableGuestAccount, orderBy: 'created_at ASC');
+        if (guestAccountDbData.isNotEmpty) {
+          if (guestAccountDbData.length > guestAccountIndex) {
+            var guestAccountDb = guestAccountDbData[guestAccountIndex];
+            _guestAccountTokens = {
+              'oauthConsumerKey': _oauthConsumerKey,
+              'oauthConsumerSecret': _oauthConsumerSecret,
+              'oauthToken': guestAccountDb['oauth_token'],
+              'oauthTokenSecret': guestAccountDb['oauth_token_secret']
+            };
+            _guestAccountIndex = guestAccountIndex;
+            return _guestAccountTokens!;
+          }
+        }
+
+        String accessToken = await _getAccessToken();
+        String guestToken = await _getGuestToken(accessToken);
+        String flowToken = await _getFlowToken(accessToken, guestToken);
+        var guestAccount = await _getGuestAccountFromTwitter(accessToken, guestToken, flowToken);
+        _guestAccountTokens = {
+          'oauthConsumerKey': _oauthConsumerKey,
+          'oauthConsumerSecret': _oauthConsumerSecret,
+          'oauthToken': guestAccount['oauth_token'],
+          'oauthTokenSecret': guestAccount['oauth_token_secret']
+        };
+
+        await repository.insert(tableGuestAccount, guestAccount);
+        return _guestAccountTokens!;
       }
-
-      String accessToken = await _getAccessToken();
-      String guestToken = await _getGuestToken(accessToken);
-      String flowToken = await _getFlowToken(accessToken, guestToken);
-      var guestAccount = await _getGuestAccountFromTwitter(accessToken, guestToken, flowToken);
-      _guestAccountTokens = {
-        'oauthConsumerKey': _oauthConsumerKey,
-        'oauthConsumerSecret': _oauthConsumerSecret,
-        'oauthToken': guestAccount['oauth_token'],
-        'oauthTokenSecret': guestAccount['oauth_token_secret']
-      };
-
-      await repository.insert(tableGuestAccount, guestAccount);
-      return _guestAccountTokens!;
+      catch (err) {
+        _guestAccountTokens = currentGuestAccountTokens;
+        rethrow;
+      }
     });
     return guestAccountTokens;
   }
@@ -306,8 +350,8 @@ class TwitterAndroid {
     return base64.encode(values).replaceAll(RegExp('[=/+]'), '');
   }
 
-  static Future<String> _getSignOauth(Uri uri, String method) async {
-    Map guestAccountTokens = await _getGuestAccountTokens();
+  static Future<String> _getSignOauth(Uri uri, String method, {forceNewAccount = false}) async {
+    Map guestAccountTokens = await _getGuestAccountTokens(forceNewAccount: forceNewAccount);
     Map<String,String> params = Map<String,String>.from(uri.queryParameters);
     params['oauth_version'] = '1.0';
     params['oauth_signature_method'] = 'HMAC-SHA1';
@@ -325,35 +369,56 @@ class TwitterAndroid {
     return 'OAuth realm="http://api.twitter.com/", oauth_version="1.0", oauth_token="${params["oauth_token"]}", oauth_nonce="${params["oauth_nonce"]}", oauth_timestamp="${params["oauth_timestamp"]}", oauth_signature="$signature", oauth_consumer_key="${params["oauth_consumer_key"]}", oauth_signature_method="HMAC-SHA1"';
   }
 
-  static Future<http.Response> fetch(Uri uri, {Map<String, String>? headers}) async {
-    if (_rateLimitRemaining.containsKey(uri.path) && _rateLimitRemaining[uri.path]! == 0) {
-      throw RateLimitException('The request ${uri.path} has reached its limit. Please wait ${DateTime.fromMillisecondsSinceEpoch(_rateLimitReset[uri.path]!).difference(DateTime.now()).inMinutes} minutes.');
-    }
-    String authorization = await _getSignOauth(uri, 'GET');
-    var response = await http.get(uri, headers: {
-      ...?headers,
-      'Authorization': authorization,
-      'Content-Type': 'application/json',
-      'User-Agent': 'TwitterAndroid/9.95.0-release.0 (29950000-r-0) ONEPLUS+A3010/9 (OnePlus;ONEPLUS+A3010;OnePlus;OnePlus3;0;;1;2016)',
-      'X-Twitter-API-Version': '5',
-      'X-Twitter-Client': 'TwitterAndroid',
-      'X-Twitter-Client-Version': '9.95.0-release.0',
-      'OS-Version': '28',
-      'System-User-Agent': 'Dalvik/2.1.0 (Linux; U; Android 9; ONEPLUS A3010 Build/PKQ1.181203.001)',
-      'X-Twitter-Active-User': 'yes'
-    });
+  static Future<http.Response> _doFetch(Uri uri, {Map<String, String>? headers, RateFetchContext? fetchContext, forceNewAccount = false}) async {
+    fetchContext ??= RateFetchContext(1);
+    try {
+      if (_rateLimitRemaining.containsKey(uri.path) && _rateLimitRemaining[uri.path]! < fetchContext.total) {
+        Duration d = DateTime.fromMillisecondsSinceEpoch(_rateLimitReset[uri.path]!).difference(DateTime.now());
+        if (!d.isNegative) {
+          throw RateLimitException('The request ${uri.path} has reached its limit. Please wait ${d.inMinutes} minutes.');
+        }
+      }
+      String authorization = await _getSignOauth(uri, 'GET');
+      var response = await http.get(uri, headers: {
+        ...?headers,
+        'Authorization': authorization,
+        'Content-Type': 'application/json',
+        'User-Agent': 'TwitterAndroid/9.95.0-release.0 (29950000-r-0) ONEPLUS+A3010/9 (OnePlus;ONEPLUS+A3010;OnePlus;OnePlus3;0;;1;2016)',
+        'X-Twitter-API-Version': '5',
+        'X-Twitter-Client': 'TwitterAndroid',
+        'X-Twitter-Client-Version': '9.95.0-release.0',
+        'OS-Version': '28',
+        'System-User-Agent': 'Dalvik/2.1.0 (Linux; U; Android 9; ONEPLUS A3010 Build/PKQ1.181203.001)',
+        'X-Twitter-Active-User': 'yes'
+      });
 
-    var headerRateLimitRemaining = response.headers['x-rate-limit-remaining'];
-    var headerRateLimitReset = response.headers['x-rate-limit-reset'];
+      var headerRateLimitRemaining = response.headers['x-rate-limit-remaining'];
+      var headerRateLimitReset = response.headers['x-rate-limit-reset'];
 
-    if (headerRateLimitRemaining == null || headerRateLimitReset == null) {
+      if (headerRateLimitRemaining == null || headerRateLimitReset == null) {
+        fetchContext.fetchNoRate();
+        return response;
+      }
+
+      fetchContext.fetchWithRate(int.parse(headerRateLimitRemaining), int.parse(headerRateLimitReset) * 1000, (remaining, reset) {
+        _rateLimitRemaining[uri.path] = remaining;
+        _rateLimitReset[uri.path] = reset;
+      });
+
       return response;
     }
+    catch (err) {
+      fetchContext.fetchNoRate();
+      rethrow;
+    }
+  }
 
-    _rateLimitRemaining[uri.path] = int.parse(headerRateLimitRemaining);
-    _rateLimitReset[uri.path] = int.parse(headerRateLimitReset) * 1000;
-
-    return response;
+  static Future<http.Response> fetch(Uri uri, {Map<String, String>? headers, RateFetchContext? fetchContext}) async {
+    http.Response rsp = await _doFetch(uri, headers: headers, fetchContext: fetchContext);
+    if (rsp.statusCode == 429 && rsp.body.contains('Rate limit exceeded')) {
+      rsp = await _doFetch(uri, headers: headers, fetchContext: fetchContext, forceNewAccount: true);
+    }
+    return rsp;
   }
 
 }
@@ -385,6 +450,40 @@ class ExceptionResponse extends http.Response {
 
   ExceptionResponse(this.exception) : super(exception.toString(), 500);
 
+  @override
+  String toString() {
+    return exception.toString();
+  }
 }
 
+class RateFetchContext {
+  int total;
+  int counter = 0;
+  List<int?> remainingLst = [];
+  List<int?> resetLst = [];
 
+  RateFetchContext(this.total);
+
+  void fetchNoRate() {
+    counter++;
+    remainingLst.add(null);
+    resetLst.add(null);
+  }
+
+  void fetchWithRate(int remaining, int reset, ApplyRates callback) {
+    counter++;
+    remainingLst.add(remaining);
+    resetLst.add(reset);
+    if (counter == total) {
+      int minRemaining = double.maxFinite.round();
+      int minReset = 0;
+      for (int i = 0; i < remainingLst.length; i++) {
+        if (remainingLst[i] != null && remainingLst[i]! < minRemaining) {
+          minRemaining = remainingLst[i]!;
+          minReset = resetLst[i]!;
+        }
+      }
+      callback(minRemaining, minReset);
+    }
+  }
+}

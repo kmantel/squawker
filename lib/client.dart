@@ -33,8 +33,12 @@ class _SquawkerTwitterClient extends TwitterClient {
 
   @override
   Future<http.Response> get(Uri uri, {Map<String, String>? headers, Duration? timeout}) async {
+    return getWithRateFetchCtx(uri, headers: headers, timeout: timeout);
+  }
+
+  Future<http.Response> getWithRateFetchCtx(Uri uri, {Map<String, String>? headers, Duration? timeout, RateFetchContext? fetchContext}) async {
     try {
-      http.Response response = await TwitterAndroid.fetch(uri, headers: headers).timeout(timeout ?? _defaultTimeout);
+      http.Response response = await TwitterAndroid.fetch(uri, headers: headers, fetchContext: fetchContext).timeout(timeout ?? _defaultTimeout);
       if (response.statusCode >= 200 && response.statusCode < 300) {
         return response;
       } else {
@@ -452,7 +456,7 @@ class Twitter {
     return createUnconversationedChainsGraphql(timeline, 'tweet', [], true, includeReplies);
   }
 
-  static Future<TweetStatus> searchTweets(String query, bool includeReplies, {int limit = 25, String? cursor, String? cursorType, bool leanerFeeds = false}) async {
+  static Future<TweetStatus> searchTweets(String query, bool includeReplies, {int limit = 25, String? cursor, String? cursorType, bool leanerFeeds = false, RateFetchContext? fetchContext}) async {
     var queryParameters = {
       'q': query,
       'count': limit.toString(),
@@ -484,7 +488,7 @@ class Twitter {
       }
     }
 
-    var response = await _twitterApi.client.get(Uri.https('api.twitter.com', '/1.1/search/tweets.json', queryParameters));
+    var response = await (_twitterApi.client as _SquawkerTwitterClient).getWithRateFetchCtx(Uri.https('api.twitter.com', '/1.1/search/tweets.json', queryParameters), fetchContext: fetchContext);
     var result = json.decode(response.body);
 
     var tweets = result['statuses'];
