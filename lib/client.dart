@@ -384,9 +384,10 @@ class Twitter {
       'focalTweetId': id,
       'referrer': 'tweet',
       'with_rux_injections': false,
-      'includePromotedContent': true,
+      'includePromotedContent': false,
       'withCommunity': true,
-      'withQuickPromoteEligibilityTweetFields': true,
+      'withQuickPromoteEligibilityTweetFields': false,
+      'includeHasBirdwatchNotes': false,
       'withBirdwatchNotes': false,
       'withVoice': true,
       'withV2Timeline': true
