@@ -10,7 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_windowmanager/flutter_windowmanager.dart';
-import 'package:squawker/client.dart';
 
 import 'package:squawker/client_android.dart';
 import 'package:squawker/constants.dart';
@@ -158,7 +157,7 @@ Future<void> main() async {
     optionMediaDefaultMute: true,
     optionNonConfirmationBiasMode: false,
     optionDownloadBestVideoQuality: false,
-    optionShouldCheckForUpdates: true,
+    optionShouldCheckForUpdates: (getFlavor() != 'play' && getFlavor() != 'fdroid') ? true : false,
     optionSubscriptionGroupsOrderByAscending: true,
     optionSubscriptionGroupsOrderByField: 'name',
     optionSubscriptionOrderByAscending: true,

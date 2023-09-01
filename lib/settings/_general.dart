@@ -11,20 +11,11 @@ import 'package:squawker/database/repository.dart';
 import 'package:squawker/generated/l10n.dart';
 import 'package:squawker/home/home_screen.dart';
 import 'package:squawker/utils/iterables.dart';
+import 'package:squawker/utils/misc.dart';
 import 'package:logging/logging.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:pref/pref.dart';
-
-String getFlavor() {
-  const flavor = String.fromEnvironment('app.flavor');
-
-  if (flavor == '') {
-    return 'fdroid';
-  }
-
-  return flavor;
-}
 
 class SettingLocale {
   final String code;
@@ -165,7 +156,7 @@ class SettingsGeneralFragment extends StatelessWidget {
                     .sorted((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()))
                     .map((e) => DropdownMenuItem(value: e.code, child: Text(e.name)))
               ]),
-          if (getFlavor() != 'play')
+          if (getFlavor() != 'play' && getFlavor() != 'fdroid')
             PrefSwitch(
               title: Text(L10n.of(context).should_check_for_updates_label),
               pref: optionShouldCheckForUpdates,

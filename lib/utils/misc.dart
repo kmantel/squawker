@@ -7,6 +7,17 @@ const androidChannel = MethodChannel('squawker/android_info');
 
 List<String>? _supportedTextActivityList;
 
+// values used: github, fdroid, play
+String getFlavor() {
+  const flavor = String.fromEnvironment('app.flavor');
+
+  if (flavor == '') {
+    return 'fdroid';
+  }
+
+  return flavor;
+}
+
 bool findInJSONArray(List arr, String key, String value) {
   for (var item in arr) {
     if (item[key] == value) {
