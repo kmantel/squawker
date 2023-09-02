@@ -141,17 +141,18 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
   String _buildSearchQuery(List<Subscription> users) {
     var query = '';
     if (!widget.includeReplies) {
-      query += '-filter:replies ';
+      query += '-filter:replies AND ';
     }
 
     if (!widget.includeRetweets) {
-      query += '-filter:retweets ';
+      query += '-filter:retweets AND ';
     } else {
-      query += 'include:nativeretweets ';
+      query += 'include:nativeretweets AND ';
     }
 
     var remainingLength = 512 - query.length;
 
+    int cnt = 0;
     for (var user in users) {
       var queryToAdd = '';
       if (user is UserSubscription) {
@@ -162,8 +163,8 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
 
       // If we can add this user to the query and still be less than ~512 characters, do so
       if (query.length + queryToAdd.length < remainingLength) {
-        if (query.isNotEmpty) {
-          query += '+OR+';
+        if (cnt > 0) {
+          query += ' OR ';
         }
 
         query += queryToAdd;
@@ -172,6 +173,7 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
         assert(false, 'should never reach here');
         query = queryToAdd;
       }
+      cnt++;
     }
 
     return query;
