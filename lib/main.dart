@@ -367,6 +367,20 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
         break;
     }
 
+    ThemeData light = FlexThemeData.light(
+      scheme: _colorScheme,
+      surfaceMode: FlexSurfaceMode.highScaffoldLowSurface,
+      blendLevel: 20,
+      appBarOpacity: 0.95,
+      tabBarStyle: FlexTabBarStyle.flutterDefault,
+      subThemesData: const FlexSubThemesData(
+        blendOnLevel: 20,
+        blendOnColors: false,
+      ),
+      visualDensity: FlexColorScheme.comfortablePlatformDensity,
+      useMaterial3: false,
+      appBarStyle: FlexAppBarStyle.primary,
+    );
     return MaterialApp(
       localeListResolutionCallback: (locales, supportedLocales) {
         List supportedLocalesCountryCode = [];
@@ -413,19 +427,17 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
       supportedLocales: L10n.delegate.supportedLocales,
       locale: _locale ?? DevicePreview.locale(context),
       title: 'Squawker',
-      theme: FlexThemeData.light(
-        scheme: _colorScheme,
-        surfaceMode: FlexSurfaceMode.highScaffoldLowSurface,
-        blendLevel: 20,
-        appBarOpacity: 0.95,
-        tabBarStyle: FlexTabBarStyle.flutterDefault,
-        subThemesData: const FlexSubThemesData(
-          blendOnLevel: 20,
-          blendOnColors: false,
-        ),
-        visualDensity: FlexColorScheme.comfortablePlatformDensity,
-        useMaterial3: false,
-        appBarStyle: FlexAppBarStyle.primary,
+      // regression #130295 in flutter Document Checkbox.fillColor behavior change
+      // ref: https://github.com/flutter/flutter/issues/130295
+      theme: light.copyWith(
+        checkboxTheme: light.checkboxTheme.copyWith(
+          fillColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
+            if (!states.contains(MaterialState.selected) && !states.contains(MaterialState.pressed)) {
+              return Colors.white;
+            }
+            return light.checkboxTheme.fillColor!.resolve(states) as Color;
+          })
+        )
       ),
       darkTheme: FlexThemeData.dark(
         scheme: _colorScheme,
