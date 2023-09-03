@@ -337,13 +337,15 @@ class Twitter {
     for (var entry in addEntries) {
       var entryId = entry['entryId'] as String;
       if (entryId.startsWith('tweet-')) {
-        var result = entry['content']['itemContent']['tweet_results']?['result'];
+        if (entry['content']['itemContent']['promotedMetadata'] == null) {
+          var result = entry['content']['itemContent']['tweet_results']?['result'];
 
-        if (result != null) {
-          result = result['rest_id'] == null ? result['tweet'] : result;
-          replies.add(TweetChain(id: result['rest_id'], tweets: [TweetWithCard.fromGraphqlJson(result)], isPinned: false));
-        } else {
-          replies.add(TweetChain(id: entryId.substring(6), tweets: [TweetWithCard.tombstone({})], isPinned: false));
+          if (result != null) {
+            result = result['rest_id'] == null ? result['tweet'] : result;
+            replies.add(TweetChain(id: result['rest_id'], tweets: [TweetWithCard.fromGraphqlJson(result)], isPinned: false));
+          } else {
+            replies.add(TweetChain(id: entryId.substring(6), tweets: [TweetWithCard.tombstone({})], isPinned: false));
+          }
         }
       }
 
@@ -358,15 +360,17 @@ class Twitter {
         for (var item in entry['content']['items']) {
           var itemType = item['item']?['itemContent']?['itemType'];
           if (itemType == 'TimelineTweet') {
-            var result = item['item']['itemContent']['tweet_results']?['result'];
-            if (result != null) {
-              if (result['rest_id'] != null || result['tweet'] != null) {
-                tweets.add(TweetWithCard.fromGraphqlJson(result['rest_id'] != null ? result : result['tweet']));
+            if (item['item']['itemContent']['promotedMetadata'] == null) {
+              var result = item['item']['itemContent']['tweet_results']?['result'];
+              if (result != null) {
+                if (result['rest_id'] != null || result['tweet'] != null) {
+                  tweets.add(TweetWithCard.fromGraphqlJson(result['rest_id'] != null ? result : result['tweet']));
+                } else {
+                  tweets.add(TweetWithCard.tombstone({}));
+                }
               } else {
                 tweets.add(TweetWithCard.tombstone({}));
               }
-            } else {
-              tweets.add(TweetWithCard.tombstone({}));
             }
           }
         }
@@ -382,14 +386,14 @@ class Twitter {
   static Future<TweetStatus> getTweet(String id, {String? cursor}) async {
     var variables = {
       'focalTweetId': id,
-      'referrer': 'tweet',
-      'with_rux_injections': false,
+      //'referrer': 'tweet',
+      //'with_rux_injections': false,
       'includePromotedContent': false,
-      'withCommunity': true,
+      //'withCommunity': true,
       'withQuickPromoteEligibilityTweetFields': false,
       'includeHasBirdwatchNotes': false,
       'withBirdwatchNotes': false,
-      'withVoice': true,
+      'withVoice': false,
       'withV2Timeline': true
     };
 
@@ -805,6 +809,10 @@ class Twitter {
     bool includeTweet(dynamic t) {
       // Exclude any items that aren't tweets
       if (!t['entryId'].startsWith(entryPrefix)) {
+        return false;
+      }
+
+      if (t['content']['itemContent']['promotedMetadata'] != null) {
         return false;
       }
 
