@@ -341,8 +341,13 @@ class Twitter {
           var result = entry['content']['itemContent']['tweet_results']?['result'];
 
           if (result != null) {
-            result = result['rest_id'] == null ? result['tweet'] : result;
-            replies.add(TweetChain(id: result['rest_id'], tweets: [TweetWithCard.fromGraphqlJson(result)], isPinned: false));
+            if (result['rest_id'] != null || result['tweet'] != null) {
+              result = result['rest_id'] != null ? result : result['tweet'];
+              replies.add(TweetChain(id: result['rest_id'], tweets: [TweetWithCard.fromGraphqlJson(result)], isPinned: false));
+            }
+            else {
+              replies.add(TweetChain(id: entryId.substring(6), tweets: [TweetWithCard.tombstone({})], isPinned: false));
+            }
           } else {
             replies.add(TweetChain(id: entryId.substring(6), tweets: [TweetWithCard.tombstone({})], isPinned: false));
           }
@@ -999,7 +1004,7 @@ class TweetWithCard extends Tweet {
     var retweetedStatus = result['retweeted_status_result'] == null
         ? null
         : TweetWithCard.fromGraphqlJson(result['retweeted_status_result']['result']['rest_id'] == null ? result['retweeted_status_result']['result']['tweet'] : result['retweeted_status_result']['result']);
-    var quotedStatus = result['quoted_status_result'] == null
+    var quotedStatus = result['quoted_status_result'] == null || result['quoted_status_result']['result']['tombstone'] != null
         ? null
         : TweetWithCard.fromGraphqlJson(result['quoted_status_result']['result']['rest_id'] == null ? result['quoted_status_result']['result']['tweet'] : result['quoted_status_result']['result']);
     var resCore = result['core']?['user_results']?['result'];
