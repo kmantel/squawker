@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_triple/flutter_triple.dart';
+import 'package:http/http.dart' as http;
 import 'package:squawker/constants.dart';
 import 'package:squawker/generated/l10n.dart';
 import 'package:squawker/home/_feed.dart';
@@ -84,7 +85,14 @@ class _HomeScreenState extends State<_HomeScreen> {
   StreamSubscription? _sub;
   bool _firstInit = false;
 
-  void handleInitialLink(Uri link) {
+  Future<void> handleInitialLink(Uri link) async {
+    if (link.host == 't.co') {
+      Uri lnk = await _resolveShortUrl(link);
+      if (lnk.host != 't.co') {
+        link = lnk;
+      }
+    }
+
     // Assume it's a username if there's only one segment (or two segments with the second empty, meaning the URI ends with /)
     if (link.pathSegments.length == 1 || (link.pathSegments.length == 2 && link.pathSegments.last.isEmpty)) {
       Navigator.pushNamed(context, routeProfile,
@@ -104,25 +112,22 @@ class _HomeScreenState extends State<_HomeScreen> {
           return;
         }
 
-        handleInitialLink(Uri.parse(redirect));
+        await handleInitialLink(Uri.parse(redirect));
         return;
       }
     }
 
-    if (link.pathSegments.length == 3) {
-      var segment2 = link.pathSegments[1];
-      if (segment2 == 'status') {
-        // Assume it's a tweet
-        var username = link.pathSegments[0];
-        var statusId = link.pathSegments[2];
+    if (link.pathSegments.length >= 3 && link.pathSegments[1] == 'status') {
+      // Assume it's a tweet
+      var username = link.pathSegments[0];
+      var statusId = link.pathSegments[2];
 
-        Navigator.pushNamed(context, routeStatus,
-            arguments: StatusScreenArguments(
-              id: statusId,
-              username: username,
-            ));
-        return;
-      }
+      Navigator.pushNamed(context, routeStatus,
+        arguments: StatusScreenArguments(
+          id: statusId,
+          username: username,
+        ));
+      return;
     }
 
     if (link.pathSegments.length == 4) {
@@ -164,12 +169,12 @@ class _HomeScreenState extends State<_HomeScreen> {
     if (!_firstInit) {
       _firstInit = true;
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        getInitialUri().then((link) {
+        getInitialUri().then((link) async {
           if (link != null) {
-            handleInitialLink(link);
+            await handleInitialLink(link);
 
             // Attach a listener to the stream
-            _sub = uriLinkStream.listen((link) => handleInitialLink(link!), onError: (err) {
+            _sub = uriLinkStream.listen((link) async => await handleInitialLink(link!), onError: (err) {
               // TODO: Handle exception by warning the user their action did not succeed
             });
           }
@@ -224,6 +229,14 @@ class _HomeScreenState extends State<_HomeScreen> {
   void dispose() {
     super.dispose();
     _sub?.cancel();
+  }
+
+  Future<Uri> _resolveShortUrl(Uri link) async {
+    http.Request req = http.Request("Get", link)..followRedirects = false;
+    http.Client baseClient = http.Client();
+    http.StreamedResponse response = await baseClient.send(req);
+    String? location = response.headers['location'];
+    return location == null ? link : Uri.parse(location);
   }
 }
 
