@@ -62,7 +62,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Nepodařilo se načíst trendy pro ${widgetPlaceName}";
 
   static String m17(responseStatusCode) =>
-      "Nepodařilo se uložit média. Twitter vrátil stav ${responseStatusCode}";
+      "Nepodařilo se uložit média. Twitter/X vrátil stav ${responseStatusCode}";
 
   static String m18(releaseVersion) =>
       "Aktualizovat na ${releaseVersion} pomocí F-Droidu";
@@ -94,10 +94,10 @@ class MessageLookup extends MessageLookupByLibrary {
             m0,
         "back": MessageLookupByLibrary.simpleMessage("Zpět"),
         "bad_guest_token": MessageLookupByLibrary.simpleMessage(
-            "Twitter zneplatnil náš přístupový token. Zkuste prosím znovu otevřít Squawker!"),
+            "Twitter/X zneplatnil náš přístupový token. Zkuste prosím znovu otevřít Squawker!"),
         "blue_theme_based_on_the_twitter_color_scheme":
             MessageLookupByLibrary.simpleMessage(
-                "Modré téma založené na barevném schématu Twitteru"),
+                "Modré téma založené na barevném schématu Twitter/Xu"),
         "cancel": MessageLookupByLibrary.simpleMessage("Zrušit"),
         "catastrophic_failure":
             MessageLookupByLibrary.simpleMessage("Katastrofické selhání"),
@@ -112,7 +112,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "copied_version_to_clipboard": MessageLookupByLibrary.simpleMessage(
             "Verze zkopírována do schránky"),
         "could_not_contact_twitter": MessageLookupByLibrary.simpleMessage(
-            "Nepodařilo se kontaktovat Twitter"),
+            "Nepodařilo se kontaktovat Twitter/X"),
         "could_not_find_any_tweets_by_this_user":
             MessageLookupByLibrary.simpleMessage(
                 "Nepodařilo se nalézt žádné tweety tohoto uživatele!"),
@@ -155,7 +155,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "ended_timeago_format_endsAt_allowFromNow_true": m3,
         "ends_timeago_format_endsAt_allowFromNow_true": m4,
         "enter_your_twitter_username": MessageLookupByLibrary.simpleMessage(
-            "Zadejte vaše uživatelské jméno na Twitteru"),
+            "Zadejte vaše uživatelské jméno na Twitter/Xu"),
         "export": MessageLookupByLibrary.simpleMessage("Exportovat"),
         "export_settings":
             MessageLookupByLibrary.simpleMessage("Exportovat nastavení?"),
@@ -177,12 +177,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "followers": MessageLookupByLibrary.simpleMessage("Sledující"),
         "following": MessageLookupByLibrary.simpleMessage("Sledování"),
         "forbidden": MessageLookupByLibrary.simpleMessage(
-            "Twitter říká, že přístup k tomuto je zamítnut"),
+            "Twitter/X říká, že přístup k tomuto je zamítnut"),
         "fritter": MessageLookupByLibrary.simpleMessage("Squawker"),
         "fritter_blue":
             MessageLookupByLibrary.simpleMessage("Squawkerová modrá"),
         "functionality_unsupported": MessageLookupByLibrary.simpleMessage(
-            "Tato funkce již není podporována Twitterem!"),
+            "Tato funkce již není podporována Twitter/Xem!"),
         "general": MessageLookupByLibrary.simpleMessage("Obecné"),
         "group_name": m6,
         "groups": MessageLookupByLibrary.simpleMessage("Skupiny"),
@@ -200,7 +200,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "import_data_from_another_device": MessageLookupByLibrary.simpleMessage(
             "Importovat data z jiného zařízení"),
         "import_from_twitter":
-            MessageLookupByLibrary.simpleMessage("Importovat z Twitteru"),
+            MessageLookupByLibrary.simpleMessage("Importovat z Twitter/Xu"),
         "import_subscriptions":
             MessageLookupByLibrary.simpleMessage("Importovat odběry"),
         "imported_snapshot_data_users_so_far": m7,
@@ -246,7 +246,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "not_set": MessageLookupByLibrary.simpleMessage("Nenastaveno"),
         "note_due_to_a_twitter_limitation_not_all_tweets_may_be_included":
             MessageLookupByLibrary.simpleMessage(
-                "Poznámka: kvuli imitaci Twitteru nemusí byt zahrnuty všechny tweety"),
+                "Poznámka: kvuli imitaci Twitter/Xu nemusí byt zahrnuty všechny tweety"),
         "numberFormat_format_total_votes": m9,
         "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "only_public_subscriptions_can_be_imported":
@@ -257,7 +257,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "open_app_settings":
             MessageLookupByLibrary.simpleMessage("Otevřít nastavení aplikace"),
         "page_not_found": MessageLookupByLibrary.simpleMessage(
-            "Twitter říká, že stránka neexistuje, nemusí to ale být pravda"),
+            "Twitter/X říká, že stránka neexistuje, nemusí to ale být pravda"),
         "permission_not_granted": MessageLookupByLibrary.simpleMessage(
             "Oprávnění nebylo uděleno. Zkuste to prosím znovu po jeho udělení!"),
         "pick_a_color":
@@ -275,7 +275,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Ujistěte se, že data, která chcete importovat, se zde nachází a poté stiskněte tlačítko níže."),
         "please_note_that_the_method_fritter_uses_to_import_subscriptions_is_heavily_rate_limited_by_twitter_so_this_may_fail_if_you_have_a_lot_of_followed_accounts":
             MessageLookupByLibrary.simpleMessage(
-                "Vezměte prosím na vědomí, že způsob, který používá Squawker pro import odběrů je silně limitován Twitterem, takže při velkém množství sledovaných účtů může tato akce selhat."),
+                "Vezměte prosím na vědomí, že způsob, který používá Squawker pro import odběrů je silně limitován Twitter/Xem, takže při velkém množství sledovaných účtů může tato akce selhat."),
         "possibly_sensitive":
             MessageLookupByLibrary.simpleMessage("Potenciálně citlivé"),
         "possibly_sensitive_profile": MessageLookupByLibrary.simpleMessage(
@@ -375,7 +375,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "timed_out": MessageLookupByLibrary.simpleMessage("Vypršel čas"),
         "to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below":
             MessageLookupByLibrary.simpleMessage(
-                "Pro import odběrů z existujícího Twitter účtu zadejte níže vaše uživatelské jméno."),
+                "Pro import odběrů z existujícího Twitter/X účtu zadejte níže vaše uživatelské jméno."),
         "toggle_all": MessageLookupByLibrary.simpleMessage("Přepnout vše"),
         "trending": MessageLookupByLibrary.simpleMessage("Trendy"),
         "trends": MessageLookupByLibrary.simpleMessage("Trendy"),

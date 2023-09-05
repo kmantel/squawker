@@ -64,7 +64,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "${widgetPlaceName} için trendler yüklenemiyor";
 
   static String m17(responseStatusCode) =>
-      "Medya kaydedilemiyor. Twitter ${responseStatusCode} durumuyla döndü";
+      "Medya kaydedilemiyor. Twitter/X ${responseStatusCode} durumuyla döndü";
 
   static String m18(releaseVersion) =>
       "F-Droid istemciniz aracılığıyla ${releaseVersion} sürümüne güncelleyin";
@@ -95,10 +95,10 @@ class MessageLookup extends MessageLookupByLibrary {
             m0,
         "back": MessageLookupByLibrary.simpleMessage("Geri"),
         "bad_guest_token": MessageLookupByLibrary.simpleMessage(
-            "Twitter erişim belirtecimizi geçersiz kıldı. Lütfen Squawker\'ı yeniden açmayı deneyin!"),
+            "Twitter/X erişim belirtecimizi geçersiz kıldı. Lütfen Squawker\'ı yeniden açmayı deneyin!"),
         "blue_theme_based_on_the_twitter_color_scheme":
             MessageLookupByLibrary.simpleMessage(
-                "Twitter renk şemasına dayalı mavi tema"),
+                "Twitter/X renk şemasına dayalı mavi tema"),
         "cancel": MessageLookupByLibrary.simpleMessage("İptal et"),
         "catastrophic_failure":
             MessageLookupByLibrary.simpleMessage("Feci arıza"),
@@ -113,7 +113,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "copied_version_to_clipboard":
             MessageLookupByLibrary.simpleMessage("Sürüm panoya kopyalandı"),
         "could_not_contact_twitter": MessageLookupByLibrary.simpleMessage(
-            "Twitter ile iletişim kurulamadı"),
+            "Twitter/X ile iletişim kurulamadı"),
         "could_not_find_any_tweets_by_this_user":
             MessageLookupByLibrary.simpleMessage(
                 "Bu kullanıcının herhangi bir tweeti bulunamadı!"),
@@ -158,7 +158,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "ended_timeago_format_endsAt_allowFromNow_true": m3,
         "ends_timeago_format_endsAt_allowFromNow_true": m4,
         "enter_your_twitter_username": MessageLookupByLibrary.simpleMessage(
-            "Twitter kullanıcı adınızı girin"),
+            "Twitter/X kullanıcı adınızı girin"),
         "export": MessageLookupByLibrary.simpleMessage("Dışa aktar"),
         "export_settings":
             MessageLookupByLibrary.simpleMessage("Ayarlar aktarılsın mı?"),
@@ -180,11 +180,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "followers": MessageLookupByLibrary.simpleMessage("Takipçi"),
         "following": MessageLookupByLibrary.simpleMessage("Takip ediyor"),
         "forbidden": MessageLookupByLibrary.simpleMessage(
-            "Twitter buna erişimin yasak olduğunu söylüyor"),
+            "Twitter/X buna erişimin yasak olduğunu söylüyor"),
         "fritter": MessageLookupByLibrary.simpleMessage("Squawker"),
         "fritter_blue": MessageLookupByLibrary.simpleMessage("Squawker mavisi"),
         "functionality_unsupported": MessageLookupByLibrary.simpleMessage(
-            "Bu işlev artık Twitter tarafından desteklenmiyor!"),
+            "Bu işlev artık Twitter/X tarafından desteklenmiyor!"),
         "general": MessageLookupByLibrary.simpleMessage("Genel"),
         "group_name": m6,
         "groups": MessageLookupByLibrary.simpleMessage("Gruplar"),
@@ -202,7 +202,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "import_data_from_another_device": MessageLookupByLibrary.simpleMessage(
             "Verileri başka bir cihazdan aktarın"),
         "import_from_twitter":
-            MessageLookupByLibrary.simpleMessage("Twitter\'dan içe aktar"),
+            MessageLookupByLibrary.simpleMessage("Twitter/X\'dan içe aktar"),
         "import_subscriptions":
             MessageLookupByLibrary.simpleMessage("Abonelikleri içe aktar"),
         "imported_snapshot_data_users_so_far": m7,
@@ -248,7 +248,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "not_set": MessageLookupByLibrary.simpleMessage("Ayarlanmadı"),
         "note_due_to_a_twitter_limitation_not_all_tweets_may_be_included":
             MessageLookupByLibrary.simpleMessage(
-                "Not: Twitter sınırlaması nedeniyle, tüm tweet\'ler dahil edilmeyebilir"),
+                "Not: Twitter/X sınırlaması nedeniyle, tüm tweet\'ler dahil edilmeyebilir"),
         "numberFormat_format_total_votes": m9,
         "ok": MessageLookupByLibrary.simpleMessage("TAMAM"),
         "only_public_subscriptions_can_be_imported":
@@ -259,7 +259,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "open_app_settings":
             MessageLookupByLibrary.simpleMessage("Uygulama ayarlarını aç"),
         "page_not_found": MessageLookupByLibrary.simpleMessage(
-            "Twitter sayfanın mevcut olmadığını söylüyor, ancak bu doğru olmayabilir"),
+            "Twitter/X sayfanın mevcut olmadığını söylüyor, ancak bu doğru olmayabilir"),
         "permission_not_granted": MessageLookupByLibrary.simpleMessage(
             "İzin verilmedi. Lütfen verdikten sonra tekrar deneyin!"),
         "pick_a_color": MessageLookupByLibrary.simpleMessage("Bir renk seçin!"),
@@ -276,7 +276,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Lütfen içe aktarmak istediğiniz verilerin orada olduğundan emin olun, ardından aşağıdaki içe aktar düğmesine basın."),
         "please_note_that_the_method_fritter_uses_to_import_subscriptions_is_heavily_rate_limited_by_twitter_so_this_may_fail_if_you_have_a_lot_of_followed_accounts":
             MessageLookupByLibrary.simpleMessage(
-                "Squawker\'ın abonelikleri içe aktarmak için kullandığı yöntemin Twitter tarafından yüksek oranda sınırlandırıldığını, bu nedenle çok sayıda takip ettiğiniz hesap varsa bunun başarısız olabileceğini lütfen unutmayın."),
+                "Squawker\'ın abonelikleri içe aktarmak için kullandığı yöntemin Twitter/X tarafından yüksek oranda sınırlandırıldığını, bu nedenle çok sayıda takip ettiğiniz hesap varsa bunun başarısız olabileceğini lütfen unutmayın."),
         "possibly_sensitive":
             MessageLookupByLibrary.simpleMessage("Hassas olabilir"),
         "possibly_sensitive_profile": MessageLookupByLibrary.simpleMessage(
@@ -375,7 +375,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Zaman aşımına uğradı"),
         "to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below":
             MessageLookupByLibrary.simpleMessage(
-                "Mevcut bir Twitter hesabından abonelikleri içe aktarmak için aşağıya kullanıcı adınızı girin."),
+                "Mevcut bir Twitter/X hesabından abonelikleri içe aktarmak için aşağıya kullanıcı adınızı girin."),
         "toggle_all": MessageLookupByLibrary.simpleMessage("Tümünü Aç/Kapat"),
         "trending": MessageLookupByLibrary.simpleMessage("Trendler"),
         "trends": MessageLookupByLibrary.simpleMessage("Trendler"),

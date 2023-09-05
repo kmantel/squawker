@@ -63,7 +63,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Kunne ikke laste ned tendenser for ${widgetPlaceName}";
 
   static String m17(responseStatusCode) =>
-      "Kunne ikke lagre mediafilen. Twitter svarte med ${responseStatusCode}";
+      "Kunne ikke lagre mediafilen. Twitter/X svarte med ${responseStatusCode}";
 
   static String m18(releaseVersion) =>
       "Oppgrader til ${releaseVersion} med din F-Droid-klient";
@@ -93,7 +93,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "back": MessageLookupByLibrary.simpleMessage("Tilbake"),
         "blue_theme_based_on_the_twitter_color_scheme":
             MessageLookupByLibrary.simpleMessage(
-                "Blå drakt basert på Twitter-fargepaletten"),
+                "Blå drakt basert på Twitter/X-fargepaletten"),
         "cancel": MessageLookupByLibrary.simpleMessage("Avbryt"),
         "catastrophic_failure":
             MessageLookupByLibrary.simpleMessage("Katastrofal feil"),
@@ -106,8 +106,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Adresse kopiert til utklippstavle"),
         "copied_version_to_clipboard": MessageLookupByLibrary.simpleMessage(
             "Versjon kopiert til utklippstavlen"),
-        "could_not_contact_twitter":
-            MessageLookupByLibrary.simpleMessage("Kunne ikke kontakte Twitter"),
+        "could_not_contact_twitter": MessageLookupByLibrary.simpleMessage(
+            "Kunne ikke kontakte Twitter/X"),
         "could_not_find_any_tweets_by_this_user":
             MessageLookupByLibrary.simpleMessage(
                 "Kunne ikke finne noen tweets fra denne brukeren!"),
@@ -143,7 +143,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "ended_timeago_format_endsAt_allowFromNow_true": m3,
         "ends_timeago_format_endsAt_allowFromNow_true": m4,
         "enter_your_twitter_username": MessageLookupByLibrary.simpleMessage(
-            "Skriv inn ditt Twitter-brukernavn"),
+            "Skriv inn ditt Twitter/X-brukernavn"),
         "export": MessageLookupByLibrary.simpleMessage("Eksporter"),
         "export_settings":
             MessageLookupByLibrary.simpleMessage("Eksporter innstillinger?"),
@@ -180,7 +180,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "import_data_from_another_device": MessageLookupByLibrary.simpleMessage(
             "Importer data fra en annen enhet"),
         "import_from_twitter":
-            MessageLookupByLibrary.simpleMessage("Importer fra Twitter"),
+            MessageLookupByLibrary.simpleMessage("Importer fra Twitter/X"),
         "import_subscriptions":
             MessageLookupByLibrary.simpleMessage("Importer abonnementer"),
         "imported_snapshot_data_users_so_far": m7,
@@ -217,7 +217,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "not_set": MessageLookupByLibrary.simpleMessage("Ikke satt"),
         "note_due_to_a_twitter_limitation_not_all_tweets_may_be_included":
             MessageLookupByLibrary.simpleMessage(
-                "Merk: På grunn av en Twitter-begrensning kan det hende at ikke alle tweets er inkludert"),
+                "Merk: På grunn av en Twitter/X-begrensning kan det hende at ikke alle tweets er inkludert"),
         "numberFormat_format_total_votes": m9,
         "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "oops_something_went_wrong":
@@ -237,7 +237,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Forsikre deg om at dataen du ønsker å importere er å finne der. Deretter trykker du på «Import»-knappen nedenfor."),
         "please_note_that_the_method_fritter_uses_to_import_subscriptions_is_heavily_rate_limited_by_twitter_so_this_may_fail_if_you_have_a_lot_of_followed_accounts":
             MessageLookupByLibrary.simpleMessage(
-                "Vær oppmerksom på at metoden Squawker bruker for å importere abonnementer er sterkt takstbegrenset av Twitter, så dette kan mislykkes hvis du har mange fulgte kontoer."),
+                "Vær oppmerksom på at metoden Squawker bruker for å importere abonnementer er sterkt takstbegrenset av Twitter/X, så dette kan mislykkes hvis du har mange fulgte kontoer."),
         "prefix": MessageLookupByLibrary.simpleMessage("prefiks"),
         "private_profile":
             MessageLookupByLibrary.simpleMessage("Privat profil"),
@@ -314,7 +314,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "timed_out": MessageLookupByLibrary.simpleMessage("Tidsavbrudd"),
         "to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below":
             MessageLookupByLibrary.simpleMessage(
-                "Skriv inn brukernavnet ditt nedenfor hvis du vil importere abonnementer fra en eksisterende Twitter-konto."),
+                "Skriv inn brukernavnet ditt nedenfor hvis du vil importere abonnementer fra en eksisterende Twitter/X-konto."),
         "toggle_all": MessageLookupByLibrary.simpleMessage("Veksle alt"),
         "trending": MessageLookupByLibrary.simpleMessage("Trender"),
         "trends": MessageLookupByLibrary.simpleMessage("Trender"),

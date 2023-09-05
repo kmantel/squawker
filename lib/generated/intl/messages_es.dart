@@ -37,7 +37,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "no_results": MessageLookupByLibrary.simpleMessage("No hay resultados"),
         "note_due_to_a_twitter_limitation_not_all_tweets_may_be_included":
             MessageLookupByLibrary.simpleMessage(
-                "Nota: Debido a una limitación de Twitter, es posible que no se incluyan todos los tweets"),
+                "Nota: Debido a una limitación de Twitter/X, es posible que no se incluyan todos los tweets"),
         "reporting_an_error":
             MessageLookupByLibrary.simpleMessage("Informar sobre un error"),
         "saved": MessageLookupByLibrary.simpleMessage("Guardado"),

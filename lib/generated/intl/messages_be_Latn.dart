@@ -65,7 +65,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "no_results": MessageLookupByLibrary.simpleMessage("Niama vyniku"),
         "note_due_to_a_twitter_limitation_not_all_tweets_may_be_included":
             MessageLookupByLibrary.simpleMessage(
-                "Zaŭvaha: U suviazi z abmiežavańniem Twitter, nie ŭsie tvity mohuć być uklučany"),
+                "Zaŭvaha: U suviazi z abmiežavańniem Twitter/X, nie ŭsie tvity mohuć być uklučany"),
         "reporting_an_error":
             MessageLookupByLibrary.simpleMessage("Paviedamić ab pamyłcy"),
         "saved": MessageLookupByLibrary.simpleMessage("Zachavanaje"),

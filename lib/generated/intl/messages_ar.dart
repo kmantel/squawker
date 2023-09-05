@@ -92,7 +92,7 @@ class MessageLookup extends MessageLookupByLibrary {
             m0,
         "back": MessageLookupByLibrary.simpleMessage("رجوع"),
         "bad_guest_token": MessageLookupByLibrary.simpleMessage(
-            "لقد ألغى Twitter رمز الوصول الخاص بنا. من فضلك حاول إعادة فتح Squawker!"),
+            "لقد ألغى Twitter/X رمز الوصول الخاص بنا. من فضلك حاول إعادة فتح Squawker!"),
         "blue_theme_based_on_the_twitter_color_scheme":
             MessageLookupByLibrary.simpleMessage(
                 "السمة الزرقاء بنائاً على سمة تويتر"),
@@ -270,7 +270,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "رجائاً تأكد ما إذا كانت البيانات موجودة هناك, ومن ثم اضغط على زر الاستيراد في أدناه."),
         "please_note_that_the_method_fritter_uses_to_import_subscriptions_is_heavily_rate_limited_by_twitter_so_this_may_fail_if_you_have_a_lot_of_followed_accounts":
             MessageLookupByLibrary.simpleMessage(
-                "يرجى ملاحظة أن الطريقة التي يستخدمها Squawker لاستيراد الاشتراكات محدودة بشكل كبير من قبل Twitter ، لذلك قد يفشل هذا إذا كان لديك الكثير من الحسابات المتابعة."),
+                "يرجى ملاحظة أن الطريقة التي يستخدمها Squawker لاستيراد الاشتراكات محدودة بشكل كبير من قبل Twitter/X ، لذلك قد يفشل هذا إذا كان لديك الكثير من الحسابات المتابعة."),
         "possibly_sensitive":
             MessageLookupByLibrary.simpleMessage("يحتمل أن تكون حساسة"),
         "possibly_sensitive_profile": MessageLookupByLibrary.simpleMessage(

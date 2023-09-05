@@ -65,7 +65,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Ei õnnestu laadida hetkel populaarsemaid viiteid ja otsinguid riigile või piirkonnale: ${widgetPlaceName}";
 
   static String m17(responseStatusCode) =>
-      "Meedia salvestamine ei õnnestu. Twitter\'i vastus päringule: ${responseStatusCode}";
+      "Meedia salvestamine ei õnnestu. Twitter/X\'i vastus päringule: ${responseStatusCode}";
 
   static String m18(releaseVersion) =>
       "Uuenduseks versioonini ${releaseVersion} kasuta oma F-Droidi klienti";
@@ -97,10 +97,10 @@ class MessageLookup extends MessageLookupByLibrary {
             m0,
         "back": MessageLookupByLibrary.simpleMessage("Tagasi"),
         "bad_guest_token": MessageLookupByLibrary.simpleMessage(
-            "Twitter on meie juurdepääsutunnuse kehtetuks tunnistanud. Palun proovi uuesti avada Squawker!"),
+            "Twitter/X on meie juurdepääsutunnuse kehtetuks tunnistanud. Palun proovi uuesti avada Squawker!"),
         "blue_theme_based_on_the_twitter_color_scheme":
             MessageLookupByLibrary.simpleMessage(
-                "Sinine värviteema, mille aluseks on Twitteri kujundus"),
+                "Sinine värviteema, mille aluseks on Twitter/Xi kujundus"),
         "cancel": MessageLookupByLibrary.simpleMessage("Katkesta"),
         "catastrophic_failure":
             MessageLookupByLibrary.simpleMessage("Kõik läks ikka väga viltu"),
@@ -114,8 +114,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Kopeerisin aadressi lõikelauale"),
         "copied_version_to_clipboard": MessageLookupByLibrary.simpleMessage(
             "Kopeerisin versiooni lõikelauale"),
-        "could_not_contact_twitter":
-            MessageLookupByLibrary.simpleMessage("Puudub ühendus Twitter\'iga"),
+        "could_not_contact_twitter": MessageLookupByLibrary.simpleMessage(
+            "Puudub ühendus Twitter/X\'iga"),
         "could_not_find_any_tweets_by_this_user":
             MessageLookupByLibrary.simpleMessage(
                 "Ühtegi selle kasutaja säutsu ei lidunud!"),
@@ -160,7 +160,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "ended_timeago_format_endsAt_allowFromNow_true": m3,
         "ends_timeago_format_endsAt_allowFromNow_true": m4,
         "enter_your_twitter_username": MessageLookupByLibrary.simpleMessage(
-            "Sisesta oma Twitteri kasutajanimi"),
+            "Sisesta oma Twitter/Xi kasutajanimi"),
         "export": MessageLookupByLibrary.simpleMessage("Eksport"),
         "export_settings":
             MessageLookupByLibrary.simpleMessage("Kas ekspordime seadistused?"),
@@ -182,12 +182,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "followers": MessageLookupByLibrary.simpleMessage("Jälgijaid"),
         "following": MessageLookupByLibrary.simpleMessage("Jälgitavaid"),
         "forbidden": MessageLookupByLibrary.simpleMessage(
-            "Twitter ütleb, et juurdepääs sellele sisule on keelatud"),
+            "Twitter/X ütleb, et juurdepääs sellele sisule on keelatud"),
         "fritter": MessageLookupByLibrary.simpleMessage("Squawker"),
         "fritter_blue":
             MessageLookupByLibrary.simpleMessage("Squawker\'i sinine"),
         "functionality_unsupported": MessageLookupByLibrary.simpleMessage(
-            "Twitter enam ei võimalda sellise funktsionaalsuse kasutamist!"),
+            "Twitter/X enam ei võimalda sellise funktsionaalsuse kasutamist!"),
         "general": MessageLookupByLibrary.simpleMessage("Üldised seadistused"),
         "group_name": m6,
         "groups": MessageLookupByLibrary.simpleMessage("Grupid"),
@@ -205,7 +205,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "import_data_from_another_device": MessageLookupByLibrary.simpleMessage(
             "Impordi andmed muust seadmest"),
         "import_from_twitter":
-            MessageLookupByLibrary.simpleMessage("Impordi Twitterist"),
+            MessageLookupByLibrary.simpleMessage("Impordi Twitter/Xist"),
         "import_subscriptions":
             MessageLookupByLibrary.simpleMessage("Tellimuste import"),
         "imported_snapshot_data_users_so_far": m7,
@@ -252,7 +252,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "not_set": MessageLookupByLibrary.simpleMessage("Seadistamata"),
         "note_due_to_a_twitter_limitation_not_all_tweets_may_be_included":
             MessageLookupByLibrary.simpleMessage(
-                "Märkus: Twitteri määratud piirangute tõttu ei pruugi kõik säutsud olla kaasatud"),
+                "Märkus: Twitter/Xi määratud piirangute tõttu ei pruugi kõik säutsud olla kaasatud"),
         "numberFormat_format_total_votes": m9,
         "ok": MessageLookupByLibrary.simpleMessage("Sobib"),
         "only_public_subscriptions_can_be_imported":
@@ -263,7 +263,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "open_app_settings":
             MessageLookupByLibrary.simpleMessage("Ava rakenduse seadistused"),
         "page_not_found": MessageLookupByLibrary.simpleMessage(
-            "Twitter ütleb, et lehte pole olemas, kuid see ei pruugi tõsi olla"),
+            "Twitter/X ütleb, et lehte pole olemas, kuid see ei pruugi tõsi olla"),
         "permission_not_granted": MessageLookupByLibrary.simpleMessage(
             "Õigusi pole. Palun proovi pärast loa andmist uuesti!"),
         "pick_a_color":
@@ -281,7 +281,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Palun veendu, et andmed, mida soovid importida, asuvad seal, seejärel vajuta allpool olevat importimisnuppu."),
         "please_note_that_the_method_fritter_uses_to_import_subscriptions_is_heavily_rate_limited_by_twitter_so_this_may_fail_if_you_have_a_lot_of_followed_accounts":
             MessageLookupByLibrary.simpleMessage(
-                "Palun arvesta, et Squawker kasutab tellimuste impordiks päringut, mille kasutamise sagedust Twitter piirab. Seega kui sul on palju jälgitavaid kontosid, siis import ei pruugi õnnestuda."),
+                "Palun arvesta, et Squawker kasutab tellimuste impordiks päringut, mille kasutamise sagedust Twitter/X piirab. Seega kui sul on palju jälgitavaid kontosid, siis import ei pruugi õnnestuda."),
         "possibly_sensitive":
             MessageLookupByLibrary.simpleMessage("Võimalik ebasobilik sisu"),
         "possibly_sensitive_profile": MessageLookupByLibrary.simpleMessage(
@@ -380,7 +380,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "timed_out": MessageLookupByLibrary.simpleMessage("Päring aegus"),
         "to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below":
             MessageLookupByLibrary.simpleMessage(
-                "Olemasoleva Twitteri konto tellimuste impordiks palun sisesta alljärgnevalt oma kasutajanimi."),
+                "Olemasoleva Twitter/Xi konto tellimuste impordiks palun sisesta alljärgnevalt oma kasutajanimi."),
         "toggle_all":
             MessageLookupByLibrary.simpleMessage("Lülita kõik sisse/välja"),
         "trending": MessageLookupByLibrary.simpleMessage("Hetkel populaarne"),

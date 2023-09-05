@@ -63,7 +63,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "No s\'han pogut carregar les tendències per ${widgetPlaceName}";
 
   static String m17(responseStatusCode) =>
-      "No s\'ha pogut desar el suport. Twitter ha retornat un estat de ${responseStatusCode}";
+      "No s\'ha pogut desar el suport. Twitter/X ha retornat un estat de ${responseStatusCode}";
 
   static String m18(releaseVersion) =>
       "Actualitza-ho a ${releaseVersion} a través del client de F-Droid";
@@ -92,10 +92,10 @@ class MessageLookup extends MessageLookupByLibrary {
             m0,
         "back": MessageLookupByLibrary.simpleMessage("Enrere"),
         "bad_guest_token": MessageLookupByLibrary.simpleMessage(
-            "El Twitter ha invalidat el testimoni d\'accés. Si us plau, proveu de tornar a obrir Squawker!"),
+            "El Twitter/X ha invalidat el testimoni d\'accés. Si us plau, proveu de tornar a obrir Squawker!"),
         "blue_theme_based_on_the_twitter_color_scheme":
             MessageLookupByLibrary.simpleMessage(
-                "Tema blau basat en l\'esquema de colors de Twitter"),
+                "Tema blau basat en l\'esquema de colors de Twitter/X"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancelar"),
         "catastrophic_failure":
             MessageLookupByLibrary.simpleMessage("Error catastròfic"),
@@ -109,7 +109,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "copied_version_to_clipboard": MessageLookupByLibrary.simpleMessage(
             "Versió copiada al porta-retalls"),
         "could_not_contact_twitter": MessageLookupByLibrary.simpleMessage(
-            "No s\'ha pogut contactar amb Twitter"),
+            "No s\'ha pogut contactar amb Twitter/X"),
         "could_not_find_any_tweets_by_this_user":
             MessageLookupByLibrary.simpleMessage(
                 "No s\'ha trobat cap tuit d\'aquest usuari!"),
@@ -154,7 +154,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "ended_timeago_format_endsAt_allowFromNow_true": m3,
         "ends_timeago_format_endsAt_allowFromNow_true": m4,
         "enter_your_twitter_username": MessageLookupByLibrary.simpleMessage(
-            "Introdeix el teu nom d\'usuari de Twitter"),
+            "Introdeix el teu nom d\'usuari de Twitter/X"),
         "export": MessageLookupByLibrary.simpleMessage("Exportar"),
         "export_settings":
             MessageLookupByLibrary.simpleMessage("Exportar la configuració?"),
@@ -175,7 +175,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "followers": MessageLookupByLibrary.simpleMessage("Seguidors"),
         "following": MessageLookupByLibrary.simpleMessage("Seguint"),
         "forbidden": MessageLookupByLibrary.simpleMessage(
-            "El Twitter diu que l\'accés a això està prohibit"),
+            "El Twitter/X diu que l\'accés a això està prohibit"),
         "fritter": MessageLookupByLibrary.simpleMessage("Squawker"),
         "fritter_blue": MessageLookupByLibrary.simpleMessage("Squawker blau"),
         "general": MessageLookupByLibrary.simpleMessage("General"),
@@ -195,7 +195,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "import_data_from_another_device": MessageLookupByLibrary.simpleMessage(
             "Importa dades des d\'un altre dispositiu"),
         "import_from_twitter":
-            MessageLookupByLibrary.simpleMessage("Importar de Twitter"),
+            MessageLookupByLibrary.simpleMessage("Importar de Twitter/X"),
         "import_subscriptions":
             MessageLookupByLibrary.simpleMessage("Importar subscripcions"),
         "imported_snapshot_data_users_so_far": m7,
@@ -235,7 +235,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "not_set": MessageLookupByLibrary.simpleMessage("No establert"),
         "note_due_to_a_twitter_limitation_not_all_tweets_may_be_included":
             MessageLookupByLibrary.simpleMessage(
-                "Nota: A causa d\'una limitació de Twitter, no es poden incloure tots els tuits"),
+                "Nota: A causa d\'una limitació de Twitter/X, no es poden incloure tots els tuits"),
         "numberFormat_format_total_votes": m9,
         "ok": MessageLookupByLibrary.simpleMessage("D\'acord"),
         "oops_something_went_wrong": MessageLookupByLibrary.simpleMessage(
@@ -243,7 +243,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "open_app_settings": MessageLookupByLibrary.simpleMessage(
             "Obre la configuració de l\'aplicació"),
         "page_not_found": MessageLookupByLibrary.simpleMessage(
-            "Twitter diu que la pàgina no existeix, però pot ser que no sigui veritat"),
+            "Twitter/X diu que la pàgina no existeix, però pot ser que no sigui veritat"),
         "permission_not_granted": MessageLookupByLibrary.simpleMessage(
             "No s\'ha concedit el permís. Torneu-ho a provar després de concedir-lo!"),
         "pick_a_color": MessageLookupByLibrary.simpleMessage("Tria un color!"),
@@ -260,7 +260,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Assegura\'t que les dades a importar es troben en aquesta direcció, i prem el botó d\'importar a continuació."),
         "please_note_that_the_method_fritter_uses_to_import_subscriptions_is_heavily_rate_limited_by_twitter_so_this_may_fail_if_you_have_a_lot_of_followed_accounts":
             MessageLookupByLibrary.simpleMessage(
-                "Tingueu en compte que el mètode que Squawker utilitza per importar subscripcions està fortament limitat per Twitter, de manera que això pot fallar si teniu molts comptes seguits."),
+                "Tingueu en compte que el mètode que Squawker utilitza per importar subscripcions està fortament limitat per Twitter/X, de manera que això pot fallar si teniu molts comptes seguits."),
         "possibly_sensitive":
             MessageLookupByLibrary.simpleMessage("Potencialment sensible"),
         "possibly_sensitive_profile": MessageLookupByLibrary.simpleMessage(
@@ -354,7 +354,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "timed_out": MessageLookupByLibrary.simpleMessage("Temps excedit"),
         "to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below":
             MessageLookupByLibrary.simpleMessage(
-                "Per importar subscripcions des d\'un compte de Twitter existent, introduïu el vostre nom d\'usuari a continuació."),
+                "Per importar subscripcions des d\'un compte de Twitter/X existent, introduïu el vostre nom d\'usuari a continuació."),
         "toggle_all": MessageLookupByLibrary.simpleMessage("Commuta-ho tot"),
         "trending": MessageLookupByLibrary.simpleMessage("Tendències"),
         "trends": MessageLookupByLibrary.simpleMessage("Tendències"),

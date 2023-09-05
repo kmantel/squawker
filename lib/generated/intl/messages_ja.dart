@@ -58,7 +58,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m16(widgetPlaceName) => "${widgetPlaceName}のトレンドを読み込めませんでした";
 
   static String m17(responseStatusCode) =>
-      "メディアを保存できませんでした。Twitterから返されたステータス：${responseStatusCode}";
+      "メディアを保存できませんでした。Twitter/Xから返されたステータス：${responseStatusCode}";
 
   static String m18(releaseVersion) => "F-Droidクライアントから${releaseVersion}に更新";
 
@@ -82,7 +82,7 @@ class MessageLookup extends MessageLookupByLibrary {
             m0,
         "back": MessageLookupByLibrary.simpleMessage("戻る"),
         "blue_theme_based_on_the_twitter_color_scheme":
-            MessageLookupByLibrary.simpleMessage("Twitterの配色に基づいたブルーのテーマ"),
+            MessageLookupByLibrary.simpleMessage("Twitter/Xの配色に基づいたブルーのテーマ"),
         "cancel": MessageLookupByLibrary.simpleMessage("キャンセル"),
         "catastrophic_failure": MessageLookupByLibrary.simpleMessage("致命的なエラー"),
         "choose": MessageLookupByLibrary.simpleMessage("選択"),
@@ -95,7 +95,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "copied_version_to_clipboard":
             MessageLookupByLibrary.simpleMessage("バージョンをクリップボードにコピーしました"),
         "could_not_contact_twitter":
-            MessageLookupByLibrary.simpleMessage("Twitterにアクセスできませんでした"),
+            MessageLookupByLibrary.simpleMessage("Twitter/Xにアクセスできませんでした"),
         "could_not_find_any_tweets_by_this_user":
             MessageLookupByLibrary.simpleMessage("このユーザのツイートが見つかりません！"),
         "could_not_find_any_tweets_from_the_last_7_days":
@@ -134,7 +134,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "ended_timeago_format_endsAt_allowFromNow_true": m3,
         "ends_timeago_format_endsAt_allowFromNow_true": m4,
         "enter_your_twitter_username":
-            MessageLookupByLibrary.simpleMessage("Twitterユーザ名を入力"),
+            MessageLookupByLibrary.simpleMessage("Twitter/Xユーザ名を入力"),
         "export": MessageLookupByLibrary.simpleMessage("エクスポート"),
         "export_settings": MessageLookupByLibrary.simpleMessage("設定をエクスポート？"),
         "export_subscription_group_members":
@@ -150,7 +150,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "finished_with_snapshotData_users": m5,
         "followers": MessageLookupByLibrary.simpleMessage("フォロワー"),
         "following": MessageLookupByLibrary.simpleMessage("フォロー"),
-        "forbidden": MessageLookupByLibrary.simpleMessage("Twitterによればアクセス禁止"),
+        "forbidden":
+            MessageLookupByLibrary.simpleMessage("Twitter/Xによればアクセス禁止"),
         "fritter": MessageLookupByLibrary.simpleMessage("Squawker"),
         "fritter_blue": MessageLookupByLibrary.simpleMessage("Squawkerブルー"),
         "general": MessageLookupByLibrary.simpleMessage("一般"),
@@ -170,7 +171,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "import_data_from_another_device":
             MessageLookupByLibrary.simpleMessage("他の端末からデータをインポートする"),
         "import_from_twitter":
-            MessageLookupByLibrary.simpleMessage("Twitterからインポート"),
+            MessageLookupByLibrary.simpleMessage("Twitter/Xからインポート"),
         "import_subscriptions":
             MessageLookupByLibrary.simpleMessage("登録アカウントをインポートする"),
         "imported_snapshot_data_users_so_far": m7,
@@ -206,14 +207,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "not_set": MessageLookupByLibrary.simpleMessage("設定しない"),
         "note_due_to_a_twitter_limitation_not_all_tweets_may_be_included":
             MessageLookupByLibrary.simpleMessage(
-                "注意：Twitterの制限により全てのツイートが含まれない可能性があります"),
+                "注意：Twitter/Xの制限により全てのツイートが含まれない可能性があります"),
         "numberFormat_format_total_votes": m9,
         "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "oops_something_went_wrong":
             MessageLookupByLibrary.simpleMessage("問題が発生しました🥲"),
         "open_app_settings": MessageLookupByLibrary.simpleMessage("アプリで開く設定"),
         "page_not_found": MessageLookupByLibrary.simpleMessage(
-            "Twitterはページがないと表示しているが、本当ではないかもしれない"),
+            "Twitter/Xはページがないと表示しているが、本当ではないかもしれない"),
         "permission_not_granted":
             MessageLookupByLibrary.simpleMessage("権限がありません。許可後に再度試してみてください！"),
         "pick_a_color": MessageLookupByLibrary.simpleMessage("色を選択！"),
@@ -228,7 +229,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "インポートしたいデータが存在することを確認し、下のインポートボタンを押してください。"),
         "please_note_that_the_method_fritter_uses_to_import_subscriptions_is_heavily_rate_limited_by_twitter_so_this_may_fail_if_you_have_a_lot_of_followed_accounts":
             MessageLookupByLibrary.simpleMessage(
-                "Squawkerが登録アカウントをインポートする際に使うメソッドはTwitterが厳しくレート制限しているため、フォローアカウントが多い場合は失敗する可能性があります。"),
+                "Squawkerが登録アカウントをインポートする際に使うメソッドはTwitter/Xが厳しくレート制限しているため、フォローアカウントが多い場合は失敗する可能性があります。"),
         "possibly_sensitive_profile": MessageLookupByLibrary.simpleMessage(
             "プロフィールにセンシティブな画像、言語、その他のコンテンツが含まれる可能性があります。表示しますか？"),
         "possibly_sensitive_tweet": MessageLookupByLibrary.simpleMessage(
@@ -306,7 +307,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "timed_out": MessageLookupByLibrary.simpleMessage("タイムアウト"),
         "to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below":
             MessageLookupByLibrary.simpleMessage(
-                "Twitterアカウントから登録アカウントをインポートするには、以下にユーザ名を入力してください。"),
+                "Twitter/Xアカウントから登録アカウントをインポートするには、以下にユーザ名を入力してください。"),
         "toggle_all": MessageLookupByLibrary.simpleMessage("すべて選択"),
         "trending": MessageLookupByLibrary.simpleMessage("トレンド"),
         "trends": MessageLookupByLibrary.simpleMessage("トレンド"),

@@ -31,11 +31,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Aan groep toevoegen"),
         "back": MessageLookupByLibrary.simpleMessage("Terug"),
         "bad_guest_token": MessageLookupByLibrary.simpleMessage(
-            "Twitter heeft onze toegangssleutel ongeldig gemaakt. Probeer Squawker opnieuw te starten!"),
+            "Twitter/X heeft onze toegangssleutel ongeldig gemaakt. Probeer Squawker opnieuw te starten!"),
         "catastrophic_failure":
             MessageLookupByLibrary.simpleMessage("Katastrofale fout"),
         "could_not_contact_twitter": MessageLookupByLibrary.simpleMessage(
-            "Kon geen contact met Twitter krijgen"),
+            "Kon geen contact met Twitter/X krijgen"),
         "could_not_find_any_tweets_by_this_user":
             MessageLookupByLibrary.simpleMessage(
                 "Geen tweets gevonden voor deze gebruiker!"),
@@ -44,16 +44,16 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Kon geen tweets van de laatste 7 dagen vinden!"),
         "filters": MessageLookupByLibrary.simpleMessage("Filters"),
         "forbidden": MessageLookupByLibrary.simpleMessage(
-            "Twitter zegt dat de toegang verboden is"),
+            "Twitter/X zegt dat de toegang verboden is"),
         "include_replies":
             MessageLookupByLibrary.simpleMessage("Reacties toevoegen"),
         "note_due_to_a_twitter_limitation_not_all_tweets_may_be_included":
             MessageLookupByLibrary.simpleMessage(
-                "Opmerking: door een beperking bij Twitter kunnen niet alle tweets worden opgenomen"),
+                "Opmerking: door een beperking bij Twitter/X kunnen niet alle tweets worden opgenomen"),
         "oops_something_went_wrong":
             MessageLookupByLibrary.simpleMessage("Oeps! Er ging iets mis 🥲"),
         "page_not_found": MessageLookupByLibrary.simpleMessage(
-            "Twitter meldt dat deze pagina niet bestaat, maar dit hoeft niet te kloppen"),
+            "Twitter/X meldt dat deze pagina niet bestaat, maar dit hoeft niet te kloppen"),
         "pinned_tweet":
             MessageLookupByLibrary.simpleMessage("Vastgezette tweet"),
         "please_check_your_internet_connection_error_message": m10,

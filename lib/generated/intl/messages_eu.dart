@@ -64,7 +64,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Ezin dira joerak kargatu ${widgetPlaceName}";
 
   static String m17(responseStatusCode) =>
-      "Ezin da multimedia gorde. Twitter-ek ${responseStatusCode} egoerara itzuli du";
+      "Ezin da multimedia gorde. Twitter/X-ek ${responseStatusCode} egoerara itzuli du";
 
   static String m18(releaseVersion) =>
       "Eguneratu ${releaseVersion} zure F-Droid bezeroaren bidez";
@@ -93,10 +93,10 @@ class MessageLookup extends MessageLookupByLibrary {
             m0,
         "back": MessageLookupByLibrary.simpleMessage("Itzuli"),
         "bad_guest_token": MessageLookupByLibrary.simpleMessage(
-            "Twitterrek sarbide-tokena baliogabetu du. Mesedez, saiatu Squawker berriro irekitzen!"),
+            "Twitter/Xrek sarbide-tokena baliogabetu du. Mesedez, saiatu Squawker berriro irekitzen!"),
         "blue_theme_based_on_the_twitter_color_scheme":
             MessageLookupByLibrary.simpleMessage(
-                "Twitter-eko kolore eskeman oinarritutako gai urdina"),
+                "Twitter/X-eko kolore eskeman oinarritutako gai urdina"),
         "cancel": MessageLookupByLibrary.simpleMessage("Ezeztatu"),
         "catastrophic_failure":
             MessageLookupByLibrary.simpleMessage("Akats katastrofikoa"),
@@ -110,7 +110,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "copied_version_to_clipboard": MessageLookupByLibrary.simpleMessage(
             "Kopiatu da bertsioa arbelean"),
         "could_not_contact_twitter": MessageLookupByLibrary.simpleMessage(
-            "Ezin izan da Twitterrekin harremanetan jarri"),
+            "Ezin izan da Twitter/Xrekin harremanetan jarri"),
         "could_not_find_any_tweets_by_this_user":
             MessageLookupByLibrary.simpleMessage(
                 "Ezin izan da erabiltzaile honen txiorik aurkitu!"),
@@ -154,7 +154,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "ended_timeago_format_endsAt_allowFromNow_true": m3,
         "ends_timeago_format_endsAt_allowFromNow_true": m4,
         "enter_your_twitter_username": MessageLookupByLibrary.simpleMessage(
-            "Sartu zure Twitter erabiltzaile-izena"),
+            "Sartu zure Twitter/X erabiltzaile-izena"),
         "export": MessageLookupByLibrary.simpleMessage("Esportatu"),
         "export_settings": MessageLookupByLibrary.simpleMessage(
             "Ezarpenak esportatu nahi dituzu?"),
@@ -175,7 +175,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "followers": MessageLookupByLibrary.simpleMessage("Jarraitzaileak"),
         "following": MessageLookupByLibrary.simpleMessage("Jarraitzen"),
         "forbidden": MessageLookupByLibrary.simpleMessage(
-            "Twitterrek dio horretarako sarbidea debekatuta dagoela"),
+            "Twitter/Xrek dio horretarako sarbidea debekatuta dagoela"),
         "fritter": MessageLookupByLibrary.simpleMessage("Squawker"),
         "fritter_blue": MessageLookupByLibrary.simpleMessage("Squawker urdina"),
         "general": MessageLookupByLibrary.simpleMessage("Orokorra"),
@@ -195,7 +195,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "import_data_from_another_device": MessageLookupByLibrary.simpleMessage(
             "Inportatu datuak beste gailu batetik"),
         "import_from_twitter":
-            MessageLookupByLibrary.simpleMessage("Inportatu Twitter-etik"),
+            MessageLookupByLibrary.simpleMessage("Inportatu Twitter/X-etik"),
         "import_subscriptions":
             MessageLookupByLibrary.simpleMessage("Inportatu harpidetzak"),
         "imported_snapshot_data_users_so_far": m7,
@@ -237,7 +237,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "not_set": MessageLookupByLibrary.simpleMessage("Ez da ezarri"),
         "note_due_to_a_twitter_limitation_not_all_tweets_may_be_included":
             MessageLookupByLibrary.simpleMessage(
-                "Oharra: Twitter-eko muga bat dela eta, litekeena da txio guztiak ez agertzea"),
+                "Oharra: Twitter/X-eko muga bat dela eta, litekeena da txio guztiak ez agertzea"),
         "numberFormat_format_total_votes": m9,
         "ok": MessageLookupByLibrary.simpleMessage("Ados"),
         "oops_something_went_wrong": MessageLookupByLibrary.simpleMessage(
@@ -245,7 +245,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "open_app_settings": MessageLookupByLibrary.simpleMessage(
             "Ireki aplikazioaren ezarpenak"),
         "page_not_found": MessageLookupByLibrary.simpleMessage(
-            "Twitterrek dio orria ez dela existitzen, baina baliteke hori egia ez izatea"),
+            "Twitter/Xrek dio orria ez dela existitzen, baina baliteke hori egia ez izatea"),
         "permission_not_granted": MessageLookupByLibrary.simpleMessage(
             "Ez da baimenik eman. Mesedez, saiatu berriro eman ondoren!"),
         "pick_a_color":
@@ -264,7 +264,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Mesedez, ziurtatu inportatu nahi dituzun datuak bertan daudela, eta sakatu beheko inportazio-botoia."),
         "please_note_that_the_method_fritter_uses_to_import_subscriptions_is_heavily_rate_limited_by_twitter_so_this_may_fail_if_you_have_a_lot_of_followed_accounts":
             MessageLookupByLibrary.simpleMessage(
-                "Kontuan izan Squawker-ek Twitter bidez harpidetzak inportatzeko erabiltzen duen modua oso mugatuta dagoela eta kontu asko jarraian baditu, huts egin dezakeela."),
+                "Kontuan izan Squawker-ek Twitter/X bidez harpidetzak inportatzeko erabiltzen duen modua oso mugatuta dagoela eta kontu asko jarraian baditu, huts egin dezakeela."),
         "possibly_sensitive":
             MessageLookupByLibrary.simpleMessage("Potentzialki sentikorra"),
         "possibly_sensitive_profile": MessageLookupByLibrary.simpleMessage(
@@ -357,7 +357,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "timed_out": MessageLookupByLibrary.simpleMessage("Denbora agortuta"),
         "to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below":
             MessageLookupByLibrary.simpleMessage(
-                "Lehendik dagoen Twitter kontu batetik harpidetzak inportatzeko, idatzi zure erabiltzaile-izena behean."),
+                "Lehendik dagoen Twitter/X kontu batetik harpidetzak inportatzeko, idatzi zure erabiltzaile-izena behean."),
         "toggle_all": MessageLookupByLibrary.simpleMessage("Aktibatu guztiak"),
         "trending": MessageLookupByLibrary.simpleMessage("Joerak"),
         "trends": MessageLookupByLibrary.simpleMessage("Joerak"),

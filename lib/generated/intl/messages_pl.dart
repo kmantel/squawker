@@ -63,7 +63,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Nie można załadować trendów dla ${widgetPlaceName}";
 
   static String m17(responseStatusCode) =>
-      "Nie można zapisać multimediów. Twitter zwrócił status ${responseStatusCode}";
+      "Nie można zapisać multimediów. Twitter/X zwrócił status ${responseStatusCode}";
 
   static String m18(releaseVersion) =>
       "Zaktualizuj do ${releaseVersion} przez klienta F-Droid";
@@ -94,10 +94,10 @@ class MessageLookup extends MessageLookupByLibrary {
             m0,
         "back": MessageLookupByLibrary.simpleMessage("Wstecz"),
         "bad_guest_token": MessageLookupByLibrary.simpleMessage(
-            "Twitter unieważnił nasz token dostępu. Spróbuj ponownie otworzyć Squawkera!"),
+            "Twitter/X unieważnił nasz token dostępu. Spróbuj ponownie otworzyć Squawkera!"),
         "blue_theme_based_on_the_twitter_color_scheme":
             MessageLookupByLibrary.simpleMessage(
-                "Niebieski motyw oparty na kolorystyce Twittera"),
+                "Niebieski motyw oparty na kolorystyce Twitter/Xa"),
         "cancel": MessageLookupByLibrary.simpleMessage("Anuluj"),
         "catastrophic_failure":
             MessageLookupByLibrary.simpleMessage("Katastrofalna awaria"),
@@ -112,7 +112,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "copied_version_to_clipboard": MessageLookupByLibrary.simpleMessage(
             "Skopiowano wersję do schowka"),
         "could_not_contact_twitter": MessageLookupByLibrary.simpleMessage(
-            "Nie udało się połączyć z Twitterem"),
+            "Nie udało się połączyć z Twitter/Xem"),
         "could_not_find_any_tweets_by_this_user":
             MessageLookupByLibrary.simpleMessage(
                 "Nie udało się znaleźć żadnych tweetów tego użytkownika!"),
@@ -156,7 +156,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "ended_timeago_format_endsAt_allowFromNow_true": m3,
         "ends_timeago_format_endsAt_allowFromNow_true": m4,
         "enter_your_twitter_username": MessageLookupByLibrary.simpleMessage(
-            "Wprowadź swoją nazwę użytkownika Twittera"),
+            "Wprowadź swoją nazwę użytkownika Twitter/Xa"),
         "export": MessageLookupByLibrary.simpleMessage("Eksportuj"),
         "export_settings":
             MessageLookupByLibrary.simpleMessage("Wyeksportować ustawienia?"),
@@ -178,11 +178,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "followers": MessageLookupByLibrary.simpleMessage("Obserwujący"),
         "following": MessageLookupByLibrary.simpleMessage("Obserwowani"),
         "forbidden": MessageLookupByLibrary.simpleMessage(
-            "Twitter mówi, że dostęp do tego jest zabroniony"),
+            "Twitter/X mówi, że dostęp do tego jest zabroniony"),
         "fritter": MessageLookupByLibrary.simpleMessage("Squawker"),
         "fritter_blue": MessageLookupByLibrary.simpleMessage("Squawker Blue"),
         "functionality_unsupported": MessageLookupByLibrary.simpleMessage(
-            "Ta funkcja nie jest już obsługiwana przez Twittera!"),
+            "Ta funkcja nie jest już obsługiwana przez Twitter/Xa!"),
         "general": MessageLookupByLibrary.simpleMessage("Ogólne"),
         "group_name": m6,
         "groups": MessageLookupByLibrary.simpleMessage("Grupy"),
@@ -200,7 +200,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "import_data_from_another_device": MessageLookupByLibrary.simpleMessage(
             "Zaimportuj dane z innego urządzenia"),
         "import_from_twitter":
-            MessageLookupByLibrary.simpleMessage("Importuj z Twittera"),
+            MessageLookupByLibrary.simpleMessage("Importuj z Twitter/Xa"),
         "import_subscriptions":
             MessageLookupByLibrary.simpleMessage("Importuj subskrypcje"),
         "imported_snapshot_data_users_so_far": m7,
@@ -246,7 +246,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "not_set": MessageLookupByLibrary.simpleMessage("Nie ustawiono"),
         "note_due_to_a_twitter_limitation_not_all_tweets_may_be_included":
             MessageLookupByLibrary.simpleMessage(
-                "Uwaga: Ze względu na ograniczenia Twittera nie wszystkie tweety mogą zostać uwzględnione"),
+                "Uwaga: Ze względu na ograniczenia Twitter/Xa nie wszystkie tweety mogą zostać uwzględnione"),
         "numberFormat_format_total_votes": m9,
         "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "only_public_subscriptions_can_be_imported":
@@ -257,7 +257,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "open_app_settings":
             MessageLookupByLibrary.simpleMessage("Otwórz ustawienia aplikacji"),
         "page_not_found": MessageLookupByLibrary.simpleMessage(
-            "Twitter twierdzi, że strona nie istnieje, ale to może nie być prawda"),
+            "Twitter/X twierdzi, że strona nie istnieje, ale to może nie być prawda"),
         "permission_not_granted": MessageLookupByLibrary.simpleMessage(
             "Nie przyznano uprawnienia. Spróbuj ponownie po przyznaniu!"),
         "pick_a_color": MessageLookupByLibrary.simpleMessage("Wybierz kolor!"),
@@ -273,7 +273,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Upewnij się, że znajdują się tam dane, które chcesz zaimportować, a następnie naciśnij przycisk importu poniżej."),
         "please_note_that_the_method_fritter_uses_to_import_subscriptions_is_heavily_rate_limited_by_twitter_so_this_may_fail_if_you_have_a_lot_of_followed_accounts":
             MessageLookupByLibrary.simpleMessage(
-                "Pamiętaj, że metoda, której używa Squawker do importowania subskrypcji, jest mocno ograniczona przez Twittera, więc może się to nie udać, jeśli masz dużo obserwowanych kont."),
+                "Pamiętaj, że metoda, której używa Squawker do importowania subskrypcji, jest mocno ograniczona przez Twitter/Xa, więc może się to nie udać, jeśli masz dużo obserwowanych kont."),
         "possibly_sensitive":
             MessageLookupByLibrary.simpleMessage("Potencjalnie wrażliwy"),
         "possibly_sensitive_profile": MessageLookupByLibrary.simpleMessage(
@@ -374,7 +374,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Przekroczono limit czasu"),
         "to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below":
             MessageLookupByLibrary.simpleMessage(
-                "Aby zaimportować subskrypcje z istniejącego konta na Twitterze, wprowadź poniżej swoją nazwę użytkownika."),
+                "Aby zaimportować subskrypcje z istniejącego konta na Twitter/Xze, wprowadź poniżej swoją nazwę użytkownika."),
         "toggle_all": MessageLookupByLibrary.simpleMessage("Przełącz"),
         "trending": MessageLookupByLibrary.simpleMessage("Trendy"),
         "trends": MessageLookupByLibrary.simpleMessage("Trendy"),

@@ -63,7 +63,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Ne eblas ŝarĝi la tendencaĵojn el ${widgetPlaceName}";
 
   static String m17(responseStatusCode) =>
-      "Ne eblas konservi la plurmedion. Twitter revenigis staton de ${responseStatusCode}";
+      "Ne eblas konservi la plurmedion. Twitter/X revenigis staton de ${responseStatusCode}";
 
   static String m18(releaseVersion) =>
       "Ĝisdatigu al ${releaseVersion} per via kliento de F-Droid";
@@ -92,10 +92,10 @@ class MessageLookup extends MessageLookupByLibrary {
             m0,
         "back": MessageLookupByLibrary.simpleMessage("Antaŭen"),
         "bad_guest_token": MessageLookupByLibrary.simpleMessage(
-            "Twitter malvalidigis la ĵetonon de atingo. Bonvolu provi remalfermi Squawker-on!"),
+            "Twitter/X malvalidigis la ĵetonon de atingo. Bonvolu provi remalfermi Squawker-on!"),
         "blue_theme_based_on_the_twitter_color_scheme":
             MessageLookupByLibrary.simpleMessage(
-                "Blua temo bazite de la kolorskemo de Twitter"),
+                "Blua temo bazite de la kolorskemo de Twitter/X"),
         "cancel": MessageLookupByLibrary.simpleMessage("Rezigni"),
         "catastrophic_failure":
             MessageLookupByLibrary.simpleMessage("Malsukceso katastrofa"),
@@ -110,7 +110,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "copied_version_to_clipboard": MessageLookupByLibrary.simpleMessage(
             "Kopiis version al la tondujo"),
         "could_not_contact_twitter": MessageLookupByLibrary.simpleMessage(
-            "Ne eblas kontakti Twitter-on"),
+            "Ne eblas kontakti Twitter/X-on"),
         "could_not_find_any_tweets_by_this_user":
             MessageLookupByLibrary.simpleMessage(
                 "Ne eblis trovi iujn ajn pepojn de tiu ĉi uzanto!"),
@@ -154,7 +154,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "ended_timeago_format_endsAt_allowFromNow_true": m3,
         "ends_timeago_format_endsAt_allowFromNow_true": m4,
         "enter_your_twitter_username": MessageLookupByLibrary.simpleMessage(
-            "Enigi vian uzantnomon de Twitter"),
+            "Enigi vian uzantnomon de Twitter/X"),
         "export": MessageLookupByLibrary.simpleMessage("Eksporti"),
         "export_settings":
             MessageLookupByLibrary.simpleMessage("Ĉu eksporti la agordojn?"),
@@ -176,7 +176,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "followers": MessageLookupByLibrary.simpleMessage("Abonantoj"),
         "following": MessageLookupByLibrary.simpleMessage("Abonoj"),
         "forbidden": MessageLookupByLibrary.simpleMessage(
-            "Twitter diras, atingo estas malpermesita"),
+            "Twitter/X diras, atingo estas malpermesita"),
         "fritter": MessageLookupByLibrary.simpleMessage("Squawker"),
         "fritter_blue": MessageLookupByLibrary.simpleMessage("Squawker blua"),
         "general": MessageLookupByLibrary.simpleMessage("Ĝenerala"),
@@ -196,7 +196,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "import_data_from_another_device": MessageLookupByLibrary.simpleMessage(
             "Importi datumojn el alia aparato"),
         "import_from_twitter":
-            MessageLookupByLibrary.simpleMessage("Importi el Twitter"),
+            MessageLookupByLibrary.simpleMessage("Importi el Twitter/X"),
         "import_subscriptions":
             MessageLookupByLibrary.simpleMessage("Importi abonojn"),
         "imported_snapshot_data_users_so_far": m7,
@@ -242,7 +242,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "not_set": MessageLookupByLibrary.simpleMessage("Ne agordita"),
         "note_due_to_a_twitter_limitation_not_all_tweets_may_be_included":
             MessageLookupByLibrary.simpleMessage(
-                "Noto: Pro limigo de Twitter, ne ĉiuj pepoj eble estas ampleksitaj"),
+                "Noto: Pro limigo de Twitter/X, ne ĉiuj pepoj eble estas ampleksitaj"),
         "numberFormat_format_total_votes": m9,
         "ok": MessageLookupByLibrary.simpleMessage("Bone"),
         "only_public_subscriptions_can_be_imported":
@@ -253,7 +253,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "open_app_settings":
             MessageLookupByLibrary.simpleMessage("Montri agordojn de la apo"),
         "page_not_found": MessageLookupByLibrary.simpleMessage(
-            "Twitter diras, la paĝo ne ekzistas, sed tio eble ne estas vere"),
+            "Twitter/X diras, la paĝo ne ekzistas, sed tio eble ne estas vere"),
         "permission_not_granted": MessageLookupByLibrary.simpleMessage(
             "Permeso ne doniĝis. Bonvolu provi ree post permesado!"),
         "pick_a_color": MessageLookupByLibrary.simpleMessage("Elekti koloron!"),
@@ -269,7 +269,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Bonvolu certigi, ke la datumoj dezirate importontaj lokiĝas tie, tiam premu la butono de importi sube."),
         "please_note_that_the_method_fritter_uses_to_import_subscriptions_is_heavily_rate_limited_by_twitter_so_this_may_fail_if_you_have_a_lot_of_followed_accounts":
             MessageLookupByLibrary.simpleMessage(
-                "Bonvolu noti, ke la metodon Squawker uzas por importi abonojn peze rapidolimigante de Twitter, do eble malsukcesus se vi havus tre multajn da kontojn abonitajn."),
+                "Bonvolu noti, ke la metodon Squawker uzas por importi abonojn peze rapidolimigante de Twitter/X, do eble malsukcesus se vi havus tre multajn da kontojn abonitajn."),
         "possibly_sensitive":
             MessageLookupByLibrary.simpleMessage("Eble sentema"),
         "possibly_sensitive_profile": MessageLookupByLibrary.simpleMessage(
@@ -368,7 +368,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "timed_out": MessageLookupByLibrary.simpleMessage("Tempolimiĝis"),
         "to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below":
             MessageLookupByLibrary.simpleMessage(
-                "Por importi abonojn el ekzistanta Twitter-konto, enigi vian uzantnomon sube."),
+                "Por importi abonojn el ekzistanta Twitter/X-konto, enigi vian uzantnomon sube."),
         "toggle_all": MessageLookupByLibrary.simpleMessage("Baskuli ĉiun"),
         "trending": MessageLookupByLibrary.simpleMessage("Tendencaĵoj"),
         "trends": MessageLookupByLibrary.simpleMessage("Tendencaĵoj"),

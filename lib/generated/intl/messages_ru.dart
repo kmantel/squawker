@@ -65,7 +65,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Невозможно загрузить актуальное для ${widgetPlaceName}";
 
   static String m17(responseStatusCode) =>
-      "Невозможно сохранить медиафайл. Twitter вернул статус ${responseStatusCode}";
+      "Невозможно сохранить медиафайл. Twitter/X вернул статус ${responseStatusCode}";
 
   static String m18(releaseVersion) =>
       "Обновить до ${releaseVersion} через клиент F-Droid";
@@ -95,10 +95,10 @@ class MessageLookup extends MessageLookupByLibrary {
             m0,
         "back": MessageLookupByLibrary.simpleMessage("Назад"),
         "bad_guest_token": MessageLookupByLibrary.simpleMessage(
-            "Twitter признал недействительным наш маркер доступа. Пожалуйста, попробуйте снова открыть Squawker!"),
+            "Twitter/X признал недействительным наш маркер доступа. Пожалуйста, попробуйте снова открыть Squawker!"),
         "blue_theme_based_on_the_twitter_color_scheme":
             MessageLookupByLibrary.simpleMessage(
-                "Синяя тема, основанная на цветовой схеме Twitter"),
+                "Синяя тема, основанная на цветовой схеме Twitter/X"),
         "cancel": MessageLookupByLibrary.simpleMessage("Отмена"),
         "catastrophic_failure":
             MessageLookupByLibrary.simpleMessage("Катастрофическая ошибка"),
@@ -112,7 +112,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "copied_version_to_clipboard": MessageLookupByLibrary.simpleMessage(
             "Версия скопирована в буфер обмена"),
         "could_not_contact_twitter": MessageLookupByLibrary.simpleMessage(
-            "Не удаётся связаться с Twitter"),
+            "Не удаётся связаться с Twitter/X"),
         "could_not_find_any_tweets_by_this_user":
             MessageLookupByLibrary.simpleMessage(
                 "Не удалось найти ни одного твита этого пользователя!"),
@@ -157,7 +157,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "ended_timeago_format_endsAt_allowFromNow_true": m3,
         "ends_timeago_format_endsAt_allowFromNow_true": m4,
         "enter_your_twitter_username": MessageLookupByLibrary.simpleMessage(
-            "Введите Ваше имя пользователя в Twitter"),
+            "Введите Ваше имя пользователя в Twitter/X"),
         "export": MessageLookupByLibrary.simpleMessage("Экспортировать"),
         "export_settings":
             MessageLookupByLibrary.simpleMessage("Экспортировать настройки?"),
@@ -178,7 +178,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "followers": MessageLookupByLibrary.simpleMessage("Читатели"),
         "following": MessageLookupByLibrary.simpleMessage("Читает"),
         "forbidden": MessageLookupByLibrary.simpleMessage(
-            "Twitter говорит, что доступ к этому запрещен"),
+            "Twitter/X говорит, что доступ к этому запрещен"),
         "fritter": MessageLookupByLibrary.simpleMessage("Squawker"),
         "fritter_blue": MessageLookupByLibrary.simpleMessage("Squawker blue"),
         "general": MessageLookupByLibrary.simpleMessage("Основные"),
@@ -198,7 +198,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "import_data_from_another_device": MessageLookupByLibrary.simpleMessage(
             "Импортировать данные с другого устройства"),
         "import_from_twitter":
-            MessageLookupByLibrary.simpleMessage("Импортировать из Twitter"),
+            MessageLookupByLibrary.simpleMessage("Импортировать из Twitter/X"),
         "import_subscriptions":
             MessageLookupByLibrary.simpleMessage("Импортировать подписки"),
         "imported_snapshot_data_users_so_far": m7,
@@ -238,7 +238,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "not_set": MessageLookupByLibrary.simpleMessage("Не установлено"),
         "note_due_to_a_twitter_limitation_not_all_tweets_may_be_included":
             MessageLookupByLibrary.simpleMessage(
-                "Примечание: В связи с ограничением Twitter, не все твиты могут быть включены"),
+                "Примечание: В связи с ограничением Twitter/X, не все твиты могут быть включены"),
         "numberFormat_format_total_votes": m9,
         "ok": MessageLookupByLibrary.simpleMessage("Ок"),
         "oops_something_went_wrong":
@@ -264,7 +264,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Убедитесь, что данные, которые вы хотите импортировать, находятся там, затем нажмите кнопку импорта ниже."),
         "please_note_that_the_method_fritter_uses_to_import_subscriptions_is_heavily_rate_limited_by_twitter_so_this_may_fail_if_you_have_a_lot_of_followed_accounts":
             MessageLookupByLibrary.simpleMessage(
-                "Учтите, что метод, используемый Squawker для импорта подписок, сильно ограничен скоростью Twitter, поэтому при наличии большого количества подписок это может не сработать."),
+                "Учтите, что метод, используемый Squawker для импорта подписок, сильно ограничен скоростью Twitter/X, поэтому при наличии большого количества подписок это может не сработать."),
         "possibly_sensitive":
             MessageLookupByLibrary.simpleMessage("Возможно чувствительно"),
         "possibly_sensitive_profile": MessageLookupByLibrary.simpleMessage(
@@ -357,7 +357,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "timed_out": MessageLookupByLibrary.simpleMessage("Время вышло"),
         "to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below":
             MessageLookupByLibrary.simpleMessage(
-                "Чтобы импортировать подписки из существующего аккаунта Twitter, введите свое имя пользователя ниже."),
+                "Чтобы импортировать подписки из существующего аккаунта Twitter/X, введите свое имя пользователя ниже."),
         "toggle_all": MessageLookupByLibrary.simpleMessage("Выбрать все"),
         "trending": MessageLookupByLibrary.simpleMessage("Актуальное"),
         "trends": MessageLookupByLibrary.simpleMessage("Актуальные темы"),

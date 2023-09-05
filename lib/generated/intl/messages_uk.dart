@@ -85,7 +85,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "donate": MessageLookupByLibrary.simpleMessage("Пожертвувати"),
         "enable_": MessageLookupByLibrary.simpleMessage("Увімкнути ?"),
         "enter_your_twitter_username": MessageLookupByLibrary.simpleMessage(
-            "Введіть своє ім\'я користувача у Twitter"),
+            "Введіть своє ім\'я користувача у Twitter/X"),
         "export": MessageLookupByLibrary.simpleMessage("Експорт"),
         "export_settings":
             MessageLookupByLibrary.simpleMessage("Експортувати налаштування?"),
@@ -119,7 +119,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "import_data_from_another_device": MessageLookupByLibrary.simpleMessage(
             "Імпортуйте дані з іншого пристрою"),
         "import_from_twitter":
-            MessageLookupByLibrary.simpleMessage("Імпортувати з Twitter"),
+            MessageLookupByLibrary.simpleMessage("Імпортувати з Twitter/X"),
         "import_subscriptions":
             MessageLookupByLibrary.simpleMessage("Імпорт підписок"),
         "imported_snapshot_data_users_so_far": m7,
@@ -151,7 +151,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Немає підписок. Спробуйте пошукати або імпортувати!"),
         "note_due_to_a_twitter_limitation_not_all_tweets_may_be_included":
             MessageLookupByLibrary.simpleMessage(
-                "Примітка: Через обмеження Twitter, не всі твіти можуть бути включені"),
+                "Примітка: Через обмеження Twitter/X, не всі твіти можуть бути включені"),
         "ok": MessageLookupByLibrary.simpleMessage("Добре"),
         "pick_a_color": MessageLookupByLibrary.simpleMessage("Вибери колір!"),
         "pick_an_icon":
@@ -163,7 +163,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Будь ласка, переконайтеся, що дані, які ви хочете імпортувати, знаходяться там, а потім натисніть кнопку імпорту нижче."),
         "please_note_that_the_method_fritter_uses_to_import_subscriptions_is_heavily_rate_limited_by_twitter_so_this_may_fail_if_you_have_a_lot_of_followed_accounts":
             MessageLookupByLibrary.simpleMessage(
-                "Будь ласка, зверніть увагу, що метод, який використовує Squawker для імпорту підписок, сильно обмежений Twitter, тому він може не спрацювати, якщо у вас багато акаунтів, на які ви підписані."),
+                "Будь ласка, зверніть увагу, що метод, який використовує Squawker для імпорту підписок, сильно обмежений Twitter/X, тому він може не спрацювати, якщо у вас багато акаунтів, на які ви підписані."),
         "prefix": MessageLookupByLibrary.simpleMessage("префікс"),
         "released_under_the_mit_license":
             MessageLookupByLibrary.simpleMessage("Випущено за ліцензією MIT"),
@@ -210,7 +210,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "thumbnail": MessageLookupByLibrary.simpleMessage("Ескіз"),
         "to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below":
             MessageLookupByLibrary.simpleMessage(
-                "Щоб імпортувати підписки з наявного облікового запису Twitter, введіть своє ім\'я користувача нижче."),
+                "Щоб імпортувати підписки з наявного облікового запису Twitter/X, введіть своє ім\'я користувача нижче."),
         "toggle_all": MessageLookupByLibrary.simpleMessage("Перемкнути все"),
         "trending": MessageLookupByLibrary.simpleMessage("Тренди"),
         "true_black": MessageLookupByLibrary.simpleMessage("Справжній чорний?"),

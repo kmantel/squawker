@@ -64,7 +64,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Tidak bisa memuat tren untuk ${widgetPlaceName}";
 
   static String m17(responseStatusCode) =>
-      "Tidak dapat menyimpan media. Twitter mengembalikan status ${responseStatusCode}";
+      "Tidak dapat menyimpan media. Twitter/X mengembalikan status ${responseStatusCode}";
 
   static String m18(releaseVersion) =>
       "Perbarui ke ${releaseVersion} lewat klien F-Droid Anda";
@@ -94,10 +94,10 @@ class MessageLookup extends MessageLookupByLibrary {
             m0,
         "back": MessageLookupByLibrary.simpleMessage("Kembali"),
         "bad_guest_token": MessageLookupByLibrary.simpleMessage(
-            "Twitter telah membatalkan token akses kami. Coba buka ulang Squawker!"),
+            "Twitter/X telah membatalkan token akses kami. Coba buka ulang Squawker!"),
         "blue_theme_based_on_the_twitter_color_scheme":
             MessageLookupByLibrary.simpleMessage(
-                "Tema biru berdasarkan pada skema warna Twitter"),
+                "Tema biru berdasarkan pada skema warna Twitter/X"),
         "cancel": MessageLookupByLibrary.simpleMessage("Batal"),
         "catastrophic_failure":
             MessageLookupByLibrary.simpleMessage("Kegagalan serius"),
@@ -112,7 +112,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "copied_version_to_clipboard":
             MessageLookupByLibrary.simpleMessage("Salin versi ke papan klip"),
         "could_not_contact_twitter": MessageLookupByLibrary.simpleMessage(
-            "Tidak bisa menghubungi Twitter"),
+            "Tidak bisa menghubungi Twitter/X"),
         "could_not_find_any_tweets_by_this_user":
             MessageLookupByLibrary.simpleMessage(
                 "Tidak bisa mencari cuitan apa pun dari pengguna ini!"),
@@ -155,7 +155,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "ended_timeago_format_endsAt_allowFromNow_true": m3,
         "ends_timeago_format_endsAt_allowFromNow_true": m4,
         "enter_your_twitter_username": MessageLookupByLibrary.simpleMessage(
-            "Masukkan nama pengguna Twitter Anda"),
+            "Masukkan nama pengguna Twitter/X Anda"),
         "export": MessageLookupByLibrary.simpleMessage("Ekspor"),
         "export_settings":
             MessageLookupByLibrary.simpleMessage("Ekspor pengaturan?"),
@@ -175,7 +175,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "followers": MessageLookupByLibrary.simpleMessage("Pengikut"),
         "following": MessageLookupByLibrary.simpleMessage("Mengikuti"),
         "forbidden": MessageLookupByLibrary.simpleMessage(
-            "Twitter mengatakan bahwa akses ke sini terlarang"),
+            "Twitter/X mengatakan bahwa akses ke sini terlarang"),
         "fritter": MessageLookupByLibrary.simpleMessage("Squawker"),
         "fritter_blue": MessageLookupByLibrary.simpleMessage("Squawker biru"),
         "general": MessageLookupByLibrary.simpleMessage("Umum"),
@@ -195,7 +195,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "import_data_from_another_device": MessageLookupByLibrary.simpleMessage(
             "Impor data dari perangkat lain"),
         "import_from_twitter":
-            MessageLookupByLibrary.simpleMessage("Impor dari Twitter"),
+            MessageLookupByLibrary.simpleMessage("Impor dari Twitter/X"),
         "import_subscriptions":
             MessageLookupByLibrary.simpleMessage("Impor langganan"),
         "imported_snapshot_data_users_so_far": m7,
@@ -236,7 +236,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "not_set": MessageLookupByLibrary.simpleMessage("Tidak diatur"),
         "note_due_to_a_twitter_limitation_not_all_tweets_may_be_included":
             MessageLookupByLibrary.simpleMessage(
-                "Catatan: Karena batasan Twitter, tidak semua cuitan akan disertakan"),
+                "Catatan: Karena batasan Twitter/X, tidak semua cuitan akan disertakan"),
         "numberFormat_format_total_votes": m9,
         "ok": MessageLookupByLibrary.simpleMessage("Oke"),
         "only_public_subscriptions_can_be_imported":
@@ -247,7 +247,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "open_app_settings":
             MessageLookupByLibrary.simpleMessage("Buka pengaturan aplikasi"),
         "page_not_found": MessageLookupByLibrary.simpleMessage(
-            "Twitter mengatakan halaman ini tidak ada, tetapi mungkin itu tidak benar"),
+            "Twitter/X mengatakan halaman ini tidak ada, tetapi mungkin itu tidak benar"),
         "permission_not_granted": MessageLookupByLibrary.simpleMessage(
             "Izin tidak diberikan. Coba lagi setelah memberikannya!"),
         "pick_a_color":
@@ -265,7 +265,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Mohon pastikan data yang ingin Anda impor terletak di sana, kemudian tekan tombol impor di bawah."),
         "please_note_that_the_method_fritter_uses_to_import_subscriptions_is_heavily_rate_limited_by_twitter_so_this_may_fail_if_you_have_a_lot_of_followed_accounts":
             MessageLookupByLibrary.simpleMessage(
-                "Mohon dicatat bahwa metode yang Squawker gunakan untuk mengimpor langganan sangat dibatasi oleh Twitter, jadi ini mungkin akan gagal jika Anda mengikuti banyak akun."),
+                "Mohon dicatat bahwa metode yang Squawker gunakan untuk mengimpor langganan sangat dibatasi oleh Twitter/X, jadi ini mungkin akan gagal jika Anda mengikuti banyak akun."),
         "possibly_sensitive":
             MessageLookupByLibrary.simpleMessage("Kemungkinan sensitif"),
         "possibly_sensitive_profile": MessageLookupByLibrary.simpleMessage(
@@ -361,7 +361,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "timed_out": MessageLookupByLibrary.simpleMessage("Waktu habis"),
         "to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below":
             MessageLookupByLibrary.simpleMessage(
-                "Untuk mengimpor langganan dari akun Twitter yang ada, masukkan nama pengguna Anda di bawah ini."),
+                "Untuk mengimpor langganan dari akun Twitter/X yang ada, masukkan nama pengguna Anda di bawah ini."),
         "toggle_all": MessageLookupByLibrary.simpleMessage("Alih Semua"),
         "trending": MessageLookupByLibrary.simpleMessage("Tren"),
         "trends": MessageLookupByLibrary.simpleMessage("Tren"),

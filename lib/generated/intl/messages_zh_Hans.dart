@@ -58,7 +58,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m16(widgetPlaceName) => "无法加载 ${widgetPlaceName} 的趋势";
 
   static String m17(responseStatusCode) =>
-      "无法保存媒体。Twitter 返回的状态是 ${responseStatusCode}";
+      "无法保存媒体。Twitter/X 返回的状态是 ${responseStatusCode}";
 
   static String m18(releaseVersion) => "从 F-Droid 客户端更新 ${releaseVersion}";
 
@@ -82,9 +82,9 @@ class MessageLookup extends MessageLookupByLibrary {
             m0,
         "back": MessageLookupByLibrary.simpleMessage("返回"),
         "bad_guest_token": MessageLookupByLibrary.simpleMessage(
-            "Twitter 使我们的访问令牌无效。请尝试重新打开 Squawker！"),
+            "Twitter/X 使我们的访问令牌无效。请尝试重新打开 Squawker！"),
         "blue_theme_based_on_the_twitter_color_scheme":
-            MessageLookupByLibrary.simpleMessage("基于 Twitter 配色方案的蓝色主题"),
+            MessageLookupByLibrary.simpleMessage("基于 Twitter/X 配色方案的蓝色主题"),
         "cancel": MessageLookupByLibrary.simpleMessage("取消"),
         "catastrophic_failure": MessageLookupByLibrary.simpleMessage("致命问题"),
         "choose": MessageLookupByLibrary.simpleMessage("选择"),
@@ -98,7 +98,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "copied_version_to_clipboard":
             MessageLookupByLibrary.simpleMessage("已复制版本号"),
         "could_not_contact_twitter":
-            MessageLookupByLibrary.simpleMessage("无法访问 Twitter"),
+            MessageLookupByLibrary.simpleMessage("无法访问 Twitter/X"),
         "could_not_find_any_tweets_by_this_user":
             MessageLookupByLibrary.simpleMessage("找不到该用户的任何推文！"),
         "could_not_find_any_tweets_from_the_last_7_days":
@@ -135,7 +135,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "ended_timeago_format_endsAt_allowFromNow_true": m3,
         "ends_timeago_format_endsAt_allowFromNow_true": m4,
         "enter_your_twitter_username":
-            MessageLookupByLibrary.simpleMessage("输入您的 Twitter 用户名"),
+            MessageLookupByLibrary.simpleMessage("输入您的 Twitter/X 用户名"),
         "export": MessageLookupByLibrary.simpleMessage("导出"),
         "export_settings": MessageLookupByLibrary.simpleMessage("导出设置？"),
         "export_subscription_group_members":
@@ -151,11 +151,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "finished_with_snapshotData_users": m5,
         "followers": MessageLookupByLibrary.simpleMessage("关注者"),
         "following": MessageLookupByLibrary.simpleMessage("正在关注"),
-        "forbidden": MessageLookupByLibrary.simpleMessage("Twitter 表示禁止访问此内容"),
+        "forbidden":
+            MessageLookupByLibrary.simpleMessage("Twitter/X 表示禁止访问此内容"),
         "fritter": MessageLookupByLibrary.simpleMessage("Squawker"),
         "fritter_blue": MessageLookupByLibrary.simpleMessage("Squawker 蓝"),
         "functionality_unsupported":
-            MessageLookupByLibrary.simpleMessage("Twitter 不再支持此功能！"),
+            MessageLookupByLibrary.simpleMessage("Twitter/X 不再支持此功能！"),
         "general": MessageLookupByLibrary.simpleMessage("通用"),
         "group_name": m6,
         "groups": MessageLookupByLibrary.simpleMessage("订阅组"),
@@ -171,7 +172,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "import_data_from_another_device":
             MessageLookupByLibrary.simpleMessage("从其他设备导入数据"),
         "import_from_twitter":
-            MessageLookupByLibrary.simpleMessage("从 Twitter 导入"),
+            MessageLookupByLibrary.simpleMessage("从 Twitter/X 导入"),
         "import_subscriptions": MessageLookupByLibrary.simpleMessage("导入订阅"),
         "imported_snapshot_data_users_so_far": m7,
         "include_replies": MessageLookupByLibrary.simpleMessage("包括回复"),
@@ -207,7 +208,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("没有订阅。尝试搜索或导入一些！"),
         "not_set": MessageLookupByLibrary.simpleMessage("未设置"),
         "note_due_to_a_twitter_limitation_not_all_tweets_may_be_included":
-            MessageLookupByLibrary.simpleMessage("注：由于 Twitter 的限制，可能不会包含所有推文"),
+            MessageLookupByLibrary.simpleMessage(
+                "注：由于 Twitter/X 的限制，可能不会包含所有推文"),
         "numberFormat_format_total_votes": m9,
         "ok": MessageLookupByLibrary.simpleMessage("确定"),
         "only_public_subscriptions_can_be_imported":
@@ -216,7 +218,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("哎呀！出了点问题 🥲"),
         "open_app_settings": MessageLookupByLibrary.simpleMessage("打开应用设置"),
         "page_not_found":
-            MessageLookupByLibrary.simpleMessage("Twitter 说该页面不存在，但这可能不是真的"),
+            MessageLookupByLibrary.simpleMessage("Twitter/X 说该页面不存在，但这可能不是真的"),
         "permission_not_granted":
             MessageLookupByLibrary.simpleMessage("未授予权限。 请在授权后重试！"),
         "pick_a_color": MessageLookupByLibrary.simpleMessage("挑一种颜色吧！"),
@@ -229,7 +231,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("请确保您要导入的数据位于此处，然后点击下方的导入按钮。"),
         "please_note_that_the_method_fritter_uses_to_import_subscriptions_is_heavily_rate_limited_by_twitter_so_this_may_fail_if_you_have_a_lot_of_followed_accounts":
             MessageLookupByLibrary.simpleMessage(
-                "请注意，Squawker 用于导入订阅的方法受到 Twitter 严格的速率限制，因此如果您有很多关注账号，这可能会失败。"),
+                "请注意，Squawker 用于导入订阅的方法受到 Twitter/X 严格的速率限制，因此如果您有很多关注账号，这可能会失败。"),
         "possibly_sensitive": MessageLookupByLibrary.simpleMessage("潜在敏感"),
         "possibly_sensitive_profile": MessageLookupByLibrary.simpleMessage(
             "该个人资料可能包含潜在的敏感图像、语言或其他内容。是否仍要浏览？"),
@@ -311,7 +313,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "timed_out": MessageLookupByLibrary.simpleMessage("超时"),
         "to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below":
             MessageLookupByLibrary.simpleMessage(
-                "要从现有的 Twitter 账号导入订阅，请在下方输入您的用户名。"),
+                "要从现有的 Twitter/X 账号导入订阅，请在下方输入您的用户名。"),
         "toggle_all": MessageLookupByLibrary.simpleMessage("全选"),
         "trending": MessageLookupByLibrary.simpleMessage("趋势"),
         "trends": MessageLookupByLibrary.simpleMessage("趋势"),

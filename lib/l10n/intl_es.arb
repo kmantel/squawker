@@ -13,7 +13,7 @@
   "@could_not_find_any_tweets_from_the_last_7_days": {},
   "unable_to_load_the_group": "No es posible cargar el grupo",
   "@unable_to_load_the_group": {},
-  "note_due_to_a_twitter_limitation_not_all_tweets_may_be_included": "Nota: Debido a una limitación de Twitter, es posible que no se incluyan todos los tweets",
+  "note_due_to_a_twitter_limitation_not_all_tweets_may_be_included": "Nota: Debido a una limitación de Twitter/X, es posible que no se incluyan todos los tweets",
   "@note_due_to_a_twitter_limitation_not_all_tweets_may_be_included": {},
   "include_retweets": "Incluye los retweets",
   "@include_retweets": {},

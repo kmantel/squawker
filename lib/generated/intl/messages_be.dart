@@ -65,7 +65,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Немагчыма загрузіць актуальнае для ${widgetPlaceName}";
 
   static String m17(responseStatusCode) =>
-      "Немагчыма захаваць мэдыяфайл. Twitter вярнуў статус ${responseStatusCode}";
+      "Немагчыма захаваць мэдыяфайл. Twitter/X вярнуў статус ${responseStatusCode}";
 
   static String m18(releaseVersion) =>
       "Абнавіць да ${releaseVersion} праз кліент F-Droid";
@@ -94,10 +94,10 @@ class MessageLookup extends MessageLookupByLibrary {
             m0,
         "back": MessageLookupByLibrary.simpleMessage("Назад"),
         "bad_guest_token": MessageLookupByLibrary.simpleMessage(
-            "Twitter прызнаў несапраўдным наш маркер доступу. Калі ласка, паспрабуйце зноў адкрыць Squawker!"),
+            "Twitter/X прызнаў несапраўдным наш маркер доступу. Калі ласка, паспрабуйце зноў адкрыць Squawker!"),
         "blue_theme_based_on_the_twitter_color_scheme":
             MessageLookupByLibrary.simpleMessage(
-                "Сіняя тэма, заснаваная на каляровай схеме Twitter"),
+                "Сіняя тэма, заснаваная на каляровай схеме Twitter/X"),
         "cancel": MessageLookupByLibrary.simpleMessage("Скасаваць"),
         "catastrophic_failure":
             MessageLookupByLibrary.simpleMessage("Крытычная памылка"),
@@ -111,7 +111,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "copied_version_to_clipboard": MessageLookupByLibrary.simpleMessage(
             "Версія скапіяваная ў буфер абмену"),
         "could_not_contact_twitter": MessageLookupByLibrary.simpleMessage(
-            "Не атрымоўваецца звязацца з Twitter"),
+            "Не атрымоўваецца звязацца з Twitter/X"),
         "could_not_find_any_tweets_by_this_user":
             MessageLookupByLibrary.simpleMessage(
                 "Не атрымалася знайсці ні аднаго твіту гэтага карыстальніка!"),
@@ -156,7 +156,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "ended_timeago_format_endsAt_allowFromNow_true": m3,
         "ends_timeago_format_endsAt_allowFromNow_true": m4,
         "enter_your_twitter_username": MessageLookupByLibrary.simpleMessage(
-            "Увядзіце Ваша імя карыстальніка ў Twitter"),
+            "Увядзіце Ваша імя карыстальніка ў Twitter/X"),
         "export": MessageLookupByLibrary.simpleMessage("Экспартаваць"),
         "export_settings":
             MessageLookupByLibrary.simpleMessage("Экспартаваць наладкі?"),
@@ -177,7 +177,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "followers": MessageLookupByLibrary.simpleMessage("Чытачы"),
         "following": MessageLookupByLibrary.simpleMessage("Чытае"),
         "forbidden": MessageLookupByLibrary.simpleMessage(
-            "Twitter кажа, што доступ да гэтага забаронены"),
+            "Twitter/X кажа, што доступ да гэтага забаронены"),
         "fritter": MessageLookupByLibrary.simpleMessage("Squawker"),
         "fritter_blue": MessageLookupByLibrary.simpleMessage("Squawker blue"),
         "general": MessageLookupByLibrary.simpleMessage("Асноўныя"),
@@ -197,7 +197,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "import_data_from_another_device": MessageLookupByLibrary.simpleMessage(
             "Імпартаваць дадзеныя з іншай прылады"),
         "import_from_twitter":
-            MessageLookupByLibrary.simpleMessage("Імпартаваць з Twitter"),
+            MessageLookupByLibrary.simpleMessage("Імпартаваць з Twitter/X"),
         "import_subscriptions":
             MessageLookupByLibrary.simpleMessage("Імпартаваць падпіскі"),
         "imported_snapshot_data_users_so_far": m7,
@@ -238,7 +238,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "not_set": MessageLookupByLibrary.simpleMessage("Не ўстаноўлена"),
         "note_due_to_a_twitter_limitation_not_all_tweets_may_be_included":
             MessageLookupByLibrary.simpleMessage(
-                "Заўвага: У сувязі з абмежаваннем Twitter, не ўсе твіты могуць быць уключаны"),
+                "Заўвага: У сувязі з абмежаваннем Twitter/X, не ўсе твіты могуць быць уключаны"),
         "numberFormat_format_total_votes": m9,
         "ok": MessageLookupByLibrary.simpleMessage("Добра"),
         "oops_something_went_wrong":
@@ -246,7 +246,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "open_app_settings":
             MessageLookupByLibrary.simpleMessage("Адкрыць налады прыкладання"),
         "page_not_found": MessageLookupByLibrary.simpleMessage(
-            "Twitter кажа, што гэтая старонка не існуе, але гэта можа быць няпраўдай"),
+            "Twitter/X кажа, што гэтая старонка не існуе, але гэта можа быць няпраўдай"),
         "permission_not_granted": MessageLookupByLibrary.simpleMessage(
             "Дазвол не дадзены. Калі ласка, паспрабуйце яшчэ раз пасля прадастаўлення!"),
         "pick_a_color": MessageLookupByLibrary.simpleMessage("Абярыце колер!"),
@@ -263,7 +263,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Пераканайцеся, што дадзеныя, якія вы хочаце імпартаваць, знаходзяцца там, затым націсніце кнопку імпарту ніжэй."),
         "please_note_that_the_method_fritter_uses_to_import_subscriptions_is_heavily_rate_limited_by_twitter_so_this_may_fail_if_you_have_a_lot_of_followed_accounts":
             MessageLookupByLibrary.simpleMessage(
-                "Улічыце, што метад, які выкарыстоўвае Squawker для імпарту падпісак, вельмі абмежаваны хуткасцю Twitter, таму пры наяўнасці вялікай колькасці падпісак гэта можа не спрацаваць."),
+                "Улічыце, што метад, які выкарыстоўвае Squawker для імпарту падпісак, вельмі абмежаваны хуткасцю Twitter/X, таму пры наяўнасці вялікай колькасці падпісак гэта можа не спрацаваць."),
         "possibly_sensitive":
             MessageLookupByLibrary.simpleMessage("Магчыма чулліва"),
         "possibly_sensitive_profile": MessageLookupByLibrary.simpleMessage(
@@ -357,7 +357,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "timed_out": MessageLookupByLibrary.simpleMessage("Час выйшаў"),
         "to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below":
             MessageLookupByLibrary.simpleMessage(
-                "Каб імпартаваць падпіскі з існуючага акаўнта Twitter, увядзіце сваё імя карыстальніка ніжэй."),
+                "Каб імпартаваць падпіскі з існуючага акаўнта Twitter/X, увядзіце сваё імя карыстальніка ніжэй."),
         "toggle_all": MessageLookupByLibrary.simpleMessage("Выбраць усе"),
         "trending": MessageLookupByLibrary.simpleMessage("Актуальнае"),
         "trends": MessageLookupByLibrary.simpleMessage("Актуальныя тэмы"),

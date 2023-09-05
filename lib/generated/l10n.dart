@@ -242,10 +242,10 @@ class L10n {
     );
   }
 
-  /// `Note: Due to a Twitter limitation, not all tweets may be included`
+  /// `Note: Due to a Twitter/X limitation, not all tweets may be included`
   String get note_due_to_a_twitter_limitation_not_all_tweets_may_be_included {
     return Intl.message(
-      'Note: Due to a Twitter limitation, not all tweets may be included',
+      'Note: Due to a Twitter/X limitation, not all tweets may be included',
       name: 'note_due_to_a_twitter_limitation_not_all_tweets_may_be_included',
       desc: '',
       args: [],
@@ -1227,11 +1227,11 @@ class L10n {
     );
   }
 
-  /// `To import subscriptions from an existing Twitter account, enter your username below.`
+  /// `To import subscriptions from an existing Twitter/X account, enter your username below.`
   String
       get to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below {
     return Intl.message(
-      'To import subscriptions from an existing Twitter account, enter your username below.',
+      'To import subscriptions from an existing Twitter/X account, enter your username below.',
       name:
           'to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below',
       desc: '',
@@ -1239,11 +1239,11 @@ class L10n {
     );
   }
 
-  /// `Please note that the method Squawker uses to import subscriptions is heavily rate-limited by Twitter, so this may fail if you have a lot of followed accounts.`
+  /// `Please note that the method Squawker uses to import subscriptions is heavily rate-limited by Twitter/X, so this may fail if you have a lot of followed accounts.`
   String
       get please_note_that_the_method_fritter_uses_to_import_subscriptions_is_heavily_rate_limited_by_twitter_so_this_may_fail_if_you_have_a_lot_of_followed_accounts {
     return Intl.message(
-      'Please note that the method Squawker uses to import subscriptions is heavily rate-limited by Twitter, so this may fail if you have a lot of followed accounts.',
+      'Please note that the method Squawker uses to import subscriptions is heavily rate-limited by Twitter/X, so this may fail if you have a lot of followed accounts.',
       name:
           'please_note_that_the_method_fritter_uses_to_import_subscriptions_is_heavily_rate_limited_by_twitter_so_this_may_fail_if_you_have_a_lot_of_followed_accounts',
       desc: '',
@@ -1283,10 +1283,10 @@ class L10n {
     );
   }
 
-  /// `Enter your Twitter username`
+  /// `Enter your Twitter/X username`
   String get enter_your_twitter_username {
     return Intl.message(
-      'Enter your Twitter username',
+      'Enter your Twitter/X username',
       name: 'enter_your_twitter_username',
       desc: '',
       args: [],
@@ -1353,10 +1353,10 @@ class L10n {
     );
   }
 
-  /// `Import from Twitter`
+  /// `Import from Twitter/X`
   String get import_from_twitter {
     return Intl.message(
-      'Import from Twitter',
+      'Import from Twitter/X',
       name: 'import_from_twitter',
       desc: '',
       args: [],
@@ -1528,12 +1528,12 @@ class L10n {
     );
   }
 
-  /// `Unable to save the media. Twitter returned a status of {responseStatusCode}`
+  /// `Unable to save the media. Twitter/X returned a status of {responseStatusCode}`
   String
       unable_to_save_the_media_twitter_returned_a_status_of_response_statusCode(
           Object responseStatusCode) {
     return Intl.message(
-      'Unable to save the media. Twitter returned a status of $responseStatusCode',
+      'Unable to save the media. Twitter/X returned a status of $responseStatusCode',
       name:
           'unable_to_save_the_media_twitter_returned_a_status_of_response_statusCode',
       desc: '',
@@ -1752,30 +1752,30 @@ class L10n {
     );
   }
 
-  /// `Twitter says the page does not exist, but that may not be true`
+  /// `Twitter/X says the page does not exist, but that may not be true`
   String get page_not_found {
     return Intl.message(
-      'Twitter says the page does not exist, but that may not be true',
+      'Twitter/X says the page does not exist, but that may not be true',
       name: 'page_not_found',
       desc: '',
       args: [],
     );
   }
 
-  /// `Twitter says access to this is forbidden`
+  /// `Twitter/X says access to this is forbidden`
   String get forbidden {
     return Intl.message(
-      'Twitter says access to this is forbidden',
+      'Twitter/X says access to this is forbidden',
       name: 'forbidden',
       desc: '',
       args: [],
     );
   }
 
-  /// `Twitter has invalidated our access token. Please try re-opening Squawker!`
+  /// `Twitter/X has invalidated our access token. Please try re-opening Squawker!`
   String get bad_guest_token {
     return Intl.message(
-      'Twitter has invalidated our access token. Please try re-opening Squawker!',
+      'Twitter/X has invalidated our access token. Please try re-opening Squawker!',
       name: 'bad_guest_token',
       desc: '',
       args: [],
@@ -1852,10 +1852,10 @@ class L10n {
     );
   }
 
-  /// `Could not contact Twitter`
+  /// `Could not contact Twitter/X`
   String get could_not_contact_twitter {
     return Intl.message(
-      'Could not contact Twitter',
+      'Could not contact Twitter/X',
       name: 'could_not_contact_twitter',
       desc: '',
       args: [],
@@ -1986,10 +1986,10 @@ class L10n {
     );
   }
 
-  /// `Blue theme based on the Twitter color scheme`
+  /// `Blue theme based on the Twitter/X color scheme`
   String get blue_theme_based_on_the_twitter_color_scheme {
     return Intl.message(
-      'Blue theme based on the Twitter color scheme',
+      'Blue theme based on the Twitter/X color scheme',
       name: 'blue_theme_based_on_the_twitter_color_scheme',
       desc: '',
       args: [],
@@ -2406,10 +2406,10 @@ class L10n {
     );
   }
 
-  /// `This functionality is no longer supported by Twitter!`
+  /// `This functionality is no longer supported by Twitter/X!`
   String get functionality_unsupported {
     return Intl.message(
-      'This functionality is no longer supported by Twitter!',
+      'This functionality is no longer supported by Twitter/X!',
       name: 'functionality_unsupported',
       desc: '',
       args: [],
