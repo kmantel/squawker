@@ -35,7 +35,7 @@ class TweetTile extends StatefulWidget {
   final TweetWithCard tweet;
   final bool isPinned;
   final bool isThread;
-  final int? conversationIdx;
+  final int? tweetIdx;
   final VisiblePositionState? visiblePositionState;
 
   const TweetTile(
@@ -46,7 +46,7 @@ class TweetTile extends StatefulWidget {
       required this.tweet,
       this.isPinned = false,
       this.isThread = false,
-      this.conversationIdx,
+      this.tweetIdx,
       this.visiblePositionState})
       : super(key: key);
 
@@ -349,7 +349,7 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
         onVisibilityChanged: (visibilityInfo) {
           if (visibilityInfo.visibleFraction > 0) {
             if (widget.visiblePositionState != null) {
-              widget.visiblePositionState!.positionChanged(widget.conversationId, widget.conversationIdx, this.tweet.idStr);
+              widget.visiblePositionState!.positionChanged(widget.conversationId, this.tweet.idStr, widget.tweetIdx);
             }
           }
         },
@@ -430,7 +430,7 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
           onVisibilityChanged: (visibilityInfo) {
             if (visibilityInfo.visibleFraction > 0) {
               if (widget.visiblePositionState != null) {
-                widget.visiblePositionState!.positionChanged(widget.conversationId, widget.conversationIdx, this.tweet.idStr);
+                widget.visiblePositionState!.positionChanged(widget.conversationId, this.tweet.idStr, widget.tweetIdx);
               }
             }
           },
@@ -511,7 +511,7 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
       onVisibilityChanged: (visibilityInfo) {
         if (visibilityInfo.visibleFraction > 0) {
           if (widget.visiblePositionState != null) {
-            widget.visiblePositionState!.positionChanged(widget.conversationId, widget.conversationIdx, this.tweet.idStr);
+            widget.visiblePositionState!.positionChanged(widget.conversationId, this.tweet.idStr, widget.tweetIdx);
           }
         }
       },
@@ -754,17 +754,17 @@ class TweetTextPart {
 class VisiblePositionState {
   bool initialized = false;
   String? visibleChainId;
-  int? visibleChainIdx;
   String? visibleTweetId;
+  int? visibleTweetIdx;
   int? scrollChainIdx;
   int? scrollTweetIdx;
 
   VisiblePositionState();
 
-  void positionChanged(String? visibleChainId, int? visibleChainIdx, String? visibleTweetId) {
+  void positionChanged(String? visibleChainId, String? visibleTweetId, int? visibleTweetIdx) {
     this.visibleChainId = visibleChainId;
-    this.visibleChainIdx = visibleChainIdx;
     this.visibleTweetId = visibleTweetId;
+    this.visibleTweetIdx = visibleTweetIdx;
     initialized = true;
   }
 

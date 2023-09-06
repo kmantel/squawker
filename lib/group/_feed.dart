@@ -61,6 +61,7 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
   Response? _errorResponse;
   int? _positionShowing;
   OverlayEntry? _overlayEntry;
+  final Map<String,int> _tweetIdxDic = {};
 
   @override
   void initState() {
@@ -308,6 +309,15 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
         return;
       }
 
+      _tweetIdxDic.clear();
+      int idx = 0;
+      for (var cElm in threads) {
+        for (var tElm in cElm.tweets) {
+          _tweetIdxDic[tElm.idStr!] = idx;
+          idx++;
+        }
+      }
+
       if (positionedChainId != null && !_visiblePositionState.initialized) {
         int positionedChainIdx = threads.indexWhere((e) => e.id == positionedChainId);
         int positionedTweetIdx = -1;
@@ -435,8 +445,8 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
               }
               if (notification is UserScrollNotification) {
                 if (notification.direction == ScrollDirection.forward) {
-                  if (_visiblePositionState.scrollChainIdx != null && _visiblePositionState.visibleChainIdx != null && _visiblePositionState.visibleChainIdx! < _visiblePositionState.scrollChainIdx!) {
-                    _positionShowing = _visiblePositionState.visibleChainIdx!;
+                  if (_visiblePositionState.visibleTweetIdx != null) {
+                    _positionShowing = _visiblePositionState.visibleTweetIdx!;
                     _showOverlay(context);
                   }
                 }
@@ -455,7 +465,7 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
               itemCount: _data.length,
               itemBuilder: (context, index) {
                 TweetChain tc = _data[index];
-                return TweetConversation(key: ValueKey(tc.id), id: tc.id, username: null, isPinned: tc.isPinned, tweets: tc.tweets, idx: index, visiblePositionState: _visiblePositionState);
+                return TweetConversation(key: ValueKey(tc.id), id: tc.id, username: null, isPinned: tc.isPinned, tweets: tc.tweets, tweetIdxDic: _tweetIdxDic, visiblePositionState: _visiblePositionState);
               },
               itemScrollController: widget.scrollController,
               itemPositionsListener: _itemPositionsListener,
