@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:http/http.dart';
 import 'package:logging/logging.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
@@ -49,13 +50,17 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
 
   static final Lock _lock = Lock();
 
+  GlobalKey _key = GlobalKey();
+
   late VisiblePositionState _visiblePositionState;
   late ItemPositionsListener _itemPositionsListener;
   bool _insertOffset = true;
   bool _keepFeedOffset = false;
-  List<TweetChain> _data = [];
+  final List<TweetChain> _data = [];
   bool _toScroll = false;
   Response? _errorResponse;
+  int? _positionShowing;
+  OverlayEntry? _overlayEntry;
 
   @override
   void initState() {
@@ -94,8 +99,7 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
     if (_data.isEmpty || _itemPositionsListener.itemPositions.value.first.index > 0.8 * _data.length) {
       await _lock.synchronized(() async {
         if (_data.isEmpty || _itemPositionsListener.itemPositions.value.first.index > 0.8 * _data.length) {
-          BasePrefService prefs = PrefService.of(context);
-          await _listTweets(_data.isEmpty, prefs);
+          await _listTweets(_data.isEmpty);
         }
       });
     }
@@ -103,16 +107,16 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
 
   Future<void> _updateOffset() async {
     try {
-      if (_keepFeedOffset && _visiblePositionState.initialized && _visiblePositionState.chainId != null) {
+      if (_keepFeedOffset && _visiblePositionState.initialized && _visiblePositionState.visibleChainId != null) {
         if (kDebugMode) {
-          print('*** _SubscriptionGroupFeedState._updateOffset - widget.group.id=${widget.group.id}, chainId=${_visiblePositionState.chainId}, tweetId=${_visiblePositionState.tweetId}, insert=$_insertOffset');
+          print('*** _SubscriptionGroupFeedState._updateOffset - widget.group.id=${widget.group.id}, visibleChainId=${_visiblePositionState.visibleChainId}, visibleTweetId=${_visiblePositionState.visibleTweetId}, insert=$_insertOffset');
         }
         var repository = await Repository.writable();
         if (_insertOffset) {
-          await repository.insert(tableFeedGroupPositionState, {'group_id': widget.group.id, 'chain_id': _visiblePositionState.chainId, 'tweet_id': _visiblePositionState.tweetId});
+          await repository.insert(tableFeedGroupPositionState, {'group_id': widget.group.id, 'chain_id': _visiblePositionState.visibleChainId, 'tweet_id': _visiblePositionState.visibleTweetId});
         }
         else {
-          await repository.update(tableFeedGroupPositionState, {'chain_id': _visiblePositionState.chainId, 'tweet_id': _visiblePositionState.tweetId}, where: 'group_id = ?', whereArgs: [widget.group.id]);
+          await repository.update(tableFeedGroupPositionState, {'chain_id': _visiblePositionState.visibleChainId, 'tweet_id': _visiblePositionState.visibleTweetId}, where: 'group_id = ?', whereArgs: [widget.group.id]);
         }
       }
     }
@@ -184,13 +188,15 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
   /// Here, each page is actually a set of mappings, where the ID of each set is the hash of all the user IDs in that
   /// set. We store this along with the top and bottom pagination cursors, which we use to perform pagination for all
   /// sets at the same time, allowing us to create a feed made up of individual search queries.
-  Future _listTweets(bool dataIsEmpty, BasePrefService prefs) async {
+  Future _listTweets(bool dataIsEmpty) async {
     try {
       List<Future<List<TweetChain>>> futures = [];
 
       var repository = await Repository.writable();
 
+      BasePrefService prefs = PrefService.of(context);
       _keepFeedOffset = prefs.get(optionKeepFeedOffset);
+
       String? positionedChainId;
       String? positionedTweetId;
       if (_keepFeedOffset) {
@@ -308,12 +314,23 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
         if (positionedChainIdx > -1 && positionedTweetId != null) {
           positionedTweetIdx = threads[positionedChainIdx].tweets.indexWhere((e) => e.idStr == positionedTweetId);
         }
-        _visiblePositionState.chainIdx = positionedChainIdx > -1 ? positionedChainIdx : null;
-        _visiblePositionState.tweetIdx = positionedTweetIdx > -1 ? positionedTweetIdx : null;
+        if (positionedChainIdx == -1) {
+          // find the nearest conversation
+          int refId = int.parse(positionedChainId);
+          TweetChain tc = threads.lastWhere((e) {
+            int id = int.parse(e.id);
+            return id > refId;
+          });
+          positionedChainIdx = threads.indexWhere((e) => e.id == tc.id);
+        }
+        _visiblePositionState.scrollChainIdx = positionedChainIdx > -1 ? positionedChainIdx : null;
+        _visiblePositionState.scrollTweetIdx = positionedTweetIdx > -1 ? positionedTweetIdx : null;
         if (kDebugMode) {
-          print('*** _SubscriptionGroupFeedState._listTweets - setPositionIndexes - _visiblePositionState.chainIdx=${_visiblePositionState.chainIdx}, _visiblePositionState.tweetIdx=${_visiblePositionState.tweetIdx}');
+          print('*** _SubscriptionGroupFeedState._listTweets - setPositionIndexes - _visiblePositionState.scrollChainIdx=${_visiblePositionState.scrollChainIdx}, _visiblePositionState.scrollTweetIdx=${_visiblePositionState.scrollTweetIdx}');
         }
       }
+
+      _positionShowing = null;
 
       setState(() {
         if (dataIsEmpty) {
@@ -323,7 +340,7 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
       });
 
       _toScroll = false;
-      if (threads.isNotEmpty && !_visiblePositionState.initialized && _visiblePositionState.chainIdx != null) {
+      if (threads.isNotEmpty && !_visiblePositionState.initialized && _visiblePositionState.scrollChainIdx != null) {
         _toScroll = true;
       }
 
@@ -331,6 +348,34 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
       if (mounted) {
         // probably something to do
       }
+    }
+  }
+
+  void _showOverlay(BuildContext context) {
+    //print('*** _showOverlay - _visiblePositionState.visibleChainIdx=${_visiblePositionState.visibleChainIdx}');
+    if (_overlayEntry == null) {
+      RenderBox renderBoxWindow = _key.currentContext!.findRenderObject() as RenderBox;
+      Offset positionWindow = renderBoxWindow.localToGlobal(Offset.zero);
+      _overlayEntry = OverlayEntry(builder: (context) {
+        return Positioned(
+          right: 5, // MediaQuery.of(context).size.width * 0.05,
+          top: positionWindow.dy + 5, // MediaQuery.of(context).size.height * 0.15,
+          child: Material(child: Text(_positionShowing == null ? '' : _positionShowing!.toString(), style: TextStyle(
+                    fontSize: Theme.of(context).textTheme.titleMedium!.fontSize)))
+        );
+      });
+      Overlay.of(context).insert(_overlayEntry!);
+    }
+    else {
+      _overlayEntry!.markNeedsBuild();
+    }
+  }
+
+  void _hideOverlay(BuildContext context) {
+    //print('*** _hideOverlay - _visiblePositionState.visibleChainIdx=${_visiblePositionState.visibleChainIdx}');
+    if (_overlayEntry != null) {
+      _overlayEntry!.remove();
+      _overlayEntry = null;
     }
   }
 
@@ -343,9 +388,9 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
       if (_toScroll) {
         _toScroll = false;
         if (kDebugMode) {
-          print('*** _SubscriptionGroupFeedState._listTweets - scrollController.jumpTo - index=${_visiblePositionState.chainIdx}, widget.group.id=${widget.group.id}');
+          print('*** _SubscriptionGroupFeedState._listTweets - scrollController.jumpTo - index=${_visiblePositionState.scrollChainIdx}, widget.group.id=${widget.group.id}');
         }
-        widget.scrollController!.jumpTo(index: _visiblePositionState.chainIdx!);
+        widget.scrollController!.jumpTo(index: _visiblePositionState.scrollChainIdx!);
       }
       if (_errorResponse != null && _data.isNotEmpty && (_errorResponse!.statusCode < 200 || _errorResponse!.statusCode >= 300)) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -369,6 +414,7 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
     }
 
     return Scaffold(
+      key: _key,
       body: RefreshIndicator(
         onRefresh: () async {
           await _updateOffset();
@@ -382,15 +428,39 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
             ChangeNotifierProvider<VideoContextState>(
                 create: (_) => VideoContextState(prefs.get(optionMediaDefaultMute))),
           ],
-          child: ScrollablePositionedList.builder(
-            itemCount: _data.length,
-            itemBuilder: (context, index) {
-              TweetChain tc = _data[index];
-              return TweetConversation(key: ValueKey(tc.id), id: tc.id, username: null, isPinned: tc.isPinned, tweets: tc.tweets, visiblePositionState: _visiblePositionState);
+          child: NotificationListener<ScrollNotification>(
+            onNotification: (ScrollNotification notification) {
+              if (!_keepFeedOffset || !_visiblePositionState.initialized) {
+                return false;
+              }
+              if (notification is UserScrollNotification) {
+                if (notification.direction == ScrollDirection.forward) {
+                  if (_visiblePositionState.scrollChainIdx != null && _visiblePositionState.visibleChainIdx != null && _visiblePositionState.visibleChainIdx! < _visiblePositionState.scrollChainIdx!) {
+                    _positionShowing = _visiblePositionState.visibleChainIdx!;
+                    _showOverlay(context);
+                  }
+                }
+                else if (notification.direction == ScrollDirection.idle) {
+                  _positionShowing = null;
+                  Future.delayed(const Duration(seconds: 2), () {
+                    if (_positionShowing == null) {
+                      _hideOverlay(context);
+                    }
+                  });
+                }
+              }
+              return false;
             },
-            itemScrollController: widget.scrollController,
-            itemPositionsListener: _itemPositionsListener,
-            padding: const EdgeInsets.only(top: 4),
+            child: ScrollablePositionedList.builder(
+              itemCount: _data.length,
+              itemBuilder: (context, index) {
+                TweetChain tc = _data[index];
+                return TweetConversation(key: ValueKey(tc.id), id: tc.id, username: null, isPinned: tc.isPinned, tweets: tc.tweets, idx: index, visiblePositionState: _visiblePositionState);
+              },
+              itemScrollController: widget.scrollController,
+              itemPositionsListener: _itemPositionsListener,
+              padding: const EdgeInsets.only(top: 4),
+            ),
           ),
         ),
       ),

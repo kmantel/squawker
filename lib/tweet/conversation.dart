@@ -8,10 +8,11 @@ class TweetConversation extends StatefulWidget {
   final String? username;
   final bool isPinned;
   final List<TweetWithCard> tweets;
+  final int? idx;
   final VisiblePositionState? visiblePositionState;
 
   const TweetConversation(
-      {Key? key, required this.id, required this.username, required this.isPinned, required this.tweets, this.visiblePositionState})
+      {Key? key, required this.id, required this.username, required this.isPinned, required this.tweets, this.idx, this.visiblePositionState})
       : super(key: key);
 
   @override
@@ -23,7 +24,7 @@ class _TweetConversationState extends State<TweetConversation> {
   Widget build(BuildContext context) {
     if (widget.tweets.length == 1) {
       return TweetTile(
-          conversationId: widget.id, clickable: true, tweet: widget.tweets.first, currentUsername: widget.username, isPinned: widget.isPinned, visiblePositionState: widget.visiblePositionState);
+          conversationId: widget.id, clickable: true, tweet: widget.tweets.first, currentUsername: widget.username, isPinned: widget.isPinned, conversationIdx: widget.idx, visiblePositionState: widget.visiblePositionState);
     }
 
     var tiles = [];
@@ -38,7 +39,9 @@ class _TweetConversationState extends State<TweetConversation> {
         currentUsername: widget.username,
         isPinned: widget.isPinned,
         isThread: i == 0,
-        visiblePositionState: widget.visiblePositionState));
+        conversationIdx: widget.idx,
+        visiblePositionState: widget.visiblePositionState)
+      );
     }
 
     return Container(
