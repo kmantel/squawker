@@ -1,0 +1,6 @@
+* Fix issue #63 Clicking on tweets sometimes shows sponsored content/Ads.
+* Fix greyed checkboxes
+* Fix issue from discussion #66 of launching Squawker from a shorten Twitter/X link (https://t.co/...)
+  and also when a Twitter/X tweet link has additional parts (eg. ends with /photo/1).
+* Implement feature #61 Show a tweet count for feed/groups when scrolling forward and the keep offset option is enabled.
+* Implement feature #68 Add an option to have a confirmation when the application is closing.
