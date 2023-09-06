@@ -168,6 +168,7 @@ Future<void> main() async {
     optionTweetsHideSensitive: false,
     optionKeepFeedOffset: false,
     optionLeanerFeeds: false,
+    optionConfirmClose: true,
     optionUserTrendsLocations: jsonEncode({
       'active': {'name': 'Worldwide', 'woeid': 1},
       'locations': [
@@ -518,22 +519,26 @@ class _DefaultPageState extends State<DefaultPage> {
 
     return WillPopScope(
         onWillPop: () async {
+          var prefService = PrefService.of(context);
+          if (!prefService.get(optionConfirmClose)) {
+            return true;
+          }
           var result = await showDialog<bool>(
-              context: context,
-              builder: (c) => AlertDialog(
-                    title: Text(L10n.current.are_you_sure),
-                    content: Text(L10n.current.confirm_close_fritter),
-                    actions: [
-                      TextButton(
-                        child: Text(L10n.current.no),
-                        onPressed: () => Navigator.pop(c, false),
-                      ),
-                      TextButton(
-                        child: Text(L10n.current.yes),
-                        onPressed: () => Navigator.pop(c, true),
-                      ),
-                    ],
-                  ));
+            context: context,
+            builder: (c) => AlertDialog(
+              title: Text(L10n.current.are_you_sure),
+              content: Text(L10n.current.confirm_close_fritter),
+              actions: [
+                TextButton(
+                  child: Text(L10n.current.no),
+                  onPressed: () => Navigator.pop(c, false),
+                ),
+                TextButton(
+                  child: Text(L10n.current.yes),
+                  onPressed: () => Navigator.pop(c, true),
+                ),
+              ],
+            ));
 
           return result ?? false;
         },

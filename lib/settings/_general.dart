@@ -162,6 +162,11 @@ class SettingsGeneralFragment extends StatelessWidget {
               pref: optionShouldCheckForUpdates,
               subtitle: Text(L10n.of(context).should_check_for_updates_description),
             ),
+          PrefSwitch(
+            title: Text(L10n.of(context).option_confirm_close_label),
+            subtitle: Text(L10n.of(context).option_confirm_close_description),
+            pref: optionConfirmClose,
+          ),
           PrefDropdown(
               fullWidth: false,
               title: Text(L10n.of(context).default_tab),
@@ -249,7 +254,7 @@ class SettingsGeneralFragment extends StatelessWidget {
             pref: optionLeanerFeeds,
           ),
           PrefButton(
-            title: Text(L10n.of(context).tweet_font_size),
+            title: Text(L10n.of(context).tweet_font_size_label),
             subtitle: Text(L10n.of(context).tweet_font_size_description),
             onTap: () => _createTweetFontSizeDialog(context),
             child: Text('${_getOptionTweetFontSizeValue(context)} px'),
@@ -352,7 +357,7 @@ class FontSizePickerDialogState extends State<FontSizePickerDialog> {
     double minFontSize = defaultFontSize - 4;
     double maxFontSize = defaultFontSize + 8;
     return AlertDialog(
-      title: Text(L10n.of(context).tweet_font_size),
+      title: Text(L10n.of(context).tweet_font_size_label),
       content: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,

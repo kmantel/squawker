@@ -277,6 +277,11 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oups ! Quelque chose a mal tourné 🥲"),
         "open_app_settings": MessageLookupByLibrary.simpleMessage(
             "Ouvrir les paramètres de l\'appli"),
+        "option_confirm_close_description":
+            MessageLookupByLibrary.simpleMessage(
+                "Confirmation à la fermeture de l\'application"),
+        "option_confirm_close_label":
+            MessageLookupByLibrary.simpleMessage("Confirmation de fermeture"),
         "page_not_found": MessageLookupByLibrary.simpleMessage(
             "Twitter/X informe que la page n\'existe pas, ce qui ne peux ne pas être vrai"),
         "permission_not_granted": MessageLookupByLibrary.simpleMessage(
@@ -402,10 +407,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "trending": MessageLookupByLibrary.simpleMessage("Tendances"),
         "trends": MessageLookupByLibrary.simpleMessage("Tendances"),
         "true_black": MessageLookupByLibrary.simpleMessage("Vrai noir ?"),
-        "tweet_font_size":
-            MessageLookupByLibrary.simpleMessage("Taille de fonte"),
         "tweet_font_size_description":
             MessageLookupByLibrary.simpleMessage("Taille de fonte des tweets"),
+        "tweet_font_size_label":
+            MessageLookupByLibrary.simpleMessage("Taille de fonte"),
         "tweets": MessageLookupByLibrary.simpleMessage("Tweets"),
         "tweets_and_replies":
             MessageLookupByLibrary.simpleMessage("Tweets & Réponses"),

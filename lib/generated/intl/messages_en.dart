@@ -270,6 +270,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Open app settings"),
         "open_in_browser":
             MessageLookupByLibrary.simpleMessage("Open in browser"),
+        "option_confirm_close_description":
+            MessageLookupByLibrary.simpleMessage(
+                "Confirm when closing the app"),
+        "option_confirm_close_label":
+            MessageLookupByLibrary.simpleMessage("Confirm close"),
         "page_not_found": MessageLookupByLibrary.simpleMessage(
             "Twitter/X says the page does not exist, but that may not be true"),
         "permission_not_granted": MessageLookupByLibrary.simpleMessage(
@@ -393,9 +398,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "trending": MessageLookupByLibrary.simpleMessage("Trending"),
         "trends": MessageLookupByLibrary.simpleMessage("Trends"),
         "true_black": MessageLookupByLibrary.simpleMessage("True Black?"),
-        "tweet_font_size": MessageLookupByLibrary.simpleMessage("Font size"),
         "tweet_font_size_description":
             MessageLookupByLibrary.simpleMessage("Font size of the tweets"),
+        "tweet_font_size_label":
+            MessageLookupByLibrary.simpleMessage("Font size"),
         "tweets": MessageLookupByLibrary.simpleMessage("Tweets"),
         "tweets_and_replies":
             MessageLookupByLibrary.simpleMessage("Tweets & Replies"),

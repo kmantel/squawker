@@ -417,9 +417,11 @@
   "keep_feed_offset_description": "The timeline offset is kept for feeds when the app restarts",
   "leaner_feeds_label": "Leaner feeds",
   "leaner_feeds_description": "The tweets from feeds do not display preview links",
-  "tweet_font_size": "Font size",
+  "tweet_font_size_label": "Font size",
   "tweet_font_size_description": "Font size of the tweets",
   "thumbnail_not_available": "Thumbnail not available",
   "download_video_best_quality_label": "Download videos with best quality",
-  "download_video_best_quality_description": "Download videos with the best quality available"
+  "download_video_best_quality_description": "Download videos with the best quality available",
+  "option_confirm_close_label": "Confirm close",
+  "option_confirm_close_description": "Confirm when closing the app"
 }

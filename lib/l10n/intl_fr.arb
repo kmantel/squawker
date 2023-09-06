@@ -495,9 +495,11 @@
   "keep_feed_offset_description": "Retenir la position des flux lors de la réouverture d'appli",
   "leaner_feeds_label": "Flux plus léger",
   "leaner_feeds_description": "Les tweets de flux ne montrent pas d'aperçu de liens'",
-  "tweet_font_size": "Taille de fonte",
+  "tweet_font_size_label": "Taille de fonte",
   "tweet_font_size_description": "Taille de fonte des tweets",
   "thumbnail_not_available": "Vignette non disponible",
   "download_video_best_quality_label": "Télécharger les vidéos avec la plus grande résolution",
-  "download_video_best_quality_description": "Télécharger les vidéos avec la plus grande résolution disponible"
+  "download_video_best_quality_description": "Télécharger les vidéos avec la plus grande résolution disponible",
+  "option_confirm_close_label": "Confirmation de fermeture",
+  "option_confirm_close_description": "Confirmation à la fermeture de l'application"
 }

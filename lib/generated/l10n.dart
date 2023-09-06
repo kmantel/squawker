@@ -2467,10 +2467,10 @@ class L10n {
   }
 
   /// `Font size`
-  String get tweet_font_size {
+  String get tweet_font_size_label {
     return Intl.message(
       'Font size',
-      name: 'tweet_font_size',
+      name: 'tweet_font_size_label',
       desc: '',
       args: [],
     );
@@ -2511,6 +2511,26 @@ class L10n {
     return Intl.message(
       'Download videos with the best quality available',
       name: 'download_video_best_quality_description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm close`
+  String get option_confirm_close_label {
+    return Intl.message(
+      'Confirm close',
+      name: 'option_confirm_close_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm when closing the app`
+  String get option_confirm_close_description {
+    return Intl.message(
+      'Confirm when closing the app',
+      name: 'option_confirm_close_description',
       desc: '',
       args: [],
     );
