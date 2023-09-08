@@ -10,11 +10,16 @@
 </p>
 
 <p align="center">
+  <a href="https://f-droid.org/packages/org.ca.squawker">
+    <img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
+       alt="Get it on F-Droid"
+       height="80">
+  </a>
   <a href="https://apt.izzysoft.de/fdroid/index/apk/org.ca.squawker">
     <img src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png"
        alt="Get it on IzzyOnDroid"
        height="80">
-   </a>
+  </a>
 </p>
 <p align="center">
 <a href="https://github.com/j-fbriere/squawker/releases" alt="GitHub release"><img src="https://img.shields.io/github/release/j-fbriere/squawker.svg" ></a>

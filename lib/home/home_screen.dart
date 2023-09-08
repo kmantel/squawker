@@ -232,7 +232,7 @@ class _HomeScreenState extends State<_HomeScreen> {
   }
 
   Future<Uri> _resolveShortUrl(Uri link) async {
-    http.Request req = http.Request("Get", link)..followRedirects = false;
+    http.Request req = http.Request('Get', link)..followRedirects = false;
     http.Client baseClient = http.Client();
     http.StreamedResponse response = await baseClient.send(req);
     String? location = response.headers['location'];
