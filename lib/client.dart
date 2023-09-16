@@ -1001,10 +1001,10 @@ class TweetWithCard extends Tweet {
   }
 
   factory TweetWithCard.fromGraphqlJson(Map<String, dynamic> result) {
-    var retweetedStatus = result['retweeted_status_result'] == null
+    var retweetedStatus = result['retweeted_status_result']?.isEmpty ?? true
         ? null
         : TweetWithCard.fromGraphqlJson(result['retweeted_status_result']['result']['rest_id'] == null ? result['retweeted_status_result']['result']['tweet'] : result['retweeted_status_result']['result']);
-    var quotedStatus = result['quoted_status_result'] == null || result['quoted_status_result']['result']['tombstone'] != null
+    var quotedStatus = (result['quoted_status_result']?.isEmpty ?? true) || result['quoted_status_result']['result']['tombstone'] != null
         ? null
         : TweetWithCard.fromGraphqlJson(result['quoted_status_result']['result']['rest_id'] == null ? result['quoted_status_result']['result']['tweet'] : result['quoted_status_result']['result']);
     var resCore = result['core']?['user_results']?['result'];
@@ -1017,7 +1017,7 @@ class TweetWithCard extends Tweet {
     Entities? noteEntities;
 
     var noteResult = result['note_tweet']?['note_tweet_results']?['result'];
-    if (noteResult != null) {
+    if (noteResult?.isNotEmpty ?? false) {
       noteText = noteResult['text'];
       noteEntities = Entities.fromJson(noteResult['entity_set']);
     }

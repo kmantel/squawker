@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:http/http.dart' as http;
@@ -86,6 +87,9 @@ class _HomeScreenState extends State<_HomeScreen> {
   bool _firstInit = false;
 
   Future<void> handleInitialLink(Uri link) async {
+    if (kDebugMode) {
+      print('****** link=$link');
+    }
     if (link.host == 't.co') {
       Uri lnk = await _resolveShortUrl(link);
       if (lnk.host != 't.co') {
