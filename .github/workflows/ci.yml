@@ -25,7 +25,7 @@ jobs:
       - name: Install and set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.13.1'
+          flutter-version: '3.13.4'
           channel: 'stable'
           cache: true
 
@@ -42,7 +42,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-
 
-      - name: Build
+      - name: Build APKs
         run: |
           flutter clean
           flutter config --no-analytics
@@ -94,19 +94,21 @@ jobs:
 #    runs-on: macos-latest
 #    steps:
 #      - name: Clone the repository
-#        uses: actions/checkout@v2
+#        uses: actions/checkout@v3
 #        with:
 #          fetch-depth: 0
 #
 #      - name: Install and set up Java
-#        uses: actions/setup-java@v1
+#        uses: actions/setup-java@v21
 #        with:
+#          distribution: 'zulu'
 #          java-version: '14.x'
 #
 #      - name: Install and set up Flutter
-#        uses: subosito/flutter-action@v1
+#        uses: subosito/flutter-action@v2
 #        with:
-#          flutter-version: '2.2.1'
+#          flutter-version: '3.13.4'
+#          channel: 'stable'
 #
 #      - name: Build
 #        run: |
