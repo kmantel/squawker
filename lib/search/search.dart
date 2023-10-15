@@ -115,7 +115,7 @@ class _SearchScreenState extends State<_SearchScreen> with SingleTickerProviderS
                       var currentlyFollowed = state.any((element) => element.id == id);
                       if (!currentlyFollowed) {
                         return IconButton(
-                            icon: const Icon(Icons.save_outlined),
+                            icon: const Icon(Icons.save_rounded),
                             onPressed: () async {
                               await subscriptionsModel.toggleSubscribe(
                                   SearchSubscription(id: id, createdAt: DateTime.now()), currentlyFollowed);
@@ -137,8 +137,8 @@ class _SearchScreenState extends State<_SearchScreen> with SingleTickerProviderS
               child: TabBar(
                 controller: _tabController,
                 tabs: const [
-                  Tab(icon: Icon(Icons.person_outlined)),
-                  Tab(icon: Icon(Icons.comment_outlined)),
+                  Tab(icon: Icon(Icons.person_rounded)),
+                  Tab(icon: Icon(Icons.comment_rounded)),
                 ],
                 labelColor: Theme.of(context).appBarTheme.foregroundColor,
                 indicatorColor: Theme.of(context).appBarTheme.foregroundColor,

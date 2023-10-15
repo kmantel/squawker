@@ -43,7 +43,8 @@ class TweetVideoMetadata {
         .where((e) => e.bitrate != null)
         .where((e) => e.url != null)
         .where((e) => e.contentType == 'video/mp4')
-        .sorted((a, b) => downloadBestVideoQuality ? b.bitrate!.compareTo(a.bitrate!) : a.bitrate!.compareTo(b.bitrate!))
+        .sorted(
+            (a, b) => downloadBestVideoQuality ? b.bitrate!.compareTo(a.bitrate!) : a.bitrate!.compareTo(b.bitrate!))
         .map((e) => e.url)
         .firstWhereOrNull((e) => e != null);
 
@@ -121,7 +122,7 @@ class _TweetVideoState extends State<TweetVideo> {
               },
             );
           },
-          iconData: Icons.download_outlined,
+          iconData: Icons.download_rounded,
           title: L10n.of(context).download,
         )
       ],
@@ -133,7 +134,7 @@ class _TweetVideoState extends State<TweetVideo> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Icon(
-                Icons.error_outline,
+                Icons.error_rounded,
                 color: Colors.white,
                 size: 42,
               ),
@@ -174,11 +175,12 @@ class _TweetVideoState extends State<TweetVideo> {
               : GestureDetector(
                   onTap: onTapPlay,
                   child: Stack(alignment: Alignment.center, children: [
-                    widget.metadata.imageUrl != null ? ExtendedImage.network(widget.metadata.imageUrl!, width: double.infinity, fit: BoxFit.fitWidth) :
-                    FittedBox(
-                      fit: BoxFit.fitWidth,
-                      child: Text(L10n.of(context).thumbnail_not_available),
-                    ),
+                    widget.metadata.imageUrl != null
+                        ? ExtendedImage.network(widget.metadata.imageUrl!, width: double.infinity, fit: BoxFit.fitWidth)
+                        : FittedBox(
+                            fit: BoxFit.fitWidth,
+                            child: Text(L10n.of(context).thumbnail_not_available),
+                          ),
                     Center(
                       child: FritterCenterPlayButton(
                         backgroundColor: Colors.black54,

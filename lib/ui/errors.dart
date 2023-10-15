@@ -180,7 +180,7 @@ class InlineErrorWidget extends FritterErrorWidget {
         children: [
           Container(
             margin: const EdgeInsets.only(right: 8),
-            child: const Icon(Icons.error_outline, color: Colors.red),
+            child: const Icon(Icons.error_rounded, color: Colors.red),
           ),
           Text('$error', textAlign: TextAlign.center, style: TextStyle(color: Theme.of(context).hintColor)),
         ],
@@ -272,7 +272,7 @@ class FullPageErrorWidget extends FritterErrorWidget {
         children: [
           Container(
             margin: const EdgeInsets.only(bottom: 16),
-            child: const Icon(Icons.error_outline, color: Colors.red, size: 36),
+            child: const Icon(Icons.error_rounded, color: Colors.red, size: 36),
           ),
           Text(
             L10n.of(context).oops_something_went_wrong,

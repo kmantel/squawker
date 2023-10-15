@@ -42,7 +42,7 @@ List<Widget> createCommonAppBarActions(BuildContext context) {
       onPressed: () => Navigator.pushNamed(context, routeSearch, arguments: SearchArguments(0, focusInputOnOpen: true)),
     ),
     IconButton(
-      icon: const Icon(Icons.settings_outlined),
+      icon: const Icon(Icons.settings_rounded),
       onPressed: () {
         Navigator.pushNamed(context, routeSettings);
       },
@@ -52,8 +52,8 @@ List<Widget> createCommonAppBarActions(BuildContext context) {
 
 final List<NavigationPage> defaultHomePages = [
   NavigationPage('feed', (c) => L10n.of(c).feed, Icons.rss_feed_rounded),
-  NavigationPage('subscriptions', (c) => L10n.of(c).subscriptions, Icons.subscriptions_outlined),
-  NavigationPage('groups', (c) => L10n.of(c).groups, Icons.group_outlined),
+  NavigationPage('subscriptions', (c) => L10n.of(c).subscriptions, Icons.subscriptions_rounded),
+  NavigationPage('groups', (c) => L10n.of(c).groups, Icons.group_rounded),
   NavigationPage('trending', (c) => L10n.of(c).trending, Icons.trending_up_rounded),
   NavigationPage('saved', (c) => L10n.of(c).saved, Icons.bookmark_border_rounded),
 ];
@@ -127,10 +127,10 @@ class _HomeScreenState extends State<_HomeScreen> {
       var statusId = link.pathSegments[2];
 
       Navigator.pushNamed(context, routeStatus,
-        arguments: StatusScreenArguments(
-          id: statusId,
-          username: username,
-        ));
+          arguments: StatusScreenArguments(
+            id: statusId,
+            username: username,
+          ));
       return;
     }
 
@@ -141,8 +141,7 @@ class _HomeScreenState extends State<_HomeScreen> {
 
       // https://twitter.com/i/topics/tweet/1447290060123033601
       if (segment2 == 'topics' && segment3 == 'tweet') {
-        Navigator.pushNamed(context, routeStatus,
-            arguments: StatusScreenArguments(id: segment4, username: null));
+        Navigator.pushNamed(context, routeStatus, arguments: StatusScreenArguments(id: segment4, username: null));
         return;
       }
     }
@@ -283,7 +282,7 @@ class _ScaffoldWithBottomNavigationState extends State<ScaffoldWithBottomNavigat
     var widgetPages = pages;
     if (widgetPages.length < 2) {
       widgetPages.addAll(List.generate(2 - widgetPages.length, (index) {
-        return NavigationPage('none', (context) => L10n.current.missing_page, Icons.disabled_by_default_outlined);
+        return NavigationPage('none', (context) => L10n.current.missing_page, Icons.disabled_by_default_rounded);
       }));
     }
 

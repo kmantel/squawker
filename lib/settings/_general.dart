@@ -75,61 +75,9 @@ class SettingsGeneralFragment extends StatelessWidget {
   }
 
   int _getOptionTweetFontSizeValue(BuildContext context) {
-    int optionTweetFontSizeValue = PrefService.of(context).get<int>(optionTweetFontSize) ?? DefaultTextStyle.of(context).style.fontSize!.round();
+    int optionTweetFontSizeValue =
+        PrefService.of(context).get<int>(optionTweetFontSize) ?? DefaultTextStyle.of(context).style.fontSize!.round();
     return optionTweetFontSizeValue;
-  }
-
-  Future<void> _appInfo(BuildContext context) async {
-    var deviceInfo = DeviceInfoPlugin();
-    var packageInfo = await PackageInfo.fromPlatform();
-    Map<String, Object> metadata;
-
-    if (Platform.isAndroid) {
-      var info = await deviceInfo.androidInfo;
-
-      metadata = {
-        'abis': info.supportedAbis,
-        'device': info.device,
-        'flavor': getFlavor(),
-        'locale': Localizations.localeOf(context).languageCode,
-        'os': 'android',
-        'system': info.version.sdkInt.toString(),
-        'version': packageInfo.buildNumber,
-      };
-    } else {
-      var info = await deviceInfo.iosInfo;
-
-      metadata = {
-        'abis': [],
-        'device': info.utsname.machine,
-        'flavor': getFlavor(),
-        'locale': Localizations.localeOf(context).languageCode,
-        'os': 'ios',
-        'system': info.systemVersion,
-        'version': packageInfo.buildNumber,
-      };
-    }
-
-    showDialog(
-        context: context,
-        builder: (context) {
-          var content = JsonEncoder.withIndent(' ' * 2).convert(metadata);
-
-          return AlertDialog(
-              actions: [
-                TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: Text(L10n.of(context).ok)),
-              ],
-              title: Text(L10n.of(context).app_info),
-              content: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [const SizedBox(height: 16), Text(content, style: const TextStyle(fontFamily: 'monospace'))],
-              ));
-        });
   }
 
   @override
@@ -139,11 +87,6 @@ class SettingsGeneralFragment extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8),
         child: ListView(children: [
-          PrefButton(
-            title: Text(L10n.of(context).app_info),
-            onTap: () => _appInfo(context),
-            child: const Icon(Icons.info),
-          ),
           PrefDropdown(
               fullWidth: false,
               title: Text(L10n.current.language),
@@ -298,7 +241,9 @@ class DownloadTypeSettingState extends State<DownloadTypeSetting> {
             onTap: () async {
               DeviceInfoPlugin plugin = DeviceInfoPlugin();
               AndroidDeviceInfo android = await plugin.androidInfo;
-              var storagePermission = android.version.sdkInt < 30 ? await Permission.storage.request() : await Permission.manageExternalStorage.request();
+              var storagePermission = android.version.sdkInt < 30
+                  ? await Permission.storage.request()
+                  : await Permission.manageExternalStorage.request();
               if (storagePermission.isGranted) {
                 String? directoryPath = await FilePicker.platform.getDirectoryPath();
                 if (directoryPath == null) {
@@ -358,36 +303,29 @@ class FontSizePickerDialogState extends State<FontSizePickerDialog> {
     double maxFontSize = defaultFontSize + 8;
     return AlertDialog(
       title: Text(L10n.of(context).tweet_font_size_label),
-      content: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text('$tweetFontSize px'),
-          Slider(
-            value: tweetFontSize.toDouble(),
-            min: minFontSize,
-            max: maxFontSize,
-            divisions: ((maxFontSize - minFontSize) / 2).round(),
-            label: '$tweetFontSize px',
-            onChanged: (value) {
-              setState(() {
-                tweetFontSize = value.round();
-              });
-            },
-          ),
-        ]
-      ),
-
+      content: Column(mainAxisAlignment: MainAxisAlignment.center, mainAxisSize: MainAxisSize.min, children: [
+        Text('$tweetFontSize px'),
+        Slider(
+          value: tweetFontSize.toDouble(),
+          min: minFontSize,
+          max: maxFontSize,
+          divisions: ((maxFontSize - minFontSize) / 2).round(),
+          label: '$tweetFontSize px',
+          onChanged: (value) {
+            setState(() {
+              tweetFontSize = value.round();
+            });
+          },
+        ),
+      ]),
       actions: [
         TextButton(onPressed: () => Navigator.pop(context), child: Text(L10n.of(context).cancel)),
         TextButton(
             onPressed: () async {
               Navigator.pop(context, tweetFontSize);
             },
-            child: Text(L10n.of(context).save)
-        )
+            child: Text(L10n.of(context).save))
       ],
     );
   }
 }
-

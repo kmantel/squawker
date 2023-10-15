@@ -213,7 +213,7 @@ class _SubscriptionGroupEditDialogState extends State<SubscriptionGroupEditDialo
     }
 
     // Filter the Material icons to only the ones the app uses
-    var iconPack = icons.entries.where((value) => value.key.endsWith('_outlined') || value.key.endsWith('_outline'));
+    var iconPack = icons.entries.where((value) => value.key.endsWith('_rounded') || value.key.endsWith('_rounded'));
 
     List<Widget> buttonsLst1 = [
       TextButton(
@@ -254,34 +254,47 @@ class _SubscriptionGroupEditDialogState extends State<SubscriptionGroupEditDialo
       }),
     ];
     double screenWidth = MediaQuery.of(context).size.width;
-    double allTextsWidth = calcTextSize(context, '   ${L10n.of(context).toggle_all}   ${L10n.of(context).delete}   ${L10n.of(context).cancel}  ${L10n.of(context).ok}   ').width;
-    double halfTextsWidth1 = calcTextSize(context, '   ${L10n.of(context).toggle_all}   ${L10n.of(context).delete}   ').width;
+    double allTextsWidth = calcTextSize(context,
+            '   ${L10n.of(context).toggle_all}   ${L10n.of(context).delete}   ${L10n.of(context).cancel}  ${L10n.of(context).ok}   ')
+        .width;
+    double halfTextsWidth1 =
+        calcTextSize(context, '   ${L10n.of(context).toggle_all}   ${L10n.of(context).delete}   ').width;
     double halfTextsWidth2 = calcTextSize(context, '   ${L10n.of(context).cancel}   ${L10n.of(context).ok}   ').width;
     double halfTextsWidth = halfTextsWidth1 > halfTextsWidth2 ? halfTextsWidth1 : halfTextsWidth2;
     if (kDebugMode) {
-      print('*** _SubscriptionGroupEditDialogState - screenWidth = $screenWidth, allTextsWidth = $allTextsWidth, halfTextsWidth = $halfTextsWidth');
+      print(
+          '*** _SubscriptionGroupEditDialogState - screenWidth = $screenWidth, allTextsWidth = $allTextsWidth, halfTextsWidth = $halfTextsWidth');
     }
 
     return AlertDialog(
-      actionsPadding: EdgeInsets.symmetric(horizontal: 0, vertical: screenWidth >= breakpointScreenWidth2 && allTextsWidth < breakpointTextWidth ? 20 : screenWidth >= breakpointScreenWidth1 && halfTextsWidth < breakpointTextWidth ? 10 : 5),
+      actionsPadding: EdgeInsets.symmetric(
+          horizontal: 0,
+          vertical: screenWidth >= breakpointScreenWidth2 && allTextsWidth < breakpointTextWidth
+              ? 20
+              : screenWidth >= breakpointScreenWidth1 && halfTextsWidth < breakpointTextWidth
+                  ? 10
+                  : 5),
       actions: [
         SizedBox(
-          width: screenWidth,
-          child: screenWidth >= breakpointScreenWidth2 && allTextsWidth < breakpointTextWidth ? Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            ...buttonsLst1,
-            ...buttonsLst2,
-          ]) : screenWidth >= breakpointScreenWidth1 && halfTextsWidth < breakpointTextWidth ? Column(mainAxisSize: MainAxisSize.min, children: [
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                ...buttonsLst1,
-            ]),
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              ...buttonsLst2,
-            ]),
-          ]) : Column(mainAxisSize: MainAxisSize.min, children: [
-            ...buttonsLst1,
-            ...buttonsLst2,
-          ])
-        ),
+            width: screenWidth,
+            child: screenWidth >= breakpointScreenWidth2 && allTextsWidth < breakpointTextWidth
+                ? Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                    ...buttonsLst1,
+                    ...buttonsLst2,
+                  ])
+                : screenWidth >= breakpointScreenWidth1 && halfTextsWidth < breakpointTextWidth
+                    ? Column(mainAxisSize: MainAxisSize.min, children: [
+                        Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                          ...buttonsLst1,
+                        ]),
+                        Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                          ...buttonsLst2,
+                        ]),
+                      ])
+                    : Column(mainAxisSize: MainAxisSize.min, children: [
+                        ...buttonsLst1,
+                        ...buttonsLst2,
+                      ])),
       ],
       content: Form(
         key: _formKey,
@@ -313,7 +326,7 @@ class _SubscriptionGroupEditDialogState extends State<SubscriptionGroupEditDialo
                     ),
                   ),
                   IconButton(
-                    icon: Icon(Icons.palette_outlined, color: color),
+                    icon: Icon(Icons.palette_rounded, color: color),
                     onPressed: () {
                       showDialog(
                           context: context,
