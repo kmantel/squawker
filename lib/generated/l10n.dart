@@ -772,6 +772,26 @@ class L10n {
     );
   }
 
+  /// `Material 3?`
+  String get material_3 {
+    return Intl.message(
+      'Material 3?',
+      name: 'material_3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `BETA`
+  String get beta {
+    return Intl.message(
+      'BETA',
+      name: 'beta',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Data`
   String get data {
     return Intl.message(

@@ -64,13 +64,13 @@ Future checkForUpdates() async {
               'View version ${map["tag_name"]} on Github',
               const NotificationDetails(
                   android: AndroidNotificationDetails(
-                    'updates',
-                    'Updates',
-                    channelDescription: 'When a new app update is available show a notification',
-                    importance: Importance.max,
-                    priority: Priority.high,
-                    showWhen: false,
-                  )),
+                'updates',
+                'Updates',
+                channelDescription: 'When a new app update is available show a notification',
+                importance: Importance.max,
+                priority: Priority.high,
+                showWhen: false,
+              )),
               payload: map['html_url']);
         });
       } else if (map['html_url'].isEmpty) {
@@ -164,6 +164,7 @@ Future<void> main() async {
     optionSubscriptionOrderByField: 'name',
     optionThemeMode: 'system',
     optionThemeTrueBlack: false,
+    optionThemeMaterial3: false,
     optionThemeColorScheme: 'gold',
     optionTweetsHideSensitive: false,
     optionKeepFeedOffset: false,
@@ -256,6 +257,7 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
 
   String _themeMode = 'system';
   bool _trueBlack = false;
+  bool _material3 = false;
   FlexScheme _colorScheme = FlexScheme.gold;
   Locale? _locale;
 
@@ -309,6 +311,7 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
       setLocale(prefService.get<String>(optionLocale));
       _themeMode = prefService.get(optionThemeMode);
       _trueBlack = prefService.get(optionThemeTrueBlack);
+      _material3 = prefService.get(optionThemeMaterial3);
       setColorScheme(prefService.get(optionThemeColorScheme));
       setDisableScreenshots(prefService.get(optionDisableScreenshots));
     });
@@ -327,6 +330,12 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
     prefService.addKeyListener(optionThemeTrueBlack, () {
       setState(() {
         _trueBlack = prefService.get(optionThemeTrueBlack);
+      });
+    });
+
+    prefService.addKeyListener(optionThemeMaterial3, () {
+      setState(() {
+        _material3 = prefService.get(optionThemeMaterial3);
       });
     });
 
@@ -430,16 +439,13 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
       title: 'Squawker',
       // regression #130295 in flutter Document Checkbox.fillColor behavior change
       // ref: https://github.com/flutter/flutter/issues/130295
-      theme: light.copyWith(
-        checkboxTheme: light.checkboxTheme.copyWith(
-          fillColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
-            if (!states.contains(MaterialState.selected) && !states.contains(MaterialState.pressed)) {
-              return Colors.white;
-            }
-            return light.checkboxTheme.fillColor!.resolve(states) as Color;
-          })
-        )
-      ),
+      theme: light.copyWith(checkboxTheme:
+          light.checkboxTheme.copyWith(fillColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
+        if (!states.contains(MaterialState.selected) && !states.contains(MaterialState.pressed)) {
+          return Colors.white;
+        }
+        return light.checkboxTheme.fillColor!.resolve(states) as Color;
+      }))),
       darkTheme: FlexThemeData.dark(
         scheme: _colorScheme,
         darkIsTrueBlack: _trueBlack,
@@ -452,10 +458,10 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
           blendOnColors: false,
         ),
         visualDensity: FlexColorScheme.comfortablePlatformDensity,
-        useMaterial3: false,
+        useMaterial3: _material3,
         appBarStyle: _trueBlack ? FlexAppBarStyle.surface : FlexAppBarStyle.primary,
       ),
-      themeMode: themeMode,      initialRoute: '/',
+      themeMode: themeMode, initialRoute: '/',
       routes: {
         routeHome: (context) => const DefaultPage(),
         routeGroup: (context) => const GroupScreen(),
@@ -492,7 +498,6 @@ class _DefaultPageState extends State<DefaultPage> {
   Object? _migrationError;
   StackTrace? _migrationStackTrace;
 
-
   @override
   void initState() {
     super.initState();
@@ -505,7 +510,6 @@ class _DefaultPageState extends State<DefaultPage> {
       });
       return true;
     });
-
   }
 
   @override
@@ -524,21 +528,21 @@ class _DefaultPageState extends State<DefaultPage> {
             return true;
           }
           var result = await showDialog<bool>(
-            context: context,
-            builder: (c) => AlertDialog(
-              title: Text(L10n.current.are_you_sure),
-              content: Text(L10n.current.confirm_close_fritter),
-              actions: [
-                TextButton(
-                  child: Text(L10n.current.no),
-                  onPressed: () => Navigator.pop(c, false),
-                ),
-                TextButton(
-                  child: Text(L10n.current.yes),
-                  onPressed: () => Navigator.pop(c, true),
-                ),
-              ],
-            ));
+              context: context,
+              builder: (c) => AlertDialog(
+                    title: Text(L10n.current.are_you_sure),
+                    content: Text(L10n.current.confirm_close_fritter),
+                    actions: [
+                      TextButton(
+                        child: Text(L10n.current.no),
+                        onPressed: () => Navigator.pop(c, false),
+                      ),
+                      TextButton(
+                        child: Text(L10n.current.yes),
+                        onPressed: () => Navigator.pop(c, true),
+                      ),
+                    ],
+                  ));
 
           return result ?? false;
         },
