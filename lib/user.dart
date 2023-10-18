@@ -24,7 +24,7 @@ Widget _createUserAvatar(String? uri, double size) {
       loadStateChanged: (state) {
         switch (state.extendedImageLoadState) {
           case LoadState.failed:
-            return const Icon(Icons.error_outline);
+            return const Icon(Icons.error_rounded);
           default:
             return state.completedWidget;
         }
@@ -45,7 +45,7 @@ Widget _expandUserAvatar(String? uri, double size) {
       loadStateChanged: (state) {
         switch (state.extendedImageLoadState) {
           case LoadState.failed:
-            return const Icon(Icons.error_outline);
+            return const Icon(Icons.error_rounded);
           default:
             return state.completedWidget;
         }
@@ -83,7 +83,7 @@ class UserTile extends StatelessWidget {
         children: [
           Flexible(child: Text(user.name, maxLines: 1, overflow: TextOverflow.ellipsis)),
           if (user.verified) const SizedBox(width: 6),
-          if (user.verified) const Icon(Icons.verified_outlined, size: 14, color: Colors.blue)
+          if (user.verified) const Icon(Icons.verified_rounded, size: 14, color: Colors.blue)
         ],
       ),
       subtitle: Text('@${user.screenName}', maxLines: 1, overflow: TextOverflow.ellipsis),
@@ -161,7 +161,7 @@ class FollowButton extends StatelessWidget {
         var followed = state.any((element) => element.id == user.id);
 
         var icon =
-            followed ? Icon(Icons.person_remove_outlined, color: color) : Icon(Icons.person_add_outlined, color: color);
+            followed ? Icon(Icons.person_remove_rounded, color: color) : Icon(Icons.person_add_rounded, color: color);
         var text = followed ? L10n.of(context).unsubscribe : L10n.of(context).subscribe;
 
         return PopupMenuButton<String>(

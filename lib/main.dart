@@ -164,6 +164,7 @@ Future<void> main() async {
     optionSubscriptionOrderByField: 'name',
     optionThemeMode: 'system',
     optionThemeTrueBlack: false,
+    optionThemeMaterial3: false,
     optionThemeColorScheme: 'gold',
     optionTweetsHideSensitive: false,
     optionKeepFeedOffset: false,
@@ -256,6 +257,7 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
 
   String _themeMode = 'system';
   bool _trueBlack = false;
+  bool _material3 = false;
   FlexScheme _colorScheme = FlexScheme.gold;
   Locale? _locale;
 
@@ -309,6 +311,7 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
       setLocale(prefService.get<String>(optionLocale));
       _themeMode = prefService.get(optionThemeMode);
       _trueBlack = prefService.get(optionThemeTrueBlack);
+      _material3 = prefService.get(optionThemeMaterial3);
       setColorScheme(prefService.get(optionThemeColorScheme));
       setDisableScreenshots(prefService.get(optionDisableScreenshots));
     });
@@ -327,6 +330,12 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
     prefService.addKeyListener(optionThemeTrueBlack, () {
       setState(() {
         _trueBlack = prefService.get(optionThemeTrueBlack);
+      });
+    });
+
+    prefService.addKeyListener(optionThemeMaterial3, () {
+      setState(() {
+        _material3 = prefService.get(optionThemeMaterial3);
       });
     });
 
@@ -379,8 +388,23 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
         blendOnColors: false,
       ),
       visualDensity: FlexColorScheme.comfortablePlatformDensity,
-      useMaterial3: false,
+      useMaterial3: _material3,
       appBarStyle: FlexAppBarStyle.primary,
+    );
+    ThemeData dark = FlexThemeData.dark(
+      scheme: _colorScheme,
+      darkIsTrueBlack: _trueBlack,
+      surfaceMode: FlexSurfaceMode.highScaffoldLowSurface,
+      blendLevel: 20,
+      appBarOpacity: 0.95,
+      tabBarStyle: FlexTabBarStyle.flutterDefault,
+      subThemesData: const FlexSubThemesData(
+        blendOnLevel: 20,
+        blendOnColors: false,
+      ),
+      visualDensity: FlexColorScheme.comfortablePlatformDensity,
+      useMaterial3: _material3,
+      appBarStyle: _trueBlack ? FlexAppBarStyle.surface : FlexAppBarStyle.primary,
     );
     return MaterialApp(
       localeListResolutionCallback: (locales, supportedLocales) {
@@ -438,24 +462,20 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
             }
             return light.checkboxTheme.fillColor!.resolve(states) as Color;
           })
-        )
-      ),
-      darkTheme: FlexThemeData.dark(
-        scheme: _colorScheme,
-        darkIsTrueBlack: _trueBlack,
-        surfaceMode: FlexSurfaceMode.highScaffoldLowSurface,
-        blendLevel: 20,
-        appBarOpacity: 0.95,
-        tabBarStyle: FlexTabBarStyle.flutterDefault,
-        subThemesData: const FlexSubThemesData(
-          blendOnLevel: 20,
-          blendOnColors: false,
         ),
-        visualDensity: FlexColorScheme.comfortablePlatformDensity,
-        useMaterial3: false,
-        appBarStyle: _trueBlack ? FlexAppBarStyle.surface : FlexAppBarStyle.primary,
+        tabBarTheme: light.tabBarTheme.copyWith(
+          labelColor: Colors.white,
+          unselectedLabelColor: Colors.grey.shade400.lighten(),
+        ),
       ),
-      themeMode: themeMode,      initialRoute: '/',
+      darkTheme: dark.copyWith(
+        tabBarTheme: dark.tabBarTheme.copyWith(
+          labelColor: Colors.white,
+          unselectedLabelColor: Colors.grey.shade400.lighten(),
+        ),
+      ),
+      themeMode: themeMode,
+      initialRoute: '/',
       routes: {
         routeHome: (context) => const DefaultPage(),
         routeGroup: (context) => const GroupScreen(),
@@ -505,7 +525,6 @@ class _DefaultPageState extends State<DefaultPage> {
       });
       return true;
     });
-
   }
 
   @override

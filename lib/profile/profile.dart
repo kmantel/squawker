@@ -296,7 +296,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> with TickerProvid
                     ],
                   ),
                   flexibleSpace: FlexibleSpaceBar(
-                      background: SafeArea(
+                    background: SafeArea(
                     top: false,
                     child: DefaultTextStyle.merge(
                       style: const TextStyle(color: Colors.white),
@@ -332,7 +332,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> with TickerProvid
                                           ),
                                           if (user.verified ?? false) const SizedBox(width: 6),
                                           if (user.verified ?? false)
-                                            const Icon(Icons.verified_outlined, size: 24, color: Colors.blue)
+                                            const Icon(Icons.verified_rounded, size: 24, color: Colors.blue)
                                         ],
                                       ),
                                       Container(
@@ -373,7 +373,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> with TickerProvid
                                                   child: Row(
                                                     crossAxisAlignment: CrossAxisAlignment.center,
                                                     children: [
-                                                      const Icon(Icons.person_outlined, size: 12, color: Colors.white),
+                                                      const Icon(Icons.person_rounded, size: 12, color: Colors.white),
                                                       const SizedBox(width: 4),
                                                       Text.rich(TextSpan(children: [
                                                         TextSpan(
@@ -393,7 +393,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> with TickerProvid
                                                   child: Row(
                                                     crossAxisAlignment: CrossAxisAlignment.center,
                                                     children: [
-                                                      const Icon(Icons.person_outlined, size: 12, color: Colors.white),
+                                                      const Icon(Icons.person_rounded, size: 12, color: Colors.white),
                                                       const SizedBox(width: 4),
                                                       Text.rich(TextSpan(children: [
                                                         TextSpan(
@@ -413,7 +413,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> with TickerProvid
                                                   child: Row(
                                                     crossAxisAlignment: CrossAxisAlignment.center,
                                                     children: [
-                                                      const Icon(Icons.location_on_outlined,
+                                                      const Icon(Icons.location_on_rounded,
                                                           size: 12, color: Colors.white),
                                                       const SizedBox(width: 4),
                                                       Text(user.location!, style: metadataTextStyle),
@@ -459,7 +459,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> with TickerProvid
                                                   child: Row(
                                                     crossAxisAlignment: CrossAxisAlignment.center,
                                                     children: [
-                                                      const Icon(Icons.calendar_today_outlined,
+                                                      const Icon(Icons.calendar_today_rounded,
                                                           size: 12, color: Colors.white),
                                                       const SizedBox(width: 4),
                                                       Text(

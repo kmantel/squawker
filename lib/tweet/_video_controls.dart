@@ -70,7 +70,7 @@ class _MaterialControlsState extends State<FritterMaterialControls> with SingleT
           ) ??
           const Center(
             child: Icon(
-              Icons.error_outline,
+              Icons.error_rounded,
               color: Colors.white,
               size: 42,
             ),
@@ -321,7 +321,7 @@ class _MaterialControlsState extends State<FritterMaterialControls> with SingleT
               left: 6.0,
             ),
             child: Icon(
-              _latestValue.volume > 0 ? Icons.volume_up_outlined : Icons.volume_off_outlined,
+              _latestValue.volume > 0 ? Icons.volume_up_rounded : Icons.volume_off_rounded,
               color: Colors.white,
             ),
           ),
@@ -449,7 +449,7 @@ class _MaterialControlsState extends State<FritterMaterialControls> with SingleT
           right: 12.0,
         ),
         child: Icon(
-          _subtitleOn ? Icons.closed_caption_outlined : Icons.closed_caption_disabled_outlined,
+          _subtitleOn ? Icons.closed_caption_rounded : Icons.closed_caption_disabled_rounded,
           color: _subtitleOn ? Colors.white : Colors.grey[700],
         ),
       ),

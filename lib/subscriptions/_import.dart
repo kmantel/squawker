@@ -186,7 +186,7 @@ class _SubscriptionImportScreenState extends State<SubscriptionImportScreen> {
                             children: [
                               const Padding(
                                 padding: EdgeInsets.all(16),
-                                child: Icon(Icons.check_circle_outlined, size: 36, color: Colors.green),
+                                child: Icon(Icons.check_circle_rounded, size: 36, color: Colors.green),
                               ),
                               Text(
                                 L10n.of(context).finished_with_snapshotData_users(
