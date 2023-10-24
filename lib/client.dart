@@ -802,6 +802,7 @@ class Twitter {
 
   static Future<List<UserWithExtra>> _getUsersPage(Iterable<String> ids) async {
     var response = await _twitterApi.client.get(Uri.https('api.twitter.com', '/1.1/users/lookup.json', {
+      ...defaultParams,
       'user_id': ids.join(','),
     }));
 
