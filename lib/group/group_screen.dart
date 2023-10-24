@@ -57,7 +57,8 @@ class SubscriptionGroupScreenContent extends StatelessWidget {
         }
 
         // Split the users into chunks, oldest first, to prevent thrashing of all groups when a new user is added
-        var users = group.subscriptions.sorted((a, b) => a.createdAt.compareTo(b.createdAt)).toList();
+        var filteredUsers = group.id == '-1' ? group.subscriptions.where((elm) => elm.inFeed) : group.subscriptions;
+        var users = filteredUsers.sorted((a, b) => a.createdAt.compareTo(b.createdAt)).toList();
 
         var chunks = partition(users, 16)
             .map((e) => SubscriptionGroupFeedChunk(e, group.includeReplies, group.includeRetweets))

@@ -2555,6 +2555,26 @@ class L10n {
       args: [],
     );
   }
+
+  /// `Remove from feed`
+  String get remove_from_feed {
+    return Intl.message(
+      'Remove from feed',
+      name: 'remove_from_feed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add to feed`
+  String get add_to_feed {
+    return Intl.message(
+      'Add to feed',
+      name: 'add_to_feed',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<L10n> {

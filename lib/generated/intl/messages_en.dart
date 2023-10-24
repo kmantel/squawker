@@ -80,6 +80,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Activate non-confirmation bias mode"),
         "add_subscriptions":
             MessageLookupByLibrary.simpleMessage("Add subscriptions"),
+        "add_to_feed": MessageLookupByLibrary.simpleMessage("Add to feed"),
         "add_to_group": MessageLookupByLibrary.simpleMessage("Add to group"),
         "all": MessageLookupByLibrary.simpleMessage("All"),
         "all_the_great_software_used_by_fritter":
@@ -306,6 +307,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Private profile"),
         "released_under_the_mit_license": MessageLookupByLibrary.simpleMessage(
             "Released under the MIT License"),
+        "remove_from_feed":
+            MessageLookupByLibrary.simpleMessage("Remove from feed"),
         "replying_to": MessageLookupByLibrary.simpleMessage("Replying to"),
         "report": MessageLookupByLibrary.simpleMessage("Report"),
         "report_a_bug": MessageLookupByLibrary.simpleMessage("Report a bug"),

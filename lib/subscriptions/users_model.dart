@@ -115,7 +115,8 @@ class SubscriptionsModel extends Store<List<Subscription>> {
           'screen_name': user.screenName,
           'name': user.name,
           'profile_image_url_https': user.profileImageUrlHttps,
-          'verified': user.verified ? 1 : 0
+          'verified': user.verified ? 1 : 0,
+          'in_feed': 1
         });
       }
 
@@ -124,8 +125,6 @@ class SubscriptionsModel extends Store<List<Subscription>> {
 
       return state;
     });
-
-    await groupModel.reloadGroups();
   }
 
   Future<void> toggleSubscribe(Subscription user, bool currentlyFollowed) async {
@@ -136,6 +135,19 @@ class SubscriptionsModel extends Store<List<Subscription>> {
     }
 
     await groupModel.reloadGroups();
+  }
+
+  Future<void> toggleFeed(Subscription user, bool currentlyInFeed) async {
+    var database = await Repository.writable();
+    await execute(() async {
+      database.update(tableSubscription, {
+        'in_Feed': currentlyInFeed ? 0 : 1
+      }, where: 'id = ?', whereArgs: [user.id]);
+
+      await reloadSubscriptions();
+
+      return state;
+    });
   }
 
   void changeOrderSubscriptionsBy(String? value) async {

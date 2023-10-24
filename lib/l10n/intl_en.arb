@@ -427,5 +427,7 @@
   "download_video_best_quality_label": "Download videos with best quality",
   "download_video_best_quality_description": "Download videos with the best quality available",
   "option_confirm_close_label": "Confirm close",
-  "option_confirm_close_description": "Confirm when closing the app"
+  "option_confirm_close_description": "Confirm when closing the app",
+  "remove_from_feed": "Remove from feed",
+  "add_to_feed": "Add to feed"
 }

@@ -17,6 +17,9 @@ class SubscriptionUsers extends StatefulWidget {
 }
 
 class _SubscriptionUsersState extends State<SubscriptionUsers> {
+
+  GlobalKey _key = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     var model = context.read<SubscriptionsModel>();
@@ -57,7 +60,7 @@ class _SubscriptionUsersState extends State<SubscriptionUsers> {
                   ]));
         }
 
-        return SubscriptionUsersList(subscriptions: state);
+        return SubscriptionUsersList(key: _key, subscriptions: state);
       },
     );
   }

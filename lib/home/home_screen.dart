@@ -85,6 +85,7 @@ class _HomeScreenState extends State<_HomeScreen> {
   List<NavigationPage> _pages = [];
   StreamSubscription? _sub;
   bool _firstInit = false;
+  GlobalKey<FeedScreenState> _feedKey = GlobalKey();
 
   Future<void> handleInitialLink(Uri link) async {
     if (kDebugMode) {
@@ -210,7 +211,7 @@ class _HomeScreenState extends State<_HomeScreen> {
 
                     switch (e.id) {
                       case 'feed':
-                        return FeedScreen(scrollController: scrollController, id: '-1', name: L10n.current.feed);
+                        return FeedScreen(key: _feedKey, scrollController: scrollController, id: '-1', name: L10n.current.feed);
                       case 'subscriptions':
                         return const SubscriptionsScreen();
                       case 'groups':
@@ -224,7 +225,8 @@ class _HomeScreenState extends State<_HomeScreen> {
                     }
                   })
                 ];
-              });
+              },
+              feedKey: _feedKey);
         });
   }
 
@@ -247,8 +249,9 @@ class ScaffoldWithBottomNavigation extends StatefulWidget {
   final List<NavigationPage> pages;
   final int initialPage;
   final List<Widget> Function(ScrollController scrollController) builder;
+  final GlobalKey<FeedScreenState>? feedKey;
 
-  const ScaffoldWithBottomNavigation({Key? key, required this.pages, required this.initialPage, required this.builder})
+  const ScaffoldWithBottomNavigation({Key? key, required this.pages, required this.initialPage, required this.builder, required this.feedKey})
       : super(key: key);
 
   @override
@@ -271,7 +274,10 @@ class _ScaffoldWithBottomNavigationState extends State<ScaffoldWithBottomNavigat
     _pageController = PageController(initialPage: widget.initialPage);
 
     scrollController.bottomNavigationBar.setTab(widget.initialPage);
-    scrollController.bottomNavigationBar.tabListener((index) {
+    scrollController.bottomNavigationBar.tabListener((index) async {
+      if (_children[index] is FeedScreen && widget.feedKey != null && widget.feedKey!.currentState != null) {
+        await widget.feedKey!.currentState!.checkUpdateFeed();
+      }
       _pageController?.animateToPage(index, curve: Curves.easeInOut, duration: const Duration(milliseconds: 100));
     });
 

@@ -1,0 +1,3 @@
+* Implement feature #75 Add "hide from feed" option in profiles.
+  The option is available when tapping on the subscribe/unsubscribe user icon.
+ 

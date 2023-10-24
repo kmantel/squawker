@@ -243,11 +243,14 @@ class Repository {
       24: [
         SqlMigration('CREATE TABLE IF NOT EXISTS $tableRateLimits (remaining VARCHAR, reset VARCHAR)',
             reverseSql: 'DROP TABLE IF EXISTS $tableRateLimits'),
+      ],
+      25: [
+        SqlMigration('ALTER TABLE $tableSubscription ADD COLUMN in_feed BOOLEAN DEFAULT 1'),
       ]
     });
     await openDatabase(
       databaseName,
-      version: 24,
+      version: 25,
       onUpgrade: myMigrationPlan,
       onCreate: myMigrationPlan,
       onDowngrade: myMigrationPlan,

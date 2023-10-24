@@ -32,6 +32,7 @@ abstract class Subscription with ToMappable {
   final String name;
   final String? profileImageUrlHttps;
   final bool verified;
+  final bool inFeed;
   final DateTime createdAt;
 
   Subscription(
@@ -40,12 +41,13 @@ abstract class Subscription with ToMappable {
       required this.name,
       required this.profileImageUrlHttps,
       required this.verified,
+      required this.inFeed,
       required this.createdAt});
 }
 
 class SearchSubscription extends Subscription {
   SearchSubscription({required super.id, required super.createdAt})
-      : super(name: id, screenName: id, verified: false, profileImageUrlHttps: null);
+      : super(name: id, screenName: id, verified: false, inFeed: true, profileImageUrlHttps: null);
 
   factory SearchSubscription.fromMap(Map<String, Object?> map) {
     return SearchSubscription(id: map['id'] as String, createdAt: DateTime.parse(map['created_at'] as String));
@@ -72,10 +74,12 @@ class UserSubscription extends Subscription {
       required super.name,
       required super.profileImageUrlHttps,
       required super.verified,
+      required super.inFeed,
       required super.createdAt});
 
   factory UserSubscription.fromMap(Map<String, Object?> map) {
     var verified = map['verified'] is int;
+    var inFeed = map['in_feed'] is int;
     var createdAt = map['created_at'] == null ? DateTime.now() : DateTime.parse(map['created_at'] as String);
 
     return UserSubscription(
@@ -84,6 +88,7 @@ class UserSubscription extends Subscription {
         name: map['name'] as String,
         profileImageUrlHttps: map['profile_image_url_https'] as String?,
         verified: verified ? map['verified'] == 1 : false,
+        inFeed: inFeed ?  map['in_feed'] == 1 : true,
         createdAt: createdAt);
   }
 
@@ -94,6 +99,7 @@ class UserSubscription extends Subscription {
         name: user.name!,
         profileImageUrlHttps: user.profileImageUrlHttps,
         verified: user.verified!,
+        inFeed: true,
         createdAt: user.createdAt!);
   }
 
@@ -112,6 +118,7 @@ class UserSubscription extends Subscription {
       'name': name,
       'profile_image_url_https': profileImageUrlHttps,
       'verified': verified ? 1 : 0,
+      'in_feed': inFeed ? 1 : 0,
       'created_at': sqliteDateFormat.format(createdAt)
     };
   }

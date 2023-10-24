@@ -83,6 +83,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Activer le mode biais de non-confirmation"),
         "add_subscriptions":
             MessageLookupByLibrary.simpleMessage("Ajouter des abonnements"),
+        "add_to_feed": MessageLookupByLibrary.simpleMessage("Ajouter au flux"),
         "add_to_group":
             MessageLookupByLibrary.simpleMessage("Ajouter au groupe"),
         "all": MessageLookupByLibrary.simpleMessage("Tout"),
@@ -312,6 +313,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "private_profile": MessageLookupByLibrary.simpleMessage("Profil privé"),
         "released_under_the_mit_license":
             MessageLookupByLibrary.simpleMessage("Publié sous la licence MIT"),
+        "remove_from_feed":
+            MessageLookupByLibrary.simpleMessage("Retirer du flux"),
         "replying_to": MessageLookupByLibrary.simpleMessage("Réponse à"),
         "report": MessageLookupByLibrary.simpleMessage("Signaler"),
         "report_a_bug":

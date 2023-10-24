@@ -9,6 +9,7 @@ import 'package:squawker/generated/l10n.dart';
 import 'package:squawker/group/group_model.dart';
 import 'package:squawker/profile/profile.dart';
 import 'package:squawker/subscriptions/users_model.dart';
+import 'package:squawker/utils/data_service.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:provider/provider.dart';
 
@@ -159,19 +160,22 @@ class FollowButton extends StatelessWidget {
       store: model,
       onState: (_, state) {
         var followed = state.any((element) => element.id == user.id);
+        var inFeed = followed ? state.any((element) => element.id == user.id && element.inFeed) : false;
 
         var icon =
-            followed ? Icon(Icons.person_remove_rounded, color: color) : Icon(Icons.person_add_rounded, color: color);
-        var text = followed ? L10n.of(context).unsubscribe : L10n.of(context).subscribe;
+            followed ? (inFeed ? Icon(Icons.person_remove_rounded, color: color) : const Icon(Icons.person_remove_rounded, color: Colors.red)) : Icon(Icons.person_add_rounded, color: color);
+        var textSub = followed ? L10n.of(context).unsubscribe : L10n.of(context).subscribe;
+        var textFeed = followed ? (inFeed ? L10n.of(context).remove_from_feed : L10n.of(context).add_to_feed) : null;
 
         return PopupMenuButton<String>(
           icon: icon,
           itemBuilder: (context) => [
-            PopupMenuItem(value: 'toggle_subscribe', child: Text(text)),
+            PopupMenuItem(value: 'toggle_subscribe', child: Text(textSub)),
             PopupMenuItem(
               value: 'add_to_group',
               child: Text(L10n.of(context).add_to_group),
             ),
+            if (textFeed != null) PopupMenuItem(value: 'toggle_feed', child: Text(textFeed)),
           ],
           onSelected: (value) async {
             switch (value) {
@@ -187,6 +191,11 @@ class FollowButton extends StatelessWidget {
                 break;
               case 'toggle_subscribe':
                 await model.toggleSubscribe(user, followed);
+                DataService().map['keepFeed'] = false;
+                break;
+              case 'toggle_feed':
+                await model.toggleFeed(user, inFeed);
+                DataService().map['keepFeed'] = false;
                 break;
             }
           },

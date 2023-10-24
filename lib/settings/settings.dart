@@ -65,6 +65,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           SettingsAboutFragment(appVersion: appVersion)
         ];
       },
+      feedKey: null
     );
   }
 }

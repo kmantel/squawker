@@ -501,5 +501,7 @@
   "download_video_best_quality_label": "Télécharger les vidéos avec la plus grande résolution",
   "download_video_best_quality_description": "Télécharger les vidéos avec la plus grande résolution disponible",
   "option_confirm_close_label": "Confirmation de fermeture",
-  "option_confirm_close_description": "Confirmation à la fermeture de l'application"
+  "option_confirm_close_description": "Confirmation à la fermeture de l'application",
+  "remove_from_feed": "Retirer du flux",
+  "add_to_feed": "Ajouter au flux"
 }
