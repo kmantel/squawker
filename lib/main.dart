@@ -32,12 +32,13 @@ import 'package:squawker/subscriptions/users_model.dart';
 import 'package:squawker/trends/trends_model.dart';
 import 'package:squawker/tweet/_video.dart';
 import 'package:squawker/ui/errors.dart';
+import 'package:squawker/utils/data_service.dart';
+import 'package:squawker/utils/misc.dart';
+import 'package:squawker/utils/urls.dart';
 import 'package:faker/faker.dart';
 import 'package:logging/logging.dart';
 import 'package:pref/pref.dart';
 import 'package:provider/provider.dart';
-import 'package:squawker/utils/misc.dart';
-import 'package:squawker/utils/urls.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:package_info_plus/package_info_plus.dart';
@@ -260,6 +261,7 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
   bool _material3 = false;
   FlexScheme _colorScheme = FlexScheme.gold;
   Locale? _locale;
+  final _MyRouteObserver _routeObserver = _MyRouteObserver();
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
@@ -476,6 +478,9 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
       ),
       themeMode: themeMode,
       initialRoute: '/',
+      navigatorObservers: [
+        _routeObserver
+      ],
       routes: {
         routeHome: (context) => const DefaultPage(),
         routeGroup: (context) => const GroupScreen(),
@@ -511,7 +516,6 @@ class DefaultPage extends StatefulWidget {
 class _DefaultPageState extends State<DefaultPage> {
   Object? _migrationError;
   StackTrace? _migrationStackTrace;
-
 
   @override
   void initState() {
@@ -568,4 +572,23 @@ class _DefaultPageState extends State<DefaultPage> {
   void dispose() {
     super.dispose();
   }
+}
+
+class _MyRouteObserver extends RouteObserver<PageRoute<dynamic>> {
+
+  @override
+  void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) async {
+    super.didPop(route, previousRoute);
+    if (previousRoute != null && previousRoute is PageRoute) {
+      if (previousRoute.settings.name == '/') {
+        if (DataService().map.containsKey('toggleKeepFeed')) {
+          var navigationKey = DataService().map['navigationKey'];
+          if (navigationKey != null && navigationKey.currentState != null) {
+            navigationKey.currentState!.fromFeedToSubscriptions();
+          }
+        }
+      }
+    }
+  }
+
 }

@@ -19,6 +19,7 @@ import 'package:squawker/subscriptions/subscriptions.dart';
 import 'package:squawker/trends/trends.dart';
 import 'package:squawker/ui/errors.dart';
 import 'package:squawker/ui/physics.dart';
+import 'package:squawker/utils/data_service.dart';
 import 'package:squawker/utils/debounce.dart';
 import 'package:pref/pref.dart';
 import 'package:provider/provider.dart';
@@ -85,7 +86,8 @@ class _HomeScreenState extends State<_HomeScreen> {
   List<NavigationPage> _pages = [];
   StreamSubscription? _sub;
   bool _firstInit = false;
-  GlobalKey<FeedScreenState> _feedKey = GlobalKey();
+  final GlobalKey<FeedScreenState> _feedKey = GlobalKey<FeedScreenState>();
+  final GlobalKey<ScaffoldWithBottomNavigationState> _navigationKey = GlobalKey<ScaffoldWithBottomNavigationState>();
 
   Future<void> handleInitialLink(Uri link) async {
     if (kDebugMode) {
@@ -152,6 +154,8 @@ class _HomeScreenState extends State<_HomeScreen> {
   void initState() {
     super.initState();
 
+    DataService().map['navigationKey'] = _navigationKey;
+
     _buildPages(widget.model.state);
     widget.model.observer(onState: _buildPages);
   }
@@ -197,6 +201,7 @@ class _HomeScreenState extends State<_HomeScreen> {
         onLoading: (_) => const Center(child: CircularProgressIndicator()),
         onState: (_, state) {
           return ScaffoldWithBottomNavigation(
+              key: _navigationKey,
               pages: _pages,
               initialPage: _initialPage,
               builder: (scrollController) {
@@ -255,15 +260,16 @@ class ScaffoldWithBottomNavigation extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<ScaffoldWithBottomNavigation> createState() => _ScaffoldWithBottomNavigationState();
+  State<ScaffoldWithBottomNavigation> createState() => ScaffoldWithBottomNavigationState();
 }
 
-class _ScaffoldWithBottomNavigationState extends State<ScaffoldWithBottomNavigation> {
+class ScaffoldWithBottomNavigationState extends State<ScaffoldWithBottomNavigation> {
   final ScrollController scrollController = ScrollController();
 
   PageController? _pageController;
   late List<Widget> _children;
   late List<NavigationPage> _pages;
+  bool _goToSubscriptions = false;
 
   @override
   void initState() {
@@ -282,6 +288,15 @@ class _ScaffoldWithBottomNavigationState extends State<ScaffoldWithBottomNavigat
     });
 
     _children = widget.builder(scrollController);
+  }
+
+  void fromFeedToSubscriptions() {
+    int idx = widget.pages.indexWhere((e) => e.id == 'feed');
+    if (idx == scrollController.bottomNavigationBar.tabNotifier.value) {
+      setState(() {
+        _goToSubscriptions = true;
+      });
+    }
   }
 
   List<NavigationPage> _padToMinimumPagesLength(List<NavigationPage> pages) {
@@ -325,6 +340,14 @@ class _ScaffoldWithBottomNavigationState extends State<ScaffoldWithBottomNavigat
 
   @override
   Widget build(BuildContext context) {
+    if (_goToSubscriptions) {
+      _goToSubscriptions = false;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        int idx = widget.pages.indexWhere((e) => e.id == 'subscriptions');
+        scrollController.bottomNavigationBar.setTab(idx);
+        _pageController?.animateToPage(idx, curve: Curves.easeInOut, duration: const Duration(milliseconds: 100));
+      });
+    }
     return Scaffold(
       body: PageView(
         controller: _pageController,
