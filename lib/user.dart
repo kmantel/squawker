@@ -9,7 +9,6 @@ import 'package:squawker/generated/l10n.dart';
 import 'package:squawker/group/group_model.dart';
 import 'package:squawker/profile/profile.dart';
 import 'package:squawker/subscriptions/users_model.dart';
-import 'package:squawker/utils/data_service.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:provider/provider.dart';
 
@@ -191,11 +190,9 @@ class FollowButton extends StatelessWidget {
                 break;
               case 'toggle_subscribe':
                 await model.toggleSubscribe(user, followed);
-                DataService().map['keepFeed'] = false;
                 break;
               case 'toggle_feed':
                 await model.toggleFeed(user, inFeed);
-                DataService().map['keepFeed'] = false;
                 break;
             }
           },

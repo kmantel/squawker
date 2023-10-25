@@ -4,6 +4,7 @@ import 'package:squawker/constants.dart';
 import 'package:squawker/database/entities.dart';
 import 'package:squawker/database/repository.dart';
 import 'package:squawker/group/group_model.dart';
+import 'package:squawker/utils/data_service.dart';
 import 'package:squawker/utils/iterables.dart';
 import 'package:logging/logging.dart';
 import 'package:pref/pref.dart';
@@ -135,6 +136,8 @@ class SubscriptionsModel extends Store<List<Subscription>> {
     }
 
     await groupModel.reloadGroups();
+
+    DataService().map['toggleKeepFeed'] = true;
   }
 
   Future<void> toggleFeed(Subscription user, bool currentlyInFeed) async {
@@ -148,6 +151,8 @@ class SubscriptionsModel extends Store<List<Subscription>> {
 
       return state;
     });
+
+    DataService().map['toggleKeepFeed'] = true;
   }
 
   void changeOrderSubscriptionsBy(String? value) async {

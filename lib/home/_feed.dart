@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:squawker/group/group_model.dart';
 import 'package:squawker/group/group_screen.dart';
 import 'package:squawker/home/home_screen.dart';
 import 'package:squawker/utils/data_service.dart';
@@ -18,8 +17,10 @@ class FeedScreen extends StatefulWidget {
 class FeedScreenState extends State<FeedScreen> with AutomaticKeepAliveClientMixin<FeedScreen> {
 
   Future<void> checkUpdateFeed() async {
-    if (DataService().map.containsKey('keepFeed') && !(DataService().map['keepFeed'] as bool)) {
+    if (DataService().map.containsKey('toggleKeepFeed')) {
       setState(() {
+        DataService().map.remove('toggleKeepFeed');
+        DataService().map['keepFeed'] = false;
         updateKeepAlive();
       });
     }
