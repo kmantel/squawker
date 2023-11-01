@@ -276,6 +276,9 @@ class Twitter {
 
   static Future<Profile> _getProfile(Uri uri) async {
     var response = await _twitterApi.client.get(uri);
+    if (response.body.isEmpty) {
+      throw TwitterError(code: 0, message: 'Response is empty', uri: uri.toString());
+    }
     var content = jsonDecode(response.body) as Map<String, dynamic>;
 
     var hasErrors = content.containsKey('errors');
@@ -407,12 +410,13 @@ class Twitter {
       variables['cursor'] = cursor;
     }
 
-    var response =
-        await _twitterApi.client.get(Uri.https('api.twitter.com', '/graphql/3XDB26fBve-MmjHaWTUZxA/TweetDetail', {
+    var response = await _twitterApi.client.get(Uri.https('api.twitter.com', '/graphql/3XDB26fBve-MmjHaWTUZxA/TweetDetail', {
       'variables': jsonEncode(variables),
       'features': jsonEncode(defaultFeatures),
     }));
-
+    if (response.body.isEmpty) {
+      return TweetStatus(chains: [], cursorBottom: null, cursorTop: null);
+    }
     var result = json.decode(response.body);
 
     var instructions = List.from(result?['data']?['threaded_conversation_with_injections_v2']?['instructions'] ?? []);
@@ -437,7 +441,7 @@ class Twitter {
     return TweetStatus(chains: chains, cursorBottom: cursorBottom, cursorTop: cursorTop);
   }
 
-  static Future<TweetStatus> searchTweetsGraphql(String query, bool includeReplies, {int limit = 25, String? cursor}) async {
+  static Future<TweetStatus> searchTweetsGraphql(String query, bool includeReplies, {int limit = 25, String? cursor, RateFetchContext? fetchContext}) async {
     var variables = {
       "rawQuery": query,
       "count": limit.toString(),
@@ -456,7 +460,10 @@ class Twitter {
       'features': jsonEncode(defaultFeatures)
     });
 
-    var response = await _twitterApi.client.get(uri);
+    var response = await (_twitterApi.client as _SquawkerTwitterClient).getWithRateFetchCtx(uri, fetchContext: fetchContext);
+    if (response.body.isEmpty) {
+      return TweetStatus(chains: [], cursorBottom: null, cursorTop: null);
+    }
     var result = json.decode(response.body);
 
     var timeline = result?['data']?['search_by_raw_query']?['search_timeline'];
@@ -500,6 +507,9 @@ class Twitter {
     }
 
     var response = await (_twitterApi.client as _SquawkerTwitterClient).getWithRateFetchCtx(Uri.https('api.twitter.com', '/1.1/search/tweets.json', queryParameters), fetchContext: fetchContext);
+    if (response.body.isEmpty) {
+      return TweetStatus(chains: [], cursorBottom: null, cursorTop: null);
+    }
     var result = json.decode(response.body);
 
     var tweets = result['statuses'];
@@ -583,8 +593,10 @@ class Twitter {
       queryParameters['cursor'] = cursor;
     }
 
-    var response =
-        await _twitterApi.client.get(Uri.https('api.twitter.com', '/1.1/users/search.json', queryParameters));
+    var response = await _twitterApi.client.get(Uri.https('api.twitter.com', '/1.1/users/search.json', queryParameters));
+    if (response.body.isEmpty) {
+      return [];
+    }
 
     List result = json.decode(response.body);
 
@@ -631,7 +643,9 @@ class Twitter {
     var response = await _twitterApi.client.get(Uri.https('api.twitter.com', '/2/timeline/$type/$id.json', query));
 
     var result = json.decode(response.body);
-
+    if (response.body.isEmpty) {
+      return TweetStatus(chains: [], cursorBottom: null, cursorTop: null);
+    }
     return createUnconversationedChains(result, 'tweet', pinnedTweets, includeReplies == false, includeReplies);
   }
 
