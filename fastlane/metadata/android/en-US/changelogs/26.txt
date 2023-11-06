@@ -1,0 +1,1 @@
+* Fix issue #105 Home screen isn't populated right after importing settings and subscriptions.

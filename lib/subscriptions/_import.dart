@@ -10,6 +10,7 @@ import 'package:squawker/group/group_model.dart';
 import 'package:squawker/import_data_model.dart';
 import 'package:squawker/subscriptions/users_model.dart';
 import 'package:squawker/ui/errors.dart';
+import 'package:squawker/utils/data_service.dart';
 import 'package:squawker/utils/urls.dart';
 import 'package:provider/provider.dart';
 import 'package:squawker/generated/l10n.dart';
@@ -81,6 +82,9 @@ class _SubscriptionImportScreenState extends State<SubscriptionImportScreen> {
       await context.read<SubscriptionsModel>().reloadSubscriptions();
       await context.read<SubscriptionsModel>().refreshSubscriptionData();
       _streamController?.close();
+
+      DataService().map['toggleKeepFeed'] = true;
+
     } catch (e, stackTrace) {
       _streamController?.addError(e, stackTrace);
     }

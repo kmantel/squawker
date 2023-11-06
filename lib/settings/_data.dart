@@ -10,6 +10,7 @@ import 'package:squawker/generated/l10n.dart';
 import 'package:squawker/group/group_model.dart';
 import 'package:squawker/import_data_model.dart';
 import 'package:squawker/subscriptions/users_model.dart';
+import 'package:squawker/utils/data_service.dart';
 import 'package:logging/logging.dart';
 import 'package:pref/pref.dart';
 import 'package:provider/provider.dart';
@@ -112,6 +113,8 @@ class SettingsDataFragment extends StatelessWidget {
     await groupModel.reloadGroups();
     await context.read<SubscriptionsModel>().reloadSubscriptions();
     await context.read<SubscriptionsModel>().refreshSubscriptionData();
+
+    DataService().map['toggleKeepFeed'] = true;
 
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text(L10n.of(context).data_imported_successfully),
