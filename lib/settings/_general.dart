@@ -58,7 +58,7 @@ class SettingsGeneralFragment extends StatelessWidget {
             width: mediaQuery.size.width,
             child: TextFormField(
               controller: controller,
-              decoration: const InputDecoration(hintText: 'https://twitter.com'),
+              decoration: const InputDecoration(hintText: 'https://x.com'),
             ),
           )
         ]);

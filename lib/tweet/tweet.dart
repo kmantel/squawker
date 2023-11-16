@@ -120,7 +120,8 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
         getNewEntity: (Url url) {
           return TweetUrl(url, () async {
             String? uri = url.expandedUrl;
-            if (uri == null || (uri.length > 33 && uri.substring(0, 33) == 'https://twitter.com/i/web/status/')) {
+            if (uri == null || (uri.length > 27 && uri.toLowerCase().substring(0, 27) == 'https://x.com/i/web/status/')
+                || (uri.length > 33 && uri.toLowerCase().substring(0, 33) == 'https://twitter.com/i/web/status/')) {
               return;
             }
 
@@ -298,7 +299,7 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
     });
   }
 
-  static const List<String> _twitterUrls = ['twitter.com', 'pic.twitter.com', 'twimg.com', 'abs.twimg.com', 'pbs.twimg.com', 'video.twimg.com'];
+  static const List<String> _twitterUrls = ['x.com', 'twitter.com', 'pic.twitter.com', 'twimg.com', 'abs.twimg.com', 'pbs.twimg.com', 'video.twimg.com'];
 
   bool _isTwitterUrl(String url) {
     return _twitterUrls.firstWhereOrNull((elm) => url.startsWith('https://$elm/')) != null;
@@ -332,7 +333,7 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
 
     var shareBaseUrlOption = prefs.get(optionShareBaseUrl);
     var shareBaseUrl =
-      shareBaseUrlOption != null && shareBaseUrlOption.isNotEmpty ? shareBaseUrlOption : 'https://twitter.com';
+      shareBaseUrlOption != null && shareBaseUrlOption.isNotEmpty ? shareBaseUrlOption : 'https://x.com';
 
     TweetWithCard tweet = this.tweet.retweetedStatusWithCard == null ? this.tweet : this.tweet.retweetedStatusWithCard!;
 
