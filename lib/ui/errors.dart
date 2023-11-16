@@ -267,36 +267,38 @@ class FullPageErrorWidget extends FritterErrorWidget {
     return Container(
       alignment: Alignment.center,
       margin: const EdgeInsets.all(16),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            margin: const EdgeInsets.only(bottom: 16),
-            child: const Icon(Icons.error_rounded, color: Colors.red, size: 36),
-          ),
-          Text(
-            L10n.of(context).oops_something_went_wrong,
-            textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 18),
-          ),
-          Container(
-            margin: const EdgeInsets.only(top: 12),
-            child: Text(prefix, textAlign: TextAlign.center, style: TextStyle(color: Theme.of(context).hintColor)),
-          ),
-          Container(
-            alignment: Alignment.center,
-            margin: const EdgeInsets.only(top: 12),
-            child: Text('$error', textAlign: TextAlign.left, style: TextStyle(color: Theme.of(context).hintColor)),
-          ),
-          if (onRetry != null)
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              margin: const EdgeInsets.only(bottom: 16),
+              child: const Icon(Icons.error_rounded, color: Colors.red, size: 36),
+            ),
+            Text(
+              L10n.of(context).oops_something_went_wrong,
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 18),
+            ),
             Container(
               margin: const EdgeInsets.only(top: 12),
-              child: ElevatedButton(
-                child: Text(retryText ?? L10n.of(context).retry),
-                onPressed: () => onRetry(),
-              ),
-            )
-        ],
+              child: Text(prefix, textAlign: TextAlign.center, style: TextStyle(color: Theme.of(context).hintColor)),
+            ),
+            Container(
+              alignment: Alignment.center,
+              margin: const EdgeInsets.only(top: 12),
+              child: Text('$error', textAlign: TextAlign.left, style: TextStyle(color: Theme.of(context).hintColor)),
+            ),
+            if (onRetry != null)
+              Container(
+                margin: const EdgeInsets.only(top: 12),
+                child: ElevatedButton(
+                  child: Text(retryText ?? L10n.of(context).retry),
+                  onPressed: () => onRetry(),
+                ),
+              )
+          ],
+        ),
       ),
     );
   }

@@ -152,57 +152,55 @@ class _SubscriptionImportScreenState extends State<SubscriptionImportScreen> {
                   },
                 ),
               ),
-              Expanded(
-                child: Center(
-                  child: StreamBuilder(
-                    stream: _streamController?.stream,
-                    builder: (context, snapshot) {
-                      var error = snapshot.error;
-                      if (error != null) {
-                        return FullPageErrorWidget(
-                          error: snapshot.error,
-                          stackTrace: snapshot.stackTrace,
-                          prefix: L10n.of(context).unable_to_import,
-                        );
-                      }
+              Center(
+                child: StreamBuilder(
+                  stream: _streamController?.stream,
+                  builder: (context, snapshot) {
+                    var error = snapshot.error;
+                    if (error != null) {
+                      return FullPageErrorWidget(
+                        error: snapshot.error,
+                        stackTrace: snapshot.stackTrace,
+                        prefix: L10n.of(context).unable_to_import,
+                      );
+                    }
 
-                      switch (snapshot.connectionState) {
-                        case ConnectionState.none:
-                        case ConnectionState.waiting:
-                          return Container();
-                        case ConnectionState.active:
-                          return Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Padding(
-                                padding: EdgeInsets.all(16),
-                                child: CircularProgressIndicator(),
+                    switch (snapshot.connectionState) {
+                      case ConnectionState.none:
+                      case ConnectionState.waiting:
+                        return Container();
+                      case ConnectionState.active:
+                        return Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Padding(
+                              padding: EdgeInsets.all(16),
+                              child: CircularProgressIndicator(),
+                            ),
+                            Text(
+                              L10n.of(context).imported_snapshot_data_users_so_far(
+                                snapshot.data.toString(),
                               ),
-                              Text(
-                                L10n.of(context).imported_snapshot_data_users_so_far(
-                                  snapshot.data.toString(),
-                                ),
-                              )
-                            ],
-                          );
-                        default:
-                          return Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Padding(
-                                padding: EdgeInsets.all(16),
-                                child: Icon(Icons.check_circle_rounded, size: 36, color: Colors.green),
+                            )
+                          ],
+                        );
+                      default:
+                        return Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Padding(
+                              padding: EdgeInsets.all(16),
+                              child: Icon(Icons.check_circle_rounded, size: 36, color: Colors.green),
+                            ),
+                            Text(
+                              L10n.of(context).finished_with_snapshotData_users(
+                                snapshot.data.toString(),
                               ),
-                              Text(
-                                L10n.of(context).finished_with_snapshotData_users(
-                                  snapshot.data.toString(),
-                                ),
-                              )
-                            ],
-                          );
-                      }
-                    },
-                  ),
+                            )
+                          ],
+                        );
+                    }
+                  },
                 ),
               ),
             ],
