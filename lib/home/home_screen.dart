@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:http/http.dart' as http;
+import 'package:logging/logging.dart';
 import 'package:squawker/constants.dart';
 import 'package:squawker/generated/l10n.dart';
 import 'package:squawker/home/_feed.dart';
@@ -24,7 +25,7 @@ import 'package:squawker/utils/debounce.dart';
 import 'package:pref/pref.dart';
 import 'package:provider/provider.dart';
 import 'package:scroll_bottom_navigation_bar/scroll_bottom_navigation_bar.dart';
-import 'package:uni_links2/uni_links.dart';
+import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 
 typedef NavigationTitleBuilder = String Function(BuildContext context);
 
@@ -82,6 +83,7 @@ class _HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<_HomeScreen> {
+  static final log = Logger('_HomeScreenState');
   int _initialPage = 0;
   List<NavigationPage> _pages = [];
   StreamSubscription? _sub;
@@ -90,9 +92,9 @@ class _HomeScreenState extends State<_HomeScreen> {
   final GlobalKey<ScaffoldWithBottomNavigationState> _navigationKey = GlobalKey<ScaffoldWithBottomNavigationState>();
 
   Future<void> handleInitialLink(Uri link) async {
-    if (kDebugMode) {
-      print('****** link=$link');
-    }
+    //if (kDebugMode) {
+    log.info('****** handleInitialLink - link=$link');
+    //}
     if (link.host == 't.co') {
       Uri lnk = await _resolveShortUrl(link);
       if (lnk.host != 't.co') {
@@ -177,15 +179,25 @@ class _HomeScreenState extends State<_HomeScreen> {
     if (!_firstInit) {
       _firstInit = true;
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        getInitialUri().then((link) async {
+        ReceiveSharingIntent.getInitialText().then((String? value) async {
+          log.info('****** ReceiveSharingIntent.getInitialText - value=$value');
+          if (value != null) {
+            Uri? link = Uri.tryParse(value);
+            if (link != null) {
+              await handleInitialLink(link);
+            }
+          }
+        });
+        // Attach a listener to the stream
+        _sub = ReceiveSharingIntent.getTextStream().listen((String value) async {
+          log.info('****** ReceiveSharingIntent.getTextStream - value=$value');
+          Uri? link = Uri.tryParse(value);
           if (link != null) {
             await handleInitialLink(link);
-
-            // Attach a listener to the stream
-            _sub = uriLinkStream.listen((link) async => await handleInitialLink(link!), onError: (err) {
-              // TODO: Handle exception by warning the user their action did not succeed
-            });
           }
+        }, onError: (err) {
+          // TODO: Handle exception by warning the user their action did not succeed
+          log.info('****** ReceiveSharingIntent.getTextStream - err=$err');
         });
       });
     }
