@@ -16,7 +16,7 @@ class SubscriptionsScreen extends StatelessWidget {
         title: Text(L10n.current.subscriptions),
         actions: [
           IconButton(
-            icon: const Icon(Icons.import_export_rounded),
+            icon: const Icon(Icons.cloud_download_rounded),
             onPressed: () => Navigator.pushNamed(context, routeSubscriptionsImport),
           ),
           IconButton(

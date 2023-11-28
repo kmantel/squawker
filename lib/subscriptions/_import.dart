@@ -208,7 +208,7 @@ class _SubscriptionImportScreenState extends State<SubscriptionImportScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.import_export_rounded),
+        child: const Icon(Icons.cloud_download_rounded),
         onPressed: () async => await importSubscriptions(),
       ),
     );

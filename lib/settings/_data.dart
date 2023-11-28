@@ -129,7 +129,7 @@ class SettingsDataFragment extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 8),
         child: ListView(children: [
           PrefLabel(
-            leading: const Icon(Icons.import_export),
+            leading: const Icon(Icons.file_download_rounded),
             title: Text(L10n.of(context).import),
             subtitle: Text(L10n.of(context).import_data_from_another_device),
             onTap: () async {
