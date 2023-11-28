@@ -36,6 +36,7 @@ import 'package:squawker/utils/data_service.dart';
 import 'package:squawker/utils/misc.dart';
 import 'package:squawker/utils/urls.dart';
 import 'package:faker/faker.dart';
+import 'package:logging_to_logcat/logging_to_logcat.dart';
 import 'package:logging/logging.dart';
 import 'package:pref/pref.dart';
 import 'package:provider/provider.dart';
@@ -134,6 +135,9 @@ setTimeagoLocales() {
 }
 
 Future<void> main() async {
+
+  Logger.root.activateLogcat();
+  Logger.root.level = Level.ALL;
   Logger.root.onRecord.listen((event) async {
     log(event.message, error: event.error, stackTrace: event.stackTrace);
   });
