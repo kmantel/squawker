@@ -55,6 +55,7 @@ class TranslationAPI {
 
     return cacheRequest(key, () async {
       int connectTries = 0;
+      String? errorMessage;
       while (connectTries < translation_hosts.length) {
         try {
           var response = await http.get(Uri.https(translationHost(), '/languages')).timeout(const Duration(seconds: 3));
@@ -63,15 +64,21 @@ class TranslationAPI {
             return rsp;
           }
           else {
+            errorMessage ??= 'get supported languages error ${rsp.errorMessage} from host ${translationHost()}';
             log.warning('get supported languages error ${rsp.errorMessage} from host ${translationHost()}');
           }
         } on TimeoutException {
+          errorMessage ??= 'get supported languages timeout from host ${translationHost()}';
           log.warning('get supported languages timeout from host ${translationHost()}');
+        } catch (exc) {
+          errorMessage ??= 'get supported languages error from ${translationHost()}\n${exc.toString()}';
+          log.warning('get supported languages error from ${translationHost()}\n${exc.toString()}');
         }
         nextTranslationHost();
         connectTries++;
       }
-      throw Exception('Unable to get supported languages');
+      return TranslationAPIResult(success: false, body: '', errorMessage: errorMessage ?? 'Unable to get supported languages');
+      //throw Exception('Unable to get supported languages');
     });
   }
 
@@ -91,6 +98,7 @@ class TranslationAPI {
 
     var res = await cacheRequest(key, () async {
       int connectTries = 0;
+      String? errorMessage;
       while (connectTries < translation_hosts.length) {
         try {
           var response = await http.post(Uri.https(translationHost(), '/translate'),
@@ -100,15 +108,21 @@ class TranslationAPI {
             return rsp;
           }
           else {
+            errorMessage ??= 'translate error ${rsp.errorMessage} from host ${translationHost()}';
             log.warning('translate error ${rsp.errorMessage} from host ${translationHost()}');
           }
         } on TimeoutException {
+          errorMessage ??= 'translate timeout from host ${translationHost()}';
           log.warning('translate timeout from host ${translationHost()}');
+        } catch (exc) {
+          errorMessage ??= 'translate error from ${translationHost()}\n${exc.toString()}';
+          log.warning('translate error from ${translationHost()}\n${exc.toString()}');
         }
         nextTranslationHost();
         connectTries++;
       }
-      throw Exception('Unable to send translation request');
+      return TranslationAPIResult(success: false, body: '', errorMessage: errorMessage ?? 'Unable to send translation request');
+      //throw Exception('Unable to send translation request');
     });
 
     if (res.success) {
