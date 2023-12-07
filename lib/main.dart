@@ -158,6 +158,7 @@ Future<void> main() async {
     optionHomePages: defaultHomePages.map((e) => e.id).toList(),
     optionLocale: optionLocaleDefault,
     optionHomeInitialTab: 'feed',
+    optionSubscriptionInitialTab: 'tweets',
     optionMediaSize: 'medium',
     optionMediaDefaultMute: true,
     optionNonConfirmationBiasMode: false,

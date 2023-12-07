@@ -429,5 +429,7 @@
   "option_confirm_close_label": "Confirm close",
   "option_confirm_close_description": "Confirm when closing the app",
   "remove_from_feed": "Remove from feed",
-  "add_to_feed": "Add to feed"
+  "add_to_feed": "Add to feed",
+  "default_subscription_tab": "Default subscription tab",
+  "which_tab_is_shown_when_the_subscription_opens": "Which tab is shown when the subscription opens"
 }

@@ -6,6 +6,7 @@ import 'package:squawker/constants.dart';
 import 'package:squawker/database/repository.dart';
 import 'package:squawker/generated/l10n.dart';
 import 'package:squawker/home/home_screen.dart';
+import 'package:squawker/profile/profile.dart';
 import 'package:squawker/utils/iterables.dart';
 import 'package:squawker/utils/misc.dart';
 import 'package:logging/logging.dart';
@@ -113,6 +114,16 @@ class SettingsGeneralFragment extends StatelessWidget {
               ),
               pref: optionHomeInitialTab,
               items: defaultHomePages
+                  .map((e) => DropdownMenuItem(value: e.id, child: Text(e.titleBuilder(context))))
+                  .toList()),
+          PrefDropdown(
+              fullWidth: false,
+              title: Text(L10n.of(context).default_subscription_tab),
+              subtitle: Text(
+                L10n.of(context).which_tab_is_shown_when_the_subscription_opens,
+              ),
+              pref: optionSubscriptionInitialTab,
+              items: defaultSubscriptionTabs
                   .map((e) => DropdownMenuItem(value: e.id, child: Text(e.titleBuilder(context))))
                   .toList()),
           PrefDropdown(

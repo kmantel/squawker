@@ -20,6 +20,24 @@ import 'package:measure_size/measure_size.dart';
 import 'package:pref/pref.dart';
 import 'package:provider/provider.dart';
 
+typedef TabTitleBuilder = String Function(BuildContext context);
+
+class NavigationTab {
+  final String id;
+  final TabTitleBuilder titleBuilder;
+
+  NavigationTab(this.id, this.titleBuilder);
+}
+
+final List<NavigationTab> defaultSubscriptionTabs = [
+  NavigationTab('tweets', (c) => L10n.of(c).tweets),
+  NavigationTab('tweets_and_replies', (c) => L10n.of(c).tweets_and_replies),
+  NavigationTab('media', (c) => L10n.of(c).media),
+  NavigationTab('following', (c) => L10n.of(c).following),
+  NavigationTab('followers', (c) => L10n.of(c).followers),
+  NavigationTab('saved', (c) => L10n.of(c).saved),
+];
+
 class ProfileScreenArguments {
   final String? id;
   final String? screenName;
@@ -62,6 +80,7 @@ class _ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var prefs = PrefService.of(context, listen: false);
     return Scaffold(
       body: ScopedBuilder<ProfileModel, Profile>.transition(
         store: context.read<ProfileModel>(),
@@ -78,16 +97,17 @@ class _ProfileScreen extends StatelessWidget {
           },
         ),
         onLoading: (_) => const Center(child: CircularProgressIndicator()),
-        onState: (_, state) => ProfileScreenBody(profile: state),
+        onState: (_, state) => ProfileScreenBody(prefs: prefs, profile: state),
       ),
     );
   }
 }
 
 class ProfileScreenBody extends StatefulWidget {
+  final BasePrefService prefs;
   final Profile profile;
 
-  const ProfileScreenBody({Key? key, required this.profile}) : super(key: key);
+  const ProfileScreenBody({Key? key, required this.prefs, required this.profile}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _ProfileScreenBodyState();
@@ -121,7 +141,10 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> with TickerProvid
       nestedScrollViewState.innerController.addListener(_listen);
     });
 
-    _tabController = TabController(length: 6, vsync: this);
+    String initialTabStr = widget.prefs.get(optionSubscriptionInitialTab);
+    int initialTabIdx = defaultSubscriptionTabs.indexWhere((e) => e.id == initialTabStr);
+
+    _tabController = TabController(length: 6, vsync: this, initialIndex: initialTabIdx);
 
     var description = widget.profile.user.description;
     if (description == null || description.isEmpty) {
@@ -259,37 +282,37 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> with TickerProvid
                     tabs: [
                       Tab(
                         child: Text(
-                          L10n.of(context).tweets,
+                          defaultSubscriptionTabs[0].titleBuilder(context),
                           textAlign: TextAlign.center,
                         ),
                       ),
                       Tab(
                         child: Text(
-                          L10n.of(context).tweets_and_replies,
+                          defaultSubscriptionTabs[1].titleBuilder(context),
                           textAlign: TextAlign.center,
                         ),
                       ),
                       Tab(
                         child: Text(
-                          L10n.of(context).media,
+                          defaultSubscriptionTabs[2].titleBuilder(context),
                           textAlign: TextAlign.center,
                         ),
                       ),
                       Tab(
                         child: Text(
-                          L10n.of(context).following,
+                          defaultSubscriptionTabs[3].titleBuilder(context),
                           textAlign: TextAlign.center,
                         ),
                       ),
                       Tab(
                         child: Text(
-                          L10n.of(context).followers,
+                          defaultSubscriptionTabs[4].titleBuilder(context),
                           textAlign: TextAlign.center,
                         ),
                       ),
                       Tab(
                         child: Text(
-                          L10n.of(context).saved,
+                          defaultSubscriptionTabs[5].titleBuilder(context),
                           textAlign: TextAlign.center,
                         ),
                       ),

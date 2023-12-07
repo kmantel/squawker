@@ -135,6 +135,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Date de création"),
         "date_subscribed":
             MessageLookupByLibrary.simpleMessage("Date d\'inscription"),
+        "default_subscription_tab": MessageLookupByLibrary.simpleMessage(
+            "Onglet d\'abonnement par défaut"),
         "default_tab":
             MessageLookupByLibrary.simpleMessage("Onglet par défaut"),
         "delete": MessageLookupByLibrary.simpleMessage("Supprimer"),
@@ -499,6 +501,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "which_tab_is_shown_when_the_app_opens":
             MessageLookupByLibrary.simpleMessage(
                 "Quel onglet s’affiche à l’ouverture de l’application"),
+        "which_tab_is_shown_when_the_subscription_opens":
+            MessageLookupByLibrary.simpleMessage(
+                "Quel onglet s’affiche à l’ouverture de l’abonnement"),
         "would_you_like_to_enable_automatic_error_reporting":
             MessageLookupByLibrary.simpleMessage(
                 "Voulez-vous activer le rapport d\'erreur automatique ?"),

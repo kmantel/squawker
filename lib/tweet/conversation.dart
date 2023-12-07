@@ -28,7 +28,7 @@ class _TweetConversationState extends State<TweetConversation> {
     }
 
     var tiles = [];
-    var tweets = widget.tweets.sorted((a, b) => a.idStr!.compareTo(b.idStr!)).toList(growable: false);
+    var tweets = widget.tweets;
 
     // We need to do a simple for loop so we can mark the first item as the thread start
     for (var i = 0; i < tweets.length; i++) {

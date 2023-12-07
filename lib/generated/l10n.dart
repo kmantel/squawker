@@ -2575,6 +2575,26 @@ class L10n {
       args: [],
     );
   }
+
+  /// `Default subscription tab`
+  String get default_subscription_tab {
+    return Intl.message(
+      'Default subscription tab',
+      name: 'default_subscription_tab',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Which tab is shown when the subscription opens`
+  String get which_tab_is_shown_when_the_subscription_opens {
+    return Intl.message(
+      'Which tab is shown when the subscription opens',
+      name: 'which_tab_is_shown_when_the_subscription_opens',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<L10n> {

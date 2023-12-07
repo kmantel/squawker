@@ -131,6 +131,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "date_created": MessageLookupByLibrary.simpleMessage("Date Created"),
         "date_subscribed":
             MessageLookupByLibrary.simpleMessage("Date Subscribed"),
+        "default_subscription_tab":
+            MessageLookupByLibrary.simpleMessage("Default subscription tab"),
         "default_tab": MessageLookupByLibrary.simpleMessage("Default tab"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
         "disable_screenshots":
@@ -493,6 +495,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "which_tab_is_shown_when_the_app_opens":
             MessageLookupByLibrary.simpleMessage(
                 "Which tab is shown when the app opens"),
+        "which_tab_is_shown_when_the_subscription_opens":
+            MessageLookupByLibrary.simpleMessage(
+                "Which tab is shown when the subscription opens"),
         "would_you_like_to_enable_automatic_error_reporting":
             MessageLookupByLibrary.simpleMessage(
                 "Would you like to enable automatic error reporting?"),

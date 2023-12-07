@@ -471,7 +471,7 @@ class Twitter {
       return TweetStatus(chains: [], cursorBottom: null, cursorTop: null);
     }
 
-    return createUnconversationedChainsGraphql(timeline, 'tweet', [], true, includeReplies);
+    return createUnconversationedChainsGraphql(timeline, 'tweet', [], includeReplies);
   }
 
   static Future<TweetStatus> searchTweets(String query, bool includeReplies, {int limit = 25, String? cursor, String? cursorType, bool leanerFeeds = false, RateFetchContext? fetchContext}) async {
@@ -646,7 +646,7 @@ class Twitter {
     if (response.body.isEmpty) {
       return TweetStatus(chains: [], cursorBottom: null, cursorTop: null);
     }
-    return createUnconversationedChains(result, 'tweet', pinnedTweets, includeReplies == false, includeReplies);
+    return createUnconversationedChains(result, 'tweet', 'homeConversation', pinnedTweets, includeReplies);
   }
 
   static String? getCursor(List<dynamic> addEntries, List<dynamic> repEntries, String legacyType, String type) {
@@ -691,7 +691,7 @@ class Twitter {
   }
 
   static TweetStatus createUnconversationedChainsGraphql(Map<String, dynamic> result, String tweetIndicator,
-      List<String> pinnedTweets, bool mapToThreads, bool includeReplies) {
+      List<String> pinnedTweets, bool includeReplies) {
     var instructions = List.from(result['timeline']['instructions']);
     if (instructions.isEmpty || !instructions.any((e) => e['type'] == 'TimelineAddEntries')) {
       return TweetStatus(chains: [], cursorBottom: null, cursorTop: null);
@@ -715,8 +715,7 @@ class Twitter {
 
     Map<String, List<TweetWithCard>> conversations =
         tweets.values.where((e) => tweetEntries.contains(e.idStr)).groupBy((e) {
-      // TODO: I don't think a flag is the right way to handle this
-      if (mapToThreads) {
+      if (e.conversationIdStr != null) {
         // Then group the tweets-to-display by their conversation ID
         return e.conversationIdStr;
       }
@@ -746,8 +745,8 @@ class Twitter {
     return TweetStatus(chains: chains, cursorBottom: cursorBottom, cursorTop: cursorTop);
   }
 
-  static TweetStatus createUnconversationedChains(Map<String, dynamic> result, String tweetIndicator,
-      List<String> pinnedTweets, bool mapToThreads, bool includeReplies) {
+  static TweetStatus createUnconversationedChains(Map<String, dynamic> result, String tweetIndicator, String conversationIndicator,
+      List<String> pinnedTweets, bool includeReplies) {
     var instructions = List.from(result['timeline']['instructions']);
     if (instructions.isEmpty || !instructions.any((e) => e.containsKey('addEntries'))) {
       return TweetStatus(chains: [], cursorBottom: null, cursorTop: null);
@@ -763,16 +762,32 @@ class Twitter {
 
     // First, get all the IDs of the tweets we need to display
     var tweetEntries = addEntries
-        .where((e) => e['entryId'].contains(tweetIndicator))
+        .where((e) => e['entryId'].contains(tweetIndicator) || e['entryId'].contains(conversationIndicator))
         .sorted((a, b) => b['sortIndex'].compareTo(a['sortIndex']))
-        .map((e) => e['content']['item']['content']['tweet']['id'])
+        .map((e) {
+          if (e['entryId'].contains(tweetIndicator)) {
+            return [e];
+          }
+          else {
+            return e['content']['timelineModule']['items'];
+          }
+        })
+        .expand((e) => e)
+        .map((e) {
+          if (e['content'] != null) {
+            return e['content']['item']['content']['tweet']['id'];
+          }
+          else {
+            return e['item']['content']['tweet']['id'];
+          }
+        })
         .cast<String>()
         .toList();
 
     Map<String, List<TweetWithCard>> conversations =
         tweets.values.where((e) => tweetEntries.contains(e.idStr)).groupBy((e) {
       // TODO: I don't think a flag is the right way to handle this
-      if (mapToThreads) {
+      if (e.conversationIdStr != null) {
         // Then group the tweets-to-display by their conversation ID
         return e.conversationIdStr;
       }
@@ -784,7 +799,7 @@ class Twitter {
 
     // Order all the conversations by newest first (assuming the ID is an incrementing key), and create a chain from them
     for (var conversation in conversations.entries.sorted((a, b) => b.key.compareTo(a.key))) {
-      var chainTweets = conversation.value.sorted((a, b) => a.idStr!.compareTo(b.idStr!)).toList();
+      var chainTweets = conversation.value.sorted((a, b) => b.idStr!.compareTo(a.idStr!)).toList();
 
       chains.add(TweetChain(id: conversation.key, tweets: chainTweets, isPinned: false));
     }

@@ -30,6 +30,7 @@ const optionSubscriptionGroupsOrderByAscending = 'subscription_groups.order_by.a
 const optionSubscriptionGroupsOrderByField = 'subscription_groups.order_by.field';
 const optionSubscriptionOrderByAscending = 'subscription.order_by.ascending';
 const optionSubscriptionOrderByField = 'subscription.order_by.field';
+const optionSubscriptionInitialTab = 'subscription.initial_tab';
 
 const optionThemeMode = 'theme.mode';
 const optionThemeTrueBlack = 'theme.true_black';

@@ -503,5 +503,7 @@
   "option_confirm_close_label": "Confirmation de fermeture",
   "option_confirm_close_description": "Confirmation à la fermeture de l'application",
   "remove_from_feed": "Retirer du flux",
-  "add_to_feed": "Ajouter au flux"
+  "add_to_feed": "Ajouter au flux",
+  "default_subscription_tab": "Onglet d'abonnement par défaut",
+  "which_tab_is_shown_when_the_subscription_opens": "Quel onglet s’affiche à l’ouverture de l’abonnement"
 }
