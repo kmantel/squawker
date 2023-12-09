@@ -45,28 +45,6 @@ class SettingsThemeFragment extends StatelessWidget {
               L10n.of(context).use_true_black_for_the_dark_mode_theme,
             ),
           ),
-          PrefSwitch(
-            pref: optionThemeMaterial3,
-            title: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Chip(
-                  label: Text(
-                    L10n.of(context).beta,
-                    style: TextStyle(color: Theme.of(context).colorScheme.secondary),
-                  ),
-                  backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-                ),
-                Padding(
-                  padding: EdgeInsets.all(8),
-                  child: Text(
-                    L10n.of(context).material_3,
-                    textScaleFactor: 1.25,
-                  ),
-                )
-              ],
-            )),
         ]),
       ),
     );

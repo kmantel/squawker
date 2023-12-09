@@ -482,6 +482,16 @@ class L10n {
     );
   }
 
+  /// `Experiments`
+  String get experiments {
+    return Intl.message(
+      'Experiments',
+      name: 'experiments',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Data exported to {fullPath}`
   String data_exported_to_fullPath(Object fullPath) {
     return Intl.message(
