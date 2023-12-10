@@ -11,6 +11,7 @@ import 'intl/messages_all.dart';
 // ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars
 // ignore_for_file: join_return_with_assignment, prefer_final_in_for_each
 // ignore_for_file: avoid_redundant_argument_values, avoid_escaping_inner_quotes
+// you can generate this file again by running: dart pub global run intl_utils:generate
 
 class L10n {
   L10n();
@@ -26,9 +27,7 @@ class L10n {
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<L10n> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false)
-        ? locale.languageCode
-        : locale.toString();
+    final name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -151,12 +150,10 @@ class L10n {
   }
 
   /// `Something just went wrong in Squawker, and an error report has been generated. The report can be sent to the Squawker developers to help fix the problem.`
-  String
-      get something_just_went_wrong_in_fritter_and_an_error_report_has_been_generated {
+  String get something_just_went_wrong_in_fritter_and_an_error_report_has_been_generated {
     return Intl.message(
       'Something just went wrong in Squawker, and an error report has been generated. The report can be sent to the Squawker developers to help fix the problem.',
-      name:
-          'something_just_went_wrong_in_fritter_and_an_error_report_has_been_generated',
+      name: 'something_just_went_wrong_in_fritter_and_an_error_report_has_been_generated',
       desc: '',
       args: [],
     );
@@ -512,6 +509,16 @@ class L10n {
     );
   }
 
+  /// `Preferences`
+  String get preferences {
+    return Intl.message(
+      'Preferences',
+      name: 'preferences',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Export settings?`
   String get export_settings {
     return Intl.message(
@@ -843,8 +850,7 @@ class L10n {
   }
 
   /// `The file does not exist. Please ensure it is located at {filePath}`
-  String the_file_does_not_exist_please_ensure_it_is_located_at_file_path(
-      Object filePath) {
+  String the_file_does_not_exist_please_ensure_it_is_located_at_file_path(Object filePath) {
     return Intl.message(
       'The file does not exist. Please ensure it is located at $filePath',
       name: 'the_file_does_not_exist_please_ensure_it_is_located_at_file_path',
@@ -864,12 +870,10 @@ class L10n {
   }
 
   /// `Please make sure the data you wish to import is located there, then press the import button below.`
-  String
-      get please_make_sure_the_data_you_wish_to_import_is_located_there_then_press_the_import_button_below {
+  String get please_make_sure_the_data_you_wish_to_import_is_located_there_then_press_the_import_button_below {
     return Intl.message(
       'Please make sure the data you wish to import is located there, then press the import button below.',
-      name:
-          'please_make_sure_the_data_you_wish_to_import_is_located_there_then_press_the_import_button_below',
+      name: 'please_make_sure_the_data_you_wish_to_import_is_located_there_then_press_the_import_button_below',
       desc: '',
       args: [],
     );
@@ -1136,12 +1140,10 @@ class L10n {
   }
 
   /// `Are you sure you want to delete the subscription group {name}?`
-  String are_you_sure_you_want_to_delete_the_subscription_group_name_of_group(
-      Object name) {
+  String are_you_sure_you_want_to_delete_the_subscription_group_name_of_group(Object name) {
     return Intl.message(
       'Are you sure you want to delete the subscription group $name?',
-      name:
-          'are_you_sure_you_want_to_delete_the_subscription_group_name_of_group',
+      name: 'are_you_sure_you_want_to_delete_the_subscription_group_name_of_group',
       desc: '',
       args: [name],
     );
@@ -1258,12 +1260,10 @@ class L10n {
   }
 
   /// `To import subscriptions from an existing Twitter/X account, enter your username below.`
-  String
-      get to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below {
+  String get to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below {
     return Intl.message(
       'To import subscriptions from an existing Twitter/X account, enter your username below.',
-      name:
-          'to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below',
+      name: 'to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below',
       desc: '',
       args: [],
     );
@@ -1302,12 +1302,10 @@ class L10n {
   }
 
   /// `Selecting individual accounts to import, and assigning groups are both planned for the future already!`
-  String
-      get selecting_individual_accounts_to_import_and_assigning_groups_are_both_planned_for_the_future_already {
+  String get selecting_individual_accounts_to_import_and_assigning_groups_are_both_planned_for_the_future_already {
     return Intl.message(
       'Selecting individual accounts to import, and assigning groups are both planned for the future already!',
-      name:
-          'selecting_individual_accounts_to_import_and_assigning_groups_are_both_planned_for_the_future_already',
+      name: 'selecting_individual_accounts_to_import_and_assigning_groups_are_both_planned_for_the_future_already',
       desc: '',
       args: [],
     );
@@ -1434,8 +1432,7 @@ class L10n {
   }
 
   /// `Unable to load the trends for {widgetPlaceName}`
-  String unable_to_load_the_trends_for_widget_place_name(
-      Object widgetPlaceName) {
+  String unable_to_load_the_trends_for_widget_place_name(Object widgetPlaceName) {
     return Intl.message(
       'Unable to load the trends for $widgetPlaceName',
       name: 'unable_to_load_the_trends_for_widget_place_name',
@@ -1445,12 +1442,10 @@ class L10n {
   }
 
   /// `There were no trends returned. This is unexpected! Please report as a bug, if possible.`
-  String
-      get there_were_no_trends_returned_this_is_unexpected_please_report_as_a_bug_if_possible {
+  String get there_were_no_trends_returned_this_is_unexpected_please_report_as_a_bug_if_possible {
     return Intl.message(
       'There were no trends returned. This is unexpected! Please report as a bug, if possible.',
-      name:
-          'there_were_no_trends_returned_this_is_unexpected_please_report_as_a_bug_if_possible',
+      name: 'there_were_no_trends_returned_this_is_unexpected_please_report_as_a_bug_if_possible',
       desc: '',
       args: [],
     );
@@ -1559,13 +1554,10 @@ class L10n {
   }
 
   /// `Unable to save the media. Twitter/X returned a status of {responseStatusCode}`
-  String
-      unable_to_save_the_media_twitter_returned_a_status_of_response_statusCode(
-          Object responseStatusCode) {
+  String unable_to_save_the_media_twitter_returned_a_status_of_response_statusCode(Object responseStatusCode) {
     return Intl.message(
       'Unable to save the media. Twitter/X returned a status of $responseStatusCode',
-      name:
-          'unable_to_save_the_media_twitter_returned_a_status_of_response_statusCode',
+      name: 'unable_to_save_the_media_twitter_returned_a_status_of_response_statusCode',
       desc: '',
       args: [responseStatusCode],
     );
@@ -1652,8 +1644,7 @@ class L10n {
   }
 
   /// `{thisTweetUserName} retweeted {timeAgo}`
-  String this_tweet_user_name_retweeted(
-      Object thisTweetUserName, Object timeAgo) {
+  String this_tweet_user_name_retweeted(Object thisTweetUserName, Object timeAgo) {
     return Intl.message(
       '$thisTweetUserName retweeted $timeAgo',
       name: 'this_tweet_user_name_retweeted',
@@ -1893,8 +1884,7 @@ class L10n {
   }
 
   /// `Please check your Internet connection.\n\n{errorMessage}`
-  String please_check_your_internet_connection_error_message(
-      Object errorMessage) {
+  String please_check_your_internet_connection_error_message(Object errorMessage) {
     return Intl.message(
       'Please check your Internet connection.\n\n$errorMessage',
       name: 'please_check_your_internet_connection_error_message',
@@ -1944,12 +1934,10 @@ class L10n {
   }
 
   /// `No data was returned, which should never happen. Please report a bug, if possible!`
-  String
-      get no_data_was_returned_which_should_never_happen_please_report_a_bug_if_possible {
+  String get no_data_was_returned_which_should_never_happen_please_report_a_bug_if_possible {
     return Intl.message(
       'No data was returned, which should never happen. Please report a bug, if possible!',
-      name:
-          'no_data_was_returned_which_should_never_happen_please_report_a_bug_if_possible',
+      name: 'no_data_was_returned_which_should_never_happen_please_report_a_bug_if_possible',
       desc: '',
       args: [],
     );
@@ -1996,8 +1984,7 @@ class L10n {
   }
 
   /// `Update to {releaseVersion} through your F-Droid client`
-  String update_to_release_version_through_your_fdroid_client(
-      Object releaseVersion) {
+  String update_to_release_version_through_your_fdroid_client(Object releaseVersion) {
     return Intl.message(
       'Update to $releaseVersion through your F-Droid client',
       name: 'update_to_release_version_through_your_fdroid_client',

@@ -90,6 +90,8 @@
   "@data_exported_to_fullPath": {},
   "data_exported_to_fileName": "Data exported to {fileName}",
   "@data_exported_to_fileName": {},
+  "preferences": "Preferences",
+  "@preferences": {},
   "export_settings": "Export settings?",
   "@export_settings": {},
   "export_subscriptions": "Export subscriptions?",

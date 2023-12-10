@@ -305,6 +305,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "This profile may include potentially sensitive images, language, or other content. Do you still want to view it?"),
         "possibly_sensitive_tweet": MessageLookupByLibrary.simpleMessage(
             "This tweet contains potentially sensitive content. Would you like to view it?"),
+        "preferences": MessageLookupByLibrary.simpleMessage("Preferences"),
         "prefix": MessageLookupByLibrary.simpleMessage("prefix"),
         "private_profile":
             MessageLookupByLibrary.simpleMessage("Private profile"),

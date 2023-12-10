@@ -43,16 +43,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     var appVersion = 'v${_packageInfo.version}+${_packageInfo.buildNumber}';
 
     return Scaffold(
-      appBar: AppBar(
-        actions: [
-          IconButton(
-              onPressed: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SettingsAboutFragment(appVersion: appVersion)),
-                  ),
-              icon: Icon(Icons.help))
-        ],
-      ),
+      appBar: AppBar(title: Text(L10n.of(context).preferences)),
       body: ListView(
         children: [
           ListTile(
@@ -91,11 +82,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
           ),
           ListTile(
+            title: Text(L10n.of(context).about),
+            leading: Icon(Icons.info),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => SettingsAboutFragment(appVersion: appVersion)),
+            ),
+          ),
+          ListTile(
             title: Text(L10n.of(context).experiments),
             leading: Icon(Icons.science),
             onTap: () => Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => SettingsExperimentsFragment()),
+              MaterialPageRoute(builder: (context) => const SettingsExperimentsFragment()),
             ),
           ),
         ],
