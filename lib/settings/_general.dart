@@ -110,40 +110,6 @@ class SettingsGeneralFragment extends StatelessWidget {
               items: defaultSubscriptionTabs
                   .map((e) => DropdownMenuItem(value: e.id, child: Text(e.titleBuilder(context))))
                   .toList()),
-          PrefDropdown(
-              fullWidth: false,
-              title: Text(L10n.of(context).media_size),
-              subtitle: Text(
-                L10n.of(context).save_bandwidth_using_smaller_images,
-              ),
-              pref: optionMediaSize,
-              items: [
-                DropdownMenuItem(
-                  value: 'disabled',
-                  child: Text(L10n.of(context).disabled),
-                ),
-                DropdownMenuItem(
-                  value: 'thumb',
-                  child: Text(L10n.of(context).thumbnail),
-                ),
-                DropdownMenuItem(
-                  value: 'small',
-                  child: Text(L10n.of(context).small),
-                ),
-                DropdownMenuItem(
-                  value: 'medium',
-                  child: Text(L10n.of(context).medium),
-                ),
-                DropdownMenuItem(
-                  value: 'large',
-                  child: Text(L10n.of(context).large),
-                ),
-              ]),
-          PrefSwitch(
-            pref: optionMediaDefaultMute,
-            title: Text(L10n.of(context).mute_videos),
-            subtitle: Text(L10n.of(context).mute_video_description),
-          ),
           PrefSwitch(
             pref: optionTweetsHideSensitive,
             title: Text(L10n.of(context).hide_sensitive_tweets),
@@ -159,33 +125,79 @@ class SettingsGeneralFragment extends StatelessWidget {
             subtitle: Text(L10n.of(context).disable_screenshots_hint),
             pref: optionDisableScreenshots,
           ),
-          const DownloadTypeSetting(),
-          PrefSwitch(
-            title: Text(L10n.of(context).download_video_best_quality_label),
-            pref: optionDownloadBestVideoQuality,
-            subtitle: Text(L10n.of(context).download_video_best_quality_description),
-          ),
           PrefSwitch(
             title: Text(L10n.of(context).activate_non_confirmation_bias_mode_label),
             pref: optionNonConfirmationBiasMode,
             subtitle: Text(L10n.of(context).activate_non_confirmation_bias_mode_description),
           ),
-          PrefSwitch(
-            title: Text(L10n.of(context).keep_feed_offset_label),
-            subtitle: Text(L10n.of(context).keep_feed_offset_description),
-            pref: optionKeepFeedOffset,
-            onChange: (value) async {
-              if (!value) {
-                var repository = await Repository.writable();
-                await repository.delete(tableFeedGroupPositionState);
-              }
-            },
+          ExpansionTile(
+            title: Text(L10n.of(context).media),
+            leading: const Icon(Icons.image),
+            children: [
+              PrefDropdown(
+                  fullWidth: false,
+                  title: Text(L10n.of(context).media_size),
+                  subtitle: Text(
+                    L10n.of(context).save_bandwidth_using_smaller_images,
+                  ),
+                  pref: optionMediaSize,
+                  items: [
+                    DropdownMenuItem(
+                      value: 'disabled',
+                      child: Text(L10n.of(context).disabled),
+                    ),
+                    DropdownMenuItem(
+                      value: 'thumb',
+                      child: Text(L10n.of(context).thumbnail),
+                    ),
+                    DropdownMenuItem(
+                      value: 'small',
+                      child: Text(L10n.of(context).small),
+                    ),
+                    DropdownMenuItem(
+                      value: 'medium',
+                      child: Text(L10n.of(context).medium),
+                    ),
+                    DropdownMenuItem(
+                      value: 'large',
+                      child: Text(L10n.of(context).large),
+                    ),
+                  ]),
+              PrefSwitch(
+                pref: optionMediaDefaultMute,
+                title: Text(L10n.of(context).mute_videos),
+                subtitle: Text(L10n.of(context).mute_video_description),
+              ),
+              const DownloadTypeSetting(),
+              PrefSwitch(
+                title: Text(L10n.of(context).download_video_best_quality_label),
+                pref: optionDownloadBestVideoQuality,
+                subtitle: Text(L10n.of(context).download_video_best_quality_description),
+              ),
+            ],
           ),
-          PrefSwitch(
-            title: Text(L10n.of(context).leaner_feeds_label),
-            subtitle: Text(L10n.of(context).leaner_feeds_description),
-            pref: optionLeanerFeeds,
-          ),
+          ExpansionTile(
+            title: Text(L10n.of(context).feed),
+            leading: const Icon(Icons.rss_feed),
+            children: [
+              PrefSwitch(
+                title: Text(L10n.of(context).keep_feed_offset_label),
+                subtitle: Text(L10n.of(context).keep_feed_offset_description),
+                pref: optionKeepFeedOffset,
+                onChange: (value) async {
+                  if (!value) {
+                    var repository = await Repository.writable();
+                    await repository.delete(tableFeedGroupPositionState);
+                  }
+                },
+              ),
+              PrefSwitch(
+                title: Text(L10n.of(context).leaner_feeds_label),
+                subtitle: Text(L10n.of(context).leaner_feeds_description),
+                pref: optionLeanerFeeds,
+              ),
+            ],
+          )
         ]),
       ),
     );
