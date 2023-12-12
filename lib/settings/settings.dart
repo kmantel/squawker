@@ -6,7 +6,6 @@ import 'package:squawker/generated/l10n.dart';
 import 'package:squawker/home/home_screen.dart';
 import 'package:squawker/settings/_about.dart';
 import 'package:squawker/settings/_data.dart';
-import 'package:squawker/settings/_experiments.dart';
 import 'package:squawker/settings/_general.dart';
 import 'package:squawker/settings/_home.dart';
 import 'package:squawker/settings/_theme.dart';
@@ -87,14 +86,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => SettingsAboutFragment(appVersion: appVersion)),
-            ),
-          ),
-          ListTile(
-            title: Text(L10n.of(context).experiments),
-            leading: Icon(Icons.science),
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const SettingsExperimentsFragment()),
             ),
           ),
         ],
