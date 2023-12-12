@@ -52,11 +52,9 @@ class SettingsThemeFragment extends StatelessWidget {
               fullWidth: false,
               pref: optionThemeColorScheme,
               items: FlexScheme.values
-                  .where((scheme) => scheme.name.endsWith("M3"))
-                  .map((scheme) => DropdownMenuItem(
-                        value: scheme.name,
-                        child: Text(scheme.name.substring(0, scheme.name.length - 2).capitalize),
-                      ))
+                  .getRange(0, FlexScheme.values.length - 1)
+                  .sorted((a, b) => a.name.compareTo(b.name))
+                  .map((scheme) => DropdownMenuItem(value: scheme.name, child: Text(scheme.name.capitalize)))
                   .toList()),
           PrefSwitch(
             title: Text(L10n.of(context).true_black),
