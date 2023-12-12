@@ -42,7 +42,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     var appVersion = 'v${_packageInfo.version}+${_packageInfo.buildNumber}';
 
     return Scaffold(
-      appBar: AppBar(title: Text(L10n.of(context).preferences)),
+      appBar: AppBar(title: Text(L10n.of(context).settings)),
       body: ListView(
         children: [
           ListTile(

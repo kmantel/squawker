@@ -166,7 +166,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "ends_timeago_format_endsAt_allowFromNow_true": m4,
         "enter_your_twitter_username": MessageLookupByLibrary.simpleMessage(
             "Enter your Twitter/X username"),
-        "experiments": MessageLookupByLibrary.simpleMessage("Experiments"),
         "export": MessageLookupByLibrary.simpleMessage("Export"),
         "export_settings":
             MessageLookupByLibrary.simpleMessage("Export settings?"),
@@ -305,7 +304,6 @@ class MessageLookup extends MessageLookupByLibrary {
             "This profile may include potentially sensitive images, language, or other content. Do you still want to view it?"),
         "possibly_sensitive_tweet": MessageLookupByLibrary.simpleMessage(
             "This tweet contains potentially sensitive content. Would you like to view it?"),
-        "preferences": MessageLookupByLibrary.simpleMessage("Preferences"),
         "prefix": MessageLookupByLibrary.simpleMessage("prefix"),
         "private_profile":
             MessageLookupByLibrary.simpleMessage("Private profile"),
@@ -335,6 +333,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Selecting individual accounts to import, and assigning groups are both planned for the future already!"),
         "send": MessageLookupByLibrary.simpleMessage("Send"),
+        "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "share_base_url":
             MessageLookupByLibrary.simpleMessage("Custom share URL"),
         "share_base_url_description": MessageLookupByLibrary.simpleMessage(
