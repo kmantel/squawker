@@ -260,7 +260,7 @@ class Repository {
     var repository = await writable();
 
     await repository.delete(tableFeedGroupChunk, where: "created_at <= date('now', '-7 day')");
-    await repository.delete(tableGuestAccount, where: "created_at < date('now', '-20 day')");
+    await repository.delete(tableGuestAccount, where: "created_at < date('now', '-25 day')");
 
     int version = await repository.getVersion();
 
