@@ -441,7 +441,7 @@ class Twitter {
     return TweetStatus(chains: chains, cursorBottom: cursorBottom, cursorTop: cursorTop);
   }
 
-  static Future<TweetStatus> searchTweetsGraphql(String query, bool includeReplies, {int limit = 25, String? cursor, RateFetchContext? fetchContext}) async {
+  static Future<TweetStatus> searchTweetsGraphql(String query, bool includeReplies, {int limit = 25, String? cursor, bool leanerFeeds = false, RateFetchContext? fetchContext}) async {
     var variables = {
       "rawQuery": query,
       "count": limit.toString(),
@@ -471,7 +471,7 @@ class Twitter {
       return TweetStatus(chains: [], cursorBottom: null, cursorTop: null);
     }
 
-    return createUnconversationedChainsGraphql(timeline, 'tweet', [], includeReplies);
+    return createUnconversationedChainsGraphql(timeline, 'tweet', [], includeReplies, leanerFeeds);
   }
 
   static Future<TweetStatus> searchTweets(String query, bool includeReplies, {int limit = 25, String? cursor, String? cursorType, bool leanerFeeds = false, RateFetchContext? fetchContext}) async {
@@ -691,7 +691,7 @@ class Twitter {
   }
 
   static TweetStatus createUnconversationedChainsGraphql(Map<String, dynamic> result, String tweetIndicator,
-      List<String> pinnedTweets, bool includeReplies) {
+      List<String> pinnedTweets, bool includeReplies, bool leanerFeeds) {
     var instructions = List.from(result['timeline']['instructions']);
     if (instructions.isEmpty || !instructions.any((e) => e['type'] == 'TimelineAddEntries')) {
       return TweetStatus(chains: [], cursorBottom: null, cursorTop: null);
@@ -703,7 +703,7 @@ class Twitter {
     String? cursorBottom = getCursor(addEntries, repEntries, 'cursor-bottom', 'Bottom');
     String? cursorTop = getCursor(addEntries, repEntries, 'cursor-top', 'Top');
 
-    var tweets = _createTweetsGraphql(tweetIndicator, addEntries, includeReplies);
+    var tweets = _createTweetsGraphql(tweetIndicator, addEntries, includeReplies, leanerFeeds);
 
     // First, get all the IDs of the tweets we need to display
     var tweetEntries = addEntries
@@ -841,7 +841,7 @@ class Twitter {
   }
 
   static Map<String, TweetWithCard> _createTweetsGraphql(
-      String entryPrefix, List<dynamic> allTweets, bool includeReplies) {
+      String entryPrefix, List<dynamic> allTweets, bool includeReplies, bool leanerFeeds) {
     bool includeTweet(dynamic t) {
       // Exclude any items that aren't tweets
       if (!t['entryId'].startsWith(entryPrefix)) {
@@ -862,71 +862,21 @@ class Twitter {
 
     var filteredTweets = allTweets.where(includeTweet);
 
-    Map<String, Map<String, dynamic>> cards = {};
-
     var globalTweets = Map.fromEntries(filteredTweets.map((e) {
       var elm = e['content']['itemContent']['tweet_results']['result'];
-      if (elm['card']?['legacy'] != null) {
-        Map<String, dynamic> card = elm['card']['legacy'];
-        List bindingValuesList = card['binding_values'] as List;
-        Map bindingValues = bindingValuesList.fold({}, (prev, elm) { prev[elm['key']] = elm['value']; return prev; });
-        card['binding_values'] = bindingValues;
-        cards[elm['rest_id'] as String] = card;
-      }
-      return MapEntry(elm['rest_id'] as String, elm['legacy']);
+      return MapEntry(elm['rest_id'] as String, elm);
     }));
 
-    Map<String, bool> blueCheckUsers = {};
-
-    var globalUsers = Map.fromEntries(filteredTweets.map((e) {
-      var elm = e['content']['itemContent']['tweet_results']['result']['core']['user_results']['result'];
-      blueCheckUsers[elm['rest_id'] as String] = elm['is_blue_verified'];
-      return MapEntry(elm['rest_id'] as String, elm['legacy']);
-    }));
-
-    Map<String, Map> quotedStatusNotesTweets = {};
-
-    quotedStatusNotesTweets = filteredTweets.fold({}, (prev, e) {
-      var result = e['content']['itemContent']['tweet_results']['result'];
-      result = result['rest_id'] == null ? result['tweet'] : result;
-      var restId = result['rest_id'];
-      var quotedResult = result['quoted_status_result']?['result'];
-      if (quotedResult != null) {
-        prev[restId] = {};
-        prev[restId]!['quotedResult'] = quotedResult;
-      }
-      var noteResult = result['note_tweet']?['note_tweet_results']?['result'];
-      if (noteResult != null) {
-        if (prev[restId] == null) {
-          prev[restId] = {};
-        }
-        prev[restId]!['noteText'] = noteResult['text'];
-        prev[restId]!['noteEntities'] = Entities.fromJson(noteResult['entity_set']);
-      }
-      return prev;
-    });
-
-    var tweets = globalTweets.values.map((e) => TweetWithCard.fromCardJson(globalTweets, globalUsers, e)).toList();
-
-    for (var twt in tweets) {
-      if (twt.user?.idStr != null) {
-        twt.user!.verified = blueCheckUsers[twt.user!.idStr];
-      }
-      twt.card ??= cards[twt.idStr];
-      if (twt.quotedStatus == null && quotedStatusNotesTweets[twt.idStr]?['quotedResult'] != null) {
-        TweetWithCard twtCard = TweetWithCard.fromGraphqlJson(quotedStatusNotesTweets[twt.idStr]!['quotedResult'] as Map<String, dynamic>);
-        twt.quotedStatus = twtCard;
-        twt.quotedStatusWithCard = twtCard;
-      }
-      twt.noteText ??= quotedStatusNotesTweets[twt.idStr]?['noteText'];
-      if (quotedStatusNotesTweets[twt.idStr]?['noteEntities'] != null) {
-        Entities noteEntities = quotedStatusNotesTweets[twt.idStr]!['noteEntities'];
-        twt.entities = twt.entities == null ? noteEntities : TweetWithCard.copyEntities(noteEntities, twt.entities!);
-        twt.extendedEntities = twt.extendedEntities == null ? noteEntities : TweetWithCard.copyEntities(noteEntities, twt.extendedEntities!);
-      }
+    var tweets = [];
+    try {
+      tweets = globalTweets.values.map((e) => TweetWithCard.fromGraphqlJson(e, leanerFeeds: leanerFeeds)).toList();
+    }
+    catch (exc) {
+      rethrow;
     }
 
-    return {for (var e in tweets) e.idStr!: e};  }
+    return {for (var e in tweets) e.idStr!: e};
+  }
 
   static Map<String, TweetWithCard> _createTweets(
       String entryPrefix, Map<String, dynamic> result, bool includeReplies) {
@@ -1031,10 +981,11 @@ class TweetWithCard extends Tweet {
     return tweetWithCard;
   }
 
-  factory TweetWithCard.fromGraphqlJson(Map<String, dynamic> result) {
-    var retweetedStatus = result['retweeted_status_result']?.isEmpty ?? true
+  factory TweetWithCard.fromGraphqlJson(Map<String, dynamic> result, {bool leanerFeeds: false}) {
+    var resultReteeetedStatusResult = result['retweeted_status_result']?.isEmpty ?? true ? result['legacy']['retweeted_status_result'] : result['retweeted_status_result'];
+    var retweetedStatus = resultReteeetedStatusResult?.isEmpty ?? true
         ? null
-        : TweetWithCard.fromGraphqlJson(result['retweeted_status_result']['result']['rest_id'] == null ? result['retweeted_status_result']['result']['tweet'] : result['retweeted_status_result']['result']);
+        : TweetWithCard.fromGraphqlJson(resultReteeetedStatusResult['result']['rest_id'] == null ? resultReteeetedStatusResult['result']['tweet'] : resultReteeetedStatusResult['result']);
     var quotedStatus = (result['quoted_status_result']?.isEmpty ?? true) || result['quoted_status_result']['result']['tombstone'] != null
         ? null
         : TweetWithCard.fromGraphqlJson(result['quoted_status_result']['result']['rest_id'] == null ? result['quoted_status_result']['result']['tweet'] : result['quoted_status_result']['result']);
@@ -1054,7 +1005,7 @@ class TweetWithCard extends Tweet {
     }
 
     TweetWithCard tweet = TweetWithCard.fromData(result['legacy'], noteText, noteEntities, user, retweetedStatus, quotedStatus);
-    if (tweet.card == null && result['card']?['legacy'] != null) {
+    if (!leanerFeeds && tweet.card == null && result['card']?['legacy'] != null) {
       tweet.card = result['card']['legacy'];
       List bindingValuesList = tweet.card!['binding_values'] as List;
       Map<String, dynamic> bindingValues = bindingValuesList.fold({}, (prev, elm) { prev[elm['key']] = elm['value']; return prev; });

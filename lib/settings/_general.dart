@@ -196,6 +196,15 @@ class SettingsGeneralFragment extends StatelessWidget {
                 subtitle: Text(L10n.of(context).leaner_feeds_description),
                 pref: optionLeanerFeeds,
               ),
+              PrefSwitch(
+                title: Text(L10n.of(context).enhanced_feeds_label),
+                subtitle: Text(L10n.of(context).enhanced_feeds_description),
+                pref: optionEnhancedFeeds,
+                onChange: (value) async {
+                  var repository = await Repository.writable();
+                  await repository.delete(tableFeedGroupChunk);
+                },
+              ),
             ],
           )
         ]),

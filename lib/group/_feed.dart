@@ -260,14 +260,25 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
             var query = _buildSearchQuery(chunk.users);
             TweetStatus result;
             try {
-              result = await Twitter.searchTweets(query, widget.includeReplies, limit: 100,
-                  cursor: searchCursor,
-                  cursorType: cursorType,
-                  leanerFeeds: prefs.get(optionLeanerFeeds),
-                  fetchContext: fetchContext);
+              if (prefs.get(optionEnhancedFeeds)) {
+                result = await Twitter.searchTweetsGraphql(query, widget.includeReplies, limit: 100,
+                    cursor: searchCursor,
+                    leanerFeeds: prefs.get(optionLeanerFeeds),
+                    fetchContext: fetchContext);
+              }
+              else {
+                result = await Twitter.searchTweets(query, widget.includeReplies, limit: 100,
+                    cursor: searchCursor,
+                    cursorType: cursorType,
+                    leanerFeeds: prefs.get(optionLeanerFeeds),
+                    fetchContext: fetchContext);
+              }
             }
             catch (rsp) {
-              _errorResponse = _errorResponse ?? rsp as Response;
+              if (rsp is Exception) {
+                log.severe(rsp.toString());
+              }
+              _errorResponse = _errorResponse ?? (rsp is Exception ? ExceptionResponse(rsp) : rsp as Response);
               return tweets;
             }
 

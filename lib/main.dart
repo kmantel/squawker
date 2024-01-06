@@ -138,9 +138,6 @@ Future<void> main() async {
 
   Logger.root.activateLogcat();
   Logger.root.level = Level.ALL;
-  Logger.root.onRecord.listen((event) async {
-    log(event.message, error: event.error, stackTrace: event.stackTrace);
-  });
 
   if (Platform.isLinux) {
     sqfliteFfiInit();
@@ -175,6 +172,7 @@ Future<void> main() async {
     optionTweetsHideSensitive: false,
     optionKeepFeedOffset: false,
     optionLeanerFeeds: false,
+    optionEnhancedFeeds: false,
     optionConfirmClose: true,
     optionUserTrendsLocations: jsonEncode({
       'active': {'name': 'Worldwide', 'woeid': 1},
@@ -267,19 +265,6 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
   FlexScheme _colorScheme = FlexScheme.mango;
   Locale? _locale;
   final _MyRouteObserver _routeObserver = _MyRouteObserver();
-
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state == AppLifecycleState.paused || state == AppLifecycleState.detached) {
-      TwitterAndroid.saveRateLimits();
-    }
-  }
-
-  @override
-  void dispose() {
-    TwitterAndroid.saveRateLimits();
-    super.dispose();
-  }
 
   @override
   void didChangeDependencies() {

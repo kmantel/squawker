@@ -42,7 +42,7 @@ class TwitterAndroid {
     }
   }
 
-  static Future<void> saveRateLimits() async {
+  static Future<void> _saveRateLimits() async {
     var repository = await Repository.writable();
     if (_rateLimitsLoadedFromDb) {
       repository.update(tableRateLimits, {'remaining': json.encode(_rateLimitRemaining), 'reset': json.encode(_rateLimitReset)});
@@ -271,7 +271,16 @@ class TwitterAndroid {
       if (_rateLimitRemaining.containsKey(uri.path) && _rateLimitRemaining[uri.path]! < fetchContext.total) {
         Duration d = DateTime.fromMillisecondsSinceEpoch(_rateLimitReset[uri.path]!).difference(DateTime.now());
         if (!d.isNegative) {
-          throw RateLimitException('The request ${uri.path} has reached its limit. Please wait ${d.inMinutes} minutes.');
+          String minutesStr;
+          if (d.inMinutes > 59) {
+            int minutes = d.inMinutes % 60;
+            minutesStr = minutes > 1 ? '$minutes minutes' : '1 minute';
+            minutesStr = d.inHours > 1 ? '${d.inHours} hours, $minutesStr' : '1 hour, $minutesStr';
+          }
+          else {
+            minutesStr = d.inMinutes > 1 ? '${d.inMinutes} minutes' : '1 minute';
+          }
+          throw RateLimitException('The request ${uri.path} has reached its limit. Please wait $minutesStr.');
         }
       }
       String authorization = await _getSignOauth(uri, 'GET');
@@ -303,9 +312,10 @@ class TwitterAndroid {
         return response;
       }
 
-      fetchContext.fetchWithRate(int.parse(headerRateLimitRemaining), int.parse(headerRateLimitReset) * 1000, (remaining, reset) {
+      fetchContext.fetchWithRate(int.parse(headerRateLimitRemaining), int.parse(headerRateLimitReset) * 1000, (remaining, reset) async {
         _rateLimitRemaining[uri.path] = remaining;
         _rateLimitReset[uri.path] = reset;
+        await _saveRateLimits();
       });
 
       return response;
@@ -319,9 +329,12 @@ class TwitterAndroid {
 
   static Future<http.Response> fetch(Uri uri, {Map<String, String>? headers, RateFetchContext? fetchContext}) async {
     http.Response rsp = await _doFetch(uri, headers: headers, fetchContext: fetchContext);
-    if (rsp.statusCode == 429 && rsp.body.contains('Rate limit exceeded')) {
-      log.info('The request ${uri.path} has a status 429 and exceeded its rate limit. Retrying.');
-      rsp = await _doFetch(uri, headers: headers, fetchContext: fetchContext, forceNewAccount: true);
+    if (rsp.statusCode >= 400 && rsp.body.contains('Rate limit exceeded')) {
+      // Twitter/X API documentation specify a 24 hours waiting time, but I experimented a 12 hours embargo.
+      log.warning('*** Twitter/X server Error: The request ${uri.path} has exceeded its rate limit. Will have to wait 12 hours!');
+      _rateLimitRemaining[uri.path] = 0;
+      _rateLimitReset[uri.path] = DateTime.now().add(const Duration(hours: 12)).millisecondsSinceEpoch;
+      await _saveRateLimits();
     }
     return rsp;
   }

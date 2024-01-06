@@ -505,5 +505,7 @@
   "remove_from_feed": "Retirer du flux",
   "add_to_feed": "Ajouter au flux",
   "default_subscription_tab": "Onglet d'abonnement par défaut",
-  "which_tab_is_shown_when_the_subscription_opens": "Quel onglet s’affiche à l’ouverture de l’abonnement"
+  "which_tab_is_shown_when_the_subscription_opens": "Quel onglet s’affiche à l’ouverture de l’abonnement",
+  "enhanced_feeds_label": "Flux améliorés",
+  "enhanced_feeds_description": "Requêtes améliorés pour les flux (mais avec des limites plus basses de fréquence)"
 }

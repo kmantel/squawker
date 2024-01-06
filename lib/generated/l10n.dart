@@ -2605,6 +2605,26 @@ class L10n {
       args: [],
     );
   }
+
+  /// `Enhanced feeds`
+  String get enhanced_feeds_label {
+    return Intl.message(
+      'Enhanced feeds',
+      name: 'enhanced_feeds_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enhanced requests for feeds (but with lower rate limits)`
+  String get enhanced_feeds_description {
+    return Intl.message(
+      'Enhanced requests for feeds (but with lower rate limits)',
+      name: 'enhanced_feeds_description',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<L10n> {

@@ -164,6 +164,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "enable_": MessageLookupByLibrary.simpleMessage("Enable ?"),
         "ended_timeago_format_endsAt_allowFromNow_true": m3,
         "ends_timeago_format_endsAt_allowFromNow_true": m4,
+        "enhanced_feeds_description": MessageLookupByLibrary.simpleMessage(
+            "Enhanced requests for feeds (but with lower rate limits)"),
+        "enhanced_feeds_label":
+            MessageLookupByLibrary.simpleMessage("Enhanced feeds"),
         "enter_your_twitter_username": MessageLookupByLibrary.simpleMessage(
             "Enter your Twitter/X username"),
         "export": MessageLookupByLibrary.simpleMessage("Export"),

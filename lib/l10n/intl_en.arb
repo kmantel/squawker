@@ -433,5 +433,7 @@
   "remove_from_feed": "Remove from feed",
   "add_to_feed": "Add to feed",
   "default_subscription_tab": "Default subscription tab",
-  "which_tab_is_shown_when_the_subscription_opens": "Which tab is shown when the subscription opens"
+  "which_tab_is_shown_when_the_subscription_opens": "Which tab is shown when the subscription opens",
+  "enhanced_feeds_label": "Enhanced feeds",
+  "enhanced_feeds_description": "Enhanced requests for feeds (but with lower rate limits)"
 }
