@@ -335,6 +335,7 @@ class TwitterAndroid {
       _rateLimitRemaining[uri.path] = 0;
       _rateLimitReset[uri.path] = DateTime.now().add(const Duration(hours: 12)).millisecondsSinceEpoch;
       await _saveRateLimits();
+      throw RateLimitException('The request ${uri.path} has reached its limit. Please wait 12 hours.');
     }
     return rsp;
   }
