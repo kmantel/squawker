@@ -64,10 +64,10 @@ class SubscriptionGroupScreenContent extends StatelessWidget {
             .map((e) => SubscriptionGroupFeedChunk(e, group.includeReplies, group.includeRetweets))
             .toList();
 
-        GlobalKey<SubscriptionGroupFeedState>? sgfKey = DataService().map['feed_key'];
+        GlobalKey<SubscriptionGroupFeedState>? sgfKey = DataService().map['feed_key_${group.id.replaceAll('-', '_')}'];
         if (sgfKey == null) {
           sgfKey = GlobalKey<SubscriptionGroupFeedState>();
-          DataService().map['feed_key'] = sgfKey;
+          DataService().map['feed_key_${group.id.replaceAll('-', '_')}'] = sgfKey;
         }
 
         return SubscriptionGroupFeed(
@@ -140,7 +140,7 @@ class SubscriptionGroupScreen extends StatelessWidget {
                   IconButton(
                       icon: const Icon(Icons.refresh_rounded),
                       onPressed: () async {
-                        GlobalKey<SubscriptionGroupFeedState>? sgfKey = DataService().map['feed_key'];
+                        GlobalKey<SubscriptionGroupFeedState>? sgfKey = DataService().map['feed_key_${id.replaceAll('-', '_')}'];
                         if (sgfKey != null) {
                           await sgfKey.currentState!.reloadData();
                         }
