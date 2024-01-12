@@ -3,7 +3,6 @@ import 'dart:convert';
 
 import 'package:dart_twitter_api/src/utils/date_utils.dart';
 import 'package:dart_twitter_api/twitter_api.dart';
-import 'package:faker/faker.dart';
 import 'package:ffcache/ffcache.dart';
 import 'package:squawker/generated/l10n.dart';
 import 'package:squawker/profile/profile_model.dart';
@@ -14,22 +13,13 @@ import 'package:squawker/client_android.dart';
 import 'package:http/http.dart' as http;
 import 'package:logging/logging.dart';
 import 'package:quiver/iterables.dart';
-import 'package:synchronized/synchronized.dart';
 
 const Duration _defaultTimeout = Duration(seconds: 30);
-const String _accessToken = 'AAAAAAAAAAAAAAAAAAAAAGHtAgAAAAAA%2Bx7ILXNILCqkSGIzy6faIHZ9s3Q%3DQy97w6SIrzE7lQwPJEYQBsArEE2fC25caFwRBvAGi456G09vGR';
 
 class _SquawkerTwitterClient extends TwitterClient {
   static final log = Logger('_SquawkerTwitterClient');
 
   _SquawkerTwitterClient() : super(consumerKey: '', consumerSecret: '', token: '', secret: '');
-
-  static final Lock _lock = Lock();
-  static Completer? _guestTokenCompleter;
-  static String? _guestToken;
-  static int _expiresAt = -1;
-  static int _tokenLimit = -1;
-  static int _tokenRemaining = -1;
 
   @override
   Future<http.Response> get(Uri uri, {Map<String, String>? headers, Duration? timeout}) async {
@@ -55,89 +45,6 @@ class _SquawkerTwitterClient extends TwitterClient {
     }
   }
 
-  static Future<String> getToken() async {
-    var guestToken = await _lock.synchronized(() async {
-      if (_guestToken != null) {
-        _guestTokenCompleter = null;
-        // If we don't have an expiry or limit, it's probably because we haven't made a request yet, so assume they're OK
-        if (_expiresAt == -1 && _tokenLimit == -1 && _tokenRemaining == -1) {
-          return _guestToken!;
-        }
-
-        // Check if the token we have hasn't expired yet
-        if (DateTime.now().millisecondsSinceEpoch < _expiresAt) {
-          // Check if the token we have still has usages remaining
-          if (_tokenRemaining < _tokenLimit) {
-            return _guestToken!;
-          }
-        }
-      }
-
-      if (_guestTokenCompleter != null) {
-        return _guestTokenCompleter!.future;
-      }
-      _guestTokenCompleter = Completer();
-
-      // Otherwise, fetch a new token
-      _guestToken = null;
-      _tokenLimit = -1;
-      _tokenRemaining = -1;
-      _expiresAt = -1;
-
-      return null;
-    });
-    if (guestToken != null) {
-      return guestToken;
-    }
-
-    log.info('Refreshing the Twitter token');
-
-    var response = await http.post(Uri.parse('https://api.twitter.com/1.1/guest/activate.json'), headers: {
-      'Authorization': 'Bearer $_accessToken',
-    });
-
-    if (response.statusCode == 200) {
-      var result = jsonDecode(response.body);
-      if (result.containsKey('guest_token')) {
-        _guestToken = result['guest_token'];
-
-        _guestTokenCompleter!.complete(_guestToken!);
-        return _guestToken!;
-      }
-    }
-
-    var exc = Exception('Unable to refresh the token. The response (${response.statusCode}) from Twitter was: ${response.body}');
-    _guestTokenCompleter!.completeError(exc);
-    throw exc;
-  }
-
-  static Future<http.Response> fetch(Uri uri, {Map<String, String>? headers}) async {
-    log.info('Fetching $uri');
-
-    var response = await http.get(uri, headers: {
-      ...?headers,
-      'authorization': 'Bearer $_accessToken',
-      'x-guest-token': await getToken(),
-      'x-twitter-active-user': 'yes',
-      'user-agent': faker.internet.userAgent()
-    });
-
-    var headerRateLimitReset = response.headers['x-rate-limit-reset'];
-    var headerRateLimitRemaining = response.headers['x-rate-limit-remaining'];
-    var headerRateLimitLimit = response.headers['x-rate-limit-limit'];
-
-    if (headerRateLimitReset == null || headerRateLimitRemaining == null || headerRateLimitLimit == null) {
-      // If the rate limit headers are missing, the endpoint probably doesn't send them back
-      return response;
-    }
-
-    // Update our token's rate limit counters
-    _expiresAt = int.parse(headerRateLimitReset) * 1000;
-    _tokenRemaining = int.parse(headerRateLimitRemaining);
-    _tokenLimit = int.parse(headerRateLimitLimit);
-
-    return response;
-  }
 }
 
 class UnknownProfileResultType implements Exception {
@@ -585,19 +492,14 @@ class Twitter {
     return tweet;
   }
 
-  static Future<List<UserWithExtra>> searchUsers(String query, {int limit = 25, String? maxId, String? cursor}) async {
+  static Future<List<UserWithExtra>> searchUsers(String query, {int limit = 25, int? page}) async {
     var queryParameters = {
-      ...defaultParams,
       'count': limit.toString(),
-      'max_id': maxId,
-      'q': query,
-      'pc': '1',
-      'spelling_corrections': '1',
-      'result_filter': 'user'
+      'q': query
     };
 
-    if (cursor != null) {
-      queryParameters['cursor'] = cursor;
+    if (page != null) {
+      queryParameters['page'] = page.toString();
     }
 
     var response = await _twitterApi.client.get(Uri.https('api.twitter.com', '/1.1/users/search.json', queryParameters));

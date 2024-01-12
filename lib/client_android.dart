@@ -228,60 +228,54 @@ class TwitterAndroid {
     }
     Map? currentGuestAccountTokens = _guestAccountTokens;
     _guestAccountTokens = null;
-    Map guestAccountTokens = await _lock.synchronized(() async {
-      if (_guestAccountTokens != null) {
-        return _guestAccountTokens!;
-      }
-      try {
-        var repository = await Repository.writable();
+    try {
+      var repository = await Repository.writable();
 
-        int guestAccountIndex = _guestAccountIndex;
-        if (forceNewAccount) {
-          guestAccountIndex++;
-        }
-        var guestAccountDbData = await repository.query(tableGuestAccount, orderBy: 'created_at ASC');
-        if (guestAccountDbData.isNotEmpty) {
-          if (guestAccountDbData.length > guestAccountIndex) {
-            var guestAccountDb = guestAccountDbData[guestAccountIndex];
-            _guestAccountTokens = {
-              'oauthConsumerKey': _oauthConsumerKey,
-              'oauthConsumerSecret': _oauthConsumerSecret,
-              'oauthToken': guestAccountDb['oauth_token'],
-              'oauthTokenSecret': guestAccountDb['oauth_token_secret']
-            };
-            _guestAccountIndex = guestAccountIndex;
-            bool mustInsert = !_rateLimits.containsKey(guestAccountDb['oauth_token']);
-            _setRateLimits();
-            if (mustInsert) {
-              await _saveRateLimits(insert: true);
-            }
-            return _guestAccountTokens!;
+      int guestAccountIndex = _guestAccountIndex;
+      if (forceNewAccount) {
+        guestAccountIndex++;
+      }
+      var guestAccountDbData = await repository.query(tableGuestAccount, orderBy: 'created_at ASC');
+      if (guestAccountDbData.isNotEmpty) {
+        if (guestAccountDbData.length > guestAccountIndex) {
+          var guestAccountDb = guestAccountDbData[guestAccountIndex];
+          _guestAccountTokens = {
+            'oauthConsumerKey': _oauthConsumerKey,
+            'oauthConsumerSecret': _oauthConsumerSecret,
+            'oauthToken': guestAccountDb['oauth_token'],
+            'oauthTokenSecret': guestAccountDb['oauth_token_secret']
+          };
+          _guestAccountIndex = guestAccountIndex;
+          bool mustInsert = !_rateLimits.containsKey(guestAccountDb['oauth_token']);
+          _setRateLimits();
+          if (mustInsert) {
+            await _saveRateLimits(insert: true);
           }
+          return _guestAccountTokens!;
         }
-
-        String accessToken = await _getAccessToken();
-        String guestToken = await _getGuestToken(accessToken);
-        String flowToken = await _getFlowToken(accessToken, guestToken);
-        var guestAccount = await _getGuestAccountFromTwitter(accessToken, guestToken, flowToken);
-        _guestAccountTokens = {
-          'oauthConsumerKey': _oauthConsumerKey,
-          'oauthConsumerSecret': _oauthConsumerSecret,
-          'oauthToken': guestAccount['oauth_token'],
-          'oauthTokenSecret': guestAccount['oauth_token_secret']
-        };
-
-        await repository.insert(tableGuestAccount, guestAccount);
-        _guestAccountIndex = guestAccountIndex;
-        _setRateLimits();
-        await _saveRateLimits(insert: true);
-        return _guestAccountTokens!;
       }
-      catch (err) {
-        _guestAccountTokens = currentGuestAccountTokens;
-        rethrow;
-      }
-    });
-    return guestAccountTokens;
+
+      String accessToken = await _getAccessToken();
+      String guestToken = await _getGuestToken(accessToken);
+      String flowToken = await _getFlowToken(accessToken, guestToken);
+      var guestAccount = await _getGuestAccountFromTwitter(accessToken, guestToken, flowToken);
+      _guestAccountTokens = {
+        'oauthConsumerKey': _oauthConsumerKey,
+        'oauthConsumerSecret': _oauthConsumerSecret,
+        'oauthToken': guestAccount['oauth_token'],
+        'oauthTokenSecret': guestAccount['oauth_token_secret']
+      };
+
+      await repository.insert(tableGuestAccount, guestAccount);
+      _guestAccountIndex = guestAccountIndex;
+      _setRateLimits();
+      await _saveRateLimits(insert: true);
+      return _guestAccountTokens!;
+    }
+    catch (err) {
+      _guestAccountTokens = currentGuestAccountTokens;
+      rethrow;
+    }
   }
 
   static String hmacSHA1(String key, String text) {
@@ -378,48 +372,50 @@ class TwitterAndroid {
   }
 
   static Future<http.Response> fetch(Uri uri, {Map<String, String>? headers, RateFetchContext? fetchContext}) async {
-    http.Response? rsp;
-    bool endLoop = false;
-    RateLimitException? lastExc;
-    bool longDelayExc = false;
-    try {
-      rsp = await _doFetch(uri, headers: headers, fetchContext: fetchContext);
-    }
-    on RateLimitException catch (_, ex) {
-      lastExc = _;
-      longDelayExc = _.longDelay;
-    }
-    while (!endLoop && (longDelayExc || (rsp != null && rsp.statusCode >= 400 && rsp.body.contains('Rate limit exceeded')))) {
+    return await _lock.synchronized(() async {
+      http.Response? rsp;
+      bool endLoop = false;
+      RateLimitException? lastExc;
+      bool longDelayExc = false;
       try {
-        // retry the request, but first get or create a new guest account.
-        lastExc = null;
-        longDelayExc = false;
-        rsp = await _doFetch(uri, headers: headers, fetchContext: fetchContext, forceNewAccount: true);
-        if (rsp.statusCode >= 400 && rsp.body.contains('Rate limit exceeded')) {
-          // Twitter/X API documentation specify a 24 hours waiting time, but I experimented a 12 hours embargo.
-          _rateLimitRemaining[uri.path] = 0;
-          _rateLimitReset[uri.path] = DateTime.now().add(const Duration(hours: 12)).millisecondsSinceEpoch;
-          await _saveRateLimits();
-        }
+        rsp = await _doFetch(uri, headers: headers, fetchContext: fetchContext);
       }
       on RateLimitException catch (_, ex) {
         lastExc = _;
         longDelayExc = _.longDelay;
       }
-      on GuestAccountException catch (_, ex) {
-        endLoop = true;
+      while (!endLoop && (longDelayExc || (rsp != null && rsp.statusCode >= 400 && rsp.body.contains('Rate limit exceeded')))) {
+        try {
+          // retry the request, but first get or create a new guest account.
+          lastExc = null;
+          longDelayExc = false;
+          rsp = await _doFetch(uri, headers: headers, fetchContext: fetchContext, forceNewAccount: true);
+          if (rsp.statusCode >= 400 && rsp.body.contains('Rate limit exceeded')) {
+            // Twitter/X API documentation specify a 24 hours waiting time, but I experimented a 12 hours embargo.
+            _rateLimitRemaining[uri.path] = 0;
+            _rateLimitReset[uri.path] = DateTime.now().add(const Duration(hours: 12)).millisecondsSinceEpoch;
+            await _saveRateLimits();
+          }
+        }
+        on RateLimitException catch (_, ex) {
+          lastExc = _;
+          longDelayExc = _.longDelay;
+        }
+        on GuestAccountException catch (_, ex) {
+          endLoop = true;
+        }
       }
-    }
-    if (lastExc != null) {
-      log.warning('*** ${lastExc.message}');
-      throw lastExc;
-    }
-    if (rsp != null && rsp.statusCode >= 400 && rsp.body.contains('Rate limit exceeded')) {
-      // Twitter/X API documentation specify a 24 hours waiting time, but I experimented a 12 hours embargo.
-      log.warning('*** Twitter/X server Error: The request ${uri.path} has exceeded its rate limit. Will have to wait 12 hours!');
-      throw RateLimitException('The request ${uri.path} has reached its limit. Please wait 12 hours.', longDelay: true);
-    }
-    return rsp!;
+      if (lastExc != null) {
+        log.warning('*** ${lastExc.message}');
+        throw lastExc;
+      }
+      if (rsp != null && rsp.statusCode >= 400 && rsp.body.contains('Rate limit exceeded')) {
+        // Twitter/X API documentation specify a 24 hours waiting time, but I experimented a 12 hours embargo.
+        log.warning('*** Twitter/X server Error: The request ${uri.path} has exceeded its rate limit. Will have to wait 12 hours!');
+        throw RateLimitException('The request ${uri.path} has reached its limit. Please wait 12 hours.', longDelay: true);
+      }
+      return rsp!;
+    });
   }
 
 }
