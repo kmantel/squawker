@@ -41,12 +41,12 @@ class SubscriptionGroupFeed extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<SubscriptionGroupFeed> createState() => _SubscriptionGroupFeedState();
+  State<SubscriptionGroupFeed> createState() => SubscriptionGroupFeedState();
 }
 
-class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with WidgetsBindingObserver {
+class SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with WidgetsBindingObserver {
 
-  static final log = Logger('_SubscriptionGroupFeedState');
+  static final log = Logger('SubscriptionGroupFeedState');
 
   static final Lock _lock = Lock();
 
@@ -97,10 +97,10 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
   }
 
   Future<void> _checkFetchData() async {
-    if (_data.isEmpty || _itemPositionsListener.itemPositions.value.first.index > 0.8 * _data.length) {
+    if (_data.isEmpty || (_data.length - _itemPositionsListener.itemPositions.value.first.index) < 20) {
       await _lock.synchronized(() async {
-        if (_data.isEmpty || _itemPositionsListener.itemPositions.value.first.index > 0.8 * _data.length) {
-          await _listTweets(_data.isEmpty);
+        if (_data.isEmpty || (_data.length - _itemPositionsListener.itemPositions.value.first.index) < 20) {
+          await _listTweets();
         }
       });
     }
@@ -133,13 +133,18 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
     _data.clear();
   }
 
+  Future<void> reloadData() async {
+    await _updateOffset();
+    _resetData();
+    _checkFetchData();
+  }
+
   @override
-  void didUpdateWidget(SubscriptionGroupFeed oldWidget) {
+  void didUpdateWidget(SubscriptionGroupFeed oldWidget) async {
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.includeReplies != widget.includeReplies || oldWidget.includeRetweets != widget.includeRetweets) {
-      _resetData();
-      _checkFetchData();
+      await reloadData();
     }
   }
 
@@ -189,7 +194,7 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
   /// Here, each page is actually a set of mappings, where the ID of each set is the hash of all the user IDs in that
   /// set. We store this along with the top and bottom pagination cursors, which we use to perform pagination for all
   /// sets at the same time, allowing us to create a feed made up of individual search queries.
-  Future _listTweets(bool dataIsEmpty) async {
+  Future _listTweets() async {
     try {
       List<Future<List<TweetChain>>> futures = [];
 
@@ -226,7 +231,7 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
 
           var storedChunks = await repository.query(tableFeedGroupChunk,
               where: 'group_id = ? AND hash = ?', whereArgs: [widget.group.id, hash], orderBy: 'created_at DESC');
-          if (dataIsEmpty) {
+          if (_data.isEmpty) {
             requestToDo = true;
             // Make sure we load any existing stored tweets from the chunk
             var storedChunksTweets = storedChunks
@@ -247,7 +252,7 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
               searchCursor = null;
             }
           } else {
-            // We're currently at the end of our current feed, so load the oldest chunk and use its cursor to load more
+            // We're currently at the end of our current feed, so get the oldest chunk's bottom cursor to load older tweets.
             if (storedChunks.isNotEmpty) {
               requestToDo = true;
               searchCursor = storedChunks.last['cursor_bottom'] as String;
@@ -283,7 +288,12 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
             }
 
             if (result.chains.isNotEmpty) {
-              tweets.addAll(result.chains);
+              // avoid duplicates
+              for (var cElm in result.chains) {
+                if (tweets.firstWhereOrNull((tElm) => cElm.id == tElm.id) == null) {
+                  tweets.add(cElm);
+                }
+              }
 
               // Make sure we insert the set of cursors for this latest chunk, ready for the next time we paginate
               await repository.insert(tableFeedGroupChunk, {
@@ -320,15 +330,7 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
         return;
       }
 
-      _tweetIdxDic.clear();
-      int idx = 0;
-      for (var cElm in threads) {
-        for (var tElm in cElm.tweets) {
-          _tweetIdxDic[tElm.idStr!] = idx;
-          idx++;
-        }
-      }
-
+      // this block is executed only at the first initialisation (or re-initialisation)
       if (positionedChainId != null && !_visiblePositionState.initialized) {
         int positionedChainIdx = threads.indexWhere((e) => e.id == positionedChainId);
         int positionedTweetIdx = -1;
@@ -354,11 +356,17 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
       _positionShowing = null;
 
       setState(() {
-        if (dataIsEmpty) {
-          _data.clear();
-        }
         _data.addAll(threads);
       });
+
+      _tweetIdxDic.clear();
+      int idx = 0;
+      for (var cElm in _data) {
+        for (var tElm in cElm.tweets) {
+          _tweetIdxDic[tElm.idStr!] = idx;
+          idx++;
+        }
+      }
 
       _toScroll = false;
       if (threads.isNotEmpty && !_visiblePositionState.initialized && _visiblePositionState.scrollChainIdx != null) {
@@ -438,9 +446,7 @@ class _SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widg
       key: _key,
       body: RefreshIndicator(
         onRefresh: () async {
-          await _updateOffset();
-          _resetData();
-          _checkFetchData();
+          await reloadData();
         },
         child: MultiProvider(
           providers: [

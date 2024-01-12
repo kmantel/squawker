@@ -520,8 +520,15 @@ class Twitter {
 
     var tweetChains = _createTweetsChains(tweets, includeReplies);
 
-    var cursorBottom = result['search_metadata']['since_id_str'] as String?;
-    var cursorTop = result['search_metadata']['max_id_str'] as String?;
+    String? cursorBottom = result['search_metadata']?['since_id_str'];
+    if (cursorBottom == null || cursorBottom == '0') {
+      String? cursorBottomNextRes = result['search_metadata']?['next_results'];
+      if (cursorBottomNextRes != null) {
+        RegExpMatch? m = RegExp('max_id=(.+?)&').firstMatch(cursorBottomNextRes);
+        cursorBottom = m?.group(1);
+      }
+    }
+    String? cursorTop = result['search_metadata']?['max_id_str'];
 
     return TweetStatus(chains: tweetChains, cursorBottom: cursorBottom, cursorTop: cursorTop);
   }
@@ -709,7 +716,7 @@ class Twitter {
     var tweetEntries = addEntries
         .where((e) => e['entryId'].contains(tweetIndicator))
         .sorted((a, b) => b['sortIndex'].compareTo(a['sortIndex']))
-        .map((e) => e['content']['itemContent']['tweet_results']['result']['rest_id'])
+        .map((e) {var res = e['content']['itemContent']['tweet_results']['result']; return res['rest_id'] ?? res['tweet']['rest_id']; })
         .cast<String>()
         .toList();
 
@@ -864,6 +871,9 @@ class Twitter {
 
     var globalTweets = Map.fromEntries(filteredTweets.map((e) {
       var elm = e['content']['itemContent']['tweet_results']['result'];
+      if (elm['rest_id'] == null) {
+        elm = elm['tweet'];
+      }
       return MapEntry(elm['rest_id'] as String, elm);
     }));
 

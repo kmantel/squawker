@@ -246,11 +246,14 @@ class Repository {
       ],
       25: [
         SqlMigration('ALTER TABLE $tableSubscription ADD COLUMN in_feed BOOLEAN DEFAULT 1'),
+      ],
+      26: [
+        SqlMigration('ALTER TABLE $tableRateLimits ADD COLUMN oauth_token VARCHAR DEFAULT NULL'),
       ]
     });
     await openDatabase(
       databaseName,
-      version: 25,
+      version: 26,
       onUpgrade: myMigrationPlan,
       onCreate: myMigrationPlan,
       onDowngrade: myMigrationPlan,

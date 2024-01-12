@@ -203,6 +203,7 @@ class SettingsGeneralFragment extends StatelessWidget {
                 onChange: (value) async {
                   var repository = await Repository.writable();
                   await repository.delete(tableFeedGroupChunk);
+                  await repository.delete(tableFeedGroupPositionState);
                 },
               ),
             ],

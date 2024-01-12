@@ -221,7 +221,7 @@ Future<void> main() async {
   var trendLocationModel = UserTrendLocationModel(prefService);
 
   try {
-    await TwitterAndroid.loadRateLimits();
+    await TwitterAndroid.loadAllRateLimits();
   } catch (_) {
     // Ignore
   }
