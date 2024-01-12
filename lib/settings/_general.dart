@@ -196,6 +196,12 @@ class SettingsGeneralFragment extends StatelessWidget {
                 subtitle: Text(L10n.of(context).leaner_feeds_description),
                 pref: optionLeanerFeeds,
               ),
+            ],
+          ),
+          ExpansionTile(
+            title: Text(L10n.of(context).x_api),
+            leading: const Icon(Icons.api_outlined),
+            children: [
               PrefSwitch(
                 title: Text(L10n.of(context).enhanced_feeds_label),
                 subtitle: Text(L10n.of(context).enhanced_feeds_description),

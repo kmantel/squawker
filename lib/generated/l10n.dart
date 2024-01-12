@@ -2606,6 +2606,16 @@ class L10n {
     );
   }
 
+  /// `X API`
+  String get x_api {
+    return Intl.message(
+      'X API',
+      name: 'x_api',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Enhanced feeds`
   String get enhanced_feeds_label {
     return Intl.message(

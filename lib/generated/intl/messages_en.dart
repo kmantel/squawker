@@ -506,6 +506,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "would_you_like_to_enable_automatic_error_reporting":
             MessageLookupByLibrary.simpleMessage(
                 "Would you like to enable automatic error reporting?"),
+        "x_api": MessageLookupByLibrary.simpleMessage("X API"),
         "yes": MessageLookupByLibrary.simpleMessage("Yes"),
         "yes_please": MessageLookupByLibrary.simpleMessage("Yes, please"),
         "you_have_not_saved_any_tweets_yet":

@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:device_preview/device_preview.dart';
@@ -172,8 +171,9 @@ Future<void> main() async {
     optionTweetsHideSensitive: false,
     optionKeepFeedOffset: false,
     optionLeanerFeeds: false,
-    optionEnhancedFeeds: false,
     optionConfirmClose: true,
+    optionEnhancedFeeds: true,
+    //optionEnhancedSearches: true,
     optionUserTrendsLocations: jsonEncode({
       'active': {'name': 'Worldwide', 'woeid': 1},
       'locations': [
