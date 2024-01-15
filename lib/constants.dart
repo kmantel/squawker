@@ -46,7 +46,7 @@ const optionNonConfirmationBiasMode = 'other.improve_non_confirmation_bias';
 const optionKeepFeedOffset = 'keep_feed_offset';
 const optionLeanerFeeds = 'leaner_feeds';
 const optionEnhancedFeeds = 'enhanced_feeds';
-//const optionEnhancedSearches = 'enhanced_searches';
+const optionEnhancedSearches = 'enhanced_searches';
 const optionConfirmClose = 'confirm_close';
 
 const optionTweetFontSize = 'tweet_font_size';

@@ -173,7 +173,7 @@ Future<void> main() async {
     optionLeanerFeeds: false,
     optionConfirmClose: true,
     optionEnhancedFeeds: true,
-    //optionEnhancedSearches: true,
+    optionEnhancedSearches: true,
     optionUserTrendsLocations: jsonEncode({
       'active': {'name': 'Worldwide', 'woeid': 1},
       'locations': [
@@ -221,7 +221,7 @@ Future<void> main() async {
   var trendLocationModel = UserTrendLocationModel(prefService);
 
   try {
-    await TwitterAndroid.loadAllRateLimits();
+    await TwitterAndroid.loadAllGuestAccountsAndRateLimits();
   } catch (_) {
     // Ignore
   }

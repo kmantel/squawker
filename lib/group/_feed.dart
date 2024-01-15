@@ -218,7 +218,8 @@ class SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widge
       }
 
       _errorResponse = null;
-      RateFetchContext fetchContext = RateFetchContext(widget.chunks.length);
+      RateFetchContext fetchContext = RateFetchContext(prefs.get(optionEnhancedFeeds) ? Twitter.searchTweetsGraphqlUriPath : Twitter.searchTweetsUriPath, widget.chunks.length);
+      await fetchContext.init();
       for (var chunk in widget.chunks) {
         var hash = chunk.hash;
 
@@ -306,7 +307,7 @@ class SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widge
             }
           }
           else {
-            fetchContext.fetchNoRate();
+            await fetchContext.fetchNoResponse();
           }
 
           return tweets;
@@ -374,6 +375,10 @@ class SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widge
       }
 
     } catch (e, stackTrace) {
+      if (e is Exception) {
+        log.severe(e.toString());
+        _errorResponse ??= ExceptionResponse(e);
+      }
       if (mounted) {
         // probably something to do
       }

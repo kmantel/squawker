@@ -77,7 +77,10 @@ class Twitter {
 
   static final FFCache _cache = FFCache();
 
-  static Map<String, String> defaultParams = {
+  static const searchTweetsGraphqlUriPath = '/graphql/nK1dw4oV3k4w5TdtcAdSww/SearchTimeline';
+  static const searchTweetsUriPath = '/1.1/search/tweets.json';
+
+  static final Map<String, String> defaultParams = {
     'include_profile_interstitial_type': '1',
     'include_blocking': '1',
     'include_blocked_by': '1',
@@ -362,7 +365,7 @@ class Twitter {
       variables['cursor'] = cursor;
     }
 
-    var uri = Uri.https('api.twitter.com', '/graphql/nK1dw4oV3k4w5TdtcAdSww/SearchTimeline', {
+    var uri = Uri.https('api.twitter.com', searchTweetsGraphqlUriPath, {
       'variables': jsonEncode(variables),
       'features': jsonEncode(defaultFeatures)
     });
@@ -413,7 +416,7 @@ class Twitter {
       }
     }
 
-    var response = await (_twitterApi.client as _SquawkerTwitterClient).getWithRateFetchCtx(Uri.https('api.twitter.com', '/1.1/search/tweets.json', queryParameters), fetchContext: fetchContext);
+    var response = await (_twitterApi.client as _SquawkerTwitterClient).getWithRateFetchCtx(Uri.https('api.twitter.com', searchTweetsUriPath, queryParameters), fetchContext: fetchContext);
     if (response.body.isEmpty) {
       return TweetStatus(chains: [], cursorBottom: null, cursorTop: null);
     }
