@@ -1,0 +1,1 @@
+* Fix issue #158 Bug with the dialog to modify the tweets font size.

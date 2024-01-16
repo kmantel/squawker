@@ -107,7 +107,7 @@ class FontSizePickerDialogState extends State<FontSizePickerDialog> {
 
   @override
   Widget build(BuildContext context) {
-    double defaultFontSize = DefaultTextStyle.of(context).style.fontSize!;
+    double defaultFontSize = Theme.of(context).textTheme.bodyMedium!.fontSize!;
     double minFontSize = defaultFontSize - 4;
     double maxFontSize = defaultFontSize + 8;
 
