@@ -8,7 +8,7 @@ import 'package:http/http.dart';
 import 'package:logging/logging.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:squawker/client.dart';
-import 'package:squawker/client_android.dart';
+import 'package:squawker/client_account.dart';
 import 'package:squawker/constants.dart';
 import 'package:squawker/database/entities.dart';
 import 'package:squawker/database/repository.dart';

@@ -9,7 +9,7 @@ import 'package:squawker/profile/profile_model.dart';
 import 'package:squawker/user.dart';
 import 'package:squawker/utils/cache.dart';
 import 'package:squawker/utils/iterables.dart';
-import 'package:squawker/client_android.dart';
+import 'package:squawker/client_account.dart';
 import 'package:http/http.dart' as http;
 import 'package:logging/logging.dart';
 import 'package:quiver/iterables.dart';
@@ -29,7 +29,7 @@ class _SquawkerTwitterClient extends TwitterClient {
   Future<http.Response> getWithRateFetchCtx(Uri uri, {Map<String, String>? headers, Duration? timeout, RateFetchContext? fetchContext}) async {
     try {
       log.info('Fetching $uri');
-      http.Response response = await TwitterAndroid.fetch(uri, headers: headers, fetchContext: fetchContext).timeout(timeout ?? _defaultTimeout);
+      http.Response response = await TwitterAccount.fetch(uri, headers: headers, fetchContext: fetchContext).timeout(timeout ?? _defaultTimeout);
       if (response.statusCode >= 200 && response.statusCode < 300) {
         return response;
       } else {

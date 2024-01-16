@@ -10,7 +10,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_windowmanager/flutter_windowmanager.dart';
 
-import 'package:squawker/client_android.dart';
+import 'package:squawker/client_account.dart';
 import 'package:squawker/constants.dart';
 import 'package:squawker/database/repository.dart';
 import 'package:squawker/generated/l10n.dart';
@@ -221,7 +221,7 @@ Future<void> main() async {
   var trendLocationModel = UserTrendLocationModel(prefService);
 
   try {
-    await TwitterAndroid.loadAllGuestAccountsAndRateLimits();
+    await TwitterAccount.loadAllGuestAccountsAndRateLimits();
   } catch (_) {
     // Ignore
   }

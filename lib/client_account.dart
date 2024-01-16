@@ -9,8 +9,8 @@ import 'package:synchronized/synchronized.dart';
 
 typedef ApplyRates = Future<void> Function(int remaining, int reset);
 
-class TwitterAndroid {
-  static final log = Logger('TwitterAndroid');
+class TwitterAccount {
+  static final log = Logger('TwitterAccount');
 
   static const String _oauthConsumerKey = '3nVuSoBZnx6U4vzUxf5w';
   static const String _oauthConsumerSecret = 'Bcs59EFbbsdF6Sl9Ng71smgStWEGwXXKSjYvPVt7qys';
@@ -459,7 +459,7 @@ class RateFetchContext {
   RateFetchContext(this.uriPath, this.total);
 
   Future<void> init() async {
-    await TwitterAndroid.initGuestAccount(uriPath, total);
+    await TwitterAccount.initGuestAccount(uriPath, total);
   }
 
   Future<void> fetchNoResponse() async {
@@ -477,7 +477,7 @@ class RateFetchContext {
       var headerRateLimitRemaining = response.headers['x-rate-limit-remaining'];
       var headerRateLimitReset = response.headers['x-rate-limit-reset'];
       if (headerRateLimitRemaining == null || headerRateLimitReset == null) {
-        TwitterAndroid.log.info('The request $uriPath has no rate limits.');
+        TwitterAccount.log.info('The request $uriPath has no rate limits.');
         remainingLst.add(null);
         resetLst.add(null);
       }
@@ -511,15 +511,15 @@ class RateFetchContext {
     if (minReset == 0) {
       return;
     }
-    await TwitterAndroid.updateRateValues(uriPath, minRemaining, minReset);
+    await TwitterAccount.updateRateValues(uriPath, minRemaining, minReset);
     if (minRemaining == -1) {
       // this should not happened but just in case, check if there is another guest account that is NOT with an embargo
-      Map<String,dynamic>? guestAccountInfoTmp = TwitterAndroid.getNextGuestAccount(uriPath, total);
+      Map<String,dynamic>? guestAccountInfoTmp = TwitterAccount.getNextGuestAccount(uriPath, total);
       if (guestAccountInfoTmp!['guestAccount'] != null) {
         throw RateLimitException('The request $uriPath has reached its limit. Please wait 1 minute.');
       }
       else {
-        Map<String,dynamic> di = TwitterAndroid.delayInfo(guestAccountInfoTmp['minRateLimitReset']);
+        Map<String,dynamic> di = TwitterAccount.delayInfo(guestAccountInfoTmp['minRateLimitReset']);
         throw RateLimitException('The request $uriPath has reached its limit. Please wait ${di['minutesStr']}.', longDelay: di['longDelay']);
       }
     }
