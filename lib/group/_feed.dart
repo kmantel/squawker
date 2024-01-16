@@ -377,7 +377,9 @@ class SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widge
     } catch (e, stackTrace) {
       if (e is Exception) {
         log.severe(e.toString());
-        _errorResponse ??= ExceptionResponse(e);
+        setState(() {
+          _errorResponse ??= ExceptionResponse(e);
+        });
       }
       if (mounted) {
         // probably something to do
@@ -433,17 +435,17 @@ class SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widge
       }
     });
 
+    if (_errorResponse != null && _data.isEmpty && (_errorResponse!.statusCode < 200 || _errorResponse!.statusCode >= 300)) {
+      return Scaffold(
+          body: FullPageErrorWidget(error: _errorResponse, prefix: 'Error request Twitter/X', stackTrace: null)
+      );
+    }
+
     if (widget.chunks.isEmpty) {
       return Scaffold(
         body: Center(
           child: Text(L10n.of(context).this_group_contains_no_subscriptions),
         ),
-      );
-    }
-
-    if (_errorResponse != null && _data.isEmpty && (_errorResponse!.statusCode < 200 || _errorResponse!.statusCode >= 300)) {
-      return Scaffold(
-          body: FullPageErrorWidget(error: _errorResponse, prefix: 'Error request Twitter/X', stackTrace: null)
       );
     }
 

@@ -15,6 +15,7 @@ class TwitterAndroid {
   static const String _oauthConsumerKey = '3nVuSoBZnx6U4vzUxf5w';
   static const String _oauthConsumerSecret = 'Bcs59EFbbsdF6Sl9Ng71smgStWEGwXXKSjYvPVt7qys';
 
+  static GuestAccountException? _lastGuestAccountExc;
   static Map? _guestAccountTokens;
   static final List<Map<String,Object?>> _guestAccountTokensLst = [];
   static final Map<String,List<Map<String,int>>> _rateLimits = {};
@@ -74,7 +75,7 @@ class TwitterAndroid {
 
   static Future<void> initGuestAccount(String uriPath, int total) async {
     // first try to create a guest account if it's been at least 24 hours since the last creation
-    GuestAccountException? lastGuestAccountExc;
+    _lastGuestAccountExc = null;
     if (_guestAccountTokensLst.isEmpty || DateTime.now().difference(_guestAccountTokensLst.last['createdAt'] as DateTime).inHours >= 24) {
       try {
         Map<String,Object?> guestAccount = await _createGuestAccountTokens();
@@ -84,15 +85,15 @@ class TwitterAndroid {
       }
       on GuestAccountException catch (_, ex) {
         log.warning('*** Try to create a guest account after 24 hours with error: ${_.toString()}');
-        lastGuestAccountExc = _;
+        _lastGuestAccountExc = _;
       }
     }
 
     // now find the first guest account that is available or at least with the minimum waiting time
     Map<String,dynamic>? guestAccountInfo = getNextGuestAccount(uriPath, total);
     if (guestAccountInfo == null) {
-      if (lastGuestAccountExc != null) {
-        throw lastGuestAccountExc;
+      if (_lastGuestAccountExc != null) {
+        throw _lastGuestAccountExc!;
       }
       else {
         throw GuestAccountException('There is a problem getting a guest account.');
@@ -343,6 +344,12 @@ class TwitterAndroid {
   }
 
   static Future<String> _getSignOauth(Uri uri, String method) async {
+    if (_lastGuestAccountExc != null) {
+      throw _lastGuestAccountExc!;
+    }
+    if (_guestAccountTokens == null) {
+      throw GuestAccountException('There is a problem getting a guest account.');
+    }
     Map guestAccountTokens = _guestAccountTokens!;
     Map<String,String> params = Map<String,String>.from(uri.queryParameters);
     params['oauth_version'] = '1.0';
@@ -397,7 +404,7 @@ class TwitterAndroid {
   static Future<http.Response> fetch(Uri uri, {Map<String, String>? headers, RateFetchContext? fetchContext}) async {
     if (fetchContext == null) {
       fetchContext = RateFetchContext(uri.path, 1);
-      fetchContext.init();
+      await fetchContext.init();
     }
 
     http.Response rsp = await _doFetch(uri, fetchContext, headers: headers);
