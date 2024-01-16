@@ -2635,6 +2635,26 @@ class L10n {
       args: [],
     );
   }
+
+  /// `Enhanced searches`
+  String get enhanced_searches_label {
+    return Intl.message(
+      'Enhanced searches',
+      name: 'enhanced_searches_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enhanced requests for searches (but with lower rate limits)`
+  String get enhanced_searches_description {
+    return Intl.message(
+      'Enhanced requests for searches (but with lower rate limits)',
+      name: 'enhanced_searches_description',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<L10n> {

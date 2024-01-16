@@ -436,5 +436,7 @@
   "which_tab_is_shown_when_the_subscription_opens": "Which tab is shown when the subscription opens",
   "x_api": "X API",
   "enhanced_feeds_label": "Enhanced feeds",
-  "enhanced_feeds_description": "Enhanced requests for feeds (but with lower rate limits)"
+  "enhanced_feeds_description": "Enhanced requests for feeds (but with lower rate limits)",
+  "enhanced_searches_label": "Enhanced searches",
+  "enhanced_searches_description": "Enhanced requests for searches (but with lower rate limits)"
 }

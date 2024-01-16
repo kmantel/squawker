@@ -508,5 +508,7 @@
   "which_tab_is_shown_when_the_subscription_opens": "Quel onglet s’affiche à l’ouverture de l’abonnement",
   "x_api": "API X",
   "enhanced_feeds_label": "Flux améliorés",
-  "enhanced_feeds_description": "Requêtes améliorés pour les flux (mais avec des limites plus basses de fréquence)"
+  "enhanced_feeds_description": "Requêtes améliorés pour les flux (mais avec des limites plus basses de fréquence)",
+  "enhanced_searches_label": "Recherches améliorés",
+  "enhanced_searches_description": "Requêtes améliorés pour les recherches (mais avec des limites plus basses de fréquence)"
 }

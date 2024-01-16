@@ -212,6 +212,11 @@ class SettingsGeneralFragment extends StatelessWidget {
                   await repository.delete(tableFeedGroupPositionState);
                 },
               ),
+              PrefSwitch(
+                title: Text(L10n.of(context).enhanced_searches_label),
+                subtitle: Text(L10n.of(context).enhanced_searches_description),
+                pref: optionEnhancedSearches,
+              ),
             ],
           )
         ]),

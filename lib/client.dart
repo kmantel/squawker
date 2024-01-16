@@ -77,7 +77,7 @@ class Twitter {
 
   static final FFCache _cache = FFCache();
 
-  static const searchTweetsGraphqlUriPath = '/graphql/nK1dw4oV3k4w5TdtcAdSww/SearchTimeline';
+  static const graphqlSearchTimelineUriPath = '/graphql/nK1dw4oV3k4w5TdtcAdSww/SearchTimeline';
   static const searchTweetsUriPath = '/1.1/search/tweets.json';
 
   static final Map<String, String> defaultParams = {
@@ -365,7 +365,7 @@ class Twitter {
       variables['cursor'] = cursor;
     }
 
-    var uri = Uri.https('api.twitter.com', searchTweetsGraphqlUriPath, {
+    var uri = Uri.https('api.twitter.com', graphqlSearchTimelineUriPath, {
       'variables': jsonEncode(variables),
       'features': jsonEncode(defaultFeatures)
     });
@@ -511,12 +511,55 @@ class Twitter {
     }
 
     List result = json.decode(response.body);
-
     if (result.isEmpty) {
       return [];
     }
 
     return result.map((e) => UserWithExtra.fromJson(e)).toList();
+  }
+
+  static Future<List<UserWithExtra>> searchUsersGraphql(String query, {int limit = 25, String? cursor}) async {
+    var variables = {
+      "rawQuery": query,
+      "count": limit.toString(),
+      "product": 'People',
+      "withDownvotePerspective": false,
+      "withReactionsMetadata": false,
+      "withReactionsPerspective": false
+    };
+
+    if (cursor != null) {
+      variables['cursor'] = cursor;
+    }
+
+    var uri = Uri.https('api.twitter.com', graphqlSearchTimelineUriPath, {
+      'variables': jsonEncode(variables),
+      'features': jsonEncode(defaultFeatures)
+    });
+
+    var response = await _twitterApi.client.get(uri);
+    if (response.body.isEmpty) {
+      return [];
+    }
+
+    var result = json.decode(response.body);
+    if (result.isEmpty) {
+      return [];
+    }
+
+    List instructions = List.from(result?['data']?['search_by_raw_query']?['search_timeline']?['timeline']?['instructions'] ?? []);
+    if (instructions.isEmpty) {
+      return [];
+    }
+    List addEntries = List.from(instructions.firstWhere((e) => e['type'] == 'TimelineAddEntries', orElse: () => null)?['entries'] ?? []);
+    if (addEntries.isEmpty) {
+      return [];
+    }
+
+    return addEntries.where((entry) => entry['entryId']?.startsWith('user-')).where((entry) => entry['content']?['itemContent']?['user_results']?['result']?['legacy'] != null).map((entry) {
+      var res = entry['content']['itemContent']['user_results']['result'];
+      return UserWithExtra.fromJson({...res['legacy'], 'id_str': res['rest_id'], 'ext_is_blue_verified': res['is_blue_verified']});
+    }).toList();
   }
 
   static Future<List<TrendLocation>> getTrendLocations() async {

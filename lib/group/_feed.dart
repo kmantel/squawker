@@ -218,7 +218,7 @@ class SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widge
       }
 
       _errorResponse = null;
-      RateFetchContext fetchContext = RateFetchContext(prefs.get(optionEnhancedFeeds) ? Twitter.searchTweetsGraphqlUriPath : Twitter.searchTweetsUriPath, widget.chunks.length);
+      RateFetchContext fetchContext = RateFetchContext(prefs.get(optionEnhancedFeeds) ? Twitter.graphqlSearchTimelineUriPath : Twitter.searchTweetsUriPath, widget.chunks.length);
       await fetchContext.init();
       for (var chunk in widget.chunks) {
         var hash = chunk.hash;

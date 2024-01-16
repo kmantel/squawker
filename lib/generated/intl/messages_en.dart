@@ -168,6 +168,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Enhanced requests for feeds (but with lower rate limits)"),
         "enhanced_feeds_label":
             MessageLookupByLibrary.simpleMessage("Enhanced feeds"),
+        "enhanced_searches_description": MessageLookupByLibrary.simpleMessage(
+            "Enhanced requests for searches (but with lower rate limits)"),
+        "enhanced_searches_label":
+            MessageLookupByLibrary.simpleMessage("Enhanced searches"),
         "enter_your_twitter_username": MessageLookupByLibrary.simpleMessage(
             "Enter your Twitter/X username"),
         "export": MessageLookupByLibrary.simpleMessage("Export"),
