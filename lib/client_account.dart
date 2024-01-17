@@ -1,9 +1,11 @@
 import 'dart:convert';
 import 'dart:math';
 import 'package:crypto/crypto.dart';
+import 'package:flutter_triple/flutter_triple.dart';
 import 'package:http/http.dart' as http;
 import 'package:logging/logging.dart';
 import 'package:squawker/utils/iterables.dart';
+import 'package:squawker/database/entities.dart';
 import 'package:squawker/database/repository.dart';
 import 'package:synchronized/synchronized.dart';
 
@@ -15,7 +17,7 @@ class TwitterAccount {
   static const String _oauthConsumerKey = '3nVuSoBZnx6U4vzUxf5w';
   static const String _oauthConsumerSecret = 'Bcs59EFbbsdF6Sl9Ng71smgStWEGwXXKSjYvPVt7qys';
 
-  static GuestAccountException? _lastGuestAccountExc;
+  static bool _createGuestAccountAttempted = false;
   static Map? _guestAccountTokens;
   static final List<Map<String,Object?>> _guestAccountTokensLst = [];
   static final Map<String,List<Map<String,int>>> _rateLimits = {};
@@ -26,6 +28,7 @@ class TwitterAccount {
 
     // load the guest account tokens list, sorted by creation ascending
     var guestAccountsDbData = await repository.query(tableGuestAccount);
+    _guestAccountTokensLst.clear();
     for (int i = 0; i < guestAccountsDbData.length; i++) {
       _guestAccountTokensLst.add({
         'idStr': guestAccountsDbData[i]['id_str'],
@@ -34,9 +37,10 @@ class TwitterAccount {
         'oauthTokenSecret': guestAccountsDbData[i]['oauth_token_secret'],
         'createdAt': DateTime.parse(guestAccountsDbData[i]['created_at'] as String),
       });
-      _guestAccountTokensLst.sort((a, b) => (a['createdAt'] as DateTime).compareTo(b['createdAt'] as DateTime));
     }
     if (_guestAccountTokensLst.isNotEmpty) {
+      _guestAccountTokensLst.sort((a, b) => (a['createdAt'] as DateTime).compareTo(b['createdAt'] as DateTime));
+
       // delete records from the rate_limits table that are not valid anymore (if applicable)
       List<String> oauthTokenLst = _guestAccountTokensLst.map((e) => e['oauthToken'] as String).toList();
       await repository.delete(tableRateLimits, where: 'oauth_token IS NOT NULL AND oauth_token NOT IN (${List.filled(oauthTokenLst.length, '?').join(',')})', whereArgs: oauthTokenLst);
@@ -44,12 +48,11 @@ class TwitterAccount {
 
     // load the rate limits
     var rateLimitsDbData = await repository.query(tableRateLimits);
-    bool deleteNullRecord = false;
+    _rateLimits.clear();
+    List<String> oauthTokenFoundLst = [];
     for (int i = 0; i < rateLimitsDbData.length; i++) {
       String oauthToken = (rateLimitsDbData[i]['oauth_token'] ?? '') as String;
-      if (oauthToken == '' && rateLimitsDbData.length > 1) {
-        deleteNullRecord = true;
-      }
+      oauthTokenFoundLst.add(oauthToken);
       String remainingData = rateLimitsDbData[i]['remaining'] as String;
       String resetData = rateLimitsDbData[i]['reset'] as String;
       Map<String,dynamic> jRateLimitRemaining = json.decode(remainingData);
@@ -67,17 +70,32 @@ class TwitterAccount {
       lst.add(rateLimitReset);
       _rateLimits[oauthToken] = lst;
     }
-    if (deleteNullRecord) {
-      await repository.delete(tableRateLimits, where: 'oauth_token IS NULL');
-      _rateLimits.remove('');
+    // if there are accounts without their rate limits, initialize them
+    for (int i = 0; i < _guestAccountTokensLst.length; i++) {
+      String oauthToken = _guestAccountTokensLst[i]['oauthToken'] as String;
+      if (!oauthTokenFoundLst.contains(oauthToken)) {
+        _rateLimits[oauthToken] = [{},{}];
+        await repository.insert(tableRateLimits, {'remaining': json.encode({}), 'reset': json.encode({}), 'oauth_token': oauthToken});
+      }
+    }
+    // if there is the rate limits block associated with the "null" oauthToken (after migration from 3.5.4)
+    // associate it with a available non-null oauthToken, then delete the block
+    if (_rateLimits.keys.contains('')) {
+      MapEntry<String,List<Map<String,int>>>? merl = _rateLimits.entries.firstWhereOrNull((e) => e.key != '' && e.value[0].isEmpty);
+      if (merl != null) {
+        _rateLimits[merl.key] = _rateLimits[''] as List<Map<String,int>>;
+        _rateLimits.remove('');
+        await repository.delete(tableRateLimits, where: 'oauth_token IS NULL');
+      }
     }
   }
 
   static Future<void> initGuestAccount(String uriPath, int total) async {
     // first try to create a guest account if it's been at least 24 hours since the last creation
-    _lastGuestAccountExc = null;
-    if (_guestAccountTokensLst.isEmpty || DateTime.now().difference(_guestAccountTokensLst.last['createdAt'] as DateTime).inHours >= 24) {
+    GuestAccountException? lastGuestAccountExc = null;
+    if (!_createGuestAccountAttempted && (_guestAccountTokensLst.isEmpty || DateTime.now().difference(_guestAccountTokensLst.last['createdAt'] as DateTime).inHours >= 24)) {
       try {
+        _createGuestAccountAttempted = true;
         Map<String,Object?> guestAccount = await _createGuestAccountTokens();
         _guestAccountTokensLst.add(guestAccount);
         String oauthToken = guestAccount['oauthToken'] as String;
@@ -85,15 +103,15 @@ class TwitterAccount {
       }
       on GuestAccountException catch (_, ex) {
         log.warning('*** Try to create a guest account after 24 hours with error: ${_.toString()}');
-        _lastGuestAccountExc = _;
+        lastGuestAccountExc = _;
       }
     }
 
     // now find the first guest account that is available or at least with the minimum waiting time
     Map<String,dynamic>? guestAccountInfo = getNextGuestAccount(uriPath, total);
     if (guestAccountInfo == null) {
-      if (_lastGuestAccountExc != null) {
-        throw _lastGuestAccountExc!;
+      if (lastGuestAccountExc != null) {
+        throw lastGuestAccountExc;
       }
       else {
         throw GuestAccountException('There is a problem getting a guest account.');
@@ -167,11 +185,6 @@ class TwitterAccount {
       return;
     }
     String oauthToken = _guestAccountTokens!['oauthToken'];
-    if (_rateLimits.keys.length == 1 && _rateLimits[''] != null) {
-      // special case after migration from previous version 3.5.4
-      _rateLimits[oauthToken] = _rateLimits[''] as List<Map<String, int>>;
-      _rateLimits.remove('');
-    }
     if (_rateLimits[oauthToken] == null) {
       // this should not happens
       return;
@@ -344,9 +357,6 @@ class TwitterAccount {
   }
 
   static Future<String> _getSignOauth(Uri uri, String method) async {
-    if (_lastGuestAccountExc != null) {
-      throw _lastGuestAccountExc!;
-    }
     if (_guestAccountTokens == null) {
       throw GuestAccountException('There is a problem getting a guest account.');
     }
@@ -395,7 +405,7 @@ class TwitterAccount {
       return response;
     }
     catch (err) {
-      log.severe('The request ${uri.path} has an error: ${err.toString()}');
+      log.severe('_doFetch - The request ${uri.path} has an error: ${err.toString()}');
       await fetchContext.fetchNoResponse();
       rethrow;
     }
@@ -464,15 +474,21 @@ class RateFetchContext {
 
   Future<void> fetchNoResponse() async {
     await lock.synchronized(() async {
+      if (counter == total) {
+        return;
+      }
       counter++;
       remainingLst.add(null);
       resetLst.add(null);
-      _checkTotal();
+      await _checkTotal();
     });
   }
 
   Future<void> fetchWithResponse(http.Response response) async {
     await lock.synchronized(() async {
+      if (counter == total) {
+        return;
+      }
       counter++;
       var headerRateLimitRemaining = response.headers['x-rate-limit-remaining'];
       var headerRateLimitReset = response.headers['x-rate-limit-reset'];
@@ -492,7 +508,7 @@ class RateFetchContext {
         remainingLst.add(remaining);
         resetLst.add(reset);
       }
-      _checkTotal();
+      await _checkTotal();
     });
   }
 
@@ -523,6 +539,34 @@ class RateFetchContext {
         throw RateLimitException('The request $uriPath has reached its limit. Please wait ${di['minutesStr']}.', longDelay: di['longDelay']);
       }
     }
+  }
+
+}
+
+class GuestAccountsModel extends Store<List<GuestAccount>> {
+  static final log = Logger('GuestAccountsModel');
+
+  GuestAccountsModel() : super([]);
+
+  Future<void> reloadGuestAccounts() async {
+    log.info('Listing guest accounts');
+
+    await execute(() async {
+      var database = await Repository.readOnly();
+
+      return (await database.query(tableGuestAccount)).map((e) => GuestAccount.fromMap(e)).toList();
+    });
+  }
+
+  Future<void> deleteOldAccounts() async {
+    log.info('Deleting old guest accounts');
+
+    await execute(() async {
+      var database = await Repository.writable();
+
+      await database.delete(tableGuestAccount, where: "created_at < date('now', '-25 day')");
+      return (await database.query(tableGuestAccount)).map((e) => GuestAccount.fromMap(e)).toList();
+    });
   }
 
 }

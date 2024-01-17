@@ -98,6 +98,8 @@
   "@export_subscription_groups": {},
   "export_subscription_group_members": "Export subscription group members?",
   "@export_subscription_group_members": {},
+  "export_guest_accounts": "Export guest accounts?",
+  "@export_guest_accounts": {},
   "export_tweets": "Export tweets?",
   "@export_tweets": {},
   "data_imported_successfully": "Data imported successfully",

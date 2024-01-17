@@ -552,6 +552,16 @@ class L10n {
     );
   }
 
+  /// `Export guest accounts?`
+  String get export_guest_accounts {
+    return Intl.message(
+      'Export guest accounts?',
+      name: 'export_guest_accounts',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Export tweets?`
   String get export_tweets {
     return Intl.message(

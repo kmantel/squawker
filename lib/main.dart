@@ -209,6 +209,9 @@ Future<void> main() async {
 
   var importDataModel = ImportDataModel();
 
+  var guestAccountsModel = GuestAccountsModel();
+  await guestAccountsModel.reloadGuestAccounts();
+
   var groupsModel = GroupsModel(prefService);
   await groupsModel.reloadGroups();
 
@@ -233,6 +236,7 @@ Future<void> main() async {
           Provider(create: (context) => groupsModel),
           Provider(create: (context) => homeModel),
           ChangeNotifierProvider(create: (context) => importDataModel),
+          Provider(create: (context) => guestAccountsModel),
           Provider(create: (context) => subscriptionsModel),
           Provider(create: (context) => SavedTweetModel()),
           Provider(create: (context) => SearchTweetsModel()),

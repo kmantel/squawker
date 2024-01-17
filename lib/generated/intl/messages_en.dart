@@ -175,6 +175,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "enter_your_twitter_username": MessageLookupByLibrary.simpleMessage(
             "Enter your Twitter/X username"),
         "export": MessageLookupByLibrary.simpleMessage("Export"),
+        "export_guest_accounts":
+            MessageLookupByLibrary.simpleMessage("Export guest accounts?"),
         "export_settings":
             MessageLookupByLibrary.simpleMessage("Export settings?"),
         "export_subscription_group_members":
