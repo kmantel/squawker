@@ -12,7 +12,7 @@ class SettingsThemeFragment extends StatelessWidget {
 
   int _getOptionTweetFontSizeValue(BuildContext context) {
     int optionTweetFontSizeValue =
-        PrefService.of(context).get<int>(optionTweetFontSize) ?? DefaultTextStyle.of(context).style.fontSize!.round();
+        PrefService.of(context).get<int>(optionTweetFontSize) ?? Theme.of(context).textTheme.bodyMedium!.fontSize!.round();
     return optionTweetFontSizeValue;
   }
 
