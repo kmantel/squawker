@@ -4,6 +4,7 @@ import 'package:crypto/crypto.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:http/http.dart' as http;
 import 'package:logging/logging.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:squawker/utils/iterables.dart';
 import 'package:squawker/database/entities.dart';
 import 'package:squawker/database/repository.dart';
@@ -17,7 +18,6 @@ class TwitterAccount {
   static const String _oauthConsumerKey = '3nVuSoBZnx6U4vzUxf5w';
   static const String _oauthConsumerSecret = 'Bcs59EFbbsdF6Sl9Ng71smgStWEGwXXKSjYvPVt7qys';
 
-  static bool _createGuestAccountAttempted = false;
   static Map? _guestAccountTokens;
   static final List<Map<String,Object?>> _guestAccountTokensLst = [];
   static final Map<String,List<Map<String,int>>> _rateLimits = {};
@@ -92,10 +92,13 @@ class TwitterAccount {
 
   static Future<void> initGuestAccount(String uriPath, int total) async {
     // first try to create a guest account if it's been at least 24 hours since the last creation
-    GuestAccountException? lastGuestAccountExc = null;
-    if (!_createGuestAccountAttempted && (_guestAccountTokensLst.isEmpty || DateTime.now().difference(_guestAccountTokensLst.last['createdAt'] as DateTime).inHours >= 24)) {
+    GuestAccountException? lastGuestAccountExc;
+    final prefs = await SharedPreferences.getInstance();
+    String? lastGuestAccountCreationAttemptedStr = prefs.get('lastGuestAccountCreationAttempted') as String?;
+    DateTime? lastGuestAccountCreationAttempted = lastGuestAccountCreationAttemptedStr == null ? null : DateTime.parse(lastGuestAccountCreationAttemptedStr);
+    if (lastGuestAccountCreationAttempted == null || DateTime.now().difference(lastGuestAccountCreationAttempted).inHours >= 24) {
       try {
-        _createGuestAccountAttempted = true;
+        prefs.setString('lastGuestAccountCreationAttempted', (lastGuestAccountCreationAttempted ?? DateTime.now()).toIso8601String());
         Map<String,Object?> guestAccount = await _createGuestAccountTokens();
         _guestAccountTokensLst.add(guestAccount);
         String oauthToken = guestAccount['oauthToken'] as String;
