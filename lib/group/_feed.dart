@@ -140,11 +140,11 @@ class SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widge
   }
 
   @override
-  void didUpdateWidget(SubscriptionGroupFeed oldWidget) async {
+  void didUpdateWidget(SubscriptionGroupFeed oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.includeReplies != widget.includeReplies || oldWidget.includeRetweets != widget.includeRetweets) {
-      await reloadData();
+      reloadData();
     }
   }
 
