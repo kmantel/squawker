@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:logging/logging.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:squawker/utils/iterables.dart';
+import 'package:squawker/utils/misc.dart';
 import 'package:squawker/database/entities.dart';
 import 'package:squawker/database/repository.dart';
 import 'package:synchronized/synchronized.dart';
@@ -90,15 +91,47 @@ class TwitterAccount {
     }
   }
 
+  static Future<DateTime?> getLastGuestAccountCreationAttempted() async {
+    final prefs = await SharedPreferences.getInstance();
+    List<String>? lastGuestAccountsCreationAttemptedLst = prefs.getStringList('lastGuestAccountsCreationsAttempted');
+    if (lastGuestAccountsCreationAttemptedLst == null) {
+      return null;
+    }
+    String? publicIP = await getPublicIP();
+    if (publicIP == null) {
+      return null;
+    }
+    String? ipLastGuestAccountsCreationAttemptedStr = lastGuestAccountsCreationAttemptedLst.firstWhereOrNull((e) => e.startsWith('$publicIP='));
+    if (ipLastGuestAccountsCreationAttemptedStr == null) {
+      return null;
+    }
+    String lastGuestAccountsCreationAttemptedStr = ipLastGuestAccountsCreationAttemptedStr.substring('$publicIP='.length);
+    return DateTime.parse(lastGuestAccountsCreationAttemptedStr);
+  }
+
+  static Future<void> setLastGuestAccountCreationAttempted() async {
+    String? publicIP = await getPublicIP();
+    if (publicIP == null) {
+      return;
+    }
+    final prefs = await SharedPreferences.getInstance();
+    List<String> lastGuestAccountsCreationAttemptedLst = prefs.getStringList('lastGuestAccountsCreationsAttempted') ?? [];
+    int idx = lastGuestAccountsCreationAttemptedLst.indexWhere((e) => e.startsWith('$publicIP='));
+    if (idx != -1) {
+      lastGuestAccountsCreationAttemptedLst.removeAt(idx);
+    }
+    String ipLastGuestAccountsCreationAttemptedStr = '$publicIP=${DateTime.now().toIso8601String()}';
+    lastGuestAccountsCreationAttemptedLst.add(ipLastGuestAccountsCreationAttemptedStr);
+    prefs.setStringList('lastGuestAccountsCreationsAttempted', lastGuestAccountsCreationAttemptedLst);
+  }
+
   static Future<void> initGuestAccount(String uriPath, int total) async {
     // first try to create a guest account if it's been at least 24 hours since the last creation
     GuestAccountException? lastGuestAccountExc;
-    final prefs = await SharedPreferences.getInstance();
-    String? lastGuestAccountCreationAttemptedStr = prefs.get('lastGuestAccountCreationAttempted') as String?;
-    DateTime? lastGuestAccountCreationAttempted = lastGuestAccountCreationAttemptedStr == null ? null : DateTime.parse(lastGuestAccountCreationAttemptedStr);
+    DateTime? lastGuestAccountCreationAttempted = await getLastGuestAccountCreationAttempted();
     if (lastGuestAccountCreationAttempted == null || DateTime.now().difference(lastGuestAccountCreationAttempted).inHours >= 24) {
       try {
-        prefs.setString('lastGuestAccountCreationAttempted', (lastGuestAccountCreationAttempted ?? DateTime.now()).toIso8601String());
+        await setLastGuestAccountCreationAttempted();
         Map<String,Object?> guestAccount = await _createGuestAccountTokens();
         _guestAccountTokensLst.add(guestAccount);
         String oauthToken = guestAccount['oauthToken'] as String;
