@@ -528,6 +528,7 @@ class RateFetchContext {
       counter++;
       var headerRateLimitRemaining = response.headers['x-rate-limit-remaining'];
       var headerRateLimitReset = response.headers['x-rate-limit-reset'];
+      TwitterAccount.log.info('*** headerRateLimitRemaining=$headerRateLimitRemaining, headerRateLimitReset=$headerRateLimitReset');
       if (headerRateLimitRemaining == null || headerRateLimitReset == null) {
         TwitterAccount.log.info('The request $uriPath has no rate limits.');
         remainingLst.add(null);
