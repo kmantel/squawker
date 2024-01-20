@@ -1,1 +1,2 @@
-
+* New strategy to create guest accounts: instead of being based of the date-time of last one created (24+ hours),
+  now it's based on the date-time of the last attempt to create one (24+ hours) and also the device "public" IP.
