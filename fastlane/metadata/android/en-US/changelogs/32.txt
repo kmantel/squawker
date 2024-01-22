@@ -1,0 +1,1 @@
+* Fix issue #171 Cannot open embedded tweet or retweet.
