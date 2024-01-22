@@ -174,6 +174,7 @@ Future<void> main() async {
     optionConfirmClose: true,
     optionEnhancedFeeds: true,
     optionEnhancedSearches: true,
+    optionEnhancedProfile: true,
     optionUserTrendsLocations: jsonEncode({
       'active': {'name': 'Worldwide', 'woeid': 1},
       'locations': [

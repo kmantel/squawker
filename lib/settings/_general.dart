@@ -217,6 +217,11 @@ class SettingsGeneralFragment extends StatelessWidget {
                 subtitle: Text(L10n.of(context).enhanced_searches_description),
                 pref: optionEnhancedSearches,
               ),
+              PrefSwitch(
+                title: Text(L10n.of(context).enhanced_profile_label),
+                subtitle: Text(L10n.of(context).enhanced_profile_description),
+                pref: optionEnhancedProfile,
+              ),
             ],
           )
         ]),

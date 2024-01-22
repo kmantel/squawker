@@ -440,5 +440,7 @@
   "enhanced_feeds_label": "Enhanced feeds",
   "enhanced_feeds_description": "Enhanced requests for feeds (but with lower rate limits)",
   "enhanced_searches_label": "Enhanced searches",
-  "enhanced_searches_description": "Enhanced requests for searches (but with lower rate limits)"
+  "enhanced_searches_description": "Enhanced requests for searches (but with lower rate limits)",
+  "enhanced_profile_label": "Enhanced profile",
+  "enhanced_profile_description": "Enhanced requests for profile"
 }

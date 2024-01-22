@@ -512,5 +512,8 @@
   "enhanced_feeds_label": "Flux améliorés",
   "enhanced_feeds_description": "Requêtes améliorés pour les flux (mais avec des limites plus basses de fréquence)",
   "enhanced_searches_label": "Recherches améliorés",
-  "enhanced_searches_description": "Requêtes améliorés pour les recherches (mais avec des limites plus basses de fréquence)"
+  "enhanced_searches_description": "Requêtes améliorés pour les recherches (mais avec des limites plus basses de fréquence)",
+  "enhanced_profile_label": "Profil amélioré",
+  "enhanced_profile_description": "Requêtes améliorés pour le profil"
+
 }

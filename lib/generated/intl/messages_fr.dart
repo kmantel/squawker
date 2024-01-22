@@ -175,6 +175,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Requêtes améliorés pour les flux (mais avec des limites plus basses de fréquence)"),
         "enhanced_feeds_label":
             MessageLookupByLibrary.simpleMessage("Flux améliorés"),
+        "enhanced_profile_description": MessageLookupByLibrary.simpleMessage(
+            "Requêtes améliorés pour le profil"),
+        "enhanced_profile_label":
+            MessageLookupByLibrary.simpleMessage("Profil amélioré"),
         "enhanced_searches_description": MessageLookupByLibrary.simpleMessage(
             "Requêtes améliorés pour les recherches (mais avec des limites plus basses de fréquence)"),
         "enhanced_searches_label":

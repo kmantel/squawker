@@ -2665,6 +2665,26 @@ class L10n {
       args: [],
     );
   }
+
+  /// `Enhanced profile`
+  String get enhanced_profile_label {
+    return Intl.message(
+      'Enhanced profile',
+      name: 'enhanced_profile_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enhanced requests for profile`
+  String get enhanced_profile_description {
+    return Intl.message(
+      'Enhanced requests for profile',
+      name: 'enhanced_profile_description',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<L10n> {

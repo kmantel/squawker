@@ -168,6 +168,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Enhanced requests for feeds (but with lower rate limits)"),
         "enhanced_feeds_label":
             MessageLookupByLibrary.simpleMessage("Enhanced feeds"),
+        "enhanced_profile_description": MessageLookupByLibrary.simpleMessage(
+            "Enhanced requests for profile"),
+        "enhanced_profile_label":
+            MessageLookupByLibrary.simpleMessage("Enhanced profile"),
         "enhanced_searches_description": MessageLookupByLibrary.simpleMessage(
             "Enhanced requests for searches (but with lower rate limits)"),
         "enhanced_searches_label":
