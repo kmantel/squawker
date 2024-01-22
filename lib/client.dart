@@ -711,7 +711,6 @@ class Twitter {
         result = result['rest_id'] != null ? result : result['tweet'];
         if (result != null) {
           TweetWithCard tc = TweetWithCard.fromGraphqlJson(result);
-          tc.idStr ??= result['rest_id'];
           chains.add(TweetChain(id: result['rest_id'], tweets: [tc], isPinned: true));
         }
       }
@@ -727,7 +726,6 @@ class Twitter {
           result = result['rest_id'] != null ? result : result['tweet'];
           if (result != null) {
             TweetWithCard tc = TweetWithCard.fromGraphqlJson(result);
-            tc.idStr ??= result['rest_id'];
             //tweets.add(tc);
             chains.add(TweetChain(id: result['rest_id'], tweets: [tc], isPinned: false));
           }
@@ -742,7 +740,6 @@ class Twitter {
             result = result['rest_id'] != null ? result : result['tweet'];
             if (result != null) {
               TweetWithCard tc = TweetWithCard.fromGraphqlJson(result);
-              tc.idStr ??= result['rest_id'];
               tweets.add(tc);
             }
           }
@@ -1081,6 +1078,7 @@ class TweetWithCard extends Tweet {
     }
 
     TweetWithCard tweet = TweetWithCard.fromData(result['legacy'], noteText, noteEntities, user, retweetedStatus, quotedStatus);
+    tweet.idStr ??= result['rest_id'];
     if (!leanerFeeds && tweet.card == null && result['card']?['legacy'] != null) {
       tweet.card = result['card']['legacy'];
       List bindingValuesList = tweet.card!['binding_values'] as List;
