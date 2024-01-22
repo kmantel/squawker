@@ -48,7 +48,7 @@ If you've found a bug in Squawker, open a [new issue](https://github.com/j-fbrie
 If you're looking for something to dip your toes into the codebase, check if there are any issues labelled good first issue. Otherwise, if you see another issue you'd like to tackle, go for it - just fork the repository, push to a branch, and create a PR detailing your changes. We'll review it and merge it in, once it meets all our checks and balances!
 
 ### Translations
-Most of Squawker's translations have come from [Weblate](https://hosted.weblate.org/engage/fritter/)
+Most of Squawker's translations have come from [Weblate](https://hosted.weblate.org/engage/squawker/)
 
 ### Acknowledgments
 Duck Icon: <a href="https://www.vecteezy.com/free-vector/bathroom">Bathroom Vectors by Vecteezy</a>
