@@ -22,7 +22,7 @@
   </a>
 </p>
 <p align="center">
-  There is also a F-Droid alternate repository that allows updates for Squawker to be available faster than on the default F-Droid repository.
+  There is also an alternate F-Droid repository that allows updates for Squawker to be available faster than on the default F-Droid repository.
 </p>
 <p align="left">
   Scan the QR code below or click this <a href="https://apkrep.creativaxion.org/fdroid/repo?fingerprint=443DA0A316DFB86BFD05D0123951855E7CD8724969FAD66D6E62EB801299744A">link</a> and process it with your F-Droid client. Here's the full link text for easy viewing:<br>
