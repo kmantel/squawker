@@ -32,8 +32,8 @@
   <img src="https://apkrep.creativaxion.org/fdroid/repo/index.png" width="80">
 </p>
 <p align="center">
- <sub>Important note: In case Squawker is already installed on your device and you want to reinstall it or want to install a version from another repository (from F-Droid to github or from F-Droid to the alternate F-Droid repository for instance), make sure to backup your application data (Settings/Data, click Export, select all items then click the save icon) and uninstall Squawker before proceeding.
-  After you have reinstalled Squawker from the new repository, import your backup.</sub>
+ <sub>Important note: In case Squawker is already installed on your device and you want to reinstall it or want to install a version from another repository (from F-Droid to github or from F-Droid to the alternate F-Droid repository for instance), make sure to backup your application data (Settings/Data, tap Export, select all items then tap the save icon) and uninstall Squawker before proceeding.
+  After you have reinstalled Squawker from the new repository, import your backup (Settings/Data, tap Import).</sub>
 </p>
  
 ## Features:
