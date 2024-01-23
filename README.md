@@ -14,7 +14,7 @@
   <a href="https://f-droid.org/packages/org.ca.squawker" alt="GitHub release"><img src="https://img.shields.io/f-droid/v/org.ca.squawker?label=release%20(f-droid)&style=for-the-badge" ></a>
   <a href="https://github.com/j-fbriere/squawker/blob/master/LICENSE" alt="License: MIT"><img src="https://img.shields.io/badge/License-MIT-red.svg?style=for-the-badge"></a>
   <a href="https://github.com/j-fbriere/squawker/actions" alt="Build Status"><img src="https://img.shields.io/github/actions/workflow/status/j-fbriere/squawker/ci.yml?style=for-the-badge"></a>
-  <a href="https://hosted.weblate.org/engage/fritter/" alt="Translation Status"><img src="https://img.shields.io/weblate/progress/fritter?label=Translated%20(fritter)&style=for-the-badge"></a>
+  <a href="https://hosted.weblate.org/engage/squawker/" alt="Translation Status"><img src="https://img.shields.io/weblate/progress/squawker?label=Translated%20(squawker)&style=for-the-badge"></a>
 </p>
 <p align="center">
   <a href="https://f-droid.org/packages/org.ca.squawker">
