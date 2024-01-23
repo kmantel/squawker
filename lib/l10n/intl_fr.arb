@@ -143,7 +143,7 @@
   "@unable_to_find_your_saved_tweets": {},
   "include_retweets": "Inclure les retweets",
   "@include_retweets": {},
-  "you_have_not_saved_any_tweets_yet": "Vous n'avez pas encore enregistré de tweets !",
+  "you_have_not_saved_any_tweets_yet": "Vous n'avez pas encore enregistré de tweets!",
   "@you_have_not_saved_any_tweets_yet": {},
   "are_you_sure_you_want_to_delete_the_subscription_group_name_of_group": "Voulez-vous vraiment supprimer le groupe d'abonnement {name} ?",
   "@are_you_sure_you_want_to_delete_the_subscription_group_name_of_group": {},
