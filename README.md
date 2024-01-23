@@ -21,6 +21,22 @@
     <img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="80">
   </a>
 </p>
+<p align="center">
+  There is a F-Droid alternate repository that allows updates for Squawker to be available faster than on the default F-Droid repository.
+</p>
+<div style="display: flex; align-items: center; justify-content: center">
+  <div style="float: left">
+    <img src="https://apkrep.creativaxion.org/fdroid/repo/index.png" width="80">
+  </div>
+  <div style="float: left; padding-left: 20px">
+    Scan the QR code or click this <a href="https://apkrep.creativaxion.org/fdroid/repo?fingerprint=443DA0A316DFB86BFD05D0123951855E7CD8724969FAD66D6E62EB801299744A">link</a> and process it with your F-Droid client. Here's the full link text for easy viewing:<br>
+    https://apkrep.creativaxion.org/fdroid/repo?fingerprint=443DA0A316DFB86BFD05D0123951855E7CD8724969FAD66D6E62EB801299744A
+  </div>
+</div>
+<p align="center">
+ Important note: In case Squawker is already installed on your device and you want to reinstall it or want to install a version from another repository (from F-Droid to github or from F-Droid to the alternate F-Droid repository for instance), make sure to backup your application data (Settings/Data, click Export, select all items then click the save icon) and uninstall Squawker before proceeding.
+  After you have reinstalled Squawker from the new repository, import your backup.
+</p>
  
 ## Features:
 
