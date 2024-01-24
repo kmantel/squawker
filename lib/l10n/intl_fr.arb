@@ -37,7 +37,7 @@
   "@something_just_went_wrong_in_fritter_and_an_error_report_has_been_generated": {},
   "would_you_like_to_enable_automatic_error_reporting": "Voulez-vous activer le rapport d'erreur automatique ?",
   "@would_you_like_to_enable_automatic_error_reporting": {},
-  "your_report_will_be_sent_to_fritter__project": "Votre rapport sera envoyé au projet de Squawker, et les détails de la confidentialité peuvent être trouvés à l'adresse suivante :",
+  "your_report_will_be_sent_to_fritter__project": "Votre rapport sera envoyé au projet Squawker, et les détails de la confidentialité peuvent être trouvés à l'adresse suivante :",
   "@your_report_will_be_sent_to_fritter__project": {},
   "send_once": "Envoyer une fois",
   "@send_once": {},
