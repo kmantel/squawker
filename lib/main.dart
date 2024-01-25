@@ -32,6 +32,7 @@ import 'package:squawker/trends/trends_model.dart';
 import 'package:squawker/tweet/_video.dart';
 import 'package:squawker/ui/errors.dart';
 import 'package:squawker/utils/data_service.dart';
+import 'package:squawker/utils/iterables.dart';
 import 'package:squawker/utils/misc.dart';
 import 'package:squawker/utils/urls.dart';
 import 'package:faker/faker.dart';
@@ -281,11 +282,20 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
       if (locale == null || locale == optionLocaleDefault) {
         _locale = null;
       } else {
-        var splitLocale = locale.split('-');
+        var splitLocale = locale.split('_');
         if (splitLocale.length == 1) {
-          _locale = Locale(splitLocale[0]);
-        } else {
-          _locale = Locale(splitLocale[0], splitLocale[1]);
+          _locale = L10n.delegate.supportedLocales.firstWhereOrNull((e) => e.languageCode == splitLocale[0]);
+        }
+        else if (splitLocale.length == 2) {
+          if (splitLocale[1].length == 2) {
+            _locale = L10n.delegate.supportedLocales.firstWhereOrNull((e) => e.languageCode == splitLocale[0] && e.countryCode == splitLocale[1]);
+          }
+          else { // splitLocale[1].length == 4
+            _locale = L10n.delegate.supportedLocales.firstWhereOrNull((e) => e.languageCode == splitLocale[0] && e.scriptCode == splitLocale[1]);
+          }
+        }
+        else { // splitLocale.length == 3
+          _locale = L10n.delegate.supportedLocales.firstWhereOrNull((e) => e.languageCode == splitLocale[0] && e.scriptCode == splitLocale[1] && e.countryCode == splitLocale[2]);
         }
       }
     }
