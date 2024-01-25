@@ -416,36 +416,50 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
     return MaterialApp(
       localeListResolutionCallback: (locales, supportedLocales) {
         List supportedLocalesCountryCode = [];
-        for (var item in supportedLocales) {
-          supportedLocalesCountryCode.add(item.countryCode);
-        }
-
+        List supportedLocalesScriptCode = [];
         List supportedLocalesLanguageCode = [];
         for (var item in supportedLocales) {
+          if (item.countryCode != null) {
+            supportedLocalesCountryCode.add(item.countryCode);
+          }
+          if (item.scriptCode != null) {
+            supportedLocalesScriptCode.add(item.scriptCode);
+          }
           supportedLocalesLanguageCode.add(item.languageCode);
         }
 
-        locales!;
         List localesCountryCode = [];
-        for (var item in locales) {
-          localesCountryCode.add(item.countryCode);
-        }
-
+        List localesScriptCode = [];
         List localesLanguageCode = [];
-        for (var item in locales) {
+        for (var item in locales!) {
+          localesCountryCode.add(item.countryCode);
+          localesScriptCode.add(item.scriptCode);
           localesLanguageCode.add(item.languageCode);
         }
 
         for (var i = 0; i < locales.length; i++) {
           if (supportedLocalesCountryCode.contains(localesCountryCode[i]) &&
+              supportedLocalesScriptCode.contains(localesScriptCode[i]) &&
               supportedLocalesLanguageCode.contains(localesLanguageCode[i])) {
-            log.info('Yes country: ${localesCountryCode[i]}, ${localesLanguageCode[i]}');
-            return Locale(localesLanguageCode[i], localesCountryCode[i]);
-          } else if (supportedLocalesLanguageCode.contains(localesLanguageCode[i])) {
-            log.info('Yes language: ${localesLanguageCode[i]}');
-            return Locale(localesLanguageCode[i]);
-          } else {
-            log.info('Nothing');
+            log.info('*** Locale Country: ${localesCountryCode[i]}, Script: ${localesScriptCode[i]}, Language: ${localesLanguageCode[i]}');
+            return Locale.fromSubtags(countryCode: localesCountryCode[i], scriptCode: localesScriptCode[i], languageCode: localesLanguageCode[i]);
+          }
+          else if (supportedLocalesCountryCode.contains(localesCountryCode[i]) &&
+                   supportedLocalesLanguageCode.contains(localesLanguageCode[i])) {
+            log.info('*** Locale Country: ${localesCountryCode[i]}, Language: ${localesLanguageCode[i]}');
+            return Locale.fromSubtags(countryCode: localesCountryCode[i], languageCode: localesLanguageCode[i]);
+          }
+          else if (supportedLocalesScriptCode.contains(localesScriptCode[i]) &&
+                   supportedLocalesLanguageCode.contains(localesLanguageCode[i])) {
+            log.info('*** Locale Script: ${localesScriptCode[i]}, Language: ${localesLanguageCode[i]}');
+            return Locale.fromSubtags(scriptCode: localesScriptCode[i], languageCode: localesLanguageCode[i]);
+          }
+          else if (supportedLocalesLanguageCode.contains(localesLanguageCode[i])) {
+            log.info('*** Locale Language: ${localesLanguageCode[i]}');
+            return Locale.fromSubtags(languageCode: localesLanguageCode[i]);
+          }
+          else {
+            log.info('*** No Locale, so Language: en');
           }
         }
         return const Locale('en');
