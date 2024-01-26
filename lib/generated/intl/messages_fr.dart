@@ -543,6 +543,6 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Votre profil doit être public, sinon l’importation ne fonctionnera pas"),
         "your_report_will_be_sent_to_fritter__project":
             MessageLookupByLibrary.simpleMessage(
-                "Votre rapport sera envoyé au projet de Squawker, et les détails de la confidentialité peuvent être trouvés à l\'adresse suivante :")
+                "Votre rapport sera envoyé au projet Squawker, et les détails de la confidentialité peuvent être trouvés à l\'adresse suivante :")
       };
 }

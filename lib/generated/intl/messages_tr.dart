@@ -82,6 +82,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Doğrulama yanlılığı kapalı modunu etkinleştir"),
         "add_subscriptions":
             MessageLookupByLibrary.simpleMessage("Abonelik ekle"),
+        "add_to_feed": MessageLookupByLibrary.simpleMessage("Beslemeye ekle"),
         "add_to_group": MessageLookupByLibrary.simpleMessage("Gruba ekle"),
         "all": MessageLookupByLibrary.simpleMessage("Hepsi"),
         "all_the_great_software_used_by_fritter":
@@ -97,6 +98,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "back": MessageLookupByLibrary.simpleMessage("Geri"),
         "bad_guest_token": MessageLookupByLibrary.simpleMessage(
             "Twitter/X erişim belirtecimizi geçersiz kıldı. Lütfen Squawker\'ı yeniden açmayı deneyin!"),
+        "beta": MessageLookupByLibrary.simpleMessage("BETA"),
         "blue_theme_based_on_the_twitter_color_scheme":
             MessageLookupByLibrary.simpleMessage(
                 "Twitter/X renk şemasına dayalı mavi tema"),
@@ -132,6 +134,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Oluşturulma Tarihi"),
         "date_subscribed":
             MessageLookupByLibrary.simpleMessage("Abone Olunan Tarih"),
+        "default_subscription_tab":
+            MessageLookupByLibrary.simpleMessage("Varsayılan abonelik sekmesi"),
         "default_tab": MessageLookupByLibrary.simpleMessage("Varsayılan sekme"),
         "delete": MessageLookupByLibrary.simpleMessage("Sil"),
         "disable_screenshots": MessageLookupByLibrary.simpleMessage(
@@ -152,12 +156,30 @@ class MessageLookup extends MessageLookupByLibrary {
         "download_media_no_url": MessageLookupByLibrary.simpleMessage(
             "İndirilemiyor. Bu medya yalnızca Squawker\'ın henüz indiremediği bir akış olarak mevcut olabilir."),
         "download_path": MessageLookupByLibrary.simpleMessage("İndirme yolu"),
+        "download_video_best_quality_description":
+            MessageLookupByLibrary.simpleMessage(
+                "Videoları mevcut en iyi kalitede indir"),
+        "download_video_best_quality_label":
+            MessageLookupByLibrary.simpleMessage(
+                "Videoları en iyi kalitede indir"),
         "downloading_media":
             MessageLookupByLibrary.simpleMessage("Medya indiriliyor..."),
         "enable_":
             MessageLookupByLibrary.simpleMessage(" etkinleştirilsin mi?"),
         "ended_timeago_format_endsAt_allowFromNow_true": m3,
         "ends_timeago_format_endsAt_allowFromNow_true": m4,
+        "enhanced_feeds_description": MessageLookupByLibrary.simpleMessage(
+            "Beslemeler için geliştirilmiş talepler (ancak daha düşük limit oranlarıyla)"),
+        "enhanced_feeds_label":
+            MessageLookupByLibrary.simpleMessage("Geliştirilmiş beslemeler"),
+        "enhanced_profile_description": MessageLookupByLibrary.simpleMessage(
+            "Profil için geliştirilmiş talepler"),
+        "enhanced_profile_label":
+            MessageLookupByLibrary.simpleMessage("Geliştirilmiş profil"),
+        "enhanced_searches_description": MessageLookupByLibrary.simpleMessage(
+            "Aramalar için geliştirilmiş talepler (ancak daha düşük limit oranlarıyla)"),
+        "enhanced_searches_label":
+            MessageLookupByLibrary.simpleMessage("Geliştirilmiş aramalar"),
         "enter_your_twitter_username": MessageLookupByLibrary.simpleMessage(
             "Twitter/X kullanıcı adınızı girin"),
         "export": MessageLookupByLibrary.simpleMessage("Dışa aktar"),
@@ -189,6 +211,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "functionality_unsupported": MessageLookupByLibrary.simpleMessage(
             "Bu işlev artık Twitter/X tarafından desteklenmiyor!"),
         "general": MessageLookupByLibrary.simpleMessage("Genel"),
+        "generic_username": MessageLookupByLibrary.simpleMessage("Kullanıcı"),
         "group_name": m6,
         "groups": MessageLookupByLibrary.simpleMessage("Gruplar"),
         "help_make_fritter_even_better": MessageLookupByLibrary.simpleMessage(
@@ -214,10 +237,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "include_retweets":
             MessageLookupByLibrary.simpleMessage("Retweet\'leri dahil et"),
         "joined": m8,
+        "keep_feed_offset_description": MessageLookupByLibrary.simpleMessage(
+            "Zaman çizelgesinin kaldığı yer, uygulama yeniden başlatıldığında beslemeler için tutulur"),
+        "keep_feed_offset_label": MessageLookupByLibrary.simpleMessage(
+            "Beslemelerin kaldığı yeri tut"),
         "language": MessageLookupByLibrary.simpleMessage("Dil"),
         "language_subtitle":
             MessageLookupByLibrary.simpleMessage("Yeniden başlatma gerektirir"),
         "large": MessageLookupByLibrary.simpleMessage("Büyük"),
+        "leaner_feeds_description": MessageLookupByLibrary.simpleMessage(
+            "Beslemelerden gelen tweetlerde önizleme bağlantıları gösterilmiyor"),
+        "leaner_feeds_label":
+            MessageLookupByLibrary.simpleMessage("Kısıtlı beslemeler"),
         "legacy_android_import": MessageLookupByLibrary.simpleMessage(
             "Eski Android için İçe Aktarma"),
         "let_the_developers_know_if_something_is_broken":
@@ -262,6 +293,13 @@ class MessageLookup extends MessageLookupByLibrary {
             "Hop! Bir şeyler ters gitti 🥲"),
         "open_app_settings":
             MessageLookupByLibrary.simpleMessage("Uygulama ayarlarını aç"),
+        "open_in_browser":
+            MessageLookupByLibrary.simpleMessage("Tarayıcıda aç"),
+        "option_confirm_close_description":
+            MessageLookupByLibrary.simpleMessage(
+                "Uygulamayı kapatırken onayla"),
+        "option_confirm_close_label":
+            MessageLookupByLibrary.simpleMessage("Kapatmayı onayla"),
         "page_not_found": MessageLookupByLibrary.simpleMessage(
             "Twitter/X sayfanın mevcut olmadığını söylüyor, ancak bu doğru olmayabilir"),
         "permission_not_granted": MessageLookupByLibrary.simpleMessage(
@@ -291,6 +329,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "private_profile": MessageLookupByLibrary.simpleMessage("Gizli profil"),
         "released_under_the_mit_license": MessageLookupByLibrary.simpleMessage(
             "MIT Lisansı altında yayınlandı"),
+        "remove_from_feed":
+            MessageLookupByLibrary.simpleMessage("Beslemeden çıkar"),
         "replying_to": MessageLookupByLibrary.simpleMessage("Yanıtlıyor"),
         "report": MessageLookupByLibrary.simpleMessage("Bildir"),
         "report_a_bug": MessageLookupByLibrary.simpleMessage("Hata bildir"),
@@ -376,6 +416,8 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Bu kullanıcıyı takip eden kimse yok!"),
         "thread": MessageLookupByLibrary.simpleMessage("Başlık"),
         "thumbnail": MessageLookupByLibrary.simpleMessage("Küçük resim"),
+        "thumbnail_not_available":
+            MessageLookupByLibrary.simpleMessage("Küçük resim mevcut değil"),
         "timed_out":
             MessageLookupByLibrary.simpleMessage("Zaman aşımına uğradı"),
         "to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below":
@@ -386,6 +428,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "trends": MessageLookupByLibrary.simpleMessage("Trendler"),
         "true_black":
             MessageLookupByLibrary.simpleMessage("Gerçek siyah olsun mu?"),
+        "tweet_font_size_description":
+            MessageLookupByLibrary.simpleMessage("Tweetlerin yazı tipi boyutu"),
+        "tweet_font_size_label":
+            MessageLookupByLibrary.simpleMessage("Yazı tipi boyutu"),
         "tweets": MessageLookupByLibrary.simpleMessage("Tweet\'ler"),
         "tweets_and_replies":
             MessageLookupByLibrary.simpleMessage("Tweet\'ler & Yanıtlar"),
@@ -470,16 +516,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "which_tab_is_shown_when_the_app_opens":
             MessageLookupByLibrary.simpleMessage(
                 "Uygulama açıldığında hangi sekmenin gösterileceğini belirler"),
+        "which_tab_is_shown_when_the_subscription_opens":
+            MessageLookupByLibrary.simpleMessage(
+                "Abonelik açıldığında hangi sekme gösterilir"),
         "would_you_like_to_enable_automatic_error_reporting":
             MessageLookupByLibrary.simpleMessage(
                 "Otomatik hata bildirimini etkinleştirmek ister misiniz?"),
+        "x_api": MessageLookupByLibrary.simpleMessage("X API"),
         "yes": MessageLookupByLibrary.simpleMessage("Evet"),
         "yes_please": MessageLookupByLibrary.simpleMessage("Evet, lütfen"),
         "you_have_not_saved_any_tweets_yet":
             MessageLookupByLibrary.simpleMessage("Henüz tweet kaydetmediniz!"),
         "you_must_have_at_least_2_home_screen_pages":
             MessageLookupByLibrary.simpleMessage(
-                "En az 2 ana ekran sayfanız olmalıdır"),
+                "En az iki ana ekran sayfanız olmalıdır"),
         "your_profile_must_be_public_otherwise_the_import_will_not_work":
             MessageLookupByLibrary.simpleMessage(
                 "Profiliniz herkese açık olmalıdır, aksi takdirde alma işlemi çalışmaz"),
