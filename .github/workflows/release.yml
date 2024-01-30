@@ -69,11 +69,29 @@ jobs:
           mv build/app/outputs/apk/release/*.apk build/app/outputs/release
           echo "build-name=${{env.APPLICATION_VERSION}}" > build/app/outputs/release/version.txt
           echo "build-number=${{env.APPLICATION_BUILD_NUMBER}}" >> build/app/outputs/release/version.txt
+
+          # *** Optional when an alternate F-Droid repository is also used ***
+          # Build our ABI-specific APKs to copy them remotely to the alternate F-Droid repository.
+          if [[ -n "$ALT_FDROID_REPO_USER" && -n "$ALT_FDROID_REPO_HOST" && -n "$ALT_FDROID_REPO_FOLDER" ]]; then
+            if [[ ${{github.event_name}} == 'push' ]]; then
+              flutter build apk --dart-define=app.flavor=fdroid --release --no-tree-shake-icons --split-per-abi --target-platform=android-x64,android-arm,android-arm64 --build-name=${{env.APPLICATION_VERSION}} --build-number=${{env.APPLICATION_BUILD_NUMBER}}
+            else
+              flutter build apk --dart-define=app.flavor=fdroid --release --no-tree-shake-icons --split-per-abi --target-platform=android-x64,android-arm,android-arm64
+            fi
+            sshpass -e scp build/app/outputs/apk/release/*.apk $ALT_FDROID_REPO_USER@$ALT_FDROID_REPO_HOST:$ALT_FDROID_REPO_FOLDER
+            rm build/app/outputs/apk/release/*.apk
+          fi
+
         env:
           KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           KEY_PATH: key.jks
+          # *** Optional when an alternate F-Droid repository is also used ***
+          ALT_FDROID_REPO_USER: ${{ secrets.ALT_FDROID_REPO_USER }}
+          ALT_FDROID_REPO_HOST: ${{ secrets.ALT_FDROID_REPO_HOST }}
+          ALT_FDROID_REPO_FOLDER: ${{ secrets.ALT_FDROID_REPO_FOLDER }}
+          SSHPASS: ${{ secrets.ALT_FDROID_REPO_PASSWORD }}
 
       - name: Create release
         id: upload-release-assets
