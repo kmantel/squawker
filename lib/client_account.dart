@@ -22,6 +22,7 @@ class TwitterAccount {
   static Map? _guestAccountTokens;
   static final List<Map<String,Object?>> _guestAccountTokensLst = [];
   static final Map<String,List<Map<String,int>>> _rateLimits = {};
+  static final List<String> _guestAccountOauthTokenExpiredLst = [];
 
   // this must be executed only once at the start of the application
   static Future<void> loadAllGuestAccountsAndRateLimits() async {
@@ -143,6 +144,9 @@ class TwitterAccount {
       }
     }
 
+    // deleted expired guest accounts
+    await _deleteExpiredGuestAccounts();
+
     // now find the first guest account that is available or at least with the minimum waiting time
     Map<String,dynamic>? guestAccountInfo = getNextGuestAccount(uriPath, total);
     if (guestAccountInfo == null) {
@@ -156,9 +160,12 @@ class TwitterAccount {
     else if (guestAccountInfo['guestAccount'] != null) {
       _guestAccountTokens = guestAccountInfo['guestAccount'];
     }
-    else {
+    else if (guestAccountInfo['minRateLimitReset'] != 0) {
       Map<String,dynamic> di = delayInfo(guestAccountInfo['minRateLimitReset']);
       throw RateLimitException('The request $uriPath has reached its limit. Please wait ${di['minutesStr']}.', longDelay: di['longDelay']);
+    }
+    else {
+      throw RateLimitException('There is a problem getting a guest account.');
     }
   }
 
@@ -380,6 +387,36 @@ class TwitterAccount {
     };
   }
 
+  static void markGuestOauthTokenExpired() {
+    if (_guestAccountTokens == null) {
+      // should not happen
+      return;
+    }
+    String oauthToken = _guestAccountTokens!['oauthToken'];
+    if (!_guestAccountOauthTokenExpiredLst.contains(oauthToken)) {
+      _guestAccountOauthTokenExpiredLst.add(oauthToken);
+    }
+  }
+
+  static Future<void> _deleteExpiredGuestAccounts() async {
+    if (_guestAccountOauthTokenExpiredLst.isEmpty) {
+      return;
+    }
+    log.info('Deleting old guest accounts');
+
+    _guestAccountTokensLst.removeWhere((elm) => _guestAccountOauthTokenExpiredLst.contains(elm['oauthToken']));
+
+    _rateLimits.removeWhere((key, value) => _guestAccountOauthTokenExpiredLst.contains(key));
+
+    var database = await Repository.writable();
+
+    await database.delete(tableRateLimits, where: 'oauth_token IN (${List.filled(_guestAccountOauthTokenExpiredLst.length, '?').join(',')})', whereArgs: _guestAccountOauthTokenExpiredLst);
+
+    await database.delete(tableGuestAccount, where: "oauth_token IN (${List.filled(_guestAccountOauthTokenExpiredLst.length, '?').join(',')}) ", whereArgs: _guestAccountOauthTokenExpiredLst);
+
+    _guestAccountOauthTokenExpiredLst.clear();
+  }
+
   static String hmacSHA1(String key, String text) {
     var hmacSha1 = Hmac(sha1, utf8.encode(key));
     var digest = hmacSha1.convert(utf8.encode(text));
@@ -529,7 +566,11 @@ class RateFetchContext {
       var headerRateLimitRemaining = response.headers['x-rate-limit-remaining'];
       var headerRateLimitReset = response.headers['x-rate-limit-reset'];
       TwitterAccount.log.info('*** headerRateLimitRemaining=$headerRateLimitRemaining, headerRateLimitReset=$headerRateLimitReset');
-      if (headerRateLimitRemaining == null || headerRateLimitReset == null) {
+      if (response.statusCode == 401 && response.body.contains('Invalid or expired token')) {
+        remainingLst.add(-2);
+        resetLst.add(0);
+      }
+      else if (headerRateLimitRemaining == null || headerRateLimitReset == null) {
         TwitterAccount.log.info('The request $uriPath has no rate limits.');
         remainingLst.add(null);
         resetLst.add(null);
@@ -554,26 +595,37 @@ class RateFetchContext {
       return;
     }
     int minRemaining = double.maxFinite.round();
-    int minReset = 0;
+    int minReset = -1;
     for (int i = 0; i < remainingLst.length; i++) {
       if (remainingLst[i] != null && remainingLst[i]! < minRemaining) {
         minRemaining = remainingLst[i]!;
         minReset = resetLst[i]!;
       }
     }
-    if (minReset == 0) {
+    if (minReset == -1) {
       return;
     }
+    if (minRemaining == -2) {
+      TwitterAccount.markGuestOauthTokenExpired();
+    }
     await TwitterAccount.updateRateValues(uriPath, minRemaining, minReset);
-    if (minRemaining == -1) {
+    if (minRemaining <= -1) {
       // this should not happened but just in case, check if there is another guest account that is NOT with an embargo
       Map<String,dynamic>? guestAccountInfoTmp = TwitterAccount.getNextGuestAccount(uriPath, total);
-      if (guestAccountInfoTmp!['guestAccount'] != null) {
-        throw RateLimitException('The request $uriPath has reached its limit. Please wait 1 minute.');
+      if (guestAccountInfoTmp == null) {
+        throw RateLimitException('There is a problem getting a guest account.');
       }
       else {
-        Map<String,dynamic> di = TwitterAccount.delayInfo(guestAccountInfoTmp['minRateLimitReset']);
-        throw RateLimitException('The request $uriPath has reached its limit. Please wait ${di['minutesStr']}.', longDelay: di['longDelay']);
+        if (guestAccountInfoTmp!['guestAccount'] != null) {
+          throw RateLimitException('The request $uriPath has reached its limit. Please wait 1 minute.');
+        }
+        else if (guestAccountInfoTmp['minRateLimitReset'] != 0) {
+          Map<String,dynamic> di = TwitterAccount.delayInfo(guestAccountInfoTmp['minRateLimitReset']);
+          throw RateLimitException('The request $uriPath has reached its limit. Please wait ${di['minutesStr']}.', longDelay: di['longDelay']);
+        }
+        else {
+          throw RateLimitException('There is a problem getting a guest account.');
+        }
       }
     }
   }
@@ -591,17 +643,6 @@ class GuestAccountsModel extends Store<List<GuestAccount>> {
     await execute(() async {
       var database = await Repository.readOnly();
 
-      return (await database.query(tableGuestAccount)).map((e) => GuestAccount.fromMap(e)).toList();
-    });
-  }
-
-  Future<void> deleteOldAccounts() async {
-    log.info('Deleting old guest accounts');
-
-    await execute(() async {
-      var database = await Repository.writable();
-
-      await database.delete(tableGuestAccount, where: "created_at < date('now', '-25 day')");
       return (await database.query(tableGuestAccount)).map((e) => GuestAccount.fromMap(e)).toList();
     });
   }

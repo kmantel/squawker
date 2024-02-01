@@ -126,7 +126,6 @@ class SettingsDataFragment extends StatelessWidget {
 
     await importModel.importData(dataToImport);
     if (guestAccounts != null) {
-      await context.read<GuestAccountsModel>().deleteOldAccounts();
       await TwitterAccount.loadAllGuestAccountsAndRateLimits();
     }
     await groupModel.reloadGroups();
