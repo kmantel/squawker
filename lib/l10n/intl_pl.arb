@@ -542,5 +542,11 @@
   "enhanced_searches_label": "Ulepszone wyszukiwanie",
   "@enhanced_searches_label": {},
   "enhanced_searches_description": "Ulepszone żądania wyszukiwania (ale z niższymi limitami szybkości)",
-  "@enhanced_searches_description": {}
+  "@enhanced_searches_description": {},
+  "remove_from_feed": "Usuń z kanału",
+  "@remove_from_feed": {},
+  "x_api": "API X",
+  "@x_api": {},
+  "leaner_feeds_label": "Odchudzone kanały",
+  "@leaner_feeds_label": {}
 }
