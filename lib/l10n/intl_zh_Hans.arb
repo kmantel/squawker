@@ -546,5 +546,7 @@
   "which_tab_is_shown_when_the_subscription_opens": "打开关注页时展示哪个标签",
   "@which_tab_is_shown_when_the_subscription_opens": {},
   "x_api": "X API",
-  "@x_api": {}
+  "@x_api": {},
+  "keep_feed_offset_description": "应用重启时，会保持时间轴的滚动位置不变",
+  "@keep_feed_offset_description": {}
 }
