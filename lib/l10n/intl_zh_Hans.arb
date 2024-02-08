@@ -536,5 +536,15 @@
   "enhanced_searches_description": "搜索时使用增强版接口（但有更严格的请求速率限制）",
   "@enhanced_searches_description": {},
   "export_guest_accounts": "导出游客账户？",
-  "@export_guest_accounts": {}
+  "@export_guest_accounts": {},
+  "keep_feed_offset_label": "从上次的位置继续浏览时间轴",
+  "@keep_feed_offset_label": {},
+  "leaner_feeds_label": "时间轴紧凑模式",
+  "@leaner_feeds_label": {},
+  "default_subscription_tab": "关注页默认标签",
+  "@default_subscription_tab": {},
+  "which_tab_is_shown_when_the_subscription_opens": "打开关注页时展示哪个标签",
+  "@which_tab_is_shown_when_the_subscription_opens": {},
+  "x_api": "X API",
+  "@x_api": {}
 }
