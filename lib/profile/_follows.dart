@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:squawker/client.dart';
+import 'package:squawker/client/client.dart';
 import 'package:squawker/database/entities.dart';
 import 'package:squawker/ui/errors.dart';
 import 'package:squawker/user.dart';

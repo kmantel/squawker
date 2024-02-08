@@ -3,7 +3,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_file_dialog/flutter_file_dialog.dart';
-import 'package:squawker/client_account.dart';
+import 'package:squawker/client/client_account.dart';
 import 'package:squawker/database/entities.dart';
 import 'package:squawker/generated/l10n.dart';
 import 'package:squawker/group/group_model.dart';
@@ -26,7 +26,7 @@ class _SettingsExportScreenState extends State<SettingsExportScreen> {
   bool _exportSubscriptions = true;
   bool _exportSubscriptionGroups = true;
   bool _exportSubscriptionGroupMembers = true;
-  bool _exportGuestAccounts = true;
+  bool _exportTwitterTokens = true;
   bool _exportTweets = false;
 
   void toggleExportSettings() {
@@ -65,9 +65,9 @@ class _SettingsExportScreenState extends State<SettingsExportScreen> {
     });
   }
 
-  void toggleExportGuestAccounts() {
+  void toggleExportTwitterTokens() {
     setState(() {
-      _exportGuestAccounts = !_exportGuestAccounts;
+      _exportTwitterTokens = !_exportTwitterTokens;
     });
   }
 
@@ -82,7 +82,7 @@ class _SettingsExportScreenState extends State<SettingsExportScreen> {
         _exportSubscriptions ||
         _exportSubscriptionGroups ||
         _exportSubscriptionGroupMembers ||
-        _exportGuestAccounts ||
+        _exportTwitterTokens ||
         _exportTweets);
   }
 
@@ -103,8 +103,8 @@ class _SettingsExportScreenState extends State<SettingsExportScreen> {
                 var subscriptionsModel = context.read<SubscriptionsModel>();
                 await subscriptionsModel.reloadSubscriptions();
 
-                var guestAccountsModel = context.read<GuestAccountsModel>();
-                await guestAccountsModel.reloadGuestAccounts();
+                var twitterTokensModel = context.read<TwitterTokensModel>();
+                await twitterTokensModel.reloadTokens();
 
                 var savedTweetModel = context.read<SavedTweetModel>();
                 await savedTweetModel.listSavedTweets();
@@ -121,7 +121,7 @@ class _SettingsExportScreenState extends State<SettingsExportScreen> {
                 var subscriptionGroupMembers =
                     _exportSubscriptionGroupMembers ? await groupModel.listGroupMembers() : null;
 
-                var guestAccounts = _exportGuestAccounts ? guestAccountsModel.state : null;
+                var twitterTokens = _exportTwitterTokens ? twitterTokensModel.state : null;
 
                 var tweets = _exportTweets ? savedTweetModel.state : null;
 
@@ -131,10 +131,10 @@ class _SettingsExportScreenState extends State<SettingsExportScreen> {
                     userSubscriptions: subscriptions?.whereType<UserSubscription>().toList(),
                     subscriptionGroups: subscriptionGroups,
                     subscriptionGroupMembers: subscriptionGroupMembers,
-                    guestAccounts: guestAccounts,
+                    twitterTokens: twitterTokens,
                     tweets: tweets);
 
-                var exportData = jsonEncode(data.toJson());
+                var exportData = jsonEncode(await data.toJson());
 
                 var dateFormat = DateFormat('yyyy-MM-dd');
                 var fileName = 'squawker-${dateFormat.format(DateTime.now())}.json';
@@ -180,9 +180,9 @@ class _SettingsExportScreenState extends State<SettingsExportScreen> {
                       ? (v) => toggleExportSubscriptionGroupMembers()
                       : null),
               CheckboxListTile(
-                  value: _exportGuestAccounts,
-                  title: Text(L10n.of(context).export_guest_accounts),
-                  onChanged: (v) => toggleExportGuestAccounts()),
+                  value: _exportTwitterTokens,
+                  title: Text(L10n.of(context).export_twitter_tokens),
+                  onChanged: (v) => toggleExportTwitterTokens()),
               CheckboxListTile(
                   value: _exportTweets,
                   title: Text(L10n.of(context).export_tweets),

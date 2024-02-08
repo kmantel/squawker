@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:squawker/client.dart';
+import 'package:squawker/client/client.dart';
 import 'package:squawker/constants.dart';
 import 'package:squawker/generated/l10n.dart';
 import 'package:squawker/profile/profile.dart';

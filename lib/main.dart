@@ -10,7 +10,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_windowmanager/flutter_windowmanager.dart';
 
-import 'package:squawker/client_account.dart';
+import 'package:squawker/client/client_account.dart';
 import 'package:squawker/constants.dart';
 import 'package:squawker/database/repository.dart';
 import 'package:squawker/generated/l10n.dart';
@@ -211,8 +211,8 @@ Future<void> main() async {
 
   var importDataModel = ImportDataModel();
 
-  var guestAccountsModel = GuestAccountsModel();
-  await guestAccountsModel.reloadGuestAccounts();
+  var twitterTokensModel = TwitterTokensModel();
+  await twitterTokensModel.reloadTokens();
 
   var groupsModel = GroupsModel(prefService);
   await groupsModel.reloadGroups();
@@ -225,11 +225,7 @@ Future<void> main() async {
 
   var trendLocationModel = UserTrendLocationModel(prefService);
 
-  try {
-    await TwitterAccount.loadAllGuestAccountsAndRateLimits();
-  } catch (_) {
-    // Ignore
-  }
+  await TwitterAccount.loadAllTwitterTokensAndRateLimits();
 
   runApp(PrefService(
       service: prefService,
@@ -238,7 +234,7 @@ Future<void> main() async {
           Provider(create: (context) => groupsModel),
           Provider(create: (context) => homeModel),
           ChangeNotifierProvider(create: (context) => importDataModel),
-          Provider(create: (context) => guestAccountsModel),
+          Provider(create: (context) => twitterTokensModel),
           Provider(create: (context) => subscriptionsModel),
           Provider(create: (context) => SavedTweetModel()),
           Provider(create: (context) => SearchTweetsModel()),

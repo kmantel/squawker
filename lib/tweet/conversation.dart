@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:squawker/client.dart';
+import 'package:squawker/client/client.dart';
 import 'package:squawker/tweet/tweet.dart';
 import 'package:squawker/utils/iterables.dart';
 

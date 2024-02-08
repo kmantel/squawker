@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pref/pref.dart';
 
-import 'package:squawker/client.dart';
+import 'package:squawker/client/client.dart';
 import 'package:squawker/constants.dart';
 import 'package:squawker/profile/profile.dart';
 import 'package:squawker/tweet/conversation.dart';

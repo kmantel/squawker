@@ -2685,6 +2685,146 @@ class L10n {
       args: [],
     );
   }
+
+  /// `Account`
+  String get account {
+    return Intl.message(
+      'Account',
+      name: 'account',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add an account`
+  String get add_account {
+    return Intl.message(
+      'Add an account',
+      name: 'add_account',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `There are {nbrGuestAccounts} guest accounts`
+  String nbr_guest_accounts(Object nbrGuestAccounts) {
+    return Intl.message(
+      'There are $nbrGuestAccounts guest accounts',
+      name: 'nbr_guest_accounts',
+      desc: '',
+      args: [nbrGuestAccounts],
+    );
+  }
+
+  /// `Export Twitter/X tokens?`
+  String get export_twitter_tokens {
+    return Intl.message(
+      'Export Twitter/X tokens?',
+      name: 'export_twitter_tokens',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Regular accounts ({nbrRegularAccounts}):`
+  String regular_accounts(Object nbrRegularAccounts) {
+    return Intl.message(
+      'Regular accounts ($nbrRegularAccounts):',
+      name: 'regular_accounts',
+      desc: '',
+      args: [nbrRegularAccounts],
+    );
+  }
+
+  /// `Add Regular Account`
+  String get add_account_title {
+    return Intl.message(
+      'Add Regular Account',
+      name: 'add_account_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mandatory fields:`
+  String get mandatory_label {
+    return Intl.message(
+      'Mandatory fields:',
+      name: 'mandatory_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Username:`
+  String get username_label {
+    return Intl.message(
+      'Username:',
+      name: 'username_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password:`
+  String get password_label {
+    return Intl.message(
+      'Password:',
+      name: 'password_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Optional fields:`
+  String get optional_label {
+    return Intl.message(
+      'Optional fields:',
+      name: 'optional_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name:`
+  String get name_label {
+    return Intl.message(
+      'Name:',
+      name: 'name_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email:`
+  String get email_label {
+    return Intl.message(
+      'Email:',
+      name: 'email_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone:`
+  String get phone_label {
+    return Intl.message(
+      'Phone:',
+      name: 'phone_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error From Twitter/X`
+  String get error_from_twitter {
+    return Intl.message(
+      'Error From Twitter/X',
+      name: 'error_from_twitter',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<L10n> {

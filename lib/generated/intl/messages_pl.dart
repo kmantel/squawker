@@ -81,6 +81,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Aktywuj tryb bez efektu potwierdzenia"),
         "add_subscriptions":
             MessageLookupByLibrary.simpleMessage("Dodaj subskrypcje"),
+        "add_to_feed": MessageLookupByLibrary.simpleMessage("Dodaj do kanału"),
         "add_to_group": MessageLookupByLibrary.simpleMessage("Dodaj do grupy"),
         "all": MessageLookupByLibrary.simpleMessage("Wszystkie"),
         "all_the_great_software_used_by_fritter":
@@ -132,6 +133,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "date_created": MessageLookupByLibrary.simpleMessage("Data utworzenia"),
         "date_subscribed":
             MessageLookupByLibrary.simpleMessage("Data subskrypcji"),
+        "default_subscription_tab": MessageLookupByLibrary.simpleMessage(
+            "Domyślna zakładka subskrypcji"),
         "default_tab": MessageLookupByLibrary.simpleMessage("Domyślna karta"),
         "delete": MessageLookupByLibrary.simpleMessage("Usuń"),
         "disable_screenshots":
@@ -153,11 +156,29 @@ class MessageLookup extends MessageLookupByLibrary {
             "Nie można pobrać. Te multimedia mogą być dostępne tylko jako strumień, którego Squawker jeszcze nie obsługuje."),
         "download_path":
             MessageLookupByLibrary.simpleMessage("Ścieżka pobierania"),
+        "download_video_best_quality_description":
+            MessageLookupByLibrary.simpleMessage(
+                "Pobieraj filmy w najlepszej dostępnej jakości"),
+        "download_video_best_quality_label":
+            MessageLookupByLibrary.simpleMessage(
+                "Pobieraj filmy w najlepszej jakości"),
         "downloading_media":
             MessageLookupByLibrary.simpleMessage("Pobieranie multimediów…"),
         "enable_": MessageLookupByLibrary.simpleMessage("Włączyć ?"),
         "ended_timeago_format_endsAt_allowFromNow_true": m3,
         "ends_timeago_format_endsAt_allowFromNow_true": m4,
+        "enhanced_feeds_description": MessageLookupByLibrary.simpleMessage(
+            "Ulepszone żądania dotyczące kanałów (ale z niższymi limitami szybkości)"),
+        "enhanced_feeds_label":
+            MessageLookupByLibrary.simpleMessage("Ulepszone kanały"),
+        "enhanced_profile_description": MessageLookupByLibrary.simpleMessage(
+            "Ulepszone żądania dotyczące profilu"),
+        "enhanced_profile_label":
+            MessageLookupByLibrary.simpleMessage("Ulepszony profil"),
+        "enhanced_searches_description": MessageLookupByLibrary.simpleMessage(
+            "Ulepszone żądania wyszukiwania (ale z niższymi limitami szybkości)"),
+        "enhanced_searches_label":
+            MessageLookupByLibrary.simpleMessage("Ulepszone wyszukiwanie"),
         "enter_your_twitter_username": MessageLookupByLibrary.simpleMessage(
             "Wprowadź swoją nazwę użytkownika Twitter/Xa"),
         "export": MessageLookupByLibrary.simpleMessage("Eksportuj"),
@@ -215,10 +236,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "include_retweets": MessageLookupByLibrary.simpleMessage(
             "Uwzględniaj tweety podane dalej"),
         "joined": m8,
+        "keep_feed_offset_description": MessageLookupByLibrary.simpleMessage(
+            "Przesunięcie osi czasu jest zachowywane dla kanałów po ponownym uruchomieniu aplikacji"),
+        "keep_feed_offset_label": MessageLookupByLibrary.simpleMessage(
+            "Zachowaj przesunięcie kanałów"),
         "language": MessageLookupByLibrary.simpleMessage("Język"),
         "language_subtitle": MessageLookupByLibrary.simpleMessage(
             "Wymaga ponownego uruchomienia"),
         "large": MessageLookupByLibrary.simpleMessage("Duże"),
+        "leaner_feeds_description": MessageLookupByLibrary.simpleMessage(
+            "Linki podglądu nie są wyświetlane w tweetach z kanałów"),
+        "leaner_feeds_label":
+            MessageLookupByLibrary.simpleMessage("Odchudzone kanały"),
         "legacy_android_import": MessageLookupByLibrary.simpleMessage(
             "Importowanie ze starszej wersji Androida"),
         "let_the_developers_know_if_something_is_broken":
@@ -265,6 +294,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Otwórz ustawienia aplikacji"),
         "open_in_browser":
             MessageLookupByLibrary.simpleMessage("Otwórz w przeglądarce"),
+        "option_confirm_close_description":
+            MessageLookupByLibrary.simpleMessage(
+                "Potwierdź przy zamykaniu aplikacji"),
+        "option_confirm_close_label":
+            MessageLookupByLibrary.simpleMessage("Potwierdź zamknięcie"),
         "page_not_found": MessageLookupByLibrary.simpleMessage(
             "Twitter/X twierdzi, że strona nie istnieje, ale to może nie być prawda"),
         "permission_not_granted": MessageLookupByLibrary.simpleMessage(
@@ -294,6 +328,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Profil prywatny"),
         "released_under_the_mit_license":
             MessageLookupByLibrary.simpleMessage("Wydany na licencji MIT"),
+        "remove_from_feed":
+            MessageLookupByLibrary.simpleMessage("Usuń z kanału"),
         "replying_to": MessageLookupByLibrary.simpleMessage("W odpowiedzi do"),
         "report": MessageLookupByLibrary.simpleMessage("Zgłoś"),
         "report_a_bug": MessageLookupByLibrary.simpleMessage("Zgłoś błąd"),
@@ -380,6 +416,8 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Ten użytkownik nie jest obserwowany przez nikogo!"),
         "thread": MessageLookupByLibrary.simpleMessage("Wątek"),
         "thumbnail": MessageLookupByLibrary.simpleMessage("Miniatury"),
+        "thumbnail_not_available":
+            MessageLookupByLibrary.simpleMessage("Miniatura niedostępna"),
         "timed_out":
             MessageLookupByLibrary.simpleMessage("Przekroczono limit czasu"),
         "to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below":
@@ -389,6 +427,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "trending": MessageLookupByLibrary.simpleMessage("Trendy"),
         "trends": MessageLookupByLibrary.simpleMessage("Trendy"),
         "true_black": MessageLookupByLibrary.simpleMessage("Prawdziwa czerń?"),
+        "tweet_font_size_description":
+            MessageLookupByLibrary.simpleMessage("Rozmiar czcionki tweetów"),
+        "tweet_font_size_label":
+            MessageLookupByLibrary.simpleMessage("Rozmiar czcionki"),
         "tweets": MessageLookupByLibrary.simpleMessage("Tweety"),
         "tweets_and_replies":
             MessageLookupByLibrary.simpleMessage("Tweety i odpowiedzi"),
@@ -474,9 +516,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "which_tab_is_shown_when_the_app_opens":
             MessageLookupByLibrary.simpleMessage(
                 "Karta wyświetlana po otwarciu aplikacji"),
+        "which_tab_is_shown_when_the_subscription_opens":
+            MessageLookupByLibrary.simpleMessage(
+                "Która karta jest wyświetlana po otwarciu subskrypcji"),
         "would_you_like_to_enable_automatic_error_reporting":
             MessageLookupByLibrary.simpleMessage(
                 "Czy chcesz włączyć automatyczne raportowanie błędów?"),
+        "x_api": MessageLookupByLibrary.simpleMessage("API X"),
         "yes": MessageLookupByLibrary.simpleMessage("Tak"),
         "yes_please": MessageLookupByLibrary.simpleMessage("Tak, proszę"),
         "you_have_not_saved_any_tweets_yet":

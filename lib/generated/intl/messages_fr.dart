@@ -41,11 +41,17 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m8(date) => "S\'est inscrit(e) le ${date}";
 
+  static String m19(nbrGuestAccounts) =>
+      "Il y a ${nbrGuestAccounts} comptes invités";
+
   static String m9(num, numFormatted) =>
       "${Intl.plural(num, zero: 'Aucun vote', one: 'Un vote', two: 'Deux votes', few: '${numFormatted} votes', many: '${numFormatted} vote', other: '${numFormatted} votes')}";
 
   static String m10(errorMessage) =>
       "Veuillez vérifier votre connexion Internet.\n\n${errorMessage}";
+
+  static String m20(nbrRegularAccounts) =>
+      "Comptes Standards (${nbrRegularAccounts}):";
 
   static String m11(releaseVersion) =>
       "Appuyez pour télécharger ${releaseVersion}";
@@ -73,6 +79,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "about": MessageLookupByLibrary.simpleMessage("À propos"),
+        "account": MessageLookupByLibrary.simpleMessage("Compte"),
         "account_suspended":
             MessageLookupByLibrary.simpleMessage("Compte suspendu"),
         "activate_non_confirmation_bias_mode_description":
@@ -81,6 +88,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "activate_non_confirmation_bias_mode_label":
             MessageLookupByLibrary.simpleMessage(
                 "Activer le mode biais de non-confirmation"),
+        "add_account":
+            MessageLookupByLibrary.simpleMessage("Ajouter un compte"),
+        "add_account_title":
+            MessageLookupByLibrary.simpleMessage("Ajouter un Compte Standard"),
         "add_subscriptions":
             MessageLookupByLibrary.simpleMessage("Ajouter des abonnements"),
         "add_to_feed": MessageLookupByLibrary.simpleMessage("Ajouter au flux"),
@@ -170,6 +181,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Télécharger les vidéos avec la plus grande résolution"),
         "downloading_media":
             MessageLookupByLibrary.simpleMessage("Téléchargement des médias…"),
+        "email_label": MessageLookupByLibrary.simpleMessage("Courriel :"),
         "enable_": MessageLookupByLibrary.simpleMessage("Activer ?"),
         "ended_timeago_format_endsAt_allowFromNow_true": m3,
         "ends_timeago_format_endsAt_allowFromNow_true": m4,
@@ -187,6 +199,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Recherches améliorés"),
         "enter_your_twitter_username": MessageLookupByLibrary.simpleMessage(
             "Entrer votre nom d\'utilisateur Twitter/X"),
+        "error_from_twitter":
+            MessageLookupByLibrary.simpleMessage("Erreur De Twitter/X"),
         "export": MessageLookupByLibrary.simpleMessage("Exporter"),
         "export_guest_accounts": MessageLookupByLibrary.simpleMessage(
             "Exporter les comptes invités ?"),
@@ -201,6 +215,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Exporter les abonnements ?"),
         "export_tweets":
             MessageLookupByLibrary.simpleMessage("Exporter les tweets ?"),
+        "export_twitter_tokens": MessageLookupByLibrary.simpleMessage(
+            "Exporter les jetons Twitter/X ?"),
         "export_your_data":
             MessageLookupByLibrary.simpleMessage("Exporter vos données"),
         "feed": MessageLookupByLibrary.simpleMessage("Flux"),
@@ -263,6 +279,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "light": MessageLookupByLibrary.simpleMessage("Clair"),
         "live": MessageLookupByLibrary.simpleMessage("EN DIRECT"),
         "logging": MessageLookupByLibrary.simpleMessage("Enregistrement"),
+        "mandatory_label":
+            MessageLookupByLibrary.simpleMessage("Champs obligatoires :"),
         "material_3": MessageLookupByLibrary.simpleMessage("Material 3 ?"),
         "media": MessageLookupByLibrary.simpleMessage("Médias"),
         "media_size": MessageLookupByLibrary.simpleMessage("Taille du média"),
@@ -273,6 +291,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "mute_videos": MessageLookupByLibrary.simpleMessage(
             "Mettre les vidéos en sourdine"),
         "name": MessageLookupByLibrary.simpleMessage("Nom"),
+        "name_label": MessageLookupByLibrary.simpleMessage("Nom :"),
+        "nbr_guest_accounts": m19,
         "newTrans": MessageLookupByLibrary.simpleMessage("Nouveau"),
         "next": MessageLookupByLibrary.simpleMessage("Suivant"),
         "no": MessageLookupByLibrary.simpleMessage("Non"),
@@ -305,10 +325,15 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Confirmation à la fermeture de l\'application"),
         "option_confirm_close_label":
             MessageLookupByLibrary.simpleMessage("Confirmation de fermeture"),
+        "optional_label":
+            MessageLookupByLibrary.simpleMessage("Champs optionnels :"),
         "page_not_found": MessageLookupByLibrary.simpleMessage(
             "Twitter/X informe que la page n\'existe pas, ce qui ne peux ne pas être vrai"),
+        "password_label":
+            MessageLookupByLibrary.simpleMessage("Mot de passe :"),
         "permission_not_granted": MessageLookupByLibrary.simpleMessage(
             "Autorisation non accordée. Veuillez réessayer après avoir accordé l\'autorisation !"),
+        "phone_label": MessageLookupByLibrary.simpleMessage("Téléphone :"),
         "pick_a_color":
             MessageLookupByLibrary.simpleMessage("Choisissez une couleur !"),
         "pick_an_icon":
@@ -333,6 +358,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Ce tweet contient un contenu potentiellement sensible. Voulez-vous le voir ?"),
         "prefix": MessageLookupByLibrary.simpleMessage("préfixe"),
         "private_profile": MessageLookupByLibrary.simpleMessage("Profil privé"),
+        "regular_accounts": m20,
         "released_under_the_mit_license":
             MessageLookupByLibrary.simpleMessage("Publié sous la licence MIT"),
         "remove_from_feed":
@@ -510,6 +536,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "user_not_found":
             MessageLookupByLibrary.simpleMessage("Utilisateur non trouvé"),
         "username": MessageLookupByLibrary.simpleMessage("Nom d’utilisateur"),
+        "username_label": MessageLookupByLibrary.simpleMessage("Identifiant :"),
         "version": MessageLookupByLibrary.simpleMessage("Version"),
         "when_a_new_app_update_is_available": MessageLookupByLibrary.simpleMessage(
             "Lorsqu\'une nouvelle mise à jour de l\'application est disponible"),
