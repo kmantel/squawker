@@ -39,11 +39,17 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m8(date) => "Joined ${date}";
 
+  static String m19(nbrGuestAccounts) =>
+      "There are ${nbrGuestAccounts} guest accounts";
+
   static String m9(num, numFormatted) =>
       "${Intl.plural(num, zero: 'No votes', one: 'One vote', two: 'Two votes', few: '${numFormatted} votes', many: '${numFormatted} vote', other: '${numFormatted} votes')}";
 
   static String m10(errorMessage) =>
       "Please check your Internet connection.\n\n${errorMessage}";
+
+  static String m20(nbrRegularAccounts) =>
+      "Regular accounts (${nbrRegularAccounts}):";
 
   static String m11(releaseVersion) => "Tap to download ${releaseVersion}";
 
@@ -70,6 +76,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "about": MessageLookupByLibrary.simpleMessage("About"),
+        "account": MessageLookupByLibrary.simpleMessage("Account"),
         "account_suspended":
             MessageLookupByLibrary.simpleMessage("Account suspended"),
         "activate_non_confirmation_bias_mode_description":
@@ -78,6 +85,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "activate_non_confirmation_bias_mode_label":
             MessageLookupByLibrary.simpleMessage(
                 "Activate non-confirmation bias mode"),
+        "add_account": MessageLookupByLibrary.simpleMessage("Add an account"),
+        "add_account_title":
+            MessageLookupByLibrary.simpleMessage("Add Regular Account"),
         "add_subscriptions":
             MessageLookupByLibrary.simpleMessage("Add subscriptions"),
         "add_to_feed": MessageLookupByLibrary.simpleMessage("Add to feed"),
@@ -161,6 +171,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Download videos with best quality"),
         "downloading_media":
             MessageLookupByLibrary.simpleMessage("Downloading media..."),
+        "email_label": MessageLookupByLibrary.simpleMessage("Email:"),
         "enable_": MessageLookupByLibrary.simpleMessage("Enable ?"),
         "ended_timeago_format_endsAt_allowFromNow_true": m3,
         "ends_timeago_format_endsAt_allowFromNow_true": m4,
@@ -178,6 +189,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enhanced searches"),
         "enter_your_twitter_username": MessageLookupByLibrary.simpleMessage(
             "Enter your Twitter/X username"),
+        "error_from_twitter":
+            MessageLookupByLibrary.simpleMessage("Error From Twitter/X"),
         "export": MessageLookupByLibrary.simpleMessage("Export"),
         "export_guest_accounts":
             MessageLookupByLibrary.simpleMessage("Export guest accounts?"),
@@ -191,6 +204,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "export_subscriptions":
             MessageLookupByLibrary.simpleMessage("Export subscriptions?"),
         "export_tweets": MessageLookupByLibrary.simpleMessage("Export tweets?"),
+        "export_twitter_tokens":
+            MessageLookupByLibrary.simpleMessage("Export Twitter/X tokens?"),
         "export_your_data":
             MessageLookupByLibrary.simpleMessage("Export your data"),
         "feed": MessageLookupByLibrary.simpleMessage("Feed"),
@@ -253,6 +268,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "light": MessageLookupByLibrary.simpleMessage("Light"),
         "live": MessageLookupByLibrary.simpleMessage("LIVE"),
         "logging": MessageLookupByLibrary.simpleMessage("Logging"),
+        "mandatory_label":
+            MessageLookupByLibrary.simpleMessage("Mandatory fields:"),
         "material_3": MessageLookupByLibrary.simpleMessage("Material 3?"),
         "media": MessageLookupByLibrary.simpleMessage("Media"),
         "media_size": MessageLookupByLibrary.simpleMessage("Media size"),
@@ -262,6 +279,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Whether videos should be muted by default"),
         "mute_videos": MessageLookupByLibrary.simpleMessage("Mute videos"),
         "name": MessageLookupByLibrary.simpleMessage("Name"),
+        "name_label": MessageLookupByLibrary.simpleMessage("Name:"),
+        "nbr_guest_accounts": m19,
         "newTrans": MessageLookupByLibrary.simpleMessage("New"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
@@ -294,10 +313,14 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Confirm when closing the app"),
         "option_confirm_close_label":
             MessageLookupByLibrary.simpleMessage("Confirm close"),
+        "optional_label":
+            MessageLookupByLibrary.simpleMessage("Optional fields:"),
         "page_not_found": MessageLookupByLibrary.simpleMessage(
             "Twitter/X says the page does not exist, but that may not be true"),
+        "password_label": MessageLookupByLibrary.simpleMessage("Password:"),
         "permission_not_granted": MessageLookupByLibrary.simpleMessage(
             "Permission not granted. Please try again after granting!"),
+        "phone_label": MessageLookupByLibrary.simpleMessage("Phone:"),
         "pick_a_color": MessageLookupByLibrary.simpleMessage("Pick a color!"),
         "pick_an_icon": MessageLookupByLibrary.simpleMessage("Pick an icon!"),
         "pinned_tweet": MessageLookupByLibrary.simpleMessage("Pinned tweet"),
@@ -321,6 +344,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "prefix": MessageLookupByLibrary.simpleMessage("prefix"),
         "private_profile":
             MessageLookupByLibrary.simpleMessage("Private profile"),
+        "regular_accounts": m20,
         "released_under_the_mit_license": MessageLookupByLibrary.simpleMessage(
             "Released under the MIT License"),
         "remove_from_feed":
@@ -497,6 +521,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "user_not_found":
             MessageLookupByLibrary.simpleMessage("User not found"),
         "username": MessageLookupByLibrary.simpleMessage("Username"),
+        "username_label": MessageLookupByLibrary.simpleMessage("Username:"),
         "version": MessageLookupByLibrary.simpleMessage("Version"),
         "when_a_new_app_update_is_available":
             MessageLookupByLibrary.simpleMessage(

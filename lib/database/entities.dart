@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:squawker/group/group_model.dart';
 import 'package:squawker/user.dart';
+import 'package:squawker/utils/crypto_util.dart';
 import 'package:squawker/utils/misc.dart';
 import 'package:intl/intl.dart';
 
@@ -219,35 +220,108 @@ class SubscriptionGroupMember with ToMappable {
   }
 }
 
-class GuestAccount with ToMappable {
+class TwitterTokenEntity with ToMappable {
 
+  final bool guest;
   final String idStr;
   final String screenName;
   final String oauthToken;
   final String oauthTokenSecret;
   final DateTime createdAt;
+  TwitterProfileEntity? profile;
 
-  GuestAccount({required this.idStr, required this.screenName, required this.oauthToken, required this.oauthTokenSecret, required this.createdAt});
+  TwitterTokenEntity({required this.guest, required this.idStr, required this.screenName, required this.oauthToken, required this.oauthTokenSecret, required this.createdAt, this.profile});
 
-  factory GuestAccount.fromMap(Map<String, Object?> json) {
-    return GuestAccount(
-        idStr: json['id_str'] == null ? getRandomString(19) : json['id_str'] as String,
-        screenName: json['screen_name'] == null ? getRandomString(15) : json['screen_name'] as String,
-        oauthToken: json['oauth_token'] == null ? '' : json['oauth_token'] as String,
-        oauthTokenSecret: json['oauth_token_secret'] == null ? '' : json['oauth_token_secret'] as String,
-        createdAt: json['created_at'] == null ? DateTime.now() : DateTime.parse(json['created_at'] as String)
+  static TwitterTokenEntity fromMap(Map<String, dynamic> json) {
+    return _fromMap(json, json['profile'] == null ? null : TwitterProfileEntity.fromMap(json['profile'] as Map<String, dynamic>));
+  }
+
+  static Future<TwitterTokenEntity> fromMapSecured(Map<String, dynamic> json) async {
+    return _fromMap(json, json['profile'] == null ? null : await TwitterProfileEntity.fromMapSecured(json['profile'] as Map<String, dynamic>, '$oauthConsumerSecret&${json['oauth_token']}.${json['oauth_token_secret']}'));
+  }
+
+  static TwitterTokenEntity _fromMap(Map<String, dynamic> json, TwitterProfileEntity? pProfile) {
+    return TwitterTokenEntity(
+      guest: json['guest'] == null ? true : (json['guest'] == 1),
+      idStr: json['id_str'] == null ? getRandomString(19) : json['id_str'] as String,
+      screenName: json['screen_name'] == null ? getRandomString(15) : json['screen_name'] as String,
+      oauthToken: json['oauth_token'] == null ? '' : json['oauth_token'] as String,
+      oauthTokenSecret: json['oauth_token_secret'] == null ? '' : json['oauth_token_secret'] as String,
+      createdAt: json['created_at'] == null ? DateTime.now() : DateTime.parse(json['created_at'] as String),
+      profile: pProfile
     );
   }
 
   @override
   Map<String, dynamic> toMap() {
+    return _toMap(profile?.toMap());
+  }
+
+  Future<Map<String, dynamic>> toMapSecured() async {
+    return _toMap(await profile?.toMapSecured('$oauthConsumerSecret&$oauthToken.$oauthTokenSecret'));
+  }
+
+  Map<String, dynamic> _toMap(Map<String, dynamic>? pProfile) {
     return {
+      'guest': guest ? 1 : 0,
       'id_str': idStr,
       'screen_name': screenName,
       'oauth_token': oauthToken,
       'oauth_token_secret': oauthTokenSecret,
-      'created_at': createdAt.toIso8601String()
+      'created_at': createdAt.toIso8601String(),
+      'profile': pProfile
     };
   }
 
+}
+
+class TwitterProfileEntity with ToMappable {
+
+  final String username;
+  final String password;
+  final DateTime createdAt;
+  String? name;
+  String? email;
+  String? phone;
+
+  TwitterProfileEntity({required this.username, required this.password, required this.createdAt, this.name, this.email, this.phone});
+
+  static TwitterProfileEntity fromMap(Map<String, dynamic> json) {
+    return _fromMap(json, json['password'] == null ? '' : json['password'] as String);
+  }
+
+  static Future<TwitterProfileEntity> fromMapSecured(Map<String, dynamic> json, String key) async {
+    return _fromMap(json, json['password'] == null ? '' : await aesGcm256Decrypt(key, json['password'] as String));
+  }
+
+  static TwitterProfileEntity _fromMap(Map<String, dynamic> json, String pPassword) {
+    return TwitterProfileEntity(
+      username: json['username'] == null ? '' : json['username'] as String,
+      password: pPassword,
+      createdAt: json['created_at'] == null ? DateTime.now() : DateTime.parse(json['created_at'] as String),
+      name: json['name'] as String?,
+      email: json['email'] as String?,
+      phone: json['phone']  as String?
+    );
+  }
+
+  @override
+  Map<String, dynamic> toMap() {
+    return _toMap(password);
+  }
+
+  Future<Map<String, dynamic>> toMapSecured(String key) async {
+    return _toMap(await aesGcm256Encrypt(key, password));
+  }
+
+  Map<String, dynamic> _toMap(String pPassword) {
+    return {
+      'username': username,
+      'password': pPassword,
+      'created_at': createdAt.toIso8601String(),
+      'name': name,
+      'email': email,
+      'phone': phone
+    };
+  }
 }

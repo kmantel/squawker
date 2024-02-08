@@ -9,7 +9,7 @@ import 'package:squawker/profile/profile_model.dart';
 import 'package:squawker/user.dart';
 import 'package:squawker/utils/cache.dart';
 import 'package:squawker/utils/iterables.dart';
-import 'package:squawker/client_account.dart';
+import 'package:squawker/client/client_account.dart';
 import 'package:http/http.dart' as http;
 import 'package:logging/logging.dart';
 import 'package:quiver/iterables.dart';
@@ -38,7 +38,7 @@ class _SquawkerTwitterClient extends TwitterClient {
       }
     }
     on Exception catch (err) {
-      if (err is! GuestAccountException && err is! RateLimitException) {
+      if (err is! TwitterAccountException && err is! RateLimitException) {
         log.severe('The request ${uri.path} has an error: ${err.toString()}');
       }
       return Future.error(ExceptionResponse(err));

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:squawker/generated/l10n.dart';
 import 'package:squawker/settings/_about.dart';
+import 'package:squawker/settings/_account.dart';
 import 'package:squawker/settings/_data.dart';
 import 'package:squawker/settings/_general.dart';
 import 'package:squawker/settings/_home.dart';
@@ -49,6 +50,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const SettingsGeneralFragment()),
+            ),
+          ),
+          ListTile(
+            title: Text(L10n.of(context).account),
+            leading: Icon(Icons.account_circle_rounded),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const SettingsAccountFragment()),
             ),
           ),
           ListTile(

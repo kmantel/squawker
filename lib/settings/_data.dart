@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_file_dialog/flutter_file_dialog.dart';
-import 'package:squawker/client_account.dart';
+import 'package:squawker/client/client_account.dart';
 import 'package:squawker/constants.dart';
 import 'package:squawker/database/entities.dart';
 import 'package:squawker/database/repository.dart';
@@ -22,7 +22,7 @@ class SettingsData {
   final List<UserSubscription>? userSubscriptions;
   final List<SubscriptionGroup>? subscriptionGroups;
   final List<SubscriptionGroupMember>? subscriptionGroupMembers;
-  final List<GuestAccount>? guestAccounts;
+  final List<TwitterTokenEntity>? twitterTokens;
   final List<SavedTweet>? tweets;
 
   SettingsData(
@@ -31,10 +31,18 @@ class SettingsData {
       required this.userSubscriptions,
       required this.subscriptionGroups,
       required this.subscriptionGroupMembers,
-      required this.guestAccounts,
+      required this.twitterTokens,
       required this.tweets});
 
-  factory SettingsData.fromJson(Map<String, dynamic> json) {
+  static Future<SettingsData> fromJson(Map<String, dynamic> json) async {
+    List<TwitterTokenEntity>? twtTokens;
+    // guestAccounts from previous versions
+    if (json['guestAccounts'] != null) {
+      twtTokens = List.from(json['guestAccounts']).map((e) => TwitterTokenEntity.fromMap({...e, 'guest': 1})).toList();
+    }
+    if (json['twitterTokens'] != null) {
+      twtTokens ??= await Future.wait(List.from(json['twitterTokens']).map((e) async => TwitterTokenEntity.fromMapSecured(e)).toList());
+    }
     return SettingsData(
       settings: json['settings'],
       searchSubscriptions: json['searchSubscriptions'] != null
@@ -49,23 +57,21 @@ class SettingsData {
       subscriptionGroupMembers: json['subscriptionGroupMembers'] != null
         ? List.from(json['subscriptionGroupMembers']).map((e) => SubscriptionGroupMember.fromMap(e)).toList()
         : null,
-      guestAccounts: json['guestAccounts'] != null
-        ? List.from(json['guestAccounts']).map((e) => GuestAccount.fromMap(e)).where((e) => e.oauthToken != '' && e.oauthTokenSecret != '').toList()
-        : null,
+      twitterTokens: twtTokens,
       tweets: json['tweets'] != null
         ? List.from(json['tweets']).map((e) => SavedTweet.fromMap(e)).toList()
         : null
     );
   }
 
-  Map<String, dynamic> toJson() {
+  Future<Map<String, dynamic>> toJson() async {
     return {
       'settings': settings,
       'searchSubscriptions': searchSubscriptions?.map((e) => e.toMap()).toList(),
       'subscriptions': userSubscriptions?.map((e) => e.toMap()).toList(),
       'subscriptionGroups': subscriptionGroups?.map((e) => e.toMap()).toList(),
       'subscriptionGroupMembers': subscriptionGroupMembers?.map((e) => e.toMap()).toList(),
-      'guestAccounts': guestAccounts?.map((e) => e.toMap()).toList(),
+      'twitterTokens': twitterTokens == null ? null : await Future.wait(twitterTokens!.map((e) async => e.toMapSecured()).toList()),
       'tweets': tweets?.map((e) => e.toMap()).toList()
     };
   }
@@ -85,7 +91,7 @@ class SettingsDataFragment extends StatelessWidget {
     var groupModel = context.read<GroupsModel>();
     var prefs = PrefService.of(context);
 
-    var data = SettingsData.fromJson(content);
+    var data = await SettingsData.fromJson(content);
 
     var settings = data.settings;
     if (settings != null) {
@@ -114,9 +120,13 @@ class SettingsDataFragment extends StatelessWidget {
       dataToImport[tableSubscriptionGroupMember] = subscriptionGroupMembers;
     }
 
-    var guestAccounts = data.guestAccounts;
-    if (guestAccounts != null) {
-      dataToImport[tableGuestAccount] = guestAccounts;
+    var twitterTokens = data.twitterTokens;
+    if (twitterTokens != null) {
+      dataToImport[tableTwitterToken] = twitterTokens;
+      var twitterProfiles = twitterTokens.where((e) => e.profile != null).map((e) => e.profile!).toList();
+      if (twitterProfiles.isNotEmpty) {
+        dataToImport[tableTwitterProfile] = twitterProfiles;
+      }
     }
 
     var tweets = data.tweets;
@@ -125,8 +135,8 @@ class SettingsDataFragment extends StatelessWidget {
     }
 
     await importModel.importData(dataToImport);
-    if (guestAccounts != null) {
-      await TwitterAccount.loadAllGuestAccountsAndRateLimits();
+    if (twitterTokens != null) {
+      await TwitterAccount.loadAllTwitterTokensAndRateLimits();
     }
     await groupModel.reloadGroups();
     await context.read<SubscriptionsModel>().reloadSubscriptions();

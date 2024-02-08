@@ -19,8 +19,9 @@ const String tableSearchSubscriptionGroupMember = 'search_subscription_group_mem
 const String tableSubscription = 'subscription';
 const String tableSubscriptionGroup = 'subscription_group';
 const String tableSubscriptionGroupMember = 'subscription_group_member';
-const String tableGuestAccount = 'guest_account';
 const String tableRateLimits = 'rate_limits';
+const String tableTwitterToken = 'twitter_token';
+const String tableTwitterProfile = 'twitter_profile';
 
 class Repository {
   static final log = Logger('Repository');
@@ -237,8 +238,8 @@ class Repository {
           await db.delete(tableFeedGroupChunk);
           await db.delete(tableFeedGroupPositionState);
         })),
-        SqlMigration('CREATE TABLE IF NOT EXISTS $tableGuestAccount (id_str VARCHAR, screen_name VARCHAR, oauth_token VARCHAR, oauth_token_secret VARCHAR, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)',
-            reverseSql: 'DROP TABLE IF EXISTS $tableGuestAccount'),
+        SqlMigration('CREATE TABLE IF NOT EXISTS guest_account (id_str VARCHAR, screen_name VARCHAR, oauth_token VARCHAR, oauth_token_secret VARCHAR, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)',
+            reverseSql: 'DROP TABLE IF EXISTS guest_account'),
       ],
       24: [
         SqlMigration('CREATE TABLE IF NOT EXISTS $tableRateLimits (remaining VARCHAR, reset VARCHAR)',
@@ -249,11 +250,17 @@ class Repository {
       ],
       26: [
         SqlMigration('ALTER TABLE $tableRateLimits ADD COLUMN oauth_token VARCHAR DEFAULT NULL'),
+      ],
+      27: [
+        SqlMigration('ALTER TABLE guest_account RENAME TO $tableTwitterToken'),
+        SqlMigration('ALTER TABLE $tableTwitterToken ADD COLUMN guest BOOLEAN DEFAULT 1'),
+        SqlMigration('CREATE TABLE IF NOT EXISTS $tableTwitterProfile (username VARCHAR, password VARCHAR, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, name VARCHAR, email VARCHAR, phone VARCHAR)',
+            reverseSql: 'DROP TABLE IF EXISTS $tableTwitterProfile'),
       ]
     });
     await openDatabase(
       databaseName,
-      version: 26,
+      version: 27,
       onUpgrade: myMigrationPlan,
       onCreate: myMigrationPlan,
       onDowngrade: myMigrationPlan,
