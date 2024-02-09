@@ -1,19 +1,21 @@
 import 'dart:convert';
-import 'package:squawker/database/entities.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:logging/logging.dart';
 import 'package:squawker/client/client_account.dart';
+import 'package:squawker/database/entities.dart';
+import 'package:squawker/generated/l10n.dart';
 
 class TwitterRegularAccount {
   static final log = Logger('TwitterRegularAccount');
 
   static Future<String> _getLoginFlowToken(Map<String,String> headers, String accessToken, String guestToken) async {
-    log.info('Posting https://api.twitter.com/1.1/onboarding/task.json?flow_name=login&api_version=1&known_device_token=&sim_country_code=us');
+    log.info('Posting https://api.twitter.com/1.1/onboarding/task.json?flow_name=login');
     headers.addAll({
       'Authorization': 'Bearer $accessToken',
       'X-Guest-Token': guestToken
     });
-    var response = await http.post(Uri.parse('https://api.twitter.com/1.1/onboarding/task.json?flow_name=login&api_version=1&known_device_token=&sim_country_code=us'),
+    var response = await http.post(Uri.parse('https://api.twitter.com/1.1/onboarding/task.json?flow_name=login'),
       headers: headers,
       body: json.encode({
         'flow_token': null,
@@ -107,9 +109,13 @@ class TwitterRegularAccount {
     throw TwitterAccountException('Unable to get the password flow token. The response (${response.statusCode}) from Twitter/X was: ${response.body}');
   }
 
-  static Future<Map<String,dynamic>> _getDuplicationCheckFlowToken(Map<String,String> headers, String flowToken) async {
-    log.info('Posting (duplication check) https://api.twitter.com/1.1/onboarding/task.json');
-    var response = await http.post(Uri.parse('https://api.twitter.com/1.1/onboarding/task.json'),
+  static Future<Map<String,dynamic>> _getDuplicationCheckFlowToken(Map<String,String> headers, String flowToken, String? languageCode) async {
+    String url = 'https://api.twitter.com/1.1/onboarding/task.json';
+    if (languageCode != null) {
+      url = '$url?lang=$languageCode';
+    }
+    log.info('Posting (duplication check) $url');
+    var response = await http.post(Uri.parse(url),
       headers: headers,
       body: json.encode({
         'flow_token': flowToken,
@@ -147,16 +153,58 @@ class TwitterRegularAccount {
     throw TwitterAccountException('Unable to get the duplication check flow token. The response (${response.statusCode}) from Twitter/X was: ${response.body}');
   }
 
-  static Future<TwitterTokenEntity> createRegularTwitterToken(String username, String password, String? name, String? email, String? phone) async {
+  static Future<Map<String,dynamic>> _get2FAFlowToken(Map<String,String> headers, String flowToken, String code) async {
+    log.info('Posting (2FA) https://api.twitter.com/1.1/onboarding/task.json');
+    var response = await http.post(Uri.parse('https://api.twitter.com/1.1/onboarding/task.json'),
+        headers: headers,
+        body: json.encode({
+          'flow_token': flowToken,
+          'subtask_inputs': [
+            {
+              'enter_text': {
+                'text': code,
+                'link': 'next_link'
+              },
+              'subtask_id': 'LoginTwoFactorAuthChallenge'
+            }
+          ]
+        })
+    );
+
+    if (response.statusCode == 200) {
+      var result = jsonDecode(response.body);
+      return result;
+    }
+
+    throw TwitterAccountException('Unable to get the 2FA flow token. The response (${response.statusCode}) from Twitter/X was: ${response.body}');
+  }
+
+  static Future<TwitterTokenEntity> createRegularTwitterToken(BuildContext? context, String? languageCode, String username, String password, String? name, String? email, String? phone) async {
     String accessToken = await TwitterAccount.getAccessToken();
     String guestToken = await TwitterAccount.getGuestToken(accessToken);
     Map<String,String> headers = TwitterAccount.initHeaders();
     String flowToken = await _getLoginFlowToken(headers, accessToken, guestToken);
     flowToken = await _getUsernameFlowToken(headers, flowToken, username);
     flowToken = await _getPasswordFlowToken(headers, flowToken, password);
-    Map<String,dynamic> res = await _getDuplicationCheckFlowToken(headers, flowToken);
-    if (res['subtasks']?[0]?['open_account'] != null) {
-      Map<String,dynamic> openAccount = res['subtasks'][0]['open_account'] as Map<String,dynamic>;
+    Map<String,dynamic> res = await _getDuplicationCheckFlowToken(headers, flowToken, languageCode);
+    Map<String,dynamic>? openAccount;
+    if (res['subtasks']?[0]?['subtask_id'] == 'LoginTwoFactorAuthChallenge') {
+      if (context != null) {
+        flowToken = res['flow_token'];
+        Map<String,dynamic> head = res['subtasks'][0]['enter_text']['header'];
+        String? code = await askForTwoFactorCode(context, head['primary_text']['text'] as String, head['secondary_text']['text'] as String);
+        if (code != null) {
+          res = await _get2FAFlowToken(headers, flowToken, code);
+          if (res['subtasks']?[0]?['subtask_id'] == 'LoginSuccessSubtask') {
+            openAccount = res['subtasks'][0]['open_account'] as Map<String,dynamic>;
+          }
+        }
+      }
+    }
+    else if (res['subtasks']?[0]?['subtask_id'] == 'LoginSuccessSubtask') {
+      openAccount = res['subtasks'][0]['open_account'] as Map<String,dynamic>;
+    }
+    if (openAccount != null) {
       TwitterTokenEntity tte = TwitterTokenEntity(
         guest: false,
         idStr: (openAccount['user'] as Map<String,dynamic>)['id_str'] as String,
@@ -171,6 +219,48 @@ class TwitterRegularAccount {
       return tte;
     }
     throw TwitterAccountException('Unable to create the regular Twitter/X token. The response from Twitter/X was: $res');
+  }
+
+  static Future<String?> askForTwoFactorCode(BuildContext context, String primaryText, String secondaryText) async {
+    String? code;
+    return await showDialog<String?>(
+        barrierDismissible: false,
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(primaryText),
+            titleTextStyle: TextStyle(fontSize: Theme.of(context).textTheme.titleMedium!.fontSize, color: Theme.of(context).textTheme.titleMedium!.color, fontWeight: FontWeight.bold),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(secondaryText, style: TextStyle(fontSize: Theme.of(context).textTheme.labelMedium!.fontSize)),
+                SizedBox(height: 20),
+                TextField(
+                  decoration: InputDecoration(contentPadding: EdgeInsets.all(5)),
+                  onChanged: (value) async {
+                    code = value;
+                  },
+                )
+              ]
+            ),
+            actionsAlignment: MainAxisAlignment.center,
+            actions: [
+              ElevatedButton(
+                child: Text(L10n.current.cancel),
+                onPressed: () {
+                  Navigator.of(context).pop(null);
+                },
+              ),
+              ElevatedButton(
+                child: Text(L10n.current.ok),
+                onPressed: () {
+                  Navigator.of(context).pop(code);
+                },
+              ),
+            ],
+          );
+        }
+    );
   }
 }
 

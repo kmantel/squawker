@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:http/http.dart' as http;
 import 'package:logging/logging.dart';
@@ -20,6 +21,14 @@ class TwitterAccount {
   static final List<TwitterTokenEntity> _twitterTokenLst = [];
   static final Map<String,List<Map<String,int>>> _rateLimits = {};
   static final List<TwitterTokenEntity> _twitterTokenToDeleteLst = [];
+
+  static BuildContext? _currentContext;
+  static String? _currentLanguageCode;
+
+  static void setCurrentContext(BuildContext currentContext) {
+    _currentContext = currentContext;
+    _currentLanguageCode = Localizations.localeOf(currentContext).languageCode;
+  }
 
   static int nbrGuestAccounts() {
     return _twitterTokenLst.where((e) => e.guest).length;
@@ -169,7 +178,7 @@ class TwitterAccount {
       TwitterTokenEntity? tte = _twitterTokenLst.firstWhereOrNull((e) => e.profile != null && e.profile!.username == tpe.username);
       if (tte != null) {
         if (DateTime.now().difference(tte.createdAt).inDays >= 30) {
-          TwitterTokenEntity newTte = await TwitterRegularAccount.createRegularTwitterToken(tpe.username, tpe.password, tpe.name, tpe.email, tpe.phone);
+          TwitterTokenEntity newTte = await TwitterRegularAccount.createRegularTwitterToken(_currentContext, _currentLanguageCode, tpe.username, tpe.password, tpe.name, tpe.email, tpe.phone);
           addTwitterToken(newTte);
           markTwitterTokenForDeletion(tte);
         }
@@ -360,7 +369,7 @@ class TwitterAccount {
 
   static Future<TwitterTokenEntity> createRegularTwitterToken(String username, String password, String? name, String? email, String? phone) async {
     TwitterTokenEntity? oldTte = _twitterTokenLst.firstWhereOrNull((e) => !e.guest && e.screenName == username);
-    TwitterTokenEntity newTte = await TwitterRegularAccount.createRegularTwitterToken(username, password, name, email, phone);
+    TwitterTokenEntity newTte = await TwitterRegularAccount.createRegularTwitterToken(_currentContext, _currentLanguageCode, username, password, name, email, phone);
     if (oldTte != null) {
       markTwitterTokenForDeletion(oldTte);
       await deleteTwitterTokensMarkedForDeletion();

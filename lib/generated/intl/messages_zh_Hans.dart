@@ -115,6 +115,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("数据导入成功"),
         "date_created": MessageLookupByLibrary.simpleMessage("创建日期"),
         "date_subscribed": MessageLookupByLibrary.simpleMessage("订阅日期"),
+        "default_subscription_tab":
+            MessageLookupByLibrary.simpleMessage("关注页默认标签"),
         "default_tab": MessageLookupByLibrary.simpleMessage("默认页面"),
         "delete": MessageLookupByLibrary.simpleMessage("删除"),
         "disable_screenshots": MessageLookupByLibrary.simpleMessage("禁用截屏"),
@@ -199,11 +201,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "include_replies": MessageLookupByLibrary.simpleMessage("包括回复"),
         "include_retweets": MessageLookupByLibrary.simpleMessage("包括转推"),
         "joined": m8,
+        "keep_feed_offset_description":
+            MessageLookupByLibrary.simpleMessage("应用重启时，会保持时间轴的滚动位置不变"),
+        "keep_feed_offset_label":
+            MessageLookupByLibrary.simpleMessage("从上次的位置继续浏览时间轴"),
         "language": MessageLookupByLibrary.simpleMessage("语言"),
         "language_subtitle": MessageLookupByLibrary.simpleMessage("需要重启应用"),
         "large": MessageLookupByLibrary.simpleMessage("大"),
         "leaner_feeds_description":
             MessageLookupByLibrary.simpleMessage("预览链接不显示在来自源的推文中"),
+        "leaner_feeds_label": MessageLookupByLibrary.simpleMessage("时间轴紧凑模式"),
         "legacy_android_import":
             MessageLookupByLibrary.simpleMessage("从旧的 Android 设备导入"),
         "let_the_developers_know_if_something_is_broken":
@@ -419,8 +426,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("是否隐藏被标记为敏感的推文"),
         "which_tab_is_shown_when_the_app_opens":
             MessageLookupByLibrary.simpleMessage("打开应用时显示哪个页面"),
+        "which_tab_is_shown_when_the_subscription_opens":
+            MessageLookupByLibrary.simpleMessage("打开关注页时展示哪个标签"),
         "would_you_like_to_enable_automatic_error_reporting":
             MessageLookupByLibrary.simpleMessage("您希望自动发送错误报告吗？"),
+        "x_api": MessageLookupByLibrary.simpleMessage("X API"),
         "yes": MessageLookupByLibrary.simpleMessage("好"),
         "yes_please": MessageLookupByLibrary.simpleMessage("是，请让我看"),
         "you_have_not_saved_any_tweets_yet":

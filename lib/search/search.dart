@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:squawker/client/client.dart';
+import 'package:squawker/client/client_account.dart';
 import 'package:squawker/constants.dart';
 import 'package:squawker/database/entities.dart';
 import 'package:squawker/generated/l10n.dart';
@@ -74,6 +75,7 @@ class _SearchScreenState extends State<_SearchScreen> with SingleTickerProviderS
 
   @override
   Widget build(BuildContext context) {
+    TwitterAccount.setCurrentContext(context);
     var subscriptionsModel = context.read<SubscriptionsModel>();
 
     var prefs = PrefService.of(context, listen: false);

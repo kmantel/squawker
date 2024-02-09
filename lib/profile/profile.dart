@@ -3,6 +3,7 @@ import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_triple/flutter_triple.dart';
+import 'package:squawker/client/client_account.dart';
 import 'package:squawker/constants.dart';
 import 'package:squawker/database/entities.dart';
 import 'package:squawker/generated/l10n.dart';
@@ -235,6 +236,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> with TickerProvid
 
   @override
   Widget build(BuildContext context) {
+    TwitterAccount.setCurrentContext(context);
     // TODO: This shouldn't happen before the profile is loaded
     var user = widget.profile.user;
     if (user.idStr == null) {

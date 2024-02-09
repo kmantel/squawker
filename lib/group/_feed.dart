@@ -417,6 +417,7 @@ class SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widge
 
   @override
   Widget build(BuildContext context) {
+    TwitterAccount.setCurrentContext(context);
     BasePrefService prefs = PrefService.of(context, listen: false);
     _keepFeedOffset = prefs.get(optionKeepFeedOffset);
 

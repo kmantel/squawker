@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:squawker/client/client.dart';
+import 'package:squawker/client/client_account.dart';
 import 'package:squawker/constants.dart';
 import 'package:squawker/generated/l10n.dart';
 import 'package:squawker/profile/profile.dart';
@@ -102,6 +103,7 @@ class _StatusScreenState extends State<_StatusScreen> {
 
   @override
   Widget build(BuildContext context) {
+    TwitterAccount.setCurrentContext(context);
     return Scaffold(
       appBar: AppBar(),
       body: ChangeNotifierProvider<TweetContextState>(

@@ -3,6 +3,7 @@ import 'package:flutter_swipe_action_cell/flutter_swipe_action_cell.dart';
 import 'package:logging/logging.dart';
 import 'package:pref/pref.dart';
 import 'package:squawker/client/client_account.dart';
+import 'package:squawker/client/client_regular_account.dart';
 import 'package:squawker/database/entities.dart';
 import 'package:squawker/generated/l10n.dart';
 
@@ -23,14 +24,11 @@ class _SettingsAccountFragmentState extends State<SettingsAccountFragment> {
   void initState() {
     super.initState();
     _regularAccountsTokens = TwitterAccount.getRegularAccountsTokens();
-    /*
-    _regularAccountsTokens.add(TwitterTokenEntity(guest: false, idStr: '666', screenName: 'toto', oauthToken: 'oooo', oauthTokenSecret: 'iiii', createdAt: DateTime.now(),
-      profile: TwitterProfileEntity(username: 'toto', password: '1234', createdAt: DateTime.now(), name: 'The Toto', email: 'allo@because.com')));
-    */
   }
 
   @override
   Widget build(BuildContext context) {
+    TwitterAccount.setCurrentContext(context);
     int nbrGuestAccounts = TwitterAccount.nbrGuestAccounts();
     return Scaffold(
       appBar: AppBar(title: Text(L10n.current.account)),
@@ -45,7 +43,7 @@ class _SettingsAccountFragmentState extends State<SettingsAccountFragment> {
               title: Text(L10n.current.regular_accounts(_regularAccountsTokens.length)),
               child: Icon(Icons.add_outlined),
               onTap: () async {
-                var result = await showDialog(
+                var result = await showDialog<bool>(
                   barrierDismissible: false,
                   context: context,
                   builder: (BuildContext context) {
@@ -55,31 +53,10 @@ class _SettingsAccountFragmentState extends State<SettingsAccountFragment> {
                     );
                   }
                 );
-                if (result != null) {
-                  try {
-                    await TwitterAccount.createRegularTwitterToken(result['username'], result['password'], result['name'], result['email'], result['phone']);
-                    setState(() {
-                      _regularAccountsTokens = TwitterAccount.getRegularAccountsTokens();
-                    });
-                  }
-                  catch (e, _) {
-                    await showDialog(
-                      barrierDismissible: false,
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: Text(L10n.current.error_from_twitter),
-                          content: Text(e.toString()),
-                          actions: [
-                            TextButton(
-                              onPressed: () => Navigator.pop(context),
-                              child: Text(L10n.current.ok),
-                            ),
-                          ]
-                        );
-                      }
-                    );
-                  }
+                if (result != null && result) {
+                  setState(() {
+                    _regularAccountsTokens = TwitterAccount.getRegularAccountsTokens();
+                  });
                 }
               },
             ),
@@ -166,6 +143,7 @@ class _AddAccountDialogState extends State<AddAccountDialog> {
 
   @override
   Widget build(BuildContext context) {
+    TwitterAccount.setCurrentContext(context);
     double width = MediaQuery.of(context).size.width;
     return Container(
       padding: EdgeInsets.all(20),
@@ -295,7 +273,7 @@ class _AddAccountDialogState extends State<AddAccountDialog> {
               children: [
                 ElevatedButton(
                   child: Text(L10n.current.cancel),
-                  onPressed: () => Navigator.pop(context, null),
+                  onPressed: () => Navigator.pop(context, false),
                 ),
                 SizedBox(width: 20),
                 ElevatedButton(
@@ -304,13 +282,29 @@ class _AddAccountDialogState extends State<AddAccountDialog> {
                     if (!_saveEnabled) {
                       return;
                     }
-                    Navigator.pop(context, {
-                      'username': _username,
-                      'password': _password,
-                      'name': _name,
-                      'email': _email,
-                      'phone': _phone
-                    });
+                    try {
+                      await TwitterAccount.createRegularTwitterToken(_username, _password, _name, _email, _phone);
+                      Navigator.pop(context, true);
+                    }
+                    catch (e, _) {
+                      await showDialog(
+                        barrierDismissible: false,
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text(L10n.current.error_from_twitter),
+                            content: Text(e.toString()),
+                            actions: [
+                              TextButton(
+                                onPressed: () => Navigator.pop(context),
+                                child: Text(L10n.current.ok),
+                              ),
+                            ]
+                          );
+                        }
+                      );
+                      Navigator.pop(context, false);
+                    }
                   }
                 ),
               ]

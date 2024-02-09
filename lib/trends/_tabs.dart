@@ -1,6 +1,7 @@
 import 'package:dart_twitter_api/api/trends/data/trend_location.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_triple/flutter_triple.dart';
+import 'package:squawker/client/client_account.dart';
 import 'package:squawker/generated/l10n.dart';
 import 'package:squawker/trends/trends_model.dart';
 import 'package:provider/provider.dart';
@@ -62,6 +63,7 @@ class _TrendsTabBarState extends State<TrendsTabBar> with TickerProviderStateMix
 
   @override
   Widget build(BuildContext context) {
+    TwitterAccount.setCurrentContext(context);
     var model = context.read<UserTrendLocationModel>();
 
     return ScopedBuilder<UserTrendLocationModel, UserTrendLocations>(

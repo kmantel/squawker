@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pref/pref.dart';
 
 import 'package:squawker/client/client.dart';
+import 'package:squawker/client/client_account.dart';
 import 'package:squawker/constants.dart';
 import 'package:squawker/profile/profile.dart';
 import 'package:squawker/tweet/conversation.dart';
@@ -80,6 +81,7 @@ class _ProfileTweetsState extends State<ProfileTweets> with AutomaticKeepAliveCl
   @override
   Widget build(BuildContext context) {
     super.build(context);
+    TwitterAccount.setCurrentContext(context);
 
     return Consumer<TweetContextState>(builder: (context, model, child) {
       if (model.hideSensitive && (widget.user.possiblySensitive ?? false)) {
