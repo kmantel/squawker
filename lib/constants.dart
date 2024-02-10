@@ -52,6 +52,8 @@ const optionConfirmClose = 'confirm_close';
 
 const optionTweetFontSize = 'tweet_font_size';
 
+const optionTwitterAccountTypes = 'twitter_account_types';
+
 const routeHome = '/';
 const routeGroup = '/group';
 const routeProfile = '/profile';
@@ -61,4 +63,8 @@ const routeSettingsExport = '/settings/export';
 const routeSettingsHome = '/settings/home';
 const routeStatus = '/status';
 const routeSubscriptionsImport = '/subscriptions/import';
+
+const twitterAccountTypesPriorityToRegular = 'twitter_account_types_priority_to_regular';
+const twitterAccountTypesBoth = 'twitter_account_types_both';
+const twitterAccountTypesOnlyRegular = 'twitter_account_types_only_regular';
 

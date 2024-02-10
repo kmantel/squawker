@@ -452,6 +452,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "tweets_and_replies":
             MessageLookupByLibrary.simpleMessage("Tweets & Replies"),
         "tweets_number": m15,
+        "twitter_account_types_both":
+            MessageLookupByLibrary.simpleMessage("Guest and regular"),
+        "twitter_account_types_description":
+            MessageLookupByLibrary.simpleMessage("Account type to use"),
+        "twitter_account_types_label":
+            MessageLookupByLibrary.simpleMessage("Account type"),
+        "twitter_account_types_only_regular":
+            MessageLookupByLibrary.simpleMessage("Only regular"),
+        "twitter_account_types_priority_to_regular":
+            MessageLookupByLibrary.simpleMessage("Prioritize regular"),
         "two_home_pages_required": MessageLookupByLibrary.simpleMessage(
             "You need to have at least 2 home screen pages."),
         "unable_to_find_the_available_trend_locations":

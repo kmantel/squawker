@@ -576,5 +576,15 @@
   "phone_label": "Téléphone :",
   "@phone_label": {},
   "error_from_twitter": "Erreur De Twitter/X",
-  "@error_from_twitter": {}
+  "@error_from_twitter": {},
+  "twitter_account_types_label": "Type de compte",
+  "@twitter_account_types_label": {},
+  "twitter_account_types_description": "Type de compte utilisé",
+  "@twitter_account_types_description": {},
+  "twitter_account_types_priority_to_regular": "Priorité au standard",
+  "@twitter_account_types_priority_to_regular": {},
+  "twitter_account_types_both": "Invité et standard",
+  "@twitter_account_types_both": {},
+  "twitter_account_types_only_regular": "Seulement standard",
+  "@twitter_account_types_only_regular": {}
 }

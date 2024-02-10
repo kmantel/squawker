@@ -546,5 +546,15 @@
   "phone_label": "Phone:",
   "@phone_label": {},
   "error_from_twitter": "Error From Twitter/X",
-  "@error_from_twitter": {}
+  "@error_from_twitter": {},
+  "twitter_account_types_label": "Account type",
+  "@twitter_account_types_label": {},
+  "twitter_account_types_description": "Account type to use",
+  "@twitter_account_types_description": {},
+  "twitter_account_types_priority_to_regular": "Prioritize regular",
+  "@twitter_account_types_priority_to_regular": {},
+  "twitter_account_types_both": "Guest and regular",
+  "@twitter_account_types_both": {},
+  "twitter_account_types_only_regular": "Only regular",
+  "@twitter_account_types_only_regular": {}
 }

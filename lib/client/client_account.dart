@@ -6,6 +6,7 @@ import 'package:logging/logging.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:squawker/client/client_guest_account.dart';
 import 'package:squawker/client/client_regular_account.dart';
+import 'package:squawker/constants.dart';
 import 'package:squawker/utils/iterables.dart';
 import 'package:squawker/database/entities.dart';
 import 'package:squawker/database/repository.dart';
@@ -24,6 +25,7 @@ class TwitterAccount {
 
   static BuildContext? _currentContext;
   static String? _currentLanguageCode;
+  static String currentAccountTypes = twitterAccountTypesPriorityToRegular;
 
   static void setCurrentContext(BuildContext currentContext) {
     _currentContext = currentContext;
@@ -76,7 +78,7 @@ class TwitterAccount {
       _twitterTokenLst.add(tte);
     }
     if (_twitterTokenLst.isNotEmpty) {
-      _twitterTokenLst.sort((a, b) => a.createdAt.compareTo(b.createdAt));
+      sortAccounts();
 
       // delete records from the rate_limits table that are not valid anymore (if applicable)
       List<String> oauthTokenLst = _twitterTokenLst.map((e) => e.oauthToken).toList();
@@ -171,6 +173,22 @@ class TwitterAccount {
     }
   }
 
+  static void sortAccounts() {
+    if (currentAccountTypes == twitterAccountTypesPriorityToRegular) {
+      _twitterTokenLst.sort((a, b) {
+        if (a.guest != b.guest) {
+          return (a.guest ? 1 : 0) - (b.guest ? 1 : 0);
+        }
+        else {
+          return a.createdAt.compareTo(b.createdAt);
+        }
+      });
+    }
+    else {
+      _twitterTokenLst.sort((a, b) => a.createdAt.compareTo(b.createdAt));
+    }
+  }
+
   // renew the regular Twitter/X account tokens after 30 days
   static Future<void> _renewProfilesTokens() async {
     for (int i = 0; i < _twitterProfileLst.length; i++) {
@@ -240,9 +258,12 @@ class TwitterAccount {
   }
 
   static Future<Map<String,dynamic>?> getNextTwitterTokenInfo(String uriPath, int total) async {
+    List<TwitterTokenEntity> filteredTwitterTokenLst = currentAccountTypes == twitterAccountTypesOnlyRegular ?
+      _twitterTokenLst.where((e) => !e.guest).toList() :
+      _twitterTokenLst;
     final prefs = await SharedPreferences.getInstance();
     String? lastTwitterOauthToken = prefs.getString('lastTwitterOauthToken');
-    int startIndex = lastTwitterOauthToken == null ? 0 : _twitterTokenLst.indexWhere((e) => e.oauthToken == lastTwitterOauthToken);
+    int startIndex = lastTwitterOauthToken == null ? 0 : filteredTwitterTokenLst.indexWhere((e) => e.oauthToken == lastTwitterOauthToken);
     if (startIndex == -1) {
       startIndex = 0;
     }
@@ -250,8 +271,8 @@ class TwitterAccount {
     bool minResetSet = false;
     int idx = startIndex;
     int cnt = 0;
-    while (cnt < _twitterTokenLst.length) {
-      TwitterTokenEntity twitterToken = _twitterTokenLst[idx];
+    while (cnt < filteredTwitterTokenLst.length) {
+      TwitterTokenEntity twitterToken = filteredTwitterTokenLst[idx];
       String oauthToken = twitterToken.oauthToken;
       int? rateLimitRemaining = _rateLimits[oauthToken]![0][uriPath];
       int? rateLimitReset = _rateLimits[oauthToken]![1][uriPath];
@@ -267,7 +288,7 @@ class TwitterAccount {
         };
       }
       idx++;
-      if (idx == _twitterTokenLst.length) {
+      if (idx == filteredTwitterTokenLst.length) {
         idx = 0;
       }
     }

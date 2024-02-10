@@ -176,6 +176,7 @@ Future<void> main() async {
     optionEnhancedFeeds: true,
     optionEnhancedSearches: true,
     optionEnhancedProfile: true,
+    optionTwitterAccountTypes: twitterAccountTypesPriorityToRegular,
     optionUserTrendsLocations: jsonEncode({
       'active': {'name': 'Worldwide', 'woeid': 1},
       'locations': [
@@ -183,6 +184,8 @@ Future<void> main() async {
       ]
     }),
   });
+
+  TwitterAccount.currentAccountTypes = prefService.get(optionTwitterAccountTypes);
 
   FlutterLocalNotificationsPlugin notifications = FlutterLocalNotificationsPlugin();
 

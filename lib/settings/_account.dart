@@ -3,7 +3,7 @@ import 'package:flutter_swipe_action_cell/flutter_swipe_action_cell.dart';
 import 'package:logging/logging.dart';
 import 'package:pref/pref.dart';
 import 'package:squawker/client/client_account.dart';
-import 'package:squawker/client/client_regular_account.dart';
+import 'package:squawker/constants.dart';
 import 'package:squawker/database/entities.dart';
 import 'package:squawker/generated/l10n.dart';
 
@@ -29,16 +29,43 @@ class _SettingsAccountFragmentState extends State<SettingsAccountFragment> {
   @override
   Widget build(BuildContext context) {
     TwitterAccount.setCurrentContext(context);
+    BasePrefService prefs = PrefService.of(context);
     int nbrGuestAccounts = TwitterAccount.nbrGuestAccounts();
+    List<Map<String,String>> accountTypeLst = [
+      {'id': twitterAccountTypesPriorityToRegular, 'val': L10n.of(context).twitter_account_types_priority_to_regular},
+      {'id': twitterAccountTypesBoth, 'val': L10n.of(context).twitter_account_types_both},
+      {'id': twitterAccountTypesOnlyRegular, 'val': L10n.of(context).twitter_account_types_only_regular}
+    ];
+    List<Widget> guestAccountLst = [];
+    if (nbrGuestAccounts > 0) {
+      guestAccountLst.add(PrefDropdown(
+        fullWidth: false,
+        title: Text(L10n.of(context).twitter_account_types_label),
+        subtitle: Text(L10n.of(context).twitter_account_types_description),
+        pref: optionTwitterAccountTypes,
+        items: accountTypeLst
+            .map((e) => DropdownMenuItem(value: e['id'], child: Text(e['val'] as String)))
+            .toList(),
+        onChange: (value) {
+          if (value ==  twitterAccountTypesBoth || value ==  twitterAccountTypesPriorityToRegular) {
+            TwitterAccount.currentAccountTypes = value as String;
+            TwitterAccount.sortAccounts();
+          }
+        },
+      ));
+      if (prefs.get(optionTwitterAccountTypes) != twitterAccountTypesOnlyRegular) {
+        guestAccountLst.add(PrefLabel(
+            title: Text(L10n.of(context).nbr_guest_accounts(nbrGuestAccounts))
+        ));
+      }
+    }
     return Scaffold(
       appBar: AppBar(title: Text(L10n.current.account)),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8),
         child: ListView(
           children: [
-            if (nbrGuestAccounts > 0) PrefLabel(
-              title: Text(L10n.of(context).nbr_guest_accounts(nbrGuestAccounts))
-            ),
+            ...guestAccountLst,
             PrefButton(
               title: Text(L10n.current.regular_accounts(_regularAccountsTokens.length)),
               child: Icon(Icons.add_outlined),

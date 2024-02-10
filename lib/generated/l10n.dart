@@ -2825,6 +2825,56 @@ class L10n {
       args: [],
     );
   }
+
+  /// `Account type`
+  String get twitter_account_types_label {
+    return Intl.message(
+      'Account type',
+      name: 'twitter_account_types_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account type to use`
+  String get twitter_account_types_description {
+    return Intl.message(
+      'Account type to use',
+      name: 'twitter_account_types_description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Prioritize regular`
+  String get twitter_account_types_priority_to_regular {
+    return Intl.message(
+      'Prioritize regular',
+      name: 'twitter_account_types_priority_to_regular',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Guest and regular`
+  String get twitter_account_types_both {
+    return Intl.message(
+      'Guest and regular',
+      name: 'twitter_account_types_both',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Only regular`
+  String get twitter_account_types_only_regular {
+    return Intl.message(
+      'Only regular',
+      name: 'twitter_account_types_only_regular',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<L10n> {
