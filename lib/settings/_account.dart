@@ -46,7 +46,8 @@ class _SettingsAccountFragmentState extends State<SettingsAccountFragment> {
         items: accountTypeLst
             .map((e) => DropdownMenuItem(value: e['id'], child: Text(e['val'] as String)))
             .toList(),
-        onChange: (value) {
+        onChange: (value) async {
+          await TwitterAccount.flushLastTwitterOauthToken();
           if (value ==  twitterAccountTypesBoth || value ==  twitterAccountTypesPriorityToRegular) {
             TwitterAccount.currentAccountTypes = value as String;
             TwitterAccount.sortAccounts();

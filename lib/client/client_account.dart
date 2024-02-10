@@ -257,6 +257,11 @@ class TwitterAccount {
     await repository.update(tableRateLimits, {'remaining': json.encode(rateLimitRemaining), 'reset': json.encode(rateLimitReset)}, where: 'oauth_token = ?', whereArgs: [ oauthToken ]);
   }
 
+  static Future<void> flushLastTwitterOauthToken() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.remove('lastTwitterOauthToken');
+  }
+
   static Future<Map<String,dynamic>?> getNextTwitterTokenInfo(String uriPath, int total) async {
     List<TwitterTokenEntity> filteredTwitterTokenLst = currentAccountTypes == twitterAccountTypesOnlyRegular ?
       _twitterTokenLst.where((e) => !e.guest).toList() :
