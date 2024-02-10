@@ -557,7 +557,7 @@
   "@nbr_guest_accounts": {},
   "export_twitter_tokens": "Exporter les jetons Twitter/X ?",
   "@export_twitter_tokens": {},
-  "regular_accounts": "Comptes Standards ({nbrRegularAccounts}):",
+  "regular_accounts": "Comptes Standards ({nbrRegularAccounts}) :",
   "@regular_accounts": {},
   "add_account_title": "Ajouter un Compte Standard",
   "@add_account_title": {},
