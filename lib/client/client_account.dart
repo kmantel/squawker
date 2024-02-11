@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 import 'package:logging/logging.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:squawker/client/client_guest_account.dart';
@@ -21,7 +22,6 @@ class TwitterAccount {
   static final List<TwitterProfileEntity> _twitterProfileLst = [];
   static final List<TwitterTokenEntity> _twitterTokenLst = [];
   static final Map<String,List<Map<String,int>>> _rateLimits = {};
-  static final List<TwitterTokenEntity> _twitterTokenToDeleteLst = [];
 
   static BuildContext? _currentContext;
   static String? _currentLanguageCode;
@@ -127,6 +127,13 @@ class TwitterAccount {
         await repository.delete(tableRateLimits, where: 'oauth_token IS NULL');
       }
     }
+
+    if (_twitterTokenLst.isNotEmpty) {
+      // TODO: remove eventually this call
+      // temporary fix: it is possible that there are still expired tokens du to old version mismanagement
+      await _deleteExpiredTokens();
+    }
+
   }
 
   static Future<void> initTwitterToken(String uriPath, int total) async {
@@ -147,9 +154,6 @@ class TwitterAccount {
 
     // possibly renew the tokens associated to the regular Twitter/X accounts
     await _renewProfilesTokens();
-
-    // delete Twitter/X tokens marked for deletion
-    await deleteTwitterTokensMarkedForDeletion();
 
     // now find the first Twitter/X token that is available or at least with the minimum waiting time
     Map<String,dynamic>? twitterTokenInfo = await getNextTwitterTokenInfo(uriPath, total);
@@ -187,6 +191,12 @@ class TwitterAccount {
     else {
       _twitterTokenLst.sort((a, b) => a.createdAt.compareTo(b.createdAt));
     }
+    /*
+    log.info('*** sort done:');
+    for (int i = 0; i < _twitterTokenLst.length; i++) {
+      log.info('*** oauthToken=${_twitterTokenLst[i].oauthToken}, guest=${_twitterTokenLst[i].guest}, createdAt=${DateFormat('yyy-MM-dd HH:mm:ss').format(_twitterTokenLst[i].createdAt)}');
+    }
+    */
   }
 
   // renew the regular Twitter/X account tokens after 30 days
@@ -197,10 +207,32 @@ class TwitterAccount {
       if (tte != null) {
         if (DateTime.now().difference(tte.createdAt).inDays >= 30) {
           TwitterTokenEntity newTte = await TwitterRegularAccount.createRegularTwitterToken(_currentContext, _currentLanguageCode, tpe.username, tpe.password, tpe.name, tpe.email, tpe.phone);
-          addTwitterToken(newTte);
-          markTwitterTokenForDeletion(tte);
+          await addTwitterToken(newTte);
+          await deleteTwitterToken(tte);
         }
       }
+    }
+  }
+
+  // TODO: remove eventually this method
+  // temporary fix: it is possible that there are still expired tokens du to old version mismanagement
+  static Future<void> _deleteExpiredTokens() async {
+    List<TwitterTokenEntity> tokensToRemove = [];
+    for (String oauthToken in _rateLimits.keys) {
+      List<Map<String,int>> rateLimitsToken = _rateLimits[oauthToken] as List<Map<String,int>>;
+      Map<String,int> rateLimitRemaining = rateLimitsToken[0];
+      for (int remaining in rateLimitRemaining.values) {
+        if (remaining == -2) {
+          TwitterTokenEntity? tt = _twitterTokenLst.firstWhereOrNull((tt) => tt.oauthToken == oauthToken);
+          if (tt != null) {
+            tokensToRemove.add(tt);
+          }
+          break;
+        }
+      }
+    }
+    for (TwitterTokenEntity tt in tokensToRemove) {
+      await deleteTwitterToken(tt);
     }
   }
 
@@ -285,8 +317,9 @@ class TwitterAccount {
         minRateLimitReset = rateLimitReset;
         minResetSet = true;
       }
-      if (rateLimitRemaining == null || rateLimitRemaining >= total) {
+      if (rateLimitRemaining == null || (rateLimitRemaining == -1 && DateTime.now().isAfter(DateTime.fromMillisecondsSinceEpoch(rateLimitReset!))) || rateLimitRemaining >= total) {
         prefs.setString('lastTwitterOauthToken', twitterToken.oauthToken);
+        log.info('*** OAuth token chosen, created ${DateFormat('yyyy-MM-dd HH:mm:ss').format(twitterToken.createdAt)}');
         return {
           'twitterToken': twitterToken,
           'minRateLimitReset': null
@@ -308,56 +341,34 @@ class TwitterAccount {
     }
   }
 
-  static void markCurrentTwitterTokenForDeletion() {
-    markTwitterTokenForDeletion(_currentTwitterToken);
-  }
-
-  static void markTwitterTokenForDeletion(TwitterTokenEntity? twitterToken) {
-    if (twitterToken == null) {
-      // should not happens
-      return;
-    }
-    String oauthToken = twitterToken.oauthToken;
-    if (_twitterTokenToDeleteLst.firstWhereOrNull((e) => e.oauthToken == oauthToken) == null) {
-      _twitterTokenToDeleteLst.add(twitterToken);
+  static Future<void> deleteCurrentTwitterToken() async {
+    if (_currentTwitterToken != null) {
+      await deleteTwitterToken(_currentTwitterToken!);
+      _currentTwitterToken = null;
     }
   }
 
-  static Future<void> deleteTwitterTokensMarkedForDeletion() async {
-    if (_twitterTokenToDeleteLst.isEmpty) {
-      return;
-    }
-    log.info('Deleting expired twitter tokens');
+  static Future<void> deleteTwitterToken(TwitterTokenEntity token) async {
+    String oauthToken = token.oauthToken;
+    log.info('*** Delete twitter token $oauthToken');
 
-    List<String> tokenOauthToDeleteLst = _twitterTokenLst.where((tt) => _twitterTokenToDeleteLst.firstWhereOrNull((ttd) => ttd.oauthToken == tt.oauthToken) != null).map((e) => e.oauthToken).toList();
-    List<String> rateOauthToDeleteLst = _rateLimits.keys.where((key) => _twitterTokenToDeleteLst.firstWhereOrNull((ttd) => ttd.oauthToken == key) != null).toList();
-
-    if (tokenOauthToDeleteLst.isNotEmpty) {
-      _twitterTokenLst.removeWhere((tt) => _twitterTokenToDeleteLst.firstWhereOrNull((ttd) => ttd.oauthToken == tt.oauthToken) != null);
-    }
-    if (rateOauthToDeleteLst.isNotEmpty) {
-      _rateLimits.removeWhere((key, value) => _twitterTokenToDeleteLst.firstWhereOrNull((ttd) => ttd.oauthToken == key) != null);
-    }
-
-    // this must be executed last. make sure that there are no more active regular token associated with a profile to delete it.
-    List<String> profileUsernameToDeleteLst = _twitterProfileLst.where((tp) => _twitterTokenLst.firstWhereOrNull((tt) => !tt.guest && tt.profile!.username == tp.username) == null).map((e) => e.username).toList();
-    if (profileUsernameToDeleteLst.isNotEmpty) {
-      _twitterProfileLst.removeWhere((tp) => _twitterTokenLst.firstWhereOrNull((tt) => !tt.guest && tt.profile!.username == tp.username) == null);
+    _twitterTokenLst.removeWhere((tt) => tt.oauthToken == oauthToken);
+    _rateLimits.removeWhere((key, value) => key == oauthToken);
+    String? profileUsernameToDelete;
+    if (!token.guest && token.profile != null) {
+      if (_twitterTokenLst.firstWhereOrNull((tt) => !tt.guest && tt.profile!.username == token.profile!.username) == null) {
+        profileUsernameToDelete = token.profile!.username;
+        _twitterProfileLst.removeWhere((tp) => tp.username == token.profile!.username);
+      }
     }
 
     var database = await Repository.writable();
 
-    if (tokenOauthToDeleteLst.isNotEmpty) {
-      await database.delete(tableRateLimits, where: 'oauth_token IN (${List.filled(tokenOauthToDeleteLst.length, '?').join(',')})', whereArgs: tokenOauthToDeleteLst);
+    await database.delete(tableTwitterToken, where: 'oauth_token = ?', whereArgs: [oauthToken]);
+    await database.delete(tableRateLimits, where: 'oauth_token = ?', whereArgs: [oauthToken]);
+    if (profileUsernameToDelete != null) {
+      await database.delete(tableTwitterProfile, where: 'username = ?', whereArgs: [profileUsernameToDelete]);
     }
-    if (rateOauthToDeleteLst.isNotEmpty) {
-      await database.delete(tableTwitterToken, where: "oauth_token IN (${List.filled(rateOauthToDeleteLst.length, '?').join(',')}) ", whereArgs: rateOauthToDeleteLst);
-    }
-    if (profileUsernameToDeleteLst.isNotEmpty) {
-      await database.delete(tableTwitterProfile, where: "username IN (${List.filled(profileUsernameToDeleteLst.length, '?').join(',')}) ", whereArgs: profileUsernameToDeleteLst);
-    }
-
-    _twitterTokenToDeleteLst.clear();
   }
 
   static Future<void> addTwitterToken(TwitterTokenEntity twitterToken) async {
@@ -395,8 +406,7 @@ class TwitterAccount {
     TwitterTokenEntity? oldTte = _twitterTokenLst.firstWhereOrNull((e) => !e.guest && e.screenName == username);
     TwitterTokenEntity newTte = await TwitterRegularAccount.createRegularTwitterToken(_currentContext, _currentLanguageCode, username, password, name, email, phone);
     if (oldTte != null) {
-      markTwitterTokenForDeletion(oldTte);
-      await deleteTwitterTokensMarkedForDeletion();
+      await deleteTwitterToken(oldTte);
     }
     return newTte;
   }
@@ -614,18 +624,20 @@ class RateFetchContext {
       counter++;
       var headerRateLimitRemaining = response.headers['x-rate-limit-remaining'];
       var headerRateLimitReset = response.headers['x-rate-limit-reset'];
-      TwitterAccount.log.info('*** headerRateLimitRemaining=$headerRateLimitRemaining, headerRateLimitReset=$headerRateLimitReset');
+      TwitterAccount.log.info('*** (From Twitter/X) headerRateLimitRemaining=$headerRateLimitRemaining, headerRateLimitReset=$headerRateLimitReset');
       if (response.statusCode == 401 && response.body.contains('Invalid or expired token')) {
+        TwitterAccount.log.warning('*** (From Twitter/X) The request $uriPath has invalid or expired token.');
         remainingLst.add(-2);
         resetLst.add(0);
       }
       else if (headerRateLimitRemaining == null || headerRateLimitReset == null) {
-        TwitterAccount.log.info('The request $uriPath has no rate limits.');
+        TwitterAccount.log.warning('*** (From Twitter/X) The request $uriPath has no rate limits.');
         remainingLst.add(null);
         resetLst.add(null);
       }
       else if (response.statusCode == 429 && response.body.contains('Rate limit exceeded')) {
         // Twitter/X API documentation specify a 24 hours waiting time, but I experimented a 12 hours embargo.
+        TwitterAccount.log.warning('*** (From Twitter/X) The request $uriPath has exceeded its rate limits.');
         remainingLst.add(-1);
         resetLst.add(DateTime.now().add(const Duration(hours: 12)).millisecondsSinceEpoch);
       }
@@ -655,9 +667,11 @@ class RateFetchContext {
       return;
     }
     if (minRemaining == -2) {
-      TwitterAccount.markCurrentTwitterTokenForDeletion();
+      await TwitterAccount.deleteCurrentTwitterToken();
     }
-    await TwitterAccount.updateRateValues(uriPath, minRemaining, minReset);
+    else {
+      await TwitterAccount.updateRateValues(uriPath, minRemaining, minReset);
+    }
     if (minRemaining <= -1) {
       // this should not happened but just in case, check if there is another guest account that is NOT with an embargo
       Map<String,dynamic>? twitterTokenInfoTmp = await TwitterAccount.getNextTwitterTokenInfo(uriPath, total);

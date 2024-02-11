@@ -83,7 +83,7 @@ class TwitterGuestAccount {
     String flowToken = await _getWelcomeFlowToken(headers, accessToken, guestToken);
     TwitterTokenEntity guestTwitterToken = await _getGuestTwitterTokenFromTwitter(headers, flowToken);
 
-    TwitterAccount.addTwitterToken(guestTwitterToken);
+    await TwitterAccount.addTwitterToken(guestTwitterToken);
     return guestTwitterToken;
   }
 

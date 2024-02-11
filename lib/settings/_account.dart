@@ -109,8 +109,7 @@ class _SettingsAccountFragmentState extends State<SettingsAccountFragment> {
                     SwipeAction(
                       title: L10n.current.delete,
                       onTap: (CompletionHandler handler) async {
-                        TwitterAccount.markTwitterTokenForDeletion(_regularAccountsTokens[index]);
-                        await TwitterAccount.deleteTwitterTokensMarkedForDeletion();
+                        await TwitterAccount.deleteTwitterToken(_regularAccountsTokens[index]);
                         setState(() {
                           _regularAccountsTokens.removeAt(index);
                         });

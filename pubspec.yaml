@@ -16,7 +16,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 
-version: 3.7.1+35
+version: 3.7.2+36
 
 environment:
   sdk: ">=2.18.0 <3.0.0"
@@ -77,8 +77,8 @@ dependencies:
   scrollable_positioned_list: ^0.3.8
   share_plus: ^7.2.1
   shared_preferences: ^2.2.2
-  sqflite: ^2.3.0
-  sqflite_common: ^2.5.0+2
+  sqflite: ^2.3.2
+  sqflite_common: ^2.5.3
   sqflite_migration_plan: ^1.0.0
   synchronized: ^3.1.0+1
   timeago: ^3.6.0
@@ -99,7 +99,7 @@ dev_dependencies:
   flutter_lints: ^3.0.1
   flutter_oss_licenses: ^2.0.1
   intl_utils: ^2.8.7
-  sqflite_common_ffi: ^2.3.1
+  sqflite_common_ffi: ^2.3.2+1
 
 flutter_MaterialSymbols:
   android: "launcher_icon"

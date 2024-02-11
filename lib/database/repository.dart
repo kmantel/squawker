@@ -256,11 +256,24 @@ class Repository {
         SqlMigration('ALTER TABLE $tableTwitterToken ADD COLUMN guest BOOLEAN DEFAULT 1'),
         SqlMigration('CREATE TABLE IF NOT EXISTS $tableTwitterProfile (username VARCHAR, password VARCHAR, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, name VARCHAR, email VARCHAR, phone VARCHAR)',
             reverseSql: 'DROP TABLE IF EXISTS $tableTwitterProfile'),
+      ],
+      28: [
+        SqlMigration('CREATE TABLE ${tableTwitterToken}_2 AS SELECT DISTINCT * FROM $tableTwitterToken'),
+        SqlMigration('DROP TABLE $tableTwitterToken'),
+        SqlMigration('CREATE TABLE $tableTwitterToken (oauth_token VARCHAR PRIMARY KEY, oauth_token_secret VARCHAR, id_str VARCHAR, screen_name VARCHAR, guest BOOLEAN, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)'),
+        SqlMigration('INSERT INTO $tableTwitterToken (oauth_token, oauth_token_secret, id_str, screen_name, guest, created_at) SELECT oauth_token, oauth_token_secret, id_str, screen_name, guest, created_at FROM ${tableTwitterToken}_2'),
+        SqlMigration('DROP TABLE ${tableTwitterToken}_2'),
+
+        SqlMigration('CREATE TABLE ${tableTwitterProfile}_2 AS SELECT DISTINCT * FROM $tableTwitterProfile'),
+        SqlMigration('DROP TABLE $tableTwitterProfile'),
+        SqlMigration('CREATE TABLE $tableTwitterProfile (username VARCHAR PRIMARY KEY, password VARCHAR, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, name VARCHAR, email VARCHAR, phone VARCHAR)'),
+        SqlMigration('INSERT INTO $tableTwitterProfile (username, password, created_at, name, email, phone) SELECT username, password, created_at, name, email, phone FROM ${tableTwitterProfile}_2'),
+        SqlMigration('DROP TABLE ${tableTwitterProfile}_2')
       ]
     });
     await openDatabase(
       databaseName,
-      version: 27,
+      version: 28,
       onUpgrade: myMigrationPlan,
       onCreate: myMigrationPlan,
       onDowngrade: myMigrationPlan,
