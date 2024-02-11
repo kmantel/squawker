@@ -38,7 +38,7 @@ class SettingsData {
     List<TwitterTokenEntity>? twtTokens;
     // guestAccounts from previous versions
     if (json['guestAccounts'] != null) {
-      twtTokens = List.from(json['guestAccounts']).map((e) => TwitterTokenEntity.fromMap({...e, 'guest': 1})).toList();
+      twtTokens = List.from(json['guestAccounts']).map((e) => TwitterTokenEntity.fromMap(e)).toList();
     }
     if (json['twitterTokens'] != null) {
       twtTokens ??= await Future.wait(List.from(json['twitterTokens']).map((e) async => TwitterTokenEntity.fromMapSecured(e)).toList());
@@ -94,35 +94,35 @@ class SettingsDataFragment extends StatelessWidget {
     var data = await SettingsData.fromJson(content);
 
     var settings = data.settings;
-    if (settings != null) {
-      prefs.fromMap(settings);
+    if (settings?.isNotEmpty ?? false) {
+      prefs.fromMap(settings!);
     }
 
     var dataToImport = <String, List<ToMappable>>{};
 
     var searchSubscriptions = data.searchSubscriptions;
-    if (searchSubscriptions != null) {
-      dataToImport[tableSearchSubscription] = searchSubscriptions;
+    if (searchSubscriptions?.isNotEmpty ?? false) {
+      dataToImport[tableSearchSubscription] = searchSubscriptions!;
     }
 
     var userSubscriptions = data.userSubscriptions;
-    if (userSubscriptions != null) {
-      dataToImport[tableSubscription] = userSubscriptions;
+    if (userSubscriptions?.isNotEmpty ?? false) {
+      dataToImport[tableSubscription] = userSubscriptions!;
     }
 
     var subscriptionGroups = data.subscriptionGroups;
-    if (subscriptionGroups != null) {
-      dataToImport[tableSubscriptionGroup] = subscriptionGroups;
+    if (subscriptionGroups?.isNotEmpty ?? false) {
+      dataToImport[tableSubscriptionGroup] = subscriptionGroups!;
     }
 
     var subscriptionGroupMembers = data.subscriptionGroupMembers;
-    if (subscriptionGroupMembers != null) {
-      dataToImport[tableSubscriptionGroupMember] = subscriptionGroupMembers;
+    if (subscriptionGroupMembers?.isNotEmpty ?? false) {
+      dataToImport[tableSubscriptionGroupMember] = subscriptionGroupMembers!;
     }
 
     var twitterTokens = data.twitterTokens;
-    if (twitterTokens != null) {
-      dataToImport[tableTwitterToken] = twitterTokens;
+    if (twitterTokens?.isNotEmpty ?? false) {
+      dataToImport[tableTwitterToken] = twitterTokens!.map((e) => TwitterTokenEntityWrapperDb(e)).toList();
       var twitterProfiles = twitterTokens.where((e) => e.profile != null).map((e) => e.profile!).toList();
       if (twitterProfiles.isNotEmpty) {
         dataToImport[tableTwitterProfile] = twitterProfiles;
@@ -130,12 +130,12 @@ class SettingsDataFragment extends StatelessWidget {
     }
 
     var tweets = data.tweets;
-    if (tweets != null) {
-      dataToImport[tableSavedTweet] = tweets;
+    if (tweets?.isNotEmpty ?? false) {
+      dataToImport[tableSavedTweet] = tweets!;
     }
 
     await importModel.importData(dataToImport);
-    if (twitterTokens != null) {
+    if (twitterTokens?.isNotEmpty ?? false) {
       await TwitterAccount.loadAllTwitterTokensAndRateLimits();
     }
     await groupModel.reloadGroups();
@@ -161,11 +161,10 @@ class SettingsDataFragment extends StatelessWidget {
             title: Text(L10n.of(context).import),
             subtitle: Text(L10n.of(context).import_data_from_another_device),
             onTap: () async {
-              
-                var path = await FlutterFileDialog.pickFile(params: const OpenFileDialogParams());
-                if (path != null) {
-                  await _importFromFile(context, File(path));
-                }
+              var path = await FlutterFileDialog.pickFile(params: const OpenFileDialogParams());
+              if (path != null) {
+                await _importFromFile(context, File(path));
+              }
             },
           ),
           PrefLabel(
@@ -179,3 +178,4 @@ class SettingsDataFragment extends StatelessWidget {
     );
   }
 }
+

@@ -275,6 +275,19 @@ class TwitterTokenEntity with ToMappable {
 
 }
 
+class TwitterTokenEntityWrapperDb with ToMappable {
+  final TwitterTokenEntity tte;
+
+  TwitterTokenEntityWrapperDb(this.tte);
+
+  @override
+  Map<String, dynamic> toMap() {
+    Map<String, dynamic> m = tte.toMap();
+    m.remove('profile');
+    return m;
+  }
+}
+
 class TwitterProfileEntity with ToMappable {
 
   final String username;

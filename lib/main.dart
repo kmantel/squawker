@@ -208,8 +208,8 @@ Future<void> main() async {
   // Run the migrations early, so models work. We also do this later on so we can display errors to the user
   try {
     await Repository().migrate();
-  } catch (_) {
-    // Ignore, as we'll catch it later instead
+  } catch (e, _) {
+    Logger.root.severe(e.toString());
   }
 
   var importDataModel = ImportDataModel();

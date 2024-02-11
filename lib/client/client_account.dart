@@ -366,9 +366,7 @@ class TwitterAccount {
     _rateLimits[oauthToken] = [{},{}];
 
     var repository = await Repository.writable();
-    Map<String,dynamic> ttm = twitterToken.toMap();
-    ttm.remove('profile');
-    var ret = await repository.insert(tableTwitterToken, ttm);
+    await repository.insert(tableTwitterToken, TwitterTokenEntityWrapperDb(twitterToken).toMap());
     await repository.insert(tableRateLimits, {'remaining': json.encode({}), 'reset': json.encode({}), 'oauth_token': oauthToken});
   }
 
