@@ -576,5 +576,15 @@
   "email_label": "电子邮箱：",
   "@email_label": {},
   "phone_label": "电话号码：",
-  "@phone_label": {}
+  "@phone_label": {},
+  "twitter_account_types_label": "账户类型",
+  "@twitter_account_types_label": {},
+  "twitter_account_types_description": "要使用的账户类型",
+  "@twitter_account_types_description": {},
+  "twitter_account_types_priority_to_regular": "优先使用常规账户",
+  "@twitter_account_types_priority_to_regular": {},
+  "twitter_account_types_both": "来宾和常规账户",
+  "@twitter_account_types_both": {},
+  "twitter_account_types_only_regular": "仅常规账户",
+  "@twitter_account_types_only_regular": {}
 }

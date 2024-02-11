@@ -576,5 +576,15 @@
   "email_label": "E-posta adresi:",
   "@email_label": {},
   "phone_label": "Telefon:",
-  "@phone_label": {}
+  "@phone_label": {},
+  "twitter_account_types_label": "Hesap türü",
+  "@twitter_account_types_label": {},
+  "twitter_account_types_description": "Kullanılacak hesap türü",
+  "@twitter_account_types_description": {},
+  "twitter_account_types_priority_to_regular": "Normal hesaplara öncelik ver",
+  "@twitter_account_types_priority_to_regular": {},
+  "twitter_account_types_both": "Misafir ve normal",
+  "@twitter_account_types_both": {},
+  "twitter_account_types_only_regular": "Yalnızca normal",
+  "@twitter_account_types_only_regular": {}
 }
