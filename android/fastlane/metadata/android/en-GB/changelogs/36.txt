@@ -1,1 +1,2 @@
 * Fix issues #177 and #196 Import only working partially.
+* Fix issue #198 Suspicious activity ask confirmation code when adding account.
