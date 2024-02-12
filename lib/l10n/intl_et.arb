@@ -129,7 +129,7 @@
   "@unsubscribe": {},
   "please_note_that_the_method_fritter_uses_to_import_subscriptions_is_heavily_rate_limited_by_twitter_so_this_may_fail_if_you_have_a_lot_of_followed_accounts": "Palun arvesta, et Squawker kasutab tellimuste impordiks päringut, mille kasutamise sagedust Twitter/X piirab. Seega kui sul on palju jälgitavaid kontosid, siis import ei pruugi õnnestuda.",
   "@please_note_that_the_method_fritter_uses_to_import_subscriptions_is_heavily_rate_limited_by_twitter_so_this_may_fail_if_you_have_a_lot_of_followed_accounts": {},
-  "could_not_find_any_tweets_by_this_user": "Ühtegi selle kasutaja säutsu ei lidunud!",
+  "could_not_find_any_tweets_by_this_user": "Ühtegi selle kasutaja säutsu ei leidunud!",
   "@could_not_find_any_tweets_by_this_user": {},
   "media": "Meedia",
   "@media": {},
@@ -576,5 +576,15 @@
   "account": "Kasutajakonto",
   "@account": {},
   "export_twitter_tokens": "Kas ekspordime Twitter/X tunnusload?",
-  "@export_twitter_tokens": {}
+  "@export_twitter_tokens": {},
+  "twitter_account_types_label": "Konto tüüp",
+  "@twitter_account_types_label": {},
+  "twitter_account_types_priority_to_regular": "Eelista tavakontot",
+  "@twitter_account_types_priority_to_regular": {},
+  "twitter_account_types_both": "Külalis- ja tavakonto",
+  "@twitter_account_types_both": {},
+  "twitter_account_types_description": "Kasutatav konto tüüp",
+  "@twitter_account_types_description": {},
+  "twitter_account_types_only_regular": "Ainult tavakonto",
+  "@twitter_account_types_only_regular": {}
 }
