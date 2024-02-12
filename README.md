@@ -39,6 +39,7 @@
 ## Features:
 
 * Privacy: No tracking, with all data local
+* No ads: Not clogged by the multipe ads
 * Feed: View all your subscriptions in a chronological feed
 * Subscriptions: Follow and group accounts
 * Search: Find users and tweets
