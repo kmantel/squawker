@@ -38,7 +38,7 @@
  
 ## Features:
 
-* Privacy: No login, no tracking, with all data local
+* Privacy: No tracking, with all data local
 * Feed: View all your subscriptions in a chronological feed
 * Subscriptions: Follow and group accounts
 * Search: Find users and tweets
