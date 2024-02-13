@@ -556,5 +556,9 @@
   "twitter_account_types_both": "Guest and regular",
   "@twitter_account_types_both": {},
   "twitter_account_types_only_regular": "Only regular",
-  "@twitter_account_types_only_regular": {}
+  "@twitter_account_types_only_regular": {},
+  "warning_regular_account_title": "Using regular accounts",
+  "@warning_regular_account_title": {},
+  "warning_regular_account_description": "Twitter/X has disabled the ability to create guest accounts. You must now set regular account(s) in Settings / Account. It's easy to create an anonymous regular account as explained here:",
+  "@warning_regular_account_description": {}
 }

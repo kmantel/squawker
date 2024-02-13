@@ -39,33 +39,33 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m8(date) => "Tok del ${date}";
 
-  static String m9(num, numFormatted) =>
+  static String m10(num, numFormatted) =>
       "${Intl.plural(num, zero: 'ingen stemmer', one: 'én stemme', two: 'to stemmer', few: '${numFormatted} stemmer', many: '${numFormatted} stemme', other: '${numFormatted} stemmer')}";
 
-  static String m10(errorMessage) =>
+  static String m11(errorMessage) =>
       "Sjekk at du er tilkoblet Internett.\n\n${errorMessage}";
 
-  static String m11(releaseVersion) =>
+  static String m13(releaseVersion) =>
       "Trykk for å laste ned ${releaseVersion}";
 
-  static String m12(getMediaType) => "Trykk for å vise ${getMediaType}";
+  static String m14(getMediaType) => "Trykk for å vise ${getMediaType}";
 
-  static String m13(filePath) =>
+  static String m15(filePath) =>
       "Filen finnes ikke. Sørg for at den er å finne i ${filePath}";
 
-  static String m14(thisTweetUserName, timeAgo) =>
+  static String m16(thisTweetUserName, timeAgo) =>
       "${thisTweetUserName} re-tvitret";
 
-  static String m15(num, numFormatted) =>
+  static String m17(num, numFormatted) =>
       "${Intl.plural(num, zero: 'ingen tvitringer', one: 'én tvitring', two: 'to tvitringer', few: '${numFormatted} tvitringer', many: '${numFormatted} tvitringer', other: '${numFormatted} tvitringer')}";
 
-  static String m16(widgetPlaceName) =>
+  static String m18(widgetPlaceName) =>
       "Kunne ikke laste ned tendenser for ${widgetPlaceName}";
 
-  static String m17(responseStatusCode) =>
+  static String m19(responseStatusCode) =>
       "Kunne ikke lagre mediafilen. Twitter/X svarte med ${responseStatusCode}";
 
-  static String m18(releaseVersion) =>
+  static String m20(releaseVersion) =>
       "Oppgrader til ${releaseVersion} med din F-Droid-klient";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -281,7 +281,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "note_due_to_a_twitter_limitation_not_all_tweets_may_be_included":
             MessageLookupByLibrary.simpleMessage(
                 "Merk: På grunn av en Twitter/X-begrensning kan det hende at ikke alle tweets er inkludert"),
-        "numberFormat_format_total_votes": m9,
+        "numberFormat_format_total_votes": m10,
         "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "only_public_subscriptions_can_be_imported":
             MessageLookupByLibrary.simpleMessage(
@@ -306,7 +306,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "pinned_tweet": MessageLookupByLibrary.simpleMessage("Festet tvitring"),
         "playback_speed":
             MessageLookupByLibrary.simpleMessage("Avspillingshastighet"),
-        "please_check_your_internet_connection_error_message": m10,
+        "please_check_your_internet_connection_error_message": m11,
         "please_enter_a_name":
             MessageLookupByLibrary.simpleMessage("Vennligst skriv inn et navn"),
         "please_make_sure_the_data_you_wish_to_import_is_located_there_then_press_the_import_button_below":
@@ -381,11 +381,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "successfully_saved_the_media":
             MessageLookupByLibrary.simpleMessage("Media lagret."),
         "system": MessageLookupByLibrary.simpleMessage("System"),
-        "tap_to_download_release_version": m11,
-        "tap_to_show_getMediaType_item_type": m12,
+        "tap_to_download_release_version": m13,
+        "tap_to_show_getMediaType_item_type": m14,
         "thanks_for_helping_fritter": MessageLookupByLibrary.simpleMessage(
             "Takk for at du hjelper Squawker. 💖"),
-        "the_file_does_not_exist_please_ensure_it_is_located_at_file_path": m13,
+        "the_file_does_not_exist_please_ensure_it_is_located_at_file_path": m15,
         "the_github_issue":
             MessageLookupByLibrary.simpleMessage("GitHub-feilrapport (#143)"),
         "the_tweet_did_not_contain_any_text_this_is_unexpected":
@@ -404,7 +404,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Dette tok for lang tid å laste. Vennligst sjekk nettverkstilkoblingen din!"),
         "this_tweet_is_unavailable": MessageLookupByLibrary.simpleMessage(
             "Denne tweeten er utilgjengelig"),
-        "this_tweet_user_name_retweeted": m14,
+        "this_tweet_user_name_retweeted": m16,
         "this_user_does_not_follow_anyone":
             MessageLookupByLibrary.simpleMessage(
                 "Denne brukeren følger ingen!"),
@@ -430,7 +430,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "tweets": MessageLookupByLibrary.simpleMessage("Tvitringer"),
         "tweets_and_replies":
             MessageLookupByLibrary.simpleMessage("Tvitringer og svar"),
-        "tweets_number": m15,
+        "tweets_number": m17,
         "two_home_pages_required": MessageLookupByLibrary.simpleMessage(
             "Du må ha minst to hjemmeskjermssider."),
         "unable_to_find_the_available_trend_locations":
@@ -468,7 +468,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "unable_to_load_the_search_results":
             MessageLookupByLibrary.simpleMessage(
                 "Kan ikke laste søkeresultatene."),
-        "unable_to_load_the_trends_for_widget_place_name": m16,
+        "unable_to_load_the_trends_for_widget_place_name": m18,
         "unable_to_load_the_tweet":
             MessageLookupByLibrary.simpleMessage("Kan ikke laste tweeten"),
         "unable_to_load_the_tweets": MessageLookupByLibrary.simpleMessage(
@@ -483,7 +483,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Kunne ikke kjøre databaseflytting"),
         "unable_to_save_the_media_twitter_returned_a_status_of_response_statusCode":
-            m17,
+            m19,
         "unable_to_stream_the_trend_location_preference":
             MessageLookupByLibrary.simpleMessage(
                 "Kunne ikke strømme tendensposisjonsvalg"),
@@ -493,7 +493,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Avslutte abonnementet"),
         "unsupported_url":
             MessageLookupByLibrary.simpleMessage("Ustøttet nettadresse"),
-        "update_to_release_version_through_your_fdroid_client": m18,
+        "update_to_release_version_through_your_fdroid_client": m20,
         "updates": MessageLookupByLibrary.simpleMessage("Oppdateringer"),
         "use_true_black_for_the_dark_mode_theme":
             MessageLookupByLibrary.simpleMessage(

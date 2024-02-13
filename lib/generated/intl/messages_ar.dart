@@ -39,37 +39,43 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m8(date) => "انضم ${date}";
 
-  static String m9(num, numFormatted) =>
+  static String m9(nbrGuestAccounts) => "هناك ${nbrGuestAccounts} حسابات ضيوف";
+
+  static String m10(num, numFormatted) =>
       "${Intl.plural(num, zero: 'ولا تصويت', one: 'تصويت واحد', two: 'تصويتان', few: '${numFormatted} تصويتات', many: '${numFormatted} تصويت', other: '${numFormatted} تصويتات')}";
 
-  static String m10(errorMessage) =>
+  static String m11(errorMessage) =>
       "رجائاً تحقق من اتصال الشبكة لديك.\n\n${errorMessage}";
 
-  static String m11(releaseVersion) => "انقر للتحميل ${releaseVersion}";
+  static String m12(nbrRegularAccounts) =>
+      "الحسابات العادية (${nbrRegularAccounts}):";
 
-  static String m12(getMediaType) => "انقر للعرض ${getMediaType}";
+  static String m13(releaseVersion) => "انقر للتحميل ${releaseVersion}";
 
-  static String m13(filePath) =>
+  static String m14(getMediaType) => "انقر للعرض ${getMediaType}";
+
+  static String m15(filePath) =>
       "الملف غير موجود. رجائاً تأكد أنه موجو في ${filePath}";
 
-  static String m14(thisTweetUserName, timeAgo) =>
+  static String m16(thisTweetUserName, timeAgo) =>
       "${thisTweetUserName} أعاد تغريد ${timeAgo}";
 
-  static String m15(num, numFormatted) =>
+  static String m17(num, numFormatted) =>
       "${Intl.plural(num, zero: 'لا تغريدات', one: 'تغريدة واحدة', two: 'تغريدتان', few: '${numFormatted} تغريدات', many: '${numFormatted} تغريدة', other: '${numFormatted} تغريدات')}";
 
-  static String m16(widgetPlaceName) =>
+  static String m18(widgetPlaceName) =>
       "غير قادر على تحميل الترندات لـ${widgetPlaceName}";
 
-  static String m17(responseStatusCode) =>
+  static String m19(responseStatusCode) =>
       "تعذر حفظ الوسائط. أعاد تويتر حالة ${responseStatusCode}";
 
-  static String m18(releaseVersion) =>
+  static String m20(releaseVersion) =>
       "حدّث إلى ${releaseVersion} عبر عميل الـF-Droid لديك";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "about": MessageLookupByLibrary.simpleMessage("عن"),
+        "account": MessageLookupByLibrary.simpleMessage("الحساب"),
         "account_suspended":
             MessageLookupByLibrary.simpleMessage("الحساب معلق"),
         "activate_non_confirmation_bias_mode_description":
@@ -77,6 +83,9 @@ class MessageLookup extends MessageLookupByLibrary {
                 "إخفاء مؤلفي التغريدات. تجنب التحيز التأكيدي بناء على الحجج الموثوقة."),
         "activate_non_confirmation_bias_mode_label":
             MessageLookupByLibrary.simpleMessage("تفعيل نمط التحيز غير المؤكد"),
+        "add_account": MessageLookupByLibrary.simpleMessage("إضافة حساب"),
+        "add_account_title":
+            MessageLookupByLibrary.simpleMessage("اضافة الحساب العادي"),
         "add_subscriptions":
             MessageLookupByLibrary.simpleMessage("إضافة اشتراكات"),
         "add_to_feed": MessageLookupByLibrary.simpleMessage("إضافة إلى الموجز"),
@@ -161,6 +170,8 @@ class MessageLookup extends MessageLookupByLibrary {
                 "قم بتنزيل مقاطع الفيديو بأفضل جودة"),
         "downloading_media":
             MessageLookupByLibrary.simpleMessage("تحميل الوسائط..."),
+        "email_label":
+            MessageLookupByLibrary.simpleMessage("البريد الالكتروني:"),
         "enable_": MessageLookupByLibrary.simpleMessage("تفعيل الحارس؟"),
         "ended_timeago_format_endsAt_allowFromNow_true": m3,
         "ends_timeago_format_endsAt_allowFromNow_true": m4,
@@ -178,6 +189,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("عمليات البحث المحسنة"),
         "enter_your_twitter_username":
             MessageLookupByLibrary.simpleMessage("ادخل اسم مستخدم للتويتر"),
+        "error_from_twitter":
+            MessageLookupByLibrary.simpleMessage("خطأ من تويتر/X"),
         "export": MessageLookupByLibrary.simpleMessage("تصدير"),
         "export_guest_accounts":
             MessageLookupByLibrary.simpleMessage("تصدير حسابات الضيوف؟"),
@@ -192,6 +205,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تصدير الاشتراكات؟"),
         "export_tweets":
             MessageLookupByLibrary.simpleMessage("تصدير التغريدات؟"),
+        "export_twitter_tokens": MessageLookupByLibrary.simpleMessage(
+            "هل تريد تصدير رمز الجلسة Twitter/X؟"),
         "export_your_data":
             MessageLookupByLibrary.simpleMessage("تصدير بياناتك"),
         "feed": MessageLookupByLibrary.simpleMessage("الموجز"),
@@ -252,6 +267,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "light": MessageLookupByLibrary.simpleMessage("فاتح"),
         "live": MessageLookupByLibrary.simpleMessage("مباشر"),
         "logging": MessageLookupByLibrary.simpleMessage("تسجيل البيانات"),
+        "mandatory_label":
+            MessageLookupByLibrary.simpleMessage("الميادين الإلزامية:"),
         "material_3": MessageLookupByLibrary.simpleMessage("Material 3؟"),
         "media": MessageLookupByLibrary.simpleMessage("الوسائط"),
         "media_size": MessageLookupByLibrary.simpleMessage("حجم الوسائط"),
@@ -262,6 +279,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "mute_videos":
             MessageLookupByLibrary.simpleMessage("كتم صوت مقاطع الفيديو"),
         "name": MessageLookupByLibrary.simpleMessage("الاسم"),
+        "name_label": MessageLookupByLibrary.simpleMessage("الاسم:"),
+        "nbr_guest_accounts": m9,
         "newTrans": MessageLookupByLibrary.simpleMessage("الجديد"),
         "next": MessageLookupByLibrary.simpleMessage("التالي"),
         "no": MessageLookupByLibrary.simpleMessage("لا"),
@@ -278,7 +297,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "note_due_to_a_twitter_limitation_not_all_tweets_may_be_included":
             MessageLookupByLibrary.simpleMessage(
                 "ملاحظة: نظراً لقَيد معين من تويتر، قد لا يتم تضمين جميع التغريدات"),
-        "numberFormat_format_total_votes": m9,
+        "numberFormat_format_total_votes": m10,
         "ok": MessageLookupByLibrary.simpleMessage("تمام"),
         "only_public_subscriptions_can_be_imported":
             MessageLookupByLibrary.simpleMessage(
@@ -294,15 +313,19 @@ class MessageLookup extends MessageLookupByLibrary {
                 "قم بالتأكيد عند إغلاق التطبيق"),
         "option_confirm_close_label":
             MessageLookupByLibrary.simpleMessage("تأكيد الإغلاق"),
+        "optional_label":
+            MessageLookupByLibrary.simpleMessage("الحقول الاختيارية:"),
         "page_not_found": MessageLookupByLibrary.simpleMessage(
             "تويتر يقول إن الصفحة غير موجودة، ولكن هذا قد لا يكون صحيحا"),
+        "password_label": MessageLookupByLibrary.simpleMessage("كلمة السر:"),
         "permission_not_granted": MessageLookupByLibrary.simpleMessage(
             "الإذن غير ممنوح. يرجى المحاولة مرة أخرى بعد منحه!"),
+        "phone_label": MessageLookupByLibrary.simpleMessage("الهاتف:"),
         "pick_a_color": MessageLookupByLibrary.simpleMessage("اختر لون!"),
         "pick_an_icon": MessageLookupByLibrary.simpleMessage("اختر أيقونة!"),
         "pinned_tweet": MessageLookupByLibrary.simpleMessage("تغريدة مثبتة"),
         "playback_speed": MessageLookupByLibrary.simpleMessage("سرعة التشغيل"),
-        "please_check_your_internet_connection_error_message": m10,
+        "please_check_your_internet_connection_error_message": m11,
         "please_enter_a_name":
             MessageLookupByLibrary.simpleMessage("رجائاً اكتب اسماً"),
         "please_make_sure_the_data_you_wish_to_import_is_located_there_then_press_the_import_button_below":
@@ -319,6 +342,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "تحتوي هذه التغريدة على محتوى يحتمل أن يكون حساسا. هل ترغب في مشاهدته؟"),
         "prefix": MessageLookupByLibrary.simpleMessage("السابقة"),
         "private_profile": MessageLookupByLibrary.simpleMessage("ملف شخصي خاص"),
+        "regular_accounts": m12,
         "released_under_the_mit_license": MessageLookupByLibrary.simpleMessage(
             "منشور تحت رخصة الإم أي تي (MIT License)"),
         "remove_from_feed":
@@ -376,11 +400,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "successfully_saved_the_media":
             MessageLookupByLibrary.simpleMessage("تم حفظ الوسائط!"),
         "system": MessageLookupByLibrary.simpleMessage("النظام"),
-        "tap_to_download_release_version": m11,
-        "tap_to_show_getMediaType_item_type": m12,
+        "tap_to_download_release_version": m13,
+        "tap_to_show_getMediaType_item_type": m14,
         "thanks_for_helping_fritter": MessageLookupByLibrary.simpleMessage(
             "شكراً على مساعدتك لـ Squawker! 💖"),
-        "the_file_does_not_exist_please_ensure_it_is_located_at_file_path": m13,
+        "the_file_does_not_exist_please_ensure_it_is_located_at_file_path": m15,
         "the_github_issue":
             MessageLookupByLibrary.simpleMessage("مشكلة جيثب (# 143)"),
         "the_tweet_did_not_contain_any_text_this_is_unexpected":
@@ -399,7 +423,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "استغرق هذا وقتا طويلا للتحميل. رجائاً تأكد من اتصال الشبكة لديك!"),
         "this_tweet_is_unavailable": MessageLookupByLibrary.simpleMessage(
             "هذه التغريدة غير متوفرة. ربما تم حذفها."),
-        "this_tweet_user_name_retweeted": m14,
+        "this_tweet_user_name_retweeted": m16,
         "this_user_does_not_follow_anyone":
             MessageLookupByLibrary.simpleMessage(
                 "هذا المستخدم لا يتابِع أحداً!"),
@@ -425,7 +449,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "tweets": MessageLookupByLibrary.simpleMessage("التغريدات"),
         "tweets_and_replies":
             MessageLookupByLibrary.simpleMessage("التغريدات والردود"),
-        "tweets_number": m15,
+        "tweets_number": m17,
+        "twitter_account_types_both":
+            MessageLookupByLibrary.simpleMessage("ضيف وعادي"),
+        "twitter_account_types_description":
+            MessageLookupByLibrary.simpleMessage("نوع الحساب المستخدم"),
+        "twitter_account_types_label":
+            MessageLookupByLibrary.simpleMessage("نوع الحساب"),
+        "twitter_account_types_only_regular":
+            MessageLookupByLibrary.simpleMessage("عادي فقط"),
+        "twitter_account_types_priority_to_regular":
+            MessageLookupByLibrary.simpleMessage("الأولويات العادية"),
         "two_home_pages_required": MessageLookupByLibrary.simpleMessage(
             "تحتاج إلى صفحتان على الأقل من صفحات الشاشة الرئيسية."),
         "unable_to_find_the_available_trend_locations":
@@ -463,7 +497,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "unable_to_load_the_search_results":
             MessageLookupByLibrary.simpleMessage(
                 "غير قادر على تحميل نتائج البحث."),
-        "unable_to_load_the_trends_for_widget_place_name": m16,
+        "unable_to_load_the_trends_for_widget_place_name": m18,
         "unable_to_load_the_tweet":
             MessageLookupByLibrary.simpleMessage("تعذّر تحميل التغريدات"),
         "unable_to_load_the_tweets":
@@ -478,7 +512,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "غير قادر على تشغيل تحديث قاعدة البيانات"),
         "unable_to_save_the_media_twitter_returned_a_status_of_response_statusCode":
-            m17,
+            m19,
         "unable_to_stream_the_trend_location_preference":
             MessageLookupByLibrary.simpleMessage(
                 "غير قادر على بث تفضيل موقع الترندات"),
@@ -487,7 +521,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "unsubscribe": MessageLookupByLibrary.simpleMessage("إلغاء الاشتراك"),
         "unsupported_url":
             MessageLookupByLibrary.simpleMessage("عنوان URL غير مدعوم"),
-        "update_to_release_version_through_your_fdroid_client": m18,
+        "update_to_release_version_through_your_fdroid_client": m20,
         "updates": MessageLookupByLibrary.simpleMessage("التحديثات"),
         "use_true_black_for_the_dark_mode_theme":
             MessageLookupByLibrary.simpleMessage(
@@ -495,6 +529,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "user_not_found":
             MessageLookupByLibrary.simpleMessage("لم يُعثر على المستخدم"),
         "username": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
+        "username_label": MessageLookupByLibrary.simpleMessage("اسم المستخدم:"),
         "version": MessageLookupByLibrary.simpleMessage("الإصدار"),
         "when_a_new_app_update_is_available":
             MessageLookupByLibrary.simpleMessage(

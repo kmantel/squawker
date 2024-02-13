@@ -41,32 +41,32 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m8(date) => "${date}-ean sortua";
 
-  static String m9(num, numFormatted) =>
+  static String m10(num, numFormatted) =>
       "${Intl.plural(num, zero: 'Botorik gabea', one: 'Boto bat', two: 'Bi boto', few: '${numFormatted} boto', many: '${numFormatted} boto', other: '${numFormatted} boto')}";
 
-  static String m10(errorMessage) =>
+  static String m11(errorMessage) =>
       "Mesedez, egiaztatu Internet konexioa.\n\n${errorMessage}";
 
-  static String m11(releaseVersion) => "Sakatu ${releaseVersion} deskargatzeko";
+  static String m13(releaseVersion) => "Sakatu ${releaseVersion} deskargatzeko";
 
-  static String m12(getMediaType) => "Sakatu ${getMediaType} erakusteko";
+  static String m14(getMediaType) => "Sakatu ${getMediaType} erakusteko";
 
-  static String m13(filePath) =>
+  static String m15(filePath) =>
       "Fitxategia ez da existitzen. Mesedez, ziurtatu ${filePath} helbidean dagoela";
 
-  static String m14(thisTweetUserName, timeAgo) =>
+  static String m16(thisTweetUserName, timeAgo) =>
       "Orain dela ${timeAgo} ${thisTweetUserName} birtxiotua";
 
-  static String m15(num, numFormatted) =>
+  static String m17(num, numFormatted) =>
       "${Intl.plural(num, zero: 'Txorik gabea', one: 'Txio bat', two: 'Bi txio', few: '${numFormatted} txio', many: '${numFormatted} txio', other: '${numFormatted} txio')}";
 
-  static String m16(widgetPlaceName) =>
+  static String m18(widgetPlaceName) =>
       "Ezin dira joerak kargatu ${widgetPlaceName}";
 
-  static String m17(responseStatusCode) =>
+  static String m19(responseStatusCode) =>
       "Ezin da multimedia gorde. Twitter/X-ek ${responseStatusCode} egoerara itzuli du";
 
-  static String m18(releaseVersion) =>
+  static String m20(releaseVersion) =>
       "Eguneratu ${releaseVersion} zure F-Droid bezeroaren bidez";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -238,7 +238,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "note_due_to_a_twitter_limitation_not_all_tweets_may_be_included":
             MessageLookupByLibrary.simpleMessage(
                 "Oharra: Twitter/X-eko muga bat dela eta, litekeena da txio guztiak ez agertzea"),
-        "numberFormat_format_total_votes": m9,
+        "numberFormat_format_total_votes": m10,
         "ok": MessageLookupByLibrary.simpleMessage("Ados"),
         "oops_something_went_wrong": MessageLookupByLibrary.simpleMessage(
             "Hara! Zerbait gaizki atera da 🥲"),
@@ -256,7 +256,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Ainguratutako txioa"),
         "playback_speed":
             MessageLookupByLibrary.simpleMessage("Erreprodukzio abiadura"),
-        "please_check_your_internet_connection_error_message": m10,
+        "please_check_your_internet_connection_error_message": m11,
         "please_enter_a_name":
             MessageLookupByLibrary.simpleMessage("Mesedez, idatzi izen bat"),
         "please_make_sure_the_data_you_wish_to_import_is_located_there_then_press_the_import_button_below":
@@ -323,11 +323,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "successfully_saved_the_media":
             MessageLookupByLibrary.simpleMessage("Multimedia gorde da!"),
         "system": MessageLookupByLibrary.simpleMessage("Sistema"),
-        "tap_to_download_release_version": m11,
-        "tap_to_show_getMediaType_item_type": m12,
+        "tap_to_download_release_version": m13,
+        "tap_to_show_getMediaType_item_type": m14,
         "thanks_for_helping_fritter": MessageLookupByLibrary.simpleMessage(
             "Eskerrik asko Squawker laguntzeagatik! 💖"),
-        "the_file_does_not_exist_please_ensure_it_is_located_at_file_path": m13,
+        "the_file_does_not_exist_please_ensure_it_is_located_at_file_path": m15,
         "the_github_issue":
             MessageLookupByLibrary.simpleMessage("Github arazoa (#143)"),
         "the_tweet_did_not_contain_any_text_this_is_unexpected":
@@ -345,7 +345,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Denbora gehiegi behar izan du honek kargatzeko. Mesedez, egiaztatu interneteko konexioa!"),
         "this_tweet_is_unavailable": MessageLookupByLibrary.simpleMessage(
             "Txio hau ez dago erabilgarri. Ziurrenik ezabatua izango zen."),
-        "this_tweet_user_name_retweeted": m14,
+        "this_tweet_user_name_retweeted": m16,
         "this_user_does_not_follow_anyone":
             MessageLookupByLibrary.simpleMessage(
                 "Erabiltzaile honek ez du inor jarraitzen!"),
@@ -365,7 +365,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "tweets": MessageLookupByLibrary.simpleMessage("Txioak"),
         "tweets_and_replies":
             MessageLookupByLibrary.simpleMessage("Txioak eta erantzunak"),
-        "tweets_number": m15,
+        "tweets_number": m17,
         "unable_to_find_the_available_trend_locations":
             MessageLookupByLibrary.simpleMessage(
                 "Ezin dira aurkitu eskuragarri dauden joera-kokapenak."),
@@ -401,7 +401,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "unable_to_load_the_search_results":
             MessageLookupByLibrary.simpleMessage(
                 "Ezin dira bilaketaren emaitzak kargatu."),
-        "unable_to_load_the_trends_for_widget_place_name": m16,
+        "unable_to_load_the_trends_for_widget_place_name": m18,
         "unable_to_load_the_tweet":
             MessageLookupByLibrary.simpleMessage("Ezin da txioa kargatu"),
         "unable_to_load_the_tweets":
@@ -416,14 +416,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Ezin dira datu-baseko migrazioak gauzatu"),
         "unable_to_save_the_media_twitter_returned_a_status_of_response_statusCode":
-            m17,
+            m19,
         "unable_to_stream_the_trend_location_preference":
             MessageLookupByLibrary.simpleMessage(
                 "Ezin da igorri joera kokapenaren hobespena"),
         "unknown": MessageLookupByLibrary.simpleMessage("Ezezaguna"),
         "unsave": MessageLookupByLibrary.simpleMessage("Ez gorde"),
         "unsubscribe": MessageLookupByLibrary.simpleMessage("Kendu harpidetza"),
-        "update_to_release_version_through_your_fdroid_client": m18,
+        "update_to_release_version_through_your_fdroid_client": m20,
         "updates": MessageLookupByLibrary.simpleMessage("Eguneraketak"),
         "use_true_black_for_the_dark_mode_theme":
             MessageLookupByLibrary.simpleMessage(

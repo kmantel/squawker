@@ -41,33 +41,33 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m8(date) => "Регистрация: ${date}";
 
-  static String m9(num, numFormatted) =>
+  static String m10(num, numFormatted) =>
       "${Intl.plural(num, zero: 'нет голосов', one: 'голос', two: 'голоса', few: '${numFormatted} голосов', many: '${numFormatted} голосов', other: '${numFormatted} голос')}";
 
-  static String m10(errorMessage) =>
+  static String m11(errorMessage) =>
       "Пожалуйста, проверьте ваше сетевое подключение.\n\n${errorMessage}";
 
-  static String m11(releaseVersion) =>
+  static String m13(releaseVersion) =>
       "Нажмите, чтобы установить ${releaseVersion}";
 
-  static String m12(getMediaType) => "Нажмите, чтобы показать ${getMediaType}";
+  static String m14(getMediaType) => "Нажмите, чтобы показать ${getMediaType}";
 
-  static String m13(filePath) =>
+  static String m15(filePath) =>
       "Файл не существует. Пожалуйста, убедитесь, что он находится по адресу ${filePath}";
 
-  static String m14(thisTweetUserName, timeAgo) =>
+  static String m16(thisTweetUserName, timeAgo) =>
       "${thisTweetUserName} ретвитнул(а) ${timeAgo}";
 
-  static String m15(num, numFormatted) =>
+  static String m17(num, numFormatted) =>
       "${Intl.plural(num, zero: 'нет твитов', one: 'твит', two: 'твита', few: '${numFormatted} твитов', many: '${numFormatted} твитов', other: '${numFormatted} твит')}";
 
-  static String m16(widgetPlaceName) =>
+  static String m18(widgetPlaceName) =>
       "Невозможно загрузить актуальное для ${widgetPlaceName}";
 
-  static String m17(responseStatusCode) =>
+  static String m19(responseStatusCode) =>
       "Невозможно сохранить медиафайл. Twitter/X вернул статус ${responseStatusCode}";
 
-  static String m18(releaseVersion) =>
+  static String m20(releaseVersion) =>
       "Обновить до ${releaseVersion} через клиент F-Droid";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -239,7 +239,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "note_due_to_a_twitter_limitation_not_all_tweets_may_be_included":
             MessageLookupByLibrary.simpleMessage(
                 "Примечание: В связи с ограничением Twitter/X, не все твиты могут быть включены"),
-        "numberFormat_format_total_votes": m9,
+        "numberFormat_format_total_votes": m10,
         "ok": MessageLookupByLibrary.simpleMessage("Ок"),
         "oops_something_went_wrong":
             MessageLookupByLibrary.simpleMessage("Ой! Что-то пошло не так 🥲"),
@@ -256,7 +256,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Закреплённый твит"),
         "playback_speed":
             MessageLookupByLibrary.simpleMessage("Скорость воспроизведения"),
-        "please_check_your_internet_connection_error_message": m10,
+        "please_check_your_internet_connection_error_message": m11,
         "please_enter_a_name":
             MessageLookupByLibrary.simpleMessage("Пожалуйста, введите имя"),
         "please_make_sure_the_data_you_wish_to_import_is_located_there_then_press_the_import_button_below":
@@ -323,11 +323,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "successfully_saved_the_media":
             MessageLookupByLibrary.simpleMessage("Файл сохранён!"),
         "system": MessageLookupByLibrary.simpleMessage("Системная"),
-        "tap_to_download_release_version": m11,
-        "tap_to_show_getMediaType_item_type": m12,
+        "tap_to_download_release_version": m13,
+        "tap_to_show_getMediaType_item_type": m14,
         "thanks_for_helping_fritter": MessageLookupByLibrary.simpleMessage(
             "Спасибо за помощь Squawker! 💖"),
-        "the_file_does_not_exist_please_ensure_it_is_located_at_file_path": m13,
+        "the_file_does_not_exist_please_ensure_it_is_located_at_file_path": m15,
         "the_github_issue":
             MessageLookupByLibrary.simpleMessage("предложение GitHub (#143)"),
         "the_tweet_did_not_contain_any_text_this_is_unexpected":
@@ -345,7 +345,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Загрузка заняла слишком много времени. Пожалуйста, проверьте ваше сетевое подключение!"),
         "this_tweet_is_unavailable": MessageLookupByLibrary.simpleMessage(
             "Этот твит недоступен. Возможно он был удалён."),
-        "this_tweet_user_name_retweeted": m14,
+        "this_tweet_user_name_retweeted": m16,
         "this_user_does_not_follow_anyone":
             MessageLookupByLibrary.simpleMessage(
                 "Этот пользователь никого не читает!"),
@@ -366,7 +366,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "tweets": MessageLookupByLibrary.simpleMessage("Твиты"),
         "tweets_and_replies":
             MessageLookupByLibrary.simpleMessage("Твиты и Ответы"),
-        "tweets_number": m15,
+        "tweets_number": m17,
         "unable_to_find_the_available_trend_locations":
             MessageLookupByLibrary.simpleMessage(
                 "Не удается найти доступные страны для актуального."),
@@ -402,7 +402,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "unable_to_load_the_search_results":
             MessageLookupByLibrary.simpleMessage(
                 "Не удаётся загрузить результаты поиска."),
-        "unable_to_load_the_trends_for_widget_place_name": m16,
+        "unable_to_load_the_trends_for_widget_place_name": m18,
         "unable_to_load_the_tweet":
             MessageLookupByLibrary.simpleMessage("Не удаётся загрузить твит"),
         "unable_to_load_the_tweets":
@@ -417,14 +417,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Не удалось произвести перемещение базы данных"),
         "unable_to_save_the_media_twitter_returned_a_status_of_response_statusCode":
-            m17,
+            m19,
         "unable_to_stream_the_trend_location_preference":
             MessageLookupByLibrary.simpleMessage(
                 "Невозможно выполнить передачу местных предпочтений"),
         "unknown": MessageLookupByLibrary.simpleMessage("Неизвестный"),
         "unsave": MessageLookupByLibrary.simpleMessage("Отменить сохранение"),
         "unsubscribe": MessageLookupByLibrary.simpleMessage("Перестать читать"),
-        "update_to_release_version_through_your_fdroid_client": m18,
+        "update_to_release_version_through_your_fdroid_client": m20,
         "updates": MessageLookupByLibrary.simpleMessage("Обновления"),
         "use_true_black_for_the_dark_mode_theme":
             MessageLookupByLibrary.simpleMessage(

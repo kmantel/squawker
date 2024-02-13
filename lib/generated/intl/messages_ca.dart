@@ -39,33 +39,33 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m8(date) => "Es va unir el ${date}";
 
-  static String m9(num, numFormatted) =>
+  static String m10(num, numFormatted) =>
       "${Intl.plural(num, zero: 'Cap vot', one: 'Un vot', two: 'Dos vots', few: '${numFormatted} vots', many: '${numFormatted} vot', other: '${numFormatted} vots')}";
 
-  static String m10(errorMessage) =>
+  static String m11(errorMessage) =>
       "Comprova la connexió a Internet.\n\n${errorMessage}";
 
-  static String m11(releaseVersion) =>
+  static String m13(releaseVersion) =>
       "Fes un toc per descarregar ${releaseVersion}";
 
-  static String m12(getMediaType) => "Fes un toc per mostrar ${getMediaType}";
+  static String m14(getMediaType) => "Fes un toc per mostrar ${getMediaType}";
 
-  static String m13(filePath) =>
+  static String m15(filePath) =>
       "El fitxer no existeix. Assegureu-vos que es troba a ${filePath}";
 
-  static String m14(thisTweetUserName, timeAgo) =>
+  static String m16(thisTweetUserName, timeAgo) =>
       "${thisTweetUserName} retuitejat ${timeAgo}";
 
-  static String m15(num, numFormatted) =>
+  static String m17(num, numFormatted) =>
       "${Intl.plural(num, zero: 'cap tweets', one: 'un tweet', two: 'dos tweets', few: '${numFormatted} tweets', many: '${numFormatted} tweet', other: '${numFormatted} tweets')}";
 
-  static String m16(widgetPlaceName) =>
+  static String m18(widgetPlaceName) =>
       "No s\'han pogut carregar les tendències per ${widgetPlaceName}";
 
-  static String m17(responseStatusCode) =>
+  static String m19(responseStatusCode) =>
       "No s\'ha pogut desar el suport. Twitter/X ha retornat un estat de ${responseStatusCode}";
 
-  static String m18(releaseVersion) =>
+  static String m20(releaseVersion) =>
       "Actualitza-ho a ${releaseVersion} a través del client de F-Droid";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -236,7 +236,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "note_due_to_a_twitter_limitation_not_all_tweets_may_be_included":
             MessageLookupByLibrary.simpleMessage(
                 "Nota: A causa d\'una limitació de Twitter/X, no es poden incloure tots els tuits"),
-        "numberFormat_format_total_votes": m9,
+        "numberFormat_format_total_votes": m10,
         "ok": MessageLookupByLibrary.simpleMessage("D\'acord"),
         "oops_something_went_wrong": MessageLookupByLibrary.simpleMessage(
             "Ui! Alguna cosa ha anat malament 🥲"),
@@ -252,7 +252,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "pinned_tweet": MessageLookupByLibrary.simpleMessage("Tuit ancorat"),
         "playback_speed":
             MessageLookupByLibrary.simpleMessage("Velocitat de reproducció"),
-        "please_check_your_internet_connection_error_message": m10,
+        "please_check_your_internet_connection_error_message": m11,
         "please_enter_a_name": MessageLookupByLibrary.simpleMessage(
             "Si us plau introdueix un nom"),
         "please_make_sure_the_data_you_wish_to_import_is_located_there_then_press_the_import_button_below":
@@ -319,11 +319,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "successfully_saved_the_media":
             MessageLookupByLibrary.simpleMessage("Suport desat!"),
         "system": MessageLookupByLibrary.simpleMessage("Sistema"),
-        "tap_to_download_release_version": m11,
-        "tap_to_show_getMediaType_item_type": m12,
+        "tap_to_download_release_version": m13,
+        "tap_to_show_getMediaType_item_type": m14,
         "thanks_for_helping_fritter": MessageLookupByLibrary.simpleMessage(
             "Gràcies per ajudar a Squawker! 💖"),
-        "the_file_does_not_exist_please_ensure_it_is_located_at_file_path": m13,
+        "the_file_does_not_exist_please_ensure_it_is_located_at_file_path": m15,
         "the_github_issue": MessageLookupByLibrary.simpleMessage(
             "el problema de GitHub (#143)"),
         "the_tweet_did_not_contain_any_text_this_is_unexpected":
@@ -342,7 +342,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Ha trigat massa a carregar-se. Comprova la connexió de xarxa!"),
         "this_tweet_is_unavailable": MessageLookupByLibrary.simpleMessage(
             "Aquest tuit no està disponible. Provablement s\'ha eliminat."),
-        "this_tweet_user_name_retweeted": m14,
+        "this_tweet_user_name_retweeted": m16,
         "this_user_does_not_follow_anyone":
             MessageLookupByLibrary.simpleMessage(
                 "Aquest usuari no segueix a ningú!"),
@@ -363,7 +363,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "tweets": MessageLookupByLibrary.simpleMessage("Tuits"),
         "tweets_and_replies":
             MessageLookupByLibrary.simpleMessage("Tweets i Respostes"),
-        "tweets_number": m15,
+        "tweets_number": m17,
         "unable_to_find_the_available_trend_locations":
             MessageLookupByLibrary.simpleMessage(
                 "No s\'han pogut trobar les ubicacions de tendència disponibles."),
@@ -399,7 +399,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "unable_to_load_the_search_results":
             MessageLookupByLibrary.simpleMessage(
                 "No s\'han pogut carregar els resultats de la cerca."),
-        "unable_to_load_the_trends_for_widget_place_name": m16,
+        "unable_to_load_the_trends_for_widget_place_name": m18,
         "unable_to_load_the_tweet": MessageLookupByLibrary.simpleMessage(
             "No s\'ha pogut carregat el tuit"),
         "unable_to_load_the_tweets": MessageLookupByLibrary.simpleMessage(
@@ -414,7 +414,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "No s\'han pogut executar les migracions de la base de dades"),
         "unable_to_save_the_media_twitter_returned_a_status_of_response_statusCode":
-            m17,
+            m19,
         "unable_to_stream_the_trend_location_preference":
             MessageLookupByLibrary.simpleMessage(
                 "No s\'ha pogut transmetre la preferència d\'ubicació de la tendència"),
@@ -422,7 +422,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "unsave": MessageLookupByLibrary.simpleMessage("Desfés"),
         "unsubscribe":
             MessageLookupByLibrary.simpleMessage("Anul·lar subscripció"),
-        "update_to_release_version_through_your_fdroid_client": m18,
+        "update_to_release_version_through_your_fdroid_client": m20,
         "updates": MessageLookupByLibrary.simpleMessage("Actualitzacions"),
         "use_true_black_for_the_dark_mode_theme":
             MessageLookupByLibrary.simpleMessage(

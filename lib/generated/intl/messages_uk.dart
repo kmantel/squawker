@@ -33,10 +33,10 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m8(date) => "Приєднався ${date}";
 
-  static String m13(filePath) =>
+  static String m15(filePath) =>
       "Файл не існує. Переконайтеся, що він знаходиться за адресою ${filePath}";
 
-  static String m16(widgetPlaceName) =>
+  static String m18(widgetPlaceName) =>
       "Не вдалося завантажити тренди для ${widgetPlaceName}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -190,7 +190,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "system": MessageLookupByLibrary.simpleMessage("Система"),
         "thanks_for_helping_fritter":
             MessageLookupByLibrary.simpleMessage("Дякуємо за допомогу! 💖"),
-        "the_file_does_not_exist_please_ensure_it_is_located_at_file_path": m13,
+        "the_file_does_not_exist_please_ensure_it_is_located_at_file_path": m15,
         "the_github_issue":
             MessageLookupByLibrary.simpleMessage("GitHub issue (#143)"),
         "theme": MessageLookupByLibrary.simpleMessage("Тема"),
@@ -250,7 +250,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "unable_to_load_the_search_results":
             MessageLookupByLibrary.simpleMessage(
                 "Не вдається завантажити результати пошуку."),
-        "unable_to_load_the_trends_for_widget_place_name": m16,
+        "unable_to_load_the_trends_for_widget_place_name": m18,
         "unable_to_load_the_tweet": MessageLookupByLibrary.simpleMessage(
             "Не вдається завантажити твіт"),
         "unable_to_load_the_tweets": MessageLookupByLibrary.simpleMessage(

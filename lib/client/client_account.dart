@@ -11,9 +11,11 @@ import 'package:squawker/constants.dart';
 import 'package:squawker/utils/iterables.dart';
 import 'package:squawker/database/entities.dart';
 import 'package:squawker/database/repository.dart';
+import 'package:squawker/generated/l10n.dart';
 import 'package:squawker/utils/crypto_util.dart';
 import 'package:squawker/utils/misc.dart';
 import 'package:synchronized/synchronized.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class TwitterAccount {
   static final log = Logger('TwitterAccount');
@@ -158,6 +160,10 @@ class TwitterAccount {
     // possibly renew the tokens associated to the regular Twitter/X accounts
     await _renewProfilesTokens();
 
+    // If there is no authenticated token, then a regular account must be added / authenticated.
+    // So a dialog of information about that is displayed once.
+    await _announcementRegularAccount();
+
     // now find the first Twitter/X token that is available or at least with the minimum waiting time
     Map<String,dynamic>? twitterTokenInfo = await getNextTwitterTokenInfo(uriPath, total);
     if (twitterTokenInfo == null) {
@@ -262,6 +268,51 @@ class TwitterAccount {
       }
     }
     _currentTwitterToken = null;
+  }
+
+  static Future<void> _announcementRegularAccount() async  {
+    List<TwitterTokenEntity> lst = _twitterTokenLst.where((tt) => !tt.guest || DateTime.now().difference(tt.createdAt).inDays <= 30).toList();
+    if (lst.isNotEmpty) {
+      return;
+    }
+
+    final prefs = await SharedPreferences.getInstance();
+    bool? announcedRegularAccount = prefs.getBool('announcedRegularAccount');
+    if (announcedRegularAccount ?? false) {
+      return;
+    }
+
+    await showDialog<String?>(
+      barrierDismissible: false,
+      context: _currentContext!,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          icon: const Icon(Icons.warning),
+          title: Text(L10n.current.warning_regular_account_title),
+          titleTextStyle: TextStyle(fontSize: Theme.of(context).textTheme.titleMedium!.fontSize, color: Theme.of(context).textTheme.titleMedium!.color, fontWeight: FontWeight.bold),
+          content: Wrap(
+            children: [
+              Text(L10n.current.warning_regular_account_description, style: TextStyle(fontSize: Theme.of(context).textTheme.labelMedium!.fontSize)),
+              GestureDetector(
+                child: Text('https://github.com/j-fbriere/squawker/wiki/3.-Regular-Twitter-X-accounts',
+                  style: TextStyle(color: Colors.blue, decoration: TextDecoration.underline, fontSize: Theme.of(context).textTheme.labelMedium!.fontSize),
+                ),
+                onTap: () async {
+                  await launchUrlString('https://github.com/j-fbriere/squawker/wiki/3.-Regular-Twitter-X-accounts');
+                },
+              ),
+            ]
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text(L10n.current.ok),
+            ),
+          ]
+        );
+      }
+    );
+    await prefs.setBool('announcedRegularAccount', true);
   }
 
   static Future<DateTime?> _getLastGuestTwitterTokenCreationAttempted() async {

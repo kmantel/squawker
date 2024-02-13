@@ -2875,6 +2875,26 @@ class L10n {
       args: [],
     );
   }
+
+  /// `Using regular accounts`
+  String get warning_regular_account_title {
+    return Intl.message(
+      'Using regular accounts',
+      name: 'warning_regular_account_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Twitter/X has disabled the ability to create guest accounts. You must now set regular account(s) in Settings / Account. It's easy to create an anonymous regular account as explained here:`
+  String get warning_regular_account_description {
+    return Intl.message(
+      'Twitter/X has disabled the ability to create guest accounts. You must now set regular account(s) in Settings / Account. It\'s easy to create an anonymous regular account as explained here:',
+      name: 'warning_regular_account_description',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<L10n> {

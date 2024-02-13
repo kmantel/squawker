@@ -38,38 +38,45 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m8(date) => "加入于 ${date}";
 
-  static String m9(num, numFormatted) =>
+  static String m9(nbrGuestAccounts) => "有 ${nbrGuestAccounts} 个来宾账户";
+
+  static String m10(num, numFormatted) =>
       "${Intl.plural(num, zero: '0 票', one: '1 票', two: '2 票', few: '${numFormatted} 票', many: '${numFormatted} 票', other: '${numFormatted} 票')}";
 
-  static String m10(errorMessage) => "请检查您的网络连接。\n\n${errorMessage}";
+  static String m11(errorMessage) => "请检查您的网络连接。\n\n${errorMessage}";
 
-  static String m11(releaseVersion) => "点击下载 ${releaseVersion}";
+  static String m12(nbrRegularAccounts) => "常规账户 （${nbrRegularAccounts}）：";
 
-  static String m12(getMediaType) => "点击 ${getMediaType} 显示";
+  static String m13(releaseVersion) => "点击下载 ${releaseVersion}";
 
-  static String m13(filePath) => "文件不存在。请确保它位于 ${filePath} 的位置";
+  static String m14(getMediaType) => "点击 ${getMediaType} 显示";
 
-  static String m14(thisTweetUserName, timeAgo) =>
+  static String m15(filePath) => "文件不存在。请确保它位于 ${filePath} 的位置";
+
+  static String m16(thisTweetUserName, timeAgo) =>
       "${thisTweetUserName} 于 ${timeAgo} 前转推了";
 
-  static String m15(num, numFormatted) =>
+  static String m17(num, numFormatted) =>
       "${Intl.plural(num, zero: '0 推文', one: '1 推文', two: '2 推文', few: '${numFormatted} 推文', many: '${numFormatted} 推文', other: '${numFormatted}推文')}";
 
-  static String m16(widgetPlaceName) => "无法加载 ${widgetPlaceName} 的趋势";
+  static String m18(widgetPlaceName) => "无法加载 ${widgetPlaceName} 的趋势";
 
-  static String m17(responseStatusCode) =>
+  static String m19(responseStatusCode) =>
       "无法保存媒体。Twitter/X 返回的状态是 ${responseStatusCode}";
 
-  static String m18(releaseVersion) => "从 F-Droid 客户端更新 ${releaseVersion}";
+  static String m20(releaseVersion) => "从 F-Droid 客户端更新 ${releaseVersion}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "about": MessageLookupByLibrary.simpleMessage("关于"),
+        "account": MessageLookupByLibrary.simpleMessage("账户"),
         "account_suspended": MessageLookupByLibrary.simpleMessage("账号已被冻结"),
         "activate_non_confirmation_bias_mode_description":
             MessageLookupByLibrary.simpleMessage("隐藏推文作者以避免基于权威论据的确认偏向。"),
         "activate_non_confirmation_bias_mode_label":
             MessageLookupByLibrary.simpleMessage("激活非确认偏向模式"),
+        "add_account": MessageLookupByLibrary.simpleMessage("添加账户"),
+        "add_account_title": MessageLookupByLibrary.simpleMessage("添加常规账户"),
         "add_subscriptions": MessageLookupByLibrary.simpleMessage("添加订阅"),
         "add_to_feed": MessageLookupByLibrary.simpleMessage("加入时间轴"),
         "add_to_group": MessageLookupByLibrary.simpleMessage("添加到订阅组"),
@@ -140,6 +147,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "download_video_best_quality_label":
             MessageLookupByLibrary.simpleMessage("以最高质量下载视频"),
         "downloading_media": MessageLookupByLibrary.simpleMessage("正在下载媒体..."),
+        "email_label": MessageLookupByLibrary.simpleMessage("电子邮箱："),
         "enable_": MessageLookupByLibrary.simpleMessage("启用 ？"),
         "ended_timeago_format_endsAt_allowFromNow_true": m3,
         "ends_timeago_format_endsAt_allowFromNow_true": m4,
@@ -156,6 +164,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("增强版搜索"),
         "enter_your_twitter_username":
             MessageLookupByLibrary.simpleMessage("输入您的 Twitter/X 用户名"),
+        "error_from_twitter":
+            MessageLookupByLibrary.simpleMessage("来自 Twitter/X 的错误"),
         "export": MessageLookupByLibrary.simpleMessage("导出"),
         "export_guest_accounts":
             MessageLookupByLibrary.simpleMessage("导出游客账户？"),
@@ -166,6 +176,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("导出订阅组？"),
         "export_subscriptions": MessageLookupByLibrary.simpleMessage("导出订阅？"),
         "export_tweets": MessageLookupByLibrary.simpleMessage("导出推文？"),
+        "export_twitter_tokens":
+            MessageLookupByLibrary.simpleMessage("导出 Twitter/X 令牌？"),
         "export_your_data": MessageLookupByLibrary.simpleMessage("导出您的数据"),
         "feed": MessageLookupByLibrary.simpleMessage("最新"),
         "filters": MessageLookupByLibrary.simpleMessage("过滤器"),
@@ -219,6 +231,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "light": MessageLookupByLibrary.simpleMessage("亮色主题"),
         "live": MessageLookupByLibrary.simpleMessage("LIVE"),
         "logging": MessageLookupByLibrary.simpleMessage("日志"),
+        "mandatory_label": MessageLookupByLibrary.simpleMessage("强制字段："),
         "material_3":
             MessageLookupByLibrary.simpleMessage("使用第3版Material Design界面？"),
         "media": MessageLookupByLibrary.simpleMessage("媒体"),
@@ -229,6 +242,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("是否应默认将视频静音"),
         "mute_videos": MessageLookupByLibrary.simpleMessage("将视频静音"),
         "name": MessageLookupByLibrary.simpleMessage("取个名字"),
+        "name_label": MessageLookupByLibrary.simpleMessage("名称："),
+        "nbr_guest_accounts": m9,
         "newTrans": MessageLookupByLibrary.simpleMessage("新的"),
         "next": MessageLookupByLibrary.simpleMessage("下一条"),
         "no": MessageLookupByLibrary.simpleMessage("不"),
@@ -242,7 +257,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "note_due_to_a_twitter_limitation_not_all_tweets_may_be_included":
             MessageLookupByLibrary.simpleMessage(
                 "注：由于 Twitter/X 的限制，可能不会包含所有推文"),
-        "numberFormat_format_total_votes": m9,
+        "numberFormat_format_total_votes": m10,
         "ok": MessageLookupByLibrary.simpleMessage("确定"),
         "only_public_subscriptions_can_be_imported":
             MessageLookupByLibrary.simpleMessage("只能从公开的个人资料页导入订阅"),
@@ -254,15 +269,18 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("当关闭应用时进行确认"),
         "option_confirm_close_label":
             MessageLookupByLibrary.simpleMessage("关闭时确认"),
+        "optional_label": MessageLookupByLibrary.simpleMessage("可选字段："),
         "page_not_found":
             MessageLookupByLibrary.simpleMessage("Twitter/X 说该页面不存在，但这可能不是真的"),
+        "password_label": MessageLookupByLibrary.simpleMessage("密码："),
         "permission_not_granted":
             MessageLookupByLibrary.simpleMessage("未授予权限。 请在授权后重试！"),
+        "phone_label": MessageLookupByLibrary.simpleMessage("电话号码："),
         "pick_a_color": MessageLookupByLibrary.simpleMessage("挑一种颜色吧！"),
         "pick_an_icon": MessageLookupByLibrary.simpleMessage("挑选图标！"),
         "pinned_tweet": MessageLookupByLibrary.simpleMessage("置顶推文"),
         "playback_speed": MessageLookupByLibrary.simpleMessage("播放速度"),
-        "please_check_your_internet_connection_error_message": m10,
+        "please_check_your_internet_connection_error_message": m11,
         "please_enter_a_name": MessageLookupByLibrary.simpleMessage("请输入订阅组名称"),
         "please_make_sure_the_data_you_wish_to_import_is_located_there_then_press_the_import_button_below":
             MessageLookupByLibrary.simpleMessage("请确保您要导入的数据位于此处，然后点击下方的导入按钮。"),
@@ -276,6 +294,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("该推文包含潜在的敏感内容。是否浏览？"),
         "prefix": MessageLookupByLibrary.simpleMessage("字首"),
         "private_profile": MessageLookupByLibrary.simpleMessage("个人简介"),
+        "regular_accounts": m12,
         "released_under_the_mit_license":
             MessageLookupByLibrary.simpleMessage("以 MIT 许可证发布"),
         "remove_from_feed": MessageLookupByLibrary.simpleMessage("从时间轴中移除"),
@@ -323,11 +342,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "successfully_saved_the_media":
             MessageLookupByLibrary.simpleMessage("已保存媒体文件！"),
         "system": MessageLookupByLibrary.simpleMessage("跟随系统"),
-        "tap_to_download_release_version": m11,
-        "tap_to_show_getMediaType_item_type": m12,
+        "tap_to_download_release_version": m13,
+        "tap_to_show_getMediaType_item_type": m14,
         "thanks_for_helping_fritter":
             MessageLookupByLibrary.simpleMessage("感谢您帮助 Squawker！💖"),
-        "the_file_does_not_exist_please_ensure_it_is_located_at_file_path": m13,
+        "the_file_does_not_exist_please_ensure_it_is_located_at_file_path": m15,
         "the_github_issue":
             MessageLookupByLibrary.simpleMessage("GitHub Issue (#143)"),
         "the_tweet_did_not_contain_any_text_this_is_unexpected":
@@ -342,7 +361,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("加载时间太长了。 检查您的网络连接！"),
         "this_tweet_is_unavailable":
             MessageLookupByLibrary.simpleMessage("此推文不可用。它可能已被删除。"),
-        "this_tweet_user_name_retweeted": m14,
+        "this_tweet_user_name_retweeted": m16,
         "this_user_does_not_follow_anyone":
             MessageLookupByLibrary.simpleMessage("该用户没有关注任何人！"),
         "this_user_does_not_have_anyone_following_them":
@@ -364,7 +383,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "tweet_font_size_label": MessageLookupByLibrary.simpleMessage("字体大小"),
         "tweets": MessageLookupByLibrary.simpleMessage("推文"),
         "tweets_and_replies": MessageLookupByLibrary.simpleMessage("推文和回复"),
-        "tweets_number": m15,
+        "tweets_number": m17,
+        "twitter_account_types_both":
+            MessageLookupByLibrary.simpleMessage("来宾和常规账户"),
+        "twitter_account_types_description":
+            MessageLookupByLibrary.simpleMessage("要使用的账户类型"),
+        "twitter_account_types_label":
+            MessageLookupByLibrary.simpleMessage("账户类型"),
+        "twitter_account_types_only_regular":
+            MessageLookupByLibrary.simpleMessage("仅常规账户"),
+        "twitter_account_types_priority_to_regular":
+            MessageLookupByLibrary.simpleMessage("优先使用常规账户"),
         "two_home_pages_required":
             MessageLookupByLibrary.simpleMessage("你需要有至少 2 个主屏页面。"),
         "unable_to_find_the_available_trend_locations":
@@ -392,7 +421,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("无法载入个人资料"),
         "unable_to_load_the_search_results":
             MessageLookupByLibrary.simpleMessage("无法载入搜索结果。"),
-        "unable_to_load_the_trends_for_widget_place_name": m16,
+        "unable_to_load_the_trends_for_widget_place_name": m18,
         "unable_to_load_the_tweet":
             MessageLookupByLibrary.simpleMessage("无法载入这条推文"),
         "unable_to_load_the_tweets":
@@ -404,19 +433,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "unable_to_run_the_database_migrations":
             MessageLookupByLibrary.simpleMessage("无法进行数据迁移"),
         "unable_to_save_the_media_twitter_returned_a_status_of_response_statusCode":
-            m17,
+            m19,
         "unable_to_stream_the_trend_location_preference":
             MessageLookupByLibrary.simpleMessage("无法传输趋势位置首选项"),
         "unknown": MessageLookupByLibrary.simpleMessage("未知"),
         "unsave": MessageLookupByLibrary.simpleMessage("取消保存"),
         "unsubscribe": MessageLookupByLibrary.simpleMessage("取消订阅"),
         "unsupported_url": MessageLookupByLibrary.simpleMessage("不受支持的 URL"),
-        "update_to_release_version_through_your_fdroid_client": m18,
+        "update_to_release_version_through_your_fdroid_client": m20,
         "updates": MessageLookupByLibrary.simpleMessage("更新"),
         "use_true_black_for_the_dark_mode_theme":
             MessageLookupByLibrary.simpleMessage("在暗色主题中使用纯黑"),
         "user_not_found": MessageLookupByLibrary.simpleMessage("未找到用户"),
         "username": MessageLookupByLibrary.simpleMessage("用户名"),
+        "username_label": MessageLookupByLibrary.simpleMessage("用户名："),
         "version": MessageLookupByLibrary.simpleMessage("版本"),
         "when_a_new_app_update_is_available":
             MessageLookupByLibrary.simpleMessage("当有更新可用时"),

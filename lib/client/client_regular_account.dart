@@ -400,30 +400,30 @@ class TwitterRegularAccount {
       );
     }
     return await showDialog<String?>(
-        barrierDismissible: false,
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text(primaryText),
-            titleTextStyle: TextStyle(fontSize: Theme.of(context).textTheme.titleMedium!.fontSize, color: Theme.of(context).textTheme.titleMedium!.color, fontWeight: FontWeight.bold),
-            content: contentWidget,
-            actionsAlignment: MainAxisAlignment.center,
-            actions: [
-              ElevatedButton(
-                child: Text(L10n.current.cancel),
-                onPressed: () {
-                  Navigator.of(context).pop(null);
-                },
-              ),
-              ElevatedButton(
-                child: Text(L10n.current.ok),
-                onPressed: () {
-                  Navigator.of(context).pop(returnedText);
-                },
-              ),
-            ],
-          );
-        }
+      barrierDismissible: false,
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(primaryText),
+          titleTextStyle: TextStyle(fontSize: Theme.of(context).textTheme.titleMedium!.fontSize, color: Theme.of(context).textTheme.titleMedium!.color, fontWeight: FontWeight.bold),
+          content: contentWidget,
+          actionsAlignment: MainAxisAlignment.center,
+          actions: [
+            ElevatedButton(
+              child: Text(L10n.current.cancel),
+              onPressed: () {
+                Navigator.of(context).pop(null);
+              },
+            ),
+            ElevatedButton(
+              child: Text(L10n.current.ok),
+              onPressed: () {
+                Navigator.of(context).pop(returnedText);
+              },
+            ),
+          ],
+        );
+      }
     );
   }
 }

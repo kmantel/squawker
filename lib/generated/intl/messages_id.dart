@@ -40,33 +40,33 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m8(date) => "Bergabung ${date}";
 
-  static String m9(num, numFormatted) =>
+  static String m10(num, numFormatted) =>
       "${Intl.plural(num, zero: 'Tidak ada pemilihan', one: 'Satu pemilihan', two: 'Dua pemilihan', few: '${numFormatted} pemilihan', many: '${numFormatted} pemilihan', other: '${numFormatted} pemilihan')}";
 
-  static String m10(errorMessage) =>
+  static String m11(errorMessage) =>
       "Mohon periksa koneksi Internet Anda.\n\n${errorMessage}";
 
-  static String m11(releaseVersion) =>
+  static String m13(releaseVersion) =>
       "Ketuk untuk mengunduh ${releaseVersion}";
 
-  static String m12(getMediaType) => "Ketuk untuk menampilkan ${getMediaType}";
+  static String m14(getMediaType) => "Ketuk untuk menampilkan ${getMediaType}";
 
-  static String m13(filePath) =>
+  static String m15(filePath) =>
       "Berkas tidak ada. Pastikan bahwa itu terletak di ${filePath}";
 
-  static String m14(thisTweetUserName, timeAgo) =>
+  static String m16(thisTweetUserName, timeAgo) =>
       "${thisTweetUserName} mencuit ulang ${timeAgo}";
 
-  static String m15(num, numFormatted) =>
+  static String m17(num, numFormatted) =>
       "${Intl.plural(num, zero: 'tidak ada cuitan', one: '1 cuitan', two: '2 cuitan', few: '${numFormatted} cuitan', many: '${numFormatted} cuitan', other: '${numFormatted} cuitan')}";
 
-  static String m16(widgetPlaceName) =>
+  static String m18(widgetPlaceName) =>
       "Tidak bisa memuat tren untuk ${widgetPlaceName}";
 
-  static String m17(responseStatusCode) =>
+  static String m19(responseStatusCode) =>
       "Tidak dapat menyimpan media. Twitter/X mengembalikan status ${responseStatusCode}";
 
-  static String m18(releaseVersion) =>
+  static String m20(releaseVersion) =>
       "Perbarui ke ${releaseVersion} lewat klien F-Droid Anda";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -237,7 +237,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "note_due_to_a_twitter_limitation_not_all_tweets_may_be_included":
             MessageLookupByLibrary.simpleMessage(
                 "Catatan: Karena batasan Twitter/X, tidak semua cuitan akan disertakan"),
-        "numberFormat_format_total_votes": m9,
+        "numberFormat_format_total_votes": m10,
         "ok": MessageLookupByLibrary.simpleMessage("Oke"),
         "only_public_subscriptions_can_be_imported":
             MessageLookupByLibrary.simpleMessage(
@@ -257,7 +257,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Cuitan yang disematkan"),
         "playback_speed":
             MessageLookupByLibrary.simpleMessage("Kecepatan pemutaran"),
-        "please_check_your_internet_connection_error_message": m10,
+        "please_check_your_internet_connection_error_message": m11,
         "please_enter_a_name":
             MessageLookupByLibrary.simpleMessage("Mohon masukkan nama"),
         "please_make_sure_the_data_you_wish_to_import_is_located_there_then_press_the_import_button_below":
@@ -326,11 +326,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "successfully_saved_the_media":
             MessageLookupByLibrary.simpleMessage("Media disimpan!"),
         "system": MessageLookupByLibrary.simpleMessage("Sistem"),
-        "tap_to_download_release_version": m11,
-        "tap_to_show_getMediaType_item_type": m12,
+        "tap_to_download_release_version": m13,
+        "tap_to_show_getMediaType_item_type": m14,
         "thanks_for_helping_fritter": MessageLookupByLibrary.simpleMessage(
             "Terima kasih telah membantu Squawker! 💖"),
-        "the_file_does_not_exist_please_ensure_it_is_located_at_file_path": m13,
+        "the_file_does_not_exist_please_ensure_it_is_located_at_file_path": m15,
         "the_github_issue":
             MessageLookupByLibrary.simpleMessage("isu GitHub (#143)"),
         "the_tweet_did_not_contain_any_text_this_is_unexpected":
@@ -349,7 +349,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Ini perlu waktu lama untuk memuat. Mohon periksa koneksi jaringan Anda!"),
         "this_tweet_is_unavailable": MessageLookupByLibrary.simpleMessage(
             "Cuitan ini tidak tersedia. Mungkin sudah dihapus."),
-        "this_tweet_user_name_retweeted": m14,
+        "this_tweet_user_name_retweeted": m16,
         "this_user_does_not_follow_anyone":
             MessageLookupByLibrary.simpleMessage(
                 "Pengguna ini tidak mengikuti siapa pun!"),
@@ -369,7 +369,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "tweets": MessageLookupByLibrary.simpleMessage("Cuitan"),
         "tweets_and_replies":
             MessageLookupByLibrary.simpleMessage("Cuitan & Balasan"),
-        "tweets_number": m15,
+        "tweets_number": m17,
         "two_home_pages_required": MessageLookupByLibrary.simpleMessage(
             "Kamu perlu setidaknya 2 halaman beranda."),
         "unable_to_find_the_available_trend_locations":
@@ -407,7 +407,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "unable_to_load_the_search_results":
             MessageLookupByLibrary.simpleMessage(
                 "Tidak bisa memuat hasil pencarian."),
-        "unable_to_load_the_trends_for_widget_place_name": m16,
+        "unable_to_load_the_trends_for_widget_place_name": m18,
         "unable_to_load_the_tweet":
             MessageLookupByLibrary.simpleMessage("Tidak bisa memuat cuitan"),
         "unable_to_load_the_tweets":
@@ -422,7 +422,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Tidak bisa menjalankan migrasi basis data"),
         "unable_to_save_the_media_twitter_returned_a_status_of_response_statusCode":
-            m17,
+            m19,
         "unable_to_stream_the_trend_location_preference":
             MessageLookupByLibrary.simpleMessage(
                 "Tidak bisa mengalirkan preferensi lokasi tren"),
@@ -431,7 +431,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "unsubscribe": MessageLookupByLibrary.simpleMessage("Batal langganan"),
         "unsupported_url":
             MessageLookupByLibrary.simpleMessage("URL tidak didukung"),
-        "update_to_release_version_through_your_fdroid_client": m18,
+        "update_to_release_version_through_your_fdroid_client": m20,
         "updates": MessageLookupByLibrary.simpleMessage("Pembaruan"),
         "use_true_black_for_the_dark_mode_theme":
             MessageLookupByLibrary.simpleMessage(
