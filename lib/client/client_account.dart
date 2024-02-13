@@ -132,6 +132,9 @@ class TwitterAccount {
       // TODO: remove eventually this call
       // temporary fix: it is possible that there are still expired tokens du to old version mismanagement
       await _deleteExpiredTokens();
+
+      // TODO: remove eventually this call
+      await _checkExpirationOfGuestTokens();
     }
 
   }
@@ -234,6 +237,31 @@ class TwitterAccount {
     for (TwitterTokenEntity tt in tokensToRemove) {
       await deleteTwitterToken(tt);
     }
+  }
+
+  // TODO: remove eventually this method
+  // Check if the guest tokens created more than 30 days ago are expired (and delete them if it is the case).
+  // Check no more than 3 tokens to avoid a long wait.
+  static Future<void> _checkExpirationOfGuestTokens() async {
+    List<TwitterTokenEntity> lst = _twitterTokenLst.where((tt) => tt.guest && DateTime.now().difference(tt.createdAt).inDays > 30).toList();
+
+    var queryParameters = {
+      'id': '1'
+    };
+    for (int i = 0; i < 3 && i < lst.length; i++) {
+      _currentTwitterToken = lst[i];
+      try {
+        Uri uri = Uri.https('api.twitter.com', '/1.1/trends/place.json', queryParameters);
+        // no init of the fetchContext so that the current token won't be selected
+        RateFetchContext fetchContext = RateFetchContext(uri.path, 1);
+        // if the oauth token is expired, the delete token is taken care automatically
+        await fetch(uri, fetchContext: fetchContext).timeout(Duration(seconds: 5));
+      }
+      catch (err, _) {
+        // nothing to do
+      }
+    }
+    _currentTwitterToken = null;
   }
 
   static Future<DateTime?> _getLastGuestTwitterTokenCreationAttempted() async {
