@@ -586,5 +586,9 @@
   "twitter_account_types_both": "Misafir ve normal",
   "@twitter_account_types_both": {},
   "twitter_account_types_only_regular": "Yalnızca normal",
-  "@twitter_account_types_only_regular": {}
+  "@twitter_account_types_only_regular": {},
+  "warning_regular_account_title": "Normal hesaplar kullanılıyor",
+  "@warning_regular_account_title": {},
+  "warning_regular_account_description": "Twitter/X, misafir hesap oluşturma özelliğini devre dışı bıraktı. Artık Ayarlar / Hesap bölümünde normal hesap(lar) oluşturmalısınız. Burada açıklandığı gibi anonim bir normal hesap oluşturmak kolaydır:",
+  "@warning_regular_account_description": {}
 }
