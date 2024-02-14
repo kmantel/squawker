@@ -94,13 +94,13 @@ class _SettingsAccountFragmentState extends State<SettingsAccountFragment> {
               shrinkWrap: true,
               itemBuilder: (BuildContext context, int index) {
                 List<String> infoLst = [];
-                if (_regularAccountsTokens[index].profile!.name != null) {
+                if (_regularAccountsTokens[index].profile!.name?.isNotEmpty ?? false) {
                   infoLst.add(_regularAccountsTokens[index].profile!.name!);
                 }
-                if (_regularAccountsTokens[index].profile!.email != null) {
+                if (_regularAccountsTokens[index].profile!.email?.isNotEmpty ?? false) {
                   infoLst.add(_regularAccountsTokens[index].profile!.email!);
                 }
-                if (_regularAccountsTokens[index].profile!.phone != null) {
+                if (_regularAccountsTokens[index].profile!.phone?.isNotEmpty ?? false) {
                   infoLst.add(_regularAccountsTokens[index].profile!.phone!);
                 }
                 return SwipeActionCell(
@@ -119,7 +119,7 @@ class _SettingsAccountFragmentState extends State<SettingsAccountFragment> {
                   ],
                   child: Card(
                     child: ListTile(
-                      leading:  const Icon(Icons.person),
+                      leading: const Icon(Icons.person),
                       title: Text(_regularAccountsTokens[index].screenName),
                       subtitle: infoLst.isEmpty ? null : Text(infoLst.join(', ')),
                     )

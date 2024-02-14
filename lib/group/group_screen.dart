@@ -1,7 +1,7 @@
-import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:provider/provider.dart';
+import 'package:quiver/iterables.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:squawker/database/entities.dart';
 import 'package:squawker/generated/l10n.dart';
@@ -11,7 +11,6 @@ import 'package:squawker/group/_settings.dart';
 import 'package:squawker/ui/errors.dart';
 import 'package:squawker/utils/data_service.dart';
 import 'package:squawker/utils/iterables.dart';
-import 'package:quiver/iterables.dart';
 
 class GroupScreenArguments {
   final String id;
@@ -43,6 +42,47 @@ class SubscriptionGroupScreenContent extends StatelessWidget {
 
   SubscriptionGroupScreenContent({Key? key, required this.id}) : super(key: key);
 
+  String _buildSearchQuery(List<Subscription> users, bool includeReplies, bool includeRetweets) {
+    StringBuffer query = StringBuffer();
+    bool firstDone = false;
+
+    if (includeReplies) {
+      query.write('-filter:replies AND ');
+    }
+    if (!includeRetweets) {
+      query.write('-filter:retweets AND ');
+    } else {
+      query.write('include:nativeretweets AND ');
+    }
+    while (users.isNotEmpty) {
+      Subscription user = users[0];
+      String queryToAdd;
+
+      if (user is UserSubscription) {
+        queryToAdd = firstDone ? ' OR from:${user.screenName}' : 'from:${user.screenName}';
+      } else { // user is SearchSubscription
+        queryToAdd = firstDone ? ' OR ${user.id}' : user.id;
+      }
+      if (query.length + queryToAdd.length > 512) {
+        break;
+      }
+      query.write(queryToAdd);
+      users.removeAt(0);
+      firstDone = true;
+    }
+
+    return query.toString();
+  }
+
+  List<String> _buildSearchQueries(List<Subscription> users, bool includeReplies, bool includeRetweets) {
+    List<String> searchQueryLst = [];
+    while (users.isNotEmpty) {
+      String searchQuery = _buildSearchQuery(users, includeReplies, includeRetweets);
+      searchQueryLst.add(searchQuery);
+    }
+    return searchQueryLst;
+  }
+
   @override
   Widget build(BuildContext context) {
     return ScopedBuilder<GroupModel, SubscriptionGroupGet>.transition(
@@ -60,9 +100,7 @@ class SubscriptionGroupScreenContent extends StatelessWidget {
         var filteredUsers = group.id == '-1' ? group.subscriptions.where((elm) => elm.inFeed) : group.subscriptions;
         var users = filteredUsers.sorted((a, b) => a.createdAt.compareTo(b.createdAt)).toList();
 
-        var chunks = partition(users, 16)
-            .map((e) => SubscriptionGroupFeedChunk(e, group.includeReplies, group.includeRetweets))
-            .toList();
+        List<String> searchQueries = _buildSearchQueries(users, group.includeReplies, group.includeRetweets);
 
         GlobalKey<SubscriptionGroupFeedState>? sgfKey = DataService().map['feed_key_${group.id.replaceAll('-', '_')}'];
         if (sgfKey == null) {
@@ -73,27 +111,13 @@ class SubscriptionGroupScreenContent extends StatelessWidget {
         return SubscriptionGroupFeed(
           key: sgfKey,
           group: group,
-          chunks: chunks,
+          searchQueries: searchQueries,
           includeReplies: group.includeReplies,
           includeRetweets: group.includeRetweets,
           scrollController: scrollController,
         );
       },
     );
-  }
-}
-
-class SubscriptionGroupFeedChunk {
-  final List<Subscription> users;
-  final bool includeReplies;
-  final bool includeRetweets;
-
-  SubscriptionGroupFeedChunk(this.users, this.includeReplies, this.includeRetweets);
-
-  String get hash {
-    var toHash = '${users.map((e) => e.id).join(', ')}$includeReplies$includeRetweets';
-
-    return sha1.convert(toHash.codeUnits).toString();
   }
 }
 

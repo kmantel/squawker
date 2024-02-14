@@ -13,12 +13,12 @@ import 'package:squawker/constants.dart';
 import 'package:squawker/database/entities.dart';
 import 'package:squawker/database/repository.dart';
 import 'package:squawker/generated/l10n.dart';
-import 'package:squawker/group/group_screen.dart';
 import 'package:squawker/profile/profile.dart';
 import 'package:squawker/tweet/_video.dart';
 import 'package:squawker/tweet/conversation.dart';
 import 'package:squawker/tweet/tweet.dart';
 import 'package:squawker/ui/errors.dart';
+import 'package:squawker/utils/crypto_util.dart';
 import 'package:squawker/utils/iterables.dart';
 import 'package:pref/pref.dart';
 import 'package:provider/provider.dart';
@@ -26,7 +26,7 @@ import 'package:synchronized/synchronized.dart';
 
 class SubscriptionGroupFeed extends StatefulWidget {
   final SubscriptionGroupGet group;
-  final List<SubscriptionGroupFeedChunk> chunks;
+  final List<String> searchQueries;
   final bool includeReplies;
   final bool includeRetweets;
   final ItemScrollController? scrollController;
@@ -34,7 +34,7 @@ class SubscriptionGroupFeed extends StatefulWidget {
   const SubscriptionGroupFeed(
       {Key? key,
       required this.group,
-      required this.chunks,
+      required this.searchQueries,
       required this.includeReplies,
       required this.includeRetweets,
       required this.scrollController})
@@ -148,47 +148,6 @@ class SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widge
     }
   }
 
-  String _buildSearchQuery(List<Subscription> users) {
-    var query = '';
-    if (!widget.includeReplies) {
-      query += '-filter:replies AND ';
-    }
-
-    if (!widget.includeRetweets) {
-      query += '-filter:retweets AND ';
-    } else {
-      query += 'include:nativeretweets AND ';
-    }
-
-    var remainingLength = 512 - query.length;
-
-    int cnt = 0;
-    for (var user in users) {
-      var queryToAdd = '';
-      if (user is UserSubscription) {
-        queryToAdd = 'from:${user.screenName}';
-      } else if (user is SearchSubscription) {
-        queryToAdd = '"${user.id}"';
-      }
-
-      // If we can add this user to the query and still be less than ~512 characters, do so
-      if (query.length + queryToAdd.length < remainingLength) {
-        if (cnt > 0) {
-          query += ' OR ';
-        }
-
-        query += queryToAdd;
-      } else {
-        // Otherwise, add the search future and start a new one
-        assert(false, 'should never reach here');
-        query = queryToAdd;
-      }
-      cnt++;
-    }
-
-    return query;
-  }
-
   /// Search for our next "page" of tweets.
   ///
   /// Here, each page is actually a set of mappings, where the ID of each set is the hash of all the user IDs in that
@@ -218,10 +177,10 @@ class SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widge
       }
 
       _errorResponse = null;
-      RateFetchContext fetchContext = RateFetchContext(prefs.get(optionEnhancedFeeds) ? Twitter.graphqlSearchTimelineUriPath : Twitter.searchTweetsUriPath, widget.chunks.length);
+      RateFetchContext fetchContext = RateFetchContext(prefs.get(optionEnhancedFeeds) ? Twitter.graphqlSearchTimelineUriPath : Twitter.searchTweetsUriPath, widget.searchQueries.length);
       await fetchContext.init();
-      for (var chunk in widget.chunks) {
-        var hash = chunk.hash;
+      for (var searchQuery in widget.searchQueries) {
+        String hash = await sha1Hash(searchQuery);
 
         futures.add(Future(() async {
           var tweets = <TweetChain>[];
@@ -263,17 +222,16 @@ class SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widge
 
           if (requestToDo) {
             // Perform our search for the next page of results for this chunk, and add those tweets to our collection
-            var query = _buildSearchQuery(chunk.users);
             TweetStatus result;
             try {
               if (prefs.get(optionEnhancedFeeds)) {
-                result = await Twitter.searchTweetsGraphql(query, widget.includeReplies, limit: 100,
+                result = await Twitter.searchTweetsGraphql(searchQuery, widget.includeReplies, limit: 100,
                     cursor: searchCursor,
                     leanerFeeds: prefs.get(optionLeanerFeeds),
                     fetchContext: fetchContext);
               }
               else {
-                result = await Twitter.searchTweets(query, widget.includeReplies, limit: 100,
+                result = await Twitter.searchTweets(searchQuery, widget.includeReplies, limit: 100,
                     cursor: searchCursor,
                     cursorType: cursorType,
                     leanerFeeds: prefs.get(optionLeanerFeeds),
@@ -442,7 +400,7 @@ class SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widge
       );
     }
 
-    if (widget.chunks.isEmpty) {
+    if (widget.searchQueries.isEmpty) {
       return Scaffold(
         body: Center(
           child: Text(L10n.of(context).this_group_contains_no_subscriptions),

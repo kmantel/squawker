@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:math';
 import 'package:cryptography/cryptography.dart';
+import 'package:hex/hex.dart';
 
 const String oauthConsumerKey = '3nVuSoBZnx6U4vzUxf5w';
 const String oauthConsumerSecret = 'Bcs59EFbbsdF6Sl9Ng71smgStWEGwXXKSjYvPVt7qys';
@@ -50,3 +51,8 @@ Future<String> aesGcm256Decrypt(String key, String encryptedText) async {
   return utf8.decode(decryptedText);
 }
 
+Future<String> sha1Hash(String text) async {
+  final algorithm = Sha1();
+  final hash = await algorithm.hash(text.codeUnits);
+  return HEX.encode(hash.bytes);
+}
