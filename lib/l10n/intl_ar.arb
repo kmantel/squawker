@@ -582,5 +582,9 @@
   "twitter_account_types_both": "ضيف وعادي",
   "@twitter_account_types_both": {},
   "twitter_account_types_only_regular": "عادي فقط",
-  "@twitter_account_types_only_regular": {}
+  "@twitter_account_types_only_regular": {},
+  "warning_regular_account_title": "استخدام الحسابات العادية",
+  "@warning_regular_account_title": {},
+  "warning_regular_account_description": "قام Twitter/X بتعطيل القدرة على إنشاء حسابات ضيوف. يجب عليك الآن تعيين حساب (حسابات) عادية في الإعدادات / الحساب. من السهل إنشاء حساب عادي مجهول كما هو موضح هنا:",
+  "@warning_regular_account_description": {}
 }
