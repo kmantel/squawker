@@ -586,5 +586,9 @@
   "twitter_account_types_both": "来宾和常规账户",
   "@twitter_account_types_both": {},
   "twitter_account_types_only_regular": "仅常规账户",
-  "@twitter_account_types_only_regular": {}
+  "@twitter_account_types_only_regular": {},
+  "warning_regular_account_title": "使用常规账户",
+  "@warning_regular_account_title": {},
+  "warning_regular_account_description": "Twitter/X 已经禁止了创建来宾账户的能力。现在起你必须在设置/账户”中设置常规账户。创建匿名常规账户并不难，步骤见：",
+  "@warning_regular_account_description": {}
 }
