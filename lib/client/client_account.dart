@@ -58,7 +58,13 @@ class TwitterAccount {
         email: twitterProfilesDbData[i]['email'] as String?,
         phone: twitterProfilesDbData[i]['phone'] as String?
       );
-      _twitterProfileLst.add(tpe);
+      if (tpe.username.isNotEmpty && tpe.password.isNotEmpty) {
+        _twitterProfileLst.add(tpe);
+      }
+      else {
+        // this should not happens, but you nerver know...
+        // maybe there was some manipulation importing data?
+      }
     }
     var twitterTokensDbData = await repository.query(tableTwitterToken);
     _twitterTokenLst.clear();
@@ -71,13 +77,28 @@ class TwitterAccount {
         oauthTokenSecret: twitterTokensDbData[i]['oauth_token_secret'] as String,
         createdAt: DateTime.parse(twitterTokensDbData[i]['created_at'] as String)
       );
-      if (!tte.guest) {
-        TwitterProfileEntity? twitterProfile = _twitterProfileLst.firstWhereOrNull((e) => e.username == tte.screenName);
-        if (twitterProfile != null) {
-          tte.profile = twitterProfile;
+
+      if (tte.oauthToken.isNotEmpty && tte.oauthTokenSecret.isNotEmpty) {
+        if (!tte.guest) {
+          TwitterProfileEntity? twitterProfile = _twitterProfileLst.firstWhereOrNull((e) => e.username == tte.screenName);
+          if (twitterProfile != null) {
+            tte.profile = twitterProfile;
+            _twitterTokenLst.add(tte);
+          }
+          else {
+            // this should not happens, but you nerver know...
+            // maybe there was some manipulation importing data?
+          }
+        }
+        else {
+          _twitterTokenLst.add(tte);
         }
       }
-      _twitterTokenLst.add(tte);
+      else {
+        // this should not happens, but you nerver know...
+        // maybe there was some manipulation importing data?
+      }
+
     }
     if (_twitterTokenLst.isNotEmpty) {
       sortAccounts();

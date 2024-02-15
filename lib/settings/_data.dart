@@ -38,10 +38,13 @@ class SettingsData {
     List<TwitterTokenEntity>? twtTokens;
     // guestAccounts from previous versions
     if (json['guestAccounts'] != null) {
-      twtTokens = List.from(json['guestAccounts']).map((e) => TwitterTokenEntity.fromMap(e)).toList();
+      // make sure to filter out the badly manipulated files
+      twtTokens = List.from(json['guestAccounts']).map((e) => TwitterTokenEntity.fromMap(e)).where((e) => e.guest && e.profile == null).toList();
     }
     if (json['twitterTokens'] != null) {
-      twtTokens ??= await Future.wait(List.from(json['twitterTokens']).map((e) async => TwitterTokenEntity.fromMapSecured(e)).toList());
+      // make sure to filter out the badly manipulated files
+      twtTokens ??= (await Future.wait(List.from(json['twitterTokens']).map((e) async => TwitterTokenEntity.fromMapSecured(e))))
+        .where((e) => (e.guest && e.profile == null) || (!e.guest && e.profile != null && e.profile!.username.isNotEmpty && e.profile!.password.isNotEmpty)).toList();
     }
     return SettingsData(
       settings: json['settings'],
