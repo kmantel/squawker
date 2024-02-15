@@ -15,6 +15,7 @@ import 'package:squawker/utils/data_service.dart';
 import 'package:logging/logging.dart';
 import 'package:pref/pref.dart';
 import 'package:provider/provider.dart';
+import 'package:squawker/utils/iterables.dart';
 
 class SettingsData {
   final Map<String, dynamic>? settings;
@@ -138,6 +139,33 @@ class SettingsDataFragment extends StatelessWidget {
     }
 
     await importModel.importData(dataToImport);
+
+    if ((twitterTokens?.isNotEmpty ?? false) && twitterTokens!.where((e) => !e.guest).isNotEmpty) {
+      // after the import there is a possibility of duplicates of oauth tokens with the same profile
+      // only keep the most recent one imported
+      var database = await Repository.writable();
+      var screenNamesDbData = await database.rawQuery('SELECT t.screen_name as screen_name, COUNT(t.screen_name) as count FROM $tableTwitterToken t INNER JOIN $tableTwitterProfile p ON t.screen_name = p.username GROUP BY t.screen_name HAVING COUNT(t.screen_name) > 1');
+      for (int i = 0; i < screenNamesDbData.length; i++) {
+        String screenName = screenNamesDbData[i]['screen_name'] as String;
+        List<TwitterTokenEntity> tokenLst = twitterTokens.where((e) => e.screenName == screenName).toList();
+        var ttLstDbData = await database.query(tableTwitterToken, where: 'screen_name = ?', whereArgs: [screenName], orderBy: 'created_at DESC');
+        List<String> oauthTokenLst = ttLstDbData.map((e) => e['oauth_token'] as String).toList();
+        // remove from the list the one that will be kept in db
+        bool removed = false;
+        for (int j = 0; j < oauthTokenLst.length; j++) {
+          if (tokenLst.firstWhereOrNull((e) => e.oauthToken == oauthTokenLst[j]) != null) {
+            removed = true;
+            oauthTokenLst.removeAt(j);
+            break;
+          }
+        }
+        if (!removed) {
+          oauthTokenLst.removeAt(0);
+        }
+        await database.delete(tableTwitterToken, where: 'oauth_token IN (${List.filled(oauthTokenLst.length, '?').join(',')})', whereArgs: oauthTokenLst);
+      }
+    }
+
     if (twitterTokens?.isNotEmpty ?? false) {
       await TwitterAccount.loadAllTwitterTokensAndRateLimits();
     }
