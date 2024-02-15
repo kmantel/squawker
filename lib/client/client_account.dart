@@ -402,17 +402,9 @@ class TwitterAccount {
     List<TwitterTokenEntity> filteredTwitterTokenLst = currentAccountTypes == twitterAccountTypesOnlyRegular ?
       _twitterTokenLst.where((e) => !e.guest).toList() :
       _twitterTokenLst;
-    final prefs = await SharedPreferences.getInstance();
-    String? lastTwitterOauthToken = prefs.getString('lastTwitterOauthToken');
-    int startIndex = lastTwitterOauthToken == null ? 0 : filteredTwitterTokenLst.indexWhere((e) => e.oauthToken == lastTwitterOauthToken);
-    if (startIndex == -1) {
-      startIndex = 0;
-    }
     int minRateLimitReset = double.maxFinite.round();
     bool minResetSet = false;
-    int idx = startIndex;
-    int cnt = 0;
-    while (cnt < filteredTwitterTokenLst.length) {
+    for (int idx = 0; idx < filteredTwitterTokenLst.length; idx++) {
       TwitterTokenEntity twitterToken = filteredTwitterTokenLst[idx];
       String oauthToken = twitterToken.oauthToken;
       int? rateLimitRemaining = _rateLimits[oauthToken]![0][uriPath];
@@ -422,16 +414,11 @@ class TwitterAccount {
         minResetSet = true;
       }
       if (rateLimitRemaining == null || (rateLimitRemaining == -1 && DateTime.now().isAfter(DateTime.fromMillisecondsSinceEpoch(rateLimitReset!))) || rateLimitRemaining >= total) {
-        prefs.setString('lastTwitterOauthToken', twitterToken.oauthToken);
         log.info('*** OAuth token chosen, created ${DateFormat('yyyy-MM-dd HH:mm:ss').format(twitterToken.createdAt)}');
         return {
           'twitterToken': twitterToken,
           'minRateLimitReset': null
         };
-      }
-      idx++;
-      if (idx == filteredTwitterTokenLst.length) {
-        idx = 0;
       }
     }
     if (minResetSet) {
