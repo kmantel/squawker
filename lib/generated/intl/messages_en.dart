@@ -87,7 +87,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Activate non-confirmation bias mode"),
         "add_account": MessageLookupByLibrary.simpleMessage("Add an account"),
         "add_account_title":
-            MessageLookupByLibrary.simpleMessage("Add Regular Account"),
+            MessageLookupByLibrary.simpleMessage("Add an account"),
         "add_subscriptions":
             MessageLookupByLibrary.simpleMessage("Add subscriptions"),
         "add_to_feed": MessageLookupByLibrary.simpleMessage("Add to feed"),
@@ -171,6 +171,8 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Download videos with best quality"),
         "downloading_media":
             MessageLookupByLibrary.simpleMessage("Downloading media..."),
+        "edit_account_title":
+            MessageLookupByLibrary.simpleMessage("Modify an account"),
         "email_label": MessageLookupByLibrary.simpleMessage("Email:"),
         "enable_": MessageLookupByLibrary.simpleMessage("Enable ?"),
         "ended_timeago_format_endsAt_allowFromNow_true": m3,

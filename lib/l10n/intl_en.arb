@@ -529,7 +529,7 @@
   "@export_twitter_tokens": {},
   "regular_accounts": "Regular accounts ({nbrRegularAccounts}):",
   "@regular_accounts": {},
-  "add_account_title": "Add Regular Account",
+  "add_account_title": "Add an account",
   "@add_account_title": {},
   "mandatory_label": "Mandatory fields:",
   "@mandatory_label": {},
@@ -560,5 +560,7 @@
   "warning_regular_account_title": "Using regular accounts",
   "@warning_regular_account_title": {},
   "warning_regular_account_description": "Twitter/X has disabled the ability to create guest accounts. You must now set regular account(s) in Settings / Account. It's easy to create an anonymous regular account as explained here:",
-  "@warning_regular_account_description": {}
+  "@warning_regular_account_description": {},
+  "edit_account_title": "Modify an account",
+  "@edit_account_title": {}
 }

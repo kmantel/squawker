@@ -590,5 +590,7 @@
   "warning_regular_account_title": "Utiliser des comptes réguliers",
   "@warning_regular_account_title": {},
   "warning_regular_account_description": "Twitter/X a désactivé la possibilité de créer des comptes invités. Vous devez maintenant configurer des comptes standards dans Paramètres / Compte. Il est facile de créer un compte standard anonyme, tel qu'expliqué ici :",
-  "@warning_regular_account_description": {}
+  "@warning_regular_account_description": {},
+  "edit_account_title": "Modifier un compte",
+  "@edit_account_title": {}
 }

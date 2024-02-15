@@ -291,8 +291,8 @@ class TwitterTokenEntityWrapperDb with ToMappable {
 class TwitterProfileEntity with ToMappable {
 
   final String username;
-  final String password;
-  final DateTime createdAt;
+  String password;
+  DateTime createdAt;
   String? name;
   String? email;
   String? phone;

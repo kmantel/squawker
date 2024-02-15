@@ -122,6 +122,26 @@ class _SettingsAccountFragmentState extends State<SettingsAccountFragment> {
                       leading: const Icon(Icons.person),
                       title: Text(_regularAccountsTokens[index].screenName),
                       subtitle: infoLst.isEmpty ? null : Text(infoLst.join(', ')),
+                      trailing: IconButton(
+                        icon: const Icon(Icons.edit),
+                        onPressed: () async {
+                          var result = await showDialog<bool>(
+                            barrierDismissible: false,
+                            context: context,
+                            builder: (BuildContext context) {
+                              return Dialog(
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                                child: AddAccountDialog(accountToEdit: _regularAccountsTokens[index].screenName),
+                              );
+                            }
+                          );
+                          if (result != null && result) {
+                            setState(() {
+                              _regularAccountsTokens = TwitterAccount.getRegularAccountsTokens();
+                            });
+                          }
+                        },
+                      ),
                     )
                   ),
                 );
@@ -137,8 +157,9 @@ class _SettingsAccountFragmentState extends State<SettingsAccountFragment> {
 class AddAccountDialog extends StatefulWidget {
   @override
   State<AddAccountDialog> createState() => _AddAccountDialogState();
+  String? accountToEdit;
 
-  const AddAccountDialog({Key? key}): super(key: key);
+  AddAccountDialog({Key? key, this.accountToEdit}): super(key: key);
 }
 
 class _AddAccountDialogState extends State<AddAccountDialog> {
@@ -150,6 +171,37 @@ class _AddAccountDialogState extends State<AddAccountDialog> {
   String? _name;
   String? _email;
   String? _phone;
+  TextEditingController? _usernameController;
+  TextEditingController? _passwordController;
+  TextEditingController? _nameController;
+  TextEditingController? _emailController;
+  TextEditingController? _phoneController;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.accountToEdit != null) {
+      _username = widget.accountToEdit!;
+      _usernameController = TextEditingController(text: widget.accountToEdit!);
+      TwitterProfileEntity? tpe = TwitterAccount.getProfile(widget.accountToEdit!);
+      if (tpe != null) {
+        _password = tpe.password;
+        _passwordController = TextEditingController(text: tpe.password);
+        if (tpe.name?.isNotEmpty ?? false) {
+          _name = tpe.name;
+          _nameController = TextEditingController(text: tpe.name);
+        }
+        if (tpe.email?.isNotEmpty ?? false) {
+          _email = tpe.email;
+          _emailController = TextEditingController(text: tpe.email);
+        }
+        if (tpe.phone?.isNotEmpty ?? false) {
+          _phone = tpe.phone;
+          _phoneController = TextEditingController(text: tpe.phone);
+        }
+      }
+    }
+  }
 
   void _checkEnabledSave() {
     if (_username.isEmpty || _password.isEmpty) {
@@ -181,7 +233,7 @@ class _AddAccountDialogState extends State<AddAccountDialog> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Center(
-                child: Text(L10n.current.add_account_title, style: TextStyle(fontSize: 20))
+                child: Text(widget.accountToEdit != null ? L10n.current.edit_account_title : L10n.current.add_account_title, style: TextStyle(fontSize: 20))
             ),
             SizedBox(height: 60),
             Text(L10n.current.mandatory_label),
@@ -195,6 +247,8 @@ class _AddAccountDialogState extends State<AddAccountDialog> {
                 ),
                 Expanded(
                   child: TextField(
+                    readOnly: widget.accountToEdit != null ? true : false,
+                    controller: _usernameController,
                     decoration: InputDecoration(contentPadding: EdgeInsets.all(5)),
                     onChanged: (text) {
                       _username = text;
@@ -214,6 +268,7 @@ class _AddAccountDialogState extends State<AddAccountDialog> {
                 ),
                 Expanded(
                   child: TextField(
+                    controller: _passwordController,
                     obscureText: _passwordObscured,
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.all(5),
@@ -250,9 +305,11 @@ class _AddAccountDialogState extends State<AddAccountDialog> {
                 ),
                 Expanded(
                   child: TextField(
+                    controller: _nameController,
                     decoration: InputDecoration(contentPadding: EdgeInsets.all(5)),
                     onChanged: (text) {
                       _name = text;
+                      _checkEnabledSave();
                     },
                   ),
                 ),
@@ -268,9 +325,11 @@ class _AddAccountDialogState extends State<AddAccountDialog> {
                 ),
                 Expanded(
                   child: TextField(
+                    controller: _emailController,
                     decoration: InputDecoration(contentPadding: EdgeInsets.all(5)),
                     onChanged: (text) {
                       _email = text;
+                      _checkEnabledSave();
                     },
                   ),
                 ),
@@ -286,9 +345,11 @@ class _AddAccountDialogState extends State<AddAccountDialog> {
                 ),
                 Expanded(
                   child: TextField(
+                    controller: _phoneController,
                     decoration: InputDecoration(contentPadding: EdgeInsets.all(5)),
                     onChanged: (text) {
                       _phone = text;
+                      _checkEnabledSave();
                     },
                   ),
                 ),
@@ -310,7 +371,12 @@ class _AddAccountDialogState extends State<AddAccountDialog> {
                       return;
                     }
                     try {
-                      await TwitterAccount.createRegularTwitterToken(_username, _password, _name, _email, _phone);
+                      if (widget.accountToEdit != null) {
+                        await TwitterAccount.updateProfile(widget.accountToEdit!, _password, _name, _email, _phone);
+                      }
+                      else {
+                        await TwitterAccount.createRegularTwitterToken(_username, _password, _name, _email, _phone);
+                      }
                       Navigator.pop(context, true);
                     }
                     catch (e, _) {

@@ -2736,10 +2736,10 @@ class L10n {
     );
   }
 
-  /// `Add Regular Account`
+  /// `Add an account`
   String get add_account_title {
     return Intl.message(
-      'Add Regular Account',
+      'Add an account',
       name: 'add_account_title',
       desc: '',
       args: [],
@@ -2891,6 +2891,16 @@ class L10n {
     return Intl.message(
       'Twitter/X has disabled the ability to create guest accounts. You must now set regular account(s) in Settings / Account. It\'s easy to create an anonymous regular account as explained here:',
       name: 'warning_regular_account_description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Modify an account`
+  String get edit_account_title {
+    return Intl.message(
+      'Modify an account',
+      name: 'edit_account_title',
       desc: '',
       args: [],
     );

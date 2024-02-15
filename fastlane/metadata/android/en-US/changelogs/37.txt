@@ -1,0 +1,4 @@
+* Add a message at startup for users that have not yet setup a regular account.
+* Improve the management of the last active guest accounts to check for expiration.
+* Improve the requests for feed/groups allowing more subscriptions to be used. Also add a circular progress indicator during the loading.
+* Implement feature #205 Ability to modify the regular account information.

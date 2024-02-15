@@ -181,6 +181,8 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Télécharger les vidéos avec la plus grande résolution"),
         "downloading_media":
             MessageLookupByLibrary.simpleMessage("Téléchargement des médias…"),
+        "edit_account_title":
+            MessageLookupByLibrary.simpleMessage("Modifier un compte"),
         "email_label": MessageLookupByLibrary.simpleMessage("Courriel :"),
         "enable_": MessageLookupByLibrary.simpleMessage("Activer ?"),
         "ended_timeago_format_endsAt_allowFromNow_true": m3,

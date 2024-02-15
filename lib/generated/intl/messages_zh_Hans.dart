@@ -448,6 +448,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "username": MessageLookupByLibrary.simpleMessage("用户名"),
         "username_label": MessageLookupByLibrary.simpleMessage("用户名："),
         "version": MessageLookupByLibrary.simpleMessage("版本"),
+        "warning_regular_account_description":
+            MessageLookupByLibrary.simpleMessage(
+                "Twitter/X 已经禁止了创建来宾账户的能力。现在起你必须在设置/账户”中设置常规账户。创建匿名常规账户并不难，步骤见："),
+        "warning_regular_account_title":
+            MessageLookupByLibrary.simpleMessage("使用常规账户"),
         "when_a_new_app_update_is_available":
             MessageLookupByLibrary.simpleMessage("当有更新可用时"),
         "whether_errors_should_be_reported_to_":

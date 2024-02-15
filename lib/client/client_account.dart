@@ -271,8 +271,12 @@ class TwitterAccount {
   }
 
   static Future<void> _announcementRegularAccount() async  {
-    List<TwitterTokenEntity> lst = _twitterTokenLst.where((tt) => !tt.guest || DateTime.now().difference(tt.createdAt).inDays <= 30).toList();
-    if (lst.isNotEmpty) {
+    List<TwitterTokenEntity> regularLst = _twitterTokenLst.where((tt) => !tt.guest).toList();
+    if (regularLst.isNotEmpty) {
+      return;
+    }
+    List<TwitterTokenEntity> guestLst = _twitterTokenLst.where((tt) => tt.guest && DateTime.now().difference(tt.createdAt).inDays <= 30).toList();
+    if (guestLst.length > 2) {
       return;
     }
 
@@ -479,6 +483,24 @@ class TwitterAccount {
     await repository.insert(tableTwitterProfile, tpe.toMap());
 
     return tpe;
+  }
+
+  static TwitterProfileEntity? getProfile(String username) {
+    return _twitterProfileLst.firstWhereOrNull((tp) => tp.username == username);
+  }
+
+  static Future<void> updateProfile(String username, String password, String? name, String? email, String? phone) async {
+    TwitterProfileEntity? tpe = getProfile(username);
+    if (tpe == null) {
+      return;
+    }
+    tpe.password = password;
+    tpe.name = name;
+    tpe.email = email;
+    tpe.phone = phone;
+
+    var repository = await Repository.writable();
+    await repository.update(tableTwitterProfile, {'password': password, 'name': name, 'email': email, 'phone': phone}, where: 'username = ?', whereArgs: [username]);
   }
 
   static Future<TwitterTokenEntity> createRegularTwitterToken(String username, String password, String? name, String? email, String? phone) async {
