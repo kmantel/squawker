@@ -557,7 +557,7 @@
   "@add_account": {},
   "export_twitter_tokens": "导出 Twitter/X 令牌？",
   "@export_twitter_tokens": {},
-  "add_account_title": "添加常规账户",
+  "add_account_title": "添加账户",
   "@add_account_title": {},
   "mandatory_label": "强制字段：",
   "@mandatory_label": {},
@@ -590,5 +590,7 @@
   "warning_regular_account_title": "使用常规账户",
   "@warning_regular_account_title": {},
   "warning_regular_account_description": "Twitter/X 已经禁止了创建来宾账户的能力。现在起你必须在设置/账户”中设置常规账户。创建匿名常规账户并不难，步骤见：",
-  "@warning_regular_account_description": {}
+  "@warning_regular_account_description": {},
+  "edit_account_title": "修改账户",
+  "@edit_account_title": {}
 }
