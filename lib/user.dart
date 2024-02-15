@@ -11,6 +11,9 @@ import 'package:squawker/profile/profile.dart';
 import 'package:squawker/subscriptions/users_model.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:squawker/utils/data_service.dart';
+
+import 'group/_feed.dart';
 
 Widget _createUserAvatar(String? uri, double size) {
   if (uri == null) {
@@ -189,9 +192,17 @@ class FollowButton extends StatelessWidget {
                         ));
                 break;
               case 'toggle_subscribe':
+                GlobalKey<SubscriptionGroupFeedState>? sgfKey = DataService().map['feed_key__1'];
+                if (sgfKey != null) {
+                  await sgfKey.currentState!.updateOffset();
+                }
                 await model.toggleSubscribe(user, followed);
                 break;
               case 'toggle_feed':
+                GlobalKey<SubscriptionGroupFeedState>? sgfKey = DataService().map['feed_key__1'];
+                if (sgfKey != null) {
+                  await sgfKey.currentState!.updateOffset();
+                }
                 await model.toggleFeed(user, inFeed);
                 break;
             }

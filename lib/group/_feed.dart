@@ -63,6 +63,7 @@ class SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widge
   int? _positionShowing;
   OverlayEntry? _overlayEntry;
   final Map<String,int> _tweetIdxDic = {};
+  bool _isLoading = true;
 
   @override
   void initState() {
@@ -79,7 +80,7 @@ class SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widge
 
   @override
   void dispose() {
-    _updateOffset();
+    updateOffset();
     WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
@@ -87,13 +88,13 @@ class SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widge
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.paused || state == AppLifecycleState.detached) {
-      _updateOffset();
+      updateOffset();
     }
   }
 
   @override
   Future<AppExitResponse> didRequestAppExit() async {
-    _updateOffset();
+    updateOffset();
     return super.didRequestAppExit();
   }
 
@@ -107,7 +108,7 @@ class SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widge
     }
   }
 
-  Future<void> _updateOffset() async {
+  Future<void> updateOffset() async {
     try {
       if (_keepFeedOffset && _visiblePositionState.initialized && _visiblePositionState.visibleChainId != null) {
         if (kDebugMode) {
@@ -135,9 +136,15 @@ class SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widge
   }
 
   Future<void> reloadData() async {
-    await _updateOffset();
+    await updateOffset();
     _resetData();
     _checkFetchData();
+  }
+
+  void setLoading() {
+    setState(() {
+      _isLoading = true;
+    });
   }
 
   @override
@@ -149,103 +156,111 @@ class SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widge
     }
   }
 
-  Future<List<TweetChain>> _listParallelTweets(List<String> searchQueries) async {
-    var repository = await Repository.writable();
+  Future<List<TweetChain>> _listSearchQueryTweets(RateFetchContext fetchContext, String searchQuery) async {
     BasePrefService prefs = PrefService.of(context);
-    List<Future<List<TweetChain>>> futures = [];
-    RateFetchContext fetchContext = RateFetchContext(prefs.get(optionEnhancedFeeds) ? Twitter.graphqlSearchTimelineUriPath : Twitter.searchTweetsUriPath, searchQueries.length);
-    await fetchContext.init();
-    for (int i = 0; i < searchQueries.length; i++) {
+    var repository = await Repository.writable();
+    List<TweetChain> tweets = <TweetChain>[];
+    String hash = await sha1Hash(searchQuery);
+    String? searchCursor;
+    String? cursorType;
+    bool requestToDo = false;
 
-      futures.add(Future(() async {
-        List<TweetChain> tweets = <TweetChain>[];
-        String searchQuery = searchQueries[i];
-        String hash = await sha1Hash(searchQuery);
-        String? searchCursor;
-        String? cursorType;
-        bool requestToDo = false;
+    var storedChunks = await repository.query(tableFeedGroupChunk,
+        where: 'group_id = ? AND hash = ?', whereArgs: [widget.group.id, hash], orderBy: 'created_at DESC');
+    if (_data.isEmpty) {
+      requestToDo = true;
+      // Make sure we load any existing stored tweets from the chunk
+      var storedChunksTweets = storedChunks
+          .map((e) => jsonDecode(e['response'] as String))
+          .map((e) => List.from(e))
+          .expand((e) => e.map((c) => TweetChain.fromJson(c)))
+          .toList();
 
-        var storedChunks = await repository.query(tableFeedGroupChunk,
-          where: 'group_id = ? AND hash = ?', whereArgs: [widget.group.id, hash], orderBy: 'created_at DESC');
-        if (_data.isEmpty) {
-          requestToDo = true;
-          // Make sure we load any existing stored tweets from the chunk
-          var storedChunksTweets = storedChunks
-            .map((e) => jsonDecode(e['response'] as String))
-            .map((e) => List.from(e))
-            .expand((e) => e.map((c) => TweetChain.fromJson(c)))
-            .toList();
-
-          tweets.addAll(storedChunksTweets);
-
-          // Use the latest chunk's top cursor to load any new tweets since the last time we checked
-          var latestChunk = storedChunks.firstOrNull;
-          if (latestChunk != null) {
-            searchCursor = latestChunk['cursor_top'] as String;
-            cursorType = 'cursor_top';
-          } else {
-            // Otherwise we need to perform a fresh load from scratch for this chunk
-            searchCursor = null;
-          }
-        } else {
-          // We're currently at the end of our current feed, so get the oldest chunk's bottom cursor to load older tweets.
-          if (storedChunks.isNotEmpty) {
-            requestToDo = true;
-            searchCursor = storedChunks.last['cursor_bottom'] as String;
-            cursorType = 'cursor_bottom';
-          }
+      // avoid duplicates
+      for (var cElm in storedChunksTweets) {
+        if (tweets.firstWhereOrNull((tElm) => cElm.id == tElm.id) == null) {
+          tweets.add(cElm);
         }
+      }
 
-        if (requestToDo) {
-          // Perform our search for the next page of results for this chunk, and add those tweets to our collection
-          TweetStatus result;
-          try {
-            if (prefs.get(optionEnhancedFeeds)) {
-              result = await Twitter.searchTweetsGraphql(searchQuery, widget.includeReplies, limit: 100,
-                cursor: searchCursor,
-                leanerFeeds: prefs.get(optionLeanerFeeds),
-                fetchContext: fetchContext);
-            }
-            else {
-              result = await Twitter.searchTweets(searchQuery, widget.includeReplies, limit: 100,
-                cursor: searchCursor,
-                cursorType: cursorType,
-                leanerFeeds: prefs.get(optionLeanerFeeds),
-                fetchContext: fetchContext);
-            }
-          }
-          catch (rsp) {
-            if (rsp is Exception) {
-              log.severe(rsp.toString());
-            }
-            _errorResponse = _errorResponse ?? (rsp is Exception ? ExceptionResponse(rsp) : rsp as Response);
-            return tweets;
-          }
+      // Use the latest chunk's top cursor to load any new tweets since the last time we checked
+      var latestChunk = storedChunks.firstOrNull;
+      if (latestChunk != null) {
+        searchCursor = latestChunk['cursor_top'] as String;
+        cursorType = 'cursor_top';
+      } else {
+        // Otherwise we need to perform a fresh load from scratch for this chunk
+        searchCursor = null;
+      }
+    } else {
+      // We're currently at the end of our current feed, so get the oldest chunk's bottom cursor to load older tweets.
+      if (storedChunks.isNotEmpty) {
+        requestToDo = true;
+        searchCursor = storedChunks.last['cursor_bottom'] as String;
+        cursorType = 'cursor_bottom';
+      }
+    }
 
-          if (result.chains.isNotEmpty) {
-            // avoid duplicates
-            for (var cElm in result.chains) {
-              if (tweets.firstWhereOrNull((tElm) => cElm.id == tElm.id) == null) {
-                tweets.add(cElm);
-              }
-            }
-
-            // Make sure we insert the set of cursors for this latest chunk, ready for the next time we paginate
-            await repository.insert(tableFeedGroupChunk, {
-              'group_id': widget.group.id,
-              'hash': hash,
-              'cursor_top': result.cursorTop,
-              'cursor_bottom': result.cursorBottom,
-              'response': jsonEncode(result.chains.map((e) => e.toJson()).toList())
-            });
-          }
+    if (requestToDo) {
+      // Perform our search for the next page of results for this chunk, and add those tweets to our collection
+      TweetStatus result;
+      try {
+        if (prefs.get(optionEnhancedFeeds)) {
+          result = await Twitter.searchTweetsGraphql(searchQuery, widget.includeReplies, limit: 100,
+              cursor: searchCursor,
+              leanerFeeds: prefs.get(optionLeanerFeeds),
+              fetchContext: fetchContext);
         }
         else {
-          await fetchContext.fetchNoResponse();
+          result = await Twitter.searchTweets(searchQuery, widget.includeReplies, limit: 100,
+              cursor: searchCursor,
+              cursorType: cursorType,
+              leanerFeeds: prefs.get(optionLeanerFeeds),
+              fetchContext: fetchContext);
+        }
+      }
+      catch (rsp) {
+        if (rsp is Exception) {
+          log.severe(rsp.toString());
+        }
+        _errorResponse = _errorResponse ?? (rsp is Exception ? ExceptionResponse(rsp) : rsp as Response);
+        return tweets;
+      }
+
+      if (result.chains.isNotEmpty) {
+        // avoid duplicates
+        for (var cElm in result.chains) {
+          if (tweets.firstWhereOrNull((tElm) => cElm.id == tElm.id) == null) {
+            tweets.add(cElm);
+          }
         }
 
-        return tweets;
-      }));
+        // Make sure we insert the set of cursors for this latest chunk, ready for the next time we paginate
+        await repository.insert(tableFeedGroupChunk, {
+          'group_id': widget.group.id,
+          'hash': hash,
+          'cursor_top': result.cursorTop,
+          'cursor_bottom': result.cursorBottom,
+          'response': jsonEncode(result.chains.map((e) => e.toJson()).toList())
+        });
+      }
+    }
+    else {
+      await fetchContext.fetchNoResponse();
+    }
+
+    return tweets;
+  }
+
+  Future<List<TweetChain>> _listParallelTweets(List<String> searchQueries) async {
+    BasePrefService prefs = PrefService.of(context);
+    List<Future<List<TweetChain>>> futures = [];
+
+    RateFetchContext fetchContext = RateFetchContext(prefs.get(optionEnhancedFeeds) ? Twitter.graphqlSearchTimelineUriPath : Twitter.searchTweetsUriPath, searchQueries.length);
+    await fetchContext.init();
+
+    for (String searchQuery in searchQueries) {
+      futures.add(_listSearchQueryTweets(fetchContext, searchQuery));
     }
 
     // Wait for all our searches to complete, then build our list of tweet conversations
@@ -260,10 +275,9 @@ class SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widge
   /// sets at the same time, allowing us to create a feed made up of individual search queries.
   Future<void> _listTweets() async {
     try {
-      var repository = await Repository.writable();
-
       BasePrefService prefs = PrefService.of(context);
       _keepFeedOffset = prefs.get(optionKeepFeedOffset);
+      var repository = await Repository.writable();
 
       String? positionedChainId;
       String? positionedTweetId;
@@ -331,6 +345,7 @@ class SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widge
 
       setState(() {
         _data.addAll(threads);
+        _isLoading = false;
       });
 
       _tweetIdxDic.clear();
@@ -352,6 +367,7 @@ class SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widge
         log.severe(e.toString());
         setState(() {
           _errorResponse ??= ExceptionResponse(e);
+          _isLoading = false;
         });
       }
       if (mounted) {
@@ -423,55 +439,71 @@ class SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widge
       );
     }
 
-    return Scaffold(
-      key: _key,
-      body: RefreshIndicator(
-        onRefresh: () async {
-          await reloadData();
-        },
-        child: MultiProvider(
-          providers: [
-            ChangeNotifierProvider<TweetContextState>(
-                create: (_) => TweetContextState(prefs.get(optionTweetsHideSensitive))),
-            ChangeNotifierProvider<VideoContextState>(
-                create: (_) => VideoContextState(prefs.get(optionMediaDefaultMute))),
-          ],
-          child: NotificationListener<ScrollNotification>(
-            onNotification: (ScrollNotification notification) {
-              if (!_keepFeedOffset || !_visiblePositionState.initialized) {
-                return false;
-              }
-              if (notification is UserScrollNotification) {
-                if (notification.direction == ScrollDirection.forward) {
-                  if (_visiblePositionState.visibleTweetIdx != null) {
-                    _positionShowing = _visiblePositionState.visibleTweetIdx!;
-                    _showOverlay(context);
-                  }
-                }
-                else if (notification.direction == ScrollDirection.idle) {
-                  _positionShowing = null;
-                  Future.delayed(const Duration(seconds: 2), () {
-                    if (_positionShowing == null) {
-                      _hideOverlay(context);
-                    }
-                  });
-                }
-              }
-              return false;
+    return Stack(
+      children: [
+        Scaffold(
+          key: _key,
+          body: RefreshIndicator(
+            onRefresh: () async {
+              setState(() {
+                _isLoading = true;
+              });
+              await reloadData();
             },
-            child: ScrollablePositionedList.builder(
-              itemCount: _data.length,
-              itemBuilder: (context, index) {
-                TweetChain tc = _data[index];
-                return TweetConversation(key: ValueKey(tc.id), id: tc.id, username: null, isPinned: tc.isPinned, tweets: tc.tweets, tweetIdxDic: _tweetIdxDic, visiblePositionState: _visiblePositionState);
-              },
-              itemScrollController: widget.scrollController,
-              itemPositionsListener: _itemPositionsListener,
-              padding: const EdgeInsets.only(top: 4),
+            child: MultiProvider(
+              providers: [
+                ChangeNotifierProvider<TweetContextState>(
+                    create: (_) => TweetContextState(prefs.get(optionTweetsHideSensitive))),
+                ChangeNotifierProvider<VideoContextState>(
+                    create: (_) => VideoContextState(prefs.get(optionMediaDefaultMute))),
+              ],
+              child: NotificationListener<ScrollNotification>(
+                onNotification: (ScrollNotification notification) {
+                  if (!_keepFeedOffset || !_visiblePositionState.initialized) {
+                    return false;
+                  }
+                  if (notification is UserScrollNotification) {
+                    if (notification.direction == ScrollDirection.forward) {
+                      if (_visiblePositionState.visibleTweetIdx != null) {
+                        _positionShowing = _visiblePositionState.visibleTweetIdx!;
+                        _showOverlay(context);
+                      }
+                    }
+                    else if (notification.direction == ScrollDirection.idle) {
+                      _positionShowing = null;
+                      Future.delayed(const Duration(seconds: 2), () {
+                        if (_positionShowing == null) {
+                          _hideOverlay(context);
+                        }
+                      });
+                    }
+                  }
+                  return false;
+                },
+                child: ScrollablePositionedList.builder(
+                  itemCount: _data.length,
+                  itemBuilder: (context, index) {
+                    TweetChain tc = _data[index];
+                    return TweetConversation(key: ValueKey(tc.id), id: tc.id, username: null, isPinned: tc.isPinned, tweets: tc.tweets, tweetIdxDic: _tweetIdxDic, visiblePositionState: _visiblePositionState);
+                  },
+                  itemScrollController: widget.scrollController,
+                  itemPositionsListener: _itemPositionsListener,
+                  padding: const EdgeInsets.only(top: 4),
+                ),
+              ),
             ),
           ),
         ),
-      ),
+        if (_isLoading)
+          const Opacity(
+            opacity: 0.5,
+            child: ModalBarrier(dismissible: false, color: Colors.black),
+          ),
+        if (_isLoading)
+          const Center(
+            child: CircularProgressIndicator(),
+          ),
+      ]
     );
   }
 }

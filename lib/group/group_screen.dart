@@ -165,6 +165,7 @@ class SubscriptionGroupScreen extends StatelessWidget {
                       onPressed: () async {
                         GlobalKey<SubscriptionGroupFeedState>? sgfKey = DataService().map['feed_key_${id.replaceAll('-', '_')}'];
                         if (sgfKey != null) {
+                          sgfKey.currentState!.setLoading();
                           await sgfKey.currentState!.reloadData();
                         }
                       }),
