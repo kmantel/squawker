@@ -2,3 +2,5 @@
 * Improve the management of the last active guest accounts to check for expiration.
 * Improve the requests for feed/groups allowing more subscriptions to be used. Also add a circular progress indicator during the loading.
 * Implement feature #205 Ability to modify the regular account information.
+* Fix #194 v3.7.0 freeze.
+* Additional verifications when importing tokens.
