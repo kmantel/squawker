@@ -253,7 +253,7 @@ class SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widge
   }
 
   void _checkForRateLimitException(List<Response> errorResponseLst) {
-    if (_errorResponse == null) {
+    if (_errorResponse == null && errorResponseLst.isNotEmpty) {
       for (Response rsp in errorResponseLst) {
         if (rsp is ExceptionResponse) {
           ExceptionResponse errRsp = rsp;
@@ -263,6 +263,7 @@ class SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widge
           }
         }
       }
+      _errorResponse ??= errorResponseLst[0];
     }
   }
 
