@@ -76,7 +76,11 @@ class _TweetVideoState extends State<TweetVideo> {
     var streamUrl = urls.streamUrl;
     var downloadUrl = urls.downloadUrl;
 
-    _videoController = VideoPlayerController.networkUrl(Uri.parse(streamUrl));
+    _videoController = VideoPlayerController.networkUrl(Uri.parse(streamUrl),
+      videoPlayerOptions: VideoPlayerOptions(
+        mixWithOthers: true,
+      )
+    );
     if (widget.metadata.durationMillis != null) {
       _videoController!.value = _videoController!.value.copyWith(duration: Duration(milliseconds: widget.metadata.durationMillis!));
     }
