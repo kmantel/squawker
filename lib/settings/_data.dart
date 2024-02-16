@@ -175,6 +175,7 @@ class SettingsDataFragment extends StatelessWidget {
 
     DataService().map['toggleKeepFeed'] = true;
 
+    ScaffoldMessenger.of(context).clearSnackBars();
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text(L10n.of(context).data_imported_successfully),
     ));

@@ -398,6 +398,7 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
         onTap: () {
           var replyToId = tweet.inReplyToStatusIdStr;
           if (replyToId == null) {
+            ScaffoldMessenger.of(context).clearSnackBars();
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text(
                 L10n.of(context).sorry_the_replied_tweet_could_not_be_found,

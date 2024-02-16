@@ -88,8 +88,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Doğrulama yanlılığı kapalı modunu etkinleştir"),
         "add_account": MessageLookupByLibrary.simpleMessage("Hesap ekle"),
-        "add_account_title":
-            MessageLookupByLibrary.simpleMessage("Normal Hesap Ekle"),
+        "add_account_title": MessageLookupByLibrary.simpleMessage("Hesap ekle"),
         "add_subscriptions":
             MessageLookupByLibrary.simpleMessage("Abonelik ekle"),
         "add_to_feed": MessageLookupByLibrary.simpleMessage("Beslemeye ekle"),
@@ -174,6 +173,8 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Videoları en iyi kalitede indir"),
         "downloading_media":
             MessageLookupByLibrary.simpleMessage("Medya indiriliyor..."),
+        "edit_account_title":
+            MessageLookupByLibrary.simpleMessage("Hesap değiştir"),
         "email_label": MessageLookupByLibrary.simpleMessage("E-posta adresi:"),
         "enable_": MessageLookupByLibrary.simpleMessage("Etkinleştirilsin mi?"),
         "ended_timeago_format_endsAt_allowFromNow_true": m3,
@@ -540,6 +541,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "username_label":
             MessageLookupByLibrary.simpleMessage("Kullanıcı adı:"),
         "version": MessageLookupByLibrary.simpleMessage("Sürüm"),
+        "warning_regular_account_description": MessageLookupByLibrary.simpleMessage(
+            "Twitter/X, misafir hesap oluşturma özelliğini devre dışı bıraktı. Artık Ayarlar / Hesap bölümünde normal hesap(lar) oluşturmalısınız. Burada açıklandığı gibi anonim bir normal hesap oluşturmak kolaydır:"),
+        "warning_regular_account_title": MessageLookupByLibrary.simpleMessage(
+            "Normal hesaplar kullanılıyor"),
         "when_a_new_app_update_is_available":
             MessageLookupByLibrary.simpleMessage(
                 "Yeni bir uygulama güncellemesi mevcut olduğunda"),

@@ -156,7 +156,7 @@ class SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widge
     }
   }
 
-  Future<List<TweetChain>> _listSearchQueryTweets(RateFetchContext fetchContext, String searchQuery) async {
+  Future<List<TweetChain>> _listSearchQueryTweets(RateFetchContext fetchContext, String searchQuery, List<Response> errorResponseLst) async {
     BasePrefService prefs = PrefService.of(context);
     var repository = await Repository.writable();
     List<TweetChain> tweets = <TweetChain>[];
@@ -223,7 +223,7 @@ class SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widge
         if (rsp is Exception) {
           log.severe(rsp.toString());
         }
-        _errorResponse = _errorResponse ?? (rsp is Exception ? ExceptionResponse(rsp) : rsp as Response);
+        errorResponseLst.add(rsp is Exception ? ExceptionResponse(rsp) : rsp as Response);
         return tweets;
       }
 
@@ -252,19 +252,35 @@ class SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widge
     return tweets;
   }
 
+  void _checkForRateLimitException(List<Response> errorResponseLst) {
+    if (_errorResponse == null) {
+      for (Response rsp in errorResponseLst) {
+        if (rsp is ExceptionResponse) {
+          ExceptionResponse errRsp = rsp;
+          if (errRsp.exception is RateLimitException) {
+            _errorResponse = errRsp;
+            break;
+          }
+        }
+      }
+    }
+  }
+
   Future<List<TweetChain>> _listParallelTweets(List<String> searchQueries) async {
     BasePrefService prefs = PrefService.of(context);
     List<Future<List<TweetChain>>> futures = [];
+    List<Response> errorResponseLst = [];
 
     RateFetchContext fetchContext = RateFetchContext(prefs.get(optionEnhancedFeeds) ? Twitter.graphqlSearchTimelineUriPath : Twitter.searchTweetsUriPath, searchQueries.length);
     await fetchContext.init();
 
     for (String searchQuery in searchQueries) {
-      futures.add(_listSearchQueryTweets(fetchContext, searchQuery));
+      futures.add(_listSearchQueryTweets(fetchContext, searchQuery, errorResponseLst));
     }
 
     // Wait for all our searches to complete, then build our list of tweet conversations
     List<List<TweetChain>> result = await Future.wait(futures);
+    _checkForRateLimitException(errorResponseLst);
     return result.expand((e) => e).toList();
   }
 
@@ -419,16 +435,20 @@ class SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widge
         widget.scrollController!.jumpTo(index: _visiblePositionState.scrollChainIdx!);
       }
       if (_errorResponse != null && _data.isNotEmpty && (_errorResponse!.statusCode < 200 || _errorResponse!.statusCode >= 300)) {
+        ScaffoldMessenger.of(context).clearSnackBars();
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(_errorResponse!.body),
         ));
+        _errorResponse = null;
       }
     });
 
     if (_errorResponse != null && _data.isEmpty && (_errorResponse!.statusCode < 200 || _errorResponse!.statusCode >= 300)) {
-      return Scaffold(
-          body: FullPageErrorWidget(error: _errorResponse, prefix: 'Error request Twitter/X', stackTrace: null)
+      var errorPage = Scaffold(
+        body: FullPageErrorWidget(error: _errorResponse, prefix: 'Error request Twitter/X', stackTrace: null)
       );
+      _errorResponse = null;
+      return errorPage;
     }
 
     if (widget.searchQueries.isEmpty) {

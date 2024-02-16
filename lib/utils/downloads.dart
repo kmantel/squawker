@@ -47,6 +47,7 @@ Future<void> downloadUriToPickedFile(BuildContext context, Uri uri, String fileN
 
     // Otherwise, check we have the storage permission
     if (!storagePermission.isGranted) {
+      ScaffoldMessenger.of(context).clearSnackBars();
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(L10n.current.permission_not_granted),
@@ -91,6 +92,7 @@ Future downloadFile(BuildContext context, Uri uri) async {
     return response.bodyBytes;
   }
 
+  ScaffoldMessenger.of(context).clearSnackBars();
   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
     content: Text(
       L10n.of(context).unable_to_save_the_media_twitter_returned_a_status_of_response_statusCode(response.statusCode),

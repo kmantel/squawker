@@ -279,6 +279,7 @@ class DownloadTypeSettingState extends State<DownloadTypeSetting> {
               } else if (storagePermission.isPermanentlyDenied) {
                 await openAppSettings();
               } else {
+                ScaffoldMessenger.of(context).clearSnackBars();
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                     content: Text(L10n.current.permission_not_granted),
                     action: SnackBarAction(

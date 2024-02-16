@@ -141,16 +141,16 @@ class _SettingsExportScreenState extends State<SettingsExportScreen> {
 
                 // This platform can support the directory picker, so display it
                 var path = await FlutterFileDialog.saveFile(
-                    params:
-                        SaveFileDialogParams(fileName: fileName, data: Uint8List.fromList(utf8.encode(exportData))));
+                  params:
+                    SaveFileDialogParams(fileName: fileName, data: Uint8List.fromList(utf8.encode(exportData)))
+                );
                 if (path != null) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(
-                        L10n.of(context).data_exported_to_fileName(fileName),
-                      ),
+                  ScaffoldMessenger.of(context).clearSnackBars();
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text(
+                      L10n.of(context).data_exported_to_fileName(fileName),
                     ),
-                  );
+                  ));
                 }
               },
             ),

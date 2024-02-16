@@ -76,7 +76,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "activate_non_confirmation_bias_mode_label":
             MessageLookupByLibrary.simpleMessage("激活非确认偏向模式"),
         "add_account": MessageLookupByLibrary.simpleMessage("添加账户"),
-        "add_account_title": MessageLookupByLibrary.simpleMessage("添加常规账户"),
+        "add_account_title": MessageLookupByLibrary.simpleMessage("添加账户"),
         "add_subscriptions": MessageLookupByLibrary.simpleMessage("添加订阅"),
         "add_to_feed": MessageLookupByLibrary.simpleMessage("加入时间轴"),
         "add_to_group": MessageLookupByLibrary.simpleMessage("添加到订阅组"),
@@ -147,6 +147,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "download_video_best_quality_label":
             MessageLookupByLibrary.simpleMessage("以最高质量下载视频"),
         "downloading_media": MessageLookupByLibrary.simpleMessage("正在下载媒体..."),
+        "edit_account_title": MessageLookupByLibrary.simpleMessage("修改账户"),
         "email_label": MessageLookupByLibrary.simpleMessage("电子邮箱："),
         "enable_": MessageLookupByLibrary.simpleMessage("启用 ？"),
         "ended_timeago_format_endsAt_allowFromNow_true": m3,

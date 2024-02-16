@@ -101,6 +101,7 @@ class _TweetVideoState extends State<TweetVideo> {
           onTap: () async {
             var video = downloadUrl;
             if (video == null) {
+              ScaffoldMessenger.of(context).clearSnackBars();
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 content: Text(L10n.current.download_media_no_url),
               ));
@@ -116,11 +117,13 @@ class _TweetVideoState extends State<TweetVideo> {
               fileName,
               onStart: () {
                 Navigator.pop(context);
+                ScaffoldMessenger.of(context).clearSnackBars();
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   content: Text(L10n.of(context).downloading_media),
                 ));
               },
               onSuccess: () {
+                ScaffoldMessenger.of(context).clearSnackBars();
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   content: Text(L10n.of(context).successfully_saved_the_media),
                 ));

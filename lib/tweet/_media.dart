@@ -235,11 +235,13 @@ class _TweetMediaViewState extends State<TweetMediaView> {
                 uri,
                 fileName,
                 onStart: () {
+                  ScaffoldMessenger.of(context).clearSnackBars();
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                     content: Text(L10n.of(context).downloading_media),
                   ));
                 },
                 onSuccess: () {
+                  ScaffoldMessenger.of(context).clearSnackBars();
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                     content: Text(L10n.of(context).successfully_saved_the_media),
                   ));

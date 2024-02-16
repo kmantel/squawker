@@ -90,7 +90,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Kasuta kinnituskalduvust eiravat režiimi"),
         "add_account": MessageLookupByLibrary.simpleMessage("Lisa konto"),
         "add_account_title":
-            MessageLookupByLibrary.simpleMessage("Lisa tavakonto"),
+            MessageLookupByLibrary.simpleMessage("Lisa kasutajakonto"),
         "add_subscriptions":
             MessageLookupByLibrary.simpleMessage("Lisa tellimusi"),
         "add_to_feed": MessageLookupByLibrary.simpleMessage("Lisa säutsuvoogu"),
@@ -177,6 +177,8 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Allalaaditavate videote kvaliteet"),
         "downloading_media":
             MessageLookupByLibrary.simpleMessage("Laadin alla meediat..."),
+        "edit_account_title":
+            MessageLookupByLibrary.simpleMessage("Muuda kasutajakontot"),
         "email_label": MessageLookupByLibrary.simpleMessage("E-posti aadress:"),
         "enable_":
             MessageLookupByLibrary.simpleMessage("Kas lubad kasutada \'t?"),
@@ -550,6 +552,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "username": MessageLookupByLibrary.simpleMessage("Kasutajanimi"),
         "username_label": MessageLookupByLibrary.simpleMessage("Kasutajanimi:"),
         "version": MessageLookupByLibrary.simpleMessage("Versioon"),
+        "warning_regular_account_description": MessageLookupByLibrary.simpleMessage(
+            "Twitter/X on eemaldanud külaliskontode kasutamise võimaluse. Palun kindlasti seadista tavaline kasutajakonto (või mitu) Seadistused - Kasutajakontod vaatest. Tavalise, aga anonüümse kasutajakonto loomine on lihtne ja juhend leidub siin:"),
+        "warning_regular_account_title":
+            MessageLookupByLibrary.simpleMessage("Palun kasuta tavakontot"),
         "when_a_new_app_update_is_available":
             MessageLookupByLibrary.simpleMessage("Kui uuendus on saadaval"),
         "whether_errors_should_be_reported_to_":

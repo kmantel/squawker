@@ -84,6 +84,7 @@ class SettingsAboutFragment extends StatelessWidget {
             onLongPress: () async {
               await Clipboard.setData(ClipboardData(text: appVersion));
 
+              ScaffoldMessenger.of(context).clearSnackBars();
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 content: Text(L10n.of(context).copied_version_to_clipboard),
               ));

@@ -745,10 +745,10 @@ class RateFetchContext {
         resetLst.add(null);
       }
       else if (response.statusCode == 429 && response.body.contains('Rate limit exceeded')) {
-        // Twitter/X API documentation specify a 24 hours waiting time, but I experimented a 12 hours embargo.
         TwitterAccount.log.warning('*** (From Twitter/X) The request $uriPath has exceeded its rate limits.');
         remainingLst.add(-1);
-        resetLst.add(DateTime.now().add(const Duration(hours: 12)).millisecondsSinceEpoch);
+        int reset = int.parse(headerRateLimitReset) * 1000;
+        resetLst.add(reset);
       }
       else {
         int remaining = int.parse(headerRateLimitRemaining);
