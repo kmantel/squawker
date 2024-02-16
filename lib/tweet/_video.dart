@@ -111,12 +111,13 @@ class _TweetVideoState extends State<TweetVideo> {
             var videoUri = Uri.parse(video);
             var fileName = '${widget.username}-${path.basename(videoUri.path)}';
 
+            Navigator.pop(context);
+
             await downloadUriToPickedFile(
               context,
               videoUri,
               fileName,
               onStart: () {
-                Navigator.pop(context);
                 ScaffoldMessenger.of(context).clearSnackBars();
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   content: Text(L10n.of(context).downloading_media),
