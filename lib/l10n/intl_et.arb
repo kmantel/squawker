@@ -555,7 +555,7 @@
   "@nbr_guest_accounts": {},
   "regular_accounts": "Tavakontod ({nbrRegularAccounts}):",
   "@regular_accounts": {},
-  "add_account_title": "Lisa tavakonto",
+  "add_account_title": "Lisa kasutajakonto",
   "@add_account_title": {},
   "mandatory_label": "Kohustuslikud väljad:",
   "@mandatory_label": {},
@@ -586,5 +586,11 @@
   "twitter_account_types_description": "Kasutatav konto tüüp",
   "@twitter_account_types_description": {},
   "twitter_account_types_only_regular": "Ainult tavakonto",
-  "@twitter_account_types_only_regular": {}
+  "@twitter_account_types_only_regular": {},
+  "edit_account_title": "Muuda kasutajakontot",
+  "@edit_account_title": {},
+  "warning_regular_account_description": "Twitter/X on eemaldanud külaliskontode kasutamise võimaluse. Palun kindlasti seadista tavaline kasutajakonto (või mitu) Seadistused - Kasutajakontod vaatest. Tavalise, aga anonüümse kasutajakonto loomine on lihtne ja juhend leidub siin:",
+  "@warning_regular_account_description": {},
+  "warning_regular_account_title": "Palun kasuta tavakontot",
+  "@warning_regular_account_title": {}
 }

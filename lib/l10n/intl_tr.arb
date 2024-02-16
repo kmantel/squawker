@@ -553,7 +553,7 @@
   "@add_account": {},
   "export_twitter_tokens": "Twitter/X belirteçleri dışa aktarılsın mı?",
   "@export_twitter_tokens": {},
-  "add_account_title": "Normal Hesap Ekle",
+  "add_account_title": "Hesap ekle",
   "@add_account_title": {},
   "error_from_twitter": "Twitter/X Hatası",
   "@error_from_twitter": {},
@@ -590,5 +590,7 @@
   "warning_regular_account_title": "Normal hesaplar kullanılıyor",
   "@warning_regular_account_title": {},
   "warning_regular_account_description": "Twitter/X, misafir hesap oluşturma özelliğini devre dışı bıraktı. Artık Ayarlar / Hesap bölümünde normal hesap(lar) oluşturmalısınız. Burada açıklandığı gibi anonim bir normal hesap oluşturmak kolaydır:",
-  "@warning_regular_account_description": {}
+  "@warning_regular_account_description": {},
+  "edit_account_title": "Hesap değiştir",
+  "@edit_account_title": {}
 }
