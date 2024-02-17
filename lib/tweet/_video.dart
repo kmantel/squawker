@@ -75,10 +75,12 @@ class _TweetVideoState extends State<TweetVideo> {
     var urls = await widget.metadata.streamUrlsBuilder();
     var streamUrl = urls.streamUrl;
     var downloadUrl = urls.downloadUrl;
+    var prefs = PrefService.of(context);
 
     _videoController = VideoPlayerController.networkUrl(Uri.parse(streamUrl),
       videoPlayerOptions: VideoPlayerOptions(
-        mixWithOthers: true,
+        allowBackgroundPlayback: prefs.get(optionMediaAllowBackgroundPlay),
+        mixWithOthers: prefs.get(optionMediaAllowBackgroundPlayOtherApps),
       )
     );
     if (widget.metadata.durationMillis != null) {

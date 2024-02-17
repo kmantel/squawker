@@ -101,6 +101,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "all_the_great_software_used_by_fritter":
             MessageLookupByLibrary.simpleMessage(
                 "Tous les excellents logiciels utilisés par Squawker"),
+        "allow_background_play_description":
+            MessageLookupByLibrary.simpleMessage(
+                "Permettre de jouer en arrière-plan"),
+        "allow_background_play_label":
+            MessageLookupByLibrary.simpleMessage("Jouer en arrière-plan"),
+        "allow_background_play_other_apps_description":
+            MessageLookupByLibrary.simpleMessage(
+                "Permettre aux apps externes de jouer en arrière-plan"),
+        "allow_background_play_other_apps_label":
+            MessageLookupByLibrary.simpleMessage(
+                "Apps externes en arrière-plan"),
         "an_update_for_fritter_is_available":
             MessageLookupByLibrary.simpleMessage(
                 "Une mise à jour pour Squawker est disponible ! 🚀"),

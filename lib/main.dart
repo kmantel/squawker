@@ -158,6 +158,8 @@ Future<void> main() async {
     optionSubscriptionInitialTab: 'tweets',
     optionMediaSize: 'medium',
     optionMediaDefaultMute: true,
+    optionMediaAllowBackgroundPlay: true,
+    optionMediaAllowBackgroundPlayOtherApps: true,
     optionNonConfirmationBiasMode: false,
     optionDownloadBestVideoQuality: false,
     optionShouldCheckForUpdates: (getFlavor() != 'play' && getFlavor() != 'fdroid') ? true : false,

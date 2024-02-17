@@ -168,6 +168,16 @@ class SettingsGeneralFragment extends StatelessWidget {
                 title: Text(L10n.of(context).mute_videos),
                 subtitle: Text(L10n.of(context).mute_video_description),
               ),
+              PrefSwitch(
+                pref: optionMediaAllowBackgroundPlay,
+                title: Text(L10n.of(context).allow_background_play_label),
+                subtitle: Text(L10n.of(context).allow_background_play_description),
+              ),
+              PrefSwitch(
+                pref: optionMediaAllowBackgroundPlayOtherApps,
+                title: Text(L10n.of(context).allow_background_play_other_apps_label),
+                subtitle: Text(L10n.of(context).allow_background_play_other_apps_description),
+              ),
               const DownloadTypeSetting(),
               PrefSwitch(
                 title: Text(L10n.of(context).download_video_best_quality_label),

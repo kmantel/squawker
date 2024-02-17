@@ -592,5 +592,13 @@
   "warning_regular_account_description": "Twitter/X a désactivé la possibilité de créer des comptes invités. Vous devez maintenant configurer des comptes standards dans Paramètres / Compte. Il est facile de créer un compte standard anonyme, tel qu'expliqué ici :",
   "@warning_regular_account_description": {},
   "edit_account_title": "Modifier un compte",
-  "@edit_account_title": {}
+  "@edit_account_title": {},
+  "allow_background_play_label": "Jouer en arrière-plan",
+  "@allow_background_play_label": {},
+  "allow_background_play_description": "Permettre de jouer en arrière-plan",
+  "@allow_background_play_description": {},
+  "allow_background_play_other_apps_label": "Apps externes en arrière-plan",
+  "@allow_background_play_other_apps_label": {},
+  "allow_background_play_other_apps_description": "Permettre aux apps externes de jouer en arrière-plan",
+  "@allow_background_play_other_apps_description": {}
 }

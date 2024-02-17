@@ -562,5 +562,13 @@
   "warning_regular_account_description": "Twitter/X has disabled the ability to create guest accounts. You must now set regular account(s) in Settings / Account. It's easy to create an anonymous regular account as explained here:",
   "@warning_regular_account_description": {},
   "edit_account_title": "Modify an account",
-  "@edit_account_title": {}
+  "@edit_account_title": {},
+  "allow_background_play_label": "Background play",
+  "@allow_background_play_label": {},
+  "allow_background_play_description": "Allow to play in the background",
+  "@allow_background_play_description": {},
+  "allow_background_play_other_apps_label": "Other apps in background",
+  "@allow_background_play_other_apps_label": {},
+  "allow_background_play_other_apps_description": "Allow other apps to play in the background",
+  "@allow_background_play_other_apps_description": {}
 }

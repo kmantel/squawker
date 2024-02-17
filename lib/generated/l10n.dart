@@ -2905,6 +2905,46 @@ class L10n {
       args: [],
     );
   }
+
+  /// `Background play`
+  String get allow_background_play_label {
+    return Intl.message(
+      'Background play',
+      name: 'allow_background_play_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Allow to play in the background`
+  String get allow_background_play_description {
+    return Intl.message(
+      'Allow to play in the background',
+      name: 'allow_background_play_description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Other apps in background`
+  String get allow_background_play_other_apps_label {
+    return Intl.message(
+      'Other apps in background',
+      name: 'allow_background_play_other_apps_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Allow other apps to play in the background`
+  String get allow_background_play_other_apps_description {
+    return Intl.message(
+      'Allow other apps to play in the background',
+      name: 'allow_background_play_other_apps_description',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<L10n> {

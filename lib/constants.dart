@@ -11,6 +11,8 @@ const optionHomeInitialTab = 'home.initial_tab';
 
 const optionMediaSize = 'media.size';
 const optionMediaDefaultMute = 'media.mute';
+const optionMediaAllowBackgroundPlay = 'media.allow_background_play';
+const optionMediaAllowBackgroundPlayOtherApps = 'media.allow_background_play.other_apps';
 
 const optionDownloadType = 'download.type';
 const optionDownloadPath = 'download.path';
