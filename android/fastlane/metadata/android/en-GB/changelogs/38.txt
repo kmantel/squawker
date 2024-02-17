@@ -1,0 +1,5 @@
+* Fix the issue with a video after opening the download option, when clicking on download nothing happens.
+* Implement feature #210 Muted videos: start video only, keep music playing.
+  There are now two options implemented, enabled by default (under Settings / General / Media) :
+  - Allows video to continue to play when Squawker is in the background
+  - Allows video/music of other apps to play in the background while a video is playing in Squawker.
