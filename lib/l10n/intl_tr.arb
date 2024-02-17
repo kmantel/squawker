@@ -592,5 +592,13 @@
   "warning_regular_account_description": "Twitter/X, misafir hesap oluşturma özelliğini devre dışı bıraktı. Artık Ayarlar / Hesap bölümünde normal hesap(lar) oluşturmalısınız. Burada açıklandığı gibi anonim bir normal hesap oluşturmak kolaydır:",
   "@warning_regular_account_description": {},
   "edit_account_title": "Hesap değiştir",
-  "@edit_account_title": {}
+  "@edit_account_title": {},
+  "allow_background_play_other_apps_label": "Arka planda diğer uygulamalar",
+  "@allow_background_play_other_apps_label": {},
+  "allow_background_play_other_apps_description": "Diğer uygulamaların arka planda oynatmasına izin verin",
+  "@allow_background_play_other_apps_description": {},
+  "allow_background_play_label": "Arka plan oynatımı",
+  "@allow_background_play_label": {},
+  "allow_background_play_description": "Arka planda oynatmaya izin verin",
+  "@allow_background_play_description": {}
 }
