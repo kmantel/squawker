@@ -171,6 +171,10 @@ class _AddAccountDialogState extends State<AddAccountDialog> {
   String? _name;
   String? _email;
   String? _phone;
+  String _originalPassword = '';
+  String? _originalName;
+  String? _originalEmail;
+  String? _originalPhone;
   TextEditingController? _usernameController;
   TextEditingController? _passwordController;
   TextEditingController? _nameController;
@@ -186,17 +190,21 @@ class _AddAccountDialogState extends State<AddAccountDialog> {
       TwitterProfileEntity? tpe = TwitterAccount.getProfile(widget.accountToEdit!);
       if (tpe != null) {
         _password = tpe.password;
+        _originalPassword = _password;
         _passwordController = TextEditingController(text: tpe.password);
         if (tpe.name?.isNotEmpty ?? false) {
           _name = tpe.name;
+          _originalName = _name;
           _nameController = TextEditingController(text: tpe.name);
         }
         if (tpe.email?.isNotEmpty ?? false) {
           _email = tpe.email;
+          _originalEmail = _email;
           _emailController = TextEditingController(text: tpe.email);
         }
         if (tpe.phone?.isNotEmpty ?? false) {
           _phone = tpe.phone;
+          _originalPhone = _phone;
           _phoneController = TextEditingController(text: tpe.phone);
         }
       }
@@ -212,10 +220,28 @@ class _AddAccountDialogState extends State<AddAccountDialog> {
       }
     }
     else {
-      if (!_saveEnabled) {
-        setState(() {
-          _saveEnabled = true;
-        });
+      if (widget.accountToEdit != null) {
+        if ((_password ?? '') != (_originalPassword ?? '') || (_name ?? '') != (_originalName ?? '') || (_email ?? '') != (_originalEmail ?? '') || (_phone ?? '') != (_originalPhone ?? '')) {
+          if (!_saveEnabled) {
+            setState(() {
+              _saveEnabled = true;
+            });
+          }
+        }
+        else {
+          if (_saveEnabled) {
+            setState(() {
+              _saveEnabled = false;
+            });
+          }
+        }
+      }
+      else {
+        if (!_saveEnabled) {
+          setState(() {
+            _saveEnabled = true;
+          });
+        }
       }
     }
   }
