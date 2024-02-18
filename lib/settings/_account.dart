@@ -221,7 +221,7 @@ class _AddAccountDialogState extends State<AddAccountDialog> {
     }
     else {
       if (widget.accountToEdit != null) {
-        if ((_password ?? '') != (_originalPassword ?? '') || (_name ?? '') != (_originalName ?? '') || (_email ?? '') != (_originalEmail ?? '') || (_phone ?? '') != (_originalPhone ?? '')) {
+        if (_password != _originalPassword || (_name ?? '') != (_originalName ?? '') || (_email ?? '') != (_originalEmail ?? '') || (_phone ?? '') != (_originalPhone ?? '')) {
           if (!_saveEnabled) {
             setState(() {
               _saveEnabled = true;
