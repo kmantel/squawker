@@ -592,5 +592,13 @@
   "warning_regular_account_description": "Twitter/X on eemaldanud külaliskontode kasutamise võimaluse. Palun kindlasti seadista tavaline kasutajakonto (või mitu) Seadistused - Kasutajakontod vaatest. Tavalise, aga anonüümse kasutajakonto loomine on lihtne ja juhend leidub siin:",
   "@warning_regular_account_description": {},
   "warning_regular_account_title": "Palun kasuta tavakontot",
-  "@warning_regular_account_title": {}
+  "@warning_regular_account_title": {},
+  "allow_background_play_description": "Luba meediat esitada taustal",
+  "@allow_background_play_description": {},
+  "allow_background_play_label": "Meedia esitamine taustal",
+  "@allow_background_play_label": {},
+  "allow_background_play_other_apps_label": "Muud rakendused taustal",
+  "@allow_background_play_other_apps_label": {},
+  "allow_background_play_other_apps_description": "Luba muudel rakendustel esitada meediat taustal",
+  "@allow_background_play_other_apps_description": {}
 }
