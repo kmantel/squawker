@@ -588,5 +588,13 @@
   "warning_regular_account_description": "قام Twitter/X بتعطيل القدرة على إنشاء حسابات ضيوف. يجب عليك الآن تعيين حساب (حسابات) عادية في الإعدادات / الحساب. من السهل إنشاء حساب عادي مجهول كما هو موضح هنا:",
   "@warning_regular_account_description": {},
   "edit_account_title": "تعديل الحساب",
-  "@edit_account_title": {}
+  "@edit_account_title": {},
+  "allow_background_play_other_apps_label": "تطبيقات أخرى في الخلفية",
+  "@allow_background_play_other_apps_label": {},
+  "allow_background_play_other_apps_description": "السماح للتطبيقات الأخرى بالتشغيل في الخلفية",
+  "@allow_background_play_other_apps_description": {},
+  "allow_background_play_label": "التشغيل في الخلفية",
+  "@allow_background_play_label": {},
+  "allow_background_play_description": "السماح بالتشغيل في الخلفية",
+  "@allow_background_play_description": {}
 }
