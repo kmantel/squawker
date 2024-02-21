@@ -1,9 +1,10 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_triple/flutter_triple.dart';
-
+import 'package:pref/pref.dart';
+import 'package:provider/provider.dart';
 import 'package:squawker/client/client.dart';
+import 'package:squawker/client/client_account.dart';
 import 'package:squawker/constants.dart';
 import 'package:squawker/database/entities.dart';
 import 'package:squawker/generated/l10n.dart';
@@ -12,8 +13,6 @@ import 'package:squawker/profile/profile.dart';
 import 'package:squawker/saved/saved_tweet_model.dart';
 import 'package:squawker/tweet/tweet.dart';
 import 'package:squawker/ui/errors.dart';
-import 'package:pref/pref.dart';
-import 'package:provider/provider.dart';
 
 class SavedScreen extends StatefulWidget {
   final ScrollController scrollController;
@@ -38,6 +37,7 @@ class _SavedScreenState extends State<SavedScreen> with AutomaticKeepAliveClient
   @override
   Widget build(BuildContext context) {
     super.build(context);
+    TwitterAccount.setCurrentContext(context);
     var model = context.read<SavedTweetModel>();
 
     var prefs = PrefService.of(context, listen: false);
