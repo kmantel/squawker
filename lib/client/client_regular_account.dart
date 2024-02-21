@@ -357,14 +357,15 @@ class TwitterRegularAccount {
     }
     Map<String,dynamic>? openAccount = subtask!['open_account'] as Map<String,dynamic>?;
     if (openAccount != null) {
+      String screenName = (openAccount['user'] as Map<String,dynamic>)['screen_name'] as String;
       TwitterTokenEntity tte = TwitterTokenEntity(
         guest: false,
         idStr: (openAccount['user'] as Map<String,dynamic>)['id_str'] as String,
-        screenName: (openAccount['user'] as Map<String,dynamic>)['screen_name'] as String,
+        screenName: screenName,
         oauthToken: openAccount['oauth_token'] as String,
         oauthTokenSecret: openAccount['oauth_token_secret'] as String,
         createdAt: DateTime.now(),
-        profile: await TwitterAccount.getOrCreateProfile(username, password, name, email, phone)
+        profile: await TwitterAccount.getOrCreateProfile(screenName, password, name, email, phone)
       );
       await TwitterAccount.addTwitterToken(tte);
 

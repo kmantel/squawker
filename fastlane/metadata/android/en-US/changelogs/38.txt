@@ -1,5 +1,8 @@
-* Fix the issue with a video after opening the download option, when clicking on download nothing happens.
-* Implement feature #210 Muted videos: start video only, keep music playing.
+* Fix issue #208 Squawker not saving account credentials when it is closed
+  and also issue #216 After updating to latest version, twitter / X account didn't save from the previous version. It was wiped out.
+* Fix issue #200 Download media feature not working.
+* Implement feature #111 Allow audio & video to continue playing when app is minimised.
+  Also implement feature #210 Muted videos: start video only, keep music playing.
   There are now two options implemented, enabled by default (under Settings / General / Media) :
   - Allows video to continue to play when Squawker is in the background
   - Allows video/music of other apps to play in the background while a video is playing in Squawker.

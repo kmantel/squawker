@@ -269,11 +269,31 @@ class Repository {
         SqlMigration('CREATE TABLE $tableTwitterProfile (username VARCHAR PRIMARY KEY, password VARCHAR, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, name VARCHAR, email VARCHAR, phone VARCHAR)'),
         SqlMigration('INSERT INTO $tableTwitterProfile (username, password, created_at, name, email, phone) SELECT username, password, created_at, name, email, phone FROM ${tableTwitterProfile}_2'),
         SqlMigration('DROP TABLE ${tableTwitterProfile}_2')
+      ],
+      29: [
+        Migration(Operation((db) async {
+          var tokens = await db.rawQuery('SELECT screen_name, oauth_token, MAX(created_at) FROM $tableTwitterToken WHERE guest = 0 GROUP BY screen_name');
+          for (var token in tokens) {
+            var screenName = token['screen_name'] as String;
+            var oauthToken = token['oauth_token'] as String;
+            await db.delete(tableTwitterToken, where: 'screen_name = ? AND oauth_token != ?', whereArgs: [screenName, oauthToken]);
+            var profiles = await db.query(tableTwitterProfile, where: 'lower(username) = lower(?)', whereArgs: [screenName]);
+            var password, name, email, phone;
+            for (var profile in profiles) {
+              password ??= profile['password'];
+              name ??= profile['name'];
+              email ??= profile['email'];
+              phone ??= profile['phone'];
+            }
+            await db.delete(tableTwitterProfile, where: 'lower(username) = lower(?)', whereArgs: [screenName]);
+            await db.insert(tableTwitterProfile, {'username': screenName, 'password': password, 'name': name, 'email': email, 'phone': phone});
+          }
+        }))
       ]
     });
     await openDatabase(
       databaseName,
-      version: 28,
+      version: 29,
       onUpgrade: myMigrationPlan,
       onCreate: myMigrationPlan,
       onDowngrade: myMigrationPlan,
