@@ -592,5 +592,13 @@
   "twitter_account_types_only_regular": "Nur Standardkonto",
   "@twitter_account_types_only_regular": {},
   "warning_regular_account_title": "Standardkonto wird verwendet",
-  "@warning_regular_account_title": {}
+  "@warning_regular_account_title": {},
+  "allow_background_play_description": "Wiedergabe im Hintergrund erlauben",
+  "@allow_background_play_description": {},
+  "allow_background_play_other_apps_description": "Wiedergabe anderer Apps im Hintergrund erlauben",
+  "@allow_background_play_other_apps_description": {},
+  "allow_background_play_label": "Hintergrundwiedergabe",
+  "@allow_background_play_label": {},
+  "allow_background_play_other_apps_label": "Andere Apps im Hintergrund",
+  "@allow_background_play_other_apps_label": {}
 }
