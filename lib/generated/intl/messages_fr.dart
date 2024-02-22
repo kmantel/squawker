@@ -91,7 +91,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_account":
             MessageLookupByLibrary.simpleMessage("Ajouter un compte"),
         "add_account_title":
-            MessageLookupByLibrary.simpleMessage("Ajouter un Compte Standard"),
+            MessageLookupByLibrary.simpleMessage("Ajouter un compte"),
         "add_subscriptions":
             MessageLookupByLibrary.simpleMessage("Ajouter des abonnements"),
         "add_to_feed": MessageLookupByLibrary.simpleMessage("Ajouter au flux"),
@@ -371,6 +371,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Ce tweet contient un contenu potentiellement sensible. Voulez-vous le voir ?"),
         "prefix": MessageLookupByLibrary.simpleMessage("préfixe"),
         "private_profile": MessageLookupByLibrary.simpleMessage("Profil privé"),
+        "proxy_description": MessageLookupByLibrary.simpleMessage(
+            "Proxy pour toutes les requêtes"),
+        "proxy_error": MessageLookupByLibrary.simpleMessage("Erreur Proxy"),
+        "proxy_label": MessageLookupByLibrary.simpleMessage("Proxy"),
         "regular_accounts": m12,
         "released_under_the_mit_license":
             MessageLookupByLibrary.simpleMessage("Publié sous la licence MIT"),

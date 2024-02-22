@@ -41,11 +41,17 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m8(date) => "Seit ${date} bei Twitter/X";
 
+  static String m9(nbrGuestAccounts) =>
+      "Es gibt ${nbrGuestAccounts} Gastkonten";
+
   static String m10(num, numFormatted) =>
       "${Intl.plural(num, zero: 'keine Stimmen', one: 'eine Stimme', two: 'zwei Stimmen', few: '${numFormatted} Stimmen', many: '${numFormatted} Stimmen', other: '${numFormatted} Stimmen')}";
 
   static String m11(errorMessage) =>
       "Bitte überprüfe deine Internetverbindung.\n\n${errorMessage}";
+
+  static String m12(nbrRegularAccounts) =>
+      "Standardkonten (${nbrRegularAccounts}):";
 
   static String m13(releaseVersion) =>
       "Antippen, um Version ${releaseVersion} herunterzuladen";
@@ -73,6 +79,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "about": MessageLookupByLibrary.simpleMessage("Über"),
+        "account": MessageLookupByLibrary.simpleMessage("Nutzerkonto"),
         "account_suspended":
             MessageLookupByLibrary.simpleMessage("Nutzerkonto gesperrt"),
         "activate_non_confirmation_bias_mode_description":
@@ -81,6 +88,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "activate_non_confirmation_bias_mode_label":
             MessageLookupByLibrary.simpleMessage(
                 "Non-Confirmation-Bias-Modus aktivieren"),
+        "add_account": MessageLookupByLibrary.simpleMessage("Konto hinzufügen"),
+        "add_account_title":
+            MessageLookupByLibrary.simpleMessage("Nutzerkonto hinzufügen"),
         "add_subscriptions":
             MessageLookupByLibrary.simpleMessage("Abonnements hinzufügen"),
         "add_to_feed":
@@ -94,6 +104,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "an_update_for_fritter_is_available":
             MessageLookupByLibrary.simpleMessage(
                 "Ein Update für Squawker ist verfügbar! 🚀"),
+        "app_info": MessageLookupByLibrary.simpleMessage("App Info"),
         "are_you_sure":
             MessageLookupByLibrary.simpleMessage("Bist du dir sicher?"),
         "are_you_sure_you_want_to_delete_the_subscription_group_name_of_group":
@@ -101,6 +112,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "back": MessageLookupByLibrary.simpleMessage("Zurück"),
         "bad_guest_token": MessageLookupByLibrary.simpleMessage(
             "Der Zugangs-Token ist nicht mehr gültig. Versuche Squawker erneut zu öffnen!"),
+        "beta": MessageLookupByLibrary.simpleMessage("BETA"),
         "blue_theme_based_on_the_twitter_color_scheme":
             MessageLookupByLibrary.simpleMessage(
                 "Blaues Design basierend auf dem Twitter/X-Farbschema"),
@@ -135,6 +147,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "date_created":
             MessageLookupByLibrary.simpleMessage("Erstellungsdatum"),
         "date_subscribed": MessageLookupByLibrary.simpleMessage("Abo-Datum"),
+        "default_subscription_tab":
+            MessageLookupByLibrary.simpleMessage("Standard-Tab für Abos"),
         "default_tab": MessageLookupByLibrary.simpleMessage("Standard-Tab"),
         "delete": MessageLookupByLibrary.simpleMessage("Löschen"),
         "disable_screenshots":
@@ -163,11 +177,28 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Videos in der besten Qualität herunterladen"),
         "downloading_media": MessageLookupByLibrary.simpleMessage(
             "Medien werden heruntergeladen..."),
+        "edit_account_title":
+            MessageLookupByLibrary.simpleMessage("Konto bearbeiten"),
+        "email_label": MessageLookupByLibrary.simpleMessage("Email:"),
         "enable_": MessageLookupByLibrary.simpleMessage(" aktivieren?"),
         "ended_timeago_format_endsAt_allowFromNow_true": m3,
         "ends_timeago_format_endsAt_allowFromNow_true": m4,
+        "enhanced_feeds_description": MessageLookupByLibrary.simpleMessage(
+            "Erweiterte Anfragen für Feeds (jedoch mit niedrigerer Durchsatzratenbegrenzung)"),
+        "enhanced_feeds_label":
+            MessageLookupByLibrary.simpleMessage("Erweiterte Feeds"),
+        "enhanced_profile_description": MessageLookupByLibrary.simpleMessage(
+            "Erweiterte Anfragen für Profile"),
+        "enhanced_profile_label":
+            MessageLookupByLibrary.simpleMessage("Erweiterte Profile"),
+        "enhanced_searches_description": MessageLookupByLibrary.simpleMessage(
+            "Erweiterte Anfragen für Suchen (jedoch mit niedrigerer Durchsatzratenbegrenzung)"),
+        "enhanced_searches_label":
+            MessageLookupByLibrary.simpleMessage("Erweiterte Suchen"),
         "enter_your_twitter_username": MessageLookupByLibrary.simpleMessage(
             "Gebe deinen Twitter/X-Nutzernamen ein"),
+        "error_from_twitter":
+            MessageLookupByLibrary.simpleMessage("Fehler von Twitter/X"),
         "export": MessageLookupByLibrary.simpleMessage("Exportieren"),
         "export_guest_accounts":
             MessageLookupByLibrary.simpleMessage("Gastkonten exportieren?"),
@@ -182,6 +213,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Abonnements exportieren?"),
         "export_tweets":
             MessageLookupByLibrary.simpleMessage("Tweets exportieren?"),
+        "export_twitter_tokens": MessageLookupByLibrary.simpleMessage(
+            "Twitter/X Token exportieren?"),
         "export_your_data":
             MessageLookupByLibrary.simpleMessage("Daten exportieren"),
         "feed": MessageLookupByLibrary.simpleMessage("Feed"),
@@ -223,10 +256,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "include_retweets":
             MessageLookupByLibrary.simpleMessage("Retweets anzeigen"),
         "joined": m8,
+        "keep_feed_offset_description": MessageLookupByLibrary.simpleMessage(
+            "Für Feeds wird die Position in der Timeline beibehalten, wenn die App neu gestartet wird"),
+        "keep_feed_offset_label":
+            MessageLookupByLibrary.simpleMessage("Position in Feeds merken"),
         "language": MessageLookupByLibrary.simpleMessage("Sprache"),
         "language_subtitle":
             MessageLookupByLibrary.simpleMessage("Neustart erforderlich"),
         "large": MessageLookupByLibrary.simpleMessage("Groß"),
+        "leaner_feeds_description": MessageLookupByLibrary.simpleMessage(
+            "Vorschaulinks in Tweets werden nicht gezeigt"),
         "leaner_feeds_label":
             MessageLookupByLibrary.simpleMessage("Schlanke feeds"),
         "legacy_android_import": MessageLookupByLibrary.simpleMessage(
@@ -238,6 +277,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "light": MessageLookupByLibrary.simpleMessage("Hell"),
         "live": MessageLookupByLibrary.simpleMessage("LIVE"),
         "logging": MessageLookupByLibrary.simpleMessage("Protokollierung"),
+        "mandatory_label":
+            MessageLookupByLibrary.simpleMessage("Pflichtfelder:"),
+        "material_3": MessageLookupByLibrary.simpleMessage("Material 3?"),
         "media": MessageLookupByLibrary.simpleMessage("Medien"),
         "media_size": MessageLookupByLibrary.simpleMessage("Mediengröße"),
         "medium": MessageLookupByLibrary.simpleMessage("Mittel"),
@@ -247,6 +289,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "mute_videos":
             MessageLookupByLibrary.simpleMessage("Videos stumm schalten"),
         "name": MessageLookupByLibrary.simpleMessage("Name"),
+        "name_label": MessageLookupByLibrary.simpleMessage("Name:"),
+        "nbr_guest_accounts": m9,
         "newTrans": MessageLookupByLibrary.simpleMessage("Neu"),
         "next": MessageLookupByLibrary.simpleMessage("Weiter"),
         "no": MessageLookupByLibrary.simpleMessage("Nein"),
@@ -279,10 +323,14 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Das Beenden der Anwendung bestätigen"),
         "option_confirm_close_label":
             MessageLookupByLibrary.simpleMessage("Beenden bestätigen"),
+        "optional_label":
+            MessageLookupByLibrary.simpleMessage("Freiwillige Felder:"),
         "page_not_found": MessageLookupByLibrary.simpleMessage(
             "Twitter/X behauptet diese Seite existiere nicht"),
+        "password_label": MessageLookupByLibrary.simpleMessage("Passwort:"),
         "permission_not_granted": MessageLookupByLibrary.simpleMessage(
             "Berechtigung nicht erteilt. Versuche es nach der Erteilung erneut!"),
+        "phone_label": MessageLookupByLibrary.simpleMessage("Telefon:"),
         "pick_a_color":
             MessageLookupByLibrary.simpleMessage("Wähle eine Farbe!"),
         "pick_an_icon":
@@ -309,6 +357,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "prefix": MessageLookupByLibrary.simpleMessage("Präfix"),
         "private_profile":
             MessageLookupByLibrary.simpleMessage("Privates Profil"),
+        "regular_accounts": m12,
         "released_under_the_mit_license": MessageLookupByLibrary.simpleMessage(
             "Unter der MIT-Lizenz herausgegeben"),
         "remove_from_feed":
@@ -416,6 +465,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "tweets_and_replies":
             MessageLookupByLibrary.simpleMessage("Tweets & Antworten"),
         "tweets_number": m17,
+        "twitter_account_types_both":
+            MessageLookupByLibrary.simpleMessage("Gast- und Standardkonto"),
+        "twitter_account_types_description":
+            MessageLookupByLibrary.simpleMessage("Zu verwendender Kontotyp"),
+        "twitter_account_types_label":
+            MessageLookupByLibrary.simpleMessage("Kontotyp"),
+        "twitter_account_types_only_regular":
+            MessageLookupByLibrary.simpleMessage("Nur Standardkonto"),
+        "twitter_account_types_priority_to_regular":
+            MessageLookupByLibrary.simpleMessage("Standardkonto bevorzugen"),
         "two_home_pages_required": MessageLookupByLibrary.simpleMessage(
             "Du musst mindestens 2 Tabs auf der Startseite haben."),
         "unable_to_find_the_available_trend_locations":
@@ -484,7 +543,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "user_not_found":
             MessageLookupByLibrary.simpleMessage("Nutzer wurde nicht gefunden"),
         "username": MessageLookupByLibrary.simpleMessage("@Nutzername"),
+        "username_label": MessageLookupByLibrary.simpleMessage("Benutzername:"),
         "version": MessageLookupByLibrary.simpleMessage("Version"),
+        "warning_regular_account_description": MessageLookupByLibrary.simpleMessage(
+            "Twitter/X hat die Möglichkeit Gastkonten zu erstellen deaktiviert. Du musst jetzt mindestens ein Standardkonto unter Einstellungen / Nutzerkonto anlegen. Es ist leicht, ein anonymes Standardkonto zu erstellen, siehe hier:"),
+        "warning_regular_account_title": MessageLookupByLibrary.simpleMessage(
+            "Standardkonto wird verwendet"),
         "when_a_new_app_update_is_available":
             MessageLookupByLibrary.simpleMessage(
                 "Sobald ein neues Update der App verfügbar ist"),
@@ -497,9 +561,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "which_tab_is_shown_when_the_app_opens":
             MessageLookupByLibrary.simpleMessage(
                 "Welcher Tab beim Öffnen der App angezeigt wird"),
+        "which_tab_is_shown_when_the_subscription_opens":
+            MessageLookupByLibrary.simpleMessage(
+                "Welcher Tab beim Öffnen von Abos angezeigt wird"),
         "would_you_like_to_enable_automatic_error_reporting":
             MessageLookupByLibrary.simpleMessage(
                 "Möchtest du die automatische Fehlermeldungen aktivieren?"),
+        "x_api": MessageLookupByLibrary.simpleMessage("X API"),
         "yes": MessageLookupByLibrary.simpleMessage("Ja"),
         "yes_please": MessageLookupByLibrary.simpleMessage("Ja bitte"),
         "you_have_not_saved_any_tweets_yet":
@@ -507,7 +575,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Du hast noch keine Tweets gespeichert!"),
         "you_must_have_at_least_2_home_screen_pages":
             MessageLookupByLibrary.simpleMessage(
-                "Du musst mindestens 2 Tabs auf der Startseite haben"),
+                "Du musst mindestens zwei Tabs auf der Startseite haben"),
         "your_profile_must_be_public_otherwise_the_import_will_not_work":
             MessageLookupByLibrary.simpleMessage(
                 "Ein öffentliches Profil ist erforderlich, sonst funktioniert der Import nicht"),

@@ -27,6 +27,7 @@ const optionLocaleDefault = 'system';
 
 const optionShouldCheckForUpdates = 'should_check_for_updates';
 const optionShareBaseUrl = 'share_base_url';
+const optionProxy = 'proxy';
 
 const optionSubscriptionGroupsOrderByAscending = 'subscription_groups.order_by.ascending';
 const optionSubscriptionGroupsOrderByField = 'subscription_groups.order_by.field';

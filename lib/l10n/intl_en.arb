@@ -570,5 +570,11 @@
   "allow_background_play_other_apps_label": "Other apps in background",
   "@allow_background_play_other_apps_label": {},
   "allow_background_play_other_apps_description": "Allow other apps to play in the background",
-  "@allow_background_play_other_apps_description": {}
+  "@allow_background_play_other_apps_description": {},
+  "proxy_label": "Proxy",
+  "@proxy_label": {},
+  "proxy_description": "Proxy for all requests",
+  "@proxy_description": {},
+  "proxy_error": "Proxy Error",
+  "@proxy_error": {}
 }

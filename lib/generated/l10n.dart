@@ -2945,6 +2945,36 @@ class L10n {
       args: [],
     );
   }
+
+  /// `Proxy`
+  String get proxy_label {
+    return Intl.message(
+      'Proxy',
+      name: 'proxy_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Proxy for all requests`
+  String get proxy_description {
+    return Intl.message(
+      'Proxy for all requests',
+      name: 'proxy_description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Proxy Error`
+  String get proxy_error {
+    return Intl.message(
+      'Proxy Error',
+      name: 'proxy_error',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<L10n> {

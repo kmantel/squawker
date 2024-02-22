@@ -356,6 +356,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "prefix": MessageLookupByLibrary.simpleMessage("prefix"),
         "private_profile":
             MessageLookupByLibrary.simpleMessage("Private profile"),
+        "proxy_description":
+            MessageLookupByLibrary.simpleMessage("Proxy for all requests"),
+        "proxy_error": MessageLookupByLibrary.simpleMessage("Proxy Error"),
+        "proxy_label": MessageLookupByLibrary.simpleMessage("Proxy"),
         "regular_accounts": m12,
         "released_under_the_mit_license": MessageLookupByLibrary.simpleMessage(
             "Released under the MIT License"),

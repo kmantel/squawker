@@ -82,13 +82,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Konto zawieszone"),
         "activate_non_confirmation_bias_mode_description":
             MessageLookupByLibrary.simpleMessage(
-                "Ukrywaj autorów tweetów. Unikaj efektu potwierdzenia opartego na autorytatywnych argumentach"),
+                "Ukrywaj autorów tweetów. Unikaj efektu potwierdzenia opartego na autorytatywnych argumentach."),
         "activate_non_confirmation_bias_mode_label":
             MessageLookupByLibrary.simpleMessage(
                 "Aktywuj tryb bez efektu potwierdzenia"),
         "add_account": MessageLookupByLibrary.simpleMessage("Dodaj konto"),
         "add_account_title":
-            MessageLookupByLibrary.simpleMessage("Dodaj zwykłe konto"),
+            MessageLookupByLibrary.simpleMessage("Dodaj konto"),
         "add_subscriptions":
             MessageLookupByLibrary.simpleMessage("Dodaj subskrypcje"),
         "add_to_feed": MessageLookupByLibrary.simpleMessage("Dodaj do kanału"),
@@ -150,7 +150,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "disable_screenshots":
             MessageLookupByLibrary.simpleMessage("Wyłącz zrzuty ekranu"),
         "disable_screenshots_hint": MessageLookupByLibrary.simpleMessage(
-            "Zapobiegaj robieniu zrzutów ekranu. Może to nie działać na wszystkich urządzeniach"),
+            "Zapobiegaj robieniu zrzutów ekranu. Może to nie działać na wszystkich urządzeniach."),
         "disabled": MessageLookupByLibrary.simpleMessage("Wyłączone"),
         "donate": MessageLookupByLibrary.simpleMessage("Przekaż datek"),
         "download": MessageLookupByLibrary.simpleMessage("Pobierz"),
@@ -174,6 +174,8 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Pobieraj filmy w najlepszej jakości"),
         "downloading_media":
             MessageLookupByLibrary.simpleMessage("Pobieranie multimediów…"),
+        "edit_account_title":
+            MessageLookupByLibrary.simpleMessage("Modyfikowanie konta"),
         "email_label": MessageLookupByLibrary.simpleMessage("Email:"),
         "enable_": MessageLookupByLibrary.simpleMessage("Włączyć ?"),
         "ended_timeago_format_endsAt_allowFromNow_true": m3,
@@ -306,7 +308,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "only_public_subscriptions_can_be_imported":
             MessageLookupByLibrary.simpleMessage(
-                "Subskrypcje mogą być importowane tylko z profili publicznych."),
+                "Subskrypcje mogą być importowane tylko z profili publicznych"),
         "oops_something_went_wrong":
             MessageLookupByLibrary.simpleMessage("Ups! Coś poszło nie tak 🥲"),
         "open_app_settings":
@@ -417,7 +419,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "zgłoszeniu (#143) na GitHubie"),
         "the_tweet_did_not_contain_any_text_this_is_unexpected":
             MessageLookupByLibrary.simpleMessage(
-                "Tweet nie zawierał żadnego tekstu. To nieoczekiwane!"),
+                "Tweet nie zawierał żadnego tekstu. Jest to nieoczekiwane"),
         "theme": MessageLookupByLibrary.simpleMessage("Motyw"),
         "theme_mode": MessageLookupByLibrary.simpleMessage("Tryb motywu"),
         "there_were_no_trends_returned_this_is_unexpected_please_report_as_a_bug_if_possible":
@@ -542,6 +544,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "username_label":
             MessageLookupByLibrary.simpleMessage("Nazwa użytkownika:"),
         "version": MessageLookupByLibrary.simpleMessage("Wersja"),
+        "warning_regular_account_description": MessageLookupByLibrary.simpleMessage(
+            "Twitter/X wyłączył możliwość tworzenia kont gości. Musisz teraz ustawić zwykłe konto (konta) w Ustawienia / Konto. Łatwo jest utworzyć anonimowe konto zwykłe, jak wyjaśniono tutaj:"),
+        "warning_regular_account_title":
+            MessageLookupByLibrary.simpleMessage("Korzystanie z kont zwykłych"),
         "when_a_new_app_update_is_available":
             MessageLookupByLibrary.simpleMessage(
                 "Gdy dostępna jest nowa aktualizacja aplikacji"),

@@ -600,5 +600,11 @@
   "allow_background_play_other_apps_label": "Apps externes en arrière-plan",
   "@allow_background_play_other_apps_label": {},
   "allow_background_play_other_apps_description": "Permettre aux apps externes de jouer en arrière-plan",
-  "@allow_background_play_other_apps_description": {}
+  "@allow_background_play_other_apps_description": {},
+  "proxy_label": "Proxy",
+  "@proxy_label": {},
+  "proxy_description": "Proxy pour toutes les requêtes",
+  "@proxy_description": {},
+  "proxy_error": "Erreur Proxy",
+  "@proxy_error": {}
 }

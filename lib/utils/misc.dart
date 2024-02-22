@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
+import 'package:squawker/client/app_http_client.dart';
 
 const androidChannel = MethodChannel('squawker/android_info');
 
@@ -24,7 +25,7 @@ Future<String?> getPublicIP() async {
       return cached_public_ip;
     }
     var url = Uri.parse('https://api.ipify.org');
-    var response = await http.get(url);
+    var response = await AppHttpClient.httpGet(url);
     if (response.statusCode == 200) {
       // The response body is the IP in plain text, so just
       // return it as-is.

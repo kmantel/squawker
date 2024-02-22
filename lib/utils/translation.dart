@@ -1,9 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
-// import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_cache/flutter_cache.dart' as cache;
+import 'package:squawker/client/app_http_client.dart';
 import 'package:squawker/utils/iterables.dart';
 import 'package:squawker/utils/misc.dart';
 import 'package:http/http.dart' as http;
@@ -58,7 +57,7 @@ class TranslationAPI {
       String? errorMessage;
       while (connectTries < translation_hosts.length) {
         try {
-          var response = await http.get(Uri.https(translationHost(), '/languages')).timeout(const Duration(seconds: 3));
+          var response = await AppHttpClient.httpGet(Uri.https(translationHost(), '/languages')).timeout(const Duration(seconds: 3));
           TranslationAPIResult rsp = await parseResponse(response);
           if (rsp.success) {
             return rsp;
@@ -101,7 +100,7 @@ class TranslationAPI {
       String? errorMessage;
       while (connectTries < translation_hosts.length) {
         try {
-          var response = await http.post(Uri.https(translationHost(), '/translate'),
+          var response = await AppHttpClient.httpPost(Uri.https(translationHost(), '/translate'),
               body: jsonEncode(formData), headers: {'Content-Type': 'application/json'}).timeout(const Duration(seconds: 3));
           TranslationAPIResult rsp = await parseResponse(response);
           if (rsp.success) {

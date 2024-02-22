@@ -1,11 +1,11 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:http/http.dart' as http;
 import 'package:logging/logging.dart';
+import 'package:squawker/client/app_http_client.dart';
 import 'package:squawker/constants.dart';
 import 'package:squawker/generated/l10n.dart';
 import 'package:squawker/home/_feed.dart';
@@ -255,8 +255,7 @@ class _HomeScreenState extends State<_HomeScreen> {
 
   Future<Uri> _resolveShortUrl(Uri link) async {
     http.Request req = http.Request('Get', link)..followRedirects = false;
-    http.Client baseClient = http.Client();
-    http.StreamedResponse response = await baseClient.send(req);
+    http.StreamedResponse response = await AppHttpClient.httpSend(req);
     String? location = response.headers['location'];
     return location == null ? link : Uri.parse(location);
   }

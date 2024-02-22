@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:logging/logging.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:squawker/client/app_http_client.dart';
 import 'package:squawker/client/client_guest_account.dart';
 import 'package:squawker/client/client_regular_account.dart';
 import 'package:squawker/constants.dart';
@@ -524,7 +525,7 @@ class TwitterAccount {
     String oauthConsumerKeySecret = base64.encode(utf8.encode('$oauthConsumerKey:$oauthConsumerSecret'));
 
     log.info('Posting https://api.twitter.com/oauth2/token');
-    var response = await http.post(Uri.parse('https://api.twitter.com/oauth2/token'),
+    var response = await AppHttpClient.httpPost(Uri.parse('https://api.twitter.com/oauth2/token'),
         headers: {
           'Authorization': 'Basic $oauthConsumerKeySecret',
           'Content-Type': 'application/x-www-form-urlencoded'
@@ -546,7 +547,7 @@ class TwitterAccount {
 
   static Future<String> getGuestToken(String accessToken) async {
     log.info('Posting https://api.twitter.com/1.1/guest/activate.json');
-    var response = await http.post(Uri.parse('https://api.twitter.com/1.1/guest/activate.json'),
+    var response = await AppHttpClient.httpPost(Uri.parse('https://api.twitter.com/1.1/guest/activate.json'),
         headers: {
           'Authorization': 'Bearer $accessToken'
         }
@@ -599,7 +600,8 @@ class TwitterAccount {
   static Future<http.Response> _doFetch(Uri uri, RateFetchContext fetchContext, {Map<String, String>? headers}) async {
     try {
       String authorization = await _getSignOauth(uri, 'GET');
-      var response = await http.get(uri, headers: {
+
+      var response = await AppHttpClient.httpGet(uri, headers: {
         ...?headers,
         'Connection': 'Keep-Alive',
         'Authorization': authorization,

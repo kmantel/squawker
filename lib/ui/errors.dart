@@ -9,6 +9,32 @@ import 'package:squawker/client/client.dart';
 import 'package:squawker/constants.dart';
 import 'package:squawker/generated/l10n.dart';
 
+Future<void> showAlertDialog(BuildContext context, String title, String message) async {
+  List<Widget> msgLst = message.split('\n').map((e) => Text(e)).toList();
+  return showDialog<void>(
+    context: context,
+    barrierDismissible: false, // user must tap button!
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text(title),
+        content: SingleChildScrollView(
+          child: ListBody(
+            children: msgLst,
+          ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            child: Text(L10n.current.ok),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
+
 void showSnackBar(BuildContext context, {required String icon, required String message, bool clearBefore = true}) {
   if (clearBefore) {
     ScaffoldMessenger.of(context).clearSnackBars();

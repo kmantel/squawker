@@ -2,11 +2,13 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localized_locales/flutter_localized_locales.dart';
+import 'package:squawker/client/app_http_client.dart';
 import 'package:squawker/constants.dart';
 import 'package:squawker/database/repository.dart';
 import 'package:squawker/generated/l10n.dart';
 import 'package:squawker/home/home_screen.dart';
 import 'package:squawker/profile/profile.dart';
+import 'package:squawker/ui/errors.dart';
 import 'package:squawker/utils/iterables.dart';
 import 'package:squawker/utils/misc.dart';
 import 'package:logging/logging.dart';
@@ -54,10 +56,44 @@ class SettingsGeneralFragment extends StatelessWidget {
             width: mediaQuery.size.width,
             child: TextFormField(
               controller: controller,
-              decoration: const InputDecoration(hintText: 'https://x.com'),
+              decoration: InputDecoration(hintText: 'https://x.com', hintStyle: TextStyle(color: Theme.of(context).disabledColor)),
             ),
           )
         ]);
+  }
+
+  PrefDialog _createProxyDialog(BuildContext context) {
+    var prefService = PrefService.of(context);
+    var mediaQuery = MediaQuery.of(context);
+
+    final controller = TextEditingController(text: prefService.get(optionProxy));
+
+    return PrefDialog(
+      actions: [
+        TextButton(onPressed: () => Navigator.pop(context), child: Text(L10n.of(context).cancel)),
+        TextButton(
+          onPressed: () async {
+            try {
+              AppHttpClient.setProxy(controller.text);
+              await prefService.set(optionProxy, controller.text);
+            }
+            catch (e, s) {
+              await showAlertDialog(context, L10n.of(context).proxy_error, e.toString());
+            }
+            Navigator.pop(context);
+          },
+          child: Text(L10n.of(context).save))
+      ],
+      title: Text(L10n.of(context).share_base_url),
+      children: [
+        SizedBox(
+          width: mediaQuery.size.width,
+          child: TextFormField(
+            controller: controller,
+            decoration: InputDecoration(hintText: 'host:port', hintStyle: TextStyle(color: Theme.of(context).disabledColor)),
+          ),
+        )
+      ]);
   }
 
   @override
@@ -119,6 +155,11 @@ class SettingsGeneralFragment extends StatelessWidget {
             title: Text(L10n.of(context).share_base_url),
             subtitle: Text(L10n.of(context).share_base_url_description),
             dialog: _createShareBaseDialog(context),
+          ),
+          PrefDialogButton(
+            title: Text(L10n.of(context).proxy_label),
+            subtitle: Text(L10n.of(context).proxy_description),
+            dialog: _createProxyDialog(context),
           ),
           PrefSwitch(
             title: Text(L10n.of(context).disable_screenshots),

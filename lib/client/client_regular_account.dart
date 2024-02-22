@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:logging/logging.dart';
+import 'package:squawker/client/app_http_client.dart';
 import 'package:squawker/client/client_account.dart';
 import 'package:squawker/database/entities.dart';
 import 'package:squawker/generated/l10n.dart';
@@ -19,7 +19,7 @@ class TwitterRegularAccount {
       'Authorization': 'Bearer $accessToken',
       'X-Guest-Token': guestToken
     });
-    var response = await http.post(Uri.parse(url),
+    var response = await AppHttpClient.httpPost(Uri.parse(url),
       headers: headers,
       body: json.encode({
         'flow_token': null,
@@ -60,7 +60,7 @@ class TwitterRegularAccount {
       url = '$url?lang=$languageCode';
     }
     log.info('Posting (userIdentifier) $url');
-    var response = await http.post(Uri.parse(url),
+    var response = await AppHttpClient.httpPost(Uri.parse(url),
       headers: headers,
       body: json.encode({
         'flow_token': flowToken,
@@ -91,7 +91,7 @@ class TwitterRegularAccount {
       url = '$url?lang=$languageCode';
     }
     log.info('Posting (password) $url');
-    var response = await http.post(Uri.parse(url),
+    var response = await AppHttpClient.httpPost(Uri.parse(url),
       headers: headers,
       body: json.encode({
         'flow_token': flowToken,
@@ -121,7 +121,7 @@ class TwitterRegularAccount {
       url = '$url?lang=$languageCode';
     }
     log.info('Posting (duplicationCheck) $url');
-    var response = await http.post(Uri.parse(url),
+    var response = await AppHttpClient.httpPost(Uri.parse(url),
       headers: headers,
       body: json.encode({
         'flow_token': flowToken,
@@ -165,7 +165,7 @@ class TwitterRegularAccount {
       url = '$url?lang=$languageCode';
     }
     log.info('Posting (twoFactorAuthChallenge) $url');
-    var response = await http.post(Uri.parse(url),
+    var response = await AppHttpClient.httpPost(Uri.parse(url),
       headers: headers,
       body: json.encode({
         'flow_token': flowToken,
@@ -195,7 +195,7 @@ class TwitterRegularAccount {
       url = '$url?lang=$languageCode';
     }
     log.info('Posting (alternateIdentifier) $url');
-    var response = await http.post(Uri.parse('https://api.twitter.com/1.1/onboarding/task.json'),
+    var response = await AppHttpClient.httpPost(Uri.parse('https://api.twitter.com/1.1/onboarding/task.json'),
       headers: headers,
       body: json.encode({
         'flow_token': flowToken,
@@ -225,7 +225,7 @@ class TwitterRegularAccount {
       url = '$url?lang=$languageCode';
     }
     log.info('Posting (loginAcid) $url');
-    var response = await http.post(Uri.parse('https://api.twitter.com/1.1/onboarding/task.json'),
+    var response = await AppHttpClient.httpPost(Uri.parse('https://api.twitter.com/1.1/onboarding/task.json'),
         headers: headers,
         body: json.encode({
           'flow_token': flowToken,

@@ -10,6 +10,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_windowmanager/flutter_windowmanager.dart';
 
+import 'package:squawker/client/app_http_client.dart';
 import 'package:squawker/client/client_account.dart';
 import 'package:squawker/constants.dart';
 import 'package:squawker/database/repository.dart';
@@ -231,6 +232,8 @@ Future<void> main() async {
   var trendLocationModel = UserTrendLocationModel(prefService);
 
   await TwitterAccount.loadAllTwitterTokensAndRateLimits();
+
+  AppHttpClient.setProxy(prefService.get(optionProxy));
 
   runApp(PrefService(
       service: prefService,

@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'package:logging/logging.dart';
+import 'package:squawker/client/app_http_client.dart';
 import 'package:squawker/client/client_account.dart';
 import 'package:squawker/database/entities.dart';
 import 'package:squawker/utils/iterables.dart';
@@ -14,7 +14,7 @@ class TwitterGuestAccount {
       'Authorization': 'Bearer $accessToken',
       'X-Guest-Token': guestToken
     });
-    var response = await http.post(Uri.parse('https://api.twitter.com/1.1/onboarding/task.json?flow_name=welcome'),
+    var response = await AppHttpClient.httpPost(Uri.parse('https://api.twitter.com/1.1/onboarding/task.json?flow_name=welcome'),
       headers: headers,
       body: json.encode({
         'flow_token': null,
@@ -40,7 +40,7 @@ class TwitterGuestAccount {
 
   static Future<TwitterTokenEntity> _getGuestTwitterTokenFromTwitter(Map<String,String> headers, String flowToken) async {
     log.info('Posting https://api.twitter.com/1.1/onboarding/task.json');
-    var response = await http.post(Uri.parse('https://api.twitter.com/1.1/onboarding/task.json'),
+    var response = await AppHttpClient.httpPost(Uri.parse('https://api.twitter.com/1.1/onboarding/task.json'),
       headers: headers,
       body: json.encode({
         'flow_token': flowToken,

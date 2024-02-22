@@ -84,8 +84,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "activate_non_confirmation_bias_mode_label":
             MessageLookupByLibrary.simpleMessage("تفعيل نمط التحيز غير المؤكد"),
         "add_account": MessageLookupByLibrary.simpleMessage("إضافة حساب"),
-        "add_account_title":
-            MessageLookupByLibrary.simpleMessage("اضافة الحساب العادي"),
+        "add_account_title": MessageLookupByLibrary.simpleMessage("اضافة حساب"),
         "add_subscriptions":
             MessageLookupByLibrary.simpleMessage("إضافة اشتراكات"),
         "add_to_feed": MessageLookupByLibrary.simpleMessage("إضافة إلى الموجز"),
@@ -95,6 +94,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "all_the_great_software_used_by_fritter":
             MessageLookupByLibrary.simpleMessage(
                 "كافة البرمجيات الرائعة التي يستخدمها Squawker"),
+        "allow_background_play_description":
+            MessageLookupByLibrary.simpleMessage("السماح بالتشغيل في الخلفية"),
+        "allow_background_play_label":
+            MessageLookupByLibrary.simpleMessage("التشغيل في الخلفية"),
+        "allow_background_play_other_apps_description":
+            MessageLookupByLibrary.simpleMessage(
+                "السماح للتطبيقات الأخرى بالتشغيل في الخلفية"),
+        "allow_background_play_other_apps_label":
+            MessageLookupByLibrary.simpleMessage("تطبيقات أخرى في الخلفية"),
         "an_update_for_fritter_is_available":
             MessageLookupByLibrary.simpleMessage(
                 "هناك تحديث متوفر لـ Squawker! 🚀"),
@@ -170,6 +178,8 @@ class MessageLookup extends MessageLookupByLibrary {
                 "قم بتنزيل مقاطع الفيديو بأفضل جودة"),
         "downloading_media":
             MessageLookupByLibrary.simpleMessage("تحميل الوسائط..."),
+        "edit_account_title":
+            MessageLookupByLibrary.simpleMessage("تعديل الحساب"),
         "email_label":
             MessageLookupByLibrary.simpleMessage("البريد الالكتروني:"),
         "enable_": MessageLookupByLibrary.simpleMessage("تفعيل الحارس؟"),
