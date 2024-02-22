@@ -7,3 +7,6 @@
   - Allows video to continue to play when Squawker is in the background
   - Allows video/music of other apps to play in the background while a video is playing in Squawker.
 * Implement feature #219 Allow to set a proxy HTTP(S) or SOCKS5.
+  The proxy can be set under Settings / General then tap on the Proxy item.
+  The format is: scheme://[user:pwd@]host:port.
+  Eg https://1.2.3.4:5678 or socks5://who:ami@9.8.7.6:2468.

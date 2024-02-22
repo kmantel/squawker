@@ -90,7 +90,7 @@ class SettingsGeneralFragment extends StatelessWidget {
           width: mediaQuery.size.width,
           child: TextFormField(
             controller: controller,
-            decoration: InputDecoration(hintText: 'host:port', hintStyle: TextStyle(color: Theme.of(context).disabledColor)),
+            decoration: InputDecoration(hintText: 'scheme://[user:pwd@]host:port', hintStyle: TextStyle(color: Theme.of(context).disabledColor)),
           ),
         )
       ]);
