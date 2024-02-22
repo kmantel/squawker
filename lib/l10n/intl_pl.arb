@@ -592,5 +592,13 @@
   "warning_regular_account_description": "Twitter/X wyłączył możliwość tworzenia kont gości. Musisz teraz ustawić zwykłe konto (konta) w Ustawienia / Konto. Łatwo jest utworzyć anonimowe konto zwykłe, jak wyjaśniono tutaj:",
   "@warning_regular_account_description": {},
   "warning_regular_account_title": "Korzystanie z kont zwykłych",
-  "@warning_regular_account_title": {}
+  "@warning_regular_account_title": {},
+  "allow_background_play_other_apps_label": "Inne aplikacje działające w tle",
+  "@allow_background_play_other_apps_label": {},
+  "allow_background_play_label": "Odtwarzanie w tle",
+  "@allow_background_play_label": {},
+  "allow_background_play_description": "Zezwól na odtwarzanie w tle",
+  "@allow_background_play_description": {},
+  "allow_background_play_other_apps_description": "Zezwalaj innym aplikacjom na działanie w tle",
+  "@allow_background_play_other_apps_description": {}
 }
