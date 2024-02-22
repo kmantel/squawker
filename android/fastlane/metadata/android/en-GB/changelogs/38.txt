@@ -6,3 +6,4 @@
   There are now two options implemented, enabled by default (under Settings / General / Media) :
   - Allows video to continue to play when Squawker is in the background
   - Allows video/music of other apps to play in the background while a video is playing in Squawker.
+* Implement feature #219 Allow to set a proxy HTTP(S) or SOCKS5.

@@ -119,6 +119,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Iste gruppo non ha subscriptiones!"),
         "thumbnail": MessageLookupByLibrary.simpleMessage("Miniatura"),
         "trending": MessageLookupByLibrary.simpleMessage("Tendentias"),
+        "trends": MessageLookupByLibrary.simpleMessage("Tendentias"),
         "tweets": MessageLookupByLibrary.simpleMessage("Tweets"),
         "tweets_and_replies":
             MessageLookupByLibrary.simpleMessage("Tweets e responsas"),

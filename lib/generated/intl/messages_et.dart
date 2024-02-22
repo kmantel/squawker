@@ -99,6 +99,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "all_the_great_software_used_by_fritter":
             MessageLookupByLibrary.simpleMessage(
                 "Kõik suurepärane tarkvara, mida Squawker kasutab"),
+        "allow_background_play_description":
+            MessageLookupByLibrary.simpleMessage(
+                "Luba meediat esitada taustal"),
+        "allow_background_play_label":
+            MessageLookupByLibrary.simpleMessage("Meedia esitamine taustal"),
+        "allow_background_play_other_apps_description":
+            MessageLookupByLibrary.simpleMessage(
+                "Luba muudel rakendustel esitada meediat taustal"),
+        "allow_background_play_other_apps_label":
+            MessageLookupByLibrary.simpleMessage("Muud rakendused taustal"),
         "an_update_for_fritter_is_available":
             MessageLookupByLibrary.simpleMessage(
                 "Squawker\'i tarkvarauuendus on saadaval! 🚀"),
