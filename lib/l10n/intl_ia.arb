@@ -166,5 +166,7 @@
   "no_results_for": "Nulle resultatos pro:",
   "@no_results_for": {},
   "close": "Clauder",
-  "@close": {}
+  "@close": {},
+  "trends": "Tendentias",
+  "@trends": {}
 }
