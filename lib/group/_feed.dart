@@ -57,6 +57,7 @@ class SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widge
   late ItemPositionsListener _itemPositionsListener;
   bool _insertOffset = true;
   bool _keepFeedOffset = false;
+  final List<TweetChain> _lastData = [];
   final List<TweetChain> _data = [];
   bool _toScroll = false;
   Response? _errorResponse;
@@ -72,7 +73,9 @@ class SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widge
     WidgetsBinding.instance.addObserver(this);
     _visiblePositionState = VisiblePositionState();
     _itemPositionsListener = ItemPositionsListener.create();
-    _itemPositionsListener.itemPositions.addListener(() { _checkFetchData(); });
+    _itemPositionsListener.itemPositions.addListener(() {
+      _checkFetchData();
+    });
     Future.delayed(Duration.zero, () {
       _checkFetchData();
     });
@@ -99,9 +102,11 @@ class SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widge
   }
 
   Future<void> _checkFetchData() async {
-    if (_data.isEmpty || (_data.length - _itemPositionsListener.itemPositions.value.first.index) < 20) {
+    if (_data.isEmpty || (_data.length > _lastData.length && (_data.length - _itemPositionsListener.itemPositions.value.first.index) < 20)) {
       await _lock.synchronized(() async {
-        if (_data.isEmpty || (_data.length - _itemPositionsListener.itemPositions.value.first.index) < 20) {
+        if (_data.isEmpty || (_data.length > _lastData.length && (_data.length - _itemPositionsListener.itemPositions.value.first.index) < 20)) {
+          _lastData.clear();
+          _lastData.addAll(_data);
           await _listTweets();
         }
       });
@@ -342,12 +347,14 @@ class SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widge
         if (positionedChainIdx > -1 && positionedTweetId != null) {
           positionedTweetIdx = threads[positionedChainIdx].tweets.indexWhere((e) => e.idStr == positionedTweetId);
         }
-        if (positionedChainIdx == -1) {
+        if (positionedChainIdx == -1 && threads.isNotEmpty) {
           // find the nearest conversation
           int refId = int.parse(positionedChainId);
           TweetChain tc = threads.lastWhere((e) {
             int id = int.parse(e.id);
             return id > refId;
+          }, orElse: () {
+            return threads[threads.length - 1];
           });
           positionedChainIdx = threads.indexWhere((e) => e.id == tc.id);
         }
@@ -379,7 +386,8 @@ class SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widge
         _toScroll = true;
       }
 
-    } catch (e, stackTrace) {
+    }
+    catch (e, stackTrace) {
       if (e is Exception) {
         log.severe(e.toString());
         setState(() {
@@ -389,6 +397,13 @@ class SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widge
       }
       if (mounted) {
         // probably something to do
+      }
+    }
+    finally {
+      if (_isLoading) {
+        setState(() {
+          _isLoading = false;
+        });
       }
     }
   }
