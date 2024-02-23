@@ -18,6 +18,9 @@ import 'package:squawker/utils/misc.dart';
 import 'package:synchronized/synchronized.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
+// now it is set to false. maybe forever.
+const bool try_to_create_guest_account = false;
+
 class TwitterAccount {
   static final log = Logger('TwitterAccount');
 
@@ -167,15 +170,20 @@ class TwitterAccount {
     // first try to create a guest Twitter/X token if it's been at least 24 hours since the last creation
     // possibly will be removed in future versions
     TwitterAccountException? lastGuestAccountExc;
-    DateTime? lastGuestTwitterTokenCreationAttempted = await _getLastGuestTwitterTokenCreationAttempted();
-    if (lastGuestTwitterTokenCreationAttempted == null || DateTime.now().difference(lastGuestTwitterTokenCreationAttempted).inHours >= 24) {
-      try {
-        await _setLastGuestTwitterTokenCreationAttempted();
-        await TwitterGuestAccount.createGuestTwitterToken();
-      }
-      on TwitterAccountException catch (_, ex) {
-        log.warning('*** Try to create a guest Twitter/X token after 24 hours with error: ${_.toString()}');
-        lastGuestAccountExc = _;
+    if (try_to_create_guest_account) {
+      DateTime? lastGuestTwitterTokenCreationAttempted = await _getLastGuestTwitterTokenCreationAttempted();
+      if (lastGuestTwitterTokenCreationAttempted == null || DateTime
+          .now()
+          .difference(lastGuestTwitterTokenCreationAttempted)
+          .inHours >= 24) {
+        try {
+          await _setLastGuestTwitterTokenCreationAttempted();
+          await TwitterGuestAccount.createGuestTwitterToken();
+        }
+        on TwitterAccountException catch (_, ex) {
+          log.warning('*** Try to create a guest Twitter/X token after 24 hours with error: ${_.toString()}');
+          lastGuestAccountExc = _;
+        }
       }
     }
 
