@@ -171,10 +171,6 @@ class _AddAccountDialogState extends State<AddAccountDialog> {
   String? _name;
   String? _email;
   String? _phone;
-  String _originalPassword = '';
-  String? _originalName;
-  String? _originalEmail;
-  String? _originalPhone;
   TextEditingController? _usernameController;
   TextEditingController? _passwordController;
   TextEditingController? _nameController;
@@ -185,26 +181,23 @@ class _AddAccountDialogState extends State<AddAccountDialog> {
   void initState() {
     super.initState();
     if (widget.accountToEdit != null) {
+      _saveEnabled = true;
       _username = widget.accountToEdit!;
       _usernameController = TextEditingController(text: widget.accountToEdit!);
       TwitterProfileEntity? tpe = TwitterAccount.getProfile(widget.accountToEdit!);
       if (tpe != null) {
         _password = tpe.password;
-        _originalPassword = _password;
         _passwordController = TextEditingController(text: tpe.password);
         if (tpe.name?.isNotEmpty ?? false) {
           _name = tpe.name;
-          _originalName = _name;
           _nameController = TextEditingController(text: tpe.name);
         }
         if (tpe.email?.isNotEmpty ?? false) {
           _email = tpe.email;
-          _originalEmail = _email;
           _emailController = TextEditingController(text: tpe.email);
         }
         if (tpe.phone?.isNotEmpty ?? false) {
           _phone = tpe.phone;
-          _originalPhone = _phone;
           _phoneController = TextEditingController(text: tpe.phone);
         }
       }
@@ -220,28 +213,10 @@ class _AddAccountDialogState extends State<AddAccountDialog> {
       }
     }
     else {
-      if (widget.accountToEdit != null) {
-        if (_password != _originalPassword || (_name ?? '') != (_originalName ?? '') || (_email ?? '') != (_originalEmail ?? '') || (_phone ?? '') != (_originalPhone ?? '')) {
-          if (!_saveEnabled) {
-            setState(() {
-              _saveEnabled = true;
-            });
-          }
-        }
-        else {
-          if (_saveEnabled) {
-            setState(() {
-              _saveEnabled = false;
-            });
-          }
-        }
-      }
-      else {
-        if (!_saveEnabled) {
-          setState(() {
-            _saveEnabled = true;
-          });
-        }
+      if (!_saveEnabled) {
+        setState(() {
+          _saveEnabled = true;
+        });
       }
     }
   }
@@ -335,7 +310,6 @@ class _AddAccountDialogState extends State<AddAccountDialog> {
                     decoration: InputDecoration(contentPadding: EdgeInsets.all(5)),
                     onChanged: (text) {
                       _name = text;
-                      _checkEnabledSave();
                     },
                   ),
                 ),
@@ -355,7 +329,6 @@ class _AddAccountDialogState extends State<AddAccountDialog> {
                     decoration: InputDecoration(contentPadding: EdgeInsets.all(5)),
                     onChanged: (text) {
                       _email = text;
-                      _checkEnabledSave();
                     },
                   ),
                 ),
@@ -375,7 +348,6 @@ class _AddAccountDialogState extends State<AddAccountDialog> {
                     decoration: InputDecoration(contentPadding: EdgeInsets.all(5)),
                     onChanged: (text) {
                       _phone = text;
-                      _checkEnabledSave();
                     },
                   ),
                 ),
@@ -397,12 +369,8 @@ class _AddAccountDialogState extends State<AddAccountDialog> {
                       return;
                     }
                     try {
-                      if (widget.accountToEdit != null) {
-                        await TwitterAccount.updateProfile(widget.accountToEdit!, _password, _name, _email, _phone);
-                      }
-                      else {
-                        await TwitterAccount.createRegularTwitterToken(_username, _password, _name, _email, _phone);
-                      }
+                      // this creates a new authenticated token and delete the old one if applicable
+                      await TwitterAccount.createRegularTwitterToken(_username, _password, _name, _email, _phone);
                       Navigator.pop(context, true);
                     }
                     catch (e, _) {
