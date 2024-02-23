@@ -86,7 +86,7 @@ class UnableToSaveMedia {
 }
 
 Future downloadFile(BuildContext context, Uri uri) async {
-  var response = await AppHttpClient.httpPost(uri);
+  var response = await AppHttpClient.httpGet(uri);
   if (response.statusCode == 200) {
     return response.bodyBytes;
   }
