@@ -84,7 +84,7 @@ class SettingsGeneralFragment extends StatelessWidget {
           },
           child: Text(L10n.of(context).save))
       ],
-      title: Text(L10n.of(context).share_base_url),
+      title: Text(L10n.of(context).proxy_label),
       children: [
         SizedBox(
           width: mediaQuery.size.width,
