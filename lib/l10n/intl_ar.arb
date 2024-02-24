@@ -596,5 +596,11 @@
   "allow_background_play_label": "التشغيل في الخلفية",
   "@allow_background_play_label": {},
   "allow_background_play_description": "السماح بالتشغيل في الخلفية",
-  "@allow_background_play_description": {}
+  "@allow_background_play_description": {},
+  "proxy_error": "خطأ في الوكيل",
+  "@proxy_error": {},
+  "proxy_label": "الوكيل",
+  "@proxy_label": {},
+  "proxy_description": "الوكيل لجميع الطلبات",
+  "@proxy_description": {}
 }
