@@ -40,12 +40,12 @@ class SettingsData {
     // guestAccounts from previous versions
     if (json['guestAccounts'] != null) {
       // make sure to filter out the badly manipulated files
-      twtTokens = List.from(json['guestAccounts']).map((e) => TwitterTokenEntity.fromMap(e)).where((e) => e.guest && e.profile == null).toList();
+      twtTokens = List.from(json['guestAccounts']).map((e) => TwitterTokenEntity.fromMap(e)).where((e) => e.guest && e.profile == null && e.oauthToken.isNotEmpty && e.oauthTokenSecret.isNotEmpty).toList();
     }
     if (json['twitterTokens'] != null) {
       // make sure to filter out the badly manipulated files
       twtTokens ??= (await Future.wait(List.from(json['twitterTokens']).map((e) async => TwitterTokenEntity.fromMapSecured(e))))
-        .where((e) => (e.guest && e.profile == null) || (!e.guest && e.profile != null && e.profile!.username.isNotEmpty && e.profile!.password.isNotEmpty)).toList();
+        .where((e) => e.oauthToken.isNotEmpty && e.oauthTokenSecret.isNotEmpty && ((e.guest && e.profile == null) || (!e.guest && e.profile != null && e.profile!.username.isNotEmpty && e.profile!.password.isNotEmpty))).toList();
     }
     return SettingsData(
       settings: json['settings'],

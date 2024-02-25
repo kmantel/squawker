@@ -289,11 +289,41 @@ class Repository {
             await db.insert(tableTwitterProfile, {'username': screenName, 'password': password, 'name': name, 'email': email, 'phone': phone});
           }
         }))
+      ],
+      30: [
+        Migration(Operation((db) async {
+          await db.delete(tableTwitterToken, where: "screen_name IS NULL OR screen_name = '' OR id_str IS NULL OR id_str = '' OR oauth_token IS NULL OR oauth_token = '' OR oauth_token_secret IS NULL OR oauth_token_secret = '' OR guest IS NULL OR created_at IS NULL OR created_at = ''");
+          await db.delete(tableTwitterProfile, where: "username IS NULL OR username = '' OR password IS NULL OR password = '' OR created_at IS NULL OR created_at = ''");
+
+          await db.rawQuery('CREATE TABLE ${tableTwitterToken}_2 AS SELECT DISTINCT * FROM $tableTwitterToken');
+          await db.rawQuery('DROP TABLE $tableTwitterToken');
+          await db.rawQuery('CREATE TABLE $tableTwitterToken (oauth_token VARCHAR NON NULL PRIMARY KEY, oauth_token_secret VARCHAR NON NULL, id_str VARCHAR NON NULL, screen_name VARCHAR NON NULL, guest BOOLEAN NON NULL, created_at TIMESTAMP NON NULL DEFAULT CURRENT_TIMESTAMP)');
+          await db.rawQuery('INSERT INTO $tableTwitterToken (oauth_token, oauth_token_secret, id_str, screen_name, guest, created_at) SELECT oauth_token, oauth_token_secret, id_str, screen_name, guest, created_at FROM ${tableTwitterToken}_2');
+          await db.rawQuery('DROP TABLE ${tableTwitterToken}_2');
+
+          await db.rawQuery('CREATE TABLE ${tableTwitterProfile}_2 AS SELECT DISTINCT * FROM $tableTwitterProfile');
+          await db.rawQuery('DROP TABLE $tableTwitterProfile');
+          await db.rawQuery('CREATE TABLE $tableTwitterProfile (username VARCHAR NON NULL PRIMARY KEY, password VARCHAR NON NULL, created_at TIMESTAMP NON NULL DEFAULT CURRENT_TIMESTAMP, name VARCHAR, email VARCHAR, phone VARCHAR)');
+          await db.rawQuery('INSERT INTO $tableTwitterProfile (username, password, created_at, name, email, phone) SELECT username, password, created_at, name, email, phone FROM ${tableTwitterProfile}_2');
+          await db.rawQuery('DROP TABLE ${tableTwitterProfile}_2');
+
+          var tokens = await db.rawQuery('SELECT t.oauth_token, p.username FROM $tableTwitterToken t LEFT JOIN $tableTwitterProfile p ON t.screen_name = p.username WHERE t.guest = 0 AND p.username IS NULL');
+          if (tokens.isNotEmpty) {
+            var oauthTokenLst = tokens.map((e) => e['oauth_token'] as String).toList();
+            await db.delete(tableTwitterToken, where: 'oauth_token IN (${List.filled(oauthTokenLst.length, '?').join(',')})', whereArgs: oauthTokenLst);
+          }
+
+          var profiles = await db.rawQuery('SELECT p.username, t.oauth_token FROM $tableTwitterProfile p LEFT JOIN $tableTwitterToken t ON p.username = t.screen_name WHERE t.oauth_token IS NULL');
+          if (profiles.isNotEmpty) {
+            var usernameLst = profiles.map((e) => e['username'] as String).toList();
+            await db.delete(tableTwitterProfile, where: 'username IN (${List.filled(usernameLst.length, '?').join(',')})', whereArgs: usernameLst);
+          }
+        }))
       ]
     });
     await openDatabase(
       databaseName,
-      version: 29,
+      version: 30,
       onUpgrade: myMigrationPlan,
       onCreate: myMigrationPlan,
       onDowngrade: myMigrationPlan,

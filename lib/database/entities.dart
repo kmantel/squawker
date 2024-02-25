@@ -247,7 +247,7 @@ class TwitterTokenEntity with ToMappable {
       screenName: json['screen_name'] == null ? getRandomString(15) : json['screen_name'] as String,
       oauthToken: json['oauth_token'] == null ? '' : json['oauth_token'] as String,
       oauthTokenSecret: json['oauth_token_secret'] == null ? '' : json['oauth_token_secret'] as String,
-      createdAt: json['created_at'] == null ? DateTime.now() : DateTime.parse(json['created_at'] as String),
+      createdAt: json['created_at'] == null || json['created_at'] == '' ? DateTime.now() : DateTime.parse(json['created_at'] as String),
       profile: pProfile
     );
   }
@@ -311,7 +311,7 @@ class TwitterProfileEntity with ToMappable {
     return TwitterProfileEntity(
       username: json['username'] == null ? '' : json['username'] as String,
       password: pPassword,
-      createdAt: json['created_at'] == null ? DateTime.now() : DateTime.parse(json['created_at'] as String),
+      createdAt: json['created_at'] == null || json['created_at'] == '' ? DateTime.now() : DateTime.parse(json['created_at'] as String),
       name: json['name'] as String?,
       email: json['email'] as String?,
       phone: json['phone']  as String?
