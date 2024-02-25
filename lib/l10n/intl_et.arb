@@ -600,5 +600,11 @@
   "allow_background_play_other_apps_label": "Muud rakendused taustal",
   "@allow_background_play_other_apps_label": {},
   "allow_background_play_other_apps_description": "Luba muudel rakendustel esitada meediat taustal",
-  "@allow_background_play_other_apps_description": {}
+  "@allow_background_play_other_apps_description": {},
+  "proxy_label": "Puhverserver",
+  "@proxy_label": {},
+  "proxy_description": "Kasuta puhverserverit kõikide päringute jaoks",
+  "@proxy_description": {},
+  "proxy_error": "Puhverserveri viga",
+  "@proxy_error": {}
 }
