@@ -592,5 +592,19 @@
   "warning_regular_account_description": "Twitter/X 已经禁止了创建来宾账户的能力。现在起你必须在设置/账户”中设置常规账户。创建匿名常规账户并不难，步骤见：",
   "@warning_regular_account_description": {},
   "edit_account_title": "修改账户",
-  "@edit_account_title": {}
+  "@edit_account_title": {},
+  "allow_background_play_label": "后台播放",
+  "@allow_background_play_label": {},
+  "allow_background_play_description": "允许在后台播放",
+  "@allow_background_play_description": {},
+  "allow_background_play_other_apps_description": "允许其他应用在后台播放",
+  "@allow_background_play_other_apps_description": {},
+  "proxy_label": "代理",
+  "@proxy_label": {},
+  "proxy_error": "代理出错",
+  "@proxy_error": {},
+  "proxy_description": "所有请求的代理",
+  "@proxy_description": {},
+  "allow_background_play_other_apps_label": "其他后台应用",
+  "@allow_background_play_other_apps_label": {}
 }
