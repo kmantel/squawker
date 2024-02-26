@@ -1,6 +1,0 @@
-* Implement issue #193 Cannot add 2FA Protected account (or feature #195 Two factor authentication support).
-* Implement issue #192 Allows different strategy to use the accounts.
-  There are 3 possible choices that can be set in the Account page:
-   - prioritize regular account (choice by default)
-   - use both guest and regular account
-   - use only regular account.

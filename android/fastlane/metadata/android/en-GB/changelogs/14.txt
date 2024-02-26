@@ -1,3 +1,0 @@
-* Fix issue #25 Downloaded images not showing in gallery.
-* Implement feature #24 The app opens on x.com.
-* Implement feature #22 Add supported activities to the context menu of selected text.

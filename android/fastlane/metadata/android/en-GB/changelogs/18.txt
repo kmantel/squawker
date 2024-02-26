@@ -1,1 +1,0 @@
-* Fix issue #45 The feed is empty. The fix implements the creation of temporary Twitter/X guest accounts to access the Twitter/X API.

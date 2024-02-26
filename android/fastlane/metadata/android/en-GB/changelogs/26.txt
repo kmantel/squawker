@@ -1,4 +1,0 @@
-* Fix issue #105 Home screen isn't populated right after importing settings and subscriptions.
-* Corrections due to Flutter upgrade.
-* Adjust the twitter.com URLs to x.com.
-* Fix issue with feature #100 Add an android share access so Squawker can be run from Firefox.

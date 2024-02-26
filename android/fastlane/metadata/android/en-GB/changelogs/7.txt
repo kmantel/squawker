@@ -1,2 +1,0 @@
-* Fix issue #10 RT tweets appear to be broken.
-* Remove the twitter URLs from the tweets in feeds.

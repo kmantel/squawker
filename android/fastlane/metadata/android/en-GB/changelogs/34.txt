@@ -1,7 +1,0 @@
-* Feature #185 Using regular Twitter/X accounts.
-  To add the information of an existing regular Twitter/X account, go to Settings / Account, tap on the plus icon.
-  Only the username and password are mandatory. When saved an authentication token is created. It is automatically renewed every 30 days.
-  There can be many existing regular Twitter/X accounts.
-  To delete a regular Twitter/X account information (and its authenticated token), swipe to the left and tap on delete.
-  The project's wiki describe how to create a (regular) Twitter/X account.
-

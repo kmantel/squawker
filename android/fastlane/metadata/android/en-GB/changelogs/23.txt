@@ -1,3 +1,0 @@
-* Fix #81 Nitter instances in AndroidManifest.xml are out of date.
-* Implement enhancement #90 M3 toggle (thanks to @TheHCJ).
-

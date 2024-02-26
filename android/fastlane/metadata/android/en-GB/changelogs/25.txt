@@ -1,2 +1,0 @@
-* Implement feature #100 Add an android share access so Squawker can be run from Firefox.
-* Fix the case when Twitter/X returns empty responses with a status code of 200.

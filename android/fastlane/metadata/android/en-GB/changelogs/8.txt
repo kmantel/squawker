@@ -1,1 +1,0 @@
-* Fix issue #13 Touching the RT account names gives an error.

@@ -1,1 +1,0 @@
-An open-source anonymous Twitter/X client

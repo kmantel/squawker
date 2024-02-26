@@ -1,2 +1,0 @@
-* Fix translate to target chosen squawker language (instead of current platform)
-* Fix translate to treat response as UTF-8
