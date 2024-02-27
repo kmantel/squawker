@@ -53,23 +53,34 @@ class _ProfileTweetsState extends State<ProfileTweets> with AutomaticKeepAliveCl
   Future _loadTweets(String? cursor) async {
     try {
       TweetStatus result;
-      if (PrefService.of(context).get(optionEnhancedProfile)) {
-        result = await Twitter.getUserWithProfileGraphql(widget.user.idStr!, widget.type, widget.pinnedTweets,
-            cursor: cursor, count: pageSize, includeReplies: widget.includeReplies);
+      if (TwitterAccount.hasAccountAvailable()) {
+        if (PrefService.of(context).get(optionEnhancedProfile)) {
+          result = await Twitter.getUserWithProfileGraphql(widget.user.idStr!, widget.type, widget.pinnedTweets,
+              cursor: cursor, count: pageSize, includeReplies: widget.includeReplies);
+        }
+        else {
+          result = await Twitter.getTweets(widget.user.idStr!, widget.type, widget.pinnedTweets,
+              cursor: cursor, count: pageSize, includeReplies: widget.includeReplies);
+        }
       }
       else {
-        result = await Twitter.getTweets(widget.user.idStr!, widget.type, widget.pinnedTweets,
-            cursor: cursor, count: pageSize, includeReplies: widget.includeReplies);
+        result = await Twitter.getUserTweets(widget.user.idStr!, widget.type, widget.pinnedTweets,
+            count: pageSize, includeReplies: widget.includeReplies);
       }
 
       if (!mounted) {
         return;
       }
 
-      if (result.cursorBottom == _pagingController.nextPageKey) {
-        _pagingController.appendLastPage([]);
-      } else {
-        _pagingController.appendPage(result.chains, result.cursorBottom);
+      if (result.cursorBottom == null) {
+        _pagingController.appendLastPage(result.chains);
+      }
+      else {
+        if (result.cursorBottom == _pagingController.nextPageKey) {
+          _pagingController.appendLastPage([]);
+        } else {
+          _pagingController.appendPage(result.chains, result.cursorBottom);
+        }
       }
     } catch (e, stackTrace) {
       if (mounted) {

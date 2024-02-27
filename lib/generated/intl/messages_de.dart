@@ -555,10 +555,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "username": MessageLookupByLibrary.simpleMessage("@Nutzername"),
         "username_label": MessageLookupByLibrary.simpleMessage("Benutzername:"),
         "version": MessageLookupByLibrary.simpleMessage("Version"),
-        "warning_regular_account_description": MessageLookupByLibrary.simpleMessage(
-            "Twitter/X hat die Möglichkeit Gastkonten zu erstellen deaktiviert. Du musst jetzt mindestens ein Standardkonto unter Einstellungen / Nutzerkonto anlegen. Es ist leicht, ein anonymes Standardkonto zu erstellen, siehe hier:"),
-        "warning_regular_account_title": MessageLookupByLibrary.simpleMessage(
-            "Standardkonto wird verwendet"),
         "when_a_new_app_update_is_available":
             MessageLookupByLibrary.simpleMessage(
                 "Sobald ein neues Update der App verfügbar ist"),

@@ -554,10 +554,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "username_label":
             MessageLookupByLibrary.simpleMessage("Nazwa użytkownika:"),
         "version": MessageLookupByLibrary.simpleMessage("Wersja"),
-        "warning_regular_account_description": MessageLookupByLibrary.simpleMessage(
-            "Twitter/X wyłączył możliwość tworzenia kont gości. Musisz teraz ustawić zwykłe konto (konta) w Ustawienia / Konto. Łatwo jest utworzyć anonimowe konto zwykłe, jak wyjaśniono tutaj:"),
-        "warning_regular_account_title":
-            MessageLookupByLibrary.simpleMessage("Korzystanie z kont zwykłych"),
         "when_a_new_app_update_is_available":
             MessageLookupByLibrary.simpleMessage(
                 "Gdy dostępna jest nowa aktualizacja aplikacji"),

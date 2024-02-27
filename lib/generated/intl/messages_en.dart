@@ -551,10 +551,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "username": MessageLookupByLibrary.simpleMessage("Username"),
         "username_label": MessageLookupByLibrary.simpleMessage("Username:"),
         "version": MessageLookupByLibrary.simpleMessage("Version"),
-        "warning_regular_account_description": MessageLookupByLibrary.simpleMessage(
-            "Twitter/X has disabled the ability to create guest accounts. You must now set regular account(s) in Settings / Account. It\'s easy to create an anonymous regular account as explained here:"),
-        "warning_regular_account_title":
-            MessageLookupByLibrary.simpleMessage("Using regular accounts"),
+        "warning_regular_account_unauthenticated_access_description":
+            MessageLookupByLibrary.simpleMessage(
+                "Twitter/X has disabled the ability to create guest accounts. You should now set regular account(s) in Settings / Account. With no account there is a partial access limited to tweets and profiles only. It\'s easy to create an anonymous regular account as explained here:"),
+        "warning_regular_account_unauthenticated_access_title":
+            MessageLookupByLibrary.simpleMessage(
+                "Regular accounts and unauthenticated access"),
         "when_a_new_app_update_is_available":
             MessageLookupByLibrary.simpleMessage(
                 "When a new app update is available"),

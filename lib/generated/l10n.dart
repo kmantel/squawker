@@ -2876,21 +2876,21 @@ class L10n {
     );
   }
 
-  /// `Using regular accounts`
-  String get warning_regular_account_title {
+  /// `Regular accounts and unauthenticated access`
+  String get warning_regular_account_unauthenticated_access_title {
     return Intl.message(
-      'Using regular accounts',
-      name: 'warning_regular_account_title',
+      'Regular accounts and unauthenticated access',
+      name: 'warning_regular_account_unauthenticated_access_title',
       desc: '',
       args: [],
     );
   }
 
-  /// `Twitter/X has disabled the ability to create guest accounts. You must now set regular account(s) in Settings / Account. It's easy to create an anonymous regular account as explained here:`
-  String get warning_regular_account_description {
+  /// `Twitter/X has disabled the ability to create guest accounts. You should now set regular account(s) in Settings / Account. With no account there is a partial access limited to tweets and profiles only. It's easy to create an anonymous regular account as explained here:`
+  String get warning_regular_account_unauthenticated_access_description {
     return Intl.message(
-      'Twitter/X has disabled the ability to create guest accounts. You must now set regular account(s) in Settings / Account. It\'s easy to create an anonymous regular account as explained here:',
-      name: 'warning_regular_account_description',
+      'Twitter/X has disabled the ability to create guest accounts. You should now set regular account(s) in Settings / Account. With no account there is a partial access limited to tweets and profiles only. It\'s easy to create an anonymous regular account as explained here:',
+      name: 'warning_regular_account_unauthenticated_access_description',
       desc: '',
       args: [],
     );

@@ -40,7 +40,7 @@ class TwitterRegularAccount {
       })
     );
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200 && response.body.isNotEmpty) {
       var result = jsonDecode(response.body);
       if (response.headers.containsKey('att')) {
         headers.addAll({
@@ -77,7 +77,7 @@ class TwitterRegularAccount {
       })
     );
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200 && response.body.isNotEmpty) {
       var result = jsonDecode(response.body);
       return result;
     }
@@ -107,7 +107,7 @@ class TwitterRegularAccount {
       })
     );
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200 && response.body.isNotEmpty) {
       var result = jsonDecode(response.body);
       return result;
     }
@@ -181,7 +181,7 @@ class TwitterRegularAccount {
       })
     );
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200 && response.body.isNotEmpty) {
       var result = jsonDecode(response.body);
       return result;
     }
@@ -211,7 +211,7 @@ class TwitterRegularAccount {
       })
     );
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200 && response.body.isNotEmpty) {
       var result = jsonDecode(response.body);
       return result;
     }
@@ -241,7 +241,7 @@ class TwitterRegularAccount {
         })
     );
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200 && response.body.isNotEmpty) {
       var result = jsonDecode(response.body);
       return result;
     }

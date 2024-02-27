@@ -545,10 +545,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "username": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
         "username_label": MessageLookupByLibrary.simpleMessage("اسم المستخدم:"),
         "version": MessageLookupByLibrary.simpleMessage("الإصدار"),
-        "warning_regular_account_description": MessageLookupByLibrary.simpleMessage(
-            "قام Twitter/X بتعطيل القدرة على إنشاء حسابات ضيوف. يجب عليك الآن تعيين حساب (حسابات) عادية في الإعدادات / الحساب. من السهل إنشاء حساب عادي مجهول كما هو موضح هنا:"),
-        "warning_regular_account_title":
-            MessageLookupByLibrary.simpleMessage("استخدام الحسابات العادية"),
         "when_a_new_app_update_is_available":
             MessageLookupByLibrary.simpleMessage(
                 "عندما يكون هناك تحديث جديد للتطبيق"),

@@ -6,6 +6,7 @@ import 'package:flutter_triple/flutter_triple.dart';
 import 'package:http/http.dart' as http;
 import 'package:logging/logging.dart';
 import 'package:squawker/client/app_http_client.dart';
+import 'package:squawker/client/client_account.dart';
 import 'package:squawker/constants.dart';
 import 'package:squawker/generated/l10n.dart';
 import 'package:squawker/home/_feed.dart';
@@ -178,7 +179,11 @@ class _HomeScreenState extends State<_HomeScreen> {
   Widget build(BuildContext context) {
     if (!_firstInit) {
       _firstInit = true;
-      WidgetsBinding.instance.addPostFrameCallback((_) {
+      WidgetsBinding.instance.addPostFrameCallback((_) async {
+        // Announcement of the ability to use regular accounts and also have restricted unauthenticated access.
+        // The dialog of information is displayed once.
+        await TwitterAccount.announcementRegularAccountAndUnauthenticatedAccess(context);
+
         ReceiveSharingIntent.getInitialText().then((String? value) async {
           log.info('****** ReceiveSharingIntent.getInitialText - value=$value');
           if (value != null) {

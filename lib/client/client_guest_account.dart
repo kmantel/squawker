@@ -28,7 +28,7 @@ class TwitterGuestAccount {
       })
     );
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200 && response.body.isNotEmpty) {
       var result = jsonDecode(response.body);
       if (result.containsKey('flow_token')) {
         return result['flow_token'];
@@ -53,7 +53,7 @@ class TwitterGuestAccount {
       })
     );
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200 && response.body.isNotEmpty) {
       var result = jsonDecode(response.body);
       List? subtasks = result['subtasks'];
       if (subtasks != null) {

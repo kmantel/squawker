@@ -567,10 +567,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "username": MessageLookupByLibrary.simpleMessage("Kasutajanimi"),
         "username_label": MessageLookupByLibrary.simpleMessage("Kasutajanimi:"),
         "version": MessageLookupByLibrary.simpleMessage("Versioon"),
-        "warning_regular_account_description": MessageLookupByLibrary.simpleMessage(
-            "Twitter/X on eemaldanud külaliskontode kasutamise võimaluse. Palun kindlasti seadista tavaline kasutajakonto (või mitu) Seadistused - Kasutajakontod vaatest. Tavalise, aga anonüümse kasutajakonto loomine on lihtne ja juhend leidub siin:"),
-        "warning_regular_account_title":
-            MessageLookupByLibrary.simpleMessage("Palun kasuta tavakontot"),
         "when_a_new_app_update_is_available":
             MessageLookupByLibrary.simpleMessage("Kui uuendus on saadaval"),
         "whether_errors_should_be_reported_to_":

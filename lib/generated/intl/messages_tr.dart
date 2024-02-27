@@ -556,10 +556,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "username_label":
             MessageLookupByLibrary.simpleMessage("Kullanıcı adı:"),
         "version": MessageLookupByLibrary.simpleMessage("Sürüm"),
-        "warning_regular_account_description": MessageLookupByLibrary.simpleMessage(
-            "Twitter/X, misafir hesap oluşturma özelliğini devre dışı bıraktı. Artık Ayarlar / Hesap bölümünde normal hesap(lar) oluşturmalısınız. Burada açıklandığı gibi anonim bir normal hesap oluşturmak kolaydır:"),
-        "warning_regular_account_title": MessageLookupByLibrary.simpleMessage(
-            "Normal hesaplar kullanılıyor"),
         "when_a_new_app_update_is_available":
             MessageLookupByLibrary.simpleMessage(
                 "Yeni bir uygulama güncellemesi mevcut olduğunda"),

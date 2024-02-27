@@ -567,10 +567,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "username": MessageLookupByLibrary.simpleMessage("Nom d’utilisateur"),
         "username_label": MessageLookupByLibrary.simpleMessage("Identifiant :"),
         "version": MessageLookupByLibrary.simpleMessage("Version"),
-        "warning_regular_account_description": MessageLookupByLibrary.simpleMessage(
-            "Twitter/X a désactivé la possibilité de créer des comptes invités. Vous devez maintenant configurer des comptes standards dans Paramètres / Compte. Il est facile de créer un compte standard anonyme, tel qu\'expliqué ici :"),
-        "warning_regular_account_title": MessageLookupByLibrary.simpleMessage(
-            "Utiliser des comptes réguliers"),
+        "warning_regular_account_unauthenticated_access_description":
+            MessageLookupByLibrary.simpleMessage(
+                "Twitter/X a désactivé la possibilité de créer des comptes invités. Vous pouvez maintenant configurer des comptes réguliers dans Paramètres / Compte. Sans compte, il y a un accès partiel limité aux tweets et aux profils. Il est facile de créer un compte régulier anonyme, tel qu\'expliqué ici :"),
+        "warning_regular_account_unauthenticated_access_title":
+            MessageLookupByLibrary.simpleMessage(
+                "Comptes réguliers et accès non authentifié"),
         "when_a_new_app_update_is_available": MessageLookupByLibrary.simpleMessage(
             "Lorsqu\'une nouvelle mise à jour de l\'application est disponible"),
         "whether_errors_should_be_reported_to_":

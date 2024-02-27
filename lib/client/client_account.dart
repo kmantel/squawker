@@ -8,15 +8,17 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:squawker/client/app_http_client.dart';
 import 'package:squawker/client/client_guest_account.dart';
 import 'package:squawker/client/client_regular_account.dart';
+import 'package:squawker/client/client_unauthenticated.dart';
 import 'package:squawker/constants.dart';
-import 'package:squawker/utils/iterables.dart';
 import 'package:squawker/database/entities.dart';
 import 'package:squawker/database/repository.dart';
 import 'package:squawker/generated/l10n.dart';
 import 'package:squawker/utils/crypto_util.dart';
+import 'package:squawker/utils/iterables.dart';
 import 'package:squawker/utils/misc.dart';
 import 'package:synchronized/synchronized.dart';
 import 'package:url_launcher/url_launcher_string.dart';
+
 
 // now it is set to false. maybe forever.
 const bool try_to_create_guest_account = false;
@@ -44,6 +46,10 @@ class TwitterAccount {
 
   static List<TwitterTokenEntity> getRegularAccountsTokens() {
     return _twitterTokenLst.where((e) => !e.guest).toList();
+  }
+
+  static bool hasAccountAvailable() {
+    return nbrGuestAccounts() > 0 || getRegularAccountsTokens().isNotEmpty;
   }
 
   // this must be executed only once at the start of the application
@@ -190,10 +196,6 @@ class TwitterAccount {
     // possibly renew the tokens associated to the regular Twitter/X accounts
     await _renewProfilesTokens();
 
-    // If there is no authenticated token, then a regular account must be added / authenticated.
-    // So a dialog of information about that is displayed once.
-    await _announcementRegularAccount();
-
     // now find the first Twitter/X token that is available or at least with the minimum waiting time
     Map<String,dynamic>? twitterTokenInfo = await getNextTwitterTokenInfo(uriPath, total);
     if (twitterTokenInfo == null) {
@@ -300,33 +302,30 @@ class TwitterAccount {
     _currentTwitterToken = null;
   }
 
-  static Future<void> _announcementRegularAccount() async  {
-    List<TwitterTokenEntity> regularLst = _twitterTokenLst.where((tt) => !tt.guest).toList();
-    if (regularLst.isNotEmpty) {
-      return;
-    }
-    List<TwitterTokenEntity> guestLst = _twitterTokenLst.where((tt) => tt.guest && DateTime.now().difference(tt.createdAt).inDays <= 30).toList();
-    if (guestLst.length > 2) {
-      return;
+  static Future<void> announcementRegularAccountAndUnauthenticatedAccess(BuildContext context) async {
+    final prefs = await SharedPreferences.getInstance();
+
+    // previous announcement
+    if (prefs.containsKey('announcedRegularAccount')) {
+      prefs.remove('announcedRegularAccount');
     }
 
-    final prefs = await SharedPreferences.getInstance();
-    bool? announcedRegularAccount = prefs.getBool('announcedRegularAccount');
-    if (announcedRegularAccount ?? false) {
+    bool? announcedRegularAccountAndUnauthenticatedAccess = prefs.getBool('announcedRegularAccountAndUnauthenticatedAccess');
+    if (announcedRegularAccountAndUnauthenticatedAccess ?? false) {
       return;
     }
 
     await showDialog<String?>(
       barrierDismissible: false,
-      context: _currentContext!,
+      context: context,
       builder: (BuildContext context) {
         return AlertDialog(
           icon: const Icon(Icons.warning),
-          title: Text(L10n.current.warning_regular_account_title),
+          title: Text(L10n.current.warning_regular_account_unauthenticated_access_title),
           titleTextStyle: TextStyle(fontSize: Theme.of(context).textTheme.titleMedium!.fontSize, color: Theme.of(context).textTheme.titleMedium!.color, fontWeight: FontWeight.bold),
           content: Wrap(
             children: [
-              Text(L10n.current.warning_regular_account_description, style: TextStyle(fontSize: Theme.of(context).textTheme.labelMedium!.fontSize)),
+              Text(L10n.current.warning_regular_account_unauthenticated_access_description, style: TextStyle(fontSize: Theme.of(context).textTheme.labelMedium!.fontSize)),
               GestureDetector(
                 child: Text('https://github.com/j-fbriere/squawker/wiki/3.-Regular-Twitter-X-accounts',
                   style: TextStyle(color: Colors.blue, decoration: TextDecoration.underline, fontSize: Theme.of(context).textTheme.labelMedium!.fontSize),
@@ -346,7 +345,7 @@ class TwitterAccount {
         );
       }
     );
-    await prefs.setBool('announcedRegularAccount', true);
+    await prefs.setBool('announcedRegularAccountAndUnauthenticatedAccess', true);
   }
 
   static Future<DateTime?> _getLastGuestTwitterTokenCreationAttempted() async {
@@ -543,7 +542,7 @@ class TwitterAccount {
         }
     );
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200 && response.body.isNotEmpty) {
       var result = jsonDecode(response.body);
       if (result.containsKey('access_token')) {
         return result['access_token'];
@@ -561,7 +560,7 @@ class TwitterAccount {
         }
     );
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200 && response.body.isNotEmpty) {
       var result = jsonDecode(response.body);
       if (result.containsKey('guest_token')) {
         return result['guest_token'];
@@ -639,7 +638,10 @@ class TwitterAccount {
     }
   }
 
-  static Future<http.Response> fetch(Uri uri, {Map<String, String>? headers, RateFetchContext? fetchContext}) async {
+  static Future<http.Response> fetch(Uri uri, {Map<String, String>? headers, RateFetchContext? fetchContext, bool allowUnauthenticated = false}) async {
+    if (allowUnauthenticated && !hasAccountAvailable()) {
+      return TwitterUnauthenticated.fetch(uri, headers: headers);
+    }
     if (fetchContext == null) {
       fetchContext = RateFetchContext(uri.path, 1);
       await fetchContext.init();

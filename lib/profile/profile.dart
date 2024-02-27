@@ -63,7 +63,7 @@ class ProfileScreen extends StatelessWidget {
 
     return Provider(
         create: (context) {
-          if (args.id != null) {
+          if (args.id != null && TwitterAccount.hasAccountAvailable()) {
             return ProfileModel()..loadProfileById(args.id!);
           } else {
             return ProfileModel()..loadProfileByScreenName(args.screenName!);
@@ -90,7 +90,7 @@ class _ProfileScreen extends StatelessWidget {
           stackTrace: null,
           prefix: L10n.of(context).unable_to_load_the_profile,
           onRetry: () {
-            if (id != null) {
+            if (id != null && TwitterAccount.hasAccountAvailable()) {
               return context.read<ProfileModel>().loadProfileById(id!);
             } else {
               return context.read<ProfileModel>().loadProfileByScreenName(screenName!);
