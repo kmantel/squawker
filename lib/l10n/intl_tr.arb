@@ -606,5 +606,7 @@
   "proxy_description": "Tüm istekler için vekil",
   "@proxy_description": {},
   "proxy_error": "Vekil Hatası",
-  "@proxy_error": {}
+  "@proxy_error": {},
+  "share_tweet_as_image": "Tweet'i resim olarak paylaş",
+  "@share_tweet_as_image": {}
 }
