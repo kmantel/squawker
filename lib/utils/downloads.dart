@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,7 @@ Future<void> downloadUriToPickedFile(BuildContext context, Uri uri, String fileN
 
   try {
     onStart();
-    var responseTask = downloadFile(context, uri);
+    Future<Uint8List?> responseTask = downloadFile(context, uri);
 
     DeviceInfoPlugin plugin = DeviceInfoPlugin();
     AndroidDeviceInfo android = await plugin.androidInfo;
@@ -85,7 +86,7 @@ class UnableToSaveMedia {
   }
 }
 
-Future downloadFile(BuildContext context, Uri uri) async {
+Future<Uint8List?> downloadFile(BuildContext context, Uri uri) async {
   var response = await AppHttpClient.httpGet(uri);
   if (response.statusCode == 200) {
     return response.bodyBytes;
