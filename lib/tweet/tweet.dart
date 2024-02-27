@@ -1,6 +1,10 @@
+import 'dart:typed_data';
+import 'dart:ui' as ui;
+
 import 'package:auto_direction/auto_direction.dart';
 import 'package:dart_twitter_api/twitter_api.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:squawker/client/client.dart';
 import 'package:squawker/constants.dart';
 import 'package:squawker/generated/l10n.dart';
@@ -70,6 +74,8 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
   List<TweetTextPart> _translatedParts = [];
 
   List<String> _extraContextMenuItems = [];
+
+  final GlobalKey _globalKey = GlobalKey();
 
   static String? _convertRunesToText(Iterable<int> runes, int start, [int? end]) {
     var string = runes.getRange(start, end).map((e) => String.fromCharCode(e)).join('');
@@ -325,6 +331,21 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
     return customContextMenuBuilder(context, editableTextState, _extraContextMenuItems, processTextActivity);
   }
 
+  Future<Uint8List?> captureWidget() async {
+    if (_globalKey.currentContext == null) {
+      return null;
+    }
+    final RenderRepaintBoundary boundary = _globalKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
+    final ui.Image image = await boundary.toImage();
+    final ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+    if (byteData == null) {
+      return null;
+    }
+    final Uint8List pngBytes = byteData.buffer.asUint8List();
+
+    return pngBytes;
+  }
+
   @override
   Widget build(BuildContext context) {
     final prefs = PrefService.of(context, listen: false);
@@ -511,7 +532,7 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
         }
       },
       child: Consumer<ImportDataModel>(
-        builder: (context, model, child) => Card(
+        builder: (context, model, child) => RepaintBoundary(key: _globalKey, child: Card(
           child: Row(
             children: [
               retweetSidebar,
@@ -583,38 +604,38 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
                                           var isSaved = model.isSaved(tweet.idStr!);
                                           if (isSaved) {
                                             return createSheetButton(
-                                              L10n.of(context).unsave,
-                                              Icons.bookmark_border_rounded,
-                                              () async {
+                                              L10n.of(context).unsave, Icons.bookmark_border_rounded, () async {
                                                 await model.deleteSavedTweet(tweet.idStr!);
                                                 Navigator.pop(context);
-                                              },
+                                              }
                                             );
-                                          } else {
+                                          }
+                                          else {
                                             return createSheetButton(
-                                                L10n.of(context).save, Icons.bookmark_border_rounded, () async {
-                                              await model.saveTweet(tweet.idStr!, tweet.user?.idStr, tweet.toJson());
-                                              Navigator.pop(context);
-                                            });
+                                              L10n.of(context).save, Icons.bookmark_border_rounded, () async {
+                                                await model.saveTweet(tweet.idStr!, tweet.user?.idStr, tweet.toJson());
+                                                Navigator.pop(context);
+                                              }
+                                            );
                                           }
                                         }),
-                                        createSheetButton(
-                                          L10n.of(context).share_tweet_content,
-                                          Icons.share,
-                                          () async {
-                                            Share.share(tweetText);
-                                            Navigator.pop(context);
-                                          },
-                                        ),
-                                        createSheetButton(L10n.of(context).share_tweet_link, Icons.share, () async {
-                                          Share.share(
-                                            '$shareBaseUrl/${tweet.user!.screenName}/status/${tweet.idStr}');
+                                        createSheetButton(L10n.of(context).share_tweet_content, Icons.share, () async {
+                                          Share.share(tweetText);
                                           Navigator.pop(context);
                                         }),
-                                        createSheetButton(L10n.of(context).share_tweet_content_and_link, Icons.share,
-                                            () async {
-                                          Share.share(
-                                            '$tweetText\n\n$shareBaseUrl/${tweet.user!.screenName}/status/${tweet.idStr}');
+                                        createSheetButton(L10n.of(context).share_tweet_link, Icons.share, () async {
+                                          Share.share('$shareBaseUrl/${tweet.user!.screenName}/status/${tweet.idStr}');
+                                          Navigator.pop(context);
+                                        }),
+                                        createSheetButton(L10n.of(context).share_tweet_content_and_link, Icons.share, () async {
+                                          Share.share('$tweetText\n\n$shareBaseUrl/${tweet.user!.screenName}/status/${tweet.idStr}');
+                                          Navigator.pop(context);
+                                        }),
+                                        createSheetButton(L10n.of(context).share_tweet_as_image, Icons.share, () async {
+                                          Uint8List? imgBytes = await captureWidget();
+                                          if (imgBytes != null) {
+                                            Share.shareXFiles([XFile.fromData(imgBytes, mimeType: 'image/png')]);
+                                          }
                                           Navigator.pop(context);
                                         }),
                                         const Padding(
@@ -623,11 +644,9 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
                                             thickness: 1.0,
                                           ),
                                         ),
-                                        createSheetButton(
-                                          L10n.of(context).cancel,
-                                          Icons.close_rounded,
-                                          () => Navigator.pop(context),
-                                        )
+                                        createSheetButton(L10n.of(context).cancel, Icons.close_rounded, () {
+                                          Navigator.pop(context);
+                                        })
                                       ],
                                     )
                                   );
@@ -691,7 +710,7 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
               )
             ],
           ),
-        )
+        ))
       )
     );
   }

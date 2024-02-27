@@ -361,6 +361,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Bu tweet olası hassas içerik barındırmaktadır. Görüntülemek ister misiniz?"),
         "prefix": MessageLookupByLibrary.simpleMessage("ön ek"),
         "private_profile": MessageLookupByLibrary.simpleMessage("Gizli profil"),
+        "proxy_description":
+            MessageLookupByLibrary.simpleMessage("Tüm istekler için vekil"),
+        "proxy_error": MessageLookupByLibrary.simpleMessage("Vekil Hatası"),
+        "proxy_label": MessageLookupByLibrary.simpleMessage("Vekil"),
         "regular_accounts": m12,
         "released_under_the_mit_license": MessageLookupByLibrary.simpleMessage(
             "MIT Lisansı altında yayınlandı"),

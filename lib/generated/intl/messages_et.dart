@@ -370,6 +370,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "prefix": MessageLookupByLibrary.simpleMessage("eesliide"),
         "private_profile":
             MessageLookupByLibrary.simpleMessage("Privaatne profiil"),
+        "proxy_description": MessageLookupByLibrary.simpleMessage(
+            "Kasuta puhverserverit kõikide päringute jaoks"),
+        "proxy_error":
+            MessageLookupByLibrary.simpleMessage("Puhverserveri viga"),
+        "proxy_label": MessageLookupByLibrary.simpleMessage("Puhverserver"),
         "regular_accounts": m12,
         "released_under_the_mit_license": MessageLookupByLibrary.simpleMessage(
             "Avaldatud MIT litsentsi alusel"),

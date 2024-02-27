@@ -576,5 +576,7 @@
   "proxy_description": "Proxy for all requests",
   "@proxy_description": {},
   "proxy_error": "Proxy Error",
-  "@proxy_error": {}
+  "@proxy_error": {},
+  "share_tweet_as_image": "Share tweet as image",
+  "@share_tweet_as_image": {}
 }

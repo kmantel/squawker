@@ -1,1 +1,2 @@
 * Fix issue #226 App does not open, showing a black screen. Some db records have unexpected null fields.
+* Implement feature #218 Share tweet as image.

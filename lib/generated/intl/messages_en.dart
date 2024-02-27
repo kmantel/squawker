@@ -392,6 +392,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Custom share URL"),
         "share_base_url_description": MessageLookupByLibrary.simpleMessage(
             "Use a custom base URL when sharing"),
+        "share_tweet_as_image":
+            MessageLookupByLibrary.simpleMessage("Share tweet as image"),
         "share_tweet_content":
             MessageLookupByLibrary.simpleMessage("Share tweet content"),
         "share_tweet_content_and_link": MessageLookupByLibrary.simpleMessage(

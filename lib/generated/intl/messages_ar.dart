@@ -352,6 +352,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "تحتوي هذه التغريدة على محتوى يحتمل أن يكون حساسا. هل ترغب في مشاهدته؟"),
         "prefix": MessageLookupByLibrary.simpleMessage("السابقة"),
         "private_profile": MessageLookupByLibrary.simpleMessage("ملف شخصي خاص"),
+        "proxy_description":
+            MessageLookupByLibrary.simpleMessage("الوكيل لجميع الطلبات"),
+        "proxy_error": MessageLookupByLibrary.simpleMessage("خطأ في الوكيل"),
+        "proxy_label": MessageLookupByLibrary.simpleMessage("الوكيل"),
         "regular_accounts": m12,
         "released_under_the_mit_license": MessageLookupByLibrary.simpleMessage(
             "منشور تحت رخصة الإم أي تي (MIT License)"),

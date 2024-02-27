@@ -2975,6 +2975,16 @@ class L10n {
       args: [],
     );
   }
+
+  /// `Share tweet as image`
+  String get share_tweet_as_image {
+    return Intl.message(
+      'Share tweet as image',
+      name: 'share_tweet_as_image',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<L10n> {

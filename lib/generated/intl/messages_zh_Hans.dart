@@ -83,6 +83,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "all": MessageLookupByLibrary.simpleMessage("全部"),
         "all_the_great_software_used_by_fritter":
             MessageLookupByLibrary.simpleMessage("Squawker 所使用的伟大项目😇"),
+        "allow_background_play_description":
+            MessageLookupByLibrary.simpleMessage("允许在后台播放"),
+        "allow_background_play_label":
+            MessageLookupByLibrary.simpleMessage("后台播放"),
+        "allow_background_play_other_apps_description":
+            MessageLookupByLibrary.simpleMessage("允许其他应用在后台播放"),
+        "allow_background_play_other_apps_label":
+            MessageLookupByLibrary.simpleMessage("其他后台应用"),
         "an_update_for_fritter_is_available":
             MessageLookupByLibrary.simpleMessage("Squawker 有新版本 🚀"),
         "app_info": MessageLookupByLibrary.simpleMessage("应用程序信息"),
@@ -295,6 +303,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("该推文包含潜在的敏感内容。是否浏览？"),
         "prefix": MessageLookupByLibrary.simpleMessage("字首"),
         "private_profile": MessageLookupByLibrary.simpleMessage("个人简介"),
+        "proxy_description": MessageLookupByLibrary.simpleMessage("所有请求的代理"),
+        "proxy_error": MessageLookupByLibrary.simpleMessage("代理出错"),
+        "proxy_label": MessageLookupByLibrary.simpleMessage("代理"),
         "regular_accounts": m12,
         "released_under_the_mit_license":
             MessageLookupByLibrary.simpleMessage("以 MIT 许可证发布"),
