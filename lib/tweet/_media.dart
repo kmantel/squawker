@@ -320,3 +320,75 @@ class _TweetMediaThing extends StatelessWidget {
     return media;
   }
 }
+
+class TweetPhotoView extends StatefulWidget {
+  final String url;
+  final String username;
+
+  const TweetPhotoView({Key? key, required this.url, required this.username})
+      : super(key: key);
+
+  @override
+  State<TweetPhotoView> createState() => _TweetPhotoViewState();
+}
+
+class _TweetPhotoViewState extends State<TweetPhotoView> {
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        actions: [
+          AsyncButtonBuilder(
+            child: const Icon(Icons.download_rounded),
+            builder: (context, child, callback, buttonState) {
+              return IconButton(onPressed: callback, icon: child);
+            },
+            onPressed: () async {
+              var url = path.basename(widget.url);
+              var fileName = '${widget.username}-$url';
+              var uri = Uri.parse(widget.url);
+
+              await downloadUriToPickedFile(
+                context,
+                uri,
+                fileName,
+                onStart: () {
+                  ScaffoldMessenger.of(context).clearSnackBars();
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text(L10n.of(context).downloading_media),
+                  ));
+                },
+                onSuccess: () {
+                  ScaffoldMessenger.of(context).clearSnackBars();
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text(L10n.of(context).successfully_saved_the_media),
+                  ));
+                },
+              );
+            },
+          ),
+          AsyncButtonBuilder(
+            showSuccess: false,
+            builder: (context, child, callback, buttonState) {
+              return IconButton(onPressed: callback, icon: child);
+            },
+            onPressed: () async {
+              var uri = Uri.parse(widget.url);
+
+              Uint8List? fileBytes = await downloadFile(context, uri);
+
+              // We assume that downloaded data is in image/jpeg format
+              if (fileBytes != null) {
+                await shareJpegData(fileBytes);
+              }
+            },
+            child: const Icon(Icons.share),
+          ),
+        ],
+      ),
+      body: TweetPhoto(uri: widget.url, fit: BoxFit.contain, pullToClose: true, inPageView: true),
+    );
+  }
+}
+

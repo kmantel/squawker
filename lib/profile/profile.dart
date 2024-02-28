@@ -12,6 +12,7 @@ import 'package:squawker/profile/_saved.dart';
 import 'package:squawker/profile/_tweets.dart';
 import 'package:squawker/profile/profile_model.dart';
 import 'package:squawker/search/search.dart';
+import 'package:squawker/tweet/_media.dart';
 import 'package:squawker/ui/errors.dart';
 import 'package:squawker/ui/physics.dart';
 import 'package:squawker/user.dart';
@@ -326,7 +327,6 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> with TickerProvid
                     child: DefaultTextStyle.merge(
                       style: const TextStyle(color: Colors.white),
                       child: Stack(fit: StackFit.expand, children: <Widget>[
-                        Container(alignment: Alignment.topCenter, child: bannerImage),
                         const DecoratedBox(
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
@@ -503,6 +503,16 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> with TickerProvid
                             ],
                           ),
                         ),
+                        Container(alignment: Alignment.topCenter, child: GestureDetector(child: bannerImage, onTap: () {
+                          if (banner == null) {
+                            return;
+                          }
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                TweetPhotoView(url: user.profileBannerUrl!, username: user.name!)));
+                        })),
                         Container(
                           alignment: Alignment.topRight,
                           margin: EdgeInsets.fromLTRB(128, profileImageTop + 64, 16, 16),
@@ -514,7 +524,12 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> with TickerProvid
                           child: CircleAvatar(
                             radius: 50,
                             backgroundColor: Colors.white,
-                            child: UserAvatar(uri: user.profileImageUrlHttps, size: 96),
+                            child: GestureDetector(child: UserAvatar(uri: user.profileImageUrlHttps, size: 96), onTap: () =>
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                    TweetPhotoView(url: user.profileImageUrlHttps!.replaceFirst('_normal', ''), username: user.name!)))),
                           ),
                         )
                       ]),
