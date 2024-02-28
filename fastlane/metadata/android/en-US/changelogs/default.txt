@@ -3,7 +3,7 @@
 * Implement feature #232 Allow unauthenticated access like with a browser.
   What is possible to do with unauthenticated access:
   - view specific tweets (but not their threads);
-  - view a profile;
+  - view profiles;
   - view what is trending;
   - import subscriptions.
   What is not possible to do with unauthenticated access:
