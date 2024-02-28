@@ -397,6 +397,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Özel paylaşım URL\'si"),
         "share_base_url_description": MessageLookupByLibrary.simpleMessage(
             "Paylaşırken özel bir temel URL kullanın"),
+        "share_tweet_as_image": MessageLookupByLibrary.simpleMessage(
+            "Tweet\'i resim olarak paylaş"),
         "share_tweet_content":
             MessageLookupByLibrary.simpleMessage("Tweet içeriğini paylaş"),
         "share_tweet_content_and_link": MessageLookupByLibrary.simpleMessage(
