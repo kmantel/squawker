@@ -210,6 +210,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "Requêtes améliorés pour les recherches (mais avec des limites plus basses de fréquence)"),
         "enhanced_searches_label":
             MessageLookupByLibrary.simpleMessage("Recherches améliorés"),
+        "enter_comma_separated_twitter_usernames":
+            MessageLookupByLibrary.simpleMessage(
+                "Saisissez la liste d\'utilisateurs séparés par des virgules"),
         "enter_your_twitter_username": MessageLookupByLibrary.simpleMessage(
             "Entrer votre nom d\'utilisateur Twitter/X"),
         "error_from_twitter":
@@ -471,6 +474,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "thumbnail_not_available":
             MessageLookupByLibrary.simpleMessage("Miniature non disponible"),
         "timed_out": MessageLookupByLibrary.simpleMessage("Délai expiré"),
+        "to_import_specific_subscriptions_enter_your_comma_separated_usernames_below":
+            MessageLookupByLibrary.simpleMessage(
+                "Pour importer des abonnements spécifiques, saisissez une liste d\'utilisateurs séparés par des virgules ci-dessous."),
         "to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below":
             MessageLookupByLibrary.simpleMessage(
                 "Pour importer des abonnements depuis un compte Twitter/X existant, saisissez votre nom d\'utilisateur ci-dessous."),
@@ -566,6 +572,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Utilisateur non trouvé"),
         "username": MessageLookupByLibrary.simpleMessage("Nom d’utilisateur"),
         "username_label": MessageLookupByLibrary.simpleMessage("Identifiant :"),
+        "usernames": MessageLookupByLibrary.simpleMessage("Utilisateurs"),
         "version": MessageLookupByLibrary.simpleMessage("Version"),
         "warning_regular_account_unauthenticated_access_description":
             MessageLookupByLibrary.simpleMessage(

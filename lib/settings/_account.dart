@@ -252,7 +252,7 @@ class _AddAccountDialogState extends State<AddAccountDialog> {
                     controller: _usernameController,
                     decoration: InputDecoration(contentPadding: EdgeInsets.all(5)),
                     onChanged: (text) {
-                      _username = text;
+                      _username = text.trim();
                       _checkEnabledSave();
                     },
                   ),
@@ -287,7 +287,7 @@ class _AddAccountDialogState extends State<AddAccountDialog> {
                     ),
                     keyboardType: TextInputType.visiblePassword,
                     onChanged: (text) {
-                      _password = text;
+                      _password = text.trim();
                       _checkEnabledSave();
                     },
                   ),
@@ -309,7 +309,7 @@ class _AddAccountDialogState extends State<AddAccountDialog> {
                     controller: _nameController,
                     decoration: InputDecoration(contentPadding: EdgeInsets.all(5)),
                     onChanged: (text) {
-                      _name = text;
+                      _name = text.trim();
                     },
                   ),
                 ),
@@ -328,7 +328,7 @@ class _AddAccountDialogState extends State<AddAccountDialog> {
                     controller: _emailController,
                     decoration: InputDecoration(contentPadding: EdgeInsets.all(5)),
                     onChanged: (text) {
-                      _email = text;
+                      _email = text.trim();
                     },
                   ),
                 ),
@@ -347,7 +347,7 @@ class _AddAccountDialogState extends State<AddAccountDialog> {
                     controller: _phoneController,
                     decoration: InputDecoration(contentPadding: EdgeInsets.all(5)),
                     onChanged: (text) {
-                      _phone = text;
+                      _phone = text.trim();
                     },
                   ),
                 ),

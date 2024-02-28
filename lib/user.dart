@@ -193,14 +193,14 @@ class FollowButton extends StatelessWidget {
                 break;
               case 'toggle_subscribe':
                 GlobalKey<SubscriptionGroupFeedState>? sgfKey = DataService().map['feed_key__1'];
-                if (sgfKey != null) {
+                if (sgfKey != null && sgfKey.currentState != null) {
                   await sgfKey.currentState!.updateOffset();
                 }
                 await model.toggleSubscribe(user, followed);
                 break;
               case 'toggle_feed':
                 GlobalKey<SubscriptionGroupFeedState>? sgfKey = DataService().map['feed_key__1'];
-                if (sgfKey != null) {
+                if (sgfKey != null && sgfKey.currentState != null) {
                   await sgfKey.currentState!.updateOffset();
                 }
                 await model.toggleFeed(user, inFeed);

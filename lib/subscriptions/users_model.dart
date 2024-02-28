@@ -1,4 +1,5 @@
 import 'package:flutter_triple/flutter_triple.dart';
+import 'package:squawker/client/client_account.dart';
 import 'package:squawker/client/client.dart';
 import 'package:squawker/constants.dart';
 import 'package:squawker/database/entities.dart';
@@ -52,6 +53,9 @@ class SubscriptionsModel extends Store<List<Subscription>> {
     log.info('Refreshing subscription data');
 
     await execute(() async {
+      if (!TwitterAccount.hasAccountAvailable()) {
+        return state;
+      }
       var database = await Repository.writable();
 
       var ids = (await database.query(tableSubscription, columns: ['id'])).map((e) => e['id'] as String).toList();

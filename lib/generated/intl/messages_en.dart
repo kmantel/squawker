@@ -199,6 +199,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "Enhanced requests for searches (but with lower rate limits)"),
         "enhanced_searches_label":
             MessageLookupByLibrary.simpleMessage("Enhanced searches"),
+        "enter_comma_separated_twitter_usernames":
+            MessageLookupByLibrary.simpleMessage(
+                "Enter your comma separated Twitter/X usernames"),
         "enter_your_twitter_username": MessageLookupByLibrary.simpleMessage(
             "Enter your Twitter/X username"),
         "error_from_twitter":
@@ -455,6 +458,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "thumbnail_not_available":
             MessageLookupByLibrary.simpleMessage("Thumbnail not available"),
         "timed_out": MessageLookupByLibrary.simpleMessage("Timed out"),
+        "to_import_specific_subscriptions_enter_your_comma_separated_usernames_below":
+            MessageLookupByLibrary.simpleMessage(
+                "To import specific subscriptions, enter your comma separated usernames below."),
         "to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below":
             MessageLookupByLibrary.simpleMessage(
                 "To import subscriptions from an existing Twitter/X account, enter your username below."),
@@ -550,6 +556,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("User not found"),
         "username": MessageLookupByLibrary.simpleMessage("Username"),
         "username_label": MessageLookupByLibrary.simpleMessage("Username:"),
+        "usernames": MessageLookupByLibrary.simpleMessage("Usernames"),
         "version": MessageLookupByLibrary.simpleMessage("Version"),
         "warning_regular_account_unauthenticated_access_description":
             MessageLookupByLibrary.simpleMessage(

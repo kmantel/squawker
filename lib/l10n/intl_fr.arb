@@ -608,5 +608,11 @@
   "proxy_error": "Erreur Proxy",
   "@proxy_error": {},
   "share_tweet_as_image": "Partager le tweet en image",
-  "@share_tweet_as_image": {}
+  "@share_tweet_as_image": {},
+  "to_import_specific_subscriptions_enter_your_comma_separated_usernames_below": "Pour importer des abonnements spécifiques, saisissez une liste d'utilisateurs séparés par des virgules ci-dessous.",
+  "@to_import_specific_subscriptions_enter_your_comma_separated_usernames_below": {},
+  "enter_comma_separated_twitter_usernames": "Saisissez la liste d'utilisateurs séparés par des virgules",
+  "@enter_comma_separated_twitter_usernames": {},
+  "usernames": "Utilisateurs",
+  "@usernames": {}
 }

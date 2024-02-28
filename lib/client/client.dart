@@ -16,6 +16,13 @@ import 'package:quiver/iterables.dart';
 
 const Duration _defaultTimeout = Duration(seconds: 30);
 
+class _SquawkerTwitterClientAllowUnauthenticated extends _SquawkerTwitterClient {
+  @override
+  Future<http.Response> get(Uri uri, {Map<String, String>? headers, Duration? timeout}) async {
+    return getWithRateFetchCtx(uri, headers: headers, timeout: timeout, allowUnauthenticated: true);
+  }
+}
+
 class _SquawkerTwitterClient extends TwitterClient {
   static final log = Logger('_SquawkerTwitterClient');
 
@@ -24,10 +31,6 @@ class _SquawkerTwitterClient extends TwitterClient {
   @override
   Future<http.Response> get(Uri uri, {Map<String, String>? headers, Duration? timeout}) async {
     return getWithRateFetchCtx(uri, headers: headers, timeout: timeout);
-  }
-
-  Future<http.Response> getAllowUnauthenticated(Uri uri, {Map<String, String>? headers, Duration? timeout}) async {
-    return getWithRateFetchCtx(uri, headers: headers, timeout: timeout, allowUnauthenticated: true);
   }
 
   Future<http.Response> getWithRateFetchCtx(Uri uri, {Map<String, String>? headers, Duration? timeout, RateFetchContext? fetchContext, bool allowUnauthenticated = false}) async {
@@ -83,6 +86,7 @@ class UnknownProfileUnavailableReason implements Exception {
 
 class Twitter {
   static final TwitterApi _twitterApi = TwitterApi(client: _SquawkerTwitterClient());
+  static final TwitterApi _twitterApiAllowUnauthenticated = TwitterApi(client: _SquawkerTwitterClientAllowUnauthenticated());
 
   static final FFCache _cache = FFCache();
 
@@ -217,7 +221,7 @@ class Twitter {
   }
 
   static Future<Profile> _getProfile(Uri uri, {bool allowAuthenticated = false}) async {
-    var response = await (allowAuthenticated ? (_twitterApi.client as _SquawkerTwitterClient).getAllowUnauthenticated(uri) : _twitterApi.client.get(uri));
+    var response = await (allowAuthenticated ? _twitterApiAllowUnauthenticated.client.get(uri) : _twitterApi.client.get(uri));
     if (response.body.isEmpty) {
       throw TwitterError(code: 0, message: 'Response is empty', uri: uri.toString());
     }
@@ -266,9 +270,9 @@ class Twitter {
 
   static Future<Follows> getProfileFollows(String screenName, String type, {int? cursor, int? count = 200}) async {
     var response = type == 'following'
-        ? await _twitterApi.userService
+        ? await _twitterApiAllowUnauthenticated.userService
             .friendsList(screenName: screenName, cursor: cursor, count: count, skipStatus: true)
-        : await _twitterApi.userService
+        : await _twitterApiAllowUnauthenticated.userService
             .followersList(screenName: screenName, cursor: cursor, count: count, skipStatus: true);
 
     return Follows(
@@ -341,7 +345,7 @@ class Twitter {
       'includePromotedContent': false,
       'withVoice': false
     };
-    var response = await (_twitterApi.client as _SquawkerTwitterClient).getAllowUnauthenticated(Uri.https('api.twitter.com', '/graphql/pq4JqttrkAz73WE6s2yUqg/TweetResultByRestId', {
+    var response = await _twitterApiAllowUnauthenticated.client.get(Uri.https('api.twitter.com', '/graphql/pq4JqttrkAz73WE6s2yUqg/TweetResultByRestId', {
       'variables': jsonEncode(variables),
       'features': jsonEncode(defaultFeaturesUnauthenticated),
     }));
@@ -632,31 +636,9 @@ class Twitter {
     return List.from(jsonDecode(result)).map((e) => TrendLocation.fromJson(e)).toList(growable: false);
   }
 
-  static void _addParameter(Map<String, String> map, String param, dynamic value) {
-    if (value is List) {
-      map[param] = value.join(',');
-    } else if (value != null) {
-      map[param] = '$value';
-    }
-  }
-
-  // reference: dart_twitter_api::TrendsService.place()
-  static Future<List<Trends>> _placeAllowUnauthenticated({
-    required int id,
-    String? exclude,
-    TransformResponse<List<Trends>> transform = defaultTrendsListTransform
-  }) async {
-    final params = <String, String>{};
-    _addParameter(params, 'id', id);
-    _addParameter(params, 'exclude', exclude);
-
-    return (_twitterApi.client as _SquawkerTwitterClient)
-      .getAllowUnauthenticated(Uri.https('api.twitter.com', '1.1/trends/place.json', params)).then(transform);
-  }
-
   static Future<List<Trends>> getTrends(int location) async {
     var result = await _cache.getOrCreateAsJSON('trends.$location', const Duration(minutes: 2), () async {
-      var trends = await _placeAllowUnauthenticated(id: location);
+      var trends = await _twitterApiAllowUnauthenticated.trendsService.place(id: location);
 
       return jsonEncode(trends.map((e) => e.toJson()).toList());
     });
@@ -675,7 +657,7 @@ class Twitter {
       'withVoice': true,
       'withV2Timeline': true
     };
-    var response = await (_twitterApi.client as _SquawkerTwitterClient).getAllowUnauthenticated(Uri.https('api.twitter.com', '/graphql/WmvfySbQ0FeY1zk4HU_5ow/UserTweets', {
+    var response = await _twitterApiAllowUnauthenticated.client.get(Uri.https('api.twitter.com', '/graphql/WmvfySbQ0FeY1zk4HU_5ow/UserTweets', {
       'variables': jsonEncode(variables),
       'features': jsonEncode(defaultFeaturesUnauthenticated)
     }));
@@ -1009,10 +991,37 @@ class Twitter {
     return (await Future.wait(futures)).expand((element) => element).toList();
   }
 
+  static Future<List<UserWithExtra>> getUsersByScreenName(Iterable<String> screenNames) async {
+    // Split into groups of 100, as the API only supports that many at a time
+    List<Future<List<UserWithExtra>>> futures = [];
+
+    var groups = partition(screenNames, 100);
+    for (var group in groups) {
+      futures.add(_getUsersPageByScreenName(group));
+    }
+
+    return (await Future.wait(futures)).expand((element) => element).toList();
+  }
+
   static Future<List<UserWithExtra>> _getUsersPage(Iterable<String> ids) async {
-    var response = await _twitterApi.client.get(Uri.https('api.twitter.com', '/1.1/users/lookup.json', {
+    var response = await _twitterApiAllowUnauthenticated.client.get(Uri.https('api.twitter.com', '/1.1/users/lookup.json', {
       ...defaultParams,
       'user_id': ids.join(','),
+    }));
+
+    if (response.body.isEmpty) {
+      return [];
+    }
+
+    var result = json.decode(response.body);
+
+    return List.from(result).map((e) => UserWithExtra.fromJson(e)).toList(growable: false);
+  }
+
+  static Future<List<UserWithExtra>> _getUsersPageByScreenName(Iterable<String> screenNames) async {
+    var response = await _twitterApiAllowUnauthenticated.client.get(Uri.https('api.twitter.com', '/1.1/users/lookup.json', {
+      ...defaultParams,
+      'screen_name': screenNames.join(','),
     }));
 
     var result = json.decode(response.body);

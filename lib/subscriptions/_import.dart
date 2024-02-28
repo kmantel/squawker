@@ -4,14 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:squawker/client/client.dart';
+import 'package:squawker/client/client_account.dart';
 import 'package:squawker/database/entities.dart';
 import 'package:squawker/database/repository.dart';
 import 'package:squawker/group/group_model.dart';
 import 'package:squawker/import_data_model.dart';
 import 'package:squawker/subscriptions/users_model.dart';
 import 'package:squawker/ui/errors.dart';
+import 'package:squawker/user.dart';
 import 'package:squawker/utils/data_service.dart';
-import 'package:squawker/utils/urls.dart';
 import 'package:provider/provider.dart';
 import 'package:squawker/generated/l10n.dart';
 
@@ -23,7 +24,8 @@ class SubscriptionImportScreen extends StatefulWidget {
 }
 
 class _SubscriptionImportScreenState extends State<SubscriptionImportScreen> {
-  String? _screenName;
+  String? _fromScreenName;
+  String? _specificScreenNames;
   StreamController<int>? _streamController;
 
   Future importSubscriptions() async {
@@ -32,8 +34,7 @@ class _SubscriptionImportScreenState extends State<SubscriptionImportScreen> {
     });
 
     try {
-      var screenName = _screenName;
-      if (screenName == null || screenName.isEmpty) {
+      if ((_fromScreenName?.trim().isEmpty ?? true) && (_specificScreenNames?.trim().isEmpty ?? true)) {
         return;
       }
 
@@ -48,19 +49,64 @@ class _SubscriptionImportScreenState extends State<SubscriptionImportScreen> {
 
       var createdAt = DateTime.now();
 
-      while (true) {
-        var response = await Twitter.getProfileFollows(
-          screenName,
-          'following',
-          cursor: cursor,
-        );
+      if (_fromScreenName?.trim().isNotEmpty ?? false) {
+        while (true) {
+          var response = await Twitter.getProfileFollows(
+            _fromScreenName!,
+            'following',
+            cursor: cursor,
+          );
 
-        cursor = response.cursorBottom;
-        total = total + response.users.length;
+          cursor = response.cursorBottom;
+          total = total + response.users.length;
 
-        await importModel.importData({
-          tableSubscription: [
-            ...response.users.map((e) => UserSubscription(
+          if (response.users.isNotEmpty) {
+            await importModel.importData({
+              tableSubscription: [
+                ...response.users.map((e) => UserSubscription(
+                  id: e.idStr!,
+                  name: e.name!,
+                  profileImageUrlHttps: e.profileImageUrlHttps,
+                  screenName: e.screenName!,
+                  verified: e.verified ?? false,
+                  inFeed: true,
+                  createdAt: createdAt))
+              ]
+            });
+          }
+          else {
+            break;
+          }
+
+          _streamController?.add(total);
+
+          if (cursor == 0 || cursor == -1) {
+            break;
+          }
+        }
+      }
+
+      if (_specificScreenNames?.trim().isNotEmpty ?? false) {
+        List<UserWithExtra> users = [];
+
+        if (TwitterAccount.hasAccountAvailable()) {
+          users = await Twitter.getUsersByScreenName(_specificScreenNames!.split(',').map((e) => e.trim()).where((e) => e.isNotEmpty));
+        }
+        else {
+          for (String screenName in _specificScreenNames!.split(',').map((e) => e.trim()).where((e) => e.isNotEmpty)) {
+            try {
+              users.add((await Twitter.getProfileByScreenName(screenName)).user);
+            }
+            catch (err, _) {
+              _streamController?.addError(err, _);
+            }
+          }
+        }
+
+        if (users.isNotEmpty) {
+          await importModel.importData({
+            tableSubscription: [
+              ...users.map((e) => UserSubscription(
                 id: e.idStr!,
                 name: e.name!,
                 profileImageUrlHttps: e.profileImageUrlHttps,
@@ -68,13 +114,10 @@ class _SubscriptionImportScreenState extends State<SubscriptionImportScreen> {
                 verified: e.verified ?? false,
                 inFeed: true,
                 createdAt: createdAt))
-          ]
-        });
+            ]
+          });
 
-        _streamController?.add(total);
-
-        if (cursor == 0 || cursor == -1) {
-          break;
+          _streamController?.add(users.length);
         }
       }
 
@@ -110,36 +153,11 @@ class _SubscriptionImportScreenState extends State<SubscriptionImportScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 16),
-                child: Text(
-                  L10n.of(context)
-                      .please_note_that_the_method_fritter_uses_to_import_subscriptions_is_heavily_rate_limited_by_twitter_so_this_may_fail_if_you_have_a_lot_of_followed_accounts,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 16),
-                child: Text.rich(TextSpan(children: [
-                  TextSpan(text: '${L10n.of(context).if_you_have_any_feedback_on_this_feature_please_leave_it_on} '),
-                  WidgetSpan(
-                      child: InkWell(
-                    onTap: () => openUri('https://github.com/jonjomckay/fritter/issues/143'),
-                    child: Text(L10n.of(context).the_github_issue,
-                        style: const TextStyle(
-                          color: Colors.blue,
-                        )),
-                  )),
-                  TextSpan(
-                    text:
-                        '. ${L10n.of(context).selecting_individual_accounts_to_import_and_assigning_groups_are_both_planned_for_the_future_already}',
-                  )
-                ])),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 16),
                 child: TextFormField(
                   decoration: InputDecoration(
                     border: const UnderlineInputBorder(),
                     hintText: L10n.of(context).enter_your_twitter_username,
-                    helperText: L10n.of(context).your_profile_must_be_public_otherwise_the_import_will_not_work,
+                    hintStyle: TextStyle(fontSize: Theme.of(context).textTheme.labelSmall!.fontSize),
                     prefixText: '@',
                     labelText: L10n.of(context).username,
                   ),
@@ -147,7 +165,31 @@ class _SubscriptionImportScreenState extends State<SubscriptionImportScreen> {
                   inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^[a-zA-Z0-9_]+'))],
                   onChanged: (value) {
                     setState(() {
-                      _screenName = value;
+                      _fromScreenName = value;
+                    });
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 16),
+                child: Text(
+                  L10n.of(context).to_import_specific_subscriptions_enter_your_comma_separated_usernames_below,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 16),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    border: const UnderlineInputBorder(),
+                    hintText: L10n.of(context).enter_comma_separated_twitter_usernames,
+                    hintStyle: TextStyle(fontSize: Theme.of(context).textTheme.labelSmall!.fontSize),
+                    labelText: L10n.of(context).usernames,
+                  ),
+                  maxLength: 100,
+                  inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^[a-zA-Z0-9_,]+'))],
+                  onChanged: (value) {
+                    setState(() {
+                      _specificScreenNames = value;
                     });
                   },
                 ),

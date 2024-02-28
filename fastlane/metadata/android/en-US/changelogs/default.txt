@@ -1,4 +1,14 @@
 * Fix issue #226 App does not open, showing a black screen. Some db records have unexpected null fields.
 * Implement feature #218 Share tweet as image.
 * Implement feature #232 Allow unauthenticated access like with a browser.
+  What is possible to do with unauthenticated access:
+  - view specific tweets (but not their threads);
+  - view a profile;
+  - view what is trending;
+  - import subscriptions.
+  What is not possible to do with unauthenticated access:
+  - view search results;
+  - view feed/groups timelines;
+  - view tweet threads.
 * Implement feature #203 View profile picture and banner.
+* Implement feature #234 Ability to import specific subscriptions.

@@ -2985,6 +2985,38 @@ class L10n {
       args: [],
     );
   }
+
+  /// `To import specific subscriptions, enter your comma separated usernames below.`
+  String
+      get to_import_specific_subscriptions_enter_your_comma_separated_usernames_below {
+    return Intl.message(
+      'To import specific subscriptions, enter your comma separated usernames below.',
+      name:
+          'to_import_specific_subscriptions_enter_your_comma_separated_usernames_below',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your comma separated Twitter/X usernames`
+  String get enter_comma_separated_twitter_usernames {
+    return Intl.message(
+      'Enter your comma separated Twitter/X usernames',
+      name: 'enter_comma_separated_twitter_usernames',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Usernames`
+  String get usernames {
+    return Intl.message(
+      'Usernames',
+      name: 'usernames',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<L10n> {
