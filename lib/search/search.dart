@@ -61,7 +61,7 @@ class _SearchScreenState extends State<_SearchScreen> with SingleTickerProviderS
   void initState() {
     super.initState();
 
-    _tabController = TabController(length: 2, vsync: this, initialIndex: widget.initialTab);
+    _tabController = TabController(length: 3, vsync: this, initialIndex: widget.initialTab);
     _bothControllers = CombinedChangeNotifier(_tabController, _queryController);
 
     if (widget.focusInputOnOpen) {
@@ -141,6 +141,7 @@ class _SearchScreenState extends State<_SearchScreen> with SingleTickerProviderS
                 tabs: const [
                   Tab(icon: Icon(Icons.person_rounded)),
                   Tab(icon: Icon(Icons.comment_rounded)),
+                  Tab(icon: Icon(Icons.trending_up)),
                 ],
                 labelColor: Theme.of(context).appBarTheme.foregroundColor,
                 indicatorColor: Theme.of(context).appBarTheme.foregroundColor,
@@ -154,19 +155,22 @@ class _SearchScreenState extends State<_SearchScreen> with SingleTickerProviderS
                     create: (_) => VideoContextState(prefs.get(optionMediaDefaultMute))),
               ],
               child: Expanded(
-                  child: TabBarView(controller: _tabController, children: [
-                TweetSearchResultList<SearchUsersModel, UserWithExtra>(
+                child: TabBarView(controller: _tabController, children: [
+                  TweetSearchResultList<SearchUsersModel, UserWithExtra>(
                     queryController: _queryController,
                     store: context.read<SearchUsersModel>(),
                     searchFunction: (q) => context.read<SearchUsersModel>().searchUsers(q, PrefService.of(context).get(optionEnhancedSearches)),
                     itemBuilder: (context, user) => UserTile(user: UserSubscription.fromUser(user))),
-                TweetSearchResultList<SearchTweetsModel, TweetWithCard>(
+                  TweetSearchResultList<SearchTweetsModel, TweetWithCard>(
                     queryController: _queryController,
                     store: context.read<SearchTweetsModel>(),
                     searchFunction: (q) => context.read<SearchTweetsModel>().searchTweets(q, PrefService.of(context).get(optionEnhancedSearches)),
-                    itemBuilder: (context, item) {
-                      return TweetTile(tweet: item, clickable: true);
-                    })
+                    itemBuilder: (context, item) => TweetTile(tweet: item, clickable: true)),
+                  TweetSearchResultList<SearchTweetsModel, TweetWithCard>(
+                      queryController: _queryController,
+                      store: context.read<SearchTweetsModel>(),
+                      searchFunction: (q) => context.read<SearchTweetsModel>().searchTweets(q, PrefService.of(context).get(optionEnhancedSearches), trending: true),
+                      itemBuilder: (context, item) => TweetTile(tweet: item, clickable: true))
               ])),
             )
           ],

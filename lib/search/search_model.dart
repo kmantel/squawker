@@ -5,24 +5,24 @@ import 'package:squawker/user.dart';
 class SearchTweetsModel extends Store<List<TweetWithCard>> {
   SearchTweetsModel() : super([]);
 
-  Future<void> searchTweets(String query, bool enhanced) async {
+  Future<void> searchTweets(String query, bool enhanced, {bool trending = false}) async {
     await execute(() async {
       if (query.isEmpty) {
         return [];
       } else {
         if (enhanced) {
-          return (await Twitter.searchTweetsGraphql(query, true))
-              .chains
-              .map((e) => e.tweets)
-              .expand((element) => element)
-              .toList();
+          return (await Twitter.searchTweetsGraphql(query, true, trending: trending))
+            .chains
+            .map((e) => e.tweets)
+            .expand((element) => element)
+            .toList();
         }
         else {
           return (await Twitter.searchTweets(query, true))
-              .chains
-              .map((e) => e.tweets)
-              .expand((element) => element)
-              .toList();
+            .chains
+            .map((e) => e.tweets)
+            .expand((element) => element)
+            .toList();
         }
       }
     });
