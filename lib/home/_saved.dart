@@ -15,15 +15,17 @@ import 'package:squawker/tweet/tweet.dart';
 import 'package:squawker/ui/errors.dart';
 
 class SavedScreen extends StatefulWidget {
-  final ScrollController scrollController;
 
-  const SavedScreen({Key? key, required this.scrollController}) : super(key: key);
+  const SavedScreen({Key? key}) : super(key: key);
 
   @override
   State<SavedScreen> createState() => _SavedScreenState();
 }
 
 class _SavedScreenState extends State<SavedScreen> with AutomaticKeepAliveClientMixin<SavedScreen> {
+
+  final ScrollController scrollController = ScrollController();
+
   @override
   bool get wantKeepAlive => true;
 
@@ -43,7 +45,7 @@ class _SavedScreenState extends State<SavedScreen> with AutomaticKeepAliveClient
     var prefs = PrefService.of(context, listen: false);
 
     return NestedScrollView(
-      controller: widget.scrollController,
+      controller: scrollController,
       headerSliverBuilder: (context, innerBoxIsScrolled) {
         return [
           SliverAppBar(
@@ -75,7 +77,7 @@ class _SavedScreenState extends State<SavedScreen> with AutomaticKeepAliveClient
             }
 
             return ListView.builder(
-              controller: widget.scrollController,
+              controller: scrollController,
               padding: const EdgeInsets.only(top: 4),
               itemCount: data.length,
               itemBuilder: (context, index) {

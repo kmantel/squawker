@@ -239,9 +239,9 @@ class _HomeScreenState extends State<_HomeScreen> {
                       case 'groups':
                         return GroupsScreen(scrollController: scrollController);
                       case 'trending':
-                        return TrendsScreen(scrollController: scrollController);
+                        return TrendsScreen();
                       case 'saved':
-                        return SavedScreen(scrollController: scrollController);
+                        return SavedScreen();
                       default:
                         return const MissingScreen();
                     }
