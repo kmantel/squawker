@@ -45,7 +45,7 @@ class SubscriptionGroupScreenContent extends StatelessWidget {
     StringBuffer query = StringBuffer();
     bool firstDone = false;
 
-    if (includeReplies) {
+    if (!includeReplies) {
       query.write('-filter:replies AND ');
     }
     if (!includeRetweets) {

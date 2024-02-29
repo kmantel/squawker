@@ -1,1 +1,2 @@
 * Implement feature #231 Display Top tweets instead of latest when searching hashtag.
+* Fix issue #236 Replies show up in feed, when the setting is off.
