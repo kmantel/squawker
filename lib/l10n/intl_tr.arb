@@ -608,5 +608,15 @@
   "proxy_error": "Vekil Hatası",
   "@proxy_error": {},
   "share_tweet_as_image": "Tweet'i resim olarak paylaş",
-  "@share_tweet_as_image": {}
+  "@share_tweet_as_image": {},
+  "enter_comma_separated_twitter_usernames": "Virgülle ayrılmış Twitter/X kullanıcı adlarınızı girin",
+  "@enter_comma_separated_twitter_usernames": {},
+  "usernames": "Kullanıcı adları",
+  "@usernames": {},
+  "warning_regular_account_unauthenticated_access_description": "Twitter/X, misafir hesabı oluşturma özelliğini devre dışı bıraktı. Artık Ayarlar / Hesap bölümünde normal hesap(lar) ayarlamalısınız. Hesap olmadan yalnızca tweetler ve profillerle sınırlı kısmi bir erişim vardır. Burada açıklandığı gibi anonim bir normal hesap oluşturmak kolaydır:",
+  "@warning_regular_account_unauthenticated_access_description": {},
+  "to_import_specific_subscriptions_enter_your_comma_separated_usernames_below": "Belirli abonelikleri içe aktarmak için, virgülle ayrılmış kullanıcı adlarınızı aşağıya girin.",
+  "@to_import_specific_subscriptions_enter_your_comma_separated_usernames_below": {},
+  "warning_regular_account_unauthenticated_access_title": "Normal hesaplar ve kimliği doğrulanmayan erişim",
+  "@warning_regular_account_unauthenticated_access_title": {}
 }
