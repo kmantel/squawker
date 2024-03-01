@@ -602,5 +602,17 @@
   "proxy_label": "الوكيل",
   "@proxy_label": {},
   "proxy_description": "الوكيل لجميع الطلبات",
-  "@proxy_description": {}
+  "@proxy_description": {},
+  "to_import_specific_subscriptions_enter_your_comma_separated_usernames_below": "لاستيراد اشتراكات محددة، أدخل أسماء المستخدمين المفصولة بفواصل أدناه.",
+  "@to_import_specific_subscriptions_enter_your_comma_separated_usernames_below": {},
+  "enter_comma_separated_twitter_usernames": "أدخل أسماء مستخدمي Twitter/X المفصولة بفواصل",
+  "@enter_comma_separated_twitter_usernames": {},
+  "usernames": "أسماء المستخدمين",
+  "@usernames": {},
+  "share_tweet_as_image": "مشاركة التغريدة كصورة",
+  "@share_tweet_as_image": {},
+  "warning_regular_account_unauthenticated_access_title": "الحسابات العادية والوصول غير المتحقق",
+  "@warning_regular_account_unauthenticated_access_title": {},
+  "warning_regular_account_unauthenticated_access_description": "قام Twitter/X بتعطيل القدرة على إنشاء حسابات ضيوف. يجب عليك الآن تعيين الحساب (الحسابات) العادية في الإعدادات / الحساب. مع عدم وجود حساب، يتوفر وصول جزئي يقتصر على التغريدات والملفات الشخصية فقط. من السهل إنشاء حساب عادي مجهول كما هو موضح هنا:",
+  "@warning_regular_account_unauthenticated_access_description": {}
 }
