@@ -606,5 +606,17 @@
   "proxy_description": "Kasuta puhverserverit kõikide päringute jaoks",
   "@proxy_description": {},
   "proxy_error": "Puhverserveri viga",
-  "@proxy_error": {}
+  "@proxy_error": {},
+  "to_import_specific_subscriptions_enter_your_comma_separated_usernames_below": "Vaid valitud tellimuste importimiseks lisa siia komadega eraldatud kasutajanimede loend.",
+  "@to_import_specific_subscriptions_enter_your_comma_separated_usernames_below": {},
+  "enter_comma_separated_twitter_usernames": "Sisesta komadega eraldatud Twitter/X kasutajanimed",
+  "@enter_comma_separated_twitter_usernames": {},
+  "usernames": "Kasutajanimed",
+  "@usernames": {},
+  "share_tweet_as_image": "Jaga säutsu pildina",
+  "@share_tweet_as_image": {},
+  "warning_regular_account_unauthenticated_access_title": "Tavakontod ja autentimata ligipääs",
+  "@warning_regular_account_unauthenticated_access_title": {},
+  "warning_regular_account_unauthenticated_access_description": "Twitter/X on lõpetanud külaliskontode kasutamise võimaluse. Palun kirjelda tavakonto Seadistused-Kasutajakonto alt. Ilma tavakontota on sul vaid piiratud ja osaline ligipääs vaid säutsudele ja kasutajaprofiilidele. Anonüümse tavakonto loomine on lihtne ning vastav juhend on siin:",
+  "@warning_regular_account_unauthenticated_access_description": {}
 }
