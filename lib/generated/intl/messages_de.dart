@@ -205,6 +205,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "Erweiterte Anfragen für Suchen (jedoch mit niedrigerer Durchsatzratenbegrenzung)"),
         "enhanced_searches_label":
             MessageLookupByLibrary.simpleMessage("Erweiterte Suchen"),
+        "enter_comma_separated_twitter_usernames":
+            MessageLookupByLibrary.simpleMessage(
+                "Gib kommagetrennte Twitter/X Nutzernamen ein"),
         "enter_your_twitter_username": MessageLookupByLibrary.simpleMessage(
             "Gebe deinen Twitter/X-Nutzernamen ein"),
         "error_from_twitter":
@@ -367,6 +370,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "prefix": MessageLookupByLibrary.simpleMessage("Präfix"),
         "private_profile":
             MessageLookupByLibrary.simpleMessage("Privates Profil"),
+        "proxy_description":
+            MessageLookupByLibrary.simpleMessage("Proxy für alle Anfragen"),
+        "proxy_error": MessageLookupByLibrary.simpleMessage("Proxyfehler"),
+        "proxy_label": MessageLookupByLibrary.simpleMessage("Proxy"),
         "regular_accounts": m12,
         "released_under_the_mit_license": MessageLookupByLibrary.simpleMessage(
             "Unter der MIT-Lizenz herausgegeben"),
@@ -399,6 +406,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Eigene Teilen-URL"),
         "share_base_url_description": MessageLookupByLibrary.simpleMessage(
             "Nutze beim Teilen eine andere Basisadresse"),
+        "share_tweet_as_image":
+            MessageLookupByLibrary.simpleMessage("Tweet als Bild teilen"),
         "share_tweet_content":
             MessageLookupByLibrary.simpleMessage("Tweet-Inhalt teilen"),
         "share_tweet_content_and_link": MessageLookupByLibrary.simpleMessage(
@@ -460,6 +469,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "thumbnail_not_available": MessageLookupByLibrary.simpleMessage(
             "Vorschaubild nicht verfügbar"),
         "timed_out": MessageLookupByLibrary.simpleMessage("Zeit abgelaufen"),
+        "to_import_specific_subscriptions_enter_your_comma_separated_usernames_below":
+            MessageLookupByLibrary.simpleMessage(
+                "Um bestimmte Abonnements zu importieren, gib hier kommagetrennte Nutzernamen ein."),
         "to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below":
             MessageLookupByLibrary.simpleMessage(
                 "Gebe unten deinen Nutzernamen an, um Abonnements von einem bestehenden Twitter/X-Konto zu importieren."),
@@ -553,8 +565,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "user_not_found":
             MessageLookupByLibrary.simpleMessage("Nutzer wurde nicht gefunden"),
         "username": MessageLookupByLibrary.simpleMessage("@Nutzername"),
-        "username_label": MessageLookupByLibrary.simpleMessage("Benutzername:"),
+        "username_label": MessageLookupByLibrary.simpleMessage("Nutzername:"),
+        "usernames": MessageLookupByLibrary.simpleMessage("Nutzernamen"),
         "version": MessageLookupByLibrary.simpleMessage("Version"),
+        "warning_regular_account_unauthenticated_access_description":
+            MessageLookupByLibrary.simpleMessage(
+                "Twitter/X hat die Möglichkeit entfernt, Gastkonten zu erstellen. Du solltest jetzt mindestens ein Standardkonto unter Einstellungen / Nutzerkonto einrichten. Ohne Standardkonto besteht nur ein teilweiser Zugriff, der auf Tweets und Profile beschränkt ist. Es ist leicht, ein anonymes Standardkonto einzurichten, siehe hier:"),
+        "warning_regular_account_unauthenticated_access_title":
+            MessageLookupByLibrary.simpleMessage(
+                "Standardkonten und nicht authentifizierter Zugriff"),
         "when_a_new_app_update_is_available":
             MessageLookupByLibrary.simpleMessage(
                 "Sobald ein neues Update der App verfügbar ist"),

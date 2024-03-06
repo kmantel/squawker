@@ -206,6 +206,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "Kasuta otsingute tegemisel tõhusamaid päringuid (aga neil on väike ajaühikus lubatud päringute arv)"),
         "enhanced_searches_label":
             MessageLookupByLibrary.simpleMessage("Tõhusamad otsingud"),
+        "enter_comma_separated_twitter_usernames":
+            MessageLookupByLibrary.simpleMessage(
+                "Sisesta komadega eraldatud Twitter/X kasutajanimed"),
         "enter_your_twitter_username": MessageLookupByLibrary.simpleMessage(
             "Sisesta oma Twitter/Xi kasutajanimi"),
         "error_from_twitter":
@@ -407,6 +410,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Kohandatud URL lingi jagamiseks"),
         "share_base_url_description": MessageLookupByLibrary.simpleMessage(
             "Kasuta lingi jagamiseks kohandatud URL\'i"),
+        "share_tweet_as_image":
+            MessageLookupByLibrary.simpleMessage("Jaga säutsu pildina"),
         "share_tweet_content":
             MessageLookupByLibrary.simpleMessage("Jaga säutsu sisu"),
         "share_tweet_content_and_link":
@@ -468,6 +473,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "thumbnail_not_available":
             MessageLookupByLibrary.simpleMessage("Pisipilt pole saadaval"),
         "timed_out": MessageLookupByLibrary.simpleMessage("Päring aegus"),
+        "to_import_specific_subscriptions_enter_your_comma_separated_usernames_below":
+            MessageLookupByLibrary.simpleMessage(
+                "Vaid valitud tellimuste importimiseks lisa siia komadega eraldatud kasutajanimede loend."),
         "to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below":
             MessageLookupByLibrary.simpleMessage(
                 "Olemasoleva Twitter/Xi konto tellimuste impordiks palun sisesta alljärgnevalt oma kasutajanimi."),
@@ -566,7 +574,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Kasutajat ei leidu"),
         "username": MessageLookupByLibrary.simpleMessage("Kasutajanimi"),
         "username_label": MessageLookupByLibrary.simpleMessage("Kasutajanimi:"),
+        "usernames": MessageLookupByLibrary.simpleMessage("Kasutajanimed"),
         "version": MessageLookupByLibrary.simpleMessage("Versioon"),
+        "warning_regular_account_unauthenticated_access_description":
+            MessageLookupByLibrary.simpleMessage(
+                "Twitter/X on lõpetanud külaliskontode kasutamise võimaluse. Palun kirjelda tavakonto Seadistused-Kasutajakonto alt. Ilma tavakontota on sul vaid piiratud ja osaline ligipääs vaid säutsudele ja kasutajaprofiilidele. Anonüümse tavakonto loomine on lihtne ning vastav juhend on siin:"),
+        "warning_regular_account_unauthenticated_access_title":
+            MessageLookupByLibrary.simpleMessage(
+                "Tavakontod ja autentimata ligipääs"),
         "when_a_new_app_update_is_available":
             MessageLookupByLibrary.simpleMessage("Kui uuendus on saadaval"),
         "whether_errors_should_be_reported_to_":

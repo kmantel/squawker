@@ -197,6 +197,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "طلبات محسنة لعمليات البحث (ولكن مع حدود معدل أقل)"),
         "enhanced_searches_label":
             MessageLookupByLibrary.simpleMessage("عمليات البحث المحسنة"),
+        "enter_comma_separated_twitter_usernames":
+            MessageLookupByLibrary.simpleMessage(
+                "أدخل أسماء مستخدمي Twitter/X المفصولة بفواصل"),
         "enter_your_twitter_username":
             MessageLookupByLibrary.simpleMessage("ادخل اسم مستخدم للتويتر"),
         "error_from_twitter":
@@ -388,6 +391,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("عنوان URL المخصص للمشاركة"),
         "share_base_url_description": MessageLookupByLibrary.simpleMessage(
             "استخدام عنوان URL أساسي مخصص عند المشاركة"),
+        "share_tweet_as_image":
+            MessageLookupByLibrary.simpleMessage("مشاركة التغريدة كصورة"),
         "share_tweet_content":
             MessageLookupByLibrary.simpleMessage("مشاركة محتوى التغريدة"),
         "share_tweet_content_and_link": MessageLookupByLibrary.simpleMessage(
@@ -449,6 +454,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "thumbnail_not_available":
             MessageLookupByLibrary.simpleMessage("المعاينة غير متوفرة"),
         "timed_out": MessageLookupByLibrary.simpleMessage("انتهت المهلة"),
+        "to_import_specific_subscriptions_enter_your_comma_separated_usernames_below":
+            MessageLookupByLibrary.simpleMessage(
+                "لاستيراد اشتراكات محددة، أدخل أسماء المستخدمين المفصولة بفواصل أدناه."),
         "to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below":
             MessageLookupByLibrary.simpleMessage(
                 "لاستيراد الاشتراكات من حساب تويتر موجود، أدخل اسم المستخدم أدناه."),
@@ -544,7 +552,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("لم يُعثر على المستخدم"),
         "username": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
         "username_label": MessageLookupByLibrary.simpleMessage("اسم المستخدم:"),
+        "usernames": MessageLookupByLibrary.simpleMessage("أسماء المستخدمين"),
         "version": MessageLookupByLibrary.simpleMessage("الإصدار"),
+        "warning_regular_account_unauthenticated_access_description":
+            MessageLookupByLibrary.simpleMessage(
+                "قام Twitter/X بتعطيل القدرة على إنشاء حسابات ضيوف. يجب عليك الآن تعيين الحساب (الحسابات) العادية في الإعدادات / الحساب. مع عدم وجود حساب، يتوفر وصول جزئي يقتصر على التغريدات والملفات الشخصية فقط. من السهل إنشاء حساب عادي مجهول كما هو موضح هنا:"),
+        "warning_regular_account_unauthenticated_access_title":
+            MessageLookupByLibrary.simpleMessage(
+                "الحسابات العادية والوصول غير المتحقق"),
         "when_a_new_app_update_is_available":
             MessageLookupByLibrary.simpleMessage(
                 "عندما يكون هناك تحديث جديد للتطبيق"),

@@ -171,6 +171,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("搜索时使用增强版接口（但有更严格的请求速率限制）"),
         "enhanced_searches_label":
             MessageLookupByLibrary.simpleMessage("增强版搜索"),
+        "enter_comma_separated_twitter_usernames":
+            MessageLookupByLibrary.simpleMessage("输入用英文逗号隔开的 Twitter/X 用户名"),
         "enter_your_twitter_username":
             MessageLookupByLibrary.simpleMessage("输入您的 Twitter/X 用户名"),
         "error_from_twitter":
@@ -332,6 +334,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "share_base_url": MessageLookupByLibrary.simpleMessage("自定义分享 URL"),
         "share_base_url_description":
             MessageLookupByLibrary.simpleMessage("分享时使用自定义的基 URL"),
+        "share_tweet_as_image":
+            MessageLookupByLibrary.simpleMessage("以图片形式分享推文"),
         "share_tweet_content": MessageLookupByLibrary.simpleMessage("分享推特内容"),
         "share_tweet_content_and_link":
             MessageLookupByLibrary.simpleMessage("分享推文内容和链接"),
@@ -383,6 +387,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "thumbnail_not_available":
             MessageLookupByLibrary.simpleMessage("缩略图不可用"),
         "timed_out": MessageLookupByLibrary.simpleMessage("超时"),
+        "to_import_specific_subscriptions_enter_your_comma_separated_usernames_below":
+            MessageLookupByLibrary.simpleMessage("要导入特定订阅，请在下方输入用英文逗号隔开的用户名。"),
         "to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below":
             MessageLookupByLibrary.simpleMessage(
                 "要从现有的 Twitter/X 账号导入订阅，请在下方输入您的用户名。"),
@@ -459,7 +465,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "user_not_found": MessageLookupByLibrary.simpleMessage("未找到用户"),
         "username": MessageLookupByLibrary.simpleMessage("用户名"),
         "username_label": MessageLookupByLibrary.simpleMessage("用户名："),
+        "usernames": MessageLookupByLibrary.simpleMessage("用户名"),
         "version": MessageLookupByLibrary.simpleMessage("版本"),
+        "warning_regular_account_unauthenticated_access_description":
+            MessageLookupByLibrary.simpleMessage(
+                "Twitter/X 已经禁止了创建来宾账户的能力。你应该在“设置/账户”下配置常规账户。没有常规账户，只能访问推文和个人资料页。创建匿名的常规账户并不难，步骤见："),
+        "warning_regular_account_unauthenticated_access_title":
+            MessageLookupByLibrary.simpleMessage("常规账户和未经身份验证的访问"),
         "when_a_new_app_update_is_available":
             MessageLookupByLibrary.simpleMessage("当有更新可用时"),
         "whether_errors_should_be_reported_to_":

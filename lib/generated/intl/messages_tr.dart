@@ -202,6 +202,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "Aramalar için geliştirilmiş talepler (ancak daha düşük limit oranlarıyla)"),
         "enhanced_searches_label":
             MessageLookupByLibrary.simpleMessage("Geliştirilmiş aramalar"),
+        "enter_comma_separated_twitter_usernames":
+            MessageLookupByLibrary.simpleMessage(
+                "Virgülle ayrılmış Twitter/X kullanıcı adlarınızı girin"),
         "enter_your_twitter_username": MessageLookupByLibrary.simpleMessage(
             "Twitter/X kullanıcı adınızı girin"),
         "error_from_twitter":
@@ -461,6 +464,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Küçük resim mevcut değil"),
         "timed_out":
             MessageLookupByLibrary.simpleMessage("Zaman aşımına uğradı"),
+        "to_import_specific_subscriptions_enter_your_comma_separated_usernames_below":
+            MessageLookupByLibrary.simpleMessage(
+                "Belirli abonelikleri içe aktarmak için, virgülle ayrılmış kullanıcı adlarınızı aşağıya girin."),
         "to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below":
             MessageLookupByLibrary.simpleMessage(
                 "Mevcut bir Twitter/X hesabından abonelikleri içe aktarmak için aşağıya kullanıcı adınızı girin."),
@@ -557,7 +563,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "username": MessageLookupByLibrary.simpleMessage("Kullanıcı adı"),
         "username_label":
             MessageLookupByLibrary.simpleMessage("Kullanıcı adı:"),
+        "usernames": MessageLookupByLibrary.simpleMessage("Kullanıcı adları"),
         "version": MessageLookupByLibrary.simpleMessage("Sürüm"),
+        "warning_regular_account_unauthenticated_access_description":
+            MessageLookupByLibrary.simpleMessage(
+                "Twitter/X, misafir hesabı oluşturma özelliğini devre dışı bıraktı. Artık Ayarlar / Hesap bölümünde normal hesap(lar) ayarlamalısınız. Hesap olmadan yalnızca tweetler ve profillerle sınırlı kısmi bir erişim vardır. Burada açıklandığı gibi anonim bir normal hesap oluşturmak kolaydır:"),
+        "warning_regular_account_unauthenticated_access_title":
+            MessageLookupByLibrary.simpleMessage(
+                "Normal hesaplar ve kimliği doğrulanmayan erişim"),
         "when_a_new_app_update_is_available":
             MessageLookupByLibrary.simpleMessage(
                 "Yeni bir uygulama güncellemesi mevcut olduğunda"),
