@@ -361,6 +361,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "prefix": MessageLookupByLibrary.simpleMessage("prefiks"),
         "private_profile":
             MessageLookupByLibrary.simpleMessage("Profil prywatny"),
+        "proxy_description": MessageLookupByLibrary.simpleMessage(
+            "Używanie serwera proxy dla każdego zapytania"),
+        "proxy_error":
+            MessageLookupByLibrary.simpleMessage("Błąd serwera proxy"),
+        "proxy_label": MessageLookupByLibrary.simpleMessage("Serwer proxy"),
         "regular_accounts": m12,
         "released_under_the_mit_license":
             MessageLookupByLibrary.simpleMessage("Wydany na licencji MIT"),
@@ -394,6 +399,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Niestandardowy URL udostępniania"),
         "share_base_url_description": MessageLookupByLibrary.simpleMessage(
             "Używaj niestandardowej podstawy adresu URL podczas udostępniania"),
+        "share_tweet_as_image":
+            MessageLookupByLibrary.simpleMessage("Udostępnij wpis jako obraz"),
         "share_tweet_content":
             MessageLookupByLibrary.simpleMessage("Udostępnij treść tweeta"),
         "share_tweet_content_and_link": MessageLookupByLibrary.simpleMessage(
@@ -553,7 +560,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "username": MessageLookupByLibrary.simpleMessage("Nazwa użytkownika"),
         "username_label":
             MessageLookupByLibrary.simpleMessage("Nazwa użytkownika:"),
+        "usernames": MessageLookupByLibrary.simpleMessage("Nazwy użytkowników"),
         "version": MessageLookupByLibrary.simpleMessage("Wersja"),
+        "warning_regular_account_unauthenticated_access_title":
+            MessageLookupByLibrary.simpleMessage(
+                "Zwykłe konta i nieuwierzytelniony dostęp"),
         "when_a_new_app_update_is_available":
             MessageLookupByLibrary.simpleMessage(
                 "Gdy dostępna jest nowa aktualizacja aplikacji"),
