@@ -600,5 +600,17 @@
   "allow_background_play_description": "Zezwól na odtwarzanie w tle",
   "@allow_background_play_description": {},
   "allow_background_play_other_apps_description": "Zezwalaj innym aplikacjom na działanie w tle",
-  "@allow_background_play_other_apps_description": {}
+  "@allow_background_play_other_apps_description": {},
+  "usernames": "Nazwy użytkowników",
+  "@usernames": {},
+  "proxy_error": "Błąd serwera proxy",
+  "@proxy_error": {},
+  "proxy_label": "Serwer proxy",
+  "@proxy_label": {},
+  "proxy_description": "Używanie serwera proxy dla każdego zapytania",
+  "@proxy_description": {},
+  "warning_regular_account_unauthenticated_access_title": "Zwykłe konta i nieuwierzytelniony dostęp",
+  "@warning_regular_account_unauthenticated_access_title": {},
+  "share_tweet_as_image": "Udostępnij wpis jako obraz",
+  "@share_tweet_as_image": {}
 }
