@@ -1,2 +1,3 @@
 * Implement feature #231 Display Top tweets instead of latest when searching hashtag.
 * Fix issue #236 Replies show up in feed, when the setting is off.
+* Fix issue #245 UNIQUE constraint failed: twitter_token error at the account renewal when Squawker opens.
