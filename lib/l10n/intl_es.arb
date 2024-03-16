@@ -124,5 +124,19 @@
   "data_exported_to_fileName": "Datos exportados a {fileName}",
   "@data_exported_to_fileName": {},
   "select": "Seleccionar",
-  "@select": {}
+  "@select": {},
+  "app_info": "Información de la aplicación",
+  "@app_info": {},
+  "thumbnail": "Miniatura",
+  "@thumbnail": {},
+  "import": "Importar",
+  "@import": {},
+  "which_tab_is_shown_when_the_app_opens": "Cuál pestaña se muestra cuando se abre la aplicación",
+  "@which_tab_is_shown_when_the_app_opens": {},
+  "system": "Sistema",
+  "@system": {},
+  "light": "Claro",
+  "@light": {},
+  "dark": "Oscuro",
+  "@dark": {}
 }
