@@ -29,6 +29,8 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "add_to_group": MessageLookupByLibrary.simpleMessage("Añadir al grupo"),
+        "app_info": MessageLookupByLibrary.simpleMessage(
+            "Información de la aplicación"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancelar"),
         "could_not_find_any_tweets_by_this_user":
             MessageLookupByLibrary.simpleMessage(
@@ -36,6 +38,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "could_not_find_any_tweets_from_the_last_7_days":
             MessageLookupByLibrary.simpleMessage(
                 "No pude encontrar ningún tweet de los últimos 7 días!"),
+        "dark": MessageLookupByLibrary.simpleMessage("Oscuro"),
         "data_exported_to_fileName": m1,
         "data_exported_to_fullPath": m2,
         "data_imported_successfully": MessageLookupByLibrary.simpleMessage(
@@ -61,11 +64,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "followers": MessageLookupByLibrary.simpleMessage("Seguidores"),
         "following": MessageLookupByLibrary.simpleMessage("Siguiendo"),
         "general": MessageLookupByLibrary.simpleMessage("General"),
+        "import": MessageLookupByLibrary.simpleMessage("Importar"),
         "include_replies":
             MessageLookupByLibrary.simpleMessage("Incluye las respuestas"),
         "include_retweets":
             MessageLookupByLibrary.simpleMessage("Incluye los retweets"),
         "joined": m8,
+        "light": MessageLookupByLibrary.simpleMessage("Claro"),
         "media": MessageLookupByLibrary.simpleMessage("Multimedia"),
         "no_results": MessageLookupByLibrary.simpleMessage("No hay resultados"),
         "note_due_to_a_twitter_limitation_not_all_tweets_may_be_included":
@@ -82,6 +87,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Algo ha ido mal en Squawker y se ha generado un informe de error. El informe puede ser enviado a los desarrolladores de Squawker para ayudar a solucionar el problema."),
         "subscribe": MessageLookupByLibrary.simpleMessage("suscribirse"),
         "subscriptions": MessageLookupByLibrary.simpleMessage("Subscripciones"),
+        "system": MessageLookupByLibrary.simpleMessage("Sistema"),
         "thanks_for_helping_fritter": MessageLookupByLibrary.simpleMessage(
             "Gracias por ayudar a Squawker! 💖"),
         "this_group_contains_no_subscriptions":
@@ -93,6 +99,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "this_user_does_not_have_anyone_following_them":
             MessageLookupByLibrary.simpleMessage(
                 "¡Este usuario no tiene a nadie siguiéndole!"),
+        "thumbnail": MessageLookupByLibrary.simpleMessage("Miniatura"),
         "trending": MessageLookupByLibrary.simpleMessage("Tendencias"),
         "tweets_and_replies":
             MessageLookupByLibrary.simpleMessage("Tweets & Respuestas"),
@@ -133,6 +140,9 @@ class MessageLookup extends MessageLookupByLibrary {
                 "No se pueden cargar los tweets para el feed"),
         "unsubscribe":
             MessageLookupByLibrary.simpleMessage("Cancelar la suscripción"),
+        "which_tab_is_shown_when_the_app_opens":
+            MessageLookupByLibrary.simpleMessage(
+                "Cuál pestaña se muestra cuando se abre la aplicación"),
         "would_you_like_to_enable_automatic_error_reporting":
             MessageLookupByLibrary.simpleMessage(
                 "¿Desea activar la notificación automática de errores?"),
