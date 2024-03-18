@@ -48,14 +48,14 @@ class SettingsThemeFragment extends StatelessWidget {
             ),
           ]),
           PrefDropdown(
-              title: Text(L10n.of(context).theme),
-              fullWidth: false,
-              pref: optionThemeColorScheme,
-              items: FlexScheme.values
-                  .getRange(0, FlexScheme.values.length - 1)
-                  .sorted((a, b) => a.name.compareTo(b.name))
-                  .map((scheme) => DropdownMenuItem(value: scheme.name, child: Text(scheme.name.capitalize)))
-                  .toList()),
+            title: Text(L10n.of(context).theme),
+            fullWidth: false,
+            pref: optionThemeColorScheme,
+            items: ['accent', ...FlexScheme.values.map((e) => e.name)]
+              .where((e) => e != 'custom')
+              .sorted((a, b) => a.compareTo(b))
+              .map((scheme) => DropdownMenuItem(value: scheme, child: Text(scheme.capitalize)))
+              .toList()),
           PrefSwitch(
             title: Text(L10n.of(context).true_black),
             pref: optionThemeTrueBlack,

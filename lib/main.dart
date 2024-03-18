@@ -1,15 +1,20 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:device_preview/device_preview.dart';
+import 'package:faker/faker.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_windowmanager/flutter_windowmanager.dart';
-
+import 'package:logging_to_logcat/logging_to_logcat.dart';
+import 'package:logging/logging.dart';
+import 'package:package_info_plus/package_info_plus.dart';
+import 'package:pref/pref.dart';
+import 'package:provider/provider.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:squawker/client/app_http_client.dart';
 import 'package:squawker/client/client_account.dart';
 import 'package:squawker/constants.dart';
@@ -32,18 +37,12 @@ import 'package:squawker/subscriptions/users_model.dart';
 import 'package:squawker/trends/trends_model.dart';
 import 'package:squawker/tweet/_video.dart';
 import 'package:squawker/ui/errors.dart';
+import 'package:squawker/utils/accent_util.dart';
 import 'package:squawker/utils/data_service.dart';
 import 'package:squawker/utils/iterables.dart';
 import 'package:squawker/utils/misc.dart';
 import 'package:squawker/utils/urls.dart';
-import 'package:faker/faker.dart';
-import 'package:logging_to_logcat/logging_to_logcat.dart';
-import 'package:logging/logging.dart';
-import 'package:pref/pref.dart';
-import 'package:provider/provider.dart';
-import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:timeago/timeago.dart' as timeago;
-import 'package:package_info_plus/package_info_plus.dart';
 
 Future checkForUpdates() async {
   Logger.root.info('Checking for updates');
@@ -188,6 +187,8 @@ Future<void> main() async {
     }),
   });
 
+  await AccentUtil.load();
+
   TwitterAccount.currentAccountTypes = prefService.get(optionTwitterAccountTypes);
 
   FlutterLocalNotificationsPlugin notifications = FlutterLocalNotificationsPlugin();
@@ -236,27 +237,28 @@ Future<void> main() async {
   AppHttpClient.setProxy(prefService.get(optionProxy));
 
   runApp(PrefService(
-      service: prefService,
-      child: MultiProvider(
-        providers: [
-          Provider(create: (context) => groupsModel),
-          Provider(create: (context) => homeModel),
-          ChangeNotifierProvider(create: (context) => importDataModel),
-          Provider(create: (context) => twitterTokensModel),
-          Provider(create: (context) => subscriptionsModel),
-          Provider(create: (context) => SavedTweetModel()),
-          Provider(create: (context) => SearchTweetsModel()),
-          Provider(create: (context) => SearchUsersModel()),
-          Provider(create: (context) => trendLocationModel),
-          Provider(create: (context) => TrendLocationsModel()),
-          Provider(create: (context) => TrendsModel(trendLocationModel)),
-          ChangeNotifierProvider(create: (_) => VideoContextState(prefService.get(optionMediaDefaultMute))),
-        ],
-        child: DevicePreview(
-          enabled: !kReleaseMode,
-          builder: (context) => const SquawkerApp(),
-        ),
-      )));
+    service: prefService,
+    child: MultiProvider(
+      providers: [
+        Provider(create: (context) => groupsModel),
+        Provider(create: (context) => homeModel),
+        ChangeNotifierProvider(create: (context) => importDataModel),
+        Provider(create: (context) => twitterTokensModel),
+        Provider(create: (context) => subscriptionsModel),
+        Provider(create: (context) => SavedTweetModel()),
+        Provider(create: (context) => SearchTweetsModel()),
+        Provider(create: (context) => SearchUsersModel()),
+        Provider(create: (context) => trendLocationModel),
+        Provider(create: (context) => TrendLocationsModel()),
+        Provider(create: (context) => TrendsModel(trendLocationModel)),
+        ChangeNotifierProvider(create: (_) => VideoContextState(prefService.get(optionMediaDefaultMute))),
+      ],
+      child: DevicePreview(
+        enabled: !kReleaseMode,
+        builder: (context) => const SquawkerApp(),
+      ),
+    )
+  ));
 }
 
 class SquawkerApp extends StatefulWidget {
@@ -273,6 +275,7 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
   bool _trueBlack = false;
   bool _material3 = false;
   FlexScheme _colorScheme = FlexScheme.mango;
+  bool _accentColor = false;
   Locale? _locale;
   final _MyRouteObserver _routeObserver = _MyRouteObserver();
 
@@ -305,7 +308,8 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
     }
 
     void setColorScheme(String colorSchemeName) {
-      _colorScheme = FlexScheme.values.byName(colorSchemeName);
+      _colorScheme = colorSchemeName != 'accent' ? FlexScheme.values.byName(colorSchemeName) : FlexScheme.materialBaseline;
+      _accentColor = colorSchemeName != 'accent' ? false : true;
     }
 
     // TODO: This doesn't work on iOS
@@ -389,6 +393,7 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
     }
 
     ThemeData light = FlexThemeData.light(
+      colors: _accentColor ? AccentUtil.lightAccentColors: null,
       scheme: _colorScheme,
       surfaceMode: FlexSurfaceMode.highScaffoldLowSurface,
       blendLevel: 20,
@@ -403,6 +408,7 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
       appBarStyle: FlexAppBarStyle.primary,
     );
     ThemeData dark = FlexThemeData.dark(
+      colors: _accentColor ? AccentUtil.darkAccentColors: null,
       scheme: _colorScheme,
       darkIsTrueBlack: _trueBlack,
       surfaceMode: FlexSurfaceMode.highScaffoldLowSurface,
