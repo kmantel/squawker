@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_triple/flutter_triple.dart';
+import 'package:pref/pref.dart';
 import 'package:squawker/constants.dart';
 import 'package:squawker/database/entities.dart';
 import 'package:squawker/search/search.dart';
@@ -18,7 +19,7 @@ class SubscriptionUsers extends StatefulWidget {
 
 class _SubscriptionUsersState extends State<SubscriptionUsers> {
 
-  GlobalKey _key = GlobalKey();
+  //final UniqueKey _key = UniqueKey();
 
   @override
   Widget build(BuildContext context) {
@@ -32,57 +33,71 @@ class _SubscriptionUsersState extends State<SubscriptionUsers> {
       onState: (_, state) {
         if (state.isEmpty) {
           return Container(
-              alignment: Alignment.center,
-              margin: const EdgeInsets.symmetric(horizontal: 8),
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      margin: const EdgeInsets.symmetric(vertical: 8),
-                      child: const Text('¯\\_(ツ)_/¯', style: TextStyle(fontSize: 32)),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.symmetric(vertical: 8),
-                      child: Text(L10n.of(context).no_subscriptions_try_searching_or_importing_some,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Theme.of(context).hintColor,
-                          )),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.symmetric(vertical: 8),
-                      child: ElevatedButton(
-                        child: Text(L10n.of(context).import_from_twitter),
-                        onPressed: () => Navigator.pushNamed(context, routeSubscriptionsImport),
-                      ),
+            alignment: Alignment.center,
+            margin: const EdgeInsets.symmetric(horizontal: 8),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  margin: const EdgeInsets.symmetric(vertical: 8),
+                  child: const Text('¯\\_(ツ)_/¯', style: TextStyle(fontSize: 32)),
+                ),
+                Container(
+                  margin: const EdgeInsets.symmetric(vertical: 8),
+                  child: Text(L10n.of(context).no_subscriptions_try_searching_or_importing_some,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Theme.of(context).hintColor,
                     )
-                  ]));
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.symmetric(vertical: 8),
+                  child: ElevatedButton(
+                    child: Text(L10n.of(context).import_from_twitter),
+                    onPressed: () => Navigator.pushNamed(context, routeSubscriptionsImport),
+                  ),
+                )
+              ]
+            )
+          );
         }
 
-        return SubscriptionUsersList(key: _key, subscriptions: state);
+        return SubscriptionUsersList(/*key: _key, */subscriptions: state);
       },
     );
   }
 }
 
 class SubscriptionUsersList extends StatelessWidget {
-  final List<Subscription> subscriptions;
 
-  const SubscriptionUsersList({Key? key, required this.subscriptions}) : super(key: key);
+  final List<Subscription> subscriptions;
+  final List<Subscription> subLst = [];
+
+  SubscriptionUsersList({Key? key, required this.subscriptions}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    BasePrefService prefs = PrefService.of(context);
+    String subscriptionOrderCustom = prefs.get(optionSubscriptionOrderCustom);
+    if (subscriptionOrderCustom.isNotEmpty) {
+      subLst.addAll(subscriptionOrderCustom.split(',').map((sn) => subscriptions.firstWhere((s) => s.screenName == sn)));
+    }
+    else {
+      subLst.addAll(subscriptions);
+    }
+    return ReorderableListView.builder(
       padding: const EdgeInsets.symmetric(vertical: 8),
-      itemCount: subscriptions.length,
+      itemCount: subLst.length,
       itemBuilder: (context, i) {
-        var user = subscriptions[i];
+        var user = subLst[i];
         if (user is UserSubscription) {
-          return UserTile(user: user);
+          return UserTile(key: Key(user.screenName), user: user);
         }
 
         return ListTile(
+          key: Key(user.screenName),
           dense: true,
           leading: const SizedBox(width: 48, child: Icon(Icons.search_rounded)),
           title: Text(user.name, maxLines: 1, overflow: TextOverflow.ellipsis),
@@ -93,10 +108,21 @@ class SubscriptionUsersList extends StatelessWidget {
           ),
           onTap: () {
             Navigator.pushNamed(context, routeSearch,
-                arguments: SearchArguments(1, focusInputOnOpen: false, query: user.id));
+              arguments: SearchArguments(1, focusInputOnOpen: false, query: user.id));
           },
         );
       },
+      onReorder: (oldIndex, newIndex) async {
+        if (oldIndex < newIndex) {
+          Subscription s = subLst.removeAt(oldIndex);
+          subLst.insert(newIndex - 1, s);
+        }
+        else {
+          Subscription s = subLst.removeAt(oldIndex);
+          subLst.insert(newIndex, s);
+        }
+        await prefs.set(optionSubscriptionOrderCustom, subLst.map((s) => s.screenName).join(','));
+      }
     );
   }
 }

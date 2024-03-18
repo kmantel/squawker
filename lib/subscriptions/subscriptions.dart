@@ -21,7 +21,7 @@ class SubscriptionsScreen extends StatelessWidget {
           ),
           IconButton(
             icon: const Icon(Icons.refresh_rounded),
-            onPressed: () => context.read<SubscriptionsModel>().refreshSubscriptionData(),
+            onPressed: () async { await context.read<SubscriptionsModel>().refreshSubscriptionData(); },
           ),
           PopupMenuButton<String>(
             icon: const Icon(Icons.sort_rounded),
@@ -43,7 +43,7 @@ class SubscriptionsScreen extends StatelessWidget {
           ),
           IconButton(
             icon: const Icon(Icons.sort_by_alpha_rounded),
-            onPressed: () => context.read<SubscriptionsModel>().toggleOrderSubscriptionsAscending(),
+            onPressed: () async { await context.read<SubscriptionsModel>().toggleOrderSubscriptionsAscending(); },
           ),
           ...createCommonAppBarActions(context)
         ],

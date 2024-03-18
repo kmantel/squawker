@@ -118,7 +118,7 @@ class ProfileScreenBody extends StatefulWidget {
 class _ProfileScreenBodyState extends State<ProfileScreenBody> with TickerProviderStateMixin {
   static const defaultHeight = 256.12345;
 
-  final GlobalKey<NestedScrollViewState> nestedScrollViewKey = GlobalKey();
+  final GlobalKey<NestedScrollViewState> nestedScrollViewKey = GlobalKey<NestedScrollViewState>();
 
   late TabController _tabController;
 

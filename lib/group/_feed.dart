@@ -51,7 +51,7 @@ class SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widge
 
   static final Lock _lock = Lock();
 
-  GlobalKey _key = GlobalKey();
+  final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
 
   late VisiblePositionState _visiblePositionState;
   late ItemPositionsListener _itemPositionsListener;

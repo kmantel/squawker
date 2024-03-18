@@ -1,1 +1,2 @@
 * Implement feature #145 Option to use system accent color.
+* Implement feature #242 Rearrange subscriptions\pin favorite subscriptions to top.

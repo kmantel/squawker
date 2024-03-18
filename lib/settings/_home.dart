@@ -17,9 +17,9 @@ class SettingsHomeFragment extends StatelessWidget {
         title: Text(L10n.current.home),
         actions: [
           IconButton(
-              icon: const Icon(Icons.restart_alt),
-              tooltip: L10n.current.reset_home_pages,
-              onPressed: () async => await model.resetPages())
+            icon: const Icon(Icons.restart_alt),
+            tooltip: L10n.current.reset_home_pages,
+            onPressed: () async => await model.resetPages())
         ],
       ),
       body: Padding(
@@ -49,7 +49,7 @@ class SettingsHomeFragment extends StatelessWidget {
                     var selected = value ?? false;
                     if (selected == false && data.where((e) => e.selected).length == 2) {
                       showSnackBar(context,
-                          icon: '🙊', message: L10n.current.you_must_have_at_least_2_home_screen_pages);
+                        icon: '🙊', message: L10n.current.you_must_have_at_least_2_home_screen_pages);
                       return;
                     }
 

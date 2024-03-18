@@ -143,7 +143,7 @@ class SubscriptionGroupEditDialog extends StatefulWidget {
 }
 
 class _SubscriptionGroupEditDialogState extends State<SubscriptionGroupEditDialog> {
-  final GlobalKey<FormState> _formKey = GlobalKey();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   SubscriptionGroupEdit? _group;
 
