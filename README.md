@@ -6,7 +6,7 @@
   </a>
 </p>
 <p align="center">
-  Maintaining the Fritter feed, originally by <a href="https://github.com/TheHCJ/Quacker">Quacker</a>
+  Maintaining the <a href="https://github.com/jonjomckay/fritter">Fritter</a> feed, originally by <a href="https://github.com/TheHCJ/Quacker">Quacker</a>
 </p>
 
 <p align="center">
