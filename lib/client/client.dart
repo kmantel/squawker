@@ -559,7 +559,7 @@ class Twitter {
     return tweet;
   }
 
-  static Future<List<UserWithExtra>> searchUsers(String query, {int limit = 25, int? page}) async {
+  static Future<SearchStatus<UserWithExtra>> searchUsers(String query, {int limit = 25, int? page}) async {
     var queryParameters = {
       'count': limit.toString(),
       'q': query
@@ -571,18 +571,20 @@ class Twitter {
 
     var response = await _twitterApi.client.get(Uri.https('api.twitter.com', '/1.1/users/search.json', queryParameters));
     if (response.body.isEmpty) {
-      return [];
+      return SearchStatus(items: []);
     }
 
     List result = json.decode(response.body);
     if (result.isEmpty) {
-      return [];
+      return SearchStatus(items: []);
     }
 
-    return result.map((e) => UserWithExtra.fromJson(e)).toList();
+    List<UserWithExtra> users = result.map((e) => UserWithExtra.fromJson(e)).toList();
+
+    return SearchStatus(items: users);
   }
 
-  static Future<List<UserWithExtra>> searchUsersGraphql(String query, {int limit = 25, String? cursor}) async {
+  static Future<SearchStatus<UserWithExtra>> searchUsersGraphql(String query, {int limit = 25, String? cursor}) async {
     var variables = {
       "rawQuery": query,
       "count": limit.toString(),
@@ -603,27 +605,31 @@ class Twitter {
 
     var response = await _twitterApi.client.get(uri);
     if (response.body.isEmpty) {
-      return [];
+      return SearchStatus(items: []);
     }
 
     var result = json.decode(response.body);
     if (result.isEmpty) {
-      return [];
+      return SearchStatus(items: []);
     }
 
     List instructions = List.from(result?['data']?['search_by_raw_query']?['search_timeline']?['timeline']?['instructions'] ?? []);
     if (instructions.isEmpty) {
-      return [];
+      return SearchStatus(items: []);
     }
     List addEntries = List.from(instructions.firstWhere((e) => e['type'] == 'TimelineAddEntries', orElse: () => null)?['entries'] ?? []);
     if (addEntries.isEmpty) {
-      return [];
+      return SearchStatus(items: []);
     }
 
-    return addEntries.where((entry) => entry['entryId']?.startsWith('user-')).where((entry) => entry['content']?['itemContent']?['user_results']?['result']?['legacy'] != null).map((entry) {
+    List<UserWithExtra> users = addEntries.where((entry) => entry['entryId']?.startsWith('user-')).where((entry) => entry['content']?['itemContent']?['user_results']?['result']?['legacy'] != null).map((entry) {
       var res = entry['content']['itemContent']['user_results']['result'];
       return UserWithExtra.fromJson({...res['legacy'], 'id_str': res['rest_id'], 'ext_is_blue_verified': res['is_blue_verified']});
     }).toList();
+
+    String? cursorBottom = addEntries.firstWhereOrNull((entry) => entry['entryId']?.startsWith('cursor-bottom-'))?['content']?['value'];
+
+    return SearchStatus(items: users, cursorBottom: cursorBottom);
   }
 
   static Future<List<TrendLocation>> getTrendLocations() async {
@@ -1339,6 +1345,13 @@ class TweetStatus {
   final List<TweetChain> chains;
 
   TweetStatus({required this.chains, required this.cursorBottom, required this.cursorTop});
+}
+
+class SearchStatus<T> {
+  final List<T> items;
+  final String? cursorBottom;
+
+  SearchStatus({required this.items, this.cursorBottom});
 }
 
 class TwitterError {

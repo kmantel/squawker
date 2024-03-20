@@ -1,2 +1,6 @@
 * Implement feature #145 Option to use system accent color.
+  Go to Settings / Theme / select Accent in Theme list.
+* Implement feature #240 Retrieve more tweets on search.
+  By keeping scrolling there are new requests automatically made.
 * Implement feature #242 Rearrange subscriptions\pin favorite subscriptions to top.
+  On the Subscriptions page, simply drag each subscription to the desired position.
