@@ -202,6 +202,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "Ulepszone żądania wyszukiwania (ale z niższymi limitami szybkości)"),
         "enhanced_searches_label":
             MessageLookupByLibrary.simpleMessage("Ulepszone wyszukiwanie"),
+        "enter_comma_separated_twitter_usernames":
+            MessageLookupByLibrary.simpleMessage(
+                "Wprowadź rozdzielone przecinkami nazwy użytkowników Twittera/X"),
         "enter_your_twitter_username": MessageLookupByLibrary.simpleMessage(
             "Wprowadź swoją nazwę użytkownika Twitter/Xa"),
         "error_from_twitter":
@@ -463,6 +466,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Miniatura niedostępna"),
         "timed_out":
             MessageLookupByLibrary.simpleMessage("Przekroczono limit czasu"),
+        "to_import_specific_subscriptions_enter_your_comma_separated_usernames_below":
+            MessageLookupByLibrary.simpleMessage(
+                "Aby zaimportować określone subskrypcje, wprowadź poniżej nazwy użytkownika rozdzielone przecinkami."),
         "to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below":
             MessageLookupByLibrary.simpleMessage(
                 "Aby zaimportować subskrypcje z istniejącego konta na Twitter/Xze, wprowadź poniżej swoją nazwę użytkownika."),
@@ -562,6 +568,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Nazwa użytkownika:"),
         "usernames": MessageLookupByLibrary.simpleMessage("Nazwy użytkowników"),
         "version": MessageLookupByLibrary.simpleMessage("Wersja"),
+        "warning_regular_account_unauthenticated_access_description":
+            MessageLookupByLibrary.simpleMessage(
+                "Twitter/X wyłączył możliwość tworzenia kont gości. Powinieneś teraz ustawić zwykłe konto w Ustawienia / Konto. Bez konta dostęp częściowy jest ograniczony wyłącznie do tweetów i profili. Utworzenie anonimowego zwykłego konta jest łatwe, jak wyjaśniono tutaj:"),
         "warning_regular_account_unauthenticated_access_title":
             MessageLookupByLibrary.simpleMessage(
                 "Zwykłe konta i nieuwierzytelniony dostęp"),
