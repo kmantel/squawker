@@ -3017,6 +3017,36 @@ class L10n {
       args: [],
     );
   }
+
+  /// `Exclusions in feed`
+  String get exclusions_feed_label {
+    return Intl.message(
+      'Exclusions in feed',
+      name: 'exclusions_feed_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `List of usernames to exclude from feed`
+  String get exclusions_feed_description {
+    return Intl.message(
+      'List of usernames to exclude from feed',
+      name: 'exclusions_feed_description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Username to exclude`
+  String get username_exclude {
+    return Intl.message(
+      'Username to exclude',
+      name: 'username_exclude',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<L10n> {

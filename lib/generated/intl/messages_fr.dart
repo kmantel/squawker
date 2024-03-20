@@ -217,6 +217,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Entrer votre nom d\'utilisateur Twitter/X"),
         "error_from_twitter":
             MessageLookupByLibrary.simpleMessage("Erreur De Twitter/X"),
+        "exclusions_feed_description": MessageLookupByLibrary.simpleMessage(
+            "Liste des usagers à exclure des flux"),
+        "exclusions_feed_label":
+            MessageLookupByLibrary.simpleMessage("Exclusions dans les flux"),
         "export": MessageLookupByLibrary.simpleMessage("Exporter"),
         "export_guest_accounts": MessageLookupByLibrary.simpleMessage(
             "Exporter les comptes invités ?"),
@@ -571,6 +575,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "user_not_found":
             MessageLookupByLibrary.simpleMessage("Utilisateur non trouvé"),
         "username": MessageLookupByLibrary.simpleMessage("Nom d’utilisateur"),
+        "username_exclude":
+            MessageLookupByLibrary.simpleMessage("Usager à exclure"),
         "username_label": MessageLookupByLibrary.simpleMessage("Identifiant :"),
         "usernames": MessageLookupByLibrary.simpleMessage("Utilisateurs"),
         "version": MessageLookupByLibrary.simpleMessage("Version"),

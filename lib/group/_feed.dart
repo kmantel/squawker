@@ -176,10 +176,10 @@ class SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widge
       requestToDo = true;
       // Make sure we load any existing stored tweets from the chunk
       var storedChunksTweets = storedChunks
-          .map((e) => jsonDecode(e['response'] as String))
-          .map((e) => List.from(e))
-          .expand((e) => e.map((c) => TweetChain.fromJson(c)))
-          .toList();
+        .map((e) => jsonDecode(e['response'] as String))
+        .map((e) => List.from(e))
+        .expand((e) => e.map((c) => TweetChain.fromJson(c)))
+        .toList();
 
       // avoid duplicates
       for (var cElm in storedChunksTweets) {
@@ -212,16 +212,16 @@ class SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widge
       try {
         if (prefs.get(optionEnhancedFeeds)) {
           result = await Twitter.searchTweetsGraphql(searchQuery, widget.includeReplies, limit: 100,
-              cursor: searchCursor,
-              leanerFeeds: prefs.get(optionLeanerFeeds),
-              fetchContext: fetchContext);
+            cursor: searchCursor,
+            leanerFeeds: prefs.get(optionLeanerFeeds),
+            fetchContext: fetchContext);
         }
         else {
           result = await Twitter.searchTweets(searchQuery, widget.includeReplies, limit: 100,
-              cursor: searchCursor,
-              cursorType: cursorType,
-              leanerFeeds: prefs.get(optionLeanerFeeds),
-              fetchContext: fetchContext);
+            cursor: searchCursor,
+            cursorType: cursorType,
+            leanerFeeds: prefs.get(optionLeanerFeeds),
+            fetchContext: fetchContext);
         }
       }
       catch (rsp) {

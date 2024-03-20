@@ -584,5 +584,11 @@
   "enter_comma_separated_twitter_usernames": "Enter your comma separated Twitter/X usernames",
   "@enter_comma_separated_twitter_usernames": {},
   "usernames": "Usernames",
-  "@usernames": {}
+  "@usernames": {},
+  "exclusions_feed_label": "Exclusions in feed",
+  "@exclusions_feed_label": {},
+  "exclusions_feed_description": "List of usernames to exclude from feed",
+  "@exclusions_feed_description": {},
+  "username_exclude": "Username to exclude",
+  "@username_exclude": {}
 }

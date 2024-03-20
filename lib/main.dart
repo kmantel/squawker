@@ -175,6 +175,7 @@ Future<void> main() async {
     optionTweetsHideSensitive: false,
     optionKeepFeedOffset: false,
     optionLeanerFeeds: false,
+    optionExclusionsFeed: '',
     optionConfirmClose: true,
     optionEnhancedFeeds: true,
     optionEnhancedSearches: true,

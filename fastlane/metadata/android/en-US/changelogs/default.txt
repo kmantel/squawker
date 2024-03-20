@@ -1,5 +1,7 @@
 * Implement feature #145 Option to use system accent color.
-  Go to Settings / Theme / select Accent in Theme list.
+  Go to Settings / Theme then select Accent in Theme list.
+* Implement feature #174 Add an ability to block/filter out accounts.
+  Go to Settings / General / Feed, select Exclusions in feed then add usernames.
 * Implement feature #240 Retrieve more tweets on search.
   By keeping scrolling there are new requests automatically made.
 * Implement feature #242 Rearrange subscriptions\pin favorite subscriptions to top.

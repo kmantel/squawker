@@ -614,5 +614,11 @@
   "enter_comma_separated_twitter_usernames": "Saisissez la liste d'utilisateurs séparés par des virgules",
   "@enter_comma_separated_twitter_usernames": {},
   "usernames": "Utilisateurs",
-  "@usernames": {}
+  "@usernames": {},
+  "exclusions_feed_label": "Exclusions dans les flux",
+  "@exclusions_feed_label": {},
+  "exclusions_feed_description": "Liste des usagers à exclure des flux",
+  "@exclusions_feed_description": {},
+  "username_exclude": "Usager à exclure",
+  "@username_exclude": {}
 }

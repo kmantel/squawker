@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_triple/flutter_triple.dart';
+import 'package:pref/pref.dart';
 import 'package:provider/provider.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+import 'package:squawker/constants.dart';
 import 'package:squawker/database/entities.dart';
 import 'package:squawker/generated/l10n.dart';
 import 'package:squawker/group/group_model.dart';
@@ -41,7 +43,7 @@ class SubscriptionGroupScreenContent extends StatelessWidget {
 
   SubscriptionGroupScreenContent({Key? key, required this.id}) : super(key: key);
 
-  String _buildSearchQuery(List<Subscription> users, bool includeReplies, bool includeRetweets) {
+  String _buildSearchQuery(List<Subscription> users, bool includeReplies, bool includeRetweets, List<String> exclusionsFeedLst) {
     StringBuffer query = StringBuffer();
     bool firstDone = false;
 
@@ -50,16 +52,27 @@ class SubscriptionGroupScreenContent extends StatelessWidget {
     }
     if (!includeRetweets) {
       query.write('-filter:retweets AND ');
-    } else {
+    }
+    else {
       query.write('include:nativeretweets AND ');
     }
+
+    for (String exclusion in exclusionsFeedLst) {
+      String vExclusion = exclusion;
+      if (vExclusion.startsWith('@') || vExclusion.startsWith('#')) {
+        vExclusion = vExclusion.substring(1);
+      }
+      query.write('-@$vExclusion AND ');
+    }
+
     while (users.isNotEmpty) {
       Subscription user = users[0];
       String queryToAdd;
 
       if (user is UserSubscription) {
         queryToAdd = firstDone ? ' OR from:${user.screenName}' : 'from:${user.screenName}';
-      } else { // user is SearchSubscription
+      }
+      else { // user is SearchSubscription
         queryToAdd = firstDone ? ' OR ${user.id}' : user.id;
       }
       if (query.length + queryToAdd.length > 512) {
@@ -73,10 +86,10 @@ class SubscriptionGroupScreenContent extends StatelessWidget {
     return query.toString();
   }
 
-  List<String> _buildSearchQueries(List<Subscription> users, bool includeReplies, bool includeRetweets) {
+  List<String> _buildSearchQueries(List<Subscription> users, bool includeReplies, bool includeRetweets, List<String> exclusionsFeedLst) {
     List<String> searchQueryLst = [];
     while (users.isNotEmpty) {
-      String searchQuery = _buildSearchQuery(users, includeReplies, includeRetweets);
+      String searchQuery = _buildSearchQuery(users, includeReplies, includeRetweets, exclusionsFeedLst);
       searchQueryLst.add(searchQuery);
     }
     return searchQueryLst;
@@ -98,8 +111,13 @@ class SubscriptionGroupScreenContent extends StatelessWidget {
         // Split the users into chunks, oldest first, to prevent thrashing of all groups when a new user is added
         var filteredUsers = group.id == '-1' ? group.subscriptions.where((elm) => elm.inFeed) : group.subscriptions;
         var users = filteredUsers.sorted((a, b) => a.createdAt.compareTo(b.createdAt)).toList();
+        BasePrefService prefs = PrefService.of(context);
 
-        List<String> searchQueries = _buildSearchQueries(users, group.includeReplies, group.includeRetweets);
+        List<String> exclusionLst = prefs.get(optionExclusionsFeed).split(',');
+        if (exclusionLst.last.isEmpty) {
+          exclusionLst.removeLast();
+        }
+        List<String> searchQueries = _buildSearchQueries(users, group.includeReplies, group.includeRetweets, exclusionLst);
 
         GlobalKey<SubscriptionGroupFeedState>? sgfKey = DataService().map['feed_key_${group.id.replaceAll('-', '_')}'];
         if (sgfKey == null) {

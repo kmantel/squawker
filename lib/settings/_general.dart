@@ -35,38 +35,40 @@ class SettingsGeneralFragment extends StatelessWidget {
   const SettingsGeneralFragment({Key? key}) : super(key: key);
 
   PrefDialog _createShareBaseDialog(BuildContext context) {
-    var prefService = PrefService.of(context);
-    var mediaQuery = MediaQuery.of(context);
+    BasePrefService prefs = PrefService.of(context);
+    MediaQueryData mediaQuery = MediaQuery.of(context);
 
-    final controller = TextEditingController(text: prefService.get(optionShareBaseUrl));
+    final controller = TextEditingController(text: prefs.get(optionShareBaseUrl));
 
     return PrefDialog(
-        actions: [
-          TextButton(onPressed: () => Navigator.pop(context), child: Text(L10n.of(context).cancel)),
-          TextButton(
-              onPressed: () async {
-                await prefService.set(optionShareBaseUrl, controller.text);
-                Navigator.pop(context);
-              },
-              child: Text(L10n.of(context).save))
-        ],
-        title: Text(L10n.of(context).share_base_url),
-        children: [
-          SizedBox(
-            width: mediaQuery.size.width,
-            child: TextFormField(
-              controller: controller,
-              decoration: InputDecoration(hintText: 'https://x.com', hintStyle: TextStyle(color: Theme.of(context).disabledColor)),
-            ),
-          )
-        ]);
+      actions: [
+        TextButton(onPressed: () => Navigator.pop(context), child: Text(L10n.of(context).cancel)),
+        TextButton(
+          onPressed: () async {
+            await prefs.set(optionShareBaseUrl, controller.text);
+            Navigator.pop(context);
+          },
+          child: Text(L10n.of(context).save)
+        )
+      ],
+      title: Text(L10n.of(context).share_base_url),
+      children: [
+        SizedBox(
+          width: mediaQuery.size.width,
+          child: TextFormField(
+            controller: controller,
+            decoration: InputDecoration(hintText: 'https://x.com', hintStyle: TextStyle(color: Theme.of(context).disabledColor)),
+          ),
+        )
+      ]
+    );
   }
 
   PrefDialog _createProxyDialog(BuildContext context) {
-    var prefService = PrefService.of(context);
-    var mediaQuery = MediaQuery.of(context);
+    BasePrefService prefs = PrefService.of(context);
+    MediaQueryData mediaQuery = MediaQuery.of(context);
 
-    final controller = TextEditingController(text: prefService.get(optionProxy));
+    final controller = TextEditingController(text: prefs.get(optionProxy));
 
     return PrefDialog(
       actions: [
@@ -75,14 +77,15 @@ class SettingsGeneralFragment extends StatelessWidget {
           onPressed: () async {
             try {
               AppHttpClient.setProxy(controller.text);
-              await prefService.set(optionProxy, controller.text);
+              await prefs.set(optionProxy, controller.text);
             }
             catch (e, s) {
               await showAlertDialog(context, L10n.of(context).proxy_error, e.toString());
             }
             Navigator.pop(context);
           },
-          child: Text(L10n.of(context).save))
+          child: Text(L10n.of(context).save)
+        )
       ],
       title: Text(L10n.of(context).proxy_label),
       children: [
@@ -93,7 +96,35 @@ class SettingsGeneralFragment extends StatelessWidget {
             decoration: InputDecoration(hintText: 'scheme://[user:pwd@]host:port', hintStyle: TextStyle(color: Theme.of(context).disabledColor)),
           ),
         )
-      ]);
+      ]
+    );
+  }
+
+  PrefDialog _createExclusionsDialog(BuildContext context) {
+    BasePrefService prefs = PrefService.of(context);
+    List<String> exclusionsFeedLst = (prefs.get(optionExclusionsFeed) as String).split(',');
+
+    return PrefDialog(
+      actions: [
+        TextButton(onPressed: () => Navigator.pop(context), child: Text(L10n.of(context).cancel)),
+        TextButton(
+          onPressed: () async {
+            await prefs.set(optionExclusionsFeed, exclusionsFeedLst.join(','));
+            Navigator.pop(context);
+          },
+          child: Text(L10n.of(context).save)
+        )
+      ],
+      title: Text(L10n.of(context).exclusions_feed_label),
+      children: [
+        ExclusionsFeedSetting(
+          exclusionsFeedLst: exclusionsFeedLst,
+          onChanged: (List<String> lst) {
+            exclusionsFeedLst = lst;
+          }
+        ),
+      ]
+    );
   }
 
   @override
@@ -247,6 +278,11 @@ class SettingsGeneralFragment extends StatelessWidget {
                 subtitle: Text(L10n.of(context).leaner_feeds_description),
                 pref: optionLeanerFeeds,
               ),
+              PrefDialogButton(
+                title: Text(L10n.of(context).exclusions_feed_label),
+                subtitle: Text(L10n.of(context).exclusions_feed_description),
+                dialog: _createExclusionsDialog(context),
+              ),
             ],
           ),
           ExpansionTile(
@@ -346,6 +382,151 @@ class DownloadTypeSettingState extends State<DownloadTypeSetting> {
             child: Text(L10n.current.choose),
           )
       ],
+    );
+  }
+}
+
+class ExclusionsFeedSetting extends StatefulWidget {
+
+  final List<String> exclusionsFeedLst;
+  final void Function(List<String> lst) onChanged;
+
+  const ExclusionsFeedSetting({super.key, required this.exclusionsFeedLst, required this.onChanged});
+
+  @override
+  ExclusionsFeedSettingState createState() => ExclusionsFeedSettingState();
+}
+
+class ExclusionsFeedSettingState extends State<ExclusionsFeedSetting> {
+
+  late List<String> _exclusionsFeedLst;
+
+  Widget _textfieldBtn(int index) {
+    bool isLast = (index == _exclusionsFeedLst.length - 1);
+
+    return InkWell(
+      onTap: () {
+        if (isLast) {
+          if (_exclusionsFeedLst[index].isNotEmpty) {
+            setState(() {
+              _exclusionsFeedLst.add('');
+              List<String> lst = List.from(_exclusionsFeedLst);
+              lst.removeLast();
+              widget.onChanged(lst);
+            });
+          }
+        }
+        else {
+          setState(() {
+            _exclusionsFeedLst.removeAt(index);
+            if (_exclusionsFeedLst.length == 1 && _exclusionsFeedLst[0].isNotEmpty) {
+              _exclusionsFeedLst.add('');
+            }
+            List<String> lst = List.from(_exclusionsFeedLst);
+            lst.removeLast();
+            widget.onChanged(lst);
+          });
+        }
+      },
+      borderRadius: BorderRadius.circular(15),
+      child: Container(
+        width: 20,
+        height: 20,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: isLast ? Colors.green : Colors.red,
+        ),
+        child: Icon(
+          size: 20,
+          isLast ? Icons.add : Icons.remove,
+          color: Colors.white,
+        ),
+      ),
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _exclusionsFeedLst = List.from(widget.exclusionsFeedLst);
+    if (_exclusionsFeedLst.last.isNotEmpty) {
+      _exclusionsFeedLst.add('');
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    MediaQueryData mediaQuery = MediaQuery.of(context);
+    return SizedBox(
+      width: mediaQuery.size.width,
+      height: mediaQuery.size.height,
+      child: Column(
+        children: [
+          Expanded(
+            child: ListView.separated(
+              itemCount: _exclusionsFeedLst.length,
+              itemBuilder: (context, index) => Row(
+                children: [
+                  Expanded(
+                    child: DynamicTextfield(
+                      key: UniqueKey(),
+                      initialValue: _exclusionsFeedLst[index].trim(),
+                      onChanged: (String v) {
+                        _exclusionsFeedLst[index] = v.trim();
+                      }
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  _textfieldBtn(index),
+                ],
+              ),
+              separatorBuilder: (context, index) => const SizedBox(
+                height: 2,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class DynamicTextfield extends StatefulWidget {
+  final String? initialValue;
+  final void Function(String) onChanged;
+
+  const DynamicTextfield({super.key, this.initialValue, required this.onChanged,});
+
+  @override
+  State createState() => _DynamicTextfieldState();
+}
+
+class _DynamicTextfieldState extends State<DynamicTextfield> {
+  late final TextEditingController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController();
+    _controller.text = widget.initialValue ?? '';
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      controller: _controller,
+      onChanged: widget.onChanged,
+      decoration: InputDecoration(
+        hintText: L10n.current.username_exclude,
+        isCollapsed: true,
+        contentPadding: EdgeInsets.all(5),
+      ),
     );
   }
 }
