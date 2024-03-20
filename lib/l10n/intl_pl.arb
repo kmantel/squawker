@@ -612,5 +612,11 @@
   "warning_regular_account_unauthenticated_access_title": "Zwykłe konta i nieuwierzytelniony dostęp",
   "@warning_regular_account_unauthenticated_access_title": {},
   "share_tweet_as_image": "Udostępnij wpis jako obraz",
-  "@share_tweet_as_image": {}
+  "@share_tweet_as_image": {},
+  "warning_regular_account_unauthenticated_access_description": "Twitter/X wyłączył możliwość tworzenia kont gości. Powinieneś teraz ustawić zwykłe konto w Ustawienia / Konto. Bez konta dostęp częściowy jest ograniczony wyłącznie do tweetów i profili. Utworzenie anonimowego zwykłego konta jest łatwe, jak wyjaśniono tutaj:",
+  "@warning_regular_account_unauthenticated_access_description": {},
+  "enter_comma_separated_twitter_usernames": "Wprowadź rozdzielone przecinkami nazwy użytkowników Twittera/X",
+  "@enter_comma_separated_twitter_usernames": {},
+  "to_import_specific_subscriptions_enter_your_comma_separated_usernames_below": "Aby zaimportować określone subskrypcje, wprowadź poniżej nazwy użytkownika rozdzielone przecinkami.",
+  "@to_import_specific_subscriptions_enter_your_comma_separated_usernames_below": {}
 }
