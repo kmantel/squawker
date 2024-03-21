@@ -58,9 +58,9 @@ class _SearchScreenState extends State<_SearchScreen> with SingleTickerProviderS
   late TabController _tabController;
   late CombinedChangeNotifier _bothControllers;
 
-  final GlobalKey<TweetSearchResultListState> _searchUsersKey = GlobalKey();
-  final GlobalKey<TweetSearchResultListState> _searchTweetsKey = GlobalKey();
-  final GlobalKey<TweetSearchResultListState> _searchTrendsKey = GlobalKey();
+  final GlobalKey<TweetSearchResultListState> _searchUsersKey = GlobalKey<TweetSearchResultListState>();
+  final GlobalKey<TweetSearchResultListState> _searchTweetsKey = GlobalKey<TweetSearchResultListState>();
+  final GlobalKey<TweetSearchResultListState> _searchTrendsKey = GlobalKey<TweetSearchResultListState>();
 
   @override
   void initState() {

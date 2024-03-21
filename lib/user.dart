@@ -184,24 +184,24 @@ class FollowButton extends StatelessWidget {
               case 'add_to_group':
                 var groups = await context.read<GroupsModel>().listGroupsForUser(user.id);
                 showDialog(
-                    context: context,
-                    builder: (_) => FollowButtonSelectGroupDialog(
-                          user: user,
-                          followed: followed,
-                          groupsForUser: groups,
-                        ));
+                  context: context,
+                  builder: (_) => FollowButtonSelectGroupDialog(
+                    user: user,
+                    followed: followed,
+                    groupsForUser: groups,
+                  ));
                 break;
               case 'toggle_subscribe':
                 GlobalKey<SubscriptionGroupFeedState>? sgfKey = DataService().map['feed_key__1'];
-                if (sgfKey != null && sgfKey.currentState != null) {
-                  await sgfKey.currentState!.updateOffset();
+                if (sgfKey?.currentState != null) {
+                  await sgfKey!.currentState!.updateOffset();
                 }
                 await model.toggleSubscribe(user, followed);
                 break;
               case 'toggle_feed':
                 GlobalKey<SubscriptionGroupFeedState>? sgfKey = DataService().map['feed_key__1'];
-                if (sgfKey != null && sgfKey.currentState != null) {
-                  await sgfKey.currentState!.updateOffset();
+                if (sgfKey?.currentState != null) {
+                  await sgfKey!.currentState!.updateOffset();
                 }
                 await model.toggleFeed(user, inFeed);
                 break;

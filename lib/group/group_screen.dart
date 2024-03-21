@@ -119,10 +119,11 @@ class SubscriptionGroupScreenContent extends StatelessWidget {
         }
         List<String> searchQueries = _buildSearchQueries(users, group.includeReplies, group.includeRetweets, exclusionLst);
 
-        GlobalKey<SubscriptionGroupFeedState>? sgfKey = DataService().map['feed_key_${group.id.replaceAll('-', '_')}'];
+        String feedKeyName = 'feed_key_${group.id.replaceAll('-', '_')}';
+        GlobalKey<SubscriptionGroupFeedState>? sgfKey = DataService().map[feedKeyName];
         if (sgfKey == null) {
           sgfKey = GlobalKey<SubscriptionGroupFeedState>();
-          DataService().map['feed_key_${group.id.replaceAll('-', '_')}'] = sgfKey;
+          DataService().map[feedKeyName] = sgfKey;
         }
 
         return SubscriptionGroupFeed(
@@ -179,14 +180,15 @@ class SubscriptionGroupScreen extends StatelessWidget {
                             duration: const Duration(seconds: 1), curve: Curves.easeInOut);
                       }),
                   IconButton(
-                      icon: const Icon(Icons.refresh_rounded),
-                      onPressed: () async {
-                        GlobalKey<SubscriptionGroupFeedState>? sgfKey = DataService().map['feed_key_${id.replaceAll('-', '_')}'];
-                        if (sgfKey != null) {
-                          sgfKey.currentState!.setLoading();
-                          await sgfKey.currentState!.reloadData();
-                        }
-                      }),
+                    icon: const Icon(Icons.refresh_rounded),
+                    onPressed: () async {
+                      GlobalKey<SubscriptionGroupFeedState>? sgfKey = DataService().map['feed_key_${id.replaceAll('-', '_')}'];
+                      if (sgfKey?.currentState != null) {
+                        sgfKey!.currentState!.setLoading();
+                        await sgfKey.currentState!.reloadData();
+                      }
+                    }
+                  ),
                   ...actions
                 ],
               )
