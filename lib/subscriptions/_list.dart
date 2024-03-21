@@ -19,7 +19,7 @@ class SubscriptionUsers extends StatefulWidget {
 
 class _SubscriptionUsersState extends State<SubscriptionUsers> {
 
-  final GlobalKey _key = GlobalKey();
+  final GlobalKey<SubscriptionUsersListState> _key = GlobalKey<SubscriptionUsersListState>();
 
   @override
   Widget build(BuildContext context) {
@@ -70,22 +70,29 @@ class _SubscriptionUsersState extends State<SubscriptionUsers> {
   }
 }
 
-class SubscriptionUsersList extends StatelessWidget {
+class SubscriptionUsersList extends StatefulWidget {
 
   final List<Subscription> subscriptions;
-  final List<Subscription> subLst = [];
 
-  SubscriptionUsersList({Key? key, required this.subscriptions}) : super(key: key);
+  const SubscriptionUsersList({super.key, required this.subscriptions});
+
+  @override
+  State<SubscriptionUsersList> createState() => SubscriptionUsersListState();
+}
+
+class SubscriptionUsersListState extends State<SubscriptionUsersList> {
+
+  final List<Subscription> subLst = [];
 
   @override
   Widget build(BuildContext context) {
     BasePrefService prefs = PrefService.of(context);
     String subscriptionOrderCustom = prefs.get(optionSubscriptionOrderCustom);
     if (subscriptionOrderCustom.isNotEmpty) {
-      subLst.addAll(subscriptionOrderCustom.split(',').map((sn) => subscriptions.firstWhere((s) => s.screenName == sn)));
+      subLst.addAll(subscriptionOrderCustom.split(',').map((sn) => widget.subscriptions.firstWhere((s) => s.screenName == sn)));
     }
     else {
-      subLst.addAll(subscriptions);
+      subLst.addAll(widget.subscriptions);
     }
     return ReorderableListView.builder(
       padding: const EdgeInsets.symmetric(vertical: 8),

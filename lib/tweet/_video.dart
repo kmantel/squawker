@@ -184,30 +184,34 @@ class _TweetVideoState extends State<TweetVideo> {
     return AspectRatio(
       aspectRatio: widget.metadata.aspectRatio,
       child: AnimatedSwitcher(
-          duration: const Duration(milliseconds: 150),
-          child: _showVideo
-              ? _Video(controller: _chewieController!)
-              : GestureDetector(
-                  onTap: onTapPlay,
-                  child: Stack(alignment: Alignment.center, children: [
-                    widget.metadata.imageUrl != null
-                      ? ExtendedImage.network(widget.metadata.imageUrl!, width: double.infinity, fit: BoxFit.fitWidth, cache: true)
-                      : FittedBox(
-                          fit: BoxFit.fitWidth,
-                          child: Text(L10n.of(context).thumbnail_not_available),
-                        ),
-                    Center(
-                      child: FritterCenterPlayButton(
-                        backgroundColor: Colors.black54,
-                        iconColor: Colors.white,
-                        isFinished: false,
-                        isPlaying: false,
-                        show: true,
-                        onPressed: onTapPlay,
+        duration: const Duration(milliseconds: 150),
+        child: _showVideo
+          ? _Video(controller: _chewieController!)
+          : GestureDetector(
+              onTap: onTapPlay,
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  widget.metadata.imageUrl != null
+                    ? ExtendedImage.network(widget.metadata.imageUrl!, width: double.infinity, fit: BoxFit.fitWidth, cache: true)
+                    : FittedBox(
+                        fit: BoxFit.fitWidth,
+                        child: Text(L10n.of(context).thumbnail_not_available),
                       ),
-                    )
-                  ]),
-                )),
+                  Center(
+                    child: FritterCenterPlayButton(
+                      backgroundColor: Colors.black54,
+                      iconColor: Colors.white,
+                      isFinished: false,
+                      isPlaying: false,
+                      show: true,
+                      onPressed: onTapPlay,
+                    ),
+                  )
+                ]
+              ),
+            )
+      ),
     );
   }
 

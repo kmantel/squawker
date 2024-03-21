@@ -105,7 +105,7 @@ class SubscriptionGroupScreenContent extends StatelessWidget {
       onState: (_, group) {
         // TODO: This is pretty gross. Figure out how to have a "no data" state
         if (group.id.isEmpty) {
-          return Container();
+          return Container(key: Key('group_id_empty'));
         }
 
         // Split the users into chunks, oldest first, to prevent thrashing of all groups when a new user is added
