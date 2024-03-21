@@ -58,6 +58,10 @@ class _SearchScreenState extends State<_SearchScreen> with SingleTickerProviderS
   late TabController _tabController;
   late CombinedChangeNotifier _bothControllers;
 
+  final GlobalKey<TweetSearchResultListState> _searchUsersKey = GlobalKey();
+  final GlobalKey<TweetSearchResultListState> _searchTweetsKey = GlobalKey();
+  final GlobalKey<TweetSearchResultListState> _searchTrendsKey = GlobalKey();
+
   @override
   void initState() {
     super.initState();
@@ -105,14 +109,28 @@ class _SearchScreenState extends State<_SearchScreen> with SingleTickerProviderS
             textInputAction: TextInputAction.search,
           ),
           actions: [
-            IconButton(icon: const Icon(Icons.close_rounded), onPressed: () => _queryController.clear()),
+            IconButton(
+              icon: const Icon(Icons.close_rounded),
+              onPressed: () {
+                _queryController.clear();
+                if (_searchUsersKey.currentState != null) {
+                  _searchUsersKey.currentState!.resetQuery();
+                }
+                if (_searchTweetsKey.currentState != null) {
+                  _searchTweetsKey.currentState!.resetQuery();
+                }
+                if (_searchTrendsKey.currentState != null) {
+                  _searchTrendsKey.currentState!.resetQuery();
+                }
+              }
+            ),
             ScopedBuilder<SubscriptionsModel, List<Subscription>>.transition(
               store: subscriptionsModel,
               onState: (_, state) {
                 return AnimatedBuilder(
                   animation: _bothControllers,
                   builder: (context, child) {
-                    var id = _queryController.text;
+                    String id = _queryController.text;
 
                     if (_tabController.index == 1) {
                       var currentlyFollowed = state.any((element) => element.id == id);
@@ -158,16 +176,19 @@ class _SearchScreenState extends State<_SearchScreen> with SingleTickerProviderS
               child: Expanded(
                 child: TabBarView(controller: _tabController, children: [
                   TweetSearchResultList<SearchUsersModel, UserWithExtra>(
+                    key: _searchUsersKey,
                     queryController: _queryController,
                     store: context.read<SearchUsersModel>(),
                     searchFunction: (q, c) => context.read<SearchUsersModel>().searchUsers(q, PrefService.of(context).get(optionEnhancedSearches), cursor: c),
                     itemBuilder: (context, user) => UserTile(user: UserSubscription.fromUser(user))),
                   TweetSearchResultList<SearchTweetsModel, TweetWithCard>(
+                    key: _searchTweetsKey,
                     queryController: _queryController,
                     store: context.read<SearchTweetsModel>(),
                     searchFunction: (q, c) => context.read<SearchTweetsModel>().searchTweets(q, PrefService.of(context).get(optionEnhancedSearches), cursor: c),
                     itemBuilder: (context, item) => TweetTile(tweet: item, clickable: true)),
                   TweetSearchResultList<SearchTweetsModel, TweetWithCard>(
+                    key: _searchTrendsKey,
                     queryController: _queryController,
                     store: context.read<SearchTweetsModel>(),
                     searchFunction: (q, c) => context.read<SearchTweetsModel>().searchTweets(q, PrefService.of(context).get(optionEnhancedSearches), trending: true, cursor: c),
@@ -198,10 +219,10 @@ class TweetSearchResultList<S extends Store<SearchStatus<T>>, T> extends Statefu
       : super(key: key);
 
   @override
-  State<TweetSearchResultList<S, T>> createState() => _TweetSearchResultListState<S, T>();
+  State<TweetSearchResultList<S, T>> createState() => TweetSearchResultListState<S, T>();
 }
 
-class _TweetSearchResultListState<S extends Store<SearchStatus<T>>, T> extends State<TweetSearchResultList<S, T>> {
+class TweetSearchResultListState<S extends Store<SearchStatus<T>>, T> extends State<TweetSearchResultList<S, T>> {
   Timer? _debounce;
   String _previousQuery = '';
   String? _previousCursor;
@@ -247,6 +268,19 @@ class _TweetSearchResultListState<S extends Store<SearchStatus<T>>, T> extends S
     super.dispose();
     _scrollController.dispose();
     _pagingController.dispose();
+  }
+
+  void resetQuery() {
+    _scrollController.dispose();
+    _pagingController.dispose();
+    _previousQuery = '';
+    _previousCursor = null;
+    _lastOffset = 0;
+    _scrollController = ScrollController();
+    _pagingController = PagingController(firstPageKey: null);
+    _pagingController.addPageRequestListener((String? cursor) {
+      fetchResults(cursor);
+    });
   }
 
   void fetchResults(String? cursor) {

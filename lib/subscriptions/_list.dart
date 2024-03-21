@@ -19,7 +19,7 @@ class SubscriptionUsers extends StatefulWidget {
 
 class _SubscriptionUsersState extends State<SubscriptionUsers> {
 
-  //final UniqueKey _key = UniqueKey();
+  final GlobalKey _key = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +64,7 @@ class _SubscriptionUsersState extends State<SubscriptionUsers> {
           );
         }
 
-        return SubscriptionUsersList(/*key: _key, */subscriptions: state);
+        return SubscriptionUsersList(key: _key, subscriptions: state);
       },
     );
   }
