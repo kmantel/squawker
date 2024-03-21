@@ -614,5 +614,11 @@
   "warning_regular_account_unauthenticated_access_title": "الحسابات العادية والوصول غير المتحقق",
   "@warning_regular_account_unauthenticated_access_title": {},
   "warning_regular_account_unauthenticated_access_description": "قام Twitter/X بتعطيل القدرة على إنشاء حسابات ضيوف. يجب عليك الآن تعيين الحساب (الحسابات) العادية في الإعدادات / الحساب. مع عدم وجود حساب، يتوفر وصول جزئي يقتصر على التغريدات والملفات الشخصية فقط. من السهل إنشاء حساب عادي مجهول كما هو موضح هنا:",
-  "@warning_regular_account_unauthenticated_access_description": {}
+  "@warning_regular_account_unauthenticated_access_description": {},
+  "exclusions_feed_description": "قائمة بأسماء المستخدمين المراد استبعادها من التغذية",
+  "@exclusions_feed_description": {},
+  "username_exclude": "اسم المستخدم المراد استبعاده",
+  "@username_exclude": {},
+  "exclusions_feed_label": "استثناءات في التغذية",
+  "@exclusions_feed_label": {}
 }
