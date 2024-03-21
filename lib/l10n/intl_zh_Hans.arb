@@ -618,5 +618,11 @@
   "enter_comma_separated_twitter_usernames": "输入用英文逗号隔开的 Twitter/X 用户名",
   "@enter_comma_separated_twitter_usernames": {},
   "warning_regular_account_unauthenticated_access_description": "Twitter/X 已经禁止了创建来宾账户的能力。你应该在“设置/账户”下配置常规账户。没有常规账户，只能访问推文和个人资料页。创建匿名的常规账户并不难，步骤见：",
-  "@warning_regular_account_unauthenticated_access_description": {}
+  "@warning_regular_account_unauthenticated_access_description": {},
+  "exclusions_feed_description": "要从 feed 中排除的用户名列表",
+  "@exclusions_feed_description": {},
+  "username_exclude": "要排除的用户名",
+  "@username_exclude": {},
+  "exclusions_feed_label": "feed 中的排除",
+  "@exclusions_feed_label": {}
 }
