@@ -255,10 +255,10 @@ Future<void> main() async {
         Provider(create: (context) => TrendsModel(trendLocationModel)),
         ChangeNotifierProvider(create: (_) => VideoContextState(prefService.get(optionMediaDefaultMute))),
       ],
-      child: DevicePreview(
+      child: /*DevicePreview(
         enabled: !kReleaseMode,
-        builder: (context) => const SquawkerApp(),
-      ),
+        builder: (context) => */const SquawkerApp(),
+      /*),*/
     )
   ));
 }
@@ -483,7 +483,7 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: L10n.delegate.supportedLocales,
-      locale: _locale ?? DevicePreview.locale(context),
+      locale: _locale ?? const Locale('en-US'),//DevicePreview.locale(context),
       title: 'Squawker',
       // regression #130295 in flutter Document Checkbox.fillColor behavior change
       // ref: https://github.com/flutter/flutter/issues/130295
@@ -508,6 +508,7 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
         ),
       ),
       themeMode: themeMode,
+      debugShowCheckedModeBanner: false,
       initialRoute: '/',
       navigatorObservers: [
         _routeObserver
@@ -531,7 +532,7 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
               prefix: L10n.of(context).something_broke_in_fritter,
             );
 
-        return DevicePreview.appBuilder(context, child ?? Container());
+        return child ?? Container(); //DevicePreview.appBuilder(context, child ?? Container());
       },
     );
   }
