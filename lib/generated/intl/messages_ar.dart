@@ -204,6 +204,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ادخل اسم مستخدم للتويتر"),
         "error_from_twitter":
             MessageLookupByLibrary.simpleMessage("خطأ من تويتر/X"),
+        "exclusions_feed_description": MessageLookupByLibrary.simpleMessage(
+            "قائمة بأسماء المستخدمين المراد استبعادها من التغذية"),
+        "exclusions_feed_label":
+            MessageLookupByLibrary.simpleMessage("استثناءات في التغذية"),
         "export": MessageLookupByLibrary.simpleMessage("تصدير"),
         "export_guest_accounts":
             MessageLookupByLibrary.simpleMessage("تصدير حسابات الضيوف؟"),
@@ -551,6 +555,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "user_not_found":
             MessageLookupByLibrary.simpleMessage("لم يُعثر على المستخدم"),
         "username": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
+        "username_exclude": MessageLookupByLibrary.simpleMessage(
+            "اسم المستخدم المراد استبعاده"),
         "username_label": MessageLookupByLibrary.simpleMessage("اسم المستخدم:"),
         "usernames": MessageLookupByLibrary.simpleMessage("أسماء المستخدمين"),
         "version": MessageLookupByLibrary.simpleMessage("الإصدار"),

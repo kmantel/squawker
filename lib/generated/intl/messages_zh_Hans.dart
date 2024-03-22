@@ -177,6 +177,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("输入您的 Twitter/X 用户名"),
         "error_from_twitter":
             MessageLookupByLibrary.simpleMessage("来自 Twitter/X 的错误"),
+        "exclusions_feed_description":
+            MessageLookupByLibrary.simpleMessage("要从 feed 中排除的用户名列表"),
+        "exclusions_feed_label":
+            MessageLookupByLibrary.simpleMessage("feed 中的排除"),
         "export": MessageLookupByLibrary.simpleMessage("导出"),
         "export_guest_accounts":
             MessageLookupByLibrary.simpleMessage("导出游客账户？"),
@@ -464,6 +468,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("在暗色主题中使用纯黑"),
         "user_not_found": MessageLookupByLibrary.simpleMessage("未找到用户"),
         "username": MessageLookupByLibrary.simpleMessage("用户名"),
+        "username_exclude": MessageLookupByLibrary.simpleMessage("要排除的用户名"),
         "username_label": MessageLookupByLibrary.simpleMessage("用户名："),
         "usernames": MessageLookupByLibrary.simpleMessage("用户名"),
         "version": MessageLookupByLibrary.simpleMessage("版本"),
