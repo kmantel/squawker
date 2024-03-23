@@ -618,5 +618,11 @@
   "enter_comma_separated_twitter_usernames": "Wprowadź rozdzielone przecinkami nazwy użytkowników Twittera/X",
   "@enter_comma_separated_twitter_usernames": {},
   "to_import_specific_subscriptions_enter_your_comma_separated_usernames_below": "Aby zaimportować określone subskrypcje, wprowadź poniżej nazwy użytkownika rozdzielone przecinkami.",
-  "@to_import_specific_subscriptions_enter_your_comma_separated_usernames_below": {}
+  "@to_import_specific_subscriptions_enter_your_comma_separated_usernames_below": {},
+  "username_exclude": "Nazwa użytkownika do wykluczenia",
+  "@username_exclude": {},
+  "exclusions_feed_description": "Lista nazw użytkowników do wykluczenia z kanału",
+  "@exclusions_feed_description": {},
+  "exclusions_feed_label": "Wykluczenia w kanałach",
+  "@exclusions_feed_label": {}
 }

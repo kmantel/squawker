@@ -618,5 +618,11 @@
   "to_import_specific_subscriptions_enter_your_comma_separated_usernames_below": "Belirli abonelikleri içe aktarmak için, virgülle ayrılmış kullanıcı adlarınızı aşağıya girin.",
   "@to_import_specific_subscriptions_enter_your_comma_separated_usernames_below": {},
   "warning_regular_account_unauthenticated_access_title": "Normal hesaplar ve kimliği doğrulanmayan erişim",
-  "@warning_regular_account_unauthenticated_access_title": {}
+  "@warning_regular_account_unauthenticated_access_title": {},
+  "exclusions_feed_description": "Akıştan hariç tutulacak kullanıcı adlarının listesi",
+  "@exclusions_feed_description": {},
+  "username_exclude": "Hariç tutulacak kullanıcı adı",
+  "@username_exclude": {},
+  "exclusions_feed_label": "Akıştaki istisnalar",
+  "@exclusions_feed_label": {}
 }
