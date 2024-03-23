@@ -209,6 +209,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Twitter/X kullanıcı adınızı girin"),
         "error_from_twitter":
             MessageLookupByLibrary.simpleMessage("Twitter/X Hatası"),
+        "exclusions_feed_description": MessageLookupByLibrary.simpleMessage(
+            "Akıştan hariç tutulacak kullanıcı adlarının listesi"),
+        "exclusions_feed_label":
+            MessageLookupByLibrary.simpleMessage("Akıştaki istisnalar"),
         "export": MessageLookupByLibrary.simpleMessage("Dışa aktar"),
         "export_guest_accounts": MessageLookupByLibrary.simpleMessage(
             "Konuk hesapları dışa aktarılsın mı?"),
@@ -561,6 +565,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "user_not_found":
             MessageLookupByLibrary.simpleMessage("Kullanıcı bulunamadı"),
         "username": MessageLookupByLibrary.simpleMessage("Kullanıcı adı"),
+        "username_exclude": MessageLookupByLibrary.simpleMessage(
+            "Hariç tutulacak kullanıcı adı"),
         "username_label":
             MessageLookupByLibrary.simpleMessage("Kullanıcı adı:"),
         "usernames": MessageLookupByLibrary.simpleMessage("Kullanıcı adları"),
