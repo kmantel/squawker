@@ -40,11 +40,17 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m8(date) => "Ingressou em ${date}";
 
+  static String m9(nbrGuestAccounts) =>
+      "Existem ${nbrGuestAccounts} contas de convidados";
+
   static String m10(num, numFormatted) =>
       "${Intl.plural(num, zero: 'Nenhum voto', one: 'Um voto', two: 'Dois votos', few: '${numFormatted} votos', many: '${numFormatted} voto', other: '${numFormatted} votos')}";
 
   static String m11(errorMessage) =>
       "Por favor, verifique sua conexão à internet.\n\n${errorMessage}";
+
+  static String m12(nbrRegularAccounts) =>
+      "Contas regulares (${nbrRegularAccounts}):";
 
   static String m13(releaseVersion) => "Toque para baixar ${releaseVersion}";
 
@@ -71,6 +77,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "about": MessageLookupByLibrary.simpleMessage("Sobre"),
+        "account": MessageLookupByLibrary.simpleMessage("Conta"),
         "account_suspended":
             MessageLookupByLibrary.simpleMessage("Conta suspensa"),
         "activate_non_confirmation_bias_mode_description":
@@ -79,23 +86,43 @@ class MessageLookup extends MessageLookupByLibrary {
         "activate_non_confirmation_bias_mode_label":
             MessageLookupByLibrary.simpleMessage(
                 "Ativar modo de não-confirmação de viés"),
+        "add_account":
+            MessageLookupByLibrary.simpleMessage("Adicionar uma conta"),
+        "add_account_title":
+            MessageLookupByLibrary.simpleMessage("Adicionar uma conta"),
         "add_subscriptions":
             MessageLookupByLibrary.simpleMessage("Adicionar inscrições"),
+        "add_to_feed":
+            MessageLookupByLibrary.simpleMessage("Adicionar ao feed"),
         "add_to_group":
             MessageLookupByLibrary.simpleMessage("Adicionar ao grupo"),
         "all": MessageLookupByLibrary.simpleMessage("Tudo"),
         "all_the_great_software_used_by_fritter":
             MessageLookupByLibrary.simpleMessage(
                 "Todo o ótimo software usado por Squawker"),
+        "allow_background_play_description":
+            MessageLookupByLibrary.simpleMessage(
+                "Permitir reprodução de vídeos em segundo plano"),
+        "allow_background_play_label":
+            MessageLookupByLibrary.simpleMessage("Reprodução em segundo plano"),
+        "allow_background_play_other_apps_description":
+            MessageLookupByLibrary.simpleMessage(
+                "Permitir que outros aplicativos sejam reproduzidos em segundo plano"),
+        "allow_background_play_other_apps_label":
+            MessageLookupByLibrary.simpleMessage(
+                "Outros aplicativos em segundo plano"),
         "an_update_for_fritter_is_available":
             MessageLookupByLibrary.simpleMessage(
                 "Uma atualização para o Squawker está disponível! 🚀"),
+        "app_info":
+            MessageLookupByLibrary.simpleMessage("Informações do aplicativo"),
         "are_you_sure": MessageLookupByLibrary.simpleMessage("Tem certeza?"),
         "are_you_sure_you_want_to_delete_the_subscription_group_name_of_group":
             m0,
         "back": MessageLookupByLibrary.simpleMessage("Voltar"),
         "bad_guest_token": MessageLookupByLibrary.simpleMessage(
             "Twitter/X invalidou nosso token de acesso. Por favor tente reabrir o Squawker!"),
+        "beta": MessageLookupByLibrary.simpleMessage("BETA"),
         "blue_theme_based_on_the_twitter_color_scheme":
             MessageLookupByLibrary.simpleMessage(
                 "Tema azul baseado no esquema de cores do Twitter/X"),
@@ -131,6 +158,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "date_created": MessageLookupByLibrary.simpleMessage("Data de Criação"),
         "date_subscribed":
             MessageLookupByLibrary.simpleMessage("Data de Inscrição"),
+        "default_subscription_tab":
+            MessageLookupByLibrary.simpleMessage("Aba de inscrição padrão"),
         "default_tab": MessageLookupByLibrary.simpleMessage("Aba padrão"),
         "delete": MessageLookupByLibrary.simpleMessage("Excluir"),
         "disable_screenshots": MessageLookupByLibrary.simpleMessage(
@@ -152,14 +181,46 @@ class MessageLookup extends MessageLookupByLibrary {
             "Incapaz de baixar. Esta mídia pode estar disponível apenas como uma transmissão, que Squawker ainda não pode baixar."),
         "download_path":
             MessageLookupByLibrary.simpleMessage("Caminho do download"),
+        "download_video_best_quality_description":
+            MessageLookupByLibrary.simpleMessage(
+                "Baixar videos na melhor qualidade disponivel"),
+        "download_video_best_quality_label":
+            MessageLookupByLibrary.simpleMessage(
+                "Baixar videos com melhor qualidade"),
         "downloading_media":
             MessageLookupByLibrary.simpleMessage("Baixando mídia..."),
+        "edit_account_title":
+            MessageLookupByLibrary.simpleMessage("Modificar uma conta"),
+        "email_label": MessageLookupByLibrary.simpleMessage("Email:"),
         "enable_": MessageLookupByLibrary.simpleMessage("Ativar ?"),
         "ended_timeago_format_endsAt_allowFromNow_true": m3,
         "ends_timeago_format_endsAt_allowFromNow_true": m4,
+        "enhanced_feeds_description": MessageLookupByLibrary.simpleMessage(
+            "Solicitações aprimoradas de feeds (mas com limites de taxa mais baixos)"),
+        "enhanced_feeds_label":
+            MessageLookupByLibrary.simpleMessage("Feeds aprimorados"),
+        "enhanced_profile_description": MessageLookupByLibrary.simpleMessage(
+            "Solicitações aprimoradas de perfis"),
+        "enhanced_profile_label":
+            MessageLookupByLibrary.simpleMessage("Perfis aprimorados"),
+        "enhanced_searches_description": MessageLookupByLibrary.simpleMessage(
+            "Solicitações aprimoradas de pesquisas (mas com limites de taxas mais baixas)"),
+        "enhanced_searches_label":
+            MessageLookupByLibrary.simpleMessage("Pesquisas aprimoradas"),
+        "enter_comma_separated_twitter_usernames":
+            MessageLookupByLibrary.simpleMessage(
+                "Insira seus nomes de usuário do Twitter/X separados por vírgula"),
         "enter_your_twitter_username": MessageLookupByLibrary.simpleMessage(
             "Digite seu nome de usuário do Twitter/X"),
+        "error_from_twitter":
+            MessageLookupByLibrary.simpleMessage("Erro do Twitter/X"),
+        "exclusions_feed_description": MessageLookupByLibrary.simpleMessage(
+            "Lista de nomes de usuário a serem excluídos do feed"),
+        "exclusions_feed_label":
+            MessageLookupByLibrary.simpleMessage("Exclusões no feed"),
         "export": MessageLookupByLibrary.simpleMessage("Exportar"),
+        "export_guest_accounts": MessageLookupByLibrary.simpleMessage(
+            "Exportar contas de convidado?"),
         "export_settings":
             MessageLookupByLibrary.simpleMessage("Exportar configurações?"),
         "export_subscription_group_members":
@@ -171,6 +232,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Exportar inscrições?"),
         "export_tweets":
             MessageLookupByLibrary.simpleMessage("Exportar tweets?"),
+        "export_twitter_tokens": MessageLookupByLibrary.simpleMessage(
+            "Exportar tokens do Twitter/X?"),
         "export_your_data":
             MessageLookupByLibrary.simpleMessage("Exportar seus dados"),
         "feed": MessageLookupByLibrary.simpleMessage("Feed"),
@@ -186,6 +249,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "functionality_unsupported": MessageLookupByLibrary.simpleMessage(
             "Esta funcionalidade não é mais suportada pelo Twitter/X!"),
         "general": MessageLookupByLibrary.simpleMessage("Geral"),
+        "generic_username": MessageLookupByLibrary.simpleMessage("Usuário"),
         "group_name": m6,
         "groups": MessageLookupByLibrary.simpleMessage("Grupos"),
         "help_make_fritter_even_better": MessageLookupByLibrary.simpleMessage(
@@ -211,10 +275,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "include_retweets":
             MessageLookupByLibrary.simpleMessage("Incluir retweets"),
         "joined": m8,
+        "keep_feed_offset_description": MessageLookupByLibrary.simpleMessage(
+            "A posição da linha do tempo é mantida para os feeds quando o aplicativo é reiniciado"),
+        "keep_feed_offset_label":
+            MessageLookupByLibrary.simpleMessage("Manter a posição dos feeds"),
         "language": MessageLookupByLibrary.simpleMessage("Idioma"),
         "language_subtitle":
             MessageLookupByLibrary.simpleMessage("Requer um reinício"),
         "large": MessageLookupByLibrary.simpleMessage("Grande"),
+        "leaner_feeds_description": MessageLookupByLibrary.simpleMessage(
+            "As prévias dos links não serão mostrados nos tweets dos feeds"),
+        "leaner_feeds_label":
+            MessageLookupByLibrary.simpleMessage("Feeds mais magros"),
         "legacy_android_import": MessageLookupByLibrary.simpleMessage(
             "Importação do Android antigo"),
         "let_the_developers_know_if_something_is_broken":
@@ -224,6 +296,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "light": MessageLookupByLibrary.simpleMessage("Claro"),
         "live": MessageLookupByLibrary.simpleMessage("LIVE"),
         "logging": MessageLookupByLibrary.simpleMessage("Criando Log"),
+        "mandatory_label":
+            MessageLookupByLibrary.simpleMessage("Campos obrigatórios:"),
+        "material_3": MessageLookupByLibrary.simpleMessage("Material 3?"),
         "media": MessageLookupByLibrary.simpleMessage("Mídia"),
         "media_size": MessageLookupByLibrary.simpleMessage("Tamanho da mídia"),
         "medium": MessageLookupByLibrary.simpleMessage("Média"),
@@ -232,6 +307,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Se os vídeos devem ser silenciados por padrão"),
         "mute_videos": MessageLookupByLibrary.simpleMessage("Silenciar vídeos"),
         "name": MessageLookupByLibrary.simpleMessage("Nome"),
+        "name_label": MessageLookupByLibrary.simpleMessage("Nome:"),
+        "nbr_guest_accounts": m9,
         "newTrans": MessageLookupByLibrary.simpleMessage("Novo"),
         "next": MessageLookupByLibrary.simpleMessage("Próximo"),
         "no": MessageLookupByLibrary.simpleMessage("Não"),
@@ -257,10 +334,21 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Ops! Algo deu errado 🥲"),
         "open_app_settings": MessageLookupByLibrary.simpleMessage(
             "Abrir as configurações do aplicativo"),
+        "open_in_browser":
+            MessageLookupByLibrary.simpleMessage("Abrir no navegador"),
+        "option_confirm_close_description":
+            MessageLookupByLibrary.simpleMessage(
+                "Confirmar quando fechar o aplicativo"),
+        "option_confirm_close_label":
+            MessageLookupByLibrary.simpleMessage("Confirmar fechamento"),
+        "optional_label":
+            MessageLookupByLibrary.simpleMessage("Campos opcionais:"),
         "page_not_found": MessageLookupByLibrary.simpleMessage(
             "Twitter/X diz que a página não existe, mas isso pode não ser verdade"),
+        "password_label": MessageLookupByLibrary.simpleMessage("Senha:"),
         "permission_not_granted": MessageLookupByLibrary.simpleMessage(
             "Permissão não concedida. Por favor, tente novamente após a concessão!"),
+        "phone_label": MessageLookupByLibrary.simpleMessage("Telefone:"),
         "pick_a_color":
             MessageLookupByLibrary.simpleMessage("Escolha uma cor!"),
         "pick_an_icon":
@@ -286,8 +374,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "prefix": MessageLookupByLibrary.simpleMessage("prefixo"),
         "private_profile":
             MessageLookupByLibrary.simpleMessage("Perfil privado"),
+        "proxy_description": MessageLookupByLibrary.simpleMessage(
+            "Proxy para todas as solicitações"),
+        "proxy_error": MessageLookupByLibrary.simpleMessage("Erro de proxy"),
+        "proxy_label": MessageLookupByLibrary.simpleMessage("Proxy"),
+        "regular_accounts": m12,
         "released_under_the_mit_license":
             MessageLookupByLibrary.simpleMessage("Lançado sob a licença MIT"),
+        "remove_from_feed":
+            MessageLookupByLibrary.simpleMessage("Remover do feed"),
         "replying_to": MessageLookupByLibrary.simpleMessage("Respondendo a"),
         "report": MessageLookupByLibrary.simpleMessage("Reportar"),
         "report_a_bug":
@@ -311,10 +406,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "A seleção de contas individuais para importação e a atribuição de grupos já estão planejadas para o futuro!"),
         "send": MessageLookupByLibrary.simpleMessage("Enviar"),
+        "settings": MessageLookupByLibrary.simpleMessage("Configurações"),
         "share_base_url": MessageLookupByLibrary.simpleMessage(
             "URL de compartilhamento personalizado"),
         "share_base_url_description": MessageLookupByLibrary.simpleMessage(
             "Use um URL base personalizado ao compartilhar"),
+        "share_tweet_as_image": MessageLookupByLibrary.simpleMessage(
+            "Compartilhar tweet como imagem"),
         "share_tweet_content": MessageLookupByLibrary.simpleMessage(
             "Compartilhar conteúdo do tweet"),
         "share_tweet_content_and_link": MessageLookupByLibrary.simpleMessage(
@@ -373,7 +471,12 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Este usuário não tem nenhum seguidor!"),
         "thread": MessageLookupByLibrary.simpleMessage("Thread"),
         "thumbnail": MessageLookupByLibrary.simpleMessage("Miniatura"),
+        "thumbnail_not_available":
+            MessageLookupByLibrary.simpleMessage("Miniatura não disponivel"),
         "timed_out": MessageLookupByLibrary.simpleMessage("Tempo esgotado"),
+        "to_import_specific_subscriptions_enter_your_comma_separated_usernames_below":
+            MessageLookupByLibrary.simpleMessage(
+                "Para importar inscrições específicas, insira abaixo seus nomes de usuário separados por vírgulas."),
         "to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below":
             MessageLookupByLibrary.simpleMessage(
                 "Para importar assinaturas de uma conta existente do Twitter/X, digite seu nome de usuário abaixo."),
@@ -381,10 +484,25 @@ class MessageLookup extends MessageLookupByLibrary {
         "trending": MessageLookupByLibrary.simpleMessage("Tendência"),
         "trends": MessageLookupByLibrary.simpleMessage("Tendências"),
         "true_black": MessageLookupByLibrary.simpleMessage("Preto Verdadeiro?"),
+        "tweet_font_size_description":
+            MessageLookupByLibrary.simpleMessage("Tamanho da fonte dos tweets"),
+        "tweet_font_size_label":
+            MessageLookupByLibrary.simpleMessage("Tamanho da fonte"),
         "tweets": MessageLookupByLibrary.simpleMessage("Tweets"),
         "tweets_and_replies":
             MessageLookupByLibrary.simpleMessage("Tweets e Respostas"),
         "tweets_number": m17,
+        "twitter_account_types_both":
+            MessageLookupByLibrary.simpleMessage("Convidado e regular"),
+        "twitter_account_types_description":
+            MessageLookupByLibrary.simpleMessage(
+                "Tipo de conta para ser usada"),
+        "twitter_account_types_label":
+            MessageLookupByLibrary.simpleMessage("Tipo de conta"),
+        "twitter_account_types_only_regular":
+            MessageLookupByLibrary.simpleMessage("Apenas as regulares"),
+        "twitter_account_types_priority_to_regular":
+            MessageLookupByLibrary.simpleMessage("Priorizar contas regulares"),
         "two_home_pages_required": MessageLookupByLibrary.simpleMessage(
             "Você precisa ter pelo menos 2 páginas iniciais."),
         "unable_to_find_the_available_trend_locations":
@@ -455,7 +573,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "user_not_found":
             MessageLookupByLibrary.simpleMessage("Usuário não encontrado"),
         "username": MessageLookupByLibrary.simpleMessage("Nome de usuário"),
+        "username_exclude": MessageLookupByLibrary.simpleMessage(
+            "Nome de usuário a ser excluído"),
+        "username_label": MessageLookupByLibrary.simpleMessage("Usuário:"),
+        "usernames": MessageLookupByLibrary.simpleMessage("Usuários"),
         "version": MessageLookupByLibrary.simpleMessage("Versão"),
+        "warning_regular_account_unauthenticated_access_description":
+            MessageLookupByLibrary.simpleMessage(
+                "O Twitter/X desativou a capacidade de criar contas de convidados. Agora você deve definir contas regulares em Configurações/Conta. Sem conta, o acesso parcial é limitado apenas a tweets e perfis. É fácil criar uma conta regular anônima conforme explicado aqui:"),
+        "warning_regular_account_unauthenticated_access_title":
+            MessageLookupByLibrary.simpleMessage(
+                "Contas regulares e acesso não autenticado"),
         "when_a_new_app_update_is_available":
             MessageLookupByLibrary.simpleMessage(
                 "Quando uma nova atualização do aplicativo está disponível"),
@@ -468,9 +596,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "which_tab_is_shown_when_the_app_opens":
             MessageLookupByLibrary.simpleMessage(
                 "Qual aba é mostrada quando o aplicativo é aberto"),
+        "which_tab_is_shown_when_the_subscription_opens":
+            MessageLookupByLibrary.simpleMessage(
+                "Qual guia é mostrada quando as inscrições são abertas"),
         "would_you_like_to_enable_automatic_error_reporting":
             MessageLookupByLibrary.simpleMessage(
                 "Deseja ativar o relatório automático de erros?"),
+        "x_api": MessageLookupByLibrary.simpleMessage("API do X"),
         "yes": MessageLookupByLibrary.simpleMessage("Sim"),
         "yes_please": MessageLookupByLibrary.simpleMessage("Sim, por favor"),
         "you_have_not_saved_any_tweets_yet":
