@@ -20,6 +20,9 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'hu';
 
+  static String m0(name) =>
+      "Biztos benne, hogy letörli a ${name} feliratkozási csoportot?";
+
   static String m1(fileName) => "Adatok exportálva ${fileName} néven";
 
   static String m2(fullPath) => "Adatok exportálva a ${fullPath} mappába";
@@ -31,11 +34,25 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "about": MessageLookupByLibrary.simpleMessage("Névjegy"),
         "add_to_group":
             MessageLookupByLibrary.simpleMessage("Hozzáadás csoporthoz"),
+        "all": MessageLookupByLibrary.simpleMessage("Mind"),
+        "all_the_great_software_used_by_fritter":
+            MessageLookupByLibrary.simpleMessage(
+                "Az összes csodás szoftver a Squawker szolgálatában"),
         "app_info": MessageLookupByLibrary.simpleMessage("App Infó"),
+        "are_you_sure": MessageLookupByLibrary.simpleMessage("Biztos benne?"),
+        "are_you_sure_you_want_to_delete_the_subscription_group_name_of_group":
+            m0,
         "beta": MessageLookupByLibrary.simpleMessage("BÉTA"),
         "cancel": MessageLookupByLibrary.simpleMessage("Mégse"),
+        "close": MessageLookupByLibrary.simpleMessage("Bezár"),
+        "contribute": MessageLookupByLibrary.simpleMessage("Hozzájárulás"),
+        "copied_address_to_clipboard":
+            MessageLookupByLibrary.simpleMessage("Cím másolva a vágólapra"),
+        "copied_version_to_clipboard":
+            MessageLookupByLibrary.simpleMessage("Verzió a vágólapra másolva"),
         "could_not_find_any_tweets_by_this_user":
             MessageLookupByLibrary.simpleMessage(
                 "Nem találhatóak tweet-ek ennél a felhasználónál!"),
@@ -49,7 +66,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "data_imported_successfully": MessageLookupByLibrary.simpleMessage(
             "Adatok sikeresen importálásra kerültek"),
         "default_tab": MessageLookupByLibrary.simpleMessage("Alap fül"),
+        "delete": MessageLookupByLibrary.simpleMessage("Törlés"),
         "disabled": MessageLookupByLibrary.simpleMessage("Kikapcsolva"),
+        "donate": MessageLookupByLibrary.simpleMessage("Támogatás"),
         "enable_": MessageLookupByLibrary.simpleMessage("Bekapcsolás ?"),
         "export": MessageLookupByLibrary.simpleMessage("Exportálás"),
         "export_guest_accounts": MessageLookupByLibrary.simpleMessage(
@@ -71,10 +90,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "filters": MessageLookupByLibrary.simpleMessage("Szűrők"),
         "followers": MessageLookupByLibrary.simpleMessage("Követők"),
         "following": MessageLookupByLibrary.simpleMessage("Bekövetve"),
+        "fritter": MessageLookupByLibrary.simpleMessage("Squawker"),
         "general": MessageLookupByLibrary.simpleMessage("Általános"),
+        "help_make_fritter_even_better":
+            MessageLookupByLibrary.simpleMessage("Tedd még jobbá a Squawker-t"),
+        "help_support_fritters_future": MessageLookupByLibrary.simpleMessage(
+            "Támogassa a Squawker jövőjét"),
         "import": MessageLookupByLibrary.simpleMessage("Importálás"),
         "import_data_from_another_device": MessageLookupByLibrary.simpleMessage(
             "Adat importálása egy másik eszközről"),
+        "import_subscriptions":
+            MessageLookupByLibrary.simpleMessage("Feliratkozások Importálása"),
         "include_replies":
             MessageLookupByLibrary.simpleMessage("Válaszok mutatása"),
         "include_retweets":
@@ -83,26 +109,47 @@ class MessageLookup extends MessageLookupByLibrary {
         "large": MessageLookupByLibrary.simpleMessage("Nagy"),
         "legacy_android_import":
             MessageLookupByLibrary.simpleMessage("Régi típusú Android import"),
+        "let_the_developers_know_if_something_is_broken":
+            MessageLookupByLibrary.simpleMessage(
+                "Tudassa a fejlesztőkkel ha valami hiba jelentkezik"),
+        "licenses": MessageLookupByLibrary.simpleMessage("Licenszek"),
         "light": MessageLookupByLibrary.simpleMessage("Világos"),
+        "live": MessageLookupByLibrary.simpleMessage("ÉLŐ"),
         "logging": MessageLookupByLibrary.simpleMessage("Naplózás"),
         "material_3": MessageLookupByLibrary.simpleMessage("Material 3?"),
         "media": MessageLookupByLibrary.simpleMessage("Média"),
         "media_size": MessageLookupByLibrary.simpleMessage("Média méret"),
         "medium": MessageLookupByLibrary.simpleMessage("Közepes"),
+        "name": MessageLookupByLibrary.simpleMessage("Név"),
+        "newTrans": MessageLookupByLibrary.simpleMessage("Új"),
+        "no": MessageLookupByLibrary.simpleMessage("Nem"),
         "no_results": MessageLookupByLibrary.simpleMessage("Nincs eredmény"),
+        "no_results_for": MessageLookupByLibrary.simpleMessage(
+            "Nincs találat a következőre:"),
         "note_due_to_a_twitter_limitation_not_all_tweets_may_be_included":
             MessageLookupByLibrary.simpleMessage(
                 "Megjegyzés: A Twitter/X limitációk miatt nem minden tweet jelenik meg"),
+        "ok": MessageLookupByLibrary.simpleMessage("Rendben"),
+        "pick_a_color":
+            MessageLookupByLibrary.simpleMessage("Válasszon egy színt!"),
+        "pick_an_icon":
+            MessageLookupByLibrary.simpleMessage("Válasszon egy ikont!"),
+        "please_enter_a_name":
+            MessageLookupByLibrary.simpleMessage("Kérem adjon meg egy nevet"),
         "please_make_sure_the_data_you_wish_to_import_is_located_there_then_press_the_import_button_below":
             MessageLookupByLibrary.simpleMessage(
                 "Győződjön meg róla, hogy a kívánt fájl rendelkezésre áll, majd nyomjon rá az importálásra."),
         "prefix": MessageLookupByLibrary.simpleMessage("előtag"),
+        "released_under_the_mit_license": MessageLookupByLibrary.simpleMessage(
+            "Megjelenés az MIT Licensz alatt"),
+        "report_a_bug": MessageLookupByLibrary.simpleMessage("Bug jelentése"),
         "reporting_an_error":
             MessageLookupByLibrary.simpleMessage("Hiba bejelentése"),
         "save_bandwidth_using_smaller_images":
             MessageLookupByLibrary.simpleMessage(
                 "Sávszél megtakarítás kisebb képekkel"),
         "saved": MessageLookupByLibrary.simpleMessage("Mentett"),
+        "search": MessageLookupByLibrary.simpleMessage("Keresés"),
         "select": MessageLookupByLibrary.simpleMessage("Kiválasztás"),
         "send": MessageLookupByLibrary.simpleMessage("Küldés"),
         "settings": MessageLookupByLibrary.simpleMessage("Beállítások"),
@@ -128,6 +175,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Ezt a felhasználót nem követi senki!"),
         "thumbnail": MessageLookupByLibrary.simpleMessage("Miniatűr"),
+        "to_import_subscriptions_from_an_existing_twitter_account_enter_your_username_below":
+            MessageLookupByLibrary.simpleMessage(
+                "Már létező Twitter/X fiókból való feliratkozások importálásához adja meg a felhasználónevét."),
+        "toggle_all":
+            MessageLookupByLibrary.simpleMessage("Mind ki/be jelölése"),
         "trending": MessageLookupByLibrary.simpleMessage("Felkapott"),
         "true_black": MessageLookupByLibrary.simpleMessage("Teljesen Fekete?"),
         "tweets": MessageLookupByLibrary.simpleMessage("Teweet-ek"),
@@ -172,12 +224,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "use_true_black_for_the_dark_mode_theme":
             MessageLookupByLibrary.simpleMessage(
                 "Használjon teljesen feketét a sötét módban"),
+        "version": MessageLookupByLibrary.simpleMessage("Verzió"),
+        "whether_errors_should_be_reported_to_":
+            MessageLookupByLibrary.simpleMessage(
+                "Kell e a hibát bejelenteni az illetékes számára "),
         "which_tab_is_shown_when_the_app_opens":
             MessageLookupByLibrary.simpleMessage(
                 "Melyik fül nyílik meg az app megnyitásakor"),
         "would_you_like_to_enable_automatic_error_reporting":
             MessageLookupByLibrary.simpleMessage(
                 "Be akarja kapcsolni az automata hiba jelentés küldést?"),
+        "yes": MessageLookupByLibrary.simpleMessage("Igen"),
+        "yes_please": MessageLookupByLibrary.simpleMessage("Igen, kérem"),
         "you_have_not_saved_any_tweets_yet":
             MessageLookupByLibrary.simpleMessage(
                 "Nem mentett el eddig tweet-eket!"),
