@@ -46,7 +46,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         children: [
           ListTile(
             title: Text(L10n.of(context).general),
-            trailing: Icon(Icons.arrow_forward),
+            trailing: Icon(Icons.arrow_forward_ios),
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const SettingsGeneralFragment()),
@@ -54,7 +54,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
           ListTile(
             title: Text(L10n.of(context).account),
-            trailing: Icon(Icons.arrow_forward),
+            trailing: Icon(Icons.arrow_forward_ios),
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const SettingsAccountFragment()),
@@ -62,7 +62,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
           ListTile(
             title: Text(L10n.of(context).home),
-            trailing: Icon(Icons.arrow_forward),
+            trailing: Icon(Icons.arrow_forward_ios),
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const SettingsHomeFragment()),
@@ -70,7 +70,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
           ListTile(
             title: Text(L10n.of(context).theme),
-            trailing: Icon(Icons.arrow_forward),
+            trailing: Icon(Icons.arrow_forward_ios),
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const SettingsThemeFragment()),
@@ -78,7 +78,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
           ListTile(
             title: Text(L10n.of(context).data),
-            trailing: Icon(Icons.arrow_forward),
+            trailing: Icon(Icons.arrow_forward_ios),
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(
@@ -89,7 +89,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
           ListTile(
             title: Text(L10n.of(context).about),
-            trailing: Icon(Icons.arrow_forward),
+            trailing: Icon(Icons.arrow_forward_ios),
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => SettingsAboutFragment(appVersion: appVersion)),
