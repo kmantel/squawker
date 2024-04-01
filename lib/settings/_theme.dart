@@ -11,8 +11,8 @@ class SettingsThemeFragment extends StatelessWidget {
   const SettingsThemeFragment({Key? key}) : super(key: key);
 
   int _getOptionTweetFontSizeValue(BuildContext context) {
-    int optionTweetFontSizeValue =
-        PrefService.of(context).get<int>(optionTweetFontSize) ?? Theme.of(context).textTheme.bodyMedium!.fontSize!.round();
+    int optionTweetFontSizeValue = PrefService.of(context).get<int>(optionTweetFontSize) ??
+        Theme.of(context).textTheme.bodyMedium!.fontSize!.round();
     return optionTweetFontSizeValue;
   }
 
@@ -48,14 +48,14 @@ class SettingsThemeFragment extends StatelessWidget {
             ),
           ]),
           PrefDropdown(
-            title: Text(L10n.of(context).theme),
-            fullWidth: false,
-            pref: optionThemeColorScheme,
-            items: ['accent', ...FlexScheme.values.map((e) => e.name)]
-              .where((e) => e != 'custom')
-              .sorted((a, b) => a.compareTo(b))
-              .map((scheme) => DropdownMenuItem(value: scheme, child: Text(scheme.capitalize)))
-              .toList()),
+              title: Text(L10n.of(context).theme),
+              fullWidth: false,
+              pref: optionThemeColorScheme,
+              items: ['accent', ...FlexScheme.values.map((e) => e.name)]
+                  .where((e) => e != 'custom')
+                  .sorted((a, b) => a.compareTo(b))
+                  .map((scheme) => DropdownMenuItem(value: scheme, child: Text(scheme.capitalize)))
+                  .toList()),
           PrefSwitch(
             title: Text(L10n.of(context).true_black),
             pref: optionThemeTrueBlack,
@@ -75,8 +75,6 @@ class SettingsThemeFragment extends StatelessWidget {
               Text(
                 L10n.of(context).material_3,
               ),
-              Spacer(),
-              Chip(label: Text(L10n.of(context).beta))
             ]),
           )
         ]),

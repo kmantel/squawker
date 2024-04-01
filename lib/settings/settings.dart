@@ -89,16 +89,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     MaterialPageRoute(builder: (context) => const SettingsThemeFragment()),
                   ),
                 ),
-                ListTile(
-                  title: Text(L10n.of(context).data),
-                  trailing: Icon(Icons.arrow_forward_ios),
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => SettingsDataFragment(
-                              legacyExportPath: _legacyExportPath,
-                            )),
-                  ),
+              ]),
+          ExpansionTile(
+              title: Text(
+                L10n.of(context).data,
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              initiallyExpanded: true,
+              dense: true,
+              trailing: SizedBox.shrink(),
+              enabled: false,
+              children: [
+                SettingsDataFragment(
+                  legacyExportPath: _legacyExportPath,
                 )
               ]),
           ExpansionTile(

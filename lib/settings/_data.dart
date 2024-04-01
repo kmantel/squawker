@@ -40,32 +40,41 @@ class SettingsData {
     // guestAccounts from previous versions
     if (json['guestAccounts'] != null) {
       // make sure to filter out the badly manipulated files
-      twtTokens = List.from(json['guestAccounts']).map((e) => TwitterTokenEntity.fromMap(e)).where((e) => e.guest && e.profile == null && e.oauthToken.isNotEmpty && e.oauthTokenSecret.isNotEmpty).toList();
+      twtTokens = List.from(json['guestAccounts'])
+          .map((e) => TwitterTokenEntity.fromMap(e))
+          .where((e) => e.guest && e.profile == null && e.oauthToken.isNotEmpty && e.oauthTokenSecret.isNotEmpty)
+          .toList();
     }
     if (json['twitterTokens'] != null) {
       // make sure to filter out the badly manipulated files
-      twtTokens ??= (await Future.wait(List.from(json['twitterTokens']).map((e) async => TwitterTokenEntity.fromMapSecured(e))))
-        .where((e) => e.oauthToken.isNotEmpty && e.oauthTokenSecret.isNotEmpty && ((e.guest && e.profile == null) || (!e.guest && e.profile != null && e.profile!.username.isNotEmpty && e.profile!.password.isNotEmpty))).toList();
+      twtTokens ??=
+          (await Future.wait(List.from(json['twitterTokens']).map((e) async => TwitterTokenEntity.fromMapSecured(e))))
+              .where((e) =>
+                  e.oauthToken.isNotEmpty &&
+                  e.oauthTokenSecret.isNotEmpty &&
+                  ((e.guest && e.profile == null) ||
+                      (!e.guest &&
+                          e.profile != null &&
+                          e.profile!.username.isNotEmpty &&
+                          e.profile!.password.isNotEmpty)))
+              .toList();
     }
     return SettingsData(
-      settings: json['settings'],
-      searchSubscriptions: json['searchSubscriptions'] != null
-        ? List.from(json['searchSubscriptions']).map((e) => SearchSubscription.fromMap(e)).toList()
-        : null,
-      userSubscriptions: json['subscriptions'] != null
-        ? List.from(json['subscriptions']).map((e) => UserSubscription.fromMap(e)).toList()
-        : null,
-      subscriptionGroups: json['subscriptionGroups'] != null
-        ? List.from(json['subscriptionGroups']).map((e) => SubscriptionGroup.fromMap(e)).toList()
-        : null,
-      subscriptionGroupMembers: json['subscriptionGroupMembers'] != null
-        ? List.from(json['subscriptionGroupMembers']).map((e) => SubscriptionGroupMember.fromMap(e)).toList()
-        : null,
-      twitterTokens: twtTokens,
-      tweets: json['tweets'] != null
-        ? List.from(json['tweets']).map((e) => SavedTweet.fromMap(e)).toList()
-        : null
-    );
+        settings: json['settings'],
+        searchSubscriptions: json['searchSubscriptions'] != null
+            ? List.from(json['searchSubscriptions']).map((e) => SearchSubscription.fromMap(e)).toList()
+            : null,
+        userSubscriptions: json['subscriptions'] != null
+            ? List.from(json['subscriptions']).map((e) => UserSubscription.fromMap(e)).toList()
+            : null,
+        subscriptionGroups: json['subscriptionGroups'] != null
+            ? List.from(json['subscriptionGroups']).map((e) => SubscriptionGroup.fromMap(e)).toList()
+            : null,
+        subscriptionGroupMembers: json['subscriptionGroupMembers'] != null
+            ? List.from(json['subscriptionGroupMembers']).map((e) => SubscriptionGroupMember.fromMap(e)).toList()
+            : null,
+        twitterTokens: twtTokens,
+        tweets: json['tweets'] != null ? List.from(json['tweets']).map((e) => SavedTweet.fromMap(e)).toList() : null);
   }
 
   Future<Map<String, dynamic>> toJson() async {
@@ -75,7 +84,8 @@ class SettingsData {
       'subscriptions': userSubscriptions?.map((e) => e.toMap()).toList(),
       'subscriptionGroups': subscriptionGroups?.map((e) => e.toMap()).toList(),
       'subscriptionGroupMembers': subscriptionGroupMembers?.map((e) => e.toMap()).toList(),
-      'twitterTokens': twitterTokens == null ? null : await Future.wait(twitterTokens!.map((e) async => e.toMapSecured()).toList()),
+      'twitterTokens':
+          twitterTokens == null ? null : await Future.wait(twitterTokens!.map((e) async => e.toMapSecured()).toList()),
       'tweets': tweets?.map((e) => e.toMap()).toList()
     };
   }
@@ -144,11 +154,13 @@ class SettingsDataFragment extends StatelessWidget {
       // after the import there is a possibility of duplicates of oauth tokens with the same profile
       // only keep the most recent one imported
       var database = await Repository.writable();
-      var screenNamesDbData = await database.rawQuery('SELECT t.screen_name as screen_name, COUNT(t.screen_name) as count FROM $tableTwitterToken t INNER JOIN $tableTwitterProfile p ON t.screen_name = p.username GROUP BY t.screen_name HAVING COUNT(t.screen_name) > 1');
+      var screenNamesDbData = await database.rawQuery(
+          'SELECT t.screen_name as screen_name, COUNT(t.screen_name) as count FROM $tableTwitterToken t INNER JOIN $tableTwitterProfile p ON t.screen_name = p.username GROUP BY t.screen_name HAVING COUNT(t.screen_name) > 1');
       for (int i = 0; i < screenNamesDbData.length; i++) {
         String screenName = screenNamesDbData[i]['screen_name'] as String;
         List<TwitterTokenEntity> tokenLst = twitterTokens.where((e) => e.screenName == screenName).toList();
-        var ttLstDbData = await database.query(tableTwitterToken, where: 'screen_name = ?', whereArgs: [screenName], orderBy: 'created_at DESC');
+        var ttLstDbData = await database.query(tableTwitterToken,
+            where: 'screen_name = ?', whereArgs: [screenName], orderBy: 'created_at DESC');
         List<String> oauthTokenLst = ttLstDbData.map((e) => e['oauth_token'] as String).toList();
         // remove from the list the one that will be kept in db
         bool removed = false;
@@ -162,7 +174,8 @@ class SettingsDataFragment extends StatelessWidget {
         if (!removed) {
           oauthTokenLst.removeAt(0);
         }
-        await database.delete(tableTwitterToken, where: 'oauth_token IN (${List.filled(oauthTokenLst.length, '?').join(',')})', whereArgs: oauthTokenLst);
+        await database.delete(tableTwitterToken,
+            where: 'oauth_token IN (${List.filled(oauthTokenLst.length, '?').join(',')})', whereArgs: oauthTokenLst);
       }
     }
 
@@ -183,31 +196,22 @@ class SettingsDataFragment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text(L10n.current.data)),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8),
-        child: ListView(children: [
-          PrefLabel(
-            leading: const Icon(Icons.file_download_rounded),
-            title: Text(L10n.of(context).import),
-            subtitle: Text(L10n.of(context).import_data_from_another_device),
-            onTap: () async {
-              var path = await FlutterFileDialog.pickFile(params: const OpenFileDialogParams());
-              if (path != null) {
-                await _importFromFile(context, File(path));
-              }
-            },
-          ),
-          PrefLabel(
-            leading: const Icon(Icons.save),
-            title: Text(L10n.of(context).export),
-            subtitle: Text(L10n.of(context).export_your_data),
-            onTap: () => Navigator.pushNamed(context, routeSettingsExport),
-          ),
-        ]),
+    return Column(mainAxisSize: MainAxisSize.min, children: [
+      PrefLabel(
+        title: Text(L10n.of(context).import),
+        subtitle: Text(L10n.of(context).import_data_from_another_device),
+        onTap: () async {
+          var path = await FlutterFileDialog.pickFile(params: const OpenFileDialogParams());
+          if (path != null) {
+            await _importFromFile(context, File(path));
+          }
+        },
       ),
-    );
+      PrefLabel(
+        title: Text(L10n.of(context).export),
+        subtitle: Text(L10n.of(context).export_your_data),
+        onTap: () => Navigator.pushNamed(context, routeSettingsExport),
+      ),
+    ]);
   }
 }
-
