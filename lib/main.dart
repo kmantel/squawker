@@ -66,13 +66,13 @@ Future checkForUpdates() async {
               'View version ${map["tag_name"]} on Github',
               const NotificationDetails(
                   android: AndroidNotificationDetails(
-                    'updates',
-                    'Updates',
-                    channelDescription: 'When a new app update is available show a notification',
-                    importance: Importance.max,
-                    priority: Priority.high,
-                    showWhen: false,
-                  )),
+                'updates',
+                'Updates',
+                channelDescription: 'When a new app update is available show a notification',
+                importance: Importance.max,
+                priority: Priority.high,
+                showWhen: false,
+              )),
               payload: map['html_url']);
         });
       } else if (map['html_url'].isEmpty) {
@@ -135,7 +135,6 @@ setTimeagoLocales() {
 }
 
 Future<void> main() async {
-
   Logger.root.activateLogcat();
   Logger.root.level = Level.ALL;
 
@@ -170,8 +169,8 @@ Future<void> main() async {
     optionSubscriptionOrderCustom: '',
     optionThemeMode: 'system',
     optionThemeTrueBlack: false,
-    optionThemeMaterial3: false,
-    optionThemeColorScheme: 'mango',
+    optionThemeMaterial3: true,
+    optionThemeColorScheme: 'accent',
     optionTweetsHideSensitive: false,
     optionKeepFeedOffset: false,
     optionLeanerFeeds: false,
@@ -239,28 +238,28 @@ Future<void> main() async {
   AppHttpClient.setProxy(prefService.get(optionProxy));
 
   runApp(PrefService(
-    service: prefService,
-    child: MultiProvider(
-      providers: [
-        Provider(create: (context) => groupsModel),
-        Provider(create: (context) => homeModel),
-        ChangeNotifierProvider(create: (context) => importDataModel),
-        Provider(create: (context) => twitterTokensModel),
-        Provider(create: (context) => subscriptionsModel),
-        Provider(create: (context) => SavedTweetModel()),
-        Provider(create: (context) => SearchTweetsModel()),
-        Provider(create: (context) => SearchUsersModel()),
-        Provider(create: (context) => trendLocationModel),
-        Provider(create: (context) => TrendLocationsModel()),
-        Provider(create: (context) => TrendsModel(trendLocationModel)),
-        ChangeNotifierProvider(create: (_) => VideoContextState(prefService.get(optionMediaDefaultMute))),
-      ],
-      child: /*DevicePreview(
+      service: prefService,
+      child: MultiProvider(
+        providers: [
+          Provider(create: (context) => groupsModel),
+          Provider(create: (context) => homeModel),
+          ChangeNotifierProvider(create: (context) => importDataModel),
+          Provider(create: (context) => twitterTokensModel),
+          Provider(create: (context) => subscriptionsModel),
+          Provider(create: (context) => SavedTweetModel()),
+          Provider(create: (context) => SearchTweetsModel()),
+          Provider(create: (context) => SearchUsersModel()),
+          Provider(create: (context) => trendLocationModel),
+          Provider(create: (context) => TrendLocationsModel()),
+          Provider(create: (context) => TrendsModel(trendLocationModel)),
+          ChangeNotifierProvider(create: (_) => VideoContextState(prefService.get(optionMediaDefaultMute))),
+        ],
+        child: /*DevicePreview(
         enabled: !kReleaseMode,
-        builder: (context) => */const SquawkerApp(),
-      /*),*/
-    )
-  ));
+        builder: (context) => */
+            const SquawkerApp(),
+        /*),*/
+      )));
 }
 
 class SquawkerApp extends StatefulWidget {
@@ -294,23 +293,26 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
         var splitLocale = locale.split('_');
         if (splitLocale.length == 1) {
           _locale = L10n.delegate.supportedLocales.firstWhereOrNull((e) => e.languageCode == splitLocale[0]);
-        }
-        else if (splitLocale.length == 2) {
+        } else if (splitLocale.length == 2) {
           if (splitLocale[1].length == 2) {
-            _locale = L10n.delegate.supportedLocales.firstWhereOrNull((e) => e.languageCode == splitLocale[0] && e.countryCode == splitLocale[1]);
+            _locale = L10n.delegate.supportedLocales
+                .firstWhereOrNull((e) => e.languageCode == splitLocale[0] && e.countryCode == splitLocale[1]);
+          } else {
+            // splitLocale[1].length == 4
+            _locale = L10n.delegate.supportedLocales
+                .firstWhereOrNull((e) => e.languageCode == splitLocale[0] && e.scriptCode == splitLocale[1]);
           }
-          else { // splitLocale[1].length == 4
-            _locale = L10n.delegate.supportedLocales.firstWhereOrNull((e) => e.languageCode == splitLocale[0] && e.scriptCode == splitLocale[1]);
-          }
-        }
-        else { // splitLocale.length == 3
-          _locale = L10n.delegate.supportedLocales.firstWhereOrNull((e) => e.languageCode == splitLocale[0] && e.scriptCode == splitLocale[1] && e.countryCode == splitLocale[2]);
+        } else {
+          // splitLocale.length == 3
+          _locale = L10n.delegate.supportedLocales.firstWhereOrNull((e) =>
+              e.languageCode == splitLocale[0] && e.scriptCode == splitLocale[1] && e.countryCode == splitLocale[2]);
         }
       }
     }
 
     void setColorScheme(String colorSchemeName) {
-      _colorScheme = colorSchemeName != 'accent' ? FlexScheme.values.byName(colorSchemeName) : FlexScheme.materialBaseline;
+      _colorScheme =
+          colorSchemeName != 'accent' ? FlexScheme.values.byName(colorSchemeName) : FlexScheme.materialBaseline;
       _accentColor = colorSchemeName != 'accent' ? false : true;
     }
 
@@ -395,7 +397,7 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
     }
 
     ThemeData light = FlexThemeData.light(
-      colors: _accentColor ? AccentUtil.lightAccentColors: null,
+      colors: _accentColor ? AccentUtil.lightAccentColors : null,
       scheme: _colorScheme,
       surfaceMode: FlexSurfaceMode.highScaffoldLowSurface,
       blendLevel: 20,
@@ -406,11 +408,12 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
         blendOnColors: false,
       ),
       visualDensity: FlexColorScheme.comfortablePlatformDensity,
+      useMaterial3ErrorColors: _material3,
       useMaterial3: _material3,
       appBarStyle: FlexAppBarStyle.primary,
     );
     ThemeData dark = FlexThemeData.dark(
-      colors: _accentColor ? AccentUtil.darkAccentColors: null,
+      colors: _accentColor ? AccentUtil.darkAccentColors : null,
       scheme: _colorScheme,
       darkIsTrueBlack: _trueBlack,
       surfaceMode: FlexSurfaceMode.highScaffoldLowSurface,
@@ -422,6 +425,7 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
         blendOnColors: false,
       ),
       visualDensity: FlexColorScheme.comfortablePlatformDensity,
+      useMaterial3ErrorColors: _material3,
       useMaterial3: _material3,
       appBarStyle: _trueBlack ? FlexAppBarStyle.surface : FlexAppBarStyle.primary,
     );
@@ -453,24 +457,24 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
           if (supportedLocalesCountryCode.contains(localesCountryCode[i]) &&
               supportedLocalesScriptCode.contains(localesScriptCode[i]) &&
               supportedLocalesLanguageCode.contains(localesLanguageCode[i])) {
-            log.info('*** Locale Country: ${localesCountryCode[i]}, Script: ${localesScriptCode[i]}, Language: ${localesLanguageCode[i]}');
-            return Locale.fromSubtags(countryCode: localesCountryCode[i], scriptCode: localesScriptCode[i], languageCode: localesLanguageCode[i]);
-          }
-          else if (supportedLocalesCountryCode.contains(localesCountryCode[i]) &&
-                   supportedLocalesLanguageCode.contains(localesLanguageCode[i])) {
+            log.info(
+                '*** Locale Country: ${localesCountryCode[i]}, Script: ${localesScriptCode[i]}, Language: ${localesLanguageCode[i]}');
+            return Locale.fromSubtags(
+                countryCode: localesCountryCode[i],
+                scriptCode: localesScriptCode[i],
+                languageCode: localesLanguageCode[i]);
+          } else if (supportedLocalesCountryCode.contains(localesCountryCode[i]) &&
+              supportedLocalesLanguageCode.contains(localesLanguageCode[i])) {
             log.info('*** Locale Country: ${localesCountryCode[i]}, Language: ${localesLanguageCode[i]}');
             return Locale.fromSubtags(countryCode: localesCountryCode[i], languageCode: localesLanguageCode[i]);
-          }
-          else if (supportedLocalesScriptCode.contains(localesScriptCode[i]) &&
-                   supportedLocalesLanguageCode.contains(localesLanguageCode[i])) {
+          } else if (supportedLocalesScriptCode.contains(localesScriptCode[i]) &&
+              supportedLocalesLanguageCode.contains(localesLanguageCode[i])) {
             log.info('*** Locale Script: ${localesScriptCode[i]}, Language: ${localesLanguageCode[i]}');
             return Locale.fromSubtags(scriptCode: localesScriptCode[i], languageCode: localesLanguageCode[i]);
-          }
-          else if (supportedLocalesLanguageCode.contains(localesLanguageCode[i])) {
+          } else if (supportedLocalesLanguageCode.contains(localesLanguageCode[i])) {
             log.info('*** Locale Language: ${localesLanguageCode[i]}');
             return Locale.fromSubtags(languageCode: localesLanguageCode[i]);
-          }
-          else {
+          } else {
             log.info('*** No Locale, so Language: en');
           }
         }
@@ -483,19 +487,18 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: L10n.delegate.supportedLocales,
-      locale: _locale ?? const Locale('en-US'),//DevicePreview.locale(context),
+      locale: _locale ?? const Locale('en-US'), //DevicePreview.locale(context),
       title: 'Squawker',
       // regression #130295 in flutter Document Checkbox.fillColor behavior change
       // ref: https://github.com/flutter/flutter/issues/130295
       theme: light.copyWith(
         checkboxTheme: light.checkboxTheme.copyWith(
-          fillColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
-            if (!states.contains(MaterialState.selected) && !states.contains(MaterialState.pressed)) {
-              return Colors.white;
-            }
-            return light.checkboxTheme.fillColor!.resolve(states) as Color;
-          })
-        ),
+            fillColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
+          if (!states.contains(MaterialState.selected) && !states.contains(MaterialState.pressed)) {
+            return Colors.white;
+          }
+          return light.checkboxTheme.fillColor!.resolve(states) as Color;
+        })),
         tabBarTheme: light.tabBarTheme.copyWith(
           labelColor: Colors.white,
           unselectedLabelColor: Colors.grey.shade400.lighten(),
@@ -510,9 +513,7 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
       themeMode: themeMode,
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
-      navigatorObservers: [
-        _routeObserver
-      ],
+      navigatorObservers: [_routeObserver],
       routes: {
         routeHome: (context) => const DefaultPage(),
         routeGroup: (context) => const GroupScreen(),
@@ -579,21 +580,21 @@ class _DefaultPageState extends State<DefaultPage> {
             return true;
           }
           var result = await showDialog<bool>(
-            context: context,
-            builder: (c) => AlertDialog(
-              title: Text(L10n.current.are_you_sure),
-              content: Text(L10n.current.confirm_close_fritter),
-              actions: [
-                TextButton(
-                  child: Text(L10n.current.no),
-                  onPressed: () => Navigator.pop(c, false),
-                ),
-                TextButton(
-                  child: Text(L10n.current.yes),
-                  onPressed: () => Navigator.pop(c, true),
-                ),
-              ],
-            ));
+              context: context,
+              builder: (c) => AlertDialog(
+                    title: Text(L10n.current.are_you_sure),
+                    content: Text(L10n.current.confirm_close_fritter),
+                    actions: [
+                      TextButton(
+                        child: Text(L10n.current.no),
+                        onPressed: () => Navigator.pop(c, false),
+                      ),
+                      TextButton(
+                        child: Text(L10n.current.yes),
+                        onPressed: () => Navigator.pop(c, true),
+                      ),
+                    ],
+                  ));
 
           return result ?? false;
         },
@@ -607,7 +608,6 @@ class _DefaultPageState extends State<DefaultPage> {
 }
 
 class _MyRouteObserver extends RouteObserver<PageRoute<dynamic>> {
-
   @override
   void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) async {
     super.didPop(route, previousRoute);
@@ -622,5 +622,4 @@ class _MyRouteObserver extends RouteObserver<PageRoute<dynamic>> {
       }
     }
   }
-
 }
