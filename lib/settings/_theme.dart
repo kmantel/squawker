@@ -69,14 +69,6 @@ class SettingsThemeFragment extends StatelessWidget {
             onTap: () => _createTweetFontSizeDialog(context),
             child: Text('${_getOptionTweetFontSizeValue(context)} px'),
           ),
-          PrefSwitch(
-            pref: optionThemeMaterial3,
-            title: Row(children: [
-              Text(
-                L10n.of(context).material_3,
-              ),
-            ]),
-          )
         ]),
       ),
     );

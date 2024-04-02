@@ -169,7 +169,6 @@ Future<void> main() async {
     optionSubscriptionOrderCustom: '',
     optionThemeMode: 'system',
     optionThemeTrueBlack: false,
-    optionThemeMaterial3: true,
     optionThemeColorScheme: 'accent',
     optionTweetsHideSensitive: false,
     optionKeepFeedOffset: false,
@@ -274,7 +273,6 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
 
   String _themeMode = 'system';
   bool _trueBlack = false;
-  bool _material3 = false;
   FlexScheme _colorScheme = FlexScheme.mango;
   bool _accentColor = false;
   Locale? _locale;
@@ -330,7 +328,6 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
       setLocale(prefService.get<String>(optionLocale));
       _themeMode = prefService.get(optionThemeMode);
       _trueBlack = prefService.get(optionThemeTrueBlack);
-      _material3 = prefService.get(optionThemeMaterial3);
       setColorScheme(prefService.get(optionThemeColorScheme));
       setDisableScreenshots(prefService.get(optionDisableScreenshots));
     });
@@ -349,12 +346,6 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
     prefService.addKeyListener(optionThemeTrueBlack, () {
       setState(() {
         _trueBlack = prefService.get(optionThemeTrueBlack);
-      });
-    });
-
-    prefService.addKeyListener(optionThemeMaterial3, () {
-      setState(() {
-        _material3 = prefService.get(optionThemeMaterial3);
       });
     });
 
@@ -408,8 +399,8 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
         blendOnColors: false,
       ),
       visualDensity: FlexColorScheme.comfortablePlatformDensity,
-      useMaterial3ErrorColors: _material3,
-      useMaterial3: _material3,
+      useMaterial3ErrorColors: true,
+      useMaterial3: true,
       appBarStyle: FlexAppBarStyle.primary,
     );
     ThemeData dark = FlexThemeData.dark(
@@ -425,8 +416,8 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
         blendOnColors: false,
       ),
       visualDensity: FlexColorScheme.comfortablePlatformDensity,
-      useMaterial3ErrorColors: _material3,
-      useMaterial3: _material3,
+      useMaterial3ErrorColors: true,
+      useMaterial3: true,
       appBarStyle: _trueBlack ? FlexAppBarStyle.surface : FlexAppBarStyle.primary,
     );
     return MaterialApp(
@@ -489,27 +480,8 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
       supportedLocales: L10n.delegate.supportedLocales,
       locale: _locale ?? const Locale('en-US'), //DevicePreview.locale(context),
       title: 'Squawker',
-      // regression #130295 in flutter Document Checkbox.fillColor behavior change
-      // ref: https://github.com/flutter/flutter/issues/130295
-      theme: light.copyWith(
-        checkboxTheme: light.checkboxTheme.copyWith(
-            fillColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
-          if (!states.contains(MaterialState.selected) && !states.contains(MaterialState.pressed)) {
-            return Colors.white;
-          }
-          return light.checkboxTheme.fillColor!.resolve(states) as Color;
-        })),
-        tabBarTheme: light.tabBarTheme.copyWith(
-          labelColor: Colors.white,
-          unselectedLabelColor: Colors.grey.shade400.lighten(),
-        ),
-      ),
-      darkTheme: dark.copyWith(
-        tabBarTheme: dark.tabBarTheme.copyWith(
-          labelColor: Colors.white,
-          unselectedLabelColor: Colors.grey.shade400.lighten(),
-        ),
-      ),
+      theme: light,
+      darkTheme: dark,
       themeMode: themeMode,
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
