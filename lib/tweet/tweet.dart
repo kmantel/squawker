@@ -595,7 +595,7 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
                                       ],
                                     ),
                                   ),
-                                const Spacer(),
+
                                 InkWell(
                                   child: const Icon(Icons.more_horiz),
                                   onTap: () async {
