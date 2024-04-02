@@ -25,7 +25,6 @@ import 'package:squawker/utils/data_service.dart';
 import 'package:squawker/utils/debounce.dart';
 import 'package:pref/pref.dart';
 import 'package:provider/provider.dart';
-import 'package:scroll_bottom_navigation_bar/scroll_bottom_navigation_bar.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 
 typedef NavigationTitleBuilder = String Function(BuildContext context);
@@ -297,24 +296,7 @@ class ScaffoldWithBottomNavigationState extends State<ScaffoldWithBottomNavigati
 
     _pageController = PageController(initialPage: widget.initialPage);
 
-    scrollController.bottomNavigationBar.setTab(widget.initialPage);
-    scrollController.bottomNavigationBar.tabListener((index) async {
-      if (_children[index] is FeedScreen && widget.feedKey != null && widget.feedKey!.currentState != null) {
-        await widget.feedKey!.currentState!.checkUpdateFeed();
-      }
-      _pageController?.animateToPage(index, curve: Curves.easeInOut, duration: const Duration(milliseconds: 100));
-    });
-
     _children = widget.builder(scrollController);
-  }
-
-  void fromFeedToSubscriptions() {
-    int idx = widget.pages.indexWhere((e) => e.id == 'feed');
-    if (idx == scrollController.bottomNavigationBar.tabNotifier.value) {
-      setState(() {
-        _goToSubscriptions = true;
-      });
-    }
   }
 
   List<NavigationPage> _padToMinimumPagesLength(List<NavigationPage> pages) {
@@ -339,15 +321,6 @@ class ScaffoldWithBottomNavigationState extends State<ScaffoldWithBottomNavigati
         _pages = newPages;
       });
     }
-
-    var page = _pageController?.page?.toInt();
-    if (page != null) {
-      // Ensure we're not trying to show a page that no longer exists (i.e. one that was selected, but now deleted)
-      var currentTab = scrollController.bottomNavigationBar.tabNotifier.value;
-      if (currentTab >= newPages.length) {
-        scrollController.bottomNavigationBar.tabNotifier.value = newPages.length - 1;
-      }
-    }
   }
 
   @override
@@ -363,7 +336,6 @@ class ScaffoldWithBottomNavigationState extends State<ScaffoldWithBottomNavigati
       _goToSubscriptions = false;
       WidgetsBinding.instance.addPostFrameCallback((_) {
         int idx = widget.pages.indexWhere((e) => e.id == 'subscriptions');
-        scrollController.bottomNavigationBar.setTab(idx);
         _pageController?.animateToPage(idx, curve: Curves.easeInOut, duration: const Duration(milliseconds: 100));
       });
     }
