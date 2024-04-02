@@ -133,10 +133,10 @@ class _HomeScreenState extends State<_HomeScreen> {
       var statusId = link.pathSegments[2];
 
       Navigator.pushNamed(context, routeStatus,
-        arguments: StatusScreenArguments(
-          id: statusId,
-          username: username,
-        ));
+          arguments: StatusScreenArguments(
+            id: statusId,
+            username: username,
+          ));
       return;
     }
 
@@ -233,7 +233,8 @@ class _HomeScreenState extends State<_HomeScreen> {
 
                     switch (e.id) {
                       case 'feed':
-                        return FeedScreen(key: _feedKey, scrollController: scrollController, id: '-1', name: L10n.current.feed);
+                        return FeedScreen(
+                            key: _feedKey, scrollController: scrollController, id: '-1', name: L10n.current.feed);
                       case 'subscriptions':
                         return SubscriptionsScreen();
                       case 'groups':
@@ -272,7 +273,8 @@ class ScaffoldWithBottomNavigation extends StatefulWidget {
   final List<Widget> Function(ScrollController scrollController) builder;
   final GlobalKey<FeedScreenState>? feedKey;
 
-  const ScaffoldWithBottomNavigation({Key? key, required this.pages, required this.initialPage, required this.builder, required this.feedKey})
+  const ScaffoldWithBottomNavigation(
+      {Key? key, required this.pages, required this.initialPage, required this.builder, required this.feedKey})
       : super(key: key);
 
   @override
@@ -354,6 +356,7 @@ class ScaffoldWithBottomNavigationState extends State<ScaffoldWithBottomNavigati
     _pageController?.dispose();
   }
 
+  int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     if (_goToSubscriptions) {
@@ -369,18 +372,18 @@ class ScaffoldWithBottomNavigationState extends State<ScaffoldWithBottomNavigati
         controller: _pageController,
         physics: const LessSensitiveScrollPhysics(),
         onPageChanged: (page) => Debouncer.debounce('page-change', const Duration(milliseconds: 200), () {
-          // Reset the height when the page changes, otherwise the navigation bar stays hidden forever
-          scrollController.bottomNavigationBar.heightNotifier.value = 1;
-          scrollController.bottomNavigationBar.setTab(page);
+          setState(() => selectedIndex = page);
         }),
         children: _children,
       ),
-      bottomNavigationBar: ScrollBottomNavigationBar(
-        controller: scrollController,
-        showUnselectedLabels: true,
-        items: [
-          ..._pages.map((e) => BottomNavigationBarItem(icon: Icon(e.icon, size: 22), label: e.titleBuilder(context)))
+      bottomNavigationBar: NavigationBar(
+        selectedIndex: selectedIndex,
+        labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
+        destinations: [
+          ..._pages.map((e) => NavigationDestination(icon: Icon(e.icon, size: 22), label: e.titleBuilder(context)))
         ],
+        onDestinationSelected: (int value) => setState(() =>
+            _pageController?.animateToPage(value, duration: const Duration(milliseconds: 200), curve: Curves.linear)),
       ),
     );
   }
