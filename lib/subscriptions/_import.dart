@@ -64,17 +64,16 @@ class _SubscriptionImportScreenState extends State<SubscriptionImportScreen> {
             await importModel.importData({
               tableSubscription: [
                 ...response.users.map((e) => UserSubscription(
-                  id: e.idStr!,
-                  name: e.name!,
-                  profileImageUrlHttps: e.profileImageUrlHttps,
-                  screenName: e.screenName!,
-                  verified: e.verified ?? false,
-                  inFeed: true,
-                  createdAt: createdAt))
+                    id: e.idStr!,
+                    name: e.name!,
+                    profileImageUrlHttps: e.profileImageUrlHttps,
+                    screenName: e.screenName!,
+                    verified: e.verified ?? false,
+                    inFeed: true,
+                    createdAt: createdAt))
               ]
             });
-          }
-          else {
+          } else {
             break;
           }
 
@@ -90,14 +89,13 @@ class _SubscriptionImportScreenState extends State<SubscriptionImportScreen> {
         List<UserWithExtra> users = [];
 
         if (TwitterAccount.hasAccountAvailable()) {
-          users = await Twitter.getUsersByScreenName(_specificScreenNames!.split(',').map((e) => e.trim()).where((e) => e.isNotEmpty));
-        }
-        else {
+          users = await Twitter.getUsersByScreenName(
+              _specificScreenNames!.split(',').map((e) => e.trim()).where((e) => e.isNotEmpty));
+        } else {
           for (String screenName in _specificScreenNames!.split(',').map((e) => e.trim()).where((e) => e.isNotEmpty)) {
             try {
               users.add((await Twitter.getProfileByScreenName(screenName)).user);
-            }
-            catch (err, _) {
+            } catch (err, _) {
               _streamController?.addError(err, _);
             }
           }
@@ -107,13 +105,13 @@ class _SubscriptionImportScreenState extends State<SubscriptionImportScreen> {
           await importModel.importData({
             tableSubscription: [
               ...users.map((e) => UserSubscription(
-                id: e.idStr!,
-                name: e.name!,
-                profileImageUrlHttps: e.profileImageUrlHttps,
-                screenName: e.screenName!,
-                verified: e.verified ?? false,
-                inFeed: true,
-                createdAt: createdAt))
+                  id: e.idStr!,
+                  name: e.name!,
+                  profileImageUrlHttps: e.profileImageUrlHttps,
+                  screenName: e.screenName!,
+                  verified: e.verified ?? false,
+                  inFeed: true,
+                  createdAt: createdAt))
             ]
           });
 
@@ -127,7 +125,6 @@ class _SubscriptionImportScreenState extends State<SubscriptionImportScreen> {
       _streamController?.close();
 
       DataService().map['toggleKeepFeed'] = true;
-
     } catch (e, stackTrace) {
       _streamController?.addError(e, stackTrace);
     }

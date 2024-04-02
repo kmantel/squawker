@@ -358,7 +358,8 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> with TickerProvid
                                           ),
                                           if (user.verified ?? false) const SizedBox(width: 6),
                                           if (user.verified ?? false)
-                                            const Icon(Icons.verified_rounded, size: 24, color: Colors.blue)
+                                            Icon(Icons.verified_rounded,
+                                                size: 24, color: Theme.of(context).primaryColor)
                                         ],
                                       ),
                                       Container(

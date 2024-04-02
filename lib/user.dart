@@ -86,7 +86,7 @@ class UserTile extends StatelessWidget {
         children: [
           Flexible(child: Text(user.name, maxLines: 1, overflow: TextOverflow.ellipsis)),
           if (user.verified) const SizedBox(width: 6),
-          if (user.verified) const Icon(Icons.verified_rounded, size: 14, color: Colors.blue)
+          if (user.verified) Icon(Icons.verified, size: 14, color: Theme.of(context).primaryColor)
         ],
       ),
       subtitle: Text('@${user.screenName}', maxLines: 1, overflow: TextOverflow.ellipsis),
@@ -164,8 +164,11 @@ class FollowButton extends StatelessWidget {
         var followed = state.any((element) => element.id == user.id);
         var inFeed = followed ? state.any((element) => element.id == user.id && element.inFeed) : false;
 
-        var icon =
-            followed ? (inFeed ? Icon(Icons.person_remove_rounded, color: color) : const Icon(Icons.person_remove_rounded, color: Colors.red)) : Icon(Icons.person_add_rounded, color: color);
+        var icon = followed
+            ? (inFeed
+                ? Icon(Icons.person_remove_rounded, color: color)
+                : const Icon(Icons.person_remove_rounded, color: Colors.red))
+            : Icon(Icons.person_add_rounded, color: color);
         var textSub = followed ? L10n.of(context).unsubscribe : L10n.of(context).subscribe;
         var textFeed = followed ? (inFeed ? L10n.of(context).remove_from_feed : L10n.of(context).add_to_feed) : null;
 
@@ -184,12 +187,12 @@ class FollowButton extends StatelessWidget {
               case 'add_to_group':
                 var groups = await context.read<GroupsModel>().listGroupsForUser(user.id);
                 showDialog(
-                  context: context,
-                  builder: (_) => FollowButtonSelectGroupDialog(
-                    user: user,
-                    followed: followed,
-                    groupsForUser: groups,
-                  ));
+                    context: context,
+                    builder: (_) => FollowButtonSelectGroupDialog(
+                          user: user,
+                          followed: followed,
+                          groupsForUser: groups,
+                        ));
                 break;
               case 'toggle_subscribe':
                 GlobalKey<SubscriptionGroupFeedState>? sgfKey = DataService().map['feed_key__1'];
