@@ -366,9 +366,11 @@ class _SubscriptionGroupEditDialogState extends State<SubscriptionGroupEditDialo
                     icon: Icon(deserializeIconData(icon)),
                     onPressed: () async {
                       var selectedIcon = await FlutterIconPicker.showIconPicker(context,
-                          iconPackModes: [IconPack.material],
+                          iconPackModes: [IconPack.lineAwesomeIcons],
                           title: Text(L10n.of(context).pick_an_icon),
                           closeChild: Text(L10n.of(context).close),
+                          searchClearIcon: Icon(Symbols.close),
+                          searchIcon: Icon(Symbols.search),
                           searchHintText: L10n.of(context).search,
                           noResultsText: L10n.of(context).no_results_for);
                       if (selectedIcon != null) {
