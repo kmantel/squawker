@@ -634,7 +634,7 @@ class Twitter {
 
   static Future<List<TrendLocation>> getTrendLocations() async {
     var result = await _cache.getOrCreateAsJSON('trends.locations', const Duration(days: 2), () async {
-      var locations = await _twitterApi.trendsService.available();
+      var locations = await _twitterApiAllowUnauthenticated.trendsService.available();
 
       return jsonEncode(locations.map((e) => e.toJson()).toList());
     });

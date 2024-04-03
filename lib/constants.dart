@@ -38,7 +38,6 @@ const optionSubscriptionInitialTab = 'subscription.initial_tab';
 
 const optionThemeMode = 'theme.mode';
 const optionThemeTrueBlack = 'theme.true_black';
-const optionThemeMaterial3 = 'theme.material3';
 const optionThemeColorScheme = 'theme.color_scheme';
 
 const optionTweetsHideSensitive = 'tweets.hide_sensitive';
@@ -72,4 +71,3 @@ const routeSubscriptionsImport = '/subscriptions/import';
 const twitterAccountTypesPriorityToRegular = 'twitter_account_types_priority_to_regular';
 const twitterAccountTypesBoth = 'twitter_account_types_both';
 const twitterAccountTypesOnlyRegular = 'twitter_account_types_only_regular';
-

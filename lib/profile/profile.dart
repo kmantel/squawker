@@ -3,6 +3,7 @@ import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_triple/flutter_triple.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:squawker/client/client_account.dart';
 import 'package:squawker/constants.dart';
 import 'package:squawker/database/entities.dart';
@@ -35,8 +36,6 @@ final List<NavigationTab> defaultSubscriptionTabs = [
   NavigationTab('tweets', (c) => L10n.of(c).tweets),
   NavigationTab('tweets_and_replies', (c) => L10n.of(c).tweets_and_replies),
   NavigationTab('media', (c) => L10n.of(c).media),
-  NavigationTab('following', (c) => L10n.of(c).following),
-  NavigationTab('followers', (c) => L10n.of(c).followers),
   NavigationTab('saved', (c) => L10n.of(c).saved),
 ];
 
@@ -130,6 +129,8 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> with TickerProvid
   bool descriptionResized = false;
   bool metadataResized = false;
 
+  NumberFormat numberFormat = NumberFormat.compact();
+
   @override
   void initState() {
     super.initState();
@@ -146,7 +147,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> with TickerProvid
     String initialTabStr = widget.prefs.get(optionSubscriptionInitialTab);
     int initialTabIdx = defaultSubscriptionTabs.indexWhere((e) => e.id == initialTabStr);
 
-    _tabController = TabController(length: 6, vsync: this, initialIndex: initialTabIdx);
+    _tabController = TabController(length: 4, vsync: this, initialIndex: initialTabIdx);
 
     var description = widget.profile.user.description;
     if (description == null || description.isEmpty) {
@@ -282,6 +283,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> with TickerProvid
                 bottom: TabBar(
                   controller: _tabController,
                   isScrollable: true,
+                  tabAlignment: TabAlignment.start,
                   tabs: [
                     Tab(
                       child: Text(
@@ -304,18 +306,6 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> with TickerProvid
                     Tab(
                       child: Text(
                         defaultSubscriptionTabs[3].titleBuilder(context),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    Tab(
-                      child: Text(
-                        defaultSubscriptionTabs[4].titleBuilder(context),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    Tab(
-                      child: Text(
-                        defaultSubscriptionTabs[5].titleBuilder(context),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -357,7 +347,8 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> with TickerProvid
                                         ),
                                         if (user.verified ?? false) const SizedBox(width: 6),
                                         if (user.verified ?? false)
-                                          const Icon(Icons.verified_rounded, size: 24, color: Colors.blue)
+                                          Icon(Symbols.verified_rounded,
+                                              size: 24, color: Theme.of(context).primaryColor)
                                       ],
                                     ),
                                     Container(
@@ -393,43 +384,53 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> with TickerProvid
                                           mainAxisAlignment: MainAxisAlignment.end,
                                           children: [
                                             if (user.friendsCount != null)
-                                              Padding(
-                                                padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 0),
-                                                child: Row(
-                                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                                  children: [
-                                                    const Icon(Icons.person_rounded, size: 12, color: Colors.white),
-                                                    const SizedBox(width: 4),
-                                                    Text.rich(TextSpan(children: [
-                                                      TextSpan(
-                                                          text: '${widget.profile.user.friendsCount}',
-                                                          style: metadataTextStyle.copyWith(
-                                                              fontWeight: FontWeight.w500)),
-                                                      TextSpan(
-                                                          text: ' ${L10n.current.following.toLowerCase()}',
-                                                          style: metadataTextStyle)
-                                                    ])),
-                                                  ],
+                                              InkWell(
+                                                onTap: () => Navigator.of(context).push(
+                                                  MaterialPageRoute(builder: ((context) => ProfileFollows(user: user, type: 'following')))
+                                                ),
+                                                child: Padding(
+                                                  padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 0),
+                                                  child: Row(
+                                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                                    children: [
+                                                      const Icon(Icons.person_rounded, size: 12, color: Colors.white),
+                                                      const SizedBox(width: 4),
+                                                      Text.rich(TextSpan(children: [
+                                                        TextSpan(
+                                                            text: '${widget.profile.user.friendsCount}',
+                                                            style: metadataTextStyle.copyWith(
+                                                                fontWeight: FontWeight.w500)),
+                                                        TextSpan(
+                                                            text: ' ${L10n.current.following.toLowerCase()}',
+                                                            style: metadataTextStyle)
+                                                      ])),
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
                                             if (user.followersCount != null)
-                                              Padding(
-                                                padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 0),
-                                                child: Row(
-                                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                                  children: [
-                                                    const Icon(Icons.person_rounded, size: 12, color: Colors.white),
-                                                    const SizedBox(width: 4),
-                                                    Text.rich(TextSpan(children: [
-                                                      TextSpan(
-                                                          text: '${widget.profile.user.followersCount}',
-                                                          style: metadataTextStyle.copyWith(
-                                                              fontWeight: FontWeight.w500)),
-                                                      TextSpan(
-                                                          text: ' ${L10n.current.followers.toLowerCase()}',
-                                                          style: metadataTextStyle)
-                                                    ])),
-                                                  ],
+                                              InkWell(
+                                                onTap: () => Navigator.of(context).push(
+                                                  MaterialPageRoute(builder: ((context) => ProfileFollows(user: user, type: 'followers')))
+                                                ),
+                                                child: Padding(
+                                                  padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 0),
+                                                  child: Row(
+                                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                                    children: [
+                                                      const Icon(Icons.person_rounded, size: 12, color: Colors.white),
+                                                      const SizedBox(width: 4),
+                                                      Text.rich(TextSpan(children: [
+                                                        TextSpan(
+                                                            text: '${widget.profile.user.followersCount}',
+                                                            style: metadataTextStyle.copyWith(
+                                                                fontWeight: FontWeight.w500)),
+                                                        TextSpan(
+                                                            text: ' ${L10n.current.followers.toLowerCase()}',
+                                                            style: metadataTextStyle)
+                                                      ])),
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
                                             if (user.location != null && user.location!.isNotEmpty)
@@ -447,37 +448,37 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> with TickerProvid
                                               ),
                                             if (user.url != null && user.url!.isNotEmpty)
                                               Padding(
-                                                  padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 0),
-                                                  child: Row(
-                                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                                    children: [
-                                                      const Icon(Icons.link_rounded, size: 12, color: Colors.white),
-                                                      const SizedBox(width: 4),
-                                                      Builder(builder: (context) {
-                                                        var url = user.entities?.url?.urls
-                                                            ?.firstWhere((element) => element.url == user.url);
+                                                padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 0),
+                                                child: Row(
+                                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                                  children: [
+                                                    const Icon(Icons.link_rounded, size: 12, color: Colors.white),
+                                                    const SizedBox(width: 4),
+                                                    Builder(builder: (context) {
+                                                      var url = user.entities?.url?.urls
+                                                          ?.firstWhere((element) => element.url == user.url);
 
-                                                        if (url == null) {
-                                                          return Container();
-                                                        }
+                                                      if (url == null) {
+                                                        return Container();
+                                                      }
 
-                                                        var displayUrl = url.displayUrl ?? url.url;
-                                                        var expandedUrl = url.expandedUrl ?? url.url;
+                                                      var displayUrl = url.displayUrl ?? url.url;
+                                                      var expandedUrl = url.expandedUrl ?? url.url;
 
-                                                        var textStyle = metadataTextStyle;
-                                                        if (displayUrl == null || expandedUrl == null) {
-                                                          return Text(L10n.current.unsupported_url,
-                                                              style: textStyle.copyWith(color: theme.hintColor));
-                                                        }
+                                                      var textStyle = metadataTextStyle;
+                                                      if (displayUrl == null || expandedUrl == null) {
+                                                        return Text(L10n.current.unsupported_url,
+                                                            style: textStyle.copyWith(color: theme.hintColor));
+                                                      }
 
-                                                        return InkWell(
-                                                          child: Text(displayUrl,
-                                                              style: textStyle.copyWith(color: Colors.blue)),
-                                                          onTap: () => openUri(expandedUrl),
-                                                        );
-                                                      }),
-                                                    ],
-                                                  )),
+                                                      return InkWell(
+                                                        child: Text(displayUrl,
+                                                            style: textStyle.copyWith(color: Colors.blue)),
+                                                        onTap: () => openUri(expandedUrl),
+                                                      );
+                                                    }),
+                                                  ],
+                                                )),
                                             if (user.createdAt != null)
                                               Padding(
                                                 padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 0),
@@ -503,16 +504,20 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> with TickerProvid
                           ],
                         ),
                       ),
-                      Container(alignment: Alignment.topCenter, child: GestureDetector(child: bannerImage, onTap: () {
-                        if (banner == null) {
-                          return;
-                        }
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                              TweetPhotoView(url: user.profileBannerUrl!, username: user.name!)));
-                      })),
+                      Container(
+                          alignment: Alignment.topCenter,
+                          child: GestureDetector(
+                              child: bannerImage,
+                              onTap: () {
+                                if (banner == null) {
+                                  return;
+                                }
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            TweetPhotoView(url: user.profileBannerUrl!, username: user.name!)));
+                              })),
                       Container(
                         alignment: Alignment.topRight,
                         margin: EdgeInsets.fromLTRB(128, profileImageTop + 64, 16, 16),
@@ -524,19 +529,20 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> with TickerProvid
                         child: CircleAvatar(
                           radius: 50,
                           backgroundColor: Colors.white,
-                          child: GestureDetector(child: UserAvatar(uri: user.profileImageUrlHttps, size: 96), onTap: () =>
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                  TweetPhotoView(url: user.profileImageUrlHttps!.replaceFirst('_normal', ''), username: user.name!)))),
+                          child: GestureDetector(
+                              child: UserAvatar(uri: user.profileImageUrlHttps, size: 96),
+                              onTap: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => TweetPhotoView(
+                                          url: user.profileImageUrlHttps!.replaceFirst('_normal', ''),
+                                          username: user.name!)))),
                         ),
                       )
                     ]),
                   ),
-                )
-              )
-            )];
+                )))
+            ];
           },
           body: MultiProvider(
             providers: [
@@ -552,8 +558,6 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> with TickerProvid
                 ProfileTweets(
                     user: user, type: 'profile', includeReplies: true, pinnedTweets: widget.profile.pinnedTweets),
                 ProfileTweets(user: user, type: 'media', includeReplies: false, pinnedTweets: const []),
-                ProfileFollows(user: user, type: 'following'),
-                ProfileFollows(user: user, type: 'followers'),
                 ProfileSaved(user: user),
               ],
             ),
@@ -565,20 +569,20 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> with TickerProvid
         AnimatedSwitcher(
           duration: const Duration(milliseconds: 150),
           child: descriptionResized == true && metadataResized == true
-            ? Container(key: const Key('loaded'))
-            : Container(
-                key: const Key('waiting'),
-                height: double.infinity,
-                color: theme.colorScheme.background,
-              ),
+              ? Container(key: const Key('loaded'))
+              : Container(
+                  key: const Key('waiting'),
+                  height: double.infinity,
+                  color: theme.colorScheme.background,
+                ),
         )
       ]),
       floatingActionButton: _showBackToTopButton == false
-        ? null
-        : FloatingActionButton(
-            onPressed: _scrollToTop,
-            child: const Icon(Icons.arrow_upward_rounded),
-          ),
+          ? null
+          : FloatingActionButton(
+              onPressed: _scrollToTop,
+              child: const Icon(Symbols.arrow_upward_rounded),
+            ),
     );
   }
 }

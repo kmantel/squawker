@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:material_symbols_icons/symbols.dart';
 
 import 'package:squawker/client/client.dart';
 import 'package:squawker/client/client_account.dart';
@@ -64,17 +65,16 @@ class _SubscriptionImportScreenState extends State<SubscriptionImportScreen> {
             await importModel.importData({
               tableSubscription: [
                 ...response.users.map((e) => UserSubscription(
-                  id: e.idStr!,
-                  name: e.name!,
-                  profileImageUrlHttps: e.profileImageUrlHttps,
-                  screenName: e.screenName!,
-                  verified: e.verified ?? false,
-                  inFeed: true,
-                  createdAt: createdAt))
+                    id: e.idStr!,
+                    name: e.name!,
+                    profileImageUrlHttps: e.profileImageUrlHttps,
+                    screenName: e.screenName!,
+                    verified: e.verified ?? false,
+                    inFeed: true,
+                    createdAt: createdAt))
               ]
             });
-          }
-          else {
+          } else {
             break;
           }
 
@@ -90,14 +90,13 @@ class _SubscriptionImportScreenState extends State<SubscriptionImportScreen> {
         List<UserWithExtra> users = [];
 
         if (TwitterAccount.hasAccountAvailable()) {
-          users = await Twitter.getUsersByScreenName(_specificScreenNames!.split(',').map((e) => e.trim()).where((e) => e.isNotEmpty));
-        }
-        else {
+          users = await Twitter.getUsersByScreenName(
+              _specificScreenNames!.split(',').map((e) => e.trim()).where((e) => e.isNotEmpty));
+        } else {
           for (String screenName in _specificScreenNames!.split(',').map((e) => e.trim()).where((e) => e.isNotEmpty)) {
             try {
               users.add((await Twitter.getProfileByScreenName(screenName)).user);
-            }
-            catch (err, _) {
+            } catch (err, _) {
               _streamController?.addError(err, _);
             }
           }
@@ -107,13 +106,13 @@ class _SubscriptionImportScreenState extends State<SubscriptionImportScreen> {
           await importModel.importData({
             tableSubscription: [
               ...users.map((e) => UserSubscription(
-                id: e.idStr!,
-                name: e.name!,
-                profileImageUrlHttps: e.profileImageUrlHttps,
-                screenName: e.screenName!,
-                verified: e.verified ?? false,
-                inFeed: true,
-                createdAt: createdAt))
+                  id: e.idStr!,
+                  name: e.name!,
+                  profileImageUrlHttps: e.profileImageUrlHttps,
+                  screenName: e.screenName!,
+                  verified: e.verified ?? false,
+                  inFeed: true,
+                  createdAt: createdAt))
             ]
           });
 
@@ -127,7 +126,6 @@ class _SubscriptionImportScreenState extends State<SubscriptionImportScreen> {
       _streamController?.close();
 
       DataService().map['toggleKeepFeed'] = true;
-
     } catch (e, stackTrace) {
       _streamController?.addError(e, stackTrace);
     }
@@ -232,7 +230,7 @@ class _SubscriptionImportScreenState extends State<SubscriptionImportScreen> {
                           children: [
                             const Padding(
                               padding: EdgeInsets.all(16),
-                              child: Icon(Icons.check_circle_rounded, size: 36, color: Colors.green),
+                              child: Icon(Symbols.check_circle_rounded, size: 36, color: Colors.green),
                             ),
                             Text(
                               L10n.of(context).finished_with_snapshotData_users(
@@ -250,7 +248,7 @@ class _SubscriptionImportScreenState extends State<SubscriptionImportScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.cloud_download_rounded),
+        child: const Icon(Symbols.cloud_download_rounded),
         onPressed: () async => await importSubscriptions(),
       ),
     );

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:squawker/client/client.dart';
 import 'package:squawker/client/client_account.dart';
 import 'package:squawker/constants.dart';
@@ -110,7 +111,7 @@ class _SearchScreenState extends State<_SearchScreen> with SingleTickerProviderS
           ),
           actions: [
             IconButton(
-              icon: const Icon(Icons.close_rounded),
+              icon: const Icon(Symbols.close_rounded),
               onPressed: () {
                 _queryController.clear();
                 if (_searchUsersKey.currentState != null) {
@@ -136,7 +137,7 @@ class _SearchScreenState extends State<_SearchScreen> with SingleTickerProviderS
                       var currentlyFollowed = state.any((element) => element.id == id);
                       if (!currentlyFollowed) {
                         return IconButton(
-                          icon: const Icon(Icons.save_rounded),
+                          icon: const Icon(Symbols.save_rounded),
                           onPressed: () async {
                             await subscriptionsModel.toggleSubscribe(
                               SearchSubscription(id: id, createdAt: DateTime.now()), currentlyFollowed);
@@ -158,9 +159,9 @@ class _SearchScreenState extends State<_SearchScreen> with SingleTickerProviderS
               child: TabBar(
                 controller: _tabController,
                 tabs: const [
-                  Tab(icon: Icon(Icons.person_rounded)),
-                  Tab(icon: Icon(Icons.comment_rounded)),
-                  Tab(icon: Icon(Icons.trending_up)),
+                  Tab(icon: Icon(Symbols.person_rounded)),
+                  Tab(icon: Icon(Symbols.comment_rounded)),
+                  Tab(icon: Icon(Symbols.trending_up)),
                 ],
                 labelColor: Theme.of(context).appBarTheme.foregroundColor,
                 indicatorColor: Theme.of(context).appBarTheme.foregroundColor,

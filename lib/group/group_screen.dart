@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_triple/flutter_triple.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:pref/pref.dart';
 import 'package:provider/provider.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
@@ -172,15 +173,15 @@ class SubscriptionGroupScreen extends StatelessWidget {
                 floating: true,
                 title: Text(name),
                 actions: [
-                  IconButton(icon: const Icon(Icons.more_vert), onPressed: () => showFeedSettings(context, model)),
+                  IconButton(icon: const Icon(Symbols.more_vert), onPressed: () => showFeedSettings(context, model)),
                   IconButton(
-                      icon: const Icon(Icons.arrow_upward_rounded),
+                      icon: const Icon(Symbols.arrow_upward_rounded),
                       onPressed: () async {
                         await content.scrollController!.scrollTo(index: 0,
-                            duration: const Duration(seconds: 1), curve: Curves.easeInOut);
+                          duration: const Duration(seconds: 1), curve: Curves.easeInOut);
                       }),
                   IconButton(
-                    icon: const Icon(Icons.refresh_rounded),
+                    icon: const Icon(Symbols.refresh_rounded),
                     onPressed: () async {
                       GlobalKey<SubscriptionGroupFeedState>? sgfKey = DataService().map['feed_key_${id.replaceAll('-', '_')}'];
                       if (sgfKey?.currentState != null) {

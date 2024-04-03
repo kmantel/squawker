@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swipe_action_cell/flutter_swipe_action_cell.dart';
 import 'package:logging/logging.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:pref/pref.dart';
 import 'package:squawker/client/client_account.dart';
 import 'package:squawker/constants.dart';
@@ -69,7 +70,7 @@ class _SettingsAccountFragmentState extends State<SettingsAccountFragment> {
             ...guestAccountLst,
             PrefButton(
               title: Text(L10n.current.regular_accounts(_regularAccountsTokens.length)),
-              child: Icon(Icons.add_outlined),
+              child: Icon(Symbols.add),
               onTap: () async {
                 var result = await showDialog<bool>(
                   barrierDismissible: false,
@@ -119,11 +120,11 @@ class _SettingsAccountFragmentState extends State<SettingsAccountFragment> {
                   ],
                   child: Card(
                     child: ListTile(
-                      leading: const Icon(Icons.person),
+                      leading: const Icon(Symbols.person),
                       title: Text(_regularAccountsTokens[index].screenName),
                       subtitle: infoLst.isEmpty ? null : Text(infoLst.join(', ')),
                       trailing: IconButton(
-                        icon: const Icon(Icons.edit),
+                        icon: const Icon(Symbols.edit),
                         onPressed: () async {
                           var result = await showDialog<bool>(
                             barrierDismissible: false,
@@ -275,8 +276,8 @@ class _AddAccountDialogState extends State<AddAccountDialog> {
                       contentPadding: EdgeInsets.all(5),
                       suffixIcon: IconButton(
                         icon: Icon(_passwordObscured
-                          ? Icons.visibility_off
-                          : Icons.visibility
+                          ? Symbols.visibility_off
+                          : Symbols.visibility
                         ),
                         onPressed: () {
                           setState(() {

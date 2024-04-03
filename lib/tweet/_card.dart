@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dart_twitter_api/twitter_api.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
+import 'package:material_symbols_icons/symbols.dart';
 
 import 'package:squawker/client/client.dart';
 import 'package:squawker/constants.dart';
@@ -98,7 +99,7 @@ class TweetCard extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Icon(Icons.link_rounded, size: 12, color: Colors.white),
+                  const Icon(Symbols.link_rounded, size: 12, color: Colors.white),
                   const SizedBox(width: 4),
                   Text(uri,
                       style: Theme.of(context).textTheme.bodySmall!.copyWith(

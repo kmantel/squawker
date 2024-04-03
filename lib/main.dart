@@ -170,7 +170,6 @@ Future<void> main() async {
     optionSubscriptionOrderCustom: '',
     optionThemeMode: 'system',
     optionThemeTrueBlack: false,
-    optionThemeMaterial3: false,
     optionThemeColorScheme: 'mango',
     optionTweetsHideSensitive: false,
     optionKeepFeedOffset: false,
@@ -275,7 +274,6 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
 
   String _themeMode = 'system';
   bool _trueBlack = false;
-  bool _material3 = false;
   FlexScheme _colorScheme = FlexScheme.mango;
   bool _accentColor = false;
   Locale? _locale;
@@ -328,7 +326,6 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
       setLocale(prefService.get<String>(optionLocale));
       _themeMode = prefService.get(optionThemeMode);
       _trueBlack = prefService.get(optionThemeTrueBlack);
-      _material3 = prefService.get(optionThemeMaterial3);
       setColorScheme(prefService.get(optionThemeColorScheme));
       setDisableScreenshots(prefService.get(optionDisableScreenshots));
     });
@@ -347,12 +344,6 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
     prefService.addKeyListener(optionThemeTrueBlack, () {
       setState(() {
         _trueBlack = prefService.get(optionThemeTrueBlack);
-      });
-    });
-
-    prefService.addKeyListener(optionThemeMaterial3, () {
-      setState(() {
-        _material3 = prefService.get(optionThemeMaterial3);
       });
     });
 
@@ -395,7 +386,7 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
     }
 
     ThemeData light = FlexThemeData.light(
-      colors: _accentColor ? AccentUtil.lightAccentColors: null,
+      colors: _accentColor ? AccentUtil.lightAccentColors : null,
       scheme: _colorScheme,
       surfaceMode: FlexSurfaceMode.highScaffoldLowSurface,
       blendLevel: 20,
@@ -406,11 +397,12 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
         blendOnColors: false,
       ),
       visualDensity: FlexColorScheme.comfortablePlatformDensity,
-      useMaterial3: _material3,
+      useMaterial3ErrorColors: true,
+      useMaterial3: true,
       appBarStyle: FlexAppBarStyle.primary,
     );
     ThemeData dark = FlexThemeData.dark(
-      colors: _accentColor ? AccentUtil.darkAccentColors: null,
+      colors: _accentColor ? AccentUtil.darkAccentColors : null,
       scheme: _colorScheme,
       darkIsTrueBlack: _trueBlack,
       surfaceMode: FlexSurfaceMode.highScaffoldLowSurface,
@@ -422,7 +414,8 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
         blendOnColors: false,
       ),
       visualDensity: FlexColorScheme.comfortablePlatformDensity,
-      useMaterial3: _material3,
+      useMaterial3ErrorColors: true,
+      useMaterial3: true,
       appBarStyle: _trueBlack ? FlexAppBarStyle.surface : FlexAppBarStyle.primary,
     );
     return MaterialApp(
@@ -483,19 +476,9 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: L10n.delegate.supportedLocales,
-      locale: _locale ?? const Locale('en-US'),//DevicePreview.locale(context),
+      locale: _locale ?? const Locale('en-US'), //DevicePreview.locale(context),
       title: 'Squawker',
-      // regression #130295 in flutter Document Checkbox.fillColor behavior change
-      // ref: https://github.com/flutter/flutter/issues/130295
       theme: light.copyWith(
-        checkboxTheme: light.checkboxTheme.copyWith(
-          fillColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
-            if (!states.contains(MaterialState.selected) && !states.contains(MaterialState.pressed)) {
-              return Colors.white;
-            }
-            return light.checkboxTheme.fillColor!.resolve(states) as Color;
-          })
-        ),
         tabBarTheme: light.tabBarTheme.copyWith(
           labelColor: Colors.white,
           unselectedLabelColor: Colors.grey.shade400.lighten(),
@@ -506,8 +489,7 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
           labelColor: Colors.white,
           unselectedLabelColor: Colors.grey.shade400.lighten(),
         ),
-      ),
-      themeMode: themeMode,
+      ),      themeMode: themeMode,
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       navigatorObservers: [

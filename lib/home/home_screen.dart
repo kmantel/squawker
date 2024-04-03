@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:http/http.dart' as http;
 import 'package:logging/logging.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:squawker/client/app_http_client.dart';
 import 'package:squawker/client/client_account.dart';
 import 'package:squawker/constants.dart';
@@ -25,7 +26,6 @@ import 'package:squawker/utils/data_service.dart';
 import 'package:squawker/utils/debounce.dart';
 import 'package:pref/pref.dart';
 import 'package:provider/provider.dart';
-import 'package:scroll_bottom_navigation_bar/scroll_bottom_navigation_bar.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 
 typedef NavigationTitleBuilder = String Function(BuildContext context);
@@ -41,11 +41,11 @@ class NavigationPage {
 List<Widget> createCommonAppBarActions(BuildContext context) {
   return [
     IconButton(
-      icon: const Icon(Icons.search_rounded),
+      icon: const Icon(Symbols.search),
       onPressed: () => Navigator.pushNamed(context, routeSearch, arguments: SearchArguments(0, focusInputOnOpen: true)),
     ),
     IconButton(
-      icon: const Icon(Icons.settings_rounded),
+      icon: const Icon(Symbols.settings),
       onPressed: () {
         Navigator.pushNamed(context, routeSettings);
       },
@@ -54,11 +54,11 @@ List<Widget> createCommonAppBarActions(BuildContext context) {
 }
 
 final List<NavigationPage> defaultHomePages = [
-  NavigationPage('feed', (c) => L10n.of(c).feed, Icons.rss_feed_rounded),
-  NavigationPage('subscriptions', (c) => L10n.of(c).subscriptions, Icons.subscriptions_rounded),
-  NavigationPage('groups', (c) => L10n.of(c).groups, Icons.group_rounded),
-  NavigationPage('trending', (c) => L10n.of(c).trending, Icons.trending_up_rounded),
-  NavigationPage('saved', (c) => L10n.of(c).saved, Icons.bookmark_border_rounded),
+  NavigationPage('feed', (c) => L10n.of(c).feed, Symbols.rss_feed_rounded),
+  NavigationPage('subscriptions', (c) => L10n.of(c).subscriptions, Symbols.subscriptions_rounded),
+  NavigationPage('groups', (c) => L10n.of(c).groups, Symbols.group_rounded),
+  NavigationPage('trending', (c) => L10n.of(c).trending, Symbols.trending_up_rounded),
+  NavigationPage('saved', (c) => L10n.of(c).saved, Symbols.bookmark_border_rounded),
 ];
 
 class HomeScreen extends StatelessWidget {
@@ -184,21 +184,23 @@ class _HomeScreenState extends State<_HomeScreen> {
         // The dialog of information is displayed once.
         await TwitterAccount.announcementRegularAccountAndUnauthenticatedAccess(context);
 
-        ReceiveSharingIntent.getInitialText().then((String? value) async {
-          log.info('****** ReceiveSharingIntent.getInitialText - value=$value');
-          if (value != null) {
-            Uri? link = Uri.tryParse(value);
+        ReceiveSharingIntent.getInitialMedia().then((List<SharedMediaFile> value) async {
+          if (value.isNotEmpty) {
+            log.info('****** ReceiveSharingIntent.getInitialText - value=${value[0].path}');
+            Uri? link = Uri.tryParse(value[0].path);
             if (link != null) {
               await handleInitialLink(link);
             }
           }
         });
         // Attach a listener to the stream
-        _sub = ReceiveSharingIntent.getTextStream().listen((String value) async {
-          log.info('****** ReceiveSharingIntent.getTextStream - value=$value');
-          Uri? link = Uri.tryParse(value);
-          if (link != null) {
-            await handleInitialLink(link);
+        _sub = ReceiveSharingIntent.getMediaStream().listen((List<SharedMediaFile> value) async {
+          if (value.isNotEmpty) {
+            log.info('****** ReceiveSharingIntent.getTextStream - value=${value[0].path}');
+            Uri? link = Uri.tryParse(value[0].path);
+            if (link != null) {
+              await handleInitialLink(link);
+            }
           }
         }, onError: (err) {
           // TODO: Handle exception by warning the user their action did not succeed
@@ -295,31 +297,14 @@ class ScaffoldWithBottomNavigationState extends State<ScaffoldWithBottomNavigati
 
     _pageController = PageController(initialPage: widget.initialPage);
 
-    scrollController.bottomNavigationBar.setTab(widget.initialPage);
-    scrollController.bottomNavigationBar.tabListener((index) async {
-      if (_children[index] is FeedScreen && widget.feedKey != null && widget.feedKey!.currentState != null) {
-        await widget.feedKey!.currentState!.checkUpdateFeed();
-      }
-      _pageController?.animateToPage(index, curve: Curves.easeInOut, duration: const Duration(milliseconds: 100));
-    });
-
     _children = widget.builder(scrollController);
-  }
-
-  void fromFeedToSubscriptions() {
-    int idx = widget.pages.indexWhere((e) => e.id == 'feed');
-    if (idx == scrollController.bottomNavigationBar.tabNotifier.value) {
-      setState(() {
-        _goToSubscriptions = true;
-      });
-    }
   }
 
   List<NavigationPage> _padToMinimumPagesLength(List<NavigationPage> pages) {
     var widgetPages = pages;
     if (widgetPages.length < 2) {
       widgetPages.addAll(List.generate(2 - widgetPages.length, (index) {
-        return NavigationPage('none', (context) => L10n.current.missing_page, Icons.disabled_by_default_rounded);
+        return NavigationPage('none', (context) => L10n.current.missing_page, Symbols.disabled_by_default_rounded);
       }));
     }
 
@@ -337,15 +322,6 @@ class ScaffoldWithBottomNavigationState extends State<ScaffoldWithBottomNavigati
         _pages = newPages;
       });
     }
-
-    var page = _pageController?.page?.toInt();
-    if (page != null) {
-      // Ensure we're not trying to show a page that no longer exists (i.e. one that was selected, but now deleted)
-      var currentTab = scrollController.bottomNavigationBar.tabNotifier.value;
-      if (currentTab >= newPages.length) {
-        scrollController.bottomNavigationBar.tabNotifier.value = newPages.length - 1;
-      }
-    }
   }
 
   @override
@@ -354,13 +330,13 @@ class ScaffoldWithBottomNavigationState extends State<ScaffoldWithBottomNavigati
     _pageController?.dispose();
   }
 
+  int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     if (_goToSubscriptions) {
       _goToSubscriptions = false;
       WidgetsBinding.instance.addPostFrameCallback((_) {
         int idx = widget.pages.indexWhere((e) => e.id == 'subscriptions');
-        scrollController.bottomNavigationBar.setTab(idx);
         _pageController?.animateToPage(idx, curve: Curves.easeInOut, duration: const Duration(milliseconds: 100));
       });
     }
@@ -369,18 +345,18 @@ class ScaffoldWithBottomNavigationState extends State<ScaffoldWithBottomNavigati
         controller: _pageController,
         physics: const LessSensitiveScrollPhysics(),
         onPageChanged: (page) => Debouncer.debounce('page-change', const Duration(milliseconds: 200), () {
-          // Reset the height when the page changes, otherwise the navigation bar stays hidden forever
-          scrollController.bottomNavigationBar.heightNotifier.value = 1;
-          scrollController.bottomNavigationBar.setTab(page);
+          setState(() => selectedIndex = page);
         }),
         children: _children,
       ),
-      bottomNavigationBar: ScrollBottomNavigationBar(
-        controller: scrollController,
-        showUnselectedLabels: true,
-        items: [
-          ..._pages.map((e) => BottomNavigationBarItem(icon: Icon(e.icon, size: 22), label: e.titleBuilder(context)))
+      bottomNavigationBar: NavigationBar(
+        selectedIndex: selectedIndex,
+        labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
+        destinations: [
+          ..._pages.map((e) => NavigationDestination(icon: Icon(e.icon, size: 22), label: e.titleBuilder(context)))
         ],
+        onDestinationSelected: (int value) =>
+            _pageController?.animateToPage(value, duration: const Duration(milliseconds: 200), curve: Curves.linear),
       ),
     );
   }

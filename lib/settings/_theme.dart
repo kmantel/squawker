@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:squawker/constants.dart';
@@ -12,7 +10,7 @@ class SettingsThemeFragment extends StatelessWidget {
 
   int _getOptionTweetFontSizeValue(BuildContext context) {
     int optionTweetFontSizeValue =
-        PrefService.of(context).get<int>(optionTweetFontSize) ?? Theme.of(context).textTheme.bodyMedium!.fontSize!.round();
+      PrefService.of(context).get<int>(optionTweetFontSize) ?? Theme.of(context).textTheme.bodyMedium!.fontSize!.round();
     return optionTweetFontSizeValue;
   }
 
@@ -69,16 +67,6 @@ class SettingsThemeFragment extends StatelessWidget {
             onTap: () => _createTweetFontSizeDialog(context),
             child: Text('${_getOptionTweetFontSizeValue(context)} px'),
           ),
-          PrefSwitch(
-            pref: optionThemeMaterial3,
-            title: Row(children: [
-              Text(
-                L10n.of(context).material_3,
-              ),
-              Spacer(),
-              Chip(label: Text(L10n.of(context).beta))
-            ]),
-          )
         ]),
       ),
     );

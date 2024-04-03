@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:squawker/generated/l10n.dart';
 import 'package:squawker/settings/_about.dart';
 import 'package:squawker/settings/_account.dart';
@@ -43,10 +44,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return Scaffold(
       appBar: AppBar(title: Text(L10n.of(context).settings)),
       body: ListView(
+        padding: EdgeInsets.all(16.0),
         children: [
           ListTile(
             title: Text(L10n.of(context).general),
-            leading: Icon(Icons.settings),
+            leading: Icon(Symbols.settings),
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const SettingsGeneralFragment()),
@@ -54,7 +56,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
           ListTile(
             title: Text(L10n.of(context).account),
-            leading: Icon(Icons.account_circle_rounded),
+            leading: Icon(Symbols.account_circle_rounded),
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const SettingsAccountFragment()),
@@ -62,7 +64,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
           ListTile(
             title: Text(L10n.of(context).home),
-            leading: Icon(Icons.home),
+            leading: Icon(Symbols.home),
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const SettingsHomeFragment()),
@@ -70,7 +72,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
           ListTile(
             title: Text(L10n.of(context).theme),
-            leading: Icon(Icons.palette),
+            leading: Icon(Symbols.palette),
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const SettingsThemeFragment()),
@@ -78,7 +80,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
           ListTile(
             title: Text(L10n.of(context).data),
-            leading: Icon(Icons.storage),
+            leading: Icon(Symbols.storage),
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(
@@ -89,7 +91,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
           ListTile(
             title: Text(L10n.of(context).about),
-            leading: Icon(Icons.info),
+            leading: Icon(Symbols.info),
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => SettingsAboutFragment(appVersion: appVersion)),
