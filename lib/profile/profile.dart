@@ -398,12 +398,12 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> with TickerProvid
                                                                     size: 12, color: Colors.white),
                                                                 const SizedBox(width: 4),
                                                                 Text(user.location!, style: metadataTextStyle),
+                                                                const SizedBox(
+                                                                  width: 8,
+                                                                ),
                                                               ],
                                                             ),
                                                           ),
-                                                        const SizedBox(
-                                                          width: 8,
-                                                        ),
                                                         if (user.url != null && user.url!.isNotEmpty)
                                                           Padding(
                                                               padding: const EdgeInsets.symmetric(
@@ -439,11 +439,11 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> with TickerProvid
                                                                       onTap: () => openUri(expandedUrl),
                                                                     );
                                                                   }),
+                                                                  const SizedBox(
+                                                                    width: 8,
+                                                                  ),
                                                                 ],
                                                               )),
-                                                        const SizedBox(
-                                                          width: 8,
-                                                        ),
                                                         if (user.createdAt != null)
                                                           Padding(
                                                             padding:
@@ -493,12 +493,12 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> with TickerProvid
                                                                                 ' ${L10n.current.following.toLowerCase()}',
                                                                             style: metadataTextStyle)
                                                                       ])),
+                                                                      const SizedBox(
+                                                                        width: 8,
+                                                                      ),
                                                                     ],
                                                                   ),
                                                                 )),
-                                                          const SizedBox(
-                                                            width: 8,
-                                                          ),
                                                           if (user.followersCount != null)
                                                             InkWell(
                                                                 onTap: () => Navigator.of(context).push(
