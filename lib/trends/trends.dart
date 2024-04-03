@@ -23,7 +23,7 @@ class _TrendsScreenState extends State<TrendsScreen> with AutomaticKeepAliveClie
       appBar: const TrendsTabBar(),
       floatingActionButton: FloatingActionButton(
           child: const Icon(Symbols.add_rounded),
-          onPressed: () async => showDialog(
+          onPressed: () async => showModalBottomSheet(
                 context: context,
                 builder: (context) => const TrendsSettings(),
               )),
