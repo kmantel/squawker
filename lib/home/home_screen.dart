@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:http/http.dart' as http;
 import 'package:logging/logging.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:squawker/client/app_http_client.dart';
 import 'package:squawker/client/client_account.dart';
 import 'package:squawker/constants.dart';
@@ -40,11 +41,11 @@ class NavigationPage {
 List<Widget> createCommonAppBarActions(BuildContext context) {
   return [
     IconButton(
-      icon: const Icon(Icons.search_rounded),
+      icon: const Icon(Symbols.search),
       onPressed: () => Navigator.pushNamed(context, routeSearch, arguments: SearchArguments(0, focusInputOnOpen: true)),
     ),
     IconButton(
-      icon: const Icon(Icons.settings_rounded),
+      icon: const Icon(Symbols.settings),
       onPressed: () {
         Navigator.pushNamed(context, routeSettings);
       },
@@ -53,11 +54,11 @@ List<Widget> createCommonAppBarActions(BuildContext context) {
 }
 
 final List<NavigationPage> defaultHomePages = [
-  NavigationPage('feed', (c) => L10n.of(c).feed, Icons.rss_feed_rounded),
-  NavigationPage('subscriptions', (c) => L10n.of(c).subscriptions, Icons.subscriptions_rounded),
-  NavigationPage('groups', (c) => L10n.of(c).groups, Icons.group_rounded),
-  NavigationPage('trending', (c) => L10n.of(c).trending, Icons.trending_up_rounded),
-  NavigationPage('saved', (c) => L10n.of(c).saved, Icons.bookmark_border_rounded),
+  NavigationPage('feed', (c) => L10n.of(c).feed, Symbols.rss_feed_rounded),
+  NavigationPage('subscriptions', (c) => L10n.of(c).subscriptions, Symbols.subscriptions_rounded),
+  NavigationPage('groups', (c) => L10n.of(c).groups, Symbols.group_rounded),
+  NavigationPage('trending', (c) => L10n.of(c).trending, Symbols.trending_up_rounded),
+  NavigationPage('saved', (c) => L10n.of(c).saved, Symbols.bookmark_border_rounded),
 ];
 
 class HomeScreen extends StatelessWidget {
@@ -303,7 +304,7 @@ class ScaffoldWithBottomNavigationState extends State<ScaffoldWithBottomNavigati
     var widgetPages = pages;
     if (widgetPages.length < 2) {
       widgetPages.addAll(List.generate(2 - widgetPages.length, (index) {
-        return NavigationPage('none', (context) => L10n.current.missing_page, Icons.disabled_by_default_rounded);
+        return NavigationPage('none', (context) => L10n.current.missing_page, Symbols.disabled_by_default_rounded);
       }));
     }
 

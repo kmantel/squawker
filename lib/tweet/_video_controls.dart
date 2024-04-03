@@ -11,6 +11,7 @@ import 'package:chewie/src/models/option_item.dart';
 import 'package:chewie/src/models/subtitle_model.dart';
 import 'package:chewie/src/notifiers/index.dart';
 import 'package:flutter/material.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:provider/provider.dart';
 import 'package:video_player/video_player.dart';
 
@@ -70,7 +71,7 @@ class _MaterialControlsState extends State<FritterMaterialControls> with SingleT
           ) ??
           const Center(
             child: Icon(
-              Icons.error_rounded,
+              Symbols.error_rounded,
               color: Colors.white,
               size: 42,
             ),
@@ -167,7 +168,7 @@ class _MaterialControlsState extends State<FritterMaterialControls> with SingleT
           Navigator.pop(context);
           _onSpeedButtonTap();
         },
-        iconData: Icons.speed_rounded,
+        iconData: Symbols.speed_rounded,
         title: L10n.of(context).playback_speed,
       )
     ];
@@ -202,7 +203,7 @@ class _MaterialControlsState extends State<FritterMaterialControls> with SingleT
           }
         },
         icon: const Icon(
-          Icons.more_vert,
+          Symbols.more_vert,
           color: Colors.white,
         ),
       ),
@@ -321,7 +322,7 @@ class _MaterialControlsState extends State<FritterMaterialControls> with SingleT
               left: 6.0,
             ),
             child: Icon(
-              _latestValue.volume > 0 ? Icons.volume_up_rounded : Icons.volume_off_rounded,
+              _latestValue.volume > 0 ? Symbols.volume_up_rounded : Symbols.volume_off_rounded,
               color: Colors.white,
             ),
           ),
@@ -345,7 +346,7 @@ class _MaterialControlsState extends State<FritterMaterialControls> with SingleT
           ),
           child: Center(
             child: Icon(
-              chewieController.isFullScreen ? Icons.fullscreen_exit_rounded : Icons.fullscreen_rounded,
+              chewieController.isFullScreen ? Symbols.fullscreen_exit_rounded : Symbols.fullscreen_rounded,
               color: Colors.white,
             ),
           ),
@@ -449,7 +450,7 @@ class _MaterialControlsState extends State<FritterMaterialControls> with SingleT
           right: 12.0,
         ),
         child: Icon(
-          _subtitleOn ? Icons.closed_caption_rounded : Icons.closed_caption_disabled_rounded,
+          _subtitleOn ? Symbols.closed_caption_rounded : Symbols.closed_caption_disabled_rounded,
           color: _subtitleOn ? Colors.white : Colors.grey[700],
         ),
       ),
@@ -642,7 +643,7 @@ class FritterCenterPlayButton extends StatelessWidget {
               child: IconButton(
                 iconSize: 32,
                 icon: isFinished
-                    ? Icon(Icons.replay_rounded, color: iconColor)
+                    ? Icon(Symbols.replay_rounded, color: iconColor)
                     : AnimatedPlayPause(
                         color: iconColor,
                         playing: isPlaying,

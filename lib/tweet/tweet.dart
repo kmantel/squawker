@@ -5,6 +5,7 @@ import 'package:auto_direction/auto_direction.dart';
 import 'package:dart_twitter_api/twitter_api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:squawker/client/client.dart';
 import 'package:squawker/constants.dart';
 import 'package:squawker/generated/l10n.dart';
@@ -319,9 +320,12 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
     return _twitterUrls.firstWhereOrNull((elm) => url.startsWith('https://$elm/')) != null;
   }
 
-  _createFooterIconButton(IconData icon, [Color? color, Function()? onPressed]) {
+  _createFooterIconButton(IconData icon, [Color? color, double? fill, Function()? onPressed]) {
     return IconButton(
-      icon: Icon(icon),
+      icon: Icon(
+        icon,
+        fill: fill,
+      ),
       color: color ?? Theme.of(context).colorScheme.primary,
       iconSize: 24,
       onPressed: onPressed,
@@ -410,7 +414,7 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
     Widget retweetSidebar = Container();
     if (this.tweet.retweetedStatusWithCard != null) {
       retweetBanner = _TweetTileLeading(
-        icon: Icons.repeat_rounded,
+        icon: Symbols.repeat,
         onTap: () => Navigator.pushNamed(context, routeProfile,
             arguments: ProfileScreenArguments.fromScreenName(this.tweet.user!.screenName!)),
         children: [
@@ -442,7 +446,7 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
                 arguments: StatusScreenArguments(id: replyToId, username: replyTo));
           }
         },
-        icon: Icons.reply_rounded,
+        icon: Symbols.reply_rounded,
         children: [
           TextSpan(text: '${L10n.of(context).replying_to} ', style: theme.textTheme.bodySmall),
           TextSpan(text: '@$replyTo', style: theme.textTheme.bodySmall!.copyWith(fontWeight: FontWeight.bold)),
@@ -511,7 +515,8 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
     Widget translateButton;
     switch (_translationStatus) {
       case TranslationStatus.original:
-        translateButton = _createFooterIconButton(Icons.translate_rounded, Colors.blue, () async => onClickTranslate());
+        translateButton =
+            _createFooterIconButton(Symbols.translate_rounded, Colors.blue, null, () async => onClickTranslate());
         break;
       case TranslationStatus.translating:
         translateButton = const Padding(
@@ -520,11 +525,12 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
         );
         break;
       case TranslationStatus.translationFailed:
-        translateButton = _createFooterIconButton(Icons.translate_rounded, Colors.red, () async => onClickTranslate());
+        translateButton =
+            _createFooterIconButton(Symbols.translate_rounded, Colors.red, null, () async => onClickTranslate());
         break;
       case TranslationStatus.translated:
         translateButton =
-            _createFooterIconButton(Icons.translate_rounded, Colors.green, () async => onClickShowOriginal());
+            _createFooterIconButton(Symbols.translate_rounded, Colors.green, null, () async => onClickShowOriginal());
         break;
     }
 
@@ -559,14 +565,14 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
                           retweetBanner,
                           replyToTile,
                           if (isPinned)
-                            _TweetTileLeading(icon: Icons.push_pin_rounded, children: [
+                            _TweetTileLeading(icon: Symbols.push_pin_rounded, children: [
                               TextSpan(
                                 text: L10n.of(context).pinned_tweet,
                                 style: theme.textTheme.bodySmall,
                               )
                             ]),
                           if (isThread)
-                            _TweetTileLeading(icon: Icons.forum_rounded, children: [
+                            _TweetTileLeading(icon: Symbols.forum_rounded, children: [
                               TextSpan(
                                 text: L10n.of(context).thread,
                                 style: theme.textTheme.bodySmall,
@@ -595,12 +601,12 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
                                                 style: const TextStyle(fontWeight: FontWeight.w500))),
                                         if (tweet.user!.verified ?? false) const SizedBox(width: 4),
                                         if (tweet.user!.verified ?? false)
-                                          Icon(Icons.verified, size: 18, color: Theme.of(context).primaryColor)
+                                          Icon(Symbols.verified, size: 18, color: Theme.of(context).primaryColor)
                                       ],
                                     ),
                                   ),
                                 InkWell(
-                                  child: const Icon(Icons.more_horiz),
+                                  child: const Icon(Symbols.more_horiz),
                                   onTap: () async {
                                     createSheetButton(title, icon, onTap) => ListTile(
                                           onTap: onTap,
@@ -615,24 +621,25 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
                                               child: Column(
                                             mainAxisSize: MainAxisSize.min,
                                             children: [
-                                              createSheetButton(L10n.of(context).share_tweet_content, Icons.share,
+                                              createSheetButton(L10n.of(context).share_tweet_content, Symbols.share,
                                                   () async {
                                                 Share.share(tweetText);
                                                 Navigator.pop(context);
                                               }),
-                                              createSheetButton(L10n.of(context).share_tweet_link, Icons.share,
+                                              createSheetButton(L10n.of(context).share_tweet_link, Symbols.share,
                                                   () async {
                                                 Share.share(
                                                     '$shareBaseUrl/${tweet.user!.screenName}/status/${tweet.idStr}');
                                                 Navigator.pop(context);
                                               }),
                                               createSheetButton(
-                                                  L10n.of(context).share_tweet_content_and_link, Icons.share, () async {
+                                                  L10n.of(context).share_tweet_content_and_link, Symbols.share,
+                                                  () async {
                                                 Share.share(
                                                     '$tweetText\n\n$shareBaseUrl/${tweet.user!.screenName}/status/${tweet.idStr}');
                                                 Navigator.pop(context);
                                               }),
-                                              createSheetButton(L10n.of(context).share_tweet_as_image, Icons.share,
+                                              createSheetButton(L10n.of(context).share_tweet_as_image, Symbols.share,
                                                   () async {
                                                 Uint8List? imgBytes = await captureWidget();
                                                 if (imgBytes != null) {
@@ -646,7 +653,7 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
                                                   thickness: 1.0,
                                                 ),
                                               ),
-                                              createSheetButton(L10n.of(context).cancel, Icons.close_rounded, () {
+                                              createSheetButton(L10n.of(context).cancel, Symbols.close_rounded, () {
                                                 Navigator.pop(context);
                                               })
                                             ],
@@ -672,7 +679,7 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
                             ),
                             // Profile picture
                             leading: hideAuthorInformation
-                                ? const Icon(Icons.account_circle_rounded, size: 48)
+                                ? const Icon(Symbols.account_circle_rounded, size: 48)
                                 : ClipRRect(
                                     borderRadius: BorderRadius.circular(64),
                                     child: UserAvatar(uri: tweet.user!.profileImageUrlHttps),
@@ -691,25 +698,28 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
                                 child: Row(
                                   children: [
                                     _createFooterTextButton(
-                                        Icons.comment_rounded,
+                                        Symbols.comment,
                                         tweet.replyCount != null ? numberFormat.format(tweet.replyCount) : '',
                                         null,
                                         () => onClickOpenTweet(tweet)),
                                     if (tweet.retweetCount != null && tweet.quoteCount != null)
-                                      _createFooterTextButton(Icons.repeat_rounded,
+                                      _createFooterTextButton(Symbols.repeat,
                                           numberFormat.format((tweet.retweetCount! + tweet.quoteCount!))),
                                     if (tweet.favoriteCount != null)
                                       _createFooterTextButton(
-                                          Icons.favorite_border, numberFormat.format(tweet.favoriteCount)),
+                                          Symbols.favorite_border, numberFormat.format(tweet.favoriteCount)),
+                                    const SizedBox(
+                                      width: 8.0,
+                                    ),
                                     Consumer<SavedTweetModel>(builder: (context, model, child) {
                                       var isSaved = model.isSaved(tweet.idStr!);
                                       if (isSaved) {
-                                        return _createFooterIconButton(Icons.bookmark, null, () async {
+                                        return _createFooterIconButton(Symbols.bookmark, null, 1, () async {
                                           await model.deleteSavedTweet(tweet.idStr!);
                                           setState(() {});
                                         });
                                       } else {
-                                        return _createFooterIconButton(Icons.bookmark_border, null, () async {
+                                        return _createFooterIconButton(Symbols.bookmark, null, 0, () async {
                                           await model.saveTweet(tweet.idStr!, tweet.user?.idStr, tweet.toJson());
                                           setState(() {});
                                         });

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:pref/pref.dart';
 import 'package:squawker/generated/l10n.dart';
 import 'package:squawker/settings/_about.dart';
@@ -59,7 +60,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               children: [
                 ListTile(
                   title: Text(L10n.of(context).general),
-                  trailing: Icon(Icons.arrow_forward_ios),
+                  trailing: Icon(Symbols.arrow_forward_ios),
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const SettingsGeneralFragment()),
@@ -67,7 +68,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
                 ListTile(
                   title: Text(L10n.of(context).account),
-                  trailing: Icon(Icons.arrow_forward_ios),
+                  trailing: Icon(Symbols.arrow_forward_ios),
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const SettingsAccountFragment()),
@@ -75,7 +76,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
                 ListTile(
                   title: Text(L10n.of(context).home),
-                  trailing: Icon(Icons.arrow_forward_ios),
+                  trailing: Icon(Symbols.arrow_forward_ios),
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const SettingsHomeFragment()),
@@ -83,7 +84,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
                 ListTile(
                   title: Text(L10n.of(context).theme),
-                  trailing: Icon(Icons.arrow_forward_ios),
+                  trailing: Icon(Symbols.arrow_forward_ios),
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const SettingsThemeFragment()),

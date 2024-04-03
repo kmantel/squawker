@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:material_symbols_icons/symbols.dart';
 
 import 'package:squawker/client/client.dart';
 import 'package:squawker/client/client_account.dart';
@@ -229,7 +230,7 @@ class _SubscriptionImportScreenState extends State<SubscriptionImportScreen> {
                           children: [
                             const Padding(
                               padding: EdgeInsets.all(16),
-                              child: Icon(Icons.check_circle_rounded, size: 36, color: Colors.green),
+                              child: Icon(Symbols.check_circle_rounded, size: 36, color: Colors.green),
                             ),
                             Text(
                               L10n.of(context).finished_with_snapshotData_users(
@@ -247,7 +248,7 @@ class _SubscriptionImportScreenState extends State<SubscriptionImportScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.cloud_download_rounded),
+        child: const Icon(Symbols.cloud_download_rounded),
         onPressed: () async => await importSubscriptions(),
       ),
     );

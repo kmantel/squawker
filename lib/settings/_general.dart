@@ -2,6 +2,7 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localized_locales/flutter_localized_locales.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:squawker/client/app_http_client.dart';
 import 'package:squawker/constants.dart';
 import 'package:squawker/database/repository.dart';
@@ -41,27 +42,26 @@ class SettingsGeneralFragment extends StatelessWidget {
     final controller = TextEditingController(text: prefs.get(optionShareBaseUrl));
 
     return PrefDialog(
-      actions: [
-        TextButton(onPressed: () => Navigator.pop(context), child: Text(L10n.of(context).cancel)),
-        TextButton(
-          onPressed: () async {
-            await prefs.set(optionShareBaseUrl, controller.text);
-            Navigator.pop(context);
-          },
-          child: Text(L10n.of(context).save)
-        )
-      ],
-      title: Text(L10n.of(context).share_base_url),
-      children: [
-        SizedBox(
-          width: mediaQuery.size.width,
-          child: TextFormField(
-            controller: controller,
-            decoration: InputDecoration(hintText: 'https://x.com', hintStyle: TextStyle(color: Theme.of(context).disabledColor)),
-          ),
-        )
-      ]
-    );
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(context), child: Text(L10n.of(context).cancel)),
+          TextButton(
+              onPressed: () async {
+                await prefs.set(optionShareBaseUrl, controller.text);
+                Navigator.pop(context);
+              },
+              child: Text(L10n.of(context).save))
+        ],
+        title: Text(L10n.of(context).share_base_url),
+        children: [
+          SizedBox(
+            width: mediaQuery.size.width,
+            child: TextFormField(
+              controller: controller,
+              decoration: InputDecoration(
+                  hintText: 'https://x.com', hintStyle: TextStyle(color: Theme.of(context).disabledColor)),
+            ),
+          )
+        ]);
   }
 
   PrefDialog _createProxyDialog(BuildContext context) {
@@ -71,33 +71,32 @@ class SettingsGeneralFragment extends StatelessWidget {
     final controller = TextEditingController(text: prefs.get(optionProxy));
 
     return PrefDialog(
-      actions: [
-        TextButton(onPressed: () => Navigator.pop(context), child: Text(L10n.of(context).cancel)),
-        TextButton(
-          onPressed: () async {
-            try {
-              AppHttpClient.setProxy(controller.text);
-              await prefs.set(optionProxy, controller.text);
-            }
-            catch (e, s) {
-              await showAlertDialog(context, L10n.of(context).proxy_error, e.toString());
-            }
-            Navigator.pop(context);
-          },
-          child: Text(L10n.of(context).save)
-        )
-      ],
-      title: Text(L10n.of(context).proxy_label),
-      children: [
-        SizedBox(
-          width: mediaQuery.size.width,
-          child: TextFormField(
-            controller: controller,
-            decoration: InputDecoration(hintText: 'scheme://[user:pwd@]host:port', hintStyle: TextStyle(color: Theme.of(context).disabledColor)),
-          ),
-        )
-      ]
-    );
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(context), child: Text(L10n.of(context).cancel)),
+          TextButton(
+              onPressed: () async {
+                try {
+                  AppHttpClient.setProxy(controller.text);
+                  await prefs.set(optionProxy, controller.text);
+                } catch (e, s) {
+                  await showAlertDialog(context, L10n.of(context).proxy_error, e.toString());
+                }
+                Navigator.pop(context);
+              },
+              child: Text(L10n.of(context).save))
+        ],
+        title: Text(L10n.of(context).proxy_label),
+        children: [
+          SizedBox(
+            width: mediaQuery.size.width,
+            child: TextFormField(
+              controller: controller,
+              decoration: InputDecoration(
+                  hintText: 'scheme://[user:pwd@]host:port',
+                  hintStyle: TextStyle(color: Theme.of(context).disabledColor)),
+            ),
+          )
+        ]);
   }
 
   PrefDialog _createExclusionsDialog(BuildContext context) {
@@ -105,26 +104,23 @@ class SettingsGeneralFragment extends StatelessWidget {
     List<String> exclusionsFeedLst = (prefs.get(optionExclusionsFeed) as String).split(',');
 
     return PrefDialog(
-      actions: [
-        TextButton(onPressed: () => Navigator.pop(context), child: Text(L10n.of(context).cancel)),
-        TextButton(
-          onPressed: () async {
-            await prefs.set(optionExclusionsFeed, exclusionsFeedLst.join(','));
-            Navigator.pop(context);
-          },
-          child: Text(L10n.of(context).save)
-        )
-      ],
-      title: Text(L10n.of(context).exclusions_feed_label),
-      children: [
-        ExclusionsFeedSetting(
-          exclusionsFeedLst: exclusionsFeedLst,
-          onChanged: (List<String> lst) {
-            exclusionsFeedLst = lst;
-          }
-        ),
-      ]
-    );
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(context), child: Text(L10n.of(context).cancel)),
+          TextButton(
+              onPressed: () async {
+                await prefs.set(optionExclusionsFeed, exclusionsFeedLst.join(','));
+                Navigator.pop(context);
+              },
+              child: Text(L10n.of(context).save))
+        ],
+        title: Text(L10n.of(context).exclusions_feed_label),
+        children: [
+          ExclusionsFeedSetting(
+              exclusionsFeedLst: exclusionsFeedLst,
+              onChanged: (List<String> lst) {
+                exclusionsFeedLst = lst;
+              }),
+        ]);
   }
 
   @override
@@ -204,7 +200,7 @@ class SettingsGeneralFragment extends StatelessWidget {
           ),
           ExpansionTile(
             title: Text(L10n.of(context).media),
-            leading: const Icon(Icons.image),
+            leading: const Icon(Symbols.image),
             children: [
               PrefDropdown(
                   fullWidth: false,
@@ -260,7 +256,7 @@ class SettingsGeneralFragment extends StatelessWidget {
           ),
           ExpansionTile(
             title: Text(L10n.of(context).feed),
-            leading: const Icon(Icons.rss_feed),
+            leading: const Icon(Symbols.rss_feed),
             children: [
               PrefSwitch(
                 title: Text(L10n.of(context).keep_feed_offset_label),
@@ -287,7 +283,7 @@ class SettingsGeneralFragment extends StatelessWidget {
           ),
           ExpansionTile(
             title: Text(L10n.of(context).x_api),
-            leading: const Icon(Icons.api_outlined),
+            leading: const Icon(Symbols.api),
             children: [
               PrefSwitch(
                 title: Text(L10n.of(context).enhanced_feeds_label),
@@ -387,7 +383,6 @@ class DownloadTypeSettingState extends State<DownloadTypeSetting> {
 }
 
 class ExclusionsFeedSetting extends StatefulWidget {
-
   final List<String> exclusionsFeedLst;
   final void Function(List<String> lst) onChanged;
 
@@ -398,7 +393,6 @@ class ExclusionsFeedSetting extends StatefulWidget {
 }
 
 class ExclusionsFeedSettingState extends State<ExclusionsFeedSetting> {
-
   late List<String> _exclusionsFeedLst;
 
   Widget _textfieldBtn(int index) {
@@ -415,8 +409,7 @@ class ExclusionsFeedSettingState extends State<ExclusionsFeedSetting> {
               widget.onChanged(lst);
             });
           }
-        }
-        else {
+        } else {
           setState(() {
             _exclusionsFeedLst.removeAt(index);
             if (_exclusionsFeedLst.length == 1 && _exclusionsFeedLst[0].isNotEmpty) {
@@ -438,7 +431,7 @@ class ExclusionsFeedSettingState extends State<ExclusionsFeedSetting> {
         ),
         child: Icon(
           size: 20,
-          isLast ? Icons.add : Icons.remove,
+          isLast ? Symbols.add : Symbols.remove,
           color: Colors.white,
         ),
       ),
@@ -469,12 +462,11 @@ class ExclusionsFeedSettingState extends State<ExclusionsFeedSetting> {
                 children: [
                   Expanded(
                     child: DynamicTextfield(
-                      key: UniqueKey(),
-                      initialValue: _exclusionsFeedLst[index].trim(),
-                      onChanged: (String v) {
-                        _exclusionsFeedLst[index] = v.trim();
-                      }
-                    ),
+                        key: UniqueKey(),
+                        initialValue: _exclusionsFeedLst[index].trim(),
+                        onChanged: (String v) {
+                          _exclusionsFeedLst[index] = v.trim();
+                        }),
                   ),
                   const SizedBox(width: 10),
                   _textfieldBtn(index),
@@ -495,7 +487,11 @@ class DynamicTextfield extends StatefulWidget {
   final String? initialValue;
   final void Function(String) onChanged;
 
-  const DynamicTextfield({super.key, this.initialValue, required this.onChanged,});
+  const DynamicTextfield({
+    super.key,
+    this.initialValue,
+    required this.onChanged,
+  });
 
   @override
   State createState() => _DynamicTextfieldState();

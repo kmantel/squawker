@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:squawker/client/client.dart';
 import 'package:squawker/client/client_account.dart';
 import 'package:squawker/constants.dart';
@@ -110,20 +111,19 @@ class _SearchScreenState extends State<_SearchScreen> with SingleTickerProviderS
           ),
           actions: [
             IconButton(
-              icon: const Icon(Icons.close_rounded),
-              onPressed: () {
-                _queryController.clear();
-                if (_searchUsersKey.currentState != null) {
-                  _searchUsersKey.currentState!.resetQuery();
-                }
-                if (_searchTweetsKey.currentState != null) {
-                  _searchTweetsKey.currentState!.resetQuery();
-                }
-                if (_searchTrendsKey.currentState != null) {
-                  _searchTrendsKey.currentState!.resetQuery();
-                }
-              }
-            ),
+                icon: const Icon(Symbols.close_rounded),
+                onPressed: () {
+                  _queryController.clear();
+                  if (_searchUsersKey.currentState != null) {
+                    _searchUsersKey.currentState!.resetQuery();
+                  }
+                  if (_searchTweetsKey.currentState != null) {
+                    _searchTweetsKey.currentState!.resetQuery();
+                  }
+                  if (_searchTrendsKey.currentState != null) {
+                    _searchTrendsKey.currentState!.resetQuery();
+                  }
+                }),
             ScopedBuilder<SubscriptionsModel, List<Subscription>>.transition(
               store: subscriptionsModel,
               onState: (_, state) {
@@ -136,11 +136,11 @@ class _SearchScreenState extends State<_SearchScreen> with SingleTickerProviderS
                       var currentlyFollowed = state.any((element) => element.id == id);
                       if (!currentlyFollowed) {
                         return IconButton(
-                          icon: const Icon(Icons.save_rounded),
-                          onPressed: () async {
-                            await subscriptionsModel.toggleSubscribe(
-                              SearchSubscription(id: id, createdAt: DateTime.now()), currentlyFollowed);
-                          });
+                            icon: const Icon(Symbols.save_rounded),
+                            onPressed: () async {
+                              await subscriptionsModel.toggleSubscribe(
+                                  SearchSubscription(id: id, createdAt: DateTime.now()), currentlyFollowed);
+                            });
                       }
                     }
 
@@ -158,9 +158,9 @@ class _SearchScreenState extends State<_SearchScreen> with SingleTickerProviderS
               child: TabBar(
                 controller: _tabController,
                 tabs: const [
-                  Tab(icon: Icon(Icons.person_rounded)),
-                  Tab(icon: Icon(Icons.comment_rounded)),
-                  Tab(icon: Icon(Icons.trending_up)),
+                  Tab(icon: Icon(Symbols.person_rounded)),
+                  Tab(icon: Icon(Symbols.comment_rounded)),
+                  Tab(icon: Icon(Symbols.trending_up)),
                 ],
                 labelColor: Theme.of(context).appBarTheme.foregroundColor,
                 indicatorColor: Theme.of(context).appBarTheme.foregroundColor,
@@ -169,29 +169,35 @@ class _SearchScreenState extends State<_SearchScreen> with SingleTickerProviderS
             MultiProvider(
               providers: [
                 ChangeNotifierProvider<TweetContextState>(
-                  create: (_) => TweetContextState(prefs.get(optionTweetsHideSensitive))),
+                    create: (_) => TweetContextState(prefs.get(optionTweetsHideSensitive))),
                 ChangeNotifierProvider<VideoContextState>(
-                  create: (_) => VideoContextState(prefs.get(optionMediaDefaultMute))),
+                    create: (_) => VideoContextState(prefs.get(optionMediaDefaultMute))),
               ],
               child: Expanded(
-                child: TabBarView(controller: _tabController, children: [
-                  TweetSearchResultList<SearchUsersModel, UserWithExtra>(
+                  child: TabBarView(controller: _tabController, children: [
+                TweetSearchResultList<SearchUsersModel, UserWithExtra>(
                     key: _searchUsersKey,
                     queryController: _queryController,
                     store: context.read<SearchUsersModel>(),
-                    searchFunction: (q, c) => context.read<SearchUsersModel>().searchUsers(q, PrefService.of(context).get(optionEnhancedSearches), cursor: c),
+                    searchFunction: (q, c) => context
+                        .read<SearchUsersModel>()
+                        .searchUsers(q, PrefService.of(context).get(optionEnhancedSearches), cursor: c),
                     itemBuilder: (context, user) => UserTile(user: UserSubscription.fromUser(user))),
-                  TweetSearchResultList<SearchTweetsModel, TweetWithCard>(
+                TweetSearchResultList<SearchTweetsModel, TweetWithCard>(
                     key: _searchTweetsKey,
                     queryController: _queryController,
                     store: context.read<SearchTweetsModel>(),
-                    searchFunction: (q, c) => context.read<SearchTweetsModel>().searchTweets(q, PrefService.of(context).get(optionEnhancedSearches), cursor: c),
+                    searchFunction: (q, c) => context
+                        .read<SearchTweetsModel>()
+                        .searchTweets(q, PrefService.of(context).get(optionEnhancedSearches), cursor: c),
                     itemBuilder: (context, item) => TweetTile(tweet: item, clickable: true)),
-                  TweetSearchResultList<SearchTweetsModel, TweetWithCard>(
+                TweetSearchResultList<SearchTweetsModel, TweetWithCard>(
                     key: _searchTrendsKey,
                     queryController: _queryController,
                     store: context.read<SearchTweetsModel>(),
-                    searchFunction: (q, c) => context.read<SearchTweetsModel>().searchTweets(q, PrefService.of(context).get(optionEnhancedSearches), trending: true, cursor: c),
+                    searchFunction: (q, c) => context.read<SearchTweetsModel>().searchTweets(
+                        q, PrefService.of(context).get(optionEnhancedSearches),
+                        trending: true, cursor: c),
                     itemBuilder: (context, item) => TweetTile(tweet: item, clickable: true))
               ])),
             )
@@ -322,20 +328,16 @@ class TweetSearchResultListState<S extends Store<SearchStatus<T>>, T> extends St
         }
 
         return PagedListView<String?, T>(
-          scrollController: _scrollController,
-          pagingController: _pagingController,
-          addAutomaticKeepAlives: false,
-          builderDelegate: PagedChildBuilderDelegate(
-            itemBuilder: (context, elm, index) {
+            scrollController: _scrollController,
+            pagingController: _pagingController,
+            addAutomaticKeepAlives: false,
+            builderDelegate: PagedChildBuilderDelegate(itemBuilder: (context, elm, index) {
               if (!_inAppend) {
                 _lastOffset = _scrollController.offset;
               }
               return widget.itemBuilder(context, elm);
-            }
-          )
-        );
+            }));
       },
     );
   }
 }
-

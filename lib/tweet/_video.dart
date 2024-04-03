@@ -2,6 +2,7 @@ import 'package:chewie/chewie.dart';
 import 'package:dart_twitter_api/twitter_api.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:pref/pref.dart';
 import 'package:squawker/constants.dart';
 import 'package:squawker/generated/l10n.dart';
@@ -46,11 +47,12 @@ class TweetVideoMetadata {
         .where((e) => e.url != null)
         .where((e) => e.contentType == 'video/mp4')
         .sorted(
-          (a, b) => downloadBestVideoQuality ? b.bitrate!.compareTo(a.bitrate!) : a.bitrate!.compareTo(b.bitrate!))
+            (a, b) => downloadBestVideoQuality ? b.bitrate!.compareTo(a.bitrate!) : a.bitrate!.compareTo(b.bitrate!))
         .map((e) => e.url)
         .firstWhereOrNull((e) => e != null);
 
-    return TweetVideoMetadata(durationMillis, aspectRatio, imageUrl, () async => TweetVideoUrls(streamUrl, downloadUrl));
+    return TweetVideoMetadata(
+        durationMillis, aspectRatio, imageUrl, () async => TweetVideoUrls(streamUrl, downloadUrl));
   }
 }
 
@@ -78,13 +80,13 @@ class _TweetVideoState extends State<TweetVideo> {
     var prefs = PrefService.of(context);
 
     _videoController = VideoPlayerController.networkUrl(Uri.parse(streamUrl),
-      videoPlayerOptions: VideoPlayerOptions(
-        allowBackgroundPlayback: prefs.get(optionMediaAllowBackgroundPlay),
-        mixWithOthers: prefs.get(optionMediaAllowBackgroundPlayOtherApps),
-      )
-    );
+        videoPlayerOptions: VideoPlayerOptions(
+          allowBackgroundPlayback: prefs.get(optionMediaAllowBackgroundPlay),
+          mixWithOthers: prefs.get(optionMediaAllowBackgroundPlayOtherApps),
+        ));
     if (widget.metadata.durationMillis != null) {
-      _videoController!.value = _videoController!.value.copyWith(duration: Duration(milliseconds: widget.metadata.durationMillis!));
+      _videoController!.value =
+          _videoController!.value.copyWith(duration: Duration(milliseconds: widget.metadata.durationMillis!));
     }
 
     var model = context.read<VideoContextState>();
@@ -137,7 +139,7 @@ class _TweetVideoState extends State<TweetVideo> {
               },
             );
           },
-          iconData: Icons.download_rounded,
+          iconData: Symbols.download_rounded,
           title: L10n.of(context).download,
         )
       ],
@@ -149,7 +151,7 @@ class _TweetVideoState extends State<TweetVideo> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Icon(
-                Icons.error_rounded,
+                Symbols.error_rounded,
                 color: Colors.white,
                 size: 42,
               ),
@@ -184,34 +186,31 @@ class _TweetVideoState extends State<TweetVideo> {
     return AspectRatio(
       aspectRatio: widget.metadata.aspectRatio,
       child: AnimatedSwitcher(
-        duration: const Duration(milliseconds: 150),
-        child: _showVideo
-          ? _Video(controller: _chewieController!)
-          : GestureDetector(
-              onTap: onTapPlay,
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  widget.metadata.imageUrl != null
-                    ? ExtendedImage.network(widget.metadata.imageUrl!, width: double.infinity, fit: BoxFit.fitWidth, cache: true)
-                    : FittedBox(
-                        fit: BoxFit.fitWidth,
-                        child: Text(L10n.of(context).thumbnail_not_available),
+          duration: const Duration(milliseconds: 150),
+          child: _showVideo
+              ? _Video(controller: _chewieController!)
+              : GestureDetector(
+                  onTap: onTapPlay,
+                  child: Stack(alignment: Alignment.center, children: [
+                    widget.metadata.imageUrl != null
+                        ? ExtendedImage.network(widget.metadata.imageUrl!,
+                            width: double.infinity, fit: BoxFit.fitWidth, cache: true)
+                        : FittedBox(
+                            fit: BoxFit.fitWidth,
+                            child: Text(L10n.of(context).thumbnail_not_available),
+                          ),
+                    Center(
+                      child: FritterCenterPlayButton(
+                        backgroundColor: Colors.black54,
+                        iconColor: Colors.white,
+                        isFinished: false,
+                        isPlaying: false,
+                        show: true,
+                        onPressed: onTapPlay,
                       ),
-                  Center(
-                    child: FritterCenterPlayButton(
-                      backgroundColor: Colors.black54,
-                      iconColor: Colors.white,
-                      isFinished: false,
-                      isPlaying: false,
-                      show: true,
-                      onPressed: onTapPlay,
-                    ),
-                  )
-                ]
-              ),
-            )
-      ),
+                    )
+                  ]),
+                )),
     );
   }
 

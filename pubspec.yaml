@@ -90,6 +90,7 @@ dependencies:
 
   flutter_localizations:
     sdk: flutter
+  material_symbols_icons: ^4.2719.3
 
 dev_dependencies:
   flutter_test:
@@ -101,20 +102,10 @@ dev_dependencies:
   intl_utils: ^2.8.7
   sqflite_common_ffi: ^2.3.2+1
 
-flutter_MaterialSymbols:
-  android: "launcher_icon"
-  ios: true
-
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter.
 flutter:
-
-  # The following line ensures that the Material MaterialSymbols font is
-  # included with your application, so that you can use the MaterialSymbols in
-  # the material MaterialSymbols class.
-  uses-material-design: true
-
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
   # For details regarding adding assets from package dependencies, see

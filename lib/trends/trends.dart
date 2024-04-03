@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:squawker/trends/_list.dart';
 import 'package:squawker/trends/_settings.dart';
 import 'package:squawker/trends/_tabs.dart';
 
 class TrendsScreen extends StatefulWidget {
-
   const TrendsScreen({Key? key}) : super(key: key);
 
   @override
@@ -22,7 +22,7 @@ class _TrendsScreenState extends State<TrendsScreen> with AutomaticKeepAliveClie
     return Scaffold(
       appBar: const TrendsTabBar(),
       floatingActionButton: FloatingActionButton(
-          child: const Icon(Icons.add_rounded),
+          child: const Icon(Symbols.add_rounded),
           onPressed: () async => showDialog(
                 context: context,
                 builder: (context) => const TrendsSettings(),

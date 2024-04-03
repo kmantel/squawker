@@ -5,6 +5,7 @@ import 'package:async_button_builder/async_button_builder.dart';
 import 'package:dart_twitter_api/twitter_api.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:squawker/constants.dart';
 import 'package:squawker/generated/l10n.dart';
 import 'package:squawker/profile/profile.dart';
@@ -219,7 +220,7 @@ class _TweetMediaViewState extends State<TweetMediaView> {
       appBar: AppBar(
         actions: [
           AsyncButtonBuilder(
-            child: const Icon(Icons.download_rounded),
+            child: const Icon(Symbols.download_rounded),
             builder: (context, child, callback, buttonState) {
               return IconButton(onPressed: callback, icon: child);
             },
@@ -262,7 +263,7 @@ class _TweetMediaViewState extends State<TweetMediaView> {
                 await shareJpegData(fileBytes);
               }
             },
-            child: const Icon(Icons.share),
+            child: const Icon(Symbols.share),
           ),
         ],
       ),
@@ -325,22 +326,20 @@ class TweetPhotoView extends StatefulWidget {
   final String url;
   final String username;
 
-  const TweetPhotoView({Key? key, required this.url, required this.username})
-      : super(key: key);
+  const TweetPhotoView({Key? key, required this.url, required this.username}) : super(key: key);
 
   @override
   State<TweetPhotoView> createState() => _TweetPhotoViewState();
 }
 
 class _TweetPhotoViewState extends State<TweetPhotoView> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         actions: [
           AsyncButtonBuilder(
-            child: const Icon(Icons.download_rounded),
+            child: const Icon(Symbols.download_rounded),
             builder: (context, child, callback, buttonState) {
               return IconButton(onPressed: callback, icon: child);
             },
@@ -383,7 +382,7 @@ class _TweetPhotoViewState extends State<TweetPhotoView> {
                 await shareJpegData(fileBytes);
               }
             },
-            child: const Icon(Icons.share),
+            child: const Icon(Symbols.share),
           ),
         ],
       ),
@@ -391,4 +390,3 @@ class _TweetPhotoViewState extends State<TweetPhotoView> {
     );
   }
 }
-

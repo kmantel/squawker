@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_triple/flutter_triple.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:pref/pref.dart';
 import 'package:provider/provider.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
@@ -43,7 +44,8 @@ class SubscriptionGroupScreenContent extends StatelessWidget {
 
   SubscriptionGroupScreenContent({Key? key, required this.id}) : super(key: key);
 
-  String _buildSearchQuery(List<Subscription> users, bool includeReplies, bool includeRetweets, List<String> exclusionsFeedLst) {
+  String _buildSearchQuery(
+      List<Subscription> users, bool includeReplies, bool includeRetweets, List<String> exclusionsFeedLst) {
     StringBuffer query = StringBuffer();
     bool firstDone = false;
 
@@ -52,8 +54,7 @@ class SubscriptionGroupScreenContent extends StatelessWidget {
     }
     if (!includeRetweets) {
       query.write('-filter:retweets AND ');
-    }
-    else {
+    } else {
       query.write('include:nativeretweets AND ');
     }
 
@@ -71,8 +72,8 @@ class SubscriptionGroupScreenContent extends StatelessWidget {
 
       if (user is UserSubscription) {
         queryToAdd = firstDone ? ' OR from:${user.screenName}' : 'from:${user.screenName}';
-      }
-      else { // user is SearchSubscription
+      } else {
+        // user is SearchSubscription
         queryToAdd = firstDone ? ' OR ${user.id}' : user.id;
       }
       if (query.length + queryToAdd.length > 512) {
@@ -86,7 +87,8 @@ class SubscriptionGroupScreenContent extends StatelessWidget {
     return query.toString();
   }
 
-  List<String> _buildSearchQueries(List<Subscription> users, bool includeReplies, bool includeRetweets, List<String> exclusionsFeedLst) {
+  List<String> _buildSearchQueries(
+      List<Subscription> users, bool includeReplies, bool includeRetweets, List<String> exclusionsFeedLst) {
     List<String> searchQueryLst = [];
     while (users.isNotEmpty) {
       String searchQuery = _buildSearchQuery(users, includeReplies, includeRetweets, exclusionsFeedLst);
@@ -117,7 +119,8 @@ class SubscriptionGroupScreenContent extends StatelessWidget {
         if (exclusionLst.last.isEmpty) {
           exclusionLst.removeLast();
         }
-        List<String> searchQueries = _buildSearchQueries(users, group.includeReplies, group.includeRetweets, exclusionLst);
+        List<String> searchQueries =
+            _buildSearchQueries(users, group.includeReplies, group.includeRetweets, exclusionLst);
 
         String feedKeyName = 'feed_key_${group.id.replaceAll('-', '_')}';
         GlobalKey<SubscriptionGroupFeedState>? sgfKey = DataService().map[feedKeyName];
@@ -172,23 +175,23 @@ class SubscriptionGroupScreen extends StatelessWidget {
                 floating: true,
                 title: Text(name),
                 actions: [
-                  IconButton(icon: const Icon(Icons.more_vert), onPressed: () => showFeedSettings(context, model)),
+                  IconButton(icon: const Icon(Symbols.more_vert), onPressed: () => showFeedSettings(context, model)),
                   IconButton(
-                      icon: const Icon(Icons.arrow_upward_rounded),
+                      icon: const Icon(Symbols.arrow_upward_rounded),
                       onPressed: () async {
-                        await content.scrollController!.scrollTo(index: 0,
-                            duration: const Duration(seconds: 1), curve: Curves.easeInOut);
+                        await content.scrollController!
+                            .scrollTo(index: 0, duration: const Duration(seconds: 1), curve: Curves.easeInOut);
                       }),
                   IconButton(
-                    icon: const Icon(Icons.refresh_rounded),
-                    onPressed: () async {
-                      GlobalKey<SubscriptionGroupFeedState>? sgfKey = DataService().map['feed_key_${id.replaceAll('-', '_')}'];
-                      if (sgfKey?.currentState != null) {
-                        sgfKey!.currentState!.setLoading();
-                        await sgfKey.currentState!.reloadData();
-                      }
-                    }
-                  ),
+                      icon: const Icon(Symbols.refresh_rounded),
+                      onPressed: () async {
+                        GlobalKey<SubscriptionGroupFeedState>? sgfKey =
+                            DataService().map['feed_key_${id.replaceAll('-', '_')}'];
+                        if (sgfKey?.currentState != null) {
+                          sgfKey!.currentState!.setLoading();
+                          await sgfKey.currentState!.reloadData();
+                        }
+                      }),
                   ...actions
                 ],
               )

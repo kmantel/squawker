@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_triple/flutter_triple.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:squawker/generated/l10n.dart';
 import 'package:squawker/home/home_model.dart';
 import 'package:squawker/ui/errors.dart';
@@ -17,9 +18,9 @@ class SettingsHomeFragment extends StatelessWidget {
         title: Text(L10n.current.home),
         actions: [
           IconButton(
-            icon: const Icon(Icons.restart_alt),
-            tooltip: L10n.current.reset_home_pages,
-            onPressed: () async => await model.resetPages())
+              icon: const Icon(Symbols.restart_alt),
+              tooltip: L10n.current.reset_home_pages,
+              onPressed: () async => await model.resetPages())
         ],
       ),
       body: Padding(
@@ -42,14 +43,14 @@ class SettingsHomeFragment extends StatelessWidget {
 
                 return CheckboxListTile(
                   key: Key(page.id),
-                  secondary: const Icon(Icons.drag_handle),
+                  secondary: const Icon(Symbols.drag_handle),
                   title: Text(page.page.titleBuilder(context)),
                   value: page.selected,
                   onChanged: (value) async {
                     var selected = value ?? false;
                     if (selected == false && data.where((e) => e.selected).length == 2) {
                       showSnackBar(context,
-                        icon: '🙊', message: L10n.current.you_must_have_at_least_2_home_screen_pages);
+                          icon: '🙊', message: L10n.current.you_must_have_at_least_2_home_screen_pages);
                       return;
                     }
 

@@ -3,6 +3,7 @@ import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_triple/flutter_triple.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:squawker/client/client_account.dart';
 import 'package:squawker/constants.dart';
 import 'package:squawker/database/entities.dart';
@@ -346,7 +347,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> with TickerProvid
                                           ),
                                           if (user.verified ?? false) const SizedBox(width: 6),
                                           if (user.verified ?? false)
-                                            Icon(Icons.verified_rounded,
+                                            Icon(Symbols.verified_rounded,
                                                 size: 24, color: Theme.of(context).primaryColor)
                                         ],
                                       ),
@@ -393,7 +394,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> with TickerProvid
                                                             child: Row(
                                                               crossAxisAlignment: CrossAxisAlignment.center,
                                                               children: [
-                                                                const Icon(Icons.location_on_rounded,
+                                                                const Icon(Symbols.location_on_rounded,
                                                                     size: 12, color: Colors.white),
                                                                 const SizedBox(width: 4),
                                                                 Text(user.location!, style: metadataTextStyle),
@@ -410,7 +411,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> with TickerProvid
                                                               child: Row(
                                                                 crossAxisAlignment: CrossAxisAlignment.center,
                                                                 children: [
-                                                                  const Icon(Icons.link_rounded,
+                                                                  const Icon(Symbols.link_rounded,
                                                                       size: 12, color: Colors.white),
                                                                   const SizedBox(width: 4),
                                                                   Builder(builder: (context) {
@@ -450,7 +451,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> with TickerProvid
                                                             child: Row(
                                                               crossAxisAlignment: CrossAxisAlignment.center,
                                                               children: [
-                                                                const Icon(Icons.calendar_today_rounded,
+                                                                const Icon(Symbols.calendar_today_rounded,
                                                                     size: 12, color: Colors.white),
                                                                 const SizedBox(width: 4),
                                                                 Text(
@@ -478,7 +479,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> with TickerProvid
                                                                   child: Row(
                                                                     crossAxisAlignment: CrossAxisAlignment.center,
                                                                     children: [
-                                                                      const Icon(Icons.person_rounded,
+                                                                      const Icon(Symbols.person,
                                                                           size: 12, color: Colors.white),
                                                                       const SizedBox(width: 4),
                                                                       Text.rich(TextSpan(children: [
@@ -510,7 +511,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> with TickerProvid
                                                                   child: Row(
                                                                     crossAxisAlignment: CrossAxisAlignment.center,
                                                                     children: [
-                                                                      const Icon(Icons.person_rounded,
+                                                                      const Icon(Symbols.person_rounded,
                                                                           size: 12, color: Colors.white),
                                                                       const SizedBox(width: 4),
                                                                       Text.rich(TextSpan(children: [
@@ -615,7 +616,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> with TickerProvid
           ? null
           : FloatingActionButton(
               onPressed: _scrollToTop,
-              child: const Icon(Icons.arrow_upward_rounded),
+              child: const Icon(Symbols.arrow_upward_rounded),
             ),
     );
   }

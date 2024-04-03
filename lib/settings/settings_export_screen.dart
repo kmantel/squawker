@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_file_dialog/flutter_file_dialog.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:squawker/client/client_account.dart';
 import 'package:squawker/database/entities.dart';
 import 'package:squawker/generated/l10n.dart';
@@ -95,7 +96,7 @@ class _SettingsExportScreenState extends State<SettingsExportScreen> {
       floatingActionButton: noExportOptionSelected()
           ? null
           : FloatingActionButton(
-              child: const Icon(Icons.save),
+              child: const Icon(Symbols.save),
               onPressed: () async {
                 var groupModel = context.read<GroupsModel>();
                 await groupModel.reloadGroups();
@@ -141,9 +142,8 @@ class _SettingsExportScreenState extends State<SettingsExportScreen> {
 
                 // This platform can support the directory picker, so display it
                 var path = await FlutterFileDialog.saveFile(
-                  params:
-                    SaveFileDialogParams(fileName: fileName, data: Uint8List.fromList(utf8.encode(exportData)))
-                );
+                    params:
+                        SaveFileDialogParams(fileName: fileName, data: Uint8List.fromList(utf8.encode(exportData))));
                 if (path != null) {
                   ScaffoldMessenger.of(context).clearSnackBars();
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
