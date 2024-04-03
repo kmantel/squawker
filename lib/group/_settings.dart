@@ -22,14 +22,13 @@ void showFeedSettings(BuildContext context, GroupModel model) {
             ),
             child: Column(
               children: [
-                ListTile(
+                AppBar(
                   leading: IconButton(
                       icon: const Icon(Symbols.arrow_back_rounded),
                       onPressed: () {
                         Navigator.of(context).pop();
                       }),
                   title: Text(L10n.of(context).filters),
-                  tileColor: theme.colorScheme.primary,
                 ),
                 Container(
                     alignment: Alignment.centerLeft,
@@ -45,21 +44,21 @@ void showFeedSettings(BuildContext context, GroupModel model) {
                   onState: (_, state) {
                     return Column(
                       children: [
-                        CheckboxListTile(
+                        SwitchListTile(
                             title: Text(
                               L10n.of(context).include_replies,
                             ),
                             value: model.state.includeReplies,
                             onChanged: (value) async {
-                              await model.toggleSubscriptionGroupIncludeReplies(value ?? false);
+                              await model.toggleSubscriptionGroupIncludeReplies(value);
                             }),
-                        CheckboxListTile(
+                        SwitchListTile(
                             title: Text(
                               L10n.of(context).include_retweets,
                             ),
                             value: model.state.includeRetweets,
                             onChanged: (value) async {
-                              await model.toggleSubscriptionGroupIncludeRetweets(value ?? false);
+                              await model.toggleSubscriptionGroupIncludeRetweets(value);
                             }),
                       ],
                     );
