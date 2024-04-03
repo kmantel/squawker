@@ -320,18 +320,19 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
   }
 
   _createFooterIconButton(IconData icon, [Color? color, Function()? onPressed]) {
-    return TextButton.icon(
-      icon: Icon(icon, size: 14, color: color),
+    return IconButton(
+      icon: Icon(icon),
+      color: color ?? Theme.of(context).colorScheme.primary,
+      iconSize: 24,
       onPressed: onPressed,
-      label: Container(),
     );
   }
 
   _createFooterTextButton(IconData icon, String label, [Color? color, Function()? onPressed]) {
     return TextButton.icon(
-      icon: Icon(icon, size: 14, color: color),
+      icon: Icon(icon, size: 24, color: color),
       onPressed: onPressed,
-      label: Text(label, style: TextStyle(color: color, fontSize: 12.5)),
+      label: Text(label, style: TextStyle(color: color, fontSize: 14)),
     );
   }
 
@@ -614,23 +615,6 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
                                               child: Column(
                                             mainAxisSize: MainAxisSize.min,
                                             children: [
-                                              Consumer<SavedTweetModel>(builder: (context, model, child) {
-                                                var isSaved = model.isSaved(tweet.idStr!);
-                                                if (isSaved) {
-                                                  return createSheetButton(
-                                                      L10n.of(context).unsave, Icons.bookmark_border_rounded, () async {
-                                                    await model.deleteSavedTweet(tweet.idStr!);
-                                                    Navigator.pop(context);
-                                                  });
-                                                } else {
-                                                  return createSheetButton(
-                                                      L10n.of(context).save, Icons.bookmark_border_rounded, () async {
-                                                    await model.saveTweet(
-                                                        tweet.idStr!, tweet.user?.idStr, tweet.toJson());
-                                                    Navigator.pop(context);
-                                                  });
-                                                }
-                                              }),
                                               createSheetButton(L10n.of(context).share_tweet_content, Icons.share,
                                                   () async {
                                                 Share.share(tweetText);
@@ -699,6 +683,7 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
                           quotedTweet,
                           TweetCard(tweet: tweet, card: tweet.card),
                           Container(
+                            alignment: Alignment.center,
                             margin: const EdgeInsets.symmetric(horizontal: 8),
                             child: Scrollbar(
                               child: SingleChildScrollView(
@@ -710,15 +695,26 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
                                         tweet.replyCount != null ? numberFormat.format(tweet.replyCount) : '',
                                         null,
                                         () => onClickOpenTweet(tweet)),
-                                    if (tweet.retweetCount != null)
-                                      _createFooterTextButton(
-                                          Icons.repeat_rounded, numberFormat.format(tweet.retweetCount)),
-                                    if (tweet.quoteCount != null)
-                                      _createFooterTextButton(
-                                          Icons.chat_rounded, numberFormat.format(tweet.quoteCount)),
+                                    if (tweet.retweetCount != null && tweet.quoteCount != null)
+                                      _createFooterTextButton(Icons.repeat_rounded,
+                                          numberFormat.format((tweet.retweetCount! + tweet.quoteCount!))),
                                     if (tweet.favoriteCount != null)
                                       _createFooterTextButton(
                                           Icons.favorite_border, numberFormat.format(tweet.favoriteCount)),
+                                    Consumer<SavedTweetModel>(builder: (context, model, child) {
+                                      var isSaved = model.isSaved(tweet.idStr!);
+                                      if (isSaved) {
+                                        return _createFooterIconButton(Icons.bookmark, null, () async {
+                                          await model.deleteSavedTweet(tweet.idStr!);
+                                          setState(() {});
+                                        });
+                                      } else {
+                                        return _createFooterIconButton(Icons.bookmark_border, null, () async {
+                                          await model.saveTweet(tweet.idStr!, tweet.user?.idStr, tweet.toJson());
+                                          setState(() {});
+                                        });
+                                      }
+                                    }),
                                     translateButton,
                                   ],
                                 ),
