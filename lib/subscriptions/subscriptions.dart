@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
-import 'package:squawker/constants.dart';
 import 'package:squawker/generated/l10n.dart';
 import 'package:squawker/home/home_screen.dart';
+import 'package:squawker/subscriptions/_import.dart';
 import 'package:squawker/subscriptions/_list.dart';
 import 'package:squawker/subscriptions/users_model.dart';
 import 'package:provider/provider.dart';
@@ -18,7 +18,8 @@ class SubscriptionsScreen extends StatelessWidget {
         actions: [
           IconButton(
             icon: const Icon(Symbols.cloud_download_rounded),
-            onPressed: () => Navigator.pushNamed(context, routeSubscriptionsImport),
+            onPressed: () =>
+                showModalBottomSheet(context: context, builder: (BuildContext c) => const SubscriptionImportScreen()),
           ),
           IconButton(
             icon: const Icon(Symbols.refresh_rounded),
