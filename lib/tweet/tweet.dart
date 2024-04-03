@@ -545,6 +545,9 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
             builder: (context, model, child) => RepaintBoundary(
                 key: _globalKey,
                 child: Card(
+                  color: prefs.get(optionThemeMode) == 'dark' && prefs.get(optionThemeTrueBlack) == true
+                      ? Colors.black
+                      : null,
                   child: Row(
                     children: [
                       retweetSidebar,
@@ -595,7 +598,6 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
                                       ],
                                     ),
                                   ),
-
                                 InkWell(
                                   child: const Icon(Icons.more_horiz),
                                   onTap: () async {
