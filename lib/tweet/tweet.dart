@@ -21,6 +21,7 @@ import 'package:squawker/tweet/_media.dart';
 import 'package:squawker/ui/dates.dart';
 import 'package:squawker/ui/errors.dart';
 import 'package:squawker/user.dart';
+import 'package:squawker/utils/data_service.dart';
 import 'package:squawker/utils/iterables.dart';
 import 'package:squawker/utils/misc.dart';
 import 'package:squawker/utils/translation.dart';
@@ -717,7 +718,10 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
                                       if (isSaved) {
                                         return _createFooterIconButton(Symbols.bookmark, null, 1, () async {
                                           await model.deleteSavedTweet(tweet.idStr!);
-                                          setState(() {});
+                                          DataService().map['toggleKeepFeed'] = true;
+                                          if (mounted) {
+                                            setState(() {});
+                                          }
                                         });
                                       } else {
                                         return _createFooterIconButton(Symbols.bookmark, null, 0, () async {

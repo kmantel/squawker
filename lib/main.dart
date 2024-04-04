@@ -489,7 +489,8 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
           labelColor: Colors.white,
           unselectedLabelColor: Colors.grey.shade400.lighten(),
         ),
-      ),      themeMode: themeMode,
+      ),
+      themeMode: themeMode,
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       navigatorObservers: [

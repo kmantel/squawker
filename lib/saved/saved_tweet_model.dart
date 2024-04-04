@@ -15,12 +15,18 @@ class SavedTweetModel extends Store<List<SavedTweet>> {
   }
 
   Future<void> deleteSavedTweet(String id) async {
-    var database = await Repository.writable();
+    log.info('Deleting tweet with the ID $id');
 
-    await database.delete(tableSavedTweet, where: 'id = ?', whereArgs: [id]);
-    state.removeWhere((e) => e.id == id);
+    await execute(() async {
+      var database = await Repository.writable();
 
-    update(state, force: true);
+      await database.delete(tableSavedTweet, where: 'id = ?', whereArgs: [id]);
+      state.removeWhere((e) => e.id == id);
+
+      update(state, force: true);
+
+      return state;
+    });
   }
 
   Future<void> listSavedTweets() async {

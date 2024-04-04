@@ -288,16 +288,28 @@ class ScaffoldWithBottomNavigationState extends State<ScaffoldWithBottomNavigati
   late List<Widget> _children;
   late List<NavigationPage> _pages;
   bool _goToSubscriptions = false;
+  int _selectedIndex = 0;
 
   @override
   void initState() {
     super.initState();
+
+    _selectedIndex = widget.initialPage;
 
     _pages = _padToMinimumPagesLength(widget.pages);
 
     _pageController = PageController(initialPage: widget.initialPage);
 
     _children = widget.builder(scrollController);
+  }
+
+  void fromFeedToSubscriptions() {
+    int idx = widget.pages.indexWhere((e) => e.id == 'feed');
+    if (idx == _selectedIndex) {
+      setState(() {
+        _goToSubscriptions = true;
+      });
+    }
   }
 
   List<NavigationPage> _padToMinimumPagesLength(List<NavigationPage> pages) {
@@ -330,7 +342,6 @@ class ScaffoldWithBottomNavigationState extends State<ScaffoldWithBottomNavigati
     _pageController?.dispose();
   }
 
-  int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     if (_goToSubscriptions) {
@@ -345,12 +356,12 @@ class ScaffoldWithBottomNavigationState extends State<ScaffoldWithBottomNavigati
         controller: _pageController,
         physics: const LessSensitiveScrollPhysics(),
         onPageChanged: (page) => Debouncer.debounce('page-change', const Duration(milliseconds: 200), () {
-          setState(() => selectedIndex = page);
+          setState(() => _selectedIndex = page);
         }),
         children: _children,
       ),
       bottomNavigationBar: NavigationBar(
-        selectedIndex: selectedIndex,
+        selectedIndex: _selectedIndex,
         labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
         destinations: [
           ..._pages.map((e) => NavigationDestination(icon: Icon(e.icon, size: 22), label: e.titleBuilder(context)))
