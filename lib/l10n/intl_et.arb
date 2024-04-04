@@ -618,5 +618,11 @@
   "warning_regular_account_unauthenticated_access_title": "Tavakontod ja autentimata ligipääs",
   "@warning_regular_account_unauthenticated_access_title": {},
   "warning_regular_account_unauthenticated_access_description": "Twitter/X on lõpetanud külaliskontode kasutamise võimaluse. Palun kirjelda tavakonto Seadistused-Kasutajakonto alt. Ilma tavakontota on sul vaid piiratud ja osaline ligipääs vaid säutsudele ja kasutajaprofiilidele. Anonüümse tavakonto loomine on lihtne ning vastav juhend on siin:",
-  "@warning_regular_account_unauthenticated_access_description": {}
+  "@warning_regular_account_unauthenticated_access_description": {},
+  "exclusions_feed_label": "Välistused säutsuvoost",
+  "@exclusions_feed_label": {},
+  "exclusions_feed_description": "Kasutajanimede loend, mida soovid säutsuvoost välistada",
+  "@exclusions_feed_description": {},
+  "username_exclude": "Välistatav kasutajanimi",
+  "@username_exclude": {}
 }
