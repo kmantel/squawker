@@ -718,9 +718,11 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
                                       if (isSaved) {
                                         return _createFooterIconButton(Symbols.bookmark, null, 1, () async {
                                           await model.deleteSavedTweet(tweet.idStr!);
-                                          DataService().map['toggleKeepFeed'] = true;
                                           if (mounted) {
                                             setState(() {});
+                                          }
+                                          else {
+                                            DataService().map['toggleRefreshFeed'] = true;
                                           }
                                         });
                                       } else {

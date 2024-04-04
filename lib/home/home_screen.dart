@@ -282,7 +282,7 @@ class ScaffoldWithBottomNavigation extends StatefulWidget {
 }
 
 class ScaffoldWithBottomNavigationState extends State<ScaffoldWithBottomNavigation> {
-  final ScrollController scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
 
   PageController? _pageController;
   late List<Widget> _children;
@@ -300,7 +300,7 @@ class ScaffoldWithBottomNavigationState extends State<ScaffoldWithBottomNavigati
 
     _pageController = PageController(initialPage: widget.initialPage);
 
-    _children = widget.builder(scrollController);
+    _children = widget.builder(_scrollController);
   }
 
   void fromFeedToSubscriptions() {
@@ -330,7 +330,7 @@ class ScaffoldWithBottomNavigationState extends State<ScaffoldWithBottomNavigati
     var newPages = _padToMinimumPagesLength(widget.pages);
     if (oldWidget.pages != widget.pages) {
       setState(() {
-        _children = widget.builder(scrollController);
+        _children = widget.builder(_scrollController);
         _pages = newPages;
       });
     }
@@ -366,8 +366,12 @@ class ScaffoldWithBottomNavigationState extends State<ScaffoldWithBottomNavigati
         destinations: [
           ..._pages.map((e) => NavigationDestination(icon: Icon(e.icon, size: 22), label: e.titleBuilder(context)))
         ],
-        onDestinationSelected: (int value) =>
-            _pageController?.animateToPage(value, duration: const Duration(milliseconds: 200), curve: Curves.linear),
+        onDestinationSelected: (int value) async {
+          if (_children[value] is FeedScreen && widget.feedKey != null && widget.feedKey!.currentState != null) {
+            await widget.feedKey!.currentState!.checkUpdateOrRefreshFeed();
+          }
+          _pageController?.animateToPage(value, duration: const Duration(milliseconds: 200), curve: Curves.linear);
+        }
       ),
     );
   }

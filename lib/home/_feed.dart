@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:squawker/group/_feed.dart';
 import 'package:squawker/group/group_screen.dart';
 import 'package:squawker/home/home_screen.dart';
 import 'package:squawker/utils/data_service.dart';
+
 
 class FeedScreen extends StatefulWidget {
   final ScrollController scrollController;
@@ -16,13 +18,20 @@ class FeedScreen extends StatefulWidget {
 
 class FeedScreenState extends State<FeedScreen> with AutomaticKeepAliveClientMixin<FeedScreen> {
 
-  Future<void> checkUpdateFeed() async {
+  Future<void> checkUpdateOrRefreshFeed() async {
     if (DataService().map.containsKey('toggleKeepFeed')) {
       setState(() {
         DataService().map.remove('toggleKeepFeed');
         DataService().map['keepFeed'] = false;
         updateKeepAlive();
       });
+    }
+    if (DataService().map.containsKey('toggleRefreshFeed')) {
+      DataService().map.remove('toggleRefreshFeed');
+      GlobalKey<SubscriptionGroupFeedState>? sgfKey = DataService().map['feed_key_${widget.id.replaceAll('-', '_')}'];
+      if (sgfKey?.currentState != null) {
+        sgfKey!.currentState!.refresh();
+      }
     }
   }
 
