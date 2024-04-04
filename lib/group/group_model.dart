@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconpicker_plus/flutter_iconpicker.dart';
 import 'package:flutter_triple/flutter_triple.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:squawker/constants.dart';
 import 'package:squawker/database/entities.dart';
 import 'package:squawker/database/repository.dart';
@@ -24,7 +25,7 @@ IconData deserializeIconData(String iconData) {
   }
 
   // Use this as a default;
-  return Icons.rss_feed_rounded;
+  return Symbols.rss_feed_rounded;
 }
 
 class GroupModel extends Store<SubscriptionGroupGet> {

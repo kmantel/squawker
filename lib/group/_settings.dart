@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_triple/flutter_triple.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:squawker/database/entities.dart';
 import 'package:squawker/generated/l10n.dart';
 import 'package:squawker/group/group_model.dart';
@@ -21,14 +22,13 @@ void showFeedSettings(BuildContext context, GroupModel model) {
             ),
             child: Column(
               children: [
-                ListTile(
+                AppBar(
                   leading: IconButton(
-                      icon: const Icon(Icons.arrow_back_rounded),
+                      icon: const Icon(Symbols.arrow_back_rounded),
                       onPressed: () {
                         Navigator.of(context).pop();
                       }),
                   title: Text(L10n.of(context).filters),
-                  tileColor: theme.colorScheme.primary,
                 ),
                 Container(
                     alignment: Alignment.centerLeft,
@@ -44,21 +44,21 @@ void showFeedSettings(BuildContext context, GroupModel model) {
                   onState: (_, state) {
                     return Column(
                       children: [
-                        CheckboxListTile(
+                        SwitchListTile(
                             title: Text(
                               L10n.of(context).include_replies,
                             ),
                             value: model.state.includeReplies,
                             onChanged: (value) async {
-                              await model.toggleSubscriptionGroupIncludeReplies(value ?? false);
+                              await model.toggleSubscriptionGroupIncludeReplies(value);
                             }),
-                        CheckboxListTile(
+                        SwitchListTile(
                             title: Text(
                               L10n.of(context).include_retweets,
                             ),
                             value: model.state.includeRetweets,
                             onChanged: (value) async {
-                              await model.toggleSubscriptionGroupIncludeRetweets(value ?? false);
+                              await model.toggleSubscriptionGroupIncludeRetweets(value);
                             }),
                       ],
                     );

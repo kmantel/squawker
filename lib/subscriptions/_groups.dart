@@ -4,9 +4,9 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
-import 'package:flutter_iconpicker_plus/IconPicker/Packs/Material.dart';
 import 'package:flutter_iconpicker_plus/flutter_iconpicker.dart';
 import 'package:flutter_triple/flutter_triple.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:squawker/constants.dart';
 import 'package:squawker/database/entities.dart';
 import 'package:squawker/generated/l10n.dart';
@@ -111,7 +111,7 @@ class _SubscriptionGroupsState extends State<SubscriptionGroups> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Icon(Icons.add_rounded, size: 16),
+                        const Icon(Symbols.add_rounded, size: 16),
                         const SizedBox(height: 4),
                         Text(
                           L10n.of(context).newTrans,
@@ -212,9 +212,6 @@ class _SubscriptionGroupEditDialogState extends State<SubscriptionGroupEditDialo
       return const Center(child: CircularProgressIndicator());
     }
 
-    // Filter the Material icons to only the ones the app uses
-    var iconPack = icons.entries.where((value) => value.key.endsWith('_rounded') || value.key.endsWith('_rounded'));
-
     List<Widget> buttonsLst1 = [
       TextButton(
         onPressed: () {
@@ -255,46 +252,46 @@ class _SubscriptionGroupEditDialogState extends State<SubscriptionGroupEditDialo
     ];
     double screenWidth = MediaQuery.of(context).size.width;
     double allTextsWidth = calcTextSize(context,
-      '   ${L10n.of(context).toggle_all}   ${L10n.of(context).delete}   ${L10n.of(context).cancel}  ${L10n.of(context).ok}   ').width;
+            '   ${L10n.of(context).toggle_all}   ${L10n.of(context).delete}   ${L10n.of(context).cancel}  ${L10n.of(context).ok}   ')
+        .width;
     double halfTextsWidth1 =
-      calcTextSize(context, '   ${L10n.of(context).toggle_all}   ${L10n.of(context).delete}   ').width;
+        calcTextSize(context, '   ${L10n.of(context).toggle_all}   ${L10n.of(context).delete}   ').width;
     double halfTextsWidth2 = calcTextSize(context, '   ${L10n.of(context).cancel}   ${L10n.of(context).ok}   ').width;
     double halfTextsWidth = halfTextsWidth1 > halfTextsWidth2 ? halfTextsWidth1 : halfTextsWidth2;
     if (kDebugMode) {
-      print('*** _SubscriptionGroupEditDialogState - screenWidth = $screenWidth, allTextsWidth = $allTextsWidth, halfTextsWidth = $halfTextsWidth');
+      print(
+          '*** _SubscriptionGroupEditDialogState - screenWidth = $screenWidth, allTextsWidth = $allTextsWidth, halfTextsWidth = $halfTextsWidth');
     }
 
     return AlertDialog(
       actionsPadding: EdgeInsets.symmetric(
-        horizontal: 0,
-        vertical: screenWidth >= breakpointScreenWidth2 && allTextsWidth < breakpointTextWidth
-          ? 20
-          : screenWidth >= breakpointScreenWidth1 && halfTextsWidth < breakpointTextWidth
-            ? 10
-            : 5
-      ),
+          horizontal: 0,
+          vertical: screenWidth >= breakpointScreenWidth2 && allTextsWidth < breakpointTextWidth
+              ? 20
+              : screenWidth >= breakpointScreenWidth1 && halfTextsWidth < breakpointTextWidth
+                  ? 10
+                  : 5),
       actions: [
         SizedBox(
-          width: screenWidth,
-          child: screenWidth >= breakpointScreenWidth2 && allTextsWidth < breakpointTextWidth
-            ? Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                ...buttonsLst1,
-                ...buttonsLst2,
-              ])
-            : screenWidth >= breakpointScreenWidth1 && halfTextsWidth < breakpointTextWidth
-              ? Column(mainAxisSize: MainAxisSize.min, children: [
-                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            width: screenWidth,
+            child: screenWidth >= breakpointScreenWidth2 && allTextsWidth < breakpointTextWidth
+                ? Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                     ...buttonsLst1,
-                  ]),
-                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                     ...buttonsLst2,
-                  ]),
-                ])
-              : Column(mainAxisSize: MainAxisSize.min, children: [
-                  ...buttonsLst1,
-                  ...buttonsLst2,
-                ])
-        ),
+                  ])
+                : screenWidth >= breakpointScreenWidth1 && halfTextsWidth < breakpointTextWidth
+                    ? Column(mainAxisSize: MainAxisSize.min, children: [
+                        Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                          ...buttonsLst1,
+                        ]),
+                        Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                          ...buttonsLst2,
+                        ]),
+                      ])
+                    : Column(mainAxisSize: MainAxisSize.min, children: [
+                        ...buttonsLst1,
+                        ...buttonsLst2,
+                      ])),
       ],
       content: Form(
         key: _formKey,
@@ -326,7 +323,7 @@ class _SubscriptionGroupEditDialogState extends State<SubscriptionGroupEditDialo
                     ),
                   ),
                   IconButton(
-                    icon: Icon(Icons.palette_rounded, color: color),
+                    icon: Icon(Symbols.palette_rounded, color: color),
                     onPressed: () {
                       showDialog(
                           context: context,
@@ -369,10 +366,11 @@ class _SubscriptionGroupEditDialogState extends State<SubscriptionGroupEditDialo
                     icon: Icon(deserializeIconData(icon)),
                     onPressed: () async {
                       var selectedIcon = await FlutterIconPicker.showIconPicker(context,
-                          iconPackModes: [IconPack.custom],
-                          customIconPack: Map.fromEntries(iconPack),
+                          iconPackModes: [IconPack.lineAwesomeIcons],
                           title: Text(L10n.of(context).pick_an_icon),
                           closeChild: Text(L10n.of(context).close),
+                          searchClearIcon: Icon(Symbols.close),
+                          searchIcon: Icon(Symbols.search),
                           searchHintText: L10n.of(context).search,
                           noResultsText: L10n.of(context).no_results_for);
                       if (selectedIcon != null) {
@@ -395,7 +393,7 @@ class _SubscriptionGroupEditDialogState extends State<SubscriptionGroupEditDialo
                         subscription is SearchSubscription ? L10n.current.search_term : '@${subscription.screenName}';
 
                     var icon = subscription is SearchSubscription
-                        ? const SizedBox(width: 48, child: Icon(Icons.search_rounded))
+                        ? const SizedBox(width: 48, child: Icon(Symbols.search_rounded))
                         : UserAvatar(uri: subscription.profileImageUrlHttps);
 
                     return CheckboxListTile(

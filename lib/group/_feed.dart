@@ -140,6 +140,11 @@ class SubscriptionGroupFeedState extends State<SubscriptionGroupFeed> with Widge
     _data.clear();
   }
 
+  void refresh() {
+    setState(() {
+    });
+  }
+
   Future<void> reloadData() async {
     await updateOffset();
     _resetData();

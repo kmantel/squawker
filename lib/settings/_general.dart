@@ -2,6 +2,7 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localized_locales/flutter_localized_locales.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:squawker/client/app_http_client.dart';
 import 'package:squawker/constants.dart';
 import 'package:squawker/database/repository.dart';
@@ -204,7 +205,7 @@ class SettingsGeneralFragment extends StatelessWidget {
           ),
           ExpansionTile(
             title: Text(L10n.of(context).media),
-            leading: const Icon(Icons.image),
+            leading: const Icon(Symbols.image),
             children: [
               PrefDropdown(
                   fullWidth: false,
@@ -260,7 +261,7 @@ class SettingsGeneralFragment extends StatelessWidget {
           ),
           ExpansionTile(
             title: Text(L10n.of(context).feed),
-            leading: const Icon(Icons.rss_feed),
+            leading: const Icon(Symbols.rss_feed),
             children: [
               PrefSwitch(
                 title: Text(L10n.of(context).keep_feed_offset_label),
@@ -287,7 +288,7 @@ class SettingsGeneralFragment extends StatelessWidget {
           ),
           ExpansionTile(
             title: Text(L10n.of(context).x_api),
-            leading: const Icon(Icons.api_outlined),
+            leading: const Icon(Symbols.api),
             children: [
               PrefSwitch(
                 title: Text(L10n.of(context).enhanced_feeds_label),
@@ -438,7 +439,7 @@ class ExclusionsFeedSettingState extends State<ExclusionsFeedSetting> {
         ),
         child: Icon(
           size: 20,
-          isLast ? Icons.add : Icons.remove,
+          isLast ? Symbols.add : Symbols.remove,
           color: Colors.white,
         ),
       ),
