@@ -213,6 +213,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Sisesta oma Twitter/Xi kasutajanimi"),
         "error_from_twitter":
             MessageLookupByLibrary.simpleMessage("Twitter/X\'i viga"),
+        "exclusions_feed_description": MessageLookupByLibrary.simpleMessage(
+            "Kasutajanimede loend, mida soovid säutsuvoost välistada"),
+        "exclusions_feed_label":
+            MessageLookupByLibrary.simpleMessage("Välistused säutsuvoost"),
         "export": MessageLookupByLibrary.simpleMessage("Eksport"),
         "export_guest_accounts": MessageLookupByLibrary.simpleMessage(
             "Kas ekspordime külaliskontod?"),
@@ -573,6 +577,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "user_not_found":
             MessageLookupByLibrary.simpleMessage("Kasutajat ei leidu"),
         "username": MessageLookupByLibrary.simpleMessage("Kasutajanimi"),
+        "username_exclude":
+            MessageLookupByLibrary.simpleMessage("Välistatav kasutajanimi"),
         "username_label": MessageLookupByLibrary.simpleMessage("Kasutajanimi:"),
         "usernames": MessageLookupByLibrary.simpleMessage("Kasutajanimed"),
         "version": MessageLookupByLibrary.simpleMessage("Versioon"),
