@@ -12,7 +12,7 @@ Future<bool> isLanguageSupportedForTranslation(String lang) async {
   // TODO: Cache this response, per host, for x amount of time
   var res = await TranslationAPI.getSupportedLanguages();
   if (res.success) {
-    return findInJSONArray(res.body, 'code', getShortSystemLocale());
+    return findInJSONArray(res.body, 'code', lang);
   }
 
   throw res;
@@ -82,18 +82,19 @@ class TranslationAPI {
   }
 
   static Future<TranslationAPIResult> translate(BuildContext context, String id, List<String> text, String sourceLanguage) async {
+    var actualSourceLanguage = sourceLanguage == 'iw' ? 'he' : sourceLanguage;
     var hasTextOrNot = text.map((e) => e.isNotEmpty ? true : false).toList();
     var targetLanguage = Localizations.localeOf(context).languageCode;
 
     var formData = {
       // We need to strip out any empty parts, as the API barfs on them sometimes
       'q': text.where((e) => e.isNotEmpty).toList(),
-      'source': sourceLanguage,
+      'source': actualSourceLanguage,
       'target': targetLanguage,
       'format': 'text'
     };
 
-    var key = 'translation.$sourceLanguage.$targetLanguage.$id';
+    var key = 'translation.$actualSourceLanguage.$targetLanguage.$id';
 
     var res = await cacheRequest(key, () async {
       int connectTries = 0;
