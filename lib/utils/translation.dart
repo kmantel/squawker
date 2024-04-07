@@ -36,6 +36,9 @@ class TranslationAPI {
   //   translate.terraprint.co
   static final translation_hosts = ['libretranslate.de', 'translate.fedilab.app', 'translate.argosopentech.com'];
   static int current_translation_host_idx = 0; // Random().nextInt(translation_hosts.length);
+  static Map<String, String> langCodeReplace = {
+    'iw': 'he'
+  };
 
   static String translationHost() {
     return translation_hosts[current_translation_host_idx];
@@ -82,7 +85,7 @@ class TranslationAPI {
   }
 
   static Future<TranslationAPIResult> translate(BuildContext context, String id, List<String> text, String sourceLanguage) async {
-    var actualSourceLanguage = sourceLanguage == 'iw' ? 'he' : sourceLanguage;
+    var actualSourceLanguage = langCodeReplace.containsKey(sourceLanguage) ? langCodeReplace[sourceLanguage] : sourceLanguage;
     var hasTextOrNot = text.map((e) => e.isNotEmpty ? true : false).toList();
     var targetLanguage = Localizations.localeOf(context).languageCode;
 
