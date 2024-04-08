@@ -18,6 +18,7 @@ import 'package:squawker/ui/errors.dart';
 import 'package:squawker/ui/physics.dart';
 import 'package:squawker/user.dart';
 import 'package:squawker/utils/urls.dart';
+import 'package:squawker/utils/route_util.dart';
 import 'package:intl/intl.dart';
 import 'package:measure_size/measure_size.dart';
 import 'package:pref/pref.dart';
@@ -59,7 +60,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final args = ModalRoute.of(context)!.settings.arguments as ProfileScreenArguments;
+    final args = getNamedRouteArguments(routeProfile) as ProfileScreenArguments;
 
     return Provider(
         create: (context) {
@@ -209,15 +210,13 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> with TickerProvid
       var onTap = () async {};
       if (type == '#') {
         onTap = () async {
-          Navigator.pushNamed(context, routeSearch,
-              arguments: SearchArguments(1, focusInputOnOpen: false, query: full));
+          pushNamedRoute(context, routeSearch, SearchArguments(1, focusInputOnOpen: false, query: full));
         };
       }
 
       if (type == '@') {
         onTap = () async {
-          Navigator.pushNamed(context, routeProfile,
-              arguments: ProfileScreenArguments.fromScreenName(full.substring(1)));
+          pushNamedRoute(context, routeProfile, ProfileScreenArguments.fromScreenName(full.substring(1)));
         };
       }
 

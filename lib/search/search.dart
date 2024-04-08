@@ -17,6 +17,7 @@ import 'package:squawker/tweet/tweet.dart';
 import 'package:squawker/ui/errors.dart';
 import 'package:squawker/user.dart';
 import 'package:squawker/utils/notifiers.dart';
+import 'package:squawker/utils/route_util.dart';
 import 'package:pref/pref.dart';
 import 'package:provider/provider.dart';
 
@@ -33,7 +34,7 @@ class SearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final arguments = ModalRoute.of(context)!.settings.arguments as SearchArguments;
+    final arguments = getNamedRouteArguments(routeSearch) as SearchArguments;
 
     return _SearchScreen(
         initialTab: arguments.initialTab, query: arguments.query, focusInputOnOpen: arguments.focusInputOnOpen);

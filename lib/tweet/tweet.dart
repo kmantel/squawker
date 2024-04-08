@@ -24,6 +24,7 @@ import 'package:squawker/user.dart';
 import 'package:squawker/utils/data_service.dart';
 import 'package:squawker/utils/iterables.dart';
 import 'package:squawker/utils/misc.dart';
+import 'package:squawker/utils/route_util.dart';
 import 'package:squawker/utils/translation.dart';
 import 'package:squawker/utils/urls.dart';
 import 'package:html_unescape/html_unescape.dart';
@@ -108,8 +109,7 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
         getNewEntity: (Hashtag hashtag) {
           return TweetHashtag(
               hashtag,
-              () => Navigator.pushNamed(context, routeSearch,
-                  arguments: SearchArguments(1, focusInputOnOpen: false, query: '#${hashtag.text}')));
+              () => pushNamedRoute(context, routeSearch, SearchArguments(1, focusInputOnOpen: false, query: '#${hashtag.text}')));
         });
 
     entities = _populateEntities(
@@ -117,8 +117,7 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
         source: tweet.entities?.userMentions,
         getNewEntity: (UserMention mention) {
           return TweetUserMention(mention, () {
-            Navigator.pushNamed(context, routeProfile,
-                arguments: ProfileScreenArguments(mention.idStr, mention.screenName));
+            pushNamedRoute(context, routeProfile, ProfileScreenArguments(mention.idStr, mention.screenName));
           });
         });
 
@@ -203,8 +202,7 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
   }
 
   void onClickOpenTweet(TweetWithCard tweet) {
-    Navigator.pushNamed(context, routeStatus,
-        arguments: StatusScreenArguments(id: tweet.idStr!, username: tweet.user!.screenName!));
+    pushNamedRoute(context, routeStatus, StatusScreenArguments(id: tweet.idStr!, username: tweet.user!.screenName!));
   }
 
   List<TweetTextPart> convertTextPartsToTweetEntities(List<String> parts) {
@@ -417,8 +415,7 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
     if (this.tweet.retweetedStatusWithCard != null) {
       retweetBanner = _TweetTileLeading(
         icon: Symbols.repeat,
-        onTap: () => Navigator.pushNamed(context, routeProfile,
-            arguments: ProfileScreenArguments.fromScreenName(this.tweet.user!.screenName!)),
+        onTap: () => pushNamedRoute(context, routeProfile, ProfileScreenArguments.fromScreenName(this.tweet.user!.screenName!)),
         children: [
           TextSpan(
               text: L10n.of(context)
@@ -444,8 +441,7 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
               ),
             ));
           } else {
-            Navigator.pushNamed(context, routeStatus,
-                arguments: StatusScreenArguments(id: replyToId, username: replyTo));
+            pushNamedRoute(context, routeStatus, StatusScreenArguments(id: replyToId, username: replyTo));
           }
         },
         icon: Symbols.reply_rounded,
@@ -586,9 +582,7 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
                               if (currentUsername != null && tweet.user!.screenName!.endsWith(currentUsername!)) {
                                 return;
                               }
-
-                              Navigator.pushNamed(context, routeProfile,
-                                  arguments: ProfileScreenArguments(tweet.user!.idStr, tweet.user!.screenName));
+                              pushNamedRoute(context, routeProfile, ProfileScreenArguments(tweet.user!.idStr, tweet.user!.screenName));
                             },
                             title: Row(
                               children: [

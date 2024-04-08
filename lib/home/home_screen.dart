@@ -24,6 +24,7 @@ import 'package:squawker/ui/errors.dart';
 import 'package:squawker/ui/physics.dart';
 import 'package:squawker/utils/data_service.dart';
 import 'package:squawker/utils/debounce.dart';
+import 'package:squawker/utils/route_util.dart';
 import 'package:pref/pref.dart';
 import 'package:provider/provider.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
@@ -42,7 +43,7 @@ List<Widget> createCommonAppBarActions(BuildContext context) {
   return [
     IconButton(
       icon: const Icon(Symbols.search),
-      onPressed: () => Navigator.pushNamed(context, routeSearch, arguments: SearchArguments(0, focusInputOnOpen: true)),
+      onPressed: () => pushNamedRoute(context, routeSearch, SearchArguments(0, focusInputOnOpen: true)),
     ),
     IconButton(
       icon: const Icon(Symbols.settings),
@@ -105,8 +106,7 @@ class _HomeScreenState extends State<_HomeScreen> {
 
     // Assume it's a username if there's only one segment (or two segments with the second empty, meaning the URI ends with /)
     if (link.pathSegments.length == 1 || (link.pathSegments.length == 2 && link.pathSegments.last.isEmpty)) {
-      Navigator.pushNamed(context, routeProfile,
-          arguments: ProfileScreenArguments.fromScreenName(link.pathSegments.first));
+      pushNamedRoute(context, routeProfile, ProfileScreenArguments.fromScreenName(link.pathSegments.first));
       return;
     }
 
@@ -132,11 +132,7 @@ class _HomeScreenState extends State<_HomeScreen> {
       var username = link.pathSegments[0];
       var statusId = link.pathSegments[2];
 
-      Navigator.pushNamed(context, routeStatus,
-        arguments: StatusScreenArguments(
-          id: statusId,
-          username: username,
-        ));
+      pushNamedRoute(context, routeStatus, StatusScreenArguments(id: statusId, username: username,));
       return;
     }
 
@@ -147,7 +143,7 @@ class _HomeScreenState extends State<_HomeScreen> {
 
       // https://twitter.com/i/topics/tweet/1447290060123033601
       if (segment2 == 'topics' && segment3 == 'tweet') {
-        Navigator.pushNamed(context, routeStatus, arguments: StatusScreenArguments(id: segment4, username: null));
+        pushNamedRoute(context, routeStatus, StatusScreenArguments(id: segment4, username: null));
         return;
       }
     }

@@ -13,6 +13,7 @@ import 'package:squawker/group/_settings.dart';
 import 'package:squawker/ui/errors.dart';
 import 'package:squawker/utils/data_service.dart';
 import 'package:squawker/utils/iterables.dart';
+import 'package:squawker/utils/route_util.dart';
 
 class GroupScreenArguments {
   final String id;
@@ -31,7 +32,7 @@ class GroupScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final args = ModalRoute.of(context)!.settings.arguments as GroupScreenArguments;
+    final args = getNamedRouteArguments(routeGroup) as GroupScreenArguments;
 
     return SubscriptionGroupScreen(
         scrollController: ScrollController(), id: args.id, name: args.name, actions: const []);

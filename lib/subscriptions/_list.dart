@@ -7,6 +7,7 @@ import 'package:squawker/database/entities.dart';
 import 'package:squawker/search/search.dart';
 import 'package:squawker/subscriptions/users_model.dart';
 import 'package:squawker/ui/errors.dart';
+import 'package:squawker/utils/route_util.dart';
 import 'package:squawker/user.dart';
 import 'package:provider/provider.dart';
 import 'package:squawker/generated/l10n.dart';
@@ -109,8 +110,7 @@ class SubscriptionUsersListState extends State<SubscriptionUsersList> {
               child: FollowButton(user: user),
             ),
             onTap: () {
-              Navigator.pushNamed(context, routeSearch,
-                  arguments: SearchArguments(1, focusInputOnOpen: false, query: user.id));
+              pushNamedRoute(context, routeSearch, SearchArguments(1, focusInputOnOpen: false, query: user.id));
             },
           );
         },

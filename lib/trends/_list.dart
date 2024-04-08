@@ -7,6 +7,7 @@ import 'package:squawker/search/search.dart';
 import 'package:squawker/trends/trends_model.dart';
 import 'package:squawker/ui/errors.dart';
 import 'package:squawker/ui/physics.dart';
+import 'package:squawker/utils/route_util.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -76,9 +77,8 @@ class _TrendsListState extends State<TrendsList> {
                           numberFormat.format(trend.tweetVolume),
                         ),
                       ),
-                onTap: () => Navigator.pushNamed(context, routeSearch,
-                    arguments:
-                        SearchArguments(1, focusInputOnOpen: false, query: Uri.decodeQueryComponent(trend.query!))));
+                onTap: () => pushNamedRoute(context, routeSearch, SearchArguments(1, focusInputOnOpen: false, query: Uri.decodeQueryComponent(trend.query!)))
+            );
           },
         );
       },

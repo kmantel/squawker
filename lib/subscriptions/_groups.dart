@@ -15,6 +15,7 @@ import 'package:squawker/group/group_screen.dart';
 import 'package:squawker/subscriptions/users_model.dart';
 import 'package:squawker/user.dart';
 import 'package:squawker/utils/ui_util.dart';
+import 'package:squawker/utils/route_util.dart';
 import 'package:provider/provider.dart';
 
 Future openSubscriptionGroupDialog(BuildContext context, String? id, String name, String icon) {
@@ -43,7 +44,7 @@ class _SubscriptionGroupsState extends State<SubscriptionGroups> {
       child: InkWell(
         onTap: () {
           // Open page with the group's feed
-          Navigator.pushNamed(context, routeGroup, arguments: GroupScreenArguments(id: id, name: name));
+          pushNamedRoute(context, routeGroup, GroupScreenArguments(id: id, name: name));
         },
         onLongPress: onLongPress,
         child: Column(

@@ -6,6 +6,7 @@ import 'package:squawker/generated/l10n.dart';
 import 'package:squawker/profile/profile.dart';
 import 'package:squawker/tweet/conversation.dart';
 import 'package:squawker/ui/errors.dart';
+import 'package:squawker/utils/route_util.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:pref/pref.dart';
 import 'package:provider/provider.dart';
@@ -28,7 +29,7 @@ class StatusScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final args = ModalRoute.of(context)!.settings.arguments as StatusScreenArguments;
+    final args = getNamedRouteArguments(routeStatus) as StatusScreenArguments;
 
     return _StatusScreen(username: args.username, id: args.id);
   }

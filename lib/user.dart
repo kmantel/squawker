@@ -13,6 +13,7 @@ import 'package:squawker/subscriptions/users_model.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:squawker/utils/data_service.dart';
+import 'package:squawker/utils/route_util.dart';
 
 import 'group/_feed.dart';
 
@@ -96,7 +97,7 @@ class UserTile extends StatelessWidget {
         child: FollowButton(user: user),
       ),
       onTap: () {
-        Navigator.pushNamed(context, routeProfile, arguments: ProfileScreenArguments(user.id, user.screenName));
+        pushNamedRoute(context, routeProfile, ProfileScreenArguments(user.id, user.screenName));
       },
     );
   }
