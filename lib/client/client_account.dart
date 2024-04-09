@@ -248,9 +248,8 @@ class TwitterAccount {
       TwitterTokenEntity? tte = _twitterTokenLst.firstWhereOrNull((e) => e.profile != null && e.profile!.username == tpe.username);
       if (tte != null) {
         if (DateTime.now().difference(tte.createdAt).inDays >= 30) {
-          TwitterTokenEntity newTte = await TwitterRegularAccount.createRegularTwitterToken(_currentContext, _currentLanguageCode, tpe.username, tpe.password, tpe.name, tpe.email, tpe.phone);
+          await TwitterRegularAccount.createRegularTwitterToken(_currentContext, _currentLanguageCode, tpe.username, tpe.password, tpe.name, tpe.email, tpe.phone);
           await deleteTwitterToken(tte);
-          await addTwitterToken(newTte);
         }
       }
     }
