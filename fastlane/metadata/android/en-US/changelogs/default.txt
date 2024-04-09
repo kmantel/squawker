@@ -1,4 +1,4 @@
 * Fix issue #284 Hebrew Translation.
 * Fix unnecessary rebuilds when using ModalRoute.of() with flutter 3.19.x.
 * Fix issue #245 UNIQUE constraint failed: twitter_token error at the account renewal when Squawker opens.
-* Use local time zone for absolute time (PR #245).
+* Use local time zone for absolute time (PR #245) (thanks @zihu12).

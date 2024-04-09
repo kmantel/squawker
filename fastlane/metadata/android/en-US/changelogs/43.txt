@@ -1,5 +1,5 @@
-* Implement feature #129 Let tweet cards be True Dark as well (thanks TheHCJ)
-* Implement interface upgrade (thanks TheHCJ)
+* Implement feature #129 Let tweet cards be True Dark as well (thanks @TheHCJ)
+* Implement interface upgrade (thanks @TheHCJ)
   - added: followers and following are now tappable on profiles
   - added: switches and appbar to feed settings
   - added: material 3 navigationBar
