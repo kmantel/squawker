@@ -46,7 +46,7 @@ class _TimestampState extends State<Timestamp> {
           if (_useRelativeTimestamp) {
             formattedTime = createRelativeDate(timestamp);
           } else {
-            formattedTime = absoluteDateFormat.format(timestamp);
+            formattedTime = absoluteDateFormat.format(timestamp.toLocal());
           }
 
           _useRelativeTimestamp = !_useRelativeTimestamp;
