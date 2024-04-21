@@ -109,7 +109,8 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
         getNewEntity: (Hashtag hashtag) {
           return TweetHashtag(
               hashtag,
-              () => pushNamedRoute(context, routeSearch, SearchArguments(1, focusInputOnOpen: false, query: '#${hashtag.text}')));
+              () => pushNamedRoute(
+                  context, routeSearch, SearchArguments(1, focusInputOnOpen: false, query: '#${hashtag.text}')));
         });
 
     entities = _populateEntities(
@@ -283,8 +284,7 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
         if (urlEnt.url.expandedUrl == null || !_isTwitterUrl(urlEnt.url.expandedUrl!)) {
           addPartContent = true;
         }
-      }
-      else {
+      } else {
         addPartContent = true;
       }
       if (addPartContent) {
@@ -415,7 +415,8 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
     if (this.tweet.retweetedStatusWithCard != null) {
       retweetBanner = _TweetTileLeading(
         icon: Symbols.repeat,
-        onTap: () => pushNamedRoute(context, routeProfile, ProfileScreenArguments.fromScreenName(this.tweet.user!.screenName!)),
+        onTap: () =>
+            pushNamedRoute(context, routeProfile, ProfileScreenArguments.fromScreenName(this.tweet.user!.screenName!)),
         children: [
           TextSpan(
               text: L10n.of(context)
@@ -550,9 +551,7 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
             builder: (context, model, child) => RepaintBoundary(
                 key: _globalKey,
                 child: Card(
-                  color: prefs.get(optionThemeMode) == 'dark' && prefs.get(optionThemeTrueBlack) == true
-                      ? Colors.black
-                      : null,
+                  color: theme.brightness == Brightness.dark && prefs.get(optionThemeTrueBlack) ? Colors.black : null,
                   child: Row(
                     children: [
                       retweetSidebar,
@@ -582,7 +581,8 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
                               if (currentUsername != null && tweet.user!.screenName!.endsWith(currentUsername!)) {
                                 return;
                               }
-                              pushNamedRoute(context, routeProfile, ProfileScreenArguments(tweet.user!.idStr, tweet.user!.screenName));
+                              pushNamedRoute(context, routeProfile,
+                                  ProfileScreenArguments(tweet.user!.idStr, tweet.user!.screenName));
                             },
                             title: Row(
                               children: [
@@ -714,8 +714,7 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
                                           await model.deleteSavedTweet(tweet.idStr!);
                                           if (mounted) {
                                             setState(() {});
-                                          }
-                                          else {
+                                          } else {
                                             DataService().map['toggleRefreshFeed'] = true;
                                           }
                                         });
