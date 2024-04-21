@@ -122,7 +122,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "back": MessageLookupByLibrary.simpleMessage("Retour"),
         "bad_guest_token": MessageLookupByLibrary.simpleMessage(
             "Twitter/X a invalidé le jeton d\'accès. Essayez de relancer Squawker !"),
-        "beta": MessageLookupByLibrary.simpleMessage("BÊTA"),
         "blue_theme_based_on_the_twitter_color_scheme":
             MessageLookupByLibrary.simpleMessage(
                 "Thème bleu basé sur la palette de couleurs de Twitter/X"),
@@ -301,7 +300,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "logging": MessageLookupByLibrary.simpleMessage("Enregistrement"),
         "mandatory_label":
             MessageLookupByLibrary.simpleMessage("Champs obligatoires :"),
-        "material_3": MessageLookupByLibrary.simpleMessage("Material 3 ?"),
         "media": MessageLookupByLibrary.simpleMessage("Médias"),
         "media_size": MessageLookupByLibrary.simpleMessage("Taille du média"),
         "medium": MessageLookupByLibrary.simpleMessage("Moyen"),

@@ -98,7 +98,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "back": MessageLookupByLibrary.simpleMessage("Tilbake"),
         "bad_guest_token": MessageLookupByLibrary.simpleMessage(
             "X har ugyldiggjort vårt tilgangssymbol. Åpne Squawker på ny."),
-        "beta": MessageLookupByLibrary.simpleMessage("Beta"),
         "blue_theme_based_on_the_twitter_color_scheme":
             MessageLookupByLibrary.simpleMessage(
                 "Blå drakt basert på Twitter/X-fargepaletten"),
@@ -256,7 +255,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "light": MessageLookupByLibrary.simpleMessage("Lys"),
         "live": MessageLookupByLibrary.simpleMessage("DIREKTE"),
         "logging": MessageLookupByLibrary.simpleMessage("Loggføring"),
-        "material_3": MessageLookupByLibrary.simpleMessage("Materiell 3?"),
         "media": MessageLookupByLibrary.simpleMessage("Media"),
         "media_size": MessageLookupByLibrary.simpleMessage("Mediastørrelse"),
         "medium": MessageLookupByLibrary.simpleMessage("Middels"),

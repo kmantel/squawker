@@ -54,7 +54,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "are_you_sure": MessageLookupByLibrary.simpleMessage("¿Estás seguro?"),
         "are_you_sure_you_want_to_delete_the_subscription_group_name_of_group":
             m0,
-        "beta": MessageLookupByLibrary.simpleMessage("BETA"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancelar"),
         "close": MessageLookupByLibrary.simpleMessage("Cerrar"),
         "contribute": MessageLookupByLibrary.simpleMessage("Contribuir"),
@@ -138,7 +137,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "licenses": MessageLookupByLibrary.simpleMessage("Licencias"),
         "light": MessageLookupByLibrary.simpleMessage("Claro"),
         "logging": MessageLookupByLibrary.simpleMessage("Inicio de sesion"),
-        "material_3": MessageLookupByLibrary.simpleMessage("¿Material 3?"),
         "media": MessageLookupByLibrary.simpleMessage("Multimedia"),
         "media_size":
             MessageLookupByLibrary.simpleMessage("Tamaño del archivo"),

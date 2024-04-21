@@ -122,7 +122,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "back": MessageLookupByLibrary.simpleMessage("Voltar"),
         "bad_guest_token": MessageLookupByLibrary.simpleMessage(
             "Twitter/X invalidou nosso token de acesso. Por favor tente reabrir o Squawker!"),
-        "beta": MessageLookupByLibrary.simpleMessage("BETA"),
         "blue_theme_based_on_the_twitter_color_scheme":
             MessageLookupByLibrary.simpleMessage(
                 "Tema azul baseado no esquema de cores do Twitter/X"),
@@ -298,7 +297,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "logging": MessageLookupByLibrary.simpleMessage("Criando Log"),
         "mandatory_label":
             MessageLookupByLibrary.simpleMessage("Campos obrigatórios:"),
-        "material_3": MessageLookupByLibrary.simpleMessage("Material 3?"),
         "media": MessageLookupByLibrary.simpleMessage("Mídia"),
         "media_size": MessageLookupByLibrary.simpleMessage("Tamanho da mídia"),
         "medium": MessageLookupByLibrary.simpleMessage("Média"),

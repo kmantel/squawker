@@ -100,7 +100,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "back": MessageLookupByLibrary.simpleMessage("返回"),
         "bad_guest_token": MessageLookupByLibrary.simpleMessage(
             "Twitter/X 使我们的访问令牌无效。请尝试重新打开 Squawker！"),
-        "beta": MessageLookupByLibrary.simpleMessage("测试版"),
         "blue_theme_based_on_the_twitter_color_scheme":
             MessageLookupByLibrary.simpleMessage("基于 Twitter/X 配色方案的蓝色主题"),
         "cancel": MessageLookupByLibrary.simpleMessage("取消"),
@@ -247,8 +246,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "live": MessageLookupByLibrary.simpleMessage("LIVE"),
         "logging": MessageLookupByLibrary.simpleMessage("日志"),
         "mandatory_label": MessageLookupByLibrary.simpleMessage("强制字段："),
-        "material_3":
-            MessageLookupByLibrary.simpleMessage("使用第3版Material Design界面？"),
         "media": MessageLookupByLibrary.simpleMessage("媒体"),
         "media_size": MessageLookupByLibrary.simpleMessage("媒体尺寸"),
         "medium": MessageLookupByLibrary.simpleMessage("中"),

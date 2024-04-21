@@ -551,7 +551,11 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
             builder: (context, model, child) => RepaintBoundary(
                 key: _globalKey,
                 child: Card(
-                  color: theme.brightness == Brightness.dark && prefs.get(optionThemeTrueBlack) ? Colors.black : null,
+                  color: theme.brightness == Brightness.dark &&
+                          prefs.get(optionThemeTrueBlack) &&
+                          prefs.get(optionThemeTrueBlackTweetCards)
+                      ? Colors.black
+                      : null,
                   child: Row(
                     children: [
                       retweetSidebar,

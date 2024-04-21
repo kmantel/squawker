@@ -120,7 +120,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "back": MessageLookupByLibrary.simpleMessage("Vissza"),
         "bad_guest_token": MessageLookupByLibrary.simpleMessage(
             "A Twitter/X érvénytelenítette a belépő tokent. Próbálja meg újraindítani a Squawker-t!"),
-        "beta": MessageLookupByLibrary.simpleMessage("BÉTA"),
         "blue_theme_based_on_the_twitter_color_scheme":
             MessageLookupByLibrary.simpleMessage(
                 "Kék séma a kék Twitter/X séma alapján szabadon"),
@@ -297,7 +296,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "logging": MessageLookupByLibrary.simpleMessage("Naplózás"),
         "mandatory_label":
             MessageLookupByLibrary.simpleMessage("Kitöltendő rubrikák:"),
-        "material_3": MessageLookupByLibrary.simpleMessage("Material 3?"),
         "media": MessageLookupByLibrary.simpleMessage("Média"),
         "media_size": MessageLookupByLibrary.simpleMessage("Média méret"),
         "medium": MessageLookupByLibrary.simpleMessage("Közepes"),

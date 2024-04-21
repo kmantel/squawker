@@ -792,21 +792,21 @@ class L10n {
     );
   }
 
-  /// `Material 3?`
-  String get material_3 {
+  /// `True black tweet cards?`
+  String get true_black_tweet_cards {
     return Intl.message(
-      'Material 3?',
-      name: 'material_3',
+      'True black tweet cards?',
+      name: 'true_black_tweet_cards',
       desc: '',
       args: [],
     );
   }
 
-  /// `BETA`
-  String get beta {
+  /// `Use true black for tweet cards`
+  String get use_true_black_for_tweet_cards {
     return Intl.message(
-      'BETA',
-      name: 'beta',
+      'Use true black for tweet cards',
+      name: 'use_true_black_for_tweet_cards',
       desc: '',
       args: [],
     );

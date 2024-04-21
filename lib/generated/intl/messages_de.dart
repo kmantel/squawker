@@ -122,7 +122,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "back": MessageLookupByLibrary.simpleMessage("Zurück"),
         "bad_guest_token": MessageLookupByLibrary.simpleMessage(
             "Der Zugangs-Token ist nicht mehr gültig. Versuche Squawker erneut zu öffnen!"),
-        "beta": MessageLookupByLibrary.simpleMessage("BETA"),
         "blue_theme_based_on_the_twitter_color_scheme":
             MessageLookupByLibrary.simpleMessage(
                 "Blaues Design basierend auf dem Twitter/X-Farbschema"),
@@ -292,7 +291,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "logging": MessageLookupByLibrary.simpleMessage("Protokollierung"),
         "mandatory_label":
             MessageLookupByLibrary.simpleMessage("Pflichtfelder:"),
-        "material_3": MessageLookupByLibrary.simpleMessage("Material 3?"),
         "media": MessageLookupByLibrary.simpleMessage("Medien"),
         "media_size": MessageLookupByLibrary.simpleMessage("Mediengröße"),
         "medium": MessageLookupByLibrary.simpleMessage("Mittel"),

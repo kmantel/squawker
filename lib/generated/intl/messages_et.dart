@@ -121,7 +121,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "back": MessageLookupByLibrary.simpleMessage("Tagasi"),
         "bad_guest_token": MessageLookupByLibrary.simpleMessage(
             "Twitter/X on meie juurdepääsutunnuse kehtetuks tunnistanud. Palun proovi uuesti avada Squawker!"),
-        "beta": MessageLookupByLibrary.simpleMessage("BEETA"),
         "blue_theme_based_on_the_twitter_color_scheme":
             MessageLookupByLibrary.simpleMessage(
                 "Sinine värviteema, mille aluseks on Twitter/Xi kujundus"),
@@ -298,8 +297,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "logging": MessageLookupByLibrary.simpleMessage("Logimine"),
         "mandatory_label":
             MessageLookupByLibrary.simpleMessage("Kohustuslikud väljad:"),
-        "material_3":
-            MessageLookupByLibrary.simpleMessage("Kasuta Material 3 teemat?"),
         "media": MessageLookupByLibrary.simpleMessage("Meedia"),
         "media_size":
             MessageLookupByLibrary.simpleMessage("Multimeedia suurus"),

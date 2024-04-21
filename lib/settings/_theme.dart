@@ -9,8 +9,8 @@ class SettingsThemeFragment extends StatelessWidget {
   const SettingsThemeFragment({Key? key}) : super(key: key);
 
   int _getOptionTweetFontSizeValue(BuildContext context) {
-    int optionTweetFontSizeValue =
-      PrefService.of(context).get<int>(optionTweetFontSize) ?? Theme.of(context).textTheme.bodyMedium!.fontSize!.round();
+    int optionTweetFontSizeValue = PrefService.of(context).get<int>(optionTweetFontSize) ??
+        Theme.of(context).textTheme.bodyMedium!.fontSize!.round();
     return optionTweetFontSizeValue;
   }
 
@@ -26,6 +26,8 @@ class SettingsThemeFragment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final BasePrefService prefs = PrefService.of(context);
+
     return Scaffold(
       appBar: AppBar(title: Text(L10n.current.theme)),
       body: Padding(
@@ -46,19 +48,27 @@ class SettingsThemeFragment extends StatelessWidget {
             ),
           ]),
           PrefDropdown(
-            title: Text(L10n.of(context).theme),
-            fullWidth: false,
-            pref: optionThemeColorScheme,
-            items: ['accent', ...FlexScheme.values.map((e) => e.name)]
-              .where((e) => e != 'custom')
-              .sorted((a, b) => a.compareTo(b))
-              .map((scheme) => DropdownMenuItem(value: scheme, child: Text(scheme.capitalize)))
-              .toList()),
+              title: Text(L10n.of(context).theme),
+              fullWidth: false,
+              pref: optionThemeColorScheme,
+              items: ['accent', ...FlexScheme.values.map((e) => e.name)]
+                  .where((e) => e != 'custom')
+                  .sorted((a, b) => a.compareTo(b))
+                  .map((scheme) => DropdownMenuItem(value: scheme, child: Text(scheme.capitalize)))
+                  .toList()),
           PrefSwitch(
             title: Text(L10n.of(context).true_black),
             pref: optionThemeTrueBlack,
             subtitle: Text(
               L10n.of(context).use_true_black_for_the_dark_mode_theme,
+            ),
+          ),
+          PrefSwitch(
+            title: Text(L10n.of(context).true_black_tweet_cards),
+            pref: optionThemeTrueBlackTweetCards,
+            disabled: !prefs.get(optionThemeTrueBlack),
+            subtitle: Text(
+              L10n.of(context).use_true_black_for_tweet_cards,
             ),
           ),
           PrefButton(

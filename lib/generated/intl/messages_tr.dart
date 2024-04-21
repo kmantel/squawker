@@ -118,7 +118,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "back": MessageLookupByLibrary.simpleMessage("Geri"),
         "bad_guest_token": MessageLookupByLibrary.simpleMessage(
             "Twitter/X erişim belirtecimizi geçersiz kıldı. Lütfen Squawker\'ı yeniden açmayı deneyin!"),
-        "beta": MessageLookupByLibrary.simpleMessage("BETA"),
         "blue_theme_based_on_the_twitter_color_scheme":
             MessageLookupByLibrary.simpleMessage(
                 "Twitter/X renk şemasına dayalı mavi tema"),
@@ -293,7 +292,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "logging": MessageLookupByLibrary.simpleMessage("Günlük tutma"),
         "mandatory_label":
             MessageLookupByLibrary.simpleMessage("Zorunlu alanlar:"),
-        "material_3": MessageLookupByLibrary.simpleMessage("Material 3?"),
         "media": MessageLookupByLibrary.simpleMessage("Medya"),
         "media_size": MessageLookupByLibrary.simpleMessage("Medya boyutu"),
         "medium": MessageLookupByLibrary.simpleMessage("Orta"),

@@ -38,6 +38,7 @@ const optionSubscriptionInitialTab = 'subscription.initial_tab';
 
 const optionThemeMode = 'theme.mode';
 const optionThemeTrueBlack = 'theme.true_black';
+const optionThemeTrueBlackTweetCards = 'theme.true_black_tweet_cards';
 const optionThemeColorScheme = 'theme.color_scheme';
 
 const optionTweetsHideSensitive = 'tweets.hide_sensitive';

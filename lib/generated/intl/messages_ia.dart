@@ -78,7 +78,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Includer le retweets"),
         "licenses": MessageLookupByLibrary.simpleMessage("Licentias"),
         "light": MessageLookupByLibrary.simpleMessage("Clar"),
-        "material_3": MessageLookupByLibrary.simpleMessage("Material 3?"),
         "media": MessageLookupByLibrary.simpleMessage("Medios"),
         "media_size":
             MessageLookupByLibrary.simpleMessage("Dimension de medio"),

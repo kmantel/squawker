@@ -116,7 +116,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "back": MessageLookupByLibrary.simpleMessage("Back"),
         "bad_guest_token": MessageLookupByLibrary.simpleMessage(
             "Twitter/X has invalidated our access token. Please try re-opening Squawker!"),
-        "beta": MessageLookupByLibrary.simpleMessage("BETA"),
         "blue_theme_based_on_the_twitter_color_scheme":
             MessageLookupByLibrary.simpleMessage(
                 "Blue theme based on the Twitter/X color scheme"),
@@ -289,7 +288,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "logging": MessageLookupByLibrary.simpleMessage("Logging"),
         "mandatory_label":
             MessageLookupByLibrary.simpleMessage("Mandatory fields:"),
-        "material_3": MessageLookupByLibrary.simpleMessage("Material 3?"),
         "media": MessageLookupByLibrary.simpleMessage("Media"),
         "media_size": MessageLookupByLibrary.simpleMessage("Media size"),
         "medium": MessageLookupByLibrary.simpleMessage("Medium"),
@@ -472,6 +470,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "trending": MessageLookupByLibrary.simpleMessage("Trending"),
         "trends": MessageLookupByLibrary.simpleMessage("Trends"),
         "true_black": MessageLookupByLibrary.simpleMessage("True Black?"),
+        "true_black_tweet_cards":
+            MessageLookupByLibrary.simpleMessage("True black tweet cards?"),
         "tweet_font_size_description":
             MessageLookupByLibrary.simpleMessage("Font size of the tweets"),
         "tweet_font_size_label":
@@ -556,6 +556,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "use_true_black_for_the_dark_mode_theme":
             MessageLookupByLibrary.simpleMessage(
                 "Use true black for the dark mode theme"),
+        "use_true_black_for_tweet_cards": MessageLookupByLibrary.simpleMessage(
+            "Use true black for tweet cards"),
         "user_not_found":
             MessageLookupByLibrary.simpleMessage("User not found"),
         "username": MessageLookupByLibrary.simpleMessage("Username"),

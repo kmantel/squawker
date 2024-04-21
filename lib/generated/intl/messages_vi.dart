@@ -56,7 +56,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Bạn chắc chắn chưa ?"),
         "are_you_sure_you_want_to_delete_the_subscription_group_name_of_group":
             m0,
-        "beta": MessageLookupByLibrary.simpleMessage("Thử nghiệm"),
         "cancel": MessageLookupByLibrary.simpleMessage("Hủy"),
         "close": MessageLookupByLibrary.simpleMessage("Đóng"),
         "could_not_find_any_tweets_by_this_user":
@@ -117,7 +116,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "legacy_android_import":
             MessageLookupByLibrary.simpleMessage("Nhập Legacy Android"),
         "light": MessageLookupByLibrary.simpleMessage("Sáng"),
-        "material_3": MessageLookupByLibrary.simpleMessage("Dùng Material 3?"),
         "media": MessageLookupByLibrary.simpleMessage("Phương tiện"),
         "media_size":
             MessageLookupByLibrary.simpleMessage("Kích thước phương tiện"),

@@ -113,7 +113,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "back": MessageLookupByLibrary.simpleMessage("رجوع"),
         "bad_guest_token": MessageLookupByLibrary.simpleMessage(
             "لقد ألغى Twitter/X رمز الوصول الخاص بنا. من فضلك حاول إعادة فتح Squawker!"),
-        "beta": MessageLookupByLibrary.simpleMessage("تجريبي"),
         "blue_theme_based_on_the_twitter_color_scheme":
             MessageLookupByLibrary.simpleMessage(
                 "السمة الزرقاء بنائاً على سمة تويتر"),
@@ -286,7 +285,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "logging": MessageLookupByLibrary.simpleMessage("تسجيل البيانات"),
         "mandatory_label":
             MessageLookupByLibrary.simpleMessage("الميادين الإلزامية:"),
-        "material_3": MessageLookupByLibrary.simpleMessage("Material 3؟"),
         "media": MessageLookupByLibrary.simpleMessage("الوسائط"),
         "media_size": MessageLookupByLibrary.simpleMessage("حجم الوسائط"),
         "medium": MessageLookupByLibrary.simpleMessage("متوسط"),
