@@ -80,6 +80,18 @@ class _SearchScreenState extends State<_SearchScreen> with SingleTickerProviderS
     // TODO: Focussing makes the selection go to the start?!
   }
 
+  void _resetQuery() {
+    if (_searchUsersKey.currentState != null) {
+      _searchUsersKey.currentState!.resetQuery();
+    }
+    if (_searchTweetsKey.currentState != null) {
+      _searchTweetsKey.currentState!.resetQuery();
+    }
+    if (_searchTrendsKey.currentState != null) {
+      _searchTrendsKey.currentState!.resetQuery();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     TwitterAccount.setCurrentContext(context);
@@ -109,21 +121,18 @@ class _SearchScreenState extends State<_SearchScreen> with SingleTickerProviderS
             focusNode: _focusNode,
             style: searchTheme.textTheme.titleLarge,
             textInputAction: TextInputAction.search,
+            onChanged: (String text) {
+              if (text.isEmpty) {
+                _resetQuery();
+              }
+            },
           ),
           actions: [
             IconButton(
               icon: const Icon(Symbols.close_rounded),
               onPressed: () {
                 _queryController.clear();
-                if (_searchUsersKey.currentState != null) {
-                  _searchUsersKey.currentState!.resetQuery();
-                }
-                if (_searchTweetsKey.currentState != null) {
-                  _searchTweetsKey.currentState!.resetQuery();
-                }
-                if (_searchTrendsKey.currentState != null) {
-                  _searchTrendsKey.currentState!.resetQuery();
-                }
+                _resetQuery();
               }
             ),
             ScopedBuilder<SubscriptionsModel, List<Subscription>>.transition(

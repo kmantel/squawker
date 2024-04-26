@@ -395,7 +395,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "reset_home_pages": MessageLookupByLibrary.simpleMessage(
             "Lähtesta lehed vaikimisi väärtusteks"),
         "retry": MessageLookupByLibrary.simpleMessage("Proovi uuesti"),
-        "save": MessageLookupByLibrary.simpleMessage("salvesta"),
+        "save": MessageLookupByLibrary.simpleMessage("Salvesta"),
         "save_bandwidth_using_smaller_images":
             MessageLookupByLibrary.simpleMessage(
                 "Kasutades väiksemaid pildifaile säästad ribalaiust"),
