@@ -590,5 +590,11 @@
   "exclusions_feed_description": "List of usernames to exclude from feed",
   "@exclusions_feed_description": {},
   "username_exclude": "Username to exclude",
-  "@username_exclude": {}
+  "@username_exclude": {},
+  "community_notes_title": "Readers added context",
+  "@community_notes_title": {},
+  "option_show_navigation_labels_label": "Navigation bar labels",
+  "@option_show_navigation_labels_label": {},
+  "option_show_navigation_labels_description": "Show the labels from the navigation bar icons",
+  "@option_show_navigation_labels_description": {}
 }

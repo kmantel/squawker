@@ -620,5 +620,11 @@
   "exclusions_feed_description": "Liste des usagers à exclure des flux",
   "@exclusions_feed_description": {},
   "username_exclude": "Usager à exclure",
-  "@username_exclude": {}
+  "@username_exclude": {},
+  "community_notes_title": "Note ajoutée par la communauté",
+  "@community_notes_title": {},
+  "option_show_navigation_labels_label": "Étiquettes de la barre de navigation",
+  "@option_show_navigation_labels_label": {},
+  "option_show_navigation_labels_description": "Affiche les étiquettes des icônes de la barre de navigation",
+  "@option_show_navigation_labels_description": {}
 }

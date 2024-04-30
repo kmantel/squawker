@@ -126,6 +126,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "choose": MessageLookupByLibrary.simpleMessage("Choose"),
         "choose_pages": MessageLookupByLibrary.simpleMessage("Choose pages"),
         "close": MessageLookupByLibrary.simpleMessage("Close"),
+        "community_notes_title":
+            MessageLookupByLibrary.simpleMessage("Readers added context"),
         "confirm_close_fritter": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want to close Squawker?"),
         "contribute": MessageLookupByLibrary.simpleMessage("Contribute"),
@@ -332,6 +334,11 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Confirm when closing the app"),
         "option_confirm_close_label":
             MessageLookupByLibrary.simpleMessage("Confirm close"),
+        "option_show_navigation_labels_description":
+            MessageLookupByLibrary.simpleMessage(
+                "Show the labels from the navigation bar icons"),
+        "option_show_navigation_labels_label":
+            MessageLookupByLibrary.simpleMessage("Navigation bar labels"),
         "optional_label":
             MessageLookupByLibrary.simpleMessage("Optional fields:"),
         "page_not_found": MessageLookupByLibrary.simpleMessage(

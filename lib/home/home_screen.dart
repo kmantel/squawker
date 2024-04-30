@@ -360,7 +360,10 @@ class ScaffoldWithBottomNavigationState extends State<ScaffoldWithBottomNavigati
         selectedIndex: _selectedIndex,
         backgroundColor: Theme.of(context).brightness == Brightness.dark && PrefService.of(context).get(optionThemeTrueBlack) ? Colors.black : null,
         indicatorColor: Theme.of(context).brightness == Brightness.dark && PrefService.of(context).get(optionThemeTrueBlack) ? Colors.black : null,
-        labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
+        labelBehavior: PrefService.of(context).get(optionHomeShowTabLabels)
+          ? NavigationDestinationLabelBehavior.alwaysShow
+          : NavigationDestinationLabelBehavior.alwaysHide,
+        height: PrefService.of(context).get(optionHomeShowTabLabels) ? 80 : 40,
         destinations: [
           ..._pages.map((e) => NavigationDestination(icon: Icon(e.icon, size: 22), label: e.titleBuilder(context)))
         ],

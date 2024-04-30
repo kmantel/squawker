@@ -133,6 +133,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "choose_pages":
             MessageLookupByLibrary.simpleMessage("Choisir les pages"),
         "close": MessageLookupByLibrary.simpleMessage("Fermer"),
+        "community_notes_title": MessageLookupByLibrary.simpleMessage(
+            "Note ajoutée par la communauté"),
         "confirm_close_fritter": MessageLookupByLibrary.simpleMessage(
             "Êtes-vous sûr de vouloir fermer Squawker ?"),
         "contribute": MessageLookupByLibrary.simpleMessage("Contribuer"),
@@ -345,6 +347,12 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Confirmation à la fermeture de l\'application"),
         "option_confirm_close_label":
             MessageLookupByLibrary.simpleMessage("Confirmation de fermeture"),
+        "option_show_navigation_labels_description":
+            MessageLookupByLibrary.simpleMessage(
+                "Affiche les étiquettes des icônes de la barre de navigation"),
+        "option_show_navigation_labels_label":
+            MessageLookupByLibrary.simpleMessage(
+                "Étiquettes de la barre de navigation"),
         "optional_label":
             MessageLookupByLibrary.simpleMessage("Champs optionnels :"),
         "page_not_found": MessageLookupByLibrary.simpleMessage(

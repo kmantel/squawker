@@ -168,6 +168,11 @@ class SettingsGeneralFragment extends StatelessWidget {
               items: defaultHomePages
                   .map((e) => DropdownMenuItem(value: e.id, child: Text(e.titleBuilder(context))))
                   .toList()),
+          PrefSwitch(
+            title: Text(L10n.of(context).option_show_navigation_labels_label),
+            subtitle: Text(L10n.of(context).option_show_navigation_labels_description),
+            pref: optionHomeShowTabLabels,
+          ),
           PrefDropdown(
               fullWidth: false,
               title: Text(L10n.of(context).default_subscription_tab),

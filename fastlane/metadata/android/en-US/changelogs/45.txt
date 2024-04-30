@@ -2,3 +2,5 @@
 * Implement feature #296 Show Community Note.
 * Fix issue #258 Rearranging subscriptions duplicates subscription list.
 * Implement feature #291 Switch back navigation bar material theme on true black.
+* Implement an option to show or hide the labels on the navigation bar icons.
+  Enabled by default, the option is located in Settings / General / Navigation bar labels.

@@ -3047,6 +3047,36 @@ class L10n {
       args: [],
     );
   }
+
+  /// `Readers added context`
+  String get community_notes_title {
+    return Intl.message(
+      'Readers added context',
+      name: 'community_notes_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Navigation bar labels`
+  String get option_show_navigation_labels_label {
+    return Intl.message(
+      'Navigation bar labels',
+      name: 'option_show_navigation_labels_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Show the labels from the navigation bar icons`
+  String get option_show_navigation_labels_description {
+    return Intl.message(
+      'Show the labels from the navigation bar icons',
+      name: 'option_show_navigation_labels_description',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<L10n> {

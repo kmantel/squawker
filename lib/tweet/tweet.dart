@@ -481,7 +481,7 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
             children: [
               _TweetTileLeading(icon: Symbols.group_rounded, children: [
                 TextSpan(
-                  text: 'Readers added context',
+                  text: L10n.of(context).community_notes_title,
                   style: TextStyle(color: theme.textTheme.bodySmall!.color, fontSize: theme.textTheme.bodySmall!.fontSize, fontWeight: ui.FontWeight.bold),
                 )
               ]),
