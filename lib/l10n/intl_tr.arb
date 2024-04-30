@@ -624,5 +624,11 @@
   "username_exclude": "Hariç tutulacak kullanıcı adı",
   "@username_exclude": {},
   "exclusions_feed_label": "Akıştaki istisnalar",
-  "@exclusions_feed_label": {}
+  "@exclusions_feed_label": {},
+  "community_notes_title": "Okuyucuların eklediği içerik",
+  "@community_notes_title": {},
+  "option_show_navigation_labels_label": "Gezinti çubuğu etiketleri",
+  "@option_show_navigation_labels_label": {},
+  "option_show_navigation_labels_description": "Gezinti çubuğu simgelerindeki etiketleri göster",
+  "@option_show_navigation_labels_description": {}
 }
