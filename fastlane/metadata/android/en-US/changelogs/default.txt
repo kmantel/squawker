@@ -1,3 +1,4 @@
 * Implement PR #297 Add true black tweet cards when system theme is dark (thanks @TheHJC).
 * Implement feature #296 Show Community Note.
 * Fix issue #258 Rearranging subscriptions duplicates subscription list.
+* Implement feature #291 Switch back navigation bar material theme on true black.

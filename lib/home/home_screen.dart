@@ -358,6 +358,8 @@ class ScaffoldWithBottomNavigationState extends State<ScaffoldWithBottomNavigati
       ),
       bottomNavigationBar: NavigationBar(
         selectedIndex: _selectedIndex,
+        backgroundColor: Theme.of(context).brightness == Brightness.dark && PrefService.of(context).get(optionThemeTrueBlack) ? Colors.black : null,
+        indicatorColor: Theme.of(context).brightness == Brightness.dark && PrefService.of(context).get(optionThemeTrueBlack) ? Colors.black : null,
         labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
         destinations: [
           ..._pages.map((e) => NavigationDestination(icon: Icon(e.icon, size: 22), label: e.titleBuilder(context)))
