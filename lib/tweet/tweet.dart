@@ -42,6 +42,7 @@ class TweetTile extends StatefulWidget {
   final TweetWithCard tweet;
   final bool isPinned;
   final bool isThread;
+  final bool isBirdwatchQuote;
   final int? tweetIdx;
   final VisiblePositionState? visiblePositionState;
 
@@ -53,6 +54,7 @@ class TweetTile extends StatefulWidget {
       required this.tweet,
       this.isPinned = false,
       this.isThread = false,
+      this.isBirdwatchQuote = false,
       this.tweetIdx,
       this.visiblePositionState})
       : super(key: key);
@@ -69,6 +71,7 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
   late final TweetWithCard tweet;
   late final bool isPinned;
   late final bool isThread;
+  late final bool isBirdwatchQuote;
 
   TranslationStatus _translationStatus = TranslationStatus.original;
 
@@ -235,6 +238,7 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
     tweet = widget.tweet;
     isPinned = widget.isPinned;
     isThread = widget.isThread;
+    isBirdwatchQuote = widget.isBirdwatchQuote;
 
     // Get the text to display from the actual tweet, i.e. the retweet if there is one, otherwise we end up with "RT @" crap in our text
     var actualTweet = tweet.retweetedStatusWithCard ?? tweet;
@@ -467,6 +471,54 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
               style: TextStyle(fontSize: optionTweetFontSizeValue)));
     }
 
+    if (isBirdwatchQuote) {
+      return Card(
+        child: Container(
+          // Fill the width so both RTL and LTR text are displayed correctly
+          width: double.infinity,
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+          child: Column(
+            children: [
+              _TweetTileLeading(icon: Symbols.group_rounded, children: [
+                TextSpan(
+                  text: 'Readers added context',
+                  style: TextStyle(color: theme.textTheme.bodySmall!.color, fontSize: theme.textTheme.bodySmall!.fontSize, fontWeight: ui.FontWeight.bold),
+                )
+              ]),
+              SizedBox(height: 8),
+              AutoDirection(
+                text: tweetText,
+                child: Text.rich(
+                  TextSpan(children: [
+                  ..._displayParts.map((e) {
+                    if (e.plainText != null) {
+                      return TextSpan(text: e.plainText, style: TextStyle(fontSize: optionTweetFontSizeValue));
+                    }
+                    else {
+                      return e.entity!;
+                    }
+                  })]),
+                )
+              ),
+            ]
+          )
+        )
+      );
+    }
+
+    var birdwatchQuoted = Container();
+    if (tweet.birdwatchQuotedStatus != null) {
+      birdwatchQuoted = Container(
+        decoration: BoxDecoration(border: Border.all(color: theme.primaryColor), borderRadius: BorderRadius.circular(8)),
+        margin: const EdgeInsets.all(8),
+        child: TweetTile(
+          clickable: false,
+          tweet: tweet.birdwatchQuotedStatus!,
+          isBirdwatchQuote: true,
+        ),
+      );
+    }
+
     var quotedTweet = Container();
 
     if (tweet.isQuoteStatus ?? false) {
@@ -685,6 +737,7 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
                           media,
                           quotedTweet,
                           TweetCard(tweet: tweet, card: tweet.card),
+                          birdwatchQuoted,
                           Container(
                             alignment: Alignment.center,
                             margin: const EdgeInsets.symmetric(horizontal: 8),

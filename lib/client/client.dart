@@ -1111,6 +1111,7 @@ class TweetWithCard extends Tweet {
   TweetWithCard? quotedStatusWithCard;
   TweetWithCard? retweetedStatusWithCard;
   bool? isTombstone;
+  TweetWithCard? birdwatchQuotedStatus;
 
   TweetWithCard();
 
@@ -1211,7 +1212,34 @@ class TweetWithCard extends Tweet {
       Map<String, dynamic> bindingValues = bindingValuesList.fold({}, (prev, elm) { prev[elm['key']] = elm['value']; return prev; });
       tweet.card!['binding_values'] = bindingValues;
     }
+    if (!leanerFeeds && result['birdwatch_pivot']?['subtitle'] != null) {
+      var birdwatchSubtitle = TweetWithCard.rearrangeBirdwatch(result['birdwatch_pivot']['subtitle']);
+      tweet.birdwatchQuotedStatus = TweetWithCard.fromJson(birdwatchSubtitle);
+    }
     return tweet;
+  }
+
+  static Map<String, dynamic> rearrangeBirdwatch(Map<String, dynamic> birdwatch) {
+    Map<String, dynamic> newBirdwatch = {};
+    String text = birdwatch['text'];
+    newBirdwatch['text'] = text;
+    newBirdwatch['display_text_range'] = [0, text.length - 1];
+    Map<String, dynamic> entities = birdwatch['entities'][0];
+    int fromIndex = entities['fromIndex'];
+    int toIndex = entities['toIndex'];
+    String displayedUrl = text.substring(fromIndex, toIndex);
+    String url = entities['ref']['url'];
+    newBirdwatch['entities'] = {
+      'urls': [
+        {
+          'display_url': displayedUrl,
+          'expanded_url': url,
+          'url': url,
+          'indices': [fromIndex, toIndex]
+        }
+      ]
+    };
+    return newBirdwatch;
   }
 
   factory TweetWithCard.fromCardJson(Map<String, dynamic> tweets, Map<String, dynamic> users, Map<String, dynamic> e) {
