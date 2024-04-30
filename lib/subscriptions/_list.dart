@@ -84,9 +84,9 @@ class SubscriptionUsersListState extends State<SubscriptionUsersList> {
   Widget build(BuildContext context) {
     BasePrefService prefs = PrefService.of(context);
     String subscriptionOrderCustom = prefs.get(optionSubscriptionOrderCustom);
+    subLst.clear();
     if (subscriptionOrderCustom.isNotEmpty) {
-      subLst.addAll(
-          subscriptionOrderCustom.split(',').map((sn) => widget.subscriptions.firstWhere((s) => s.screenName == sn)));
+      subLst.addAll(subscriptionOrderCustom.split(',').map((sn) => widget.subscriptions.firstWhere((s) => s.screenName == sn)));
     } else {
       subLst.addAll(widget.subscriptions);
     }
