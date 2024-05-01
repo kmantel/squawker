@@ -173,7 +173,7 @@ class GroupsModel extends Store<List<SubscriptionGroup>> {
     await reloadGroups();
   }
 
-  Future<SubscriptionGroupEdit> loadGroupEdit(String? id) async {
+  Future<SubscriptionGroupEdit> loadGroupEdit(String? id, {Set<String>? preMembers}) async {
     var database = await Repository.readOnly();
 
     if (id == null) {
@@ -182,7 +182,7 @@ class GroupsModel extends Store<List<SubscriptionGroup>> {
         name: '',
         icon: defaultGroupIcon,
         color: null,
-        members: <String>{},
+        members: preMembers ?? <String>{},
       );
     }
 

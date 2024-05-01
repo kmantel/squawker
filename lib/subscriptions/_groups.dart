@@ -18,11 +18,11 @@ import 'package:squawker/utils/ui_util.dart';
 import 'package:squawker/utils/route_util.dart';
 import 'package:provider/provider.dart';
 
-Future openSubscriptionGroupDialog(BuildContext context, String? id, String name, String icon) {
+Future openSubscriptionGroupDialog(BuildContext context, String? id, String name, String icon, {Set<String>? preMembers}) {
   return showDialog(
       context: context,
       builder: (context) {
-        return SubscriptionGroupEditDialog(id: id, name: name, icon: icon);
+        return SubscriptionGroupEditDialog(id: id, name: name, icon: icon, preMembers: preMembers);
       });
 }
 
@@ -135,8 +135,9 @@ class SubscriptionGroupEditDialog extends StatefulWidget {
   final String? id;
   final String name;
   final String icon;
+  Set<String>? preMembers;
 
-  const SubscriptionGroupEditDialog({Key? key, required this.id, required this.name, required this.icon})
+  SubscriptionGroupEditDialog({Key? key, required this.id, required this.name, required this.icon, this.preMembers})
       : super(key: key);
 
   @override
@@ -165,7 +166,7 @@ class _SubscriptionGroupEditDialogState extends State<SubscriptionGroupEditDialo
       icon = widget.icon;
     });
 
-    context.read<GroupsModel>().loadGroupEdit(widget.id).then((group) => setState(() {
+    context.read<GroupsModel>().loadGroupEdit(widget.id, preMembers: widget.preMembers).then((group) => setState(() {
           _group = group;
 
           id = group.id;

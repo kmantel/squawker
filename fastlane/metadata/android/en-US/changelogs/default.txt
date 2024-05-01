@@ -4,3 +4,5 @@
 * Implement feature #291 Switch back navigation bar material theme on true black.
 * Implement an option to show or hide the labels on the navigation bar icons.
   Enabled by default, the option is located in Settings / General / Navigation bar labels.
+* Implement feature #279 Allow creation of a new group in the "add to group" screen.
+  Simply tap on the plus icon at the top right of the dialog box.

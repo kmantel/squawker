@@ -9,6 +9,7 @@ import 'package:squawker/database/entities.dart';
 import 'package:squawker/generated/l10n.dart';
 import 'package:squawker/group/group_model.dart';
 import 'package:squawker/profile/profile.dart';
+import 'package:squawker/subscriptions/_groups.dart';
 import 'package:squawker/subscriptions/users_model.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:provider/provider.dart';
@@ -117,6 +118,7 @@ class FollowButtonSelectGroupDialog extends StatefulWidget {
 }
 
 class _FollowButtonSelectGroupDialogState extends State<FollowButtonSelectGroupDialog> {
+
   @override
   Widget build(BuildContext context) {
     var groupModel = context.read<GroupsModel>();
@@ -125,7 +127,19 @@ class _FollowButtonSelectGroupDialogState extends State<FollowButtonSelectGroupD
     var color = Theme.of(context).brightness == Brightness.dark ? Colors.white70 : Colors.black54;
 
     return MultiSelectDialog(
-      title: Text(L10n.of(context).select),
+      title: Row(
+        children: [
+          Text(L10n.of(context).select),
+          Spacer(),
+          IconButton(
+            icon: const Icon(Symbols.add),
+            onPressed: () async {
+              await openSubscriptionGroupDialog(context, null, '', defaultGroupIcon, preMembers: {widget.user.id});
+              Navigator.pop(context, 'reload');
+            }
+          ),
+        ]
+      ),
       searchHint: L10n.of(context).search,
       confirmText: Text(L10n.of(context).ok),
       cancelText: Text(L10n.of(context).cancel),
@@ -184,14 +198,17 @@ class FollowButton extends StatelessWidget {
           onSelected: (value) async {
             switch (value) {
               case 'add_to_group':
-                var groups = await context.read<GroupsModel>().listGroupsForUser(user.id);
-                showDialog(
-                  context: context,
-                  builder: (_) => FollowButtonSelectGroupDialog(
-                    user: user,
-                    followed: followed,
-                    groupsForUser: groups,
-                  ));
+                dynamic resp = 'reload';
+                while (resp is String && resp == 'reload') {
+                  var groups = await context.read<GroupsModel>().listGroupsForUser(user.id);
+                  resp = await showDialog(
+                    context: context,
+                    builder: (_) => FollowButtonSelectGroupDialog(
+                      user: user,
+                      followed: followed,
+                      groupsForUser: groups,
+                    ));
+                }
                 break;
               case 'toggle_subscribe':
                 GlobalKey<SubscriptionGroupFeedState>? sgfKey = DataService().map['feed_key__1'];
