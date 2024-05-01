@@ -128,6 +128,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "choose": MessageLookupByLibrary.simpleMessage("Seç"),
         "choose_pages": MessageLookupByLibrary.simpleMessage("Sayfaları seçin"),
         "close": MessageLookupByLibrary.simpleMessage("Kapat"),
+        "community_notes_title": MessageLookupByLibrary.simpleMessage(
+            "Okuyucuların eklediği içerik"),
         "confirm_close_fritter": MessageLookupByLibrary.simpleMessage(
             "Squawker\'ı kapatmak istediğinizden emin misiniz?"),
         "contribute": MessageLookupByLibrary.simpleMessage("Katkıda bulunun"),
@@ -337,6 +339,11 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Uygulamayı kapatırken onayla"),
         "option_confirm_close_label":
             MessageLookupByLibrary.simpleMessage("Kapatmayı onayla"),
+        "option_show_navigation_labels_description":
+            MessageLookupByLibrary.simpleMessage(
+                "Gezinti çubuğu simgelerindeki etiketleri göster"),
+        "option_show_navigation_labels_label":
+            MessageLookupByLibrary.simpleMessage("Gezinti çubuğu etiketleri"),
         "optional_label":
             MessageLookupByLibrary.simpleMessage("İsteğe bağlı alanlar:"),
         "page_not_found": MessageLookupByLibrary.simpleMessage(
