@@ -620,5 +620,11 @@
   "twitter_account_types_only_regular": "Apenas as regulares",
   "@twitter_account_types_only_regular": {},
   "share_tweet_as_image": "Compartilhar tweet como imagem",
-  "@share_tweet_as_image": {}
+  "@share_tweet_as_image": {},
+  "option_show_navigation_labels_label": "Rótulos da barra de navegação",
+  "@option_show_navigation_labels_label": {},
+  "option_show_navigation_labels_description": "Mostrar os rótulos dos ícones da barra de navegação",
+  "@option_show_navigation_labels_description": {},
+  "community_notes_title": "Contexto adicionado pelos leitores",
+  "@community_notes_title": {}
 }
