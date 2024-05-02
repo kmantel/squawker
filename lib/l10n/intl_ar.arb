@@ -620,5 +620,11 @@
   "username_exclude": "اسم المستخدم المراد استبعاده",
   "@username_exclude": {},
   "exclusions_feed_label": "استثناءات في التغذية",
-  "@exclusions_feed_label": {}
+  "@exclusions_feed_label": {},
+  "option_show_navigation_labels_description": "إظهار التسميات من أيقونات شريط التنقل",
+  "@option_show_navigation_labels_description": {},
+  "community_notes_title": "القراء أضافوا السياق",
+  "@community_notes_title": {},
+  "option_show_navigation_labels_label": "تسميات شريط التنقل",
+  "@option_show_navigation_labels_label": {}
 }
