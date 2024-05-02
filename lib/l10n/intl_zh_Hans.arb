@@ -624,5 +624,11 @@
   "username_exclude": "要排除的用户名",
   "@username_exclude": {},
   "exclusions_feed_label": "feed 中的排除",
-  "@exclusions_feed_label": {}
+  "@exclusions_feed_label": {},
+  "option_show_navigation_labels_label": "导航栏标签",
+  "@option_show_navigation_labels_label": {},
+  "option_show_navigation_labels_description": "显示来自导航栏图标的标签",
+  "@option_show_navigation_labels_description": {},
+  "community_notes_title": "读者添加了上下文",
+  "@community_notes_title": {}
 }
