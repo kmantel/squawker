@@ -123,6 +123,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "choose": MessageLookupByLibrary.simpleMessage("أختر"),
         "choose_pages": MessageLookupByLibrary.simpleMessage("اختيار الصفحات"),
         "close": MessageLookupByLibrary.simpleMessage("اغلاق"),
+        "community_notes_title":
+            MessageLookupByLibrary.simpleMessage("القراء أضافوا السياق"),
         "confirm_close_fritter": MessageLookupByLibrary.simpleMessage(
             "هل أنت متأكد من أنك تريد إغلاق Squawker؟"),
         "contribute": MessageLookupByLibrary.simpleMessage("المساهمة"),
@@ -330,6 +332,11 @@ class MessageLookup extends MessageLookupByLibrary {
                 "قم بالتأكيد عند إغلاق التطبيق"),
         "option_confirm_close_label":
             MessageLookupByLibrary.simpleMessage("تأكيد الإغلاق"),
+        "option_show_navigation_labels_description":
+            MessageLookupByLibrary.simpleMessage(
+                "إظهار التسميات من أيقونات شريط التنقل"),
+        "option_show_navigation_labels_label":
+            MessageLookupByLibrary.simpleMessage("تسميات شريط التنقل"),
         "optional_label":
             MessageLookupByLibrary.simpleMessage("الحقول الاختيارية:"),
         "page_not_found": MessageLookupByLibrary.simpleMessage(

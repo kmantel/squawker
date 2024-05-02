@@ -108,6 +108,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "choose": MessageLookupByLibrary.simpleMessage("选择"),
         "choose_pages": MessageLookupByLibrary.simpleMessage("选择页面"),
         "close": MessageLookupByLibrary.simpleMessage("关闭"),
+        "community_notes_title":
+            MessageLookupByLibrary.simpleMessage("读者添加了上下文"),
         "confirm_close_fritter":
             MessageLookupByLibrary.simpleMessage("确定要关闭 Squawker 吗？"),
         "contribute": MessageLookupByLibrary.simpleMessage("贡献 💖"),
@@ -284,6 +286,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("当关闭应用时进行确认"),
         "option_confirm_close_label":
             MessageLookupByLibrary.simpleMessage("关闭时确认"),
+        "option_show_navigation_labels_description":
+            MessageLookupByLibrary.simpleMessage("显示来自导航栏图标的标签"),
+        "option_show_navigation_labels_label":
+            MessageLookupByLibrary.simpleMessage("导航栏标签"),
         "optional_label": MessageLookupByLibrary.simpleMessage("可选字段："),
         "page_not_found":
             MessageLookupByLibrary.simpleMessage("Twitter/X 说该页面不存在，但这可能不是真的"),
