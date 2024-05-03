@@ -373,7 +373,7 @@ class ScaffoldWithBottomNavigationState extends State<ScaffoldWithBottomNavigati
         labelBehavior: showTabLabels
           ? NavigationDestinationLabelBehavior.alwaysShow
           : NavigationDestinationLabelBehavior.alwaysHide,
-        height: PrefService.of(context).get(optionHomeShowTabLabels) ? 80 : 40,
+        height: PrefService.of(context).get(optionHomeShowTabLabels) ? 70 : 40,
         destinations: [
           ..._pages.map((e) => NavigationDestination(icon: Icon(e.icon, size: 22), label: e.titleBuilder(context)))
         ],
