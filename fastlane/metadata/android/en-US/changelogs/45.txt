@@ -6,3 +6,5 @@
   Enabled by default, the option is located in Settings / General / Navigation bar labels.
 * Implement feature #279 Allow creation of a new group in the "add to group" screen.
   Simply tap on the plus icon at the top right of the dialog box.
+* Implement feature #272 Option to disable animations.
+  The animations are enabled by default, the option to disable it is located in Settings / General / Navigation animations.

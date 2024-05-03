@@ -169,6 +169,11 @@ class SettingsGeneralFragment extends StatelessWidget {
                   .map((e) => DropdownMenuItem(value: e.id, child: Text(e.titleBuilder(context))))
                   .toList()),
           PrefSwitch(
+            title: Text(L10n.of(context).option_navigation_animations_label),
+            subtitle: Text(L10n.of(context).option_navigation_animations_description),
+            pref: optionNavigationAnimations,
+          ),
+          PrefSwitch(
             title: Text(L10n.of(context).option_show_navigation_labels_label),
             subtitle: Text(L10n.of(context).option_show_navigation_labels_description),
             pref: optionHomeShowTabLabels,

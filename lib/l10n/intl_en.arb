@@ -596,5 +596,9 @@
   "option_show_navigation_labels_label": "Navigation bar labels",
   "@option_show_navigation_labels_label": {},
   "option_show_navigation_labels_description": "Show the labels from the navigation bar icons",
-  "@option_show_navigation_labels_description": {}
+  "@option_show_navigation_labels_description": {},
+  "option_navigation_animations_label": "Navigation animations",
+  "@option_navigation_animations_label": {},
+  "option_navigation_animations_description": "Enable navigation animations",
+  "@option_navigation_animations_description": {}
 }

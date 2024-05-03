@@ -155,6 +155,7 @@ Future<void> main() async {
     optionHomePages: defaultHomePages.map((e) => e.id).toList(),
     optionLocale: optionLocaleDefault,
     optionHomeInitialTab: 'feed',
+    optionNavigationAnimations: true,
     optionHomeShowTabLabels: true,
     optionSubscriptionInitialTab: 'tweets',
     optionMediaSize: 'medium',
@@ -369,6 +370,7 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
+    bool navigationAnimationsEnabled = PrefService.of(context).get(optionNavigationAnimations);
     ThemeMode themeMode;
     switch (_themeMode) {
       case 'dark':
@@ -493,20 +495,57 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
       ),
       themeMode: themeMode,
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
+      initialRoute: routeHome,
       navigatorObservers: [
         _routeObserver
       ],
-      routes: {
-        routeHome: (context) => const DefaultPage(),
-        routeGroup: (context) => const GroupScreen(),
-        routeProfile: (context) => const ProfileScreen(),
-        routeSearch: (context) => const SearchScreen(),
-        routeSettings: (context) => const SettingsScreen(),
-        routeSettingsExport: (context) => const SettingsExportScreen(),
-        routeSettingsHome: (context) => const SettingsScreen(initialPage: 'home'),
-        routeStatus: (context) => const StatusScreen(),
-        routeSubscriptionsImport: (context) => const SubscriptionImportScreen()
+      onGenerateRoute: (settings) {
+        if (settings.name == routeHome) {
+          return navigationAnimationsEnabled
+            ? MaterialPageRoute(builder: (context) => const DefaultPage())
+            : PageRouteBuilder(pageBuilder: (context, anim1, anim2) => const DefaultPage());
+        }
+        else if (settings.name == routeGroup) {
+          return navigationAnimationsEnabled
+            ? MaterialPageRoute(builder: (context) => const GroupScreen())
+            : PageRouteBuilder(pageBuilder: (context, anim1, anim2) => const GroupScreen());
+        }
+        else if (settings.name == routeProfile) {
+          return navigationAnimationsEnabled
+            ? MaterialPageRoute(builder: (context) => const ProfileScreen())
+            : PageRouteBuilder(pageBuilder: (context, anim1, anim2) => const ProfileScreen());
+        }
+        else if (settings.name == routeSearch) {
+          return navigationAnimationsEnabled
+            ? MaterialPageRoute(builder: (context) => const SearchScreen())
+            : PageRouteBuilder(pageBuilder: (context, anim1, anim2) => const SearchScreen());
+        }
+        else if (settings.name == routeSettings) {
+          return navigationAnimationsEnabled
+            ? MaterialPageRoute(builder: (context) => const SettingsScreen())
+            : PageRouteBuilder(pageBuilder: (context, anim1, anim2) => const SettingsScreen());
+        }
+        else if (settings.name == routeSettingsExport) {
+          return navigationAnimationsEnabled
+            ? MaterialPageRoute(builder: (context) => const SettingsExportScreen())
+            : PageRouteBuilder(pageBuilder: (context, anim1, anim2) => const SettingsExportScreen());
+        }
+        else if (settings.name == routeSettingsHome) {
+          return navigationAnimationsEnabled
+            ? MaterialPageRoute(builder: (context) => const SettingsScreen(initialPage: 'home'))
+            : PageRouteBuilder(pageBuilder: (context, anim1, anim2) => const SettingsScreen(initialPage: 'home'));
+        }
+        else if (settings.name == routeStatus) {
+          return navigationAnimationsEnabled
+            ? MaterialPageRoute(builder: (context) => const StatusScreen())
+            : PageRouteBuilder(pageBuilder: (context, anim1, anim2) => const StatusScreen());
+        }
+        else if (settings.name == routeSubscriptionsImport) {
+          return navigationAnimationsEnabled
+            ? MaterialPageRoute(builder: (context) => const SubscriptionImportScreen())
+            : PageRouteBuilder(pageBuilder: (context, anim1, anim2) => const SubscriptionImportScreen());
+        }
+        return null;
       },
       builder: (context, child) {
         // Replace the default red screen of death with a slightly friendlier one

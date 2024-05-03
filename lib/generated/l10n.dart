@@ -3077,6 +3077,26 @@ class L10n {
       args: [],
     );
   }
+
+  /// `Navigation animations`
+  String get option_navigation_animations_label {
+    return Intl.message(
+      'Navigation animations',
+      name: 'option_navigation_animations_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enable navigation animations`
+  String get option_navigation_animations_description {
+    return Intl.message(
+      'Enable navigation animations',
+      name: 'option_navigation_animations_description',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<L10n> {

@@ -334,6 +334,11 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Confirm when closing the app"),
         "option_confirm_close_label":
             MessageLookupByLibrary.simpleMessage("Confirm close"),
+        "option_navigation_animations_description":
+            MessageLookupByLibrary.simpleMessage(
+                "Enable navigation animations"),
+        "option_navigation_animations_label":
+            MessageLookupByLibrary.simpleMessage("Navigation animations"),
         "option_show_navigation_labels_description":
             MessageLookupByLibrary.simpleMessage(
                 "Show the labels from the navigation bar icons"),

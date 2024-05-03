@@ -347,6 +347,11 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Confirmation à la fermeture de l\'application"),
         "option_confirm_close_label":
             MessageLookupByLibrary.simpleMessage("Confirmation de fermeture"),
+        "option_navigation_animations_description":
+            MessageLookupByLibrary.simpleMessage(
+                "Activate les animations de navigation"),
+        "option_navigation_animations_label":
+            MessageLookupByLibrary.simpleMessage("Animations de navigation"),
         "option_show_navigation_labels_description":
             MessageLookupByLibrary.simpleMessage(
                 "Affiche les étiquettes des icônes de la barre de navigation"),

@@ -8,6 +8,7 @@ const optionHelloLastBuild = 'hello.last_build';
 
 const optionHomePages = 'home.pages';
 const optionHomeInitialTab = 'home.initial_tab';
+const optionNavigationAnimations = 'home.navigation_animations';
 const optionHomeShowTabLabels = 'home.show_tab_labels';
 
 const optionMediaSize = 'media.size';

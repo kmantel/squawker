@@ -340,27 +340,37 @@ class ScaffoldWithBottomNavigationState extends State<ScaffoldWithBottomNavigati
 
   @override
   Widget build(BuildContext context) {
+    bool themeTrueBlack = PrefService.of(context).get(optionThemeTrueBlack);
+    bool showTabLabels = PrefService.of(context).get(optionHomeShowTabLabels);
+    bool navigationAnimations = PrefService.of(context).get(optionNavigationAnimations);
     if (_goToSubscriptions) {
       _goToSubscriptions = false;
       WidgetsBinding.instance.addPostFrameCallback((_) {
         int idx = widget.pages.indexWhere((e) => e.id == 'subscriptions');
-        _pageController?.animateToPage(idx, curve: Curves.easeInOut, duration: const Duration(milliseconds: 100));
+        if (navigationAnimations) {
+          _pageController?.animateToPage(idx, curve: Curves.easeInOut, duration: const Duration(milliseconds: 100));
+        }
+        else {
+          _pageController?.jumpToPage(idx);
+        }
       });
     }
     return Scaffold(
       body: PageView(
         controller: _pageController,
         physics: const LessSensitiveScrollPhysics(),
-        onPageChanged: (page) => Debouncer.debounce('page-change', const Duration(milliseconds: 200), () {
-          setState(() => _selectedIndex = page);
-        }),
+        onPageChanged: (page) => navigationAnimations
+          ? Debouncer.debounce('page-change', const Duration(milliseconds: 200), () {
+            setState(() => _selectedIndex = page);
+          })
+          : setState(() => _selectedIndex = page),
         children: _children,
       ),
       bottomNavigationBar: NavigationBar(
         selectedIndex: _selectedIndex,
-        backgroundColor: Theme.of(context).brightness == Brightness.dark && PrefService.of(context).get(optionThemeTrueBlack) ? Colors.black : null,
-        indicatorColor: Theme.of(context).brightness == Brightness.dark && PrefService.of(context).get(optionThemeTrueBlack) ? Colors.black : null,
-        labelBehavior: PrefService.of(context).get(optionHomeShowTabLabels)
+        backgroundColor: Theme.of(context).brightness == Brightness.dark && themeTrueBlack ? Colors.black : null,
+        indicatorColor: Theme.of(context).brightness == Brightness.dark && themeTrueBlack ? Colors.black : null,
+        labelBehavior: showTabLabels
           ? NavigationDestinationLabelBehavior.alwaysShow
           : NavigationDestinationLabelBehavior.alwaysHide,
         height: PrefService.of(context).get(optionHomeShowTabLabels) ? 80 : 40,
@@ -371,7 +381,12 @@ class ScaffoldWithBottomNavigationState extends State<ScaffoldWithBottomNavigati
           if (_children[value] is FeedScreen && widget.feedKey != null && widget.feedKey!.currentState != null) {
             await widget.feedKey!.currentState!.checkUpdateOrRefreshFeed();
           }
-          _pageController?.animateToPage(value, duration: const Duration(milliseconds: 200), curve: Curves.linear);
+          if (navigationAnimations) {
+            _pageController?.animateToPage(value, duration: const Duration(milliseconds: 200), curve: Curves.linear);
+          }
+          else {
+            _pageController?.jumpToPage(value);
+          }
         }
       ),
     );

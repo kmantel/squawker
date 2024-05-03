@@ -626,5 +626,9 @@
   "option_show_navigation_labels_label": "Étiquettes de la barre de navigation",
   "@option_show_navigation_labels_label": {},
   "option_show_navigation_labels_description": "Affiche les étiquettes des icônes de la barre de navigation",
-  "@option_show_navigation_labels_description": {}
+  "@option_show_navigation_labels_description": {},
+  "option_navigation_animations_label": "Animations de navigation",
+  "@option_navigation_animations_label": {},
+  "option_navigation_animations_description": "Activate les animations de navigation",
+  "@option_navigation_animations_description": {}
 }
