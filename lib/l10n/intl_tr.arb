@@ -630,5 +630,9 @@
   "option_show_navigation_labels_label": "Gezinti çubuğu etiketleri",
   "@option_show_navigation_labels_label": {},
   "option_show_navigation_labels_description": "Gezinti çubuğu simgelerindeki etiketleri göster",
-  "@option_show_navigation_labels_description": {}
+  "@option_show_navigation_labels_description": {},
+  "option_navigation_animations_label": "Gezinti animasyonları",
+  "@option_navigation_animations_label": {},
+  "option_navigation_animations_description": "Gezinti animasyonlarını etkinleştir",
+  "@option_navigation_animations_description": {}
 }
