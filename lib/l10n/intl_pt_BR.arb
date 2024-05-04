@@ -626,5 +626,9 @@
   "option_show_navigation_labels_description": "Mostrar os rótulos dos ícones da barra de navegação",
   "@option_show_navigation_labels_description": {},
   "community_notes_title": "Contexto adicionado pelos leitores",
-  "@community_notes_title": {}
+  "@community_notes_title": {},
+  "option_navigation_animations_label": "Animações de navegação",
+  "@option_navigation_animations_label": {},
+  "option_navigation_animations_description": "Habilitar as animações de navegação",
+  "@option_navigation_animations_description": {}
 }
