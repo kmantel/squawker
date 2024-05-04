@@ -286,6 +286,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("当关闭应用时进行确认"),
         "option_confirm_close_label":
             MessageLookupByLibrary.simpleMessage("关闭时确认"),
+        "option_navigation_animations_description":
+            MessageLookupByLibrary.simpleMessage("开启导航动画"),
+        "option_navigation_animations_label":
+            MessageLookupByLibrary.simpleMessage("导航动画"),
         "option_show_navigation_labels_description":
             MessageLookupByLibrary.simpleMessage("显示来自导航栏图标的标签"),
         "option_show_navigation_labels_label":

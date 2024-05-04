@@ -332,6 +332,10 @@ class MessageLookup extends MessageLookupByLibrary {
                 "قم بالتأكيد عند إغلاق التطبيق"),
         "option_confirm_close_label":
             MessageLookupByLibrary.simpleMessage("تأكيد الإغلاق"),
+        "option_navigation_animations_description":
+            MessageLookupByLibrary.simpleMessage("تمكين تأثيرات التنقل"),
+        "option_navigation_animations_label":
+            MessageLookupByLibrary.simpleMessage("تأثيرات التنقل"),
         "option_show_navigation_labels_description":
             MessageLookupByLibrary.simpleMessage(
                 "إظهار التسميات من أيقونات شريط التنقل"),

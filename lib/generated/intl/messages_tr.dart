@@ -339,6 +339,11 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Uygulamayı kapatırken onayla"),
         "option_confirm_close_label":
             MessageLookupByLibrary.simpleMessage("Kapatmayı onayla"),
+        "option_navigation_animations_description":
+            MessageLookupByLibrary.simpleMessage(
+                "Gezinti animasyonlarını etkinleştir"),
+        "option_navigation_animations_label":
+            MessageLookupByLibrary.simpleMessage("Gezinti animasyonları"),
         "option_show_navigation_labels_description":
             MessageLookupByLibrary.simpleMessage(
                 "Gezinti çubuğu simgelerindeki etiketleri göster"),
