@@ -626,5 +626,9 @@
   "community_notes_title": "القراء أضافوا السياق",
   "@community_notes_title": {},
   "option_show_navigation_labels_label": "تسميات شريط التنقل",
-  "@option_show_navigation_labels_label": {}
+  "@option_show_navigation_labels_label": {},
+  "option_navigation_animations_label": "تأثيرات التنقل",
+  "@option_navigation_animations_label": {},
+  "option_navigation_animations_description": "تمكين تأثيرات التنقل",
+  "@option_navigation_animations_description": {}
 }
