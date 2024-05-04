@@ -331,14 +331,14 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
         fill: fill,
       ),
       color: color ?? Theme.of(context).colorScheme.primary,
-      iconSize: 20,
+      iconSize: 18,
       onPressed: onPressed,
     );
   }
 
   _createFooterTextButton(IconData icon, String label, [Color? color, Function()? onPressed]) {
     return TextButton.icon(
-      icon: Icon(icon, size: 20, color: color),
+      icon: Icon(icon, size: 18, color: color),
       onPressed: onPressed,
       label: Text(label, style: TextStyle(color: color, fontSize: 14)),
     );
