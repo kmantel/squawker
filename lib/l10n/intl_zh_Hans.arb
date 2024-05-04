@@ -630,5 +630,9 @@
   "option_show_navigation_labels_description": "显示来自导航栏图标的标签",
   "@option_show_navigation_labels_description": {},
   "community_notes_title": "读者添加了上下文",
-  "@community_notes_title": {}
+  "@community_notes_title": {},
+  "option_navigation_animations_label": "导航动画",
+  "@option_navigation_animations_label": {},
+  "option_navigation_animations_description": "开启导航动画",
+  "@option_navigation_animations_description": {}
 }
