@@ -132,7 +132,13 @@ class _HomeScreenState extends State<_HomeScreen> {
       var username = link.pathSegments[0];
       var statusId = link.pathSegments[2];
 
-      pushNamedRoute(context, routeStatus, StatusScreenArguments(id: statusId, username: username,));
+      pushNamedRoute(
+          context,
+          routeStatus,
+          StatusScreenArguments(
+            id: statusId,
+            username: username,
+          ));
       return;
     }
 
@@ -231,7 +237,8 @@ class _HomeScreenState extends State<_HomeScreen> {
 
                     switch (e.id) {
                       case 'feed':
-                        return FeedScreen(key: _feedKey, scrollController: scrollController, id: '-1', name: L10n.current.feed);
+                        return FeedScreen(
+                            key: _feedKey, scrollController: scrollController, id: '-1', name: L10n.current.feed);
                       case 'subscriptions':
                         return SubscriptionsScreen();
                       case 'groups':
@@ -270,7 +277,8 @@ class ScaffoldWithBottomNavigation extends StatefulWidget {
   final List<Widget> Function(ScrollController scrollController) builder;
   final GlobalKey<FeedScreenState>? feedKey;
 
-  const ScaffoldWithBottomNavigation({Key? key, required this.pages, required this.initialPage, required this.builder, required this.feedKey})
+  const ScaffoldWithBottomNavigation(
+      {Key? key, required this.pages, required this.initialPage, required this.builder, required this.feedKey})
       : super(key: key);
 
   @override
@@ -349,8 +357,7 @@ class ScaffoldWithBottomNavigationState extends State<ScaffoldWithBottomNavigati
         int idx = widget.pages.indexWhere((e) => e.id == 'subscriptions');
         if (navigationAnimations) {
           _pageController?.animateToPage(idx, curve: Curves.easeInOut, duration: const Duration(milliseconds: 100));
-        }
-        else {
+        } else {
           _pageController?.jumpToPage(idx);
         }
       });
@@ -360,35 +367,34 @@ class ScaffoldWithBottomNavigationState extends State<ScaffoldWithBottomNavigati
         controller: _pageController,
         physics: const LessSensitiveScrollPhysics(),
         onPageChanged: (page) => navigationAnimations
-          ? Debouncer.debounce('page-change', const Duration(milliseconds: 200), () {
-            setState(() => _selectedIndex = page);
-          })
-          : setState(() => _selectedIndex = page),
+            ? Debouncer.debounce('page-change', const Duration(milliseconds: 200), () {
+                setState(() => _selectedIndex = page);
+              })
+            : setState(() => _selectedIndex = page),
         children: _children,
       ),
       bottomNavigationBar: NavigationBar(
-        selectedIndex: _selectedIndex,
-        backgroundColor: Theme.of(context).brightness == Brightness.dark && themeTrueBlack ? Colors.black : null,
-        indicatorColor: Theme.of(context).brightness == Brightness.dark && themeTrueBlack ? Colors.black : null,
-        labelBehavior: showTabLabels
-          ? NavigationDestinationLabelBehavior.alwaysShow
-          : NavigationDestinationLabelBehavior.alwaysHide,
-        height: PrefService.of(context).get(optionHomeShowTabLabels) ? 70 : 40,
-        destinations: [
-          ..._pages.map((e) => NavigationDestination(icon: Icon(e.icon, size: 22), label: e.titleBuilder(context)))
-        ],
-        onDestinationSelected: (int value) async {
-          if (_children[value] is FeedScreen && widget.feedKey != null && widget.feedKey!.currentState != null) {
-            await widget.feedKey!.currentState!.checkUpdateOrRefreshFeed();
-          }
-          if (navigationAnimations) {
-            _pageController?.animateToPage(value, duration: const Duration(milliseconds: 200), curve: Curves.linear);
-          }
-          else {
-            _pageController?.jumpToPage(value);
-          }
-        }
-      ),
+          selectedIndex: _selectedIndex,
+          surfaceTintColor: Theme.of(context).brightness == Brightness.dark && themeTrueBlack ? Colors.black : null,
+          backgroundColor: Theme.of(context).brightness == Brightness.dark && themeTrueBlack ? Colors.black : null,
+          indicatorColor: Theme.of(context).brightness == Brightness.dark && themeTrueBlack ? Colors.black : null,
+          labelBehavior: showTabLabels
+              ? NavigationDestinationLabelBehavior.alwaysShow
+              : NavigationDestinationLabelBehavior.alwaysHide,
+          height: PrefService.of(context).get(optionHomeShowTabLabels) ? 70 : 40,
+          destinations: [
+            ..._pages.map((e) => NavigationDestination(icon: Icon(e.icon, size: 22), label: e.titleBuilder(context)))
+          ],
+          onDestinationSelected: (int value) async {
+            if (_children[value] is FeedScreen && widget.feedKey != null && widget.feedKey!.currentState != null) {
+              await widget.feedKey!.currentState!.checkUpdateOrRefreshFeed();
+            }
+            if (navigationAnimations) {
+              _pageController?.animateToPage(value, duration: const Duration(milliseconds: 200), curve: Curves.linear);
+            } else {
+              _pageController?.jumpToPage(value);
+            }
+          }),
     );
   }
 }
