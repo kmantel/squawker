@@ -46,7 +46,9 @@ List<Widget> createCommonAppBarActions(BuildContext context) {
       onPressed: () => pushNamedRoute(context, routeSearch, SearchArguments(0, focusInputOnOpen: true)),
     ),
     IconButton(
-      icon: const Icon(Symbols.settings),
+      icon: const Icon(
+        Symbols.settings,
+      ),
       onPressed: () {
         Navigator.pushNamed(context, routeSettings);
       },
@@ -383,7 +385,14 @@ class ScaffoldWithBottomNavigationState extends State<ScaffoldWithBottomNavigati
               : NavigationDestinationLabelBehavior.alwaysHide,
           height: PrefService.of(context).get(optionHomeShowTabLabels) ? 70 : 40,
           destinations: [
-            ..._pages.map((e) => NavigationDestination(icon: Icon(e.icon, size: 22), label: e.titleBuilder(context)))
+            ..._pages.map((e) => NavigationDestination(
+                selectedIcon: Icon(
+                  e.icon,
+                  size: 22,
+                  fill: 1,
+                ),
+                icon: Icon(e.icon, size: 22),
+                label: e.titleBuilder(context)))
           ],
           onDestinationSelected: (int value) async {
             if (_children[value] is FeedScreen && widget.feedKey != null && widget.feedKey!.currentState != null) {
