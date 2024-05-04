@@ -112,7 +112,8 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
         getNewEntity: (Hashtag hashtag) {
           return TweetHashtag(
               hashtag,
-              () => pushNamedRoute(context, routeSearch, SearchArguments(1, focusInputOnOpen: false, query: '#${hashtag.text}')));
+              () => pushNamedRoute(
+                  context, routeSearch, SearchArguments(1, focusInputOnOpen: false, query: '#${hashtag.text}')));
         });
 
     entities = _populateEntities(
@@ -287,8 +288,7 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
         if (urlEnt.url.expandedUrl == null || !_isTwitterUrl(urlEnt.url.expandedUrl!)) {
           addPartContent = true;
         }
-      }
-      else {
+      } else {
         addPartContent = true;
       }
       if (addPartContent) {
@@ -419,7 +419,8 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
     if (this.tweet.retweetedStatusWithCard != null) {
       retweetBanner = _TweetTileLeading(
         icon: Symbols.repeat,
-        onTap: () => pushNamedRoute(context, routeProfile, ProfileScreenArguments.fromScreenName(this.tweet.user!.screenName!)),
+        onTap: () =>
+            pushNamedRoute(context, routeProfile, ProfileScreenArguments.fromScreenName(this.tweet.user!.screenName!)),
         children: [
           TextSpan(
               text: L10n.of(context)
@@ -473,43 +474,42 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
 
     if (isBirdwatchQuote) {
       return Card(
-        child: Container(
-          // Fill the width so both RTL and LTR text are displayed correctly
-          width: double.infinity,
-          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-          child: Column(
-            children: [
-              _TweetTileLeading(icon: Symbols.group_rounded, children: [
-                TextSpan(
-                  text: L10n.of(context).community_notes_title,
-                  style: TextStyle(color: theme.textTheme.bodySmall!.color, fontSize: theme.textTheme.bodySmall!.fontSize, fontWeight: ui.FontWeight.bold),
-                )
-              ]),
-              SizedBox(height: 8),
-              AutoDirection(
-                text: tweetText,
-                child: Text.rich(
-                  TextSpan(children: [
-                  ..._displayParts.map((e) {
-                    if (e.plainText != null) {
-                      return TextSpan(text: e.plainText, style: TextStyle(fontSize: optionTweetFontSizeValue));
-                    }
-                    else {
-                      return e.entity!;
-                    }
-                  })]),
-                )
-              ),
-            ]
-          )
-        )
-      );
+          child: Container(
+              // Fill the width so both RTL and LTR text are displayed correctly
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+              child: Column(children: [
+                _TweetTileLeading(icon: Symbols.group_rounded, children: [
+                  TextSpan(
+                    text: L10n.of(context).community_notes_title,
+                    style: TextStyle(
+                        color: theme.textTheme.bodySmall!.color,
+                        fontSize: theme.textTheme.bodySmall!.fontSize,
+                        fontWeight: ui.FontWeight.bold),
+                  )
+                ]),
+                SizedBox(height: 8),
+                AutoDirection(
+                    text: tweetText,
+                    child: Text.rich(
+                      TextSpan(children: [
+                        ..._displayParts.map((e) {
+                          if (e.plainText != null) {
+                            return TextSpan(text: e.plainText, style: TextStyle(fontSize: optionTweetFontSizeValue));
+                          } else {
+                            return e.entity!;
+                          }
+                        })
+                      ]),
+                    )),
+              ])));
     }
 
     var birdwatchQuoted = Container();
     if (tweet.birdwatchQuotedStatus != null) {
       birdwatchQuoted = Container(
-        decoration: BoxDecoration(border: Border.all(color: theme.primaryColor), borderRadius: BorderRadius.circular(8)),
+        decoration:
+            BoxDecoration(border: Border.all(color: theme.primaryColor), borderRadius: BorderRadius.circular(8)),
         margin: const EdgeInsets.all(8),
         child: TweetTile(
           clickable: false,
@@ -602,9 +602,9 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
             builder: (context, model, child) => RepaintBoundary(
                 key: _globalKey,
                 child: Card(
-                  color: theme.brightness == Brightness.dark && prefs.get(optionThemeTrueBlack)
-                    ? Colors.black
-                    : null,
+                  color: theme.brightness == Brightness.dark && prefs.get(optionThemeTrueBlack) ? Colors.black : null,
+                  surfaceTintColor:
+                      theme.brightness == Brightness.dark && prefs.get(optionThemeTrueBlack) ? Colors.black : null,
                   child: Row(
                     children: [
                       retweetSidebar,
@@ -634,7 +634,8 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
                               if (currentUsername != null && tweet.user!.screenName!.endsWith(currentUsername!)) {
                                 return;
                               }
-                              pushNamedRoute(context, routeProfile, ProfileScreenArguments(tweet.user!.idStr, tweet.user!.screenName));
+                              pushNamedRoute(context, routeProfile,
+                                  ProfileScreenArguments(tweet.user!.idStr, tweet.user!.screenName));
                             },
                             title: Row(
                               children: [
@@ -767,8 +768,7 @@ class TweetTileState extends State<TweetTile> with SingleTickerProviderStateMixi
                                           await model.deleteSavedTweet(tweet.idStr!);
                                           if (mounted) {
                                             setState(() {});
-                                          }
-                                          else {
+                                          } else {
                                             DataService().map['toggleRefreshFeed'] = true;
                                           }
                                         });
