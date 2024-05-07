@@ -2,8 +2,6 @@ name: release_test
 
 on:
   workflow_dispatch:
-    tags:
-      - '*'
   push:
     tags:
       - '*'
