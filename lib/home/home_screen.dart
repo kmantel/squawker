@@ -368,6 +368,7 @@ class ScaffoldWithBottomNavigationState extends State<ScaffoldWithBottomNavigati
       ),
       bottomNavigationBar: NavigationBar(
         selectedIndex: _selectedIndex,
+        surfaceTintColor: Theme.of(context).brightness == Brightness.dark && themeTrueBlack ? Colors.black : null,
         backgroundColor: Theme.of(context).brightness == Brightness.dark && themeTrueBlack ? Colors.black : null,
         indicatorColor: Theme.of(context).brightness == Brightness.dark && themeTrueBlack ? Colors.black : null,
         labelBehavior: showTabLabels
@@ -375,7 +376,7 @@ class ScaffoldWithBottomNavigationState extends State<ScaffoldWithBottomNavigati
           : NavigationDestinationLabelBehavior.alwaysHide,
         height: PrefService.of(context).get(optionHomeShowTabLabels) ? 70 : 40,
         destinations: [
-          ..._pages.map((e) => NavigationDestination(icon: Icon(e.icon, size: 22), label: e.titleBuilder(context)))
+          ..._pages.map((e) => NavigationDestination(selectedIcon: Icon(e.icon, size: 22, fill: 1), icon: Icon(e.icon, size: 22), label: e.titleBuilder(context)))
         ],
         onDestinationSelected: (int value) async {
           if (_children[value] is FeedScreen && widget.feedKey != null && widget.feedKey!.currentState != null) {

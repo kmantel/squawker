@@ -180,8 +180,9 @@ class FollowButton extends StatelessWidget {
         var followed = state.any((element) => element.id == user.id);
         var inFeed = followed ? state.any((element) => element.id == user.id && element.inFeed) : false;
 
-        var icon =
-            followed ? (inFeed ? Icon(Symbols.person_remove_rounded, color: color) : const Icon(Symbols.person_remove_rounded, color: Colors.red)) : Icon(Symbols.person_add_rounded, color: color);
+        var icon = followed
+          ? (inFeed ? Icon(Symbols.person_remove_rounded, color: color) : const Icon(Symbols.person_remove_rounded, color: Colors.red))
+          : Icon(Symbols.person_add_rounded, color: color);
         var textSub = followed ? L10n.of(context).unsubscribe : L10n.of(context).subscribe;
         var textFeed = followed ? (inFeed ? L10n.of(context).remove_from_feed : L10n.of(context).add_to_feed) : null;
 
@@ -257,7 +258,9 @@ class UserWithExtra extends User {
       ..entities = json['entities'] == null ? null : UserEntities.fromJson(json['entities'] as Map<String, dynamic>)
       ..description = json['description'] as String?
       ..protected = json['protected'] as bool?
-      ..verified = json['ext_is_blue_verified'] ?? json['verified'] as bool?
+      ..verified = json['verified_type'] == 'Business'
+        ? true
+        : json['ext_is_blue_verified'] ?? json['verified'] ?? json['is_blue_verified'] as bool?
       ..status = json['status'] == null ? null : Tweet.fromJson(json['status'] as Map<String, dynamic>)
       ..followersCount = json['followers_count'] as int?
       ..friendsCount = json['friends_count'] as int?
