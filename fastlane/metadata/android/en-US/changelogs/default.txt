@@ -1,0 +1,1 @@
+* Fix the feature #129 Let tweet cards be True Dark as well (thanks @TheHJC).
