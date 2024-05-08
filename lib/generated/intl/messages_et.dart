@@ -131,6 +131,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "choose": MessageLookupByLibrary.simpleMessage("Vali"),
         "choose_pages": MessageLookupByLibrary.simpleMessage("Vali lehed"),
         "close": MessageLookupByLibrary.simpleMessage("Sulge"),
+        "community_notes_title": MessageLookupByLibrary.simpleMessage(
+            "Järgneva sisu on lisanud lugejad"),
         "confirm_close_fritter": MessageLookupByLibrary.simpleMessage(
             "Kas sa oled kindel, et soovid panna Squawker\'i kinni?"),
         "contribute": MessageLookupByLibrary.simpleMessage("Osale arenduses"),
@@ -344,6 +346,17 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Rakenduse sulgemisel küsi kinnitust"),
         "option_confirm_close_label": MessageLookupByLibrary.simpleMessage(
             "Rakenduse sulgemise kinnitus"),
+        "option_navigation_animations_description":
+            MessageLookupByLibrary.simpleMessage(
+                "Näita tegevuste riba kasutamisel animatsioone"),
+        "option_navigation_animations_label":
+            MessageLookupByLibrary.simpleMessage(
+                "Animatsioonid tegevuste riba kasutamisel"),
+        "option_show_navigation_labels_description":
+            MessageLookupByLibrary.simpleMessage(
+                "Näita tegevuste riba ikoonidel silte"),
+        "option_show_navigation_labels_label":
+            MessageLookupByLibrary.simpleMessage("Tegevuste riba sildid"),
         "optional_label":
             MessageLookupByLibrary.simpleMessage("Täiendavad väljad:"),
         "page_not_found": MessageLookupByLibrary.simpleMessage(
