@@ -624,5 +624,15 @@
   "exclusions_feed_description": "Kasutajanimede loend, mida soovid säutsuvoost välistada",
   "@exclusions_feed_description": {},
   "username_exclude": "Välistatav kasutajanimi",
-  "@username_exclude": {}
+  "@username_exclude": {},
+  "option_show_navigation_labels_label": "Tegevuste riba sildid",
+  "@option_show_navigation_labels_label": {},
+  "community_notes_title": "Järgneva sisu on lisanud lugejad",
+  "@community_notes_title": {},
+  "option_show_navigation_labels_description": "Näita tegevuste riba ikoonidel silte",
+  "@option_show_navigation_labels_description": {},
+  "option_navigation_animations_label": "Animatsioonid tegevuste riba kasutamisel",
+  "@option_navigation_animations_label": {},
+  "option_navigation_animations_description": "Näita tegevuste riba kasutamisel animatsioone",
+  "@option_navigation_animations_description": {}
 }
