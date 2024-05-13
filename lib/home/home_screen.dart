@@ -376,7 +376,12 @@ class ScaffoldWithBottomNavigationState extends State<ScaffoldWithBottomNavigati
           : NavigationDestinationLabelBehavior.alwaysHide,
         height: PrefService.of(context).get(optionHomeShowTabLabels) ? 70 : 40,
         destinations: [
-          ..._pages.map((e) => NavigationDestination(selectedIcon: Icon(e.icon, size: 22, fill: 1), icon: Icon(e.icon, size: 22), label: e.titleBuilder(context)))
+          ..._pages.map((e) => DefaultTextStyle.merge(
+            style: NavigationBarTheme.of(context).labelTextStyle?.resolve(e.id == _pages[_selectedIndex].id ? <MaterialState>{MaterialState.selected} : <MaterialState>{}),
+            overflow: TextOverflow.clip,
+            maxLines: 1,
+            child: NavigationDestination(selectedIcon: Icon(e.icon, size: 22, fill: 1), icon: Icon(e.icon, size: 22), label: e.titleBuilder(context))
+          ))
         ],
         onDestinationSelected: (int value) async {
           if (_children[value] is FeedScreen && widget.feedKey != null && widget.feedKey!.currentState != null) {

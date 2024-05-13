@@ -1,1 +1,3 @@
 * Fix the feature #129 Let tweet cards be True Dark as well (thanks @TheHJC).
+* The released apk files also include apk files built for older Android KitKat (version 4.4.x).
+* Fix issue #309 Toolbar icons are not aligned.
