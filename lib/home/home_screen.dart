@@ -180,7 +180,7 @@ class _HomeScreenState extends State<_HomeScreen> {
         // The dialog of information is displayed once.
         await TwitterAccount.announcementRegularAccountAndUnauthenticatedAccess(context);
 
-        ReceiveSharingIntent.getInitialMedia().then((List<SharedMediaFile> value) async {
+        ReceiveSharingIntent.instance.getInitialMedia().then((List<SharedMediaFile> value) async {
           if (value.isNotEmpty) {
             log.info('****** ReceiveSharingIntent.getInitialText - value=${value[0].path}');
             Uri? link = Uri.tryParse(value[0].path);
@@ -190,7 +190,7 @@ class _HomeScreenState extends State<_HomeScreen> {
           }
         });
         // Attach a listener to the stream
-        _sub = ReceiveSharingIntent.getMediaStream().listen((List<SharedMediaFile> value) async {
+        _sub = ReceiveSharingIntent.instance.getMediaStream().listen((List<SharedMediaFile> value) async {
           if (value.isNotEmpty) {
             log.info('****** ReceiveSharingIntent.getTextStream - value=${value[0].path}');
             Uri? link = Uri.tryParse(value[0].path);
