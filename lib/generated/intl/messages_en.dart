@@ -481,6 +481,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "To import subscriptions from an existing Twitter/X account, enter your username below."),
         "toggle_all": MessageLookupByLibrary.simpleMessage("Toggle All"),
+        "translator_description": MessageLookupByLibrary.simpleMessage(
+            "Use a custom LibreTranslate instance"),
+        "translator_label": MessageLookupByLibrary.simpleMessage("Translator"),
         "trending": MessageLookupByLibrary.simpleMessage("Trending"),
         "trends": MessageLookupByLibrary.simpleMessage("Trends"),
         "true_black": MessageLookupByLibrary.simpleMessage("True Black?"),

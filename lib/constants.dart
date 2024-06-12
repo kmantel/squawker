@@ -42,6 +42,9 @@ const optionThemeMode = 'theme.mode';
 const optionThemeTrueBlack = 'theme.true_black';
 const optionThemeColorScheme = 'theme.color_scheme';
 
+const optionTranslator = 'translator';
+const optionTranslatorKey = 'translatorKey';
+
 const optionTweetsHideSensitive = 'tweets.hide_sensitive';
 
 const optionUserTrendsLocations = 'trends.locations';

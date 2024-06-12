@@ -34,22 +34,21 @@ class TranslationAPI {
   //   translate.astian.org, translate.foxhaven.cyou, trans.zillyhuhn.com
   // other possibilities working but badly translated:
   //   translate.terraprint.co
-  static final translation_hosts = ['libretranslate.de', 'translate.fedilab.app', 'translate.argosopentech.com'];
-  static int current_translation_host_idx = 0; // Random().nextInt(translation_hosts.length);
+  static var translationHost = 'translate.fedilab.app';
+  static var translationAPIKey = '';
+  static const maxRetries = 3;
   static Map<String, String> langCodeReplace = {
     'iw': 'he'
   };
 
-  static String translationHost() {
-    return translation_hosts[current_translation_host_idx];
-  }
-
-  static String nextTranslationHost() {
-    current_translation_host_idx++;
-    if (current_translation_host_idx == translation_hosts.length) {
-      current_translation_host_idx = 0;
+  static void setTranslationHost(String? host, String? key) {
+    if (host == null || host.isEmpty) {
+      translationHost = 'translate.fedilab.app';
+      translationAPIKey = '';
+    } else {
+      translationHost = host;
+      translationAPIKey = key?.toString() ?? '';
     }
-    return translationHost();
   }
 
   static Future<TranslationAPIResult> getSupportedLanguages() async {
@@ -58,25 +57,24 @@ class TranslationAPI {
     return cacheRequest(key, () async {
       int connectTries = 0;
       String? errorMessage;
-      while (connectTries < translation_hosts.length) {
+      while (connectTries < maxRetries) {
         try {
-          var response = await AppHttpClient.httpGet(Uri.https(translationHost(), '/languages')).timeout(const Duration(seconds: 3));
+          var response = await AppHttpClient.httpGet(Uri.https(translationHost, '/languages')).timeout(const Duration(seconds: 3));
           TranslationAPIResult rsp = await parseResponse(response);
           if (rsp.success) {
             return rsp;
           }
           else {
-            errorMessage ??= 'get supported languages error ${rsp.errorMessage} from host ${translationHost()}';
-            log.warning('get supported languages error ${rsp.errorMessage} from host ${translationHost()}');
+            errorMessage ??= 'get supported languages error ${rsp.errorMessage} from host $translationHost';
+            log.warning('get supported languages error ${rsp.errorMessage} from host $translationHost');
           }
         } on TimeoutException {
-          errorMessage ??= 'get supported languages timeout from host ${translationHost()}';
-          log.warning('get supported languages timeout from host ${translationHost()}');
+          errorMessage ??= 'get supported languages timeout from host $translationHost';
+          log.warning('get supported languages timeout from host $translationHost');
         } catch (exc) {
-          errorMessage ??= 'get supported languages error from ${translationHost()}\n${exc.toString()}';
-          log.warning('get supported languages error from ${translationHost()}\n${exc.toString()}');
+          errorMessage ??= 'get supported languages error from $translationHost\n${exc.toString()}';
+          log.warning('get supported languages error from $translationHost\n${exc.toString()}');
         }
-        nextTranslationHost();
         connectTries++;
       }
       return TranslationAPIResult(success: false, body: '', errorMessage: errorMessage ?? 'Unable to get supported languages');
@@ -94,7 +92,8 @@ class TranslationAPI {
       'q': text.where((e) => e.isNotEmpty).toList(),
       'source': actualSourceLanguage,
       'target': targetLanguage,
-      'format': 'text'
+      'format': 'text',
+      'api_key': translationAPIKey
     };
 
     var key = 'translation.$actualSourceLanguage.$targetLanguage.$id';
@@ -102,26 +101,25 @@ class TranslationAPI {
     var res = await cacheRequest(key, () async {
       int connectTries = 0;
       String? errorMessage;
-      while (connectTries < translation_hosts.length) {
+      while (connectTries < maxRetries) {
         try {
-          var response = await AppHttpClient.httpPost(Uri.https(translationHost(), '/translate'),
+          var response = await AppHttpClient.httpPost(Uri.https(translationHost, '/translate'),
               body: jsonEncode(formData), headers: {'Content-Type': 'application/json'}).timeout(const Duration(seconds: 3));
           TranslationAPIResult rsp = await parseResponse(response);
           if (rsp.success) {
             return rsp;
           }
           else {
-            errorMessage ??= 'translate error ${rsp.errorMessage} from host ${translationHost()}';
-            log.warning('translate error ${rsp.errorMessage} from host ${translationHost()}');
+            errorMessage ??= 'translate error ${rsp.errorMessage} from host $translationHost';
+            log.warning('translate error ${rsp.errorMessage} from host $translationHost');
           }
         } on TimeoutException {
-          errorMessage ??= 'translate timeout from host ${translationHost()}';
-          log.warning('translate timeout from host ${translationHost()}');
+          errorMessage ??= 'translate timeout from host $translationHost';
+          log.warning('translate timeout from host $translationHost');
         } catch (exc) {
-          errorMessage ??= 'translate error from ${translationHost()}\n${exc.toString()}';
-          log.warning('translate error from ${translationHost()}\n${exc.toString()}');
+          errorMessage ??= 'translate error from $translationHost\n${exc.toString()}';
+          log.warning('translate error from $translationHost\n${exc.toString()}');
         }
-        nextTranslationHost();
         connectTries++;
       }
       return TranslationAPIResult(success: false, body: '', errorMessage: errorMessage ?? 'Unable to send translation request');

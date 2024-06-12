@@ -2998,6 +2998,26 @@ class L10n {
     );
   }
 
+  /// `Translator`
+  String get translator_label {
+    return Intl.message(
+      'Translator',
+      name: 'translator_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Use a custom LibreTranslate instance`
+  String get translator_description {
+    return Intl.message(
+      'Use a custom LibreTranslate instance',
+      name: 'translator_description',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Enter your comma separated Twitter/X usernames`
   String get enter_comma_separated_twitter_usernames {
     return Intl.message(

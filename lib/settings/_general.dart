@@ -15,6 +15,7 @@ import 'package:squawker/utils/misc.dart';
 import 'package:logging/logging.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:pref/pref.dart';
+import 'package:squawker/utils/translation.dart';
 
 class SettingLocale {
   final String code;
@@ -42,27 +43,67 @@ class SettingsGeneralFragment extends StatelessWidget {
     final controller = TextEditingController(text: prefs.get(optionShareBaseUrl));
 
     return PrefDialog(
-      actions: [
-        TextButton(onPressed: () => Navigator.pop(context), child: Text(L10n.of(context).cancel)),
-        TextButton(
-          onPressed: () async {
-            await prefs.set(optionShareBaseUrl, controller.text);
-            Navigator.pop(context);
-          },
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(context), child: Text(L10n.of(context).cancel)),
+          TextButton(
+              onPressed: () async {
+                await prefs.set(optionShareBaseUrl, controller.text);
+                Navigator.pop(context);
+              },
           child: Text(L10n.of(context).save)
         )
-      ],
-      title: Text(L10n.of(context).share_base_url),
-      children: [
-        SizedBox(
-          width: mediaQuery.size.width,
-          child: TextFormField(
-            controller: controller,
+        ],
+        title: Text(L10n.of(context).share_base_url),
+        children: [
+          SizedBox(
+            width: mediaQuery.size.width,
+            child: TextFormField(
+              controller: controller,
             decoration: InputDecoration(hintText: 'https://x.com', hintStyle: TextStyle(color: Theme.of(context).disabledColor)),
-          ),
-        )
+            ),
+          )
       ]
     );
+  }
+
+  PrefDialog _createTranslateDialog(BuildContext context) {
+    BasePrefService prefs = PrefService.of(context);
+    MediaQueryData mediaQuery = MediaQuery.of(context);
+
+    final controllerAPI = TextEditingController(text: prefs.get(optionTranslator));
+    final controllerKEY = TextEditingController(text: prefs.get(optionTranslatorKey));
+
+    return PrefDialog(
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(context), child: Text(L10n.of(context).cancel)),
+          TextButton(
+              onPressed: () async {
+                TranslationAPI.setTranslationHost(controllerAPI.text, controllerKEY.text);
+                await prefs.set(optionTranslator, controllerAPI.text);
+                await prefs.set(optionTranslatorKey, controllerKEY.text);
+                Navigator.pop(context);
+              },
+              child: Text(L10n.of(context).save))
+        ],
+        title: Text(L10n.of(context).translator_label),
+        children: [
+          SizedBox(
+            width: mediaQuery.size.width,
+            child: TextFormField(
+              controller: controllerAPI,
+              decoration: InputDecoration(
+                  hintText: 'libretranslate.example.org', hintStyle: TextStyle(color: Theme.of(context).disabledColor)),
+            ),
+          ),
+          SizedBox(
+            width: mediaQuery.size.width,
+            child: TextFormField(
+              controller: controllerKEY,
+              decoration:
+                  InputDecoration(hintText: 'API KEY', hintStyle: TextStyle(color: Theme.of(context).disabledColor)),
+            ),
+          )
+        ]);
   }
 
   PrefDialog _createProxyDialog(BuildContext context) {
@@ -72,31 +113,31 @@ class SettingsGeneralFragment extends StatelessWidget {
     final controller = TextEditingController(text: prefs.get(optionProxy));
 
     return PrefDialog(
-      actions: [
-        TextButton(onPressed: () => Navigator.pop(context), child: Text(L10n.of(context).cancel)),
-        TextButton(
-          onPressed: () async {
-            try {
-              AppHttpClient.setProxy(controller.text);
-              await prefs.set(optionProxy, controller.text);
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(context), child: Text(L10n.of(context).cancel)),
+          TextButton(
+              onPressed: () async {
+                try {
+                  AppHttpClient.setProxy(controller.text);
+                  await prefs.set(optionProxy, controller.text);
             }
             catch (e, s) {
-              await showAlertDialog(context, L10n.of(context).proxy_error, e.toString());
-            }
-            Navigator.pop(context);
-          },
+                  await showAlertDialog(context, L10n.of(context).proxy_error, e.toString());
+                }
+                Navigator.pop(context);
+              },
           child: Text(L10n.of(context).save)
         )
-      ],
-      title: Text(L10n.of(context).proxy_label),
-      children: [
-        SizedBox(
-          width: mediaQuery.size.width,
-          child: TextFormField(
-            controller: controller,
+        ],
+        title: Text(L10n.of(context).proxy_label),
+        children: [
+          SizedBox(
+            width: mediaQuery.size.width,
+            child: TextFormField(
+              controller: controller,
             decoration: InputDecoration(hintText: 'scheme://[user:pwd@]host:port', hintStyle: TextStyle(color: Theme.of(context).disabledColor)),
-          ),
-        )
+            ),
+          )
       ]
     );
   }
@@ -106,22 +147,22 @@ class SettingsGeneralFragment extends StatelessWidget {
     List<String> exclusionsFeedLst = (prefs.get(optionExclusionsFeed) as String).split(',');
 
     return PrefDialog(
-      actions: [
-        TextButton(onPressed: () => Navigator.pop(context), child: Text(L10n.of(context).cancel)),
-        TextButton(
-          onPressed: () async {
-            await prefs.set(optionExclusionsFeed, exclusionsFeedLst.join(','));
-            Navigator.pop(context);
-          },
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(context), child: Text(L10n.of(context).cancel)),
+          TextButton(
+              onPressed: () async {
+                await prefs.set(optionExclusionsFeed, exclusionsFeedLst.join(','));
+                Navigator.pop(context);
+              },
           child: Text(L10n.of(context).save)
         )
-      ],
-      title: Text(L10n.of(context).exclusions_feed_label),
-      children: [
-        ExclusionsFeedSetting(
-          exclusionsFeedLst: exclusionsFeedLst,
-          onChanged: (List<String> lst) {
-            exclusionsFeedLst = lst;
+        ],
+        title: Text(L10n.of(context).exclusions_feed_label),
+        children: [
+          ExclusionsFeedSetting(
+              exclusionsFeedLst: exclusionsFeedLst,
+              onChanged: (List<String> lst) {
+                exclusionsFeedLst = lst;
           }
         ),
       ]
@@ -202,6 +243,11 @@ class SettingsGeneralFragment extends StatelessWidget {
             title: Text(L10n.of(context).proxy_label),
             subtitle: Text(L10n.of(context).proxy_description),
             dialog: _createProxyDialog(context),
+          ),
+          PrefDialogButton(
+            title: Text(L10n.of(context).translator_label),
+            subtitle: Text(L10n.of(context).translator_description),
+            dialog: _createTranslateDialog(context),
           ),
           PrefSwitch(
             title: Text(L10n.of(context).disable_screenshots),
@@ -480,10 +526,10 @@ class ExclusionsFeedSettingState extends State<ExclusionsFeedSetting> {
                 children: [
                   Expanded(
                     child: DynamicTextfield(
-                      key: UniqueKey(),
-                      initialValue: _exclusionsFeedLst[index].trim(),
-                      onChanged: (String v) {
-                        _exclusionsFeedLst[index] = v.trim();
+                        key: UniqueKey(),
+                        initialValue: _exclusionsFeedLst[index].trim(),
+                        onChanged: (String v) {
+                          _exclusionsFeedLst[index] = v.trim();
                       }
                     ),
                   ),
