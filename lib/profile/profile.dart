@@ -520,7 +520,17 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> with TickerProvid
                       Container(
                         alignment: Alignment.topRight,
                         margin: EdgeInsets.fromLTRB(128, profileImageTop + 64, 16, 16),
-                        child: FollowButton(user: UserSubscription.fromUser(user), color: Colors.white),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children:[
+                            IconButton(
+                              icon: const Icon(Symbols.search),
+                              color: Colors.white,
+                              onPressed: () => pushNamedRoute(context, routeSearch, SearchArguments(1, focusInputOnOpen: true, query: 'from:@${(user.screenName!)} ')),
+                            ),
+                            FollowButton(user: UserSubscription.fromUser(user), color: Colors.white),
+                          ],
+                        ),
                       ),
                       Container(
                         alignment: Alignment.topLeft,
