@@ -624,5 +624,15 @@
   "exclusions_feed_description": "Lista nazw użytkowników do wykluczenia z kanału",
   "@exclusions_feed_description": {},
   "exclusions_feed_label": "Wykluczenia w kanałach",
-  "@exclusions_feed_label": {}
+  "@exclusions_feed_label": {},
+  "community_notes_title": "Czytelnicy dodali kontekst",
+  "@community_notes_title": {},
+  "option_show_navigation_labels_label": "Etykiety paska nawigacji",
+  "@option_show_navigation_labels_label": {},
+  "option_show_navigation_labels_description": "Pokaż etykiety pod ikonami na pasku nawigacji",
+  "@option_show_navigation_labels_description": {},
+  "option_navigation_animations_label": "Animacje nawigacji",
+  "@option_navigation_animations_label": {},
+  "option_navigation_animations_description": "Włącz animacje nawigacji",
+  "@option_navigation_animations_description": {}
 }
