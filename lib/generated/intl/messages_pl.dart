@@ -128,6 +128,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "choose": MessageLookupByLibrary.simpleMessage("Wybierz"),
         "choose_pages": MessageLookupByLibrary.simpleMessage("Wybierz karty"),
         "close": MessageLookupByLibrary.simpleMessage("Zamknij"),
+        "community_notes_title":
+            MessageLookupByLibrary.simpleMessage("Czytelnicy dodali kontekst"),
         "confirm_close_fritter": MessageLookupByLibrary.simpleMessage(
             "Czy na pewno chcesz zamknąć Squawkera?"),
         "contribute": MessageLookupByLibrary.simpleMessage("Wnieś swój wkład"),
@@ -337,6 +339,15 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Potwierdź przy zamykaniu aplikacji"),
         "option_confirm_close_label":
             MessageLookupByLibrary.simpleMessage("Potwierdź zamknięcie"),
+        "option_navigation_animations_description":
+            MessageLookupByLibrary.simpleMessage("Włącz animacje nawigacji"),
+        "option_navigation_animations_label":
+            MessageLookupByLibrary.simpleMessage("Animacje nawigacji"),
+        "option_show_navigation_labels_description":
+            MessageLookupByLibrary.simpleMessage(
+                "Pokaż etykiety pod ikonami na pasku nawigacji"),
+        "option_show_navigation_labels_label":
+            MessageLookupByLibrary.simpleMessage("Etykiety paska nawigacji"),
         "optional_label":
             MessageLookupByLibrary.simpleMessage("Pola opcjonalne:"),
         "page_not_found": MessageLookupByLibrary.simpleMessage(
