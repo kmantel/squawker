@@ -241,8 +241,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "filters": MessageLookupByLibrary.simpleMessage("Filtrid"),
         "finish": MessageLookupByLibrary.simpleMessage("Lõpeta"),
         "finished_with_snapshotData_users": m5,
-        "followers": MessageLookupByLibrary.simpleMessage("Jälgijaid"),
-        "following": MessageLookupByLibrary.simpleMessage("Jälgitavaid"),
+        "followers": MessageLookupByLibrary.simpleMessage("Jälgijat"),
+        "following": MessageLookupByLibrary.simpleMessage("Jälgitavat"),
         "forbidden": MessageLookupByLibrary.simpleMessage(
             "Twitter/X ütleb, et juurdepääs sellele sisule on keelatud"),
         "fritter": MessageLookupByLibrary.simpleMessage("Squawker"),
