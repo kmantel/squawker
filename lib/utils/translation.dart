@@ -34,22 +34,62 @@ class TranslationAPI {
   //   translate.astian.org, translate.foxhaven.cyou, trans.zillyhuhn.com
   // other possibilities working but badly translated:
   //   translate.terraprint.co
-  static final translation_hosts = ['libretranslate.de', 'translate.fedilab.app', 'translate.argosopentech.com'];
+  static final default_translation_hosts = [
+    {
+      'host': 'libretranslate.de',
+      'api_key': null
+    },
+    {
+      'host': 'translate.fedilab.app',
+      'api_key': null
+    },
+    {
+      'host': 'translate.argosopentech.com',
+      'api_key': null
+    }
+  ];
+  static List<Map<String,dynamic>>? _translation_hosts;
   static int current_translation_host_idx = 0; // Random().nextInt(translation_hosts.length);
   static Map<String, String> langCodeReplace = {
     'iw': 'he'
   };
 
-  static String translationHost() {
-    return translation_hosts[current_translation_host_idx];
+  static int translationHostsLength() {
+    _translation_hosts ??= default_translation_hosts;
+    return _translation_hosts!.length;
   }
 
-  static String nextTranslationHost() {
+  static Map<String,dynamic> translationHost() {
+    _translation_hosts ??= default_translation_hosts;
+    return _translation_hosts![current_translation_host_idx];
+  }
+
+  static Map<String,dynamic> nextTranslationHost() {
+    _translation_hosts ??= default_translation_hosts;
     current_translation_host_idx++;
-    if (current_translation_host_idx == translation_hosts.length) {
+    if (current_translation_host_idx == _translation_hosts!.length) {
       current_translation_host_idx = 0;
     }
     return translationHost();
+  }
+
+  static String updateTranslationHosts(List<Map<String,dynamic>> translationHosts) {
+    _translation_hosts = translationHosts;
+    return jsonEncode(_translation_hosts);
+  }
+
+  static List<Map<String,dynamic>> readTranslationHosts({String? translationHosts}) {
+    if (translationHosts != null) {
+      List<Map<String,dynamic>> lst = [];
+      for (dynamic item in jsonDecode(translationHosts)) {
+        lst.add(item);
+      }
+      return lst;
+    }
+    if (_translation_hosts == null) {
+      return default_translation_hosts;
+    }
+    return _translation_hosts!;
   }
 
   static Future<TranslationAPIResult> getSupportedLanguages() async {
@@ -58,23 +98,24 @@ class TranslationAPI {
     return cacheRequest(key, () async {
       int connectTries = 0;
       String? errorMessage;
-      while (connectTries < translation_hosts.length) {
+      while (connectTries < translationHostsLength()){
+        String trHost = translationHost()['host'];
         try {
-          var response = await AppHttpClient.httpGet(Uri.https(translationHost(), '/languages')).timeout(const Duration(seconds: 3));
+          var response = await AppHttpClient.httpGet(Uri.https(trHost, '/languages')).timeout(const Duration(seconds: 3));
           TranslationAPIResult rsp = await parseResponse(response);
           if (rsp.success) {
             return rsp;
           }
           else {
-            errorMessage ??= 'get supported languages error ${rsp.errorMessage} from host ${translationHost()}';
-            log.warning('get supported languages error ${rsp.errorMessage} from host ${translationHost()}');
+            errorMessage ??= 'get supported languages error ${rsp.errorMessage} from host $trHost';
+            log.warning('get supported languages error ${rsp.errorMessage} from host $trHost');
           }
         } on TimeoutException {
-          errorMessage ??= 'get supported languages timeout from host ${translationHost()}';
-          log.warning('get supported languages timeout from host ${translationHost()}');
+          errorMessage ??= 'get supported languages timeout from host $trHost';
+          log.warning('get supported languages timeout from host $trHost');
         } catch (exc) {
-          errorMessage ??= 'get supported languages error from ${translationHost()}\n${exc.toString()}';
-          log.warning('get supported languages error from ${translationHost()}\n${exc.toString()}');
+          errorMessage ??= 'get supported languages error from $trHost\n${exc.toString()}';
+          log.warning('get supported languages error from $trHost\n${exc.toString()}');
         }
         nextTranslationHost();
         connectTries++;
@@ -102,24 +143,29 @@ class TranslationAPI {
     var res = await cacheRequest(key, () async {
       int connectTries = 0;
       String? errorMessage;
-      while (connectTries < translation_hosts.length) {
+      while (connectTries < translationHostsLength()) {
+        String trHost = translationHost()['host'];
+        var data = {
+          ...formData,
+          'api_key': translationHost()['api_key']
+        };
         try {
-          var response = await AppHttpClient.httpPost(Uri.https(translationHost(), '/translate'),
-              body: jsonEncode(formData), headers: {'Content-Type': 'application/json'}).timeout(const Duration(seconds: 3));
+          var response = await AppHttpClient.httpPost(Uri.https(trHost, '/translate'),
+            body: jsonEncode(data), headers: {'Content-Type': 'application/json'}).timeout(const Duration(seconds: 3));
           TranslationAPIResult rsp = await parseResponse(response);
           if (rsp.success) {
             return rsp;
           }
           else {
-            errorMessage ??= 'translate error ${rsp.errorMessage} from host ${translationHost()}';
-            log.warning('translate error ${rsp.errorMessage} from host ${translationHost()}');
+            errorMessage ??= 'translate error ${rsp.errorMessage} from host $trHost';
+            log.warning('translate error ${rsp.errorMessage} from host $trHost');
           }
         } on TimeoutException {
-          errorMessage ??= 'translate timeout from host ${translationHost()}';
-          log.warning('translate timeout from host ${translationHost()}');
+          errorMessage ??= 'translate timeout from host $trHost';
+          log.warning('translate timeout from host $trHost');
         } catch (exc) {
-          errorMessage ??= 'translate error from ${translationHost()}\n${exc.toString()}';
-          log.warning('translate error from ${translationHost()}\n${exc.toString()}');
+          errorMessage ??= 'translate error from $trHost\n${exc.toString()}';
+          log.warning('translate error from $trHost\n${exc.toString()}');
         }
         nextTranslationHost();
         connectTries++;
@@ -173,7 +219,7 @@ class TranslationAPI {
 
     switch (response.statusCode) {
       case 400:
-        RegExp languageNotSupported = RegExp(r"^\w+\ is\ not\ supported$");
+        RegExp languageNotSupported = RegExp(r"^\w+ is not supported$");
 
         var error = body['error'];
         if (languageNotSupported.hasMatch(error)) {

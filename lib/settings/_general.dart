@@ -2,6 +2,7 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localized_locales/flutter_localized_locales.dart';
+import 'package:flutter_swipe_action_cell/flutter_swipe_action_cell.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:squawker/client/app_http_client.dart';
 import 'package:squawker/constants.dart';
@@ -12,6 +13,7 @@ import 'package:squawker/profile/profile.dart';
 import 'package:squawker/ui/errors.dart';
 import 'package:squawker/utils/iterables.dart';
 import 'package:squawker/utils/misc.dart';
+import 'package:squawker/utils/translation.dart';
 import 'package:logging/logging.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:pref/pref.dart';
@@ -197,6 +199,27 @@ class SettingsGeneralFragment extends StatelessWidget {
             title: Text(L10n.of(context).share_base_url),
             subtitle: Text(L10n.of(context).share_base_url_description),
             dialog: _createShareBaseDialog(context),
+          ),
+          PrefChevron(
+            title: Text(L10n.of(context).translators_label),
+            subtitle: Text(L10n.of(context).translators_description),
+            onTap: () async {
+              BasePrefService prefs = PrefService.of(context);
+              List<Map<String,dynamic>> translationHosts = TranslationAPI.readTranslationHosts(translationHosts: prefs.get(optionTranslators));
+              var result = await showDialog<bool>(
+                barrierDismissible: false,
+                context: context,
+                builder: (BuildContext context) {
+                  return Dialog(
+                    child: TranslatorsList(translationHosts),
+                  );
+                }
+              );
+              if (result == true) {
+                String s = TranslationAPI.updateTranslationHosts(translationHosts);
+                prefs.set(optionTranslators, s);
+              }
+            },
           ),
           PrefDialogButton(
             title: Text(L10n.of(context).proxy_label),
@@ -538,6 +561,252 @@ class _DynamicTextfieldState extends State<DynamicTextfield> {
         isCollapsed: true,
         contentPadding: EdgeInsets.all(5),
       ),
+    );
+  }
+}
+
+class TranslatorsList extends StatefulWidget {
+  final List<Map<String,dynamic>> initialValue;
+
+  TranslatorsList(this.initialValue, {super.key});
+
+  @override
+  State createState() => _TranslatorsListState();
+}
+
+class _TranslatorsListState extends State<TranslatorsList> {
+
+  late List<Map<String,dynamic>> _translationHosts;
+
+  @override
+  void initState() {
+    super.initState();
+    _translationHosts = widget.initialValue;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        shape: BoxShape.rectangle,
+        color: Theme.of(context).secondaryHeaderColor,
+        borderRadius: BorderRadius.all(Radius.circular(20)),
+      ),
+      padding: EdgeInsets.all(10),
+      child: Column(
+        children: [
+          Text(L10n.current.translators_label,
+            style: TextStyle(fontSize: Theme.of(context).textTheme.headlineMedium!.fontSize)
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              SizedBox(
+              width: 100,
+              child:
+                PrefButton(
+                  child: Icon(Symbols.add),
+                  onTap: () async {
+                    Map<String,dynamic> trHost = {
+                      'host': null,
+                      'api_key': null
+                    };
+                    var result = await showDialog<bool>(
+                      barrierDismissible: false,
+                      context: context,
+                      builder: (BuildContext context) {
+                        return Dialog(
+                          child: Translator(trHost),
+                        );
+                      }
+                    );
+                    if (result == true) {
+                      setState(() {
+                        _translationHosts.add(trHost);
+                      });
+                    }
+                  }
+                ),
+              )
+            ],
+          ),
+          Expanded(
+            child: ReorderableListView.builder(
+              shrinkWrap: true,
+              itemCount: _translationHosts.length,
+              itemBuilder: (BuildContext context, int index) {
+                return SwipeActionCell(
+                  key: Key(_translationHosts[index]['host']),
+                  trailingActions: <SwipeAction>[
+                    SwipeAction(
+                      title: L10n.current.delete,
+                      onTap: (CompletionHandler handler) async {
+                        setState(() {
+                          _translationHosts.removeAt(index);
+                        });
+                      },
+                      color: Colors.red
+                    ),
+                  ],
+                  child: Card(
+                  child: ListTile(
+                    title: Text(_translationHosts[index]['host'],
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(fontSize: Theme.of(context).textTheme.labelMedium!.fontSize)),
+                    trailing: IconButton(
+                      icon: const Icon(Symbols.edit, size: 20),
+                      onPressed: () async {
+                        Map<String,dynamic> trHost = _translationHosts[index];
+                        var result = await showDialog<bool>(
+                          barrierDismissible: false,
+                          context: context,
+                          builder: (BuildContext context) {
+                            return Dialog(
+                              child: Translator(trHost),
+                            );
+                          }
+                        );
+                        if (result == true) {
+                          setState(() {
+                          });
+                        }
+                      }
+                    ),
+                  )
+                ));
+              },
+              onReorder: (oldIndex, newIndex) async {
+                Map<String,dynamic> trHost = _translationHosts.removeAt(oldIndex);
+                if (oldIndex < newIndex) {
+                  _translationHosts.insert(newIndex - 1, trHost);
+                } else {
+                  _translationHosts.insert(newIndex, trHost);
+                }
+              }
+            )
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              SizedBox(
+                width: 100,
+                child:
+                ElevatedButton(
+                  child: Text(L10n.current.cancel),
+                  onPressed: () {
+                    Navigator.pop(context, null);
+                  }
+                ),
+              ),
+              SizedBox(
+                width: 100,
+                child:
+                ElevatedButton(
+                  child:Text(L10n.current.save),
+                  onPressed: () {
+                    Navigator.pop(context, true);
+                  }
+                ),
+              )
+            ],
+          ),
+        ]
+      )
+    );
+  }
+
+}
+
+class Translator extends StatefulWidget {
+  final Map<String,dynamic> translationHost;
+
+  Translator(this.translationHost, {super.key});
+
+  @override
+  State createState() => _TranslatorState();
+}
+
+class _TranslatorState extends State<Translator> {
+
+  late bool _saveEnabled;
+  late TextEditingController controllerHost;
+  late TextEditingController controllerApiKey;
+
+  @override
+  void initState() {
+    super.initState();
+    _saveEnabled = widget.translationHost['host']?.isNotEmpty ?? false;
+    controllerHost = TextEditingController(text: widget.translationHost['host']);
+    controllerApiKey = TextEditingController(text: widget.translationHost['api_key']);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    MediaQueryData mediaQuery = MediaQuery.of(context);
+    return Container(
+      decoration: BoxDecoration(
+        shape: BoxShape.rectangle,
+        color: Theme.of(context).secondaryHeaderColor,
+        borderRadius: BorderRadius.all(Radius.circular(20)),
+      ),
+      padding: EdgeInsets.all(10),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(L10n.current.translator_label,
+            style: TextStyle(fontSize: Theme.of(context).textTheme.headlineMedium!.fontSize)
+          ),
+          SizedBox(
+            width: mediaQuery.size.width,
+            child: TextFormField(
+              controller: controllerHost,
+              decoration: InputDecoration(hintText: L10n.current.libre_translate_host, hintStyle: TextStyle(color: Theme.of(context).disabledColor)),
+              onChanged: (String text) {
+                setState(() {
+                  _saveEnabled = text.trim().isNotEmpty;
+                });
+              },
+            ),
+          ),
+          SizedBox(
+            width: mediaQuery.size.width,
+            child: TextFormField(
+              controller: controllerApiKey,
+              decoration: InputDecoration(hintText: L10n.current.api_key, hintStyle: TextStyle(color: Theme.of(context).disabledColor)),
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              SizedBox(
+                width: 100,
+                child:
+                ElevatedButton(
+                  child: Text(L10n.current.cancel),
+                  onPressed: () {
+                    Navigator.pop(context, null);
+                  }
+                ),
+              ),
+              SizedBox(
+                width: 100,
+                child:
+                ElevatedButton(
+                  child:Text(L10n.current.save, style: TextStyle(color: _saveEnabled ? Theme.of(context).textTheme.labelMedium!.color : Theme.of(context).disabledColor)),
+                  onPressed: () {
+                    if (!_saveEnabled) {
+                      return;
+                    }
+                    widget.translationHost['host'] = controllerHost.text;
+                    widget.translationHost['api_key'] = controllerApiKey.text.isEmpty ? null : controllerApiKey.text;
+                    Navigator.pop(context, true);
+                  }
+                ),
+              )
+            ],
+          ),
+        ]
+      )
     );
   }
 }

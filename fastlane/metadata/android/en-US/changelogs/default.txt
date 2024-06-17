@@ -2,3 +2,6 @@
 * The released apk files also include apk files built for older Android KitKat (version 4.4.x).
 * Fix issue #309 Toolbar icons are not aligned.
 * PR #311 Add search button to profile view to find tweets from current user (thanks @alotbsol555).
+* PR #319 Allow to specify custom LibreTranslate instances (thanks @zihu12).
+  The list can be reordered, instances can be added or removed from the list.
+  An API key can be set for each instance.

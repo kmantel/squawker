@@ -526,7 +526,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> with TickerProvid
                             IconButton(
                               icon: const Icon(Symbols.search),
                               color: Colors.white,
-                              onPressed: () => pushNamedRoute(context, routeSearch, SearchArguments(1, focusInputOnOpen: true, query: 'from:@${(user.screenName!)} ')),
+                              onPressed: () => pushNamedRoute(context, routeSearch, SearchArguments(1, focusInputOnOpen: true, query: 'from:@${user.screenName!} ')),
                             ),
                             FollowButton(user: UserSubscription.fromUser(user), color: Colors.white),
                           ],

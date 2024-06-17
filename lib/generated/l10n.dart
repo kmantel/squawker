@@ -2946,6 +2946,56 @@ class L10n {
     );
   }
 
+  /// `Translators`
+  String get translators_label {
+    return Intl.message(
+      'Translators',
+      name: 'translators_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Use custom LibreTranslate instances`
+  String get translators_description {
+    return Intl.message(
+      'Use custom LibreTranslate instances',
+      name: 'translators_description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Translator`
+  String get translator_label {
+    return Intl.message(
+      'Translator',
+      name: 'translator_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `LibreTranslate host`
+  String get libre_translate_host {
+    return Intl.message(
+      'LibreTranslate host',
+      name: 'libre_translate_host',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `API key`
+  String get api_key {
+    return Intl.message(
+      'API key',
+      name: 'api_key',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Proxy`
   String get proxy_label {
     return Intl.message(
