@@ -50,7 +50,7 @@ class SavedTweetModel extends Store<List<SavedTweet>> {
       var encodedContent = jsonEncode(content);
 
       await database.insert(tableSavedTweet, {'id': id, 'user_id': user, 'content': encodedContent});
-      state.add(SavedTweet(id: id, user: user, content: encodedContent));
+      state.insert(0, SavedTweet(id: id, user: user, content: encodedContent));
 
       return state;
     });
