@@ -41,6 +41,7 @@ import 'package:squawker/utils/accent_util.dart';
 import 'package:squawker/utils/data_service.dart';
 import 'package:squawker/utils/iterables.dart';
 import 'package:squawker/utils/misc.dart';
+import 'package:squawker/utils/translation.dart';
 import 'package:squawker/utils/urls.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
@@ -238,6 +239,8 @@ Future<void> main() async {
   await TwitterAccount.loadAllTwitterTokensAndRateLimits();
 
   AppHttpClient.setProxy(prefService.get(optionProxy));
+
+  TranslationAPI.setTranslationHostsFromStr(prefService.get(optionTranslators));
 
   runApp(PrefService(
     service: prefService,

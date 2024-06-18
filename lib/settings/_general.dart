@@ -205,7 +205,7 @@ class SettingsGeneralFragment extends StatelessWidget {
             subtitle: Text(L10n.of(context).translators_description),
             onTap: () async {
               BasePrefService prefs = PrefService.of(context);
-              List<Map<String,dynamic>> translationHosts = TranslationAPI.readTranslationHosts(translationHosts: prefs.get(optionTranslators));
+              List<Map<String,dynamic>> translationHosts = TranslationAPI.translationHosts();
               var result = await showDialog<bool>(
                 barrierDismissible: false,
                 context: context,
@@ -216,7 +216,7 @@ class SettingsGeneralFragment extends StatelessWidget {
                 }
               );
               if (result == true) {
-                String s = TranslationAPI.updateTranslationHosts(translationHosts);
+                String s = TranslationAPI.setTranslationHosts(translationHosts);
                 prefs.set(optionTranslators, s);
               }
             },

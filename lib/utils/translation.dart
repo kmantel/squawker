@@ -54,6 +54,11 @@ class TranslationAPI {
     'iw': 'he'
   };
 
+  static List<Map<String,dynamic>> translationHosts() {
+    _translation_hosts ??= default_translation_hosts;
+    return _translation_hosts!;
+  }
+
   static int translationHostsLength() {
     _translation_hosts ??= default_translation_hosts;
     return _translation_hosts!.length;
@@ -73,21 +78,22 @@ class TranslationAPI {
     return translationHost();
   }
 
-  static String updateTranslationHosts(List<Map<String,dynamic>> translationHosts) {
+  static String setTranslationHosts(List<Map<String,dynamic>>? translationHosts) {
     _translation_hosts = translationHosts;
+    _translation_hosts ??= default_translation_hosts;
     return jsonEncode(_translation_hosts);
   }
 
-  static List<Map<String,dynamic>> readTranslationHosts({String? translationHosts}) {
-    if (translationHosts != null) {
+  static List<Map<String,dynamic>> setTranslationHostsFromStr(String? translationHosts) {
+    if (translationHosts == null) {
+      _translation_hosts = default_translation_hosts;
+    }
+    else {
       List<Map<String,dynamic>> lst = [];
       for (dynamic item in jsonDecode(translationHosts)) {
         lst.add(item);
       }
-      return lst;
-    }
-    if (_translation_hosts == null) {
-      return default_translation_hosts;
+      _translation_hosts = lst;
     }
     return _translation_hosts!;
   }
