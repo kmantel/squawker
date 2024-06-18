@@ -634,5 +634,15 @@
   "option_navigation_animations_label": "导航动画",
   "@option_navigation_animations_label": {},
   "option_navigation_animations_description": "开启导航动画",
-  "@option_navigation_animations_description": {}
+  "@option_navigation_animations_description": {},
+  "translators_description": "使用自定义的 LibreTranslate 实例",
+  "@translators_description": {},
+  "api_key": "API 密钥",
+  "@api_key": {},
+  "translator_label": "翻译器",
+  "@translator_label": {},
+  "libre_translate_host": "LibreTranslate 主机",
+  "@libre_translate_host": {},
+  "translators_label": "翻译器",
+  "@translators_label": {}
 }
