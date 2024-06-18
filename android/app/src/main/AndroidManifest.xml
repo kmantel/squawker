@@ -114,6 +114,10 @@
                     android:scheme="https" />
                     
                 <data
+                    android:host="*fixupx.com"
+                    android:scheme="https" />
+
+                <data
                     android:host="x.com"
                     android:scheme="http" />
 
