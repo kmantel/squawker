@@ -1,1 +1,2 @@
 * Implement feature #316 Add fixupx.com as supported link.
+* Implement PR #323 Put newly saved tweets to the top of the saved view.
