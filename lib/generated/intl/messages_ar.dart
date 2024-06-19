@@ -106,6 +106,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "an_update_for_fritter_is_available":
             MessageLookupByLibrary.simpleMessage(
                 "هناك تحديث متوفر لـ Squawker! 🚀"),
+        "api_key": MessageLookupByLibrary.simpleMessage("مفتاح API"),
         "app_info": MessageLookupByLibrary.simpleMessage("معلومات عن التطبيق"),
         "are_you_sure": MessageLookupByLibrary.simpleMessage("هل أنت متأكد؟"),
         "are_you_sure_you_want_to_delete_the_subscription_group_name_of_group":
@@ -282,6 +283,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "let_the_developers_know_if_something_is_broken":
             MessageLookupByLibrary.simpleMessage(
                 "دع المطورين يعرفون ما إذا كان هناك خطأ ما"),
+        "libre_translate_host":
+            MessageLookupByLibrary.simpleMessage("مضيف LibreTranslate"),
         "licenses": MessageLookupByLibrary.simpleMessage("الرخص"),
         "light": MessageLookupByLibrary.simpleMessage("فاتح"),
         "live": MessageLookupByLibrary.simpleMessage("مباشر"),
@@ -476,6 +479,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "لاستيراد الاشتراكات من حساب تويتر موجود، أدخل اسم المستخدم أدناه."),
         "toggle_all": MessageLookupByLibrary.simpleMessage("تبديل الكل"),
+        "translator_label": MessageLookupByLibrary.simpleMessage("المترجم"),
+        "translators_description": MessageLookupByLibrary.simpleMessage(
+            "استخدم مثيلات LibreTranslate المخصصة"),
+        "translators_label": MessageLookupByLibrary.simpleMessage("المترجمين"),
         "trending": MessageLookupByLibrary.simpleMessage("المتداولة"),
         "trends": MessageLookupByLibrary.simpleMessage("الترندات"),
         "true_black": MessageLookupByLibrary.simpleMessage("أسود حقيقي؟"),

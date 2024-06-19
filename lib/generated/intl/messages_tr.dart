@@ -111,6 +111,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "an_update_for_fritter_is_available":
             MessageLookupByLibrary.simpleMessage(
                 "Squawker için bir güncelleme mevcut! 🚀"),
+        "api_key": MessageLookupByLibrary.simpleMessage("API anahtarı"),
         "app_info": MessageLookupByLibrary.simpleMessage("Uygulama Bilgisi"),
         "are_you_sure": MessageLookupByLibrary.simpleMessage("Emin misiniz?"),
         "are_you_sure_you_want_to_delete_the_subscription_group_name_of_group":
@@ -289,6 +290,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "let_the_developers_know_if_something_is_broken":
             MessageLookupByLibrary.simpleMessage(
                 "Yanlış giden şeyler varsa geliştiricilere bildirin"),
+        "libre_translate_host":
+            MessageLookupByLibrary.simpleMessage("LibreTranslate sunucusu"),
         "licenses": MessageLookupByLibrary.simpleMessage("Lisanslar"),
         "light": MessageLookupByLibrary.simpleMessage("Açık"),
         "live": MessageLookupByLibrary.simpleMessage("CANLI"),
@@ -487,6 +490,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Mevcut bir Twitter/X hesabından abonelikleri içe aktarmak için aşağıya kullanıcı adınızı girin."),
         "toggle_all": MessageLookupByLibrary.simpleMessage("Tümünü Aç/Kapat"),
+        "translator_label": MessageLookupByLibrary.simpleMessage("Çevirmen"),
+        "translators_description": MessageLookupByLibrary.simpleMessage(
+            "Özel LibreTranslate sunucuları kullan"),
+        "translators_label":
+            MessageLookupByLibrary.simpleMessage("Çevirmenler"),
         "trending": MessageLookupByLibrary.simpleMessage("Trendler"),
         "trends": MessageLookupByLibrary.simpleMessage("Trendler"),
         "true_black":

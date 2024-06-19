@@ -93,6 +93,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("其他后台应用"),
         "an_update_for_fritter_is_available":
             MessageLookupByLibrary.simpleMessage("Squawker 有新版本 🚀"),
+        "api_key": MessageLookupByLibrary.simpleMessage("API 密钥"),
         "app_info": MessageLookupByLibrary.simpleMessage("应用程序信息"),
         "are_you_sure": MessageLookupByLibrary.simpleMessage("你确定吗？"),
         "are_you_sure_you_want_to_delete_the_subscription_group_name_of_group":
@@ -244,6 +245,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("从旧的 Android 设备导入"),
         "let_the_developers_know_if_something_is_broken":
             MessageLookupByLibrary.simpleMessage("有问题请告诉开发者🐦"),
+        "libre_translate_host":
+            MessageLookupByLibrary.simpleMessage("LibreTranslate 主机"),
         "licenses": MessageLookupByLibrary.simpleMessage("许可证"),
         "light": MessageLookupByLibrary.simpleMessage("亮色主题"),
         "live": MessageLookupByLibrary.simpleMessage("LIVE"),
@@ -407,6 +410,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "要从现有的 Twitter/X 账号导入订阅，请在下方输入您的用户名。"),
         "toggle_all": MessageLookupByLibrary.simpleMessage("全选"),
+        "translator_label": MessageLookupByLibrary.simpleMessage("翻译器"),
+        "translators_description":
+            MessageLookupByLibrary.simpleMessage("使用自定义的 LibreTranslate 实例"),
+        "translators_label": MessageLookupByLibrary.simpleMessage("翻译器"),
         "trending": MessageLookupByLibrary.simpleMessage("趋势"),
         "trends": MessageLookupByLibrary.simpleMessage("趋势"),
         "true_black": MessageLookupByLibrary.simpleMessage("纯黑模式？"),

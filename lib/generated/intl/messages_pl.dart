@@ -110,6 +110,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "an_update_for_fritter_is_available":
             MessageLookupByLibrary.simpleMessage(
                 "Dostępna jest aktualizacja Squawkera! 🚀"),
+        "api_key": MessageLookupByLibrary.simpleMessage("Klucz API"),
         "app_info":
             MessageLookupByLibrary.simpleMessage("Informacje o aplikacji"),
         "are_you_sure": MessageLookupByLibrary.simpleMessage("Czy na pewno?"),
@@ -289,6 +290,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "let_the_developers_know_if_something_is_broken":
             MessageLookupByLibrary.simpleMessage(
                 "Daj znać programistom, jeśli coś się zepsuło"),
+        "libre_translate_host":
+            MessageLookupByLibrary.simpleMessage("Host LibreTranslate"),
         "licenses": MessageLookupByLibrary.simpleMessage("Licencje"),
         "light": MessageLookupByLibrary.simpleMessage("Jasny"),
         "live": MessageLookupByLibrary.simpleMessage("NA ŻYWO"),
@@ -488,6 +491,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Aby zaimportować subskrypcje z istniejącego konta na Twitter/Xze, wprowadź poniżej swoją nazwę użytkownika."),
         "toggle_all": MessageLookupByLibrary.simpleMessage("Przełącz"),
+        "translator_label": MessageLookupByLibrary.simpleMessage("Tłumacz"),
+        "translators_description": MessageLookupByLibrary.simpleMessage(
+            "Użyj niestandardowych instancji LibreTranslate"),
+        "translators_label": MessageLookupByLibrary.simpleMessage("Tłumacze"),
         "trending": MessageLookupByLibrary.simpleMessage("Trendy"),
         "trends": MessageLookupByLibrary.simpleMessage("Trendy"),
         "true_black": MessageLookupByLibrary.simpleMessage("Prawdziwa czerń?"),
