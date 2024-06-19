@@ -634,5 +634,15 @@
   "option_navigation_animations_label": "Gezinti animasyonları",
   "@option_navigation_animations_label": {},
   "option_navigation_animations_description": "Gezinti animasyonlarını etkinleştir",
-  "@option_navigation_animations_description": {}
+  "@option_navigation_animations_description": {},
+  "translators_label": "Çevirmenler",
+  "@translators_label": {},
+  "translators_description": "Özel LibreTranslate sunucuları kullan",
+  "@translators_description": {},
+  "translator_label": "Çevirmen",
+  "@translator_label": {},
+  "libre_translate_host": "LibreTranslate sunucusu",
+  "@libre_translate_host": {},
+  "api_key": "API anahtarı",
+  "@api_key": {}
 }

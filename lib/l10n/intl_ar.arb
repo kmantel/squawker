@@ -630,5 +630,15 @@
   "option_navigation_animations_label": "تأثيرات التنقل",
   "@option_navigation_animations_label": {},
   "option_navigation_animations_description": "تمكين تأثيرات التنقل",
-  "@option_navigation_animations_description": {}
+  "@option_navigation_animations_description": {},
+  "translator_label": "المترجم",
+  "@translator_label": {},
+  "api_key": "مفتاح API",
+  "@api_key": {},
+  "translators_label": "المترجمين",
+  "@translators_label": {},
+  "translators_description": "استخدم مثيلات LibreTranslate المخصصة",
+  "@translators_description": {},
+  "libre_translate_host": "مضيف LibreTranslate",
+  "@libre_translate_host": {}
 }

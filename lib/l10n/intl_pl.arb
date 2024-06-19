@@ -634,5 +634,15 @@
   "option_navigation_animations_label": "Animacje nawigacji",
   "@option_navigation_animations_label": {},
   "option_navigation_animations_description": "Włącz animacje nawigacji",
-  "@option_navigation_animations_description": {}
+  "@option_navigation_animations_description": {},
+  "translators_description": "Użyj niestandardowych instancji LibreTranslate",
+  "@translators_description": {},
+  "libre_translate_host": "Host LibreTranslate",
+  "@libre_translate_host": {},
+  "api_key": "Klucz API",
+  "@api_key": {},
+  "translators_label": "Tłumacze",
+  "@translators_label": {},
+  "translator_label": "Tłumacz",
+  "@translator_label": {}
 }
