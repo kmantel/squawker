@@ -51,7 +51,8 @@ class TranslationAPI {
   static List<Map<String,dynamic>>? _translation_hosts;
   static int current_translation_host_idx = 0; // Random().nextInt(translation_hosts.length);
   static Map<String, String> langCodeReplace = {
-    'iw': 'he'
+    'iw': 'he',
+    'in': 'id'
   };
 
   static List<Map<String,dynamic>> translationHosts() {
