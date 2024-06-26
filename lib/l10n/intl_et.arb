@@ -634,5 +634,15 @@
   "option_navigation_animations_label": "Animatsioonid tegevuste riba kasutamisel",
   "@option_navigation_animations_label": {},
   "option_navigation_animations_description": "Näita tegevuste riba kasutamisel animatsioone",
-  "@option_navigation_animations_description": {}
+  "@option_navigation_animations_description": {},
+  "translators_label": "Tõlkeliidesed",
+  "@translators_label": {},
+  "translators_description": "Kasuta sinu valitud LibreTranslate'i liideseid",
+  "@translators_description": {},
+  "translator_label": "Tõlkeliides",
+  "@translator_label": {},
+  "libre_translate_host": "LibreTranslate'i server",
+  "@libre_translate_host": {},
+  "api_key": "API võti",
+  "@api_key": {}
 }
