@@ -112,6 +112,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "an_update_for_fritter_is_available":
             MessageLookupByLibrary.simpleMessage(
                 "Squawker\'i tarkvarauuendus on saadaval! 🚀"),
+        "api_key": MessageLookupByLibrary.simpleMessage("API võti"),
         "app_info": MessageLookupByLibrary.simpleMessage(
             "Rakenduse üksikasjalik teave"),
         "are_you_sure":
@@ -294,6 +295,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "let_the_developers_know_if_something_is_broken":
             MessageLookupByLibrary.simpleMessage(
                 "Anna arendajatele teada, kui midagi ei toimi"),
+        "libre_translate_host":
+            MessageLookupByLibrary.simpleMessage("LibreTranslate\'i server"),
         "licenses": MessageLookupByLibrary.simpleMessage("Litsentsid"),
         "light": MessageLookupByLibrary.simpleMessage("Hele teema"),
         "live": MessageLookupByLibrary.simpleMessage("Otsesaade"),
@@ -498,6 +501,11 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Olemasoleva Twitter/Xi konto tellimuste impordiks palun sisesta alljärgnevalt oma kasutajanimi."),
         "toggle_all":
             MessageLookupByLibrary.simpleMessage("Lülita kõik sisse/välja"),
+        "translator_label": MessageLookupByLibrary.simpleMessage("Tõlkeliides"),
+        "translators_description": MessageLookupByLibrary.simpleMessage(
+            "Kasuta sinu valitud LibreTranslate\'i liideseid"),
+        "translators_label":
+            MessageLookupByLibrary.simpleMessage("Tõlkeliidesed"),
         "trending": MessageLookupByLibrary.simpleMessage("Hetkel populaarne"),
         "trends": MessageLookupByLibrary.simpleMessage("Hetkel populaarne"),
         "true_black":
