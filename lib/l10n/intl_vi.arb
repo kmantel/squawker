@@ -248,5 +248,19 @@
   "updates": "Cập nhật",
   "@updates": {},
   "update_to_release_version_through_your_fdroid_client": "Cập nhật{releaseVersion}thông qua F-Droid",
-  "@update_to_release_version_through_your_fdroid_client": {}
+  "@update_to_release_version_through_your_fdroid_client": {},
+  "logging": "Đang đăng nhập",
+  "@logging": {},
+  "enable_": "Kích hoạt ?",
+  "@enable_": {},
+  "the_file_does_not_exist_please_ensure_it_is_located_at_file_path": "Các tập tin không tồn tại. Hãy chắc chắn nó nằm ở {filePath}",
+  "@the_file_does_not_exist_please_ensure_it_is_located_at_file_path": {},
+  "prefix": "tiền tố",
+  "@prefix": {},
+  "please_make_sure_the_data_you_wish_to_import_is_located_there_then_press_the_import_button_below": "Hãy đảm bảo rằng dữ liệu bạn muốn nhập đã tồn tại sẵn, sau đó hãy nhấn nút nhập bên dưới.",
+  "@please_make_sure_the_data_you_wish_to_import_is_located_there_then_press_the_import_button_below": {},
+  "export_your_data": "Xuất dữ liệu",
+  "@export_your_data": {},
+  "activate_non_confirmation_bias_mode_label": "Kích hoạt chế độ không xác nhận bias",
+  "@activate_non_confirmation_bias_mode_label": {}
 }
