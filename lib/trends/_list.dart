@@ -60,7 +60,7 @@ class _TrendsListState extends State<TrendsList> {
         return ListView.builder(
           controller: scrollController,
           shrinkWrap: true,
-          physics: const LessSensitiveScrollPhysics(),
+          physics: const ClampingScrollPhysics(),
           itemCount: trends.length,
           itemBuilder: (context, index) {
             var trend = trends[index];

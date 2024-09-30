@@ -560,7 +560,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> with TickerProvid
             ],
             child: TabBarView(
               controller: _tabController,
-              physics: const LessSensitiveScrollPhysics(),
+              physics: const ClampingScrollPhysics(),
               children: [
                 ProfileTweets(
                     user: user, type: 'profile', includeReplies: false, pinnedTweets: widget.profile.pinnedTweets),

@@ -358,7 +358,7 @@ class ScaffoldWithBottomNavigationState extends State<ScaffoldWithBottomNavigati
     return Scaffold(
       body: PageView(
         controller: _pageController,
-        physics: const LessSensitiveScrollPhysics(),
+        physics: const ClampingScrollPhysics(),
         onPageChanged: (page) => navigationAnimations
           ? Debouncer.debounce('page-change', const Duration(milliseconds: 200), () {
             setState(() => _selectedIndex = page);

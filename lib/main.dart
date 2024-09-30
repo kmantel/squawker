@@ -425,6 +425,9 @@ class _SquawkerAppState extends State<SquawkerApp> with WidgetsBindingObserver {
       appBarStyle: _trueBlack ? FlexAppBarStyle.surface : FlexAppBarStyle.primary,
     );
     return MaterialApp(
+      scrollBehavior: ScrollConfiguration.of(context).copyWith(
+          physics: const ClampingScrollPhysics(),
+      ),
       localeListResolutionCallback: (locales, supportedLocales) {
         List supportedLocalesCountryCode = [];
         List supportedLocalesScriptCode = [];
